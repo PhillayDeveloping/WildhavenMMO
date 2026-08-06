@@ -49,8 +49,6 @@ import {
   type RateLimitPolicy,
   REPORTS_CREATE_POLICY,
   STEAM_LINK_POLICY,
-  WALLET_LINK_POLICY,
-  WOC_BALANCE_POLICY,
 } from '../../server/http/middleware/rate_limit';
 import {
   applyServerTimeouts,
@@ -94,9 +92,7 @@ import {
   PUBLIC_READ_MAX_PER_MINUTE,
   REPORTS_CREATE_MAX_PER_MINUTE,
   STEAM_LINK_MAX_PER_MINUTE,
-  WALLET_LINK_MAX_PER_MINUTE,
   WINDOW_MS,
-  WOC_BALANCE_MAX_PER_MINUTE,
 } from '../../server/ratelimit';
 
 // db.ts / player_card.ts / reports.ts / daily_rewards.ts evaluate a module-scope
@@ -173,21 +169,9 @@ describe('rate-limit POLICIES derive from the limiter constants and hold their v
       limit: 60,
     },
     {
-      policy: WOC_BALANCE_POLICY,
-      name: 'woc_balance',
-      source: WOC_BALANCE_MAX_PER_MINUTE,
-      limit: 20,
-    },
-    {
       policy: CARD_UPLOAD_POLICY,
       name: 'card_upload',
       source: CARD_UPLOAD_MAX_PER_MINUTE,
-      limit: 10,
-    },
-    {
-      policy: WALLET_LINK_POLICY,
-      name: 'wallet_link',
-      source: WALLET_LINK_MAX_PER_MINUTE,
       limit: 10,
     },
     {

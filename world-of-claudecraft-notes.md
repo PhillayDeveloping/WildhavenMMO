@@ -41,6 +41,16 @@ runtime rather than shipped as assets.
 
 ## Plan: database on Supabase, server stays local
 
+> **Answered and written up in [docs/supabase-database.md](docs/supabase-database.md).**
+> The two open questions below are resolved there against the real code: no
+> `ssl` option is set anywhere (all three connection sites pass only
+> `connectionString`, so `?sslmode=require` in the URL covers them), and there
+> is no separate migration command (`ensureSchema()` runs at boot). That file
+> also flags two things this plan did not anticipate: `sslmode=require` means
+> full certificate verification with the pinned `pg-connection-string`, and the
+> default pool size is sized against a stock Postgres container rather than a
+> Supabase plan's connection cap.
+
 Goal: the database lives in the cloud (Supabase), the game server (Node
 process) still runs on my own PC, started only when I'm actually playing/
 hosting.

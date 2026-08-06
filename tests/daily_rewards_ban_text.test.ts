@@ -8,11 +8,6 @@ describe('Daily Rewards ban messaging', () => {
       {
         eligible: false,
         reason: 'banned',
-        walletPubkey: null,
-        wocBalance: null,
-        wocUsdPrice: null,
-        usdValue: null,
-        minUsd: 20,
         banReason: 'Leaderboard manipulation',
         banExpiresAt: '2026-07-18T03:30:00.000Z',
       },
@@ -29,11 +24,6 @@ describe('Daily Rewards ban messaging', () => {
       dailyRewardReasonText({
         eligible: false,
         reason: 'banned',
-        walletPubkey: null,
-        wocBalance: null,
-        wocUsdPrice: null,
-        usdValue: null,
-        minUsd: 20,
         banReason: 'Repeated abuse',
         banExpiresAt: null,
       }),

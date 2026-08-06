@@ -279,11 +279,7 @@ class FakeDailyRewardDb implements DailyRewardDb {
 function rewardConfig(overrides: Partial<DailyRewardRuntimeConfig> = {}): DailyRewardRuntimeConfig {
   return {
     enabled: true,
-    minUsd: 20,
     prizePoolUsd: 150,
-    prizePoolSol: 0.75,
-    wocUsdPrice: 0.5,
-    solUsdPrice: 200,
     activeSeconds: 120,
     dayStartUtcMinutes: 22 * 60,
     tasks: [
@@ -351,13 +347,11 @@ describe('daily rewards', () => {
     vi.restoreAllMocks();
   });
 
-  it('qualifies a linked wallet by USD value', async () => {
-    const eligibility = await dailyRewardEligibility(1);
+  it('admits every account that is not banned', async () => {
+    const eligibility = await dailyRewardEligibility();
     expect(eligibility).toMatchObject({
       eligible: true,
       reason: 'eligible',
-      wocBalance: 50,
-      wocUsdPrice: 0.5,
       usdValue: 25,
     });
   });
@@ -399,16 +393,6 @@ describe('daily rewards', () => {
       banReason: 'Automated play was detected.',
       banExpiresAt: '2026-07-16T06:00:00.000Z',
     });
-  });
-
-  it('uses live WOC and SOL prices from the payout service config', async () => {
-    resetDailyRewardPriceCacheForTests();
-    stubRewardConfig({ wocUsdPrice: 0.5, solUsdPrice: 200, prizePoolSol: 0.75 });
-
-    const eligibility = await dailyRewardEligibility(1);
-    expect(eligibility).toMatchObject({ wocUsdPrice: 0.5, usdValue: 25 });
-    const status = await new DailyRewardService(new FakeDailyRewardDb()).status(1);
-    expect(status.prizePoolSol).toBeCloseTo(0.75);
   });
 
   it('records one daily spin and awards its points', async () => {
@@ -753,7 +737,6 @@ describe('daily rewards', () => {
         rank,
         accountId: 42,
         username: 'Winner',
-        walletPubkey: 'Wa11etPubKey1111111111111111111111111111111',
         points: 4200,
         prizePercent: 0.2,
         prizeUsd: 30,
@@ -1873,21 +1856,17 @@ describe('daily rewards', () => {
     expect(requestedConfigDays).toEqual(['2026-07-01']);
   });
 
-  it('builds a locked view for non-eligible status', () => {
+  it('builds a locked view for a banned status', () => {
     const status = {
       enabled: true,
       day: '2026-06-30',
       resetAt: '2026-07-01T00:00:00.000Z',
       prizePoolUsd: 150,
-      prizePoolSol: 1,
       eligibility: {
         eligible: false,
-        reason: 'under_minimum' as const,
-        walletPubkey: 'Wallet',
-        wocBalance: 1,
-        wocUsdPrice: 1,
-        usdValue: 1,
-        minUsd: 20,
+        reason: 'banned' as const,
+        banReason: 'Leaderboard manipulation',
+        banExpiresAt: null,
       },
       score: 0,
       rank: null,
@@ -1901,7 +1880,7 @@ describe('daily rewards', () => {
       history: { payouts: [] },
       status,
     });
-    expect(view).toMatchObject({ kind: 'ready', locked: true, lockReason: 'under_minimum' });
+    expect(view).toMatchObject({ kind: 'ready', locked: true, lockReason: 'banned' });
     expect(
       buildDailyRewardsView({
         kind: 'status',
@@ -2181,12 +2160,12 @@ describe('daily rewards', () => {
       const service = new DailyRewardService(db);
       await service.ensureActiveDay('2026-06-30');
       expect(db.ensureDayCalls).toBe(1);
-      // Change ONLY wocUsdPrice (a config field ensureDay persists): the same
-      // day must reseed. This pins the SERVICE passing the price through to the
+      // Change ONLY prizePoolUsd (a config field ensureDay persists): the same
+      // day must reseed. This pins the SERVICE passing the pool through to the
       // gate key; an ensureSeeded that stripped it (the unit key tests cannot
-      // see that seam) would silently skip persisting a genuine price change.
+      // see that seam) would silently skip persisting a genuine pool change.
       resetDailyRewardPriceCacheForTests();
-      stubRewardConfig({ wocUsdPrice: 0.75 });
+      stubRewardConfig({ prizePoolUsd: 175 });
       await service.ensureActiveDay('2026-06-30');
       expect(db.ensureDayCalls).toBe(2);
       expect(db.seedTasksCalls).toBe(2);

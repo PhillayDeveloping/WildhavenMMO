@@ -19,7 +19,7 @@ function task(overrides: Partial<DailyRewardTaskSeed> = {}): DailyRewardTaskSeed
   };
 }
 
-const CONFIG = { prizePoolUsd: 150, wocUsdPrice: 0.5, tasks: [task()] };
+const CONFIG = { prizePoolUsd: 150, tasks: [task()] };
 
 // A microtask flush: runSeedOnce schedules its seed thunk on a microtask, so let
 // pending .then callbacks run before asserting call counts.
@@ -55,12 +55,6 @@ describe('daily rewards seed gate', () => {
     it('changes when ONLY prizePoolUsd changes', () => {
       expect(buildSeedKey('2026-07-01', 'Claudemoon', CONFIG)).not.toBe(
         buildSeedKey('2026-07-01', 'Claudemoon', { ...CONFIG, prizePoolUsd: 200 }),
-      );
-    });
-
-    it('changes when ONLY wocUsdPrice changes', () => {
-      expect(buildSeedKey('2026-07-01', 'Claudemoon', CONFIG)).not.toBe(
-        buildSeedKey('2026-07-01', 'Claudemoon', { ...CONFIG, wocUsdPrice: 0.75 }),
       );
     });
 

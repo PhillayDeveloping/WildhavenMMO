@@ -27,8 +27,6 @@ const base: InspectInput = {
     chest: 'gravewoven_raiment',
     mainhand: 'worn_sword',
   },
-  holderTier: 0,
-  holderBalance: null,
   discordTier: 0,
   discordName: null,
   discordAvatar: null,
@@ -83,16 +81,6 @@ describe('buildInspectView: header', () => {
 });
 
 describe('buildInspectView: badge gating', () => {
-  it('hides the holder badge at tier 0 and shows it (with balance) above', () => {
-    expect(buildInspectView(base, ITEMS).badges.holder).toBeNull();
-    const m = buildInspectView({ ...base, holderTier: 3, holderBalance: 4200 }, ITEMS);
-    expect(m.badges.holder).toEqual({ tierIndex: 3, balance: 4200 });
-    // A zero/absent balance collapses to null (painter shows the plain rung label).
-    expect(
-      buildInspectView({ ...base, holderTier: 3, holderBalance: 0 }, ITEMS).badges.holder,
-    ).toEqual({ tierIndex: 3, balance: null });
-  });
-
   it('hides the dev badge at tier 0, and hides it at a real tier when showDevBadges is off', () => {
     expect(buildInspectView({ ...base, devTier: 0 }, ITEMS).badges.dev).toBeNull();
     expect(

@@ -44,8 +44,6 @@ import {
   resetRateLimitClock,
   resetRateLimits,
   resetReportsCreateRateLimits,
-  resetWalletLinkRateLimits,
-  resetWocBalanceRateLimits,
 } from '../../../server/ratelimit';
 import { NATIVE_APP_ORIGINS } from '../../../server/web_login_guard';
 import {
@@ -288,9 +286,7 @@ function isKnownDeviationPath(path: string): boolean {
 function isolate(): void {
   resetRateLimits();
   resetCardUploadRateLimits();
-  resetWalletLinkRateLimits();
   resetDiscordRateLimits();
-  resetWocBalanceRateLimits();
   resetPublicReadRateLimits();
   // Keep in lockstep with isolatePass: the per-account character-mutation
   // buckets are separate, so a create/rename/delete/takeover 429 on one pass must not

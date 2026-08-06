@@ -65,10 +65,8 @@ function harness(startCopper = 1000, inventory: InvSlot[] = SWORD): Harness {
           return copper;
         },
       }) as unknown as IWorld,
-    wocBalanceHtml: () => '',
     claudiumLauncherHtml: () => '',
     openClaudium: noop,
-    openWallet: noop,
     hideTooltip,
     consumePeek: () => false,
     cancelPetFeed: noop,
@@ -297,12 +295,11 @@ describe('BagsWindow.refreshIfChanged preserves what the player is holding', () 
     expect(h.hideTooltip).not.toHaveBeenCalled();
   });
 
-  // BOTH launchers, one case each. A single combined assertion is not enough here:
-  // with only the Claudium arm, deleting the wallet re-bind from paintMoneyRow left
-  // all 55 tests green, and the footer's Connect/Link wallet button would have gone
-  // dead after the first purse-driven repaint. wocBalanceHtml emits
-  // [data-wallet-action] only on its BUTTON variant (an unverified wallet), which is
-  // exactly the case a real player hits before verifying.
+  // The footer's one remaining launcher. This used to cover a wallet arm too, and
+  // that arm is what caught a real defect: deleting the re-bind from paintMoneyRow
+  // left every other test green while the button went dead after the first
+  // purse-driven repaint. The Claudium arm carries that guard alone now, so keep it
+  // driving a FRESH node rather than the binding render() already did.
   for (const launcher of [
     {
       name: 'Claudium',
@@ -310,7 +307,6 @@ describe('BagsWindow.refreshIfChanged preserves what the player is holding', () 
       hook: 'openClaudium',
       attr: 'data-claudium-launcher',
     },
-    { name: 'wallet', html: 'wocBalanceHtml', hook: 'openWallet', attr: 'data-wallet-action' },
   ] as const) {
     it(`keeps the ${launcher.name} launcher wired after an in-place rewrite`, () => {
       const opened: string[] = [];

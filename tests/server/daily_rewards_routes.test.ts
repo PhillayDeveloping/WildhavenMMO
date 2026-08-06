@@ -23,12 +23,11 @@
 // This file pins the ROUTE LAYER. The existing tests/daily_rewards_table.test.ts covers the
 // DailyRewardService internals against a hand-written FakeDailyRewardDb; here the service
 // is driven through the real route chain (compose + withErrors + the real guard/gate
-// middleware) with the db, wallet, and balance reads mocked so nothing hits Postgres.
+// middleware) with the db reads mocked so nothing hits Postgres.
 //
 // server/db builds a pg Pool at module load and throws if DATABASE_URL is unset; a dummy
 // URL is set before the module graph evaluates. The pool never connects: the guard reads
 // go through setDailyRewardDbForTests, the service db is a mocked PgDailyRewardDb, and
-// walletForAccount / cachedWocBalance are mocked.
 process.env.DATABASE_URL ||= 'postgres://test:test@127.0.0.1:5433/wocc_daily_routes';
 
 import type * as http from 'node:http';
@@ -37,7 +36,7 @@ import type { AccountModerationStatus } from '../../server/db';
 
 // One hoisted bundle: a mutable `state` the fakes read, a mocked PgDailyRewardDb surface
 // (vi.fns closing over state, so per-test control is a state write, never a leaky
-// once-implementation), and the wallet/balance read fakes. Reset in beforeEach.
+// once-implementation). Reset in beforeEach.
 const h = vi.hoisted(() => {
   const state = {
     spin: null as { outcomeKey: string; points: number; createdAt: string } | null,
@@ -50,8 +49,6 @@ const h = vi.hoisted(() => {
     voidPayoutResult: { outcome: 'not_found' } as unknown,
     restorePayoutResult: { outcome: 'not_found' } as unknown,
     ensureDayThrows: false,
-    wallet: null as { account_id: number; pubkey: string; linked_at: string } | null,
-    balance: null as number | null,
   };
   const db = {
     banForAccount: vi.fn(async () => null),
@@ -89,9 +86,7 @@ const h = vi.hoisted(() => {
     voidPayout: vi.fn(async () => state.voidPayoutResult),
     restorePayout: vi.fn(async () => state.restorePayoutResult),
   };
-  const wallet = { walletForAccount: vi.fn(async (_accountId: number) => state.wallet) };
-  const balance = { cachedWocBalance: vi.fn(async (_pubkey: string) => state.balance) };
-  return { state, db, wallet, balance };
+  return { state, db };
 });
 
 // The service singleton constructs new PgDailyRewardDb() at module load; swap it for a
@@ -130,22 +125,6 @@ vi.mock('../../server/daily_rewards_db', async (importOriginal) => {
   return { ...actual, PgDailyRewardDb: FakePgDailyRewardDb };
 });
 
-// Partial-mock server/db: keep scopeAllowsMutation, accountAndScopeForToken,
-// moderationStatusForAccount, pool, and the rest REAL (the lazy guard bundle reads them,
-// and the guard is overridden per test via setDailyRewardDbForTests), overriding only the
-// service's walletForAccount read.
-vi.mock('../../server/db', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('../../server/db')>();
-  return { ...actual, walletForAccount: h.wallet.walletForAccount };
-});
-
-// Partial-mock woc_balance: override only the RPC-backed balance read (the sole export
-// the daily-rewards graph dereferences).
-vi.mock('../../server/woc_balance', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('../../server/woc_balance')>();
-  return { ...actual, cachedWocBalance: h.balance.cachedWocBalance };
-});
-
 import {
   bustDailyRewardBoardCache,
   bustDailyRewardWinnersCache,
@@ -153,10 +132,8 @@ import {
   dailyRewardService,
   resetDailyRewardDbForTests,
   resetDailyRewardPriceCacheForTests,
-  resetDailyRewardSeekerArtifactVerifierForTests,
   routes,
   setDailyRewardDbForTests,
-  setDailyRewardSeekerArtifactVerifierForTests,
 } from '../../server/daily_rewards';
 import { resetDailyRewardSeedGateForTests } from '../../server/daily_rewards_seed_gate';
 import { compose } from '../../server/http/compose';
@@ -196,7 +173,6 @@ function payoutRow(rank: number) {
     rank,
     accountId: 7,
     username: 'alice',
-    walletPubkey: 'Wallet',
     points: 100,
     prizePercent: 0.2,
     prizeUsd: 30,
@@ -362,11 +338,8 @@ beforeEach(() => {
   h.state.voidPayoutResult = { outcome: 'not_found' };
   h.state.restorePayoutResult = { outcome: 'not_found' };
   h.state.ensureDayThrows = false;
-  h.state.wallet = null;
-  h.state.balance = null;
   resetDailyRewardDbForTests();
   resetDailyRewardPriceCacheForTests();
-  resetDailyRewardSeekerArtifactVerifierForTests();
   // Both memos live at module scope, so without a per-test reset an earlier test
   // that seeds a (day, realm, config) key would let a later test skip the gated
   // ensureDay/seedTasks pair (the ensureDayThrows case would never reach its throw).
@@ -388,7 +361,6 @@ afterEach(() => {
   vi.unstubAllGlobals();
   resetDailyRewardDbForTests();
   resetDailyRewardPriceCacheForTests();
-  resetDailyRewardSeekerArtifactVerifierForTests();
   restoreEnv(OPS_SECRET_ENV, ORIGINAL_OPS_SECRET);
   restoreEnv('WOC_DAILY_REWARD_SERVICE_URL', ORIGINAL_SERVICE_URL);
   vi.restoreAllMocks();
@@ -431,14 +403,9 @@ describe('daily-rewards route table', () => {
     }
   });
 
-  it('adds Seeker verification admission only to spin, with no body schema (no withBody)', () => {
+  it('gives every route exactly one middleware and no body schema (no withBody)', () => {
     for (const r of routes) {
-      const expectedMiddlewareCount =
-        r.method === 'POST' && r.path === '/api/daily-rewards/spin' ? 2 : 1;
-      expect(
-        Array.isArray(r.middleware) && r.middleware.length === expectedMiddlewareCount,
-        r.path,
-      ).toBe(true);
+      expect(Array.isArray(r.middleware) && r.middleware.length === 1, r.path).toBe(true);
       expect(r.schema, r.path).toBeUndefined();
     }
   });
@@ -469,7 +436,6 @@ describe('player routes: activeGuard chain', () => {
       expect(r.reached).toBe(false);
       // A missing bearer 401s before any service read.
       expect(h.db.ensureDay).not.toHaveBeenCalled();
-      expect(h.wallet.walletForAccount).not.toHaveBeenCalled();
     });
   }
 
@@ -514,7 +480,7 @@ describe('player routes: thin-handler dispatch', () => {
     // The status payload the shared core builds (no wallet -> a locked, not-eligible view).
     expect(body).toMatchObject({
       prizePoolUsd: 150,
-      eligibility: { eligible: false, reason: 'no_wallet' },
+      eligibility: { eligible: true, reason: 'eligible' },
       spin: { claimed: false },
     });
     expect(Object.keys(body)).toEqual(
@@ -569,68 +535,9 @@ describe('player routes: thin-handler dispatch', () => {
     expect(h.db.leaderboardPage).toHaveBeenLastCalledWith(expect.any(String), 2, 50);
   });
 
-  it('POST spin 403s an ineligible wallet with the legacy lock prose', async () => {
-    // No linked wallet -> reason no_wallet -> not eligible -> the 403 lock body.
-    const r = await runRoute('POST', '/api/daily-rewards/spin', {
-      headers: { authorization: BEARER },
-    });
-    expect(r.status).toBe(403);
-    expect(r.body).toEqual({ error: 'daily rewards are locked for this wallet' });
-    expect(r.reached).toBe(true);
-    // Ineligible on no_wallet: the balance read is never reached.
-    expect(h.balance.cachedWocBalance).not.toHaveBeenCalled();
-  });
-
-  it('requires a fresh seeker-spin Solana artifact proof for native spins', async () => {
-    const verifyArtifact = vi.fn().mockResolvedValue(null);
-    setDailyRewardSeekerArtifactVerifierForTests(verifyArtifact);
-    authedDb({ hasSeekerEntitlement: async () => false });
-    const nativeAttestation = {
-      platform: 'android',
-      challengeId: 'challenge',
-      token: 'integrity-token',
-    };
-    const rejected = await runRoute('POST', '/api/daily-rewards/spin', {
-      headers: {
-        authorization: BEARER,
-        origin: 'http://localhost',
-        'content-type': 'application/json',
-      },
-      body: { nativeAttestation },
-    });
-    expect(rejected.status).toBe(403);
-    expect(rejected.body).toEqual({
-      error: 'Solana Store app verification required',
-      code: 'seeker.solana_artifact_required',
-    });
-    expect(verifyArtifact).toHaveBeenCalledWith(
-      expect.anything(),
-      nativeAttestation,
-      'seeker-spin',
-    );
-
-    verifyArtifact.mockResolvedValue({ nonce: 'nonce' });
-    const admitted = await runRoute('POST', '/api/daily-rewards/spin', {
-      headers: {
-        authorization: BEARER,
-        origin: 'http://localhost',
-        'content-type': 'application/json',
-      },
-      body: { nativeAttestation },
-    });
-    expect(admitted.status).toBe(403);
-    expect(admitted.body).toEqual({
-      error: 'verified Seeker entitlement required',
-      code: 'seeker.entitlement_required',
-    });
-  });
-
-  it('POST spin 409s an already-claimed day for an eligible wallet', async () => {
-    // Eligible: a live price from the stubbed config, a linked wallet, and a balance over
-    // the minimum. Then an existing spin row makes the second spin a 409.
+  it('POST spin 409s an already-claimed day', async () => {
+    // Every account is eligible, so an existing spin row is what makes this a 409.
     stubPriceConfig();
-    h.state.wallet = { account_id: 7, pubkey: 'Wallet', linked_at: 'now' };
-    h.state.balance = 1000; // 1000 * 0.5 = 500 USD >= 20 minimum.
     h.state.spin = { outcomeKey: 's20', points: 20, createdAt: '2026-07-01T00:00:00.000Z' };
 
     const r = await runRoute('POST', '/api/daily-rewards/spin', {
@@ -684,7 +591,7 @@ describe('player routes: thin-handler dispatch', () => {
   it('web POST spin reads NO request body (never attaches a data listener)', async () => {
     // Build a body-less req and spy on its listener registration: a spin that self-read a
     // body would attach a 'data' listener (readBody), inventing 400/413 behavior the
-    // legacy arm never had. The ineligible 403 proves the chain still resolves.
+    // legacy arm never had. The 200 proves the chain still resolves end to end.
     const req = makeReq({
       method: 'POST',
       url: '/api/daily-rewards/spin',
@@ -692,7 +599,7 @@ describe('player routes: thin-handler dispatch', () => {
     });
     const onSpy = vi.spyOn(req, 'on');
     const r = await runRoute('POST', '/api/daily-rewards/spin', { req });
-    expect(r.status).toBe(403);
+    expect(r.status).toBe(200);
     expect(onSpy.mock.calls.some(([event]) => event === 'data')).toBe(false);
   });
 });
