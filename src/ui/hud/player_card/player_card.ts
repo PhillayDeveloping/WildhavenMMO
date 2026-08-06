@@ -1,9 +1,8 @@
 // Player card compositor.
 //
 // Paints a shareable 1200×630 (Open-Graph aspect) card from the player's live
-// stats, equipped gear, a captured close-up of their character, and - when a
-// wallet is linked and verified - their $WOC holder-tier badge. Pure Canvas-2D + the
-// holder-tier data; no network, no game state beyond what the caller passes in.
+// stats, equipped gear, and a captured close-up of their character. Pure
+// Canvas-2D; no network, no game state beyond what the caller passes in.
 //
 // The caller (the HUD) assembles PlayerCardData from IWorld; this module only
 // knows how to draw it.
@@ -13,13 +12,6 @@ import {
   devTierByIndex,
   devTierDisplayName,
 } from '../../dev_tier';
-import {
-  type HolderTier,
-  holderTierBadgeDataUrl,
-  holderTierDisplayName,
-  holderTierFlavorText,
-  holderTierForBalance,
-} from '../../holder_tier';
 import { formatNumber, getLanguage, languageTag, type TranslationKey, t } from '../../i18n';
 import {
   type PercentileTier,
@@ -62,8 +54,6 @@ export interface PlayerCardData {
   titleText?: string;
   /** Realm percentile by lifetime XP (e.g. 3 = top 3%), or null to hide it. */
   topPercent: number | null;
-  /** Verified linked wallet's $WOC balance (null when unlinked). Drives the badge. */
-  balance: number | null;
   /** Developer-badge tier index (0/null = none, 1-5). Drives the dev badge. */
   devTier: number | null;
   /** Merged-PR count behind the dev tier (null when unknown). */
@@ -134,11 +124,6 @@ export const CARD_POSES: readonly CardPose[] = [
     fraction: 0.5,
   },
 ];
-
-/** Human-readable $WOC amount in the player's current locale. */
-function formatWoc(n: number): string {
-  return formatNumber(n, { maximumFractionDigits: n >= 1 ? 0 : 2 });
-}
 
 function loadImage(src: string): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
@@ -244,14 +229,12 @@ export async function renderPlayerCardCanvas(data: PlayerCardData): Promise<HTML
     ]);
   }
 
-  const tier = holderTierForBalance(data.balance);
   const pctTier = percentileTierForPercent(data.topPercent);
   const devTier = devTierByIndex(data.devTier ?? 0);
-  const [charImg, badgeImg, logoImg, pctBadgeImg, devBadgeImg] = await Promise.all([
+  const [charImg, logoImg, pctBadgeImg, devBadgeImg] = await Promise.all([
     typeof data.characterImage === 'string'
       ? loadImage(data.characterImage)
       : Promise.resolve(data.characterImage),
-    tier ? loadImage(holderTierBadgeDataUrl(tier, 256)) : Promise.resolve(null),
     loadImage(LOGO_URL).catch(() => null), // best-effort brand mark
     pctTier
       ? loadImage(percentileTierBadgeDataUrl(pctTier, 128)).catch(() => null)
@@ -273,7 +256,6 @@ export async function renderPlayerCardCanvas(data: PlayerCardData): Promise<HTML
   drawCharacter(ctx, charImg);
   drawHeader(ctx, data, pctBadgeImg, pctTier);
   if (devTier && devBadgeImg) drawDevBadge(ctx, devTier, devBadgeImg, data.devMergedPrs);
-  if (tier && badgeImg) drawBadge(ctx, tier, badgeImg, data.balance);
   drawStats(ctx, data);
   drawGear(ctx, data);
   drawFooter(ctx, data, logoImg);
@@ -406,53 +388,6 @@ function drawHeader(
   }
 }
 
-function drawBadge(
-  ctx: CanvasRenderingContext2D,
-  tier: HolderTier,
-  badge: HTMLImageElement,
-  balance: number | null,
-): void {
-  // Bottom-left of the right column (the footer band), swapped with the brand
-  // mark, which now sits top-right. Badge on the left, tier + balance to its right.
-  // Compact badge with a tight glow so it sits inside the footer band without
-  // bleeding up into the gear panel above (which ends at y≈530).
-  const r = 30;
-  const cx = 478 + r;
-  const cy = 575;
-  ctx.save();
-  ctx.shadowColor = hexWithAlpha(tier.glow, 0.9);
-  ctx.shadowBlur = 8;
-  ctx.drawImage(badge, cx - r, cy - r, r * 2, r * 2);
-  ctx.restore();
-
-  const left = cx + r + 16;
-  ctx.textAlign = 'left';
-  // Tier name.
-  ctx.fillStyle = tier.ring;
-  ctx.font = `700 18px ${TITLE_FONT}`;
-  ctx.fillText(
-    holderTierDisplayName(tier).toLocaleUpperCase(languageTag(getLanguage())),
-    left,
-    cy - 13,
-  );
-  // The actual on-chain bag: the flex.
-  if (balance !== null) {
-    ctx.fillStyle = COL.gold;
-    ctx.font = `700 20px ${BODY_FONT}`;
-    fillTextClamped(
-      ctx,
-      t('wallet.balanceAmount', { amount: formatWoc(balance) }),
-      left,
-      cy + 10,
-      210,
-    );
-  }
-  // Flavour line.
-  ctx.fillStyle = COL.muted;
-  ctx.font = `400 12px ${BODY_FONT}`;
-  fillTextClamped(ctx, holderTierFlavorText(tier), left, cy + 28, 220);
-}
-
 // The developer badge sits in the free band between the realm subtitle (whose
 // glyphs end around y=162) and the stats panel (y=196), in the right column: a
 // compact badge with the rung name and the merged-PR count, reading as an
@@ -572,9 +507,8 @@ function drawFooter(
   logo: HTMLImageElement | null,
 ): void {
   const y = CARD_H - 26;
-  // Brand mark: the full logo lockup, else a plain text wordmark, top-right now
-  // (swapped with the holder badge, which moved to the bottom-left). Right-aligned
-  // against the card's right margin, above the stats panel.
+  // Brand mark: the full logo lockup, else a plain text wordmark, top-right,
+  // right-aligned against the card's right margin, above the stats panel.
   if (logo && logo.width > 0) {
     const h = 104;
     const w = (logo.width / logo.height) * h;

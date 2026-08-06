@@ -15,10 +15,7 @@
 // The functions mirror the service SDK v1 surface; they do NOT recompute any
 // value, they only pass through what the service returns.
 
-import { DESKTOP_WALLET_HANDOFF_TTL_MS, desktopWalletHandoffs } from './desktop_wallet_handoff';
-
 const SERVICE_TIMEOUT_MS = 5000;
-const NATIVE_CONFIRM_TIMEOUT_MS = 60_000;
 
 /** Integer Claudium balance for an account, or null when the service is off. */
 export interface ClaudiumBalanceResult {
@@ -27,32 +24,12 @@ export interface ClaudiumBalanceResult {
 }
 
 /**
- * Per-rail price. usdPerClaudium fixes the display peg (1 Claudium = 0.01 USD);
- * wocBaseUnitsPerClaudium is null when the WOC oracle is down (buy disabled on
- * the woc rail). Both fields null when the service is off.
+ * Per-rail price. usdPerClaudium fixes the display peg (1 Claudium = 0.01 USD),
+ * and is null when the service is off.
  */
 export interface ClaudiumPriceResult {
   rail: string;
   usdPerClaudium: number | null;
-  wocBaseUnitsPerClaudium: string | null;
-}
-
-export interface ClaudiumNativePriceResult {
-  rail: ClaudiumNativeRail;
-  claudium: number | null;
-  amountBase: string | null;
-  discountBps: number | null;
-  reason?: string;
-}
-
-export interface ClaudiumSolBalanceResult {
-  owner: string;
-  lamports: string | null;
-}
-
-export interface ClaudiumUsdcBalanceResult {
-  owner: string;
-  amountBase: string | null;
 }
 
 /** One rung of the SKU ladder. usd/claudium both come from the service. */
@@ -69,27 +46,17 @@ export interface ClaudiumSkusResult {
   skus: ClaudiumSku[];
 }
 
-export type ClaudiumRail = 'stripe' | 'sol' | 'usdc' | 'woc';
-export type ClaudiumPriceRail = 'stripe' | 'woc';
-export type ClaudiumNativeRail = 'sol' | 'usdc' | 'woc';
+// Card payment through Stripe is the only purchase rail. The service SDK still
+// keys prices and purchases by rail name, so the union is kept as a named type
+// rather than inlined: a future rail (another PSP, a platform store) adds a
+// member here instead of reshaping every signature.
+export type ClaudiumRail = 'stripe';
+export type ClaudiumPriceRail = 'stripe';
 
 /** The stripe-rail purchase-intent leg (client uses clientSecret with Stripe.js). */
 export interface ClaudiumStripeIntent {
   clientSecret: string;
   publishableKey: string;
-}
-
-/**
- * The woc-rail purchase-intent leg: the split-transfer the client must build and
- * sign via the Wallet Standard path, then confirm by posting the signature.
- */
-export interface ClaudiumWocIntent {
-  amountBase: string;
-  burnBase: string;
-  treasuryBase: string;
-  treasury: string;
-  memo: string;
-  expiresAtMs: number;
 }
 
 export interface ClaudiumPurchaseResult {
@@ -98,33 +65,6 @@ export interface ClaudiumPurchaseResult {
   rail: ClaudiumRail | null;
   claudium: number | null;
   stripe: ClaudiumStripeIntent | null;
-  woc: ClaudiumWocIntent | null;
-  reason: string | null;
-}
-
-export interface ClaudiumNativeRailsResult {
-  available: boolean;
-  rails: Record<ClaudiumNativeRail, boolean>;
-}
-
-export interface ClaudiumNativeQuoteResult {
-  ok: boolean;
-  reference: string | null;
-  rail: ClaudiumNativeRail | null;
-  claudium: number | null;
-  amountBase: string | null;
-  destination: string | null;
-  mint: string | null;
-  memo: string | null;
-  quoteExpiryMs: number | null;
-  transactionBase64: string | null;
-  split: { burnBase: string; treasuryBase: string; treasury: string } | null;
-  reason: string | null;
-}
-
-export interface ClaudiumNativeConfirmResult {
-  settled: boolean;
-  balance: number | null;
   reason: string | null;
 }
 
@@ -270,89 +210,11 @@ export async function claudiumPrice(rail: ClaudiumPriceRail): Promise<ClaudiumPr
   const data = await callService<{
     rail: string;
     usdPerClaudium: number;
-    wocBaseUnitsPerClaudium: string | number | null;
   }>({ method: 'GET', path: `price/${encodeURIComponent(rail)}` });
-  if (!data) return { rail, usdPerClaudium: null, wocBaseUnitsPerClaudium: null };
-  const wocBaseUnits = data.wocBaseUnitsPerClaudium;
+  if (!data) return { rail, usdPerClaudium: null };
   return {
     rail: data.rail,
     usdPerClaudium: typeof data.usdPerClaudium === 'number' ? data.usdPerClaudium : null,
-    wocBaseUnitsPerClaudium:
-      typeof wocBaseUnits === 'string'
-        ? wocBaseUnits
-        : typeof wocBaseUnits === 'number'
-          ? String(wocBaseUnits)
-          : null,
-  };
-}
-
-export async function claudiumNativePrice(
-  rail: ClaudiumNativeRail,
-  sku: string,
-): Promise<ClaudiumNativePriceResult> {
-  const data = await callService<{
-    rail?: ClaudiumNativeRail;
-    claudium?: number;
-    amountBase?: string | null;
-    discountBps?: number | null;
-    reason?: string;
-  }>({
-    method: 'GET',
-    path: `native/price/${encodeURIComponent(rail)}?sku=${encodeURIComponent(sku)}`,
-  });
-  return {
-    rail: data?.rail ?? rail,
-    claudium:
-      typeof data?.claudium === 'number' && Number.isInteger(data.claudium) && data.claudium > 0
-        ? data.claudium
-        : null,
-    amountBase: typeof data?.amountBase === 'string' ? data.amountBase : null,
-    discountBps:
-      typeof data?.discountBps === 'number' &&
-      Number.isInteger(data.discountBps) &&
-      data.discountBps >= 0 &&
-      data.discountBps <= 9000
-        ? data.discountBps
-        : null,
-    reason: data?.reason ?? (data ? undefined : 'unavailable'),
-  };
-}
-
-export async function claudiumSolBalance(owner: string): Promise<ClaudiumSolBalanceResult> {
-  const data = await callService<{ owner?: string; lamports?: string | null }>({
-    method: 'GET',
-    path: `native/balance/sol/${encodeURIComponent(owner)}`,
-  });
-  return {
-    owner: data?.owner ?? owner,
-    lamports: typeof data?.lamports === 'string' ? data.lamports : null,
-  };
-}
-
-export async function claudiumUsdcBalance(owner: string): Promise<ClaudiumUsdcBalanceResult> {
-  const data = await callService<{ owner?: string; amountBase?: string | null }>({
-    method: 'GET',
-    path: `native/balance/usdc/${encodeURIComponent(owner)}`,
-  });
-  return {
-    owner: data?.owner ?? owner,
-    amountBase: typeof data?.amountBase === 'string' ? data.amountBase : null,
-  };
-}
-
-export async function claudiumNativeRails(): Promise<ClaudiumNativeRailsResult> {
-  const data = await callService<{ rails?: Partial<Record<ClaudiumNativeRail, boolean>> }>({
-    method: 'GET',
-    path: 'native/rails',
-  });
-  const available = data !== null && typeof data.rails === 'object' && data.rails !== null;
-  return {
-    available,
-    rails: {
-      sol: data?.rails?.sol === true,
-      usdc: data?.rails?.usdc === true,
-      woc: data?.rails?.woc === true,
-    },
   };
 }
 
@@ -389,7 +251,6 @@ export async function claudiumPurchase(input: {
     rail?: ClaudiumRail;
     claudium?: number;
     stripe?: ClaudiumStripeIntent;
-    woc?: ClaudiumWocIntent;
     reason?: string;
   }>({ method: 'POST', path: 'purchase', body: input });
   if (!data) {
@@ -399,17 +260,13 @@ export async function claudiumPurchase(input: {
       rail: null,
       claudium: null,
       stripe: null,
-      woc: null,
       reason: 'unavailable',
     };
   }
   const reason = typeof data.reason === 'string' ? data.reason : null;
   const purchaseId =
     typeof data.purchaseId === 'string' && data.purchaseId !== '' ? data.purchaseId : null;
-  const rail =
-    data.rail === 'stripe' || data.rail === 'sol' || data.rail === 'usdc' || data.rail === 'woc'
-      ? data.rail
-      : null;
+  const rail = data.rail === 'stripe' ? data.rail : null;
   const claudium =
     typeof data.claudium === 'number' && Number.isInteger(data.claudium) && data.claudium > 0
       ? data.claudium
@@ -437,7 +294,6 @@ export async function claudiumPurchase(input: {
       rail: null,
       claudium: null,
       stripe: null,
-      woc: null,
       reason: reason ?? 'unavailable',
     };
   }
@@ -447,132 +303,7 @@ export async function claudiumPurchase(input: {
     rail,
     claudium,
     stripe,
-    woc: null,
     reason: null,
-  };
-}
-
-export async function claudiumNativeQuote(input: {
-  accountId: number;
-  rail: ClaudiumNativeRail;
-  sku: string;
-  payer: string;
-}): Promise<ClaudiumNativeQuoteResult> {
-  const data = await callService<{
-    reference?: string;
-    rail?: ClaudiumNativeRail;
-    claudium?: number;
-    amountBase?: string;
-    destination?: string;
-    mint?: string | null;
-    memo?: string;
-    quoteExpiryMs?: number;
-    transactionBase64?: string;
-    split?: { burnBase: string; treasuryBase: string; treasury: string };
-    reason?: string;
-  }>({
-    method: 'POST',
-    path: 'native/quote',
-    body: {
-      rail: input.rail,
-      sku: input.sku,
-      payer: input.payer,
-      fulfillment: { kind: 'credit', accountId: input.accountId },
-    },
-  });
-  const refusalReason = typeof data?.reason === 'string' ? data.reason : null;
-  const creditedClaudium =
-    typeof data?.claudium === 'number' && Number.isInteger(data.claudium) && data.claudium > 0
-      ? data.claudium
-      : null;
-  if (
-    !data?.reference ||
-    !data.transactionBase64 ||
-    creditedClaudium === null ||
-    refusalReason !== null ||
-    (data.rail !== undefined && data.rail !== input.rail)
-  ) {
-    return {
-      ok: false,
-      reference: null,
-      rail: null,
-      claudium: null,
-      amountBase: null,
-      destination: null,
-      mint: null,
-      memo: null,
-      quoteExpiryMs: null,
-      transactionBase64: null,
-      split: null,
-      reason: refusalReason ?? 'unavailable',
-    };
-  }
-  const quoteExpiryMs =
-    typeof data.quoteExpiryMs === 'number'
-      ? data.quoteExpiryMs
-      : Date.now() + DESKTOP_WALLET_HANDOFF_TTL_MS;
-  try {
-    desktopWalletHandoffs.authorizeTransaction(input.accountId, {
-      reference: data.reference,
-      transactionBase64: data.transactionBase64,
-      expectedAddress: input.payer,
-      rail: data.rail ?? input.rail,
-      amountBase: data.amountBase ?? null,
-      destination: data.destination ?? null,
-      expiresAtMs: quoteExpiryMs,
-    });
-  } catch {
-    return {
-      ok: false,
-      reference: null,
-      rail: null,
-      claudium: null,
-      amountBase: null,
-      destination: null,
-      mint: null,
-      memo: null,
-      quoteExpiryMs: null,
-      transactionBase64: null,
-      split: null,
-      reason: 'unavailable',
-    };
-  }
-  return {
-    ok: true,
-    reference: data.reference,
-    rail: data.rail ?? input.rail,
-    claudium: creditedClaudium,
-    amountBase: data.amountBase ?? null,
-    destination: data.destination ?? null,
-    mint: data.mint ?? null,
-    memo: data.memo ?? null,
-    quoteExpiryMs,
-    transactionBase64: data.transactionBase64,
-    split: data.split ?? null,
-    reason: data.reason ?? null,
-  };
-}
-
-export async function claudiumNativeConfirm(input: {
-  accountId: number;
-  reference: string;
-  signature: string;
-}): Promise<ClaudiumNativeConfirmResult> {
-  const data = await callService<{
-    settled: boolean;
-    reason?: string;
-    fulfillment?: { balance?: number };
-  }>({
-    method: 'POST',
-    path: 'native/confirm',
-    body: input,
-    timeoutMs: NATIVE_CONFIRM_TIMEOUT_MS,
-  });
-  if (!data) return { settled: false, balance: null, reason: 'unavailable' };
-  return {
-    settled: Boolean(data.settled),
-    balance: typeof data.fulfillment?.balance === 'number' ? data.fulfillment.balance : null,
-    reason: data.reason ?? null,
   };
 }
 

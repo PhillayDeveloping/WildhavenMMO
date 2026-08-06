@@ -73,8 +73,12 @@ export function buildFlaredConeFan(
       const v01 = v00 + 1;
       const v10 = v00 + cols;
       const v11 = v10 + 1;
-      index[k++] = v00; index[k++] = v10; index[k++] = v01;
-      index[k++] = v01; index[k++] = v10; index[k++] = v11;
+      index[k++] = v00;
+      index[k++] = v10;
+      index[k++] = v01;
+      index[k++] = v01;
+      index[k++] = v10;
+      index[k++] = v11;
     }
   }
   // Outline perimeter: up the left edge (j = 0), across the outer ring, down the

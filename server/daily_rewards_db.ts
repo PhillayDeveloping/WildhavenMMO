@@ -61,7 +61,6 @@ export interface DailyRewardPayoutRow {
   rank: number;
   accountId: number;
   username: string;
-  walletPubkey: string | null;
   points: number;
   prizePercent: number;
   prizeUsd: number;
@@ -238,7 +237,6 @@ function payoutRow(row: Record<string, unknown>): DailyRewardPayoutRow {
     rank: Number(row.rank),
     accountId: Number(row.account_id),
     username: String(row.username),
-    walletPubkey: optionalString(row.wallet_pubkey),
     points: Number(row.points),
     prizePercent: Number(row.prize_percent),
     prizeUsd: Number(row.prize_usd),
@@ -718,11 +716,10 @@ export class PgDailyRewardDb implements DailyRewardDb {
   async recentPayouts(limit: number): Promise<DailyRewardPayoutRow[]> {
     const res = await pool.query(
       `SELECT p.day, p.realm, p.rank, p.account_id, p.username,
-              COALESCE(p.wallet_pubkey, wl.pubkey) AS wallet_pubkey, p.points, p.prize_percent,
+              p.points, p.prize_percent,
               p.prize_usd, p.status, p.tx_signature, p.paid_at, p.void_reason,
               p.voided_by_id, p.voided_by_username, p.voided_at
          FROM daily_reward_payouts p
-         LEFT JOIN wallet_links wl ON wl.account_id = p.account_id
         WHERE p.realm = $1
         ORDER BY p.day DESC, p.rank ASC
         LIMIT $2`,
@@ -745,11 +742,10 @@ export class PgDailyRewardDb implements DailyRewardDb {
         return 'already_finalized';
       }
       const winners = await client.query(
-        `SELECT s.account_id, a.username, wl.pubkey AS wallet_pubkey, s.points,
+        `SELECT s.account_id, a.username, s.points,
                 row_number() OVER (ORDER BY s.points DESC, s.updated_at ASC, s.account_id ASC) AS rank
            FROM daily_reward_scores s
            JOIN accounts a ON a.id = s.account_id
-           LEFT JOIN wallet_links wl ON wl.account_id = s.account_id
           WHERE s.day = $1 AND s.realm = $2 AND s.points > 0
             AND ${ELIGIBLE_ACCOUNT_SQL}
             AND NOT EXISTS (SELECT 1 FROM daily_reward_excluded_accounts b WHERE b.account_id = s.account_id)
@@ -762,8 +758,8 @@ export class PgDailyRewardDb implements DailyRewardDb {
         const percent = splits[rank - 1] ?? 0;
         await client.query(
           `INSERT INTO daily_reward_payouts
-            (day, realm, rank, account_id, username, wallet_pubkey, points, prize_percent, prize_usd)
-           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+            (day, realm, rank, account_id, username, points, prize_percent, prize_usd)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
            ON CONFLICT (day, realm, rank) DO NOTHING`,
           [
             day,
@@ -771,7 +767,6 @@ export class PgDailyRewardDb implements DailyRewardDb {
             rank,
             Number(row.account_id),
             String(row.username),
-            row.wallet_pubkey ?? null,
             Number(row.points),
             percent,
             Number((prizePoolUsd * percent).toFixed(2)),
@@ -794,12 +789,11 @@ export class PgDailyRewardDb implements DailyRewardDb {
     const limitPlaceholder = day ? '$3' : '$2';
     const res = await pool.query(
       `SELECT p.day, p.realm, p.rank, p.account_id, p.username,
-              COALESCE(p.wallet_pubkey, wl.pubkey) AS wallet_pubkey, p.points,
+              p.points,
               p.prize_percent, p.prize_usd, p.status, p.tx_signature, p.paid_at,
               p.signed_transaction, p.void_reason, p.voided_by_id,
               p.voided_by_username, p.voided_at
          FROM daily_reward_payouts p
-         LEFT JOIN wallet_links wl ON wl.account_id = p.account_id
         WHERE p.realm = $1
           AND p.status IN ('pending', 'failed', 'processing')
           ${dayFilter}
@@ -833,11 +827,10 @@ export class PgDailyRewardDb implements DailyRewardDb {
     for (const day of days.rows) {
       const payouts = await pool.query(
         `SELECT p.day, p.realm, p.rank, p.account_id, p.username,
-                COALESCE(p.wallet_pubkey, wl.pubkey) AS wallet_pubkey, p.points,
+                p.points,
                 p.prize_percent, p.prize_usd, p.status, p.tx_signature, p.paid_at,
                 p.void_reason, p.voided_by_id, p.voided_by_username, p.voided_at
            FROM daily_reward_payouts p
-           LEFT JOIN wallet_links wl ON wl.account_id = p.account_id
           WHERE p.day = $1 AND p.realm = $2
             AND NOT EXISTS (SELECT 1 FROM daily_reward_excluded_accounts b WHERE b.account_id = p.account_id)
           ORDER BY p.rank ASC
@@ -929,12 +922,11 @@ export class PgDailyRewardDb implements DailyRewardDb {
       await client.query('BEGIN');
       const current = await client.query(
         `SELECT p.day, p.realm, p.rank, p.account_id, p.username,
-                COALESCE(p.wallet_pubkey, wl.pubkey) AS wallet_pubkey, p.points,
+                p.points,
                 p.prize_percent, p.prize_usd, p.status, p.tx_signature, p.paid_at,
                 p.signed_transaction, p.void_reason, p.voided_by_id,
                 p.voided_by_username, p.voided_at
            FROM daily_reward_payouts p
-           LEFT JOIN wallet_links wl ON wl.account_id = p.account_id
           WHERE p.day = $1 AND p.realm = $2 AND p.rank = $3
           FOR UPDATE OF p`,
         [day, REALM, rank],
@@ -1093,11 +1085,10 @@ export class PgDailyRewardDb implements DailyRewardDb {
       await client.query('BEGIN');
       const current = await client.query(
         `SELECT p.day, p.realm, p.rank, p.account_id, p.username,
-                COALESCE(p.wallet_pubkey, wl.pubkey) AS wallet_pubkey, p.points,
+                p.points,
                 p.prize_percent, p.prize_usd, p.status, p.tx_signature, p.paid_at,
                 p.void_reason, p.voided_by_id, p.voided_by_username, p.voided_at
            FROM daily_reward_payouts p
-           LEFT JOIN wallet_links wl ON wl.account_id = p.account_id
           WHERE p.day = $1 AND p.realm = $2 AND p.rank = $3
           FOR UPDATE OF p`,
         [day, REALM, rank],
@@ -1176,11 +1167,10 @@ export class PgDailyRewardDb implements DailyRewardDb {
       await client.query('BEGIN');
       const current = await client.query(
         `SELECT p.day, p.realm, p.rank, p.account_id, p.username,
-                COALESCE(p.wallet_pubkey, wl.pubkey) AS wallet_pubkey, p.points,
+                p.points,
                 p.prize_percent, p.prize_usd, p.status, p.tx_signature, p.paid_at,
                 p.void_reason, p.voided_by_id, p.voided_by_username, p.voided_at
            FROM daily_reward_payouts p
-           LEFT JOIN wallet_links wl ON wl.account_id = p.account_id
           WHERE p.day = $1 AND p.realm = $2 AND p.rank = $3
           FOR UPDATE OF p`,
         [day, REALM, rank],

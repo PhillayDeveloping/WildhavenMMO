@@ -44,16 +44,15 @@ export interface DailyRewardPayoutLogEntry {
   paidAt: string | null;
 }
 
+/**
+ * Participation is open to every account, so the only thing that can hold a
+ * player out is a moderation ban.
+ */
 export interface DailyRewardEligibilityView {
   eligible: boolean;
-  reason: 'eligible' | 'no_wallet' | 'under_minimum' | 'price_unavailable' | 'banned';
+  reason: 'eligible' | 'banned';
   banReason?: string | null;
   banExpiresAt?: string | null;
-  walletPubkey: string | null;
-  wocBalance: number | null;
-  wocUsdPrice: number | null;
-  usdValue: number | null;
-  minUsd: number;
 }
 
 export interface DailyRewardStatus {
@@ -62,7 +61,6 @@ export interface DailyRewardStatus {
   day: string;
   resetAt: string;
   prizePoolUsd: number;
-  prizePoolSol: number | null;
   eligibility: DailyRewardEligibilityView;
   score: number;
   rank: number | null;

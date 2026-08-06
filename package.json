@@ -113,15 +113,6 @@
     "@capacitor/app": "^8.1.0",
     "@capacitor/browser": "^8.0.3",
     "@capgo/capacitor-updater": "^8.51.2",
-    "@noble/curves": "^1.9.7",
-    "@reown/appkit": "1.8.22",
-    "@reown/appkit-adapter-solana": "1.8.22",
-    "@solana/wallet-standard-chains": "^1.1.2",
-    "@solana/wallet-standard-features": "^1.4.0",
-    "@wallet-standard/app": "^1.1.1",
-    "@wallet-standard/base": "^1.1.1",
-    "@wallet-standard/features": "^1.1.1",
-    "bs58": "^6.0.0",
     "electron-log": "^5.4.4",
     "electron-updater": "^6.8.9",
     "n8ao": "^1.10.1",
@@ -130,7 +121,6 @@
     "postprocessing": "6.36.0",
     "prom-client": "15.1.3",
     "three": "^0.165.0",
-    "tweetnacl": "1.0.3",
     "ws": "^8.21.0"
   },
   "devDependencies": {
@@ -304,8 +294,7 @@
       "utf-8-validate",
       "bigint-buffer",
       "electron-winstaller",
-      "fsevents",
-      "@reown/appkit"
+      "fsevents"
     ]
   }
 }

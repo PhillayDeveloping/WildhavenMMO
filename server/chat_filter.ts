@@ -39,7 +39,7 @@ const CONFUSABLE_CHARS: Record<string, string> = {
   '!': 'i',
   '|': 'i',
   '@': 'a',
-  '$': 's',
+  $: 's',
   '+': 't',
   '©': 'c',
   '€': 'e',
@@ -179,7 +179,10 @@ export function cleanEscalationConfig(input: {
     .map((n) => Math.floor(Number(n)))
     .filter((n) => Number.isFinite(n) && n > 0);
   return {
-    warningsBeforeMute: Number.isFinite(warnings) && warnings >= 0 ? Math.floor(warnings) : DEFAULT_ESCALATION.warningsBeforeMute,
+    warningsBeforeMute:
+      Number.isFinite(warnings) && warnings >= 0
+        ? Math.floor(warnings)
+        : DEFAULT_ESCALATION.warningsBeforeMute,
     muteLadderSeconds: ladder.length > 0 ? ladder : [...DEFAULT_ESCALATION.muteLadderSeconds],
   };
 }

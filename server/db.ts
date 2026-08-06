@@ -58,7 +58,6 @@ import {
 import { RATELIMIT_PRUNE_SQL, RATELIMIT_SCHEMA } from './ratelimit_db';
 import { REALM, REALM_DIRECTORY } from './realm';
 import { chooseArchiveName } from './reclaim_name';
-import { SEEKER_ENTITLEMENT_SCHEMA } from './seeker_entitlement_db';
 import { SOCIAL_SCHEMA } from './social_db';
 import { UNSTUCK_SCHEMA } from './unstuck_db';
 import { USER_ASSETS_SCHEMA } from './user_assets_db';
@@ -826,29 +825,8 @@ ALTER TABLE client_perf_reports ADD COLUMN IF NOT EXISTS worst_10s_frame_p95_ms 
 -- against the server allowlist in perf_report.ts before storage (filter,
 -- dedupe, cap 3). Pre-column and healthy rows both read as the empty array.
 ALTER TABLE client_perf_reports ADD COLUMN IF NOT EXISTS suggestion_ids TEXT[] NOT NULL DEFAULT '{}';
--- Non-custodial Solana wallet links (PRD: docs/prd/woc/wallet-link.md). One
--- wallet per account (account_id is the PK) and one account per wallet (pubkey
--- is UNIQUE). The server never holds keys; ownership is proven by a signed
--- challenge (see wallet_link_challenges) and this table is just the mirror.
-CREATE TABLE IF NOT EXISTS wallet_links (
-  account_id INT PRIMARY KEY REFERENCES accounts(id) ON DELETE CASCADE,
-  pubkey TEXT NOT NULL UNIQUE,
-  linked_at TIMESTAMPTZ NOT NULL DEFAULT now()
-);
--- Single-use, short-lived sign-to-link challenges. The full message the wallet
--- must sign is stored server-side so the client cannot choose what gets signed;
--- consuming a challenge deletes it (replay protection).
-CREATE TABLE IF NOT EXISTS wallet_link_challenges (
-  nonce TEXT PRIMARY KEY,
-  account_id INT NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
-  address TEXT NOT NULL,
-  message TEXT NOT NULL,
-  expires_at TIMESTAMPTZ NOT NULL,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
-);
-CREATE INDEX IF NOT EXISTS wallet_link_challenges_account ON wallet_link_challenges(account_id);
--- Steam account links (the deeds achievement mirror). Copies the wallet_links
--- shape: one Steam account per WoCC account (account_id is the PK) and one
+-- Steam account links (the deeds achievement mirror): one Steam account per
+-- WoCC account (account_id is the PK) and one
 -- WoCC account per Steam id (steam_id is UNIQUE). A row is a cosmetic-mirror
 -- pointer only, proven by a server-verified session ticket at link time
 -- (server/steam/): it is NEVER an identity or session source, and login stays
@@ -963,7 +941,6 @@ CREATE TABLE IF NOT EXISTS daily_reward_payouts (
   rank INT NOT NULL,
   account_id INT NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
   username TEXT NOT NULL,
-  wallet_pubkey TEXT,
   points INT NOT NULL,
   prize_percent NUMERIC NOT NULL,
   prize_usd NUMERIC NOT NULL,
@@ -1215,7 +1192,6 @@ export async function ensureSchema(): Promise<void> {
     await client.query(DAILY_REWARD_EXCLUDED_ACCOUNTS_VIEW_SQL);
     await client.query(SOCIAL_SCHEMA);
     await client.query(ADMIN_GUILDS_SCHEMA);
-    await client.query(SEEKER_ENTITLEMENT_SCHEMA);
     await client.query(OAUTH_SCHEMA);
     // Discord integration tables (links, oauth states, pending logins, reward
     // economy). FK-references accounts(id), so it runs after SCHEMA. Applied
@@ -2376,13 +2352,6 @@ export async function exportAccountData(
       ORDER BY last_seen_at DESC`,
     [accountId],
   );
-  const seekerEntitlements = await pool.query(
-    `SELECT mint, claimant_wallet, proof_version, verification_slot, claimed_at
-       FROM seeker_entitlement_claims
-      WHERE account_id = $1
-      ORDER BY claimed_at`,
-    [accountId],
-  );
   return {
     exportedAt: new Date().toISOString(),
     account: {
@@ -2404,89 +2373,7 @@ export async function exportAccountData(
     })),
     playtimeTotals: playtimeTotals.rows,
     ipAssociations: ipAssociations.rows,
-    seekerEntitlements: seekerEntitlements.rows,
   };
-}
-
-// ── Non-custodial Solana wallet links ──────────────────────────────────────
-
-export interface WalletLinkRow {
-  account_id: number;
-  pubkey: string;
-  linked_at: string;
-}
-
-export async function createWalletChallenge(
-  nonce: string,
-  accountId: number,
-  address: string,
-  message: string,
-  ttlMinutes = 10,
-): Promise<void> {
-  await pool.query(
-    `INSERT INTO wallet_link_challenges (nonce, account_id, address, message, expires_at)
-     VALUES ($1, $2, $3, $4, now() + ($5 || ' minutes')::interval)`,
-    [nonce, accountId, address, message, String(ttlMinutes)],
-  );
-}
-
-// Atomically consume a challenge: returns the stored address+message if the
-// nonce belongs to this account and is unexpired, deleting the row so a
-// signature can never be replayed against it twice.
-export async function consumeWalletChallenge(
-  nonce: string,
-  accountId: number,
-): Promise<{ address: string; message: string } | null> {
-  const res = await pool.query(
-    `DELETE FROM wallet_link_challenges
-     WHERE nonce = $1 AND account_id = $2 AND expires_at > now()
-     RETURNING address, message`,
-    [nonce, accountId],
-  );
-  return res.rows[0] ?? null;
-}
-
-export async function pruneWalletChallenges(): Promise<void> {
-  await pool.query('DELETE FROM wallet_link_challenges WHERE expires_at <= now()');
-}
-
-export async function walletForAccount(accountId: number): Promise<WalletLinkRow | null> {
-  const res = await pool.query(
-    'SELECT account_id, pubkey, linked_at FROM wallet_links WHERE account_id = $1',
-    [accountId],
-  );
-  return res.rows[0] ?? null;
-}
-
-export async function accountForWallet(pubkey: string): Promise<number | null> {
-  const res = await pool.query('SELECT account_id FROM wallet_links WHERE pubkey = $1', [pubkey]);
-  return res.rows[0]?.account_id ?? null;
-}
-
-// One wallet per account (account_id PK) and one account per wallet (pubkey
-// UNIQUE). Upserts the caller's link; returns false when the wallet is already
-// owned by a different account so the handler can surface a 409.
-export async function linkWalletToAccount(accountId: number, pubkey: string): Promise<boolean> {
-  const owner = await accountForWallet(pubkey);
-  if (owner !== null && owner !== accountId) return false;
-  try {
-    await pool.query(
-      `INSERT INTO wallet_links (account_id, pubkey) VALUES ($1, $2)
-       ON CONFLICT (account_id) DO UPDATE SET pubkey = EXCLUDED.pubkey, linked_at = now()`,
-      [accountId, pubkey],
-    );
-  } catch (err) {
-    // TOCTOU: another account claimed this pubkey between the check above and
-    // here. The pubkey column is UNIQUE (not the ON CONFLICT target), so that
-    // races to a 23505: treat it as "already owned" (409), not a 500.
-    if (isUniqueViolation(err)) return false;
-    throw err;
-  }
-  return true;
-}
-
-export async function unlinkWallet(accountId: number): Promise<void> {
-  await pool.query('DELETE FROM wallet_links WHERE account_id = $1', [accountId]);
 }
 
 // ── Shareable player cards + referrals ─────────────────────────────────────
@@ -2610,12 +2497,11 @@ export async function referralCountForAccount(accountId: number): Promise<number
 
 // The account facts that drive the bank bonus-slot registry (server/bank_entitlements.ts),
 // read in ONE round trip because this runs at every fresh join. Cross-table reads are
-// fine from here (discord_links DDL lives in server/discord_db.ts, wallet_links + referrals
+// fine from here (discord_links DDL lives in server/discord_db.ts, referrals
 // above): the query is the natural home for the join. A missing account returns all-false/0
 // (the FROM accounts row is absent, so res.rows[0] is undefined and the fallback applies).
 //   - emailVerified: the RESOLVED criterion, email_verified_at IS NOT NULL, never email-present.
-//   - discordLinked / walletLinked: a link ROW is the whole proof. NEVER a balance, holder tier,
-//     or any chain state (the $WOC PRDs pin cosmetic-only; a wallet's contents are out of scope).
+//   - discordLinked: a link ROW is the whole proof.
 //   - qualifiedReferrals: referrals this account referred whose referee owns ANY character at
 //     level >= 10 (the denormalized characters.level; deliberately realm-agnostic, referrals are
 //     account-global; the characters_account index covers the probe). Counted RAW; the cap is
@@ -2625,7 +2511,6 @@ export async function bankBonusFactsForAccount(accountId: number): Promise<BankB
     `SELECT
        (a.email_verified_at IS NOT NULL) AS email_verified,
        EXISTS(SELECT 1 FROM discord_links dl WHERE dl.account_id = $1) AS discord_linked,
-       EXISTS(SELECT 1 FROM wallet_links wl WHERE wl.account_id = $1) AS wallet_linked,
        (SELECT count(*)::int FROM referrals r
           WHERE r.referrer_account_id = $1
             AND EXISTS(
@@ -2640,7 +2525,6 @@ export async function bankBonusFactsForAccount(accountId: number): Promise<BankB
   return {
     emailVerified: !!row?.email_verified,
     discordLinked: !!row?.discord_linked,
-    walletLinked: !!row?.wallet_linked,
     qualifiedReferrals: row?.qualified_referrals ?? 0,
   };
 }

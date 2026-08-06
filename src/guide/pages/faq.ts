@@ -1,10 +1,10 @@
 // FAQ page: the fuller set of newcomer questions (the home page carries a short teaser).
 
-import { t, formatNumber, type TranslationKey } from '../../ui/i18n';
 import { esc } from '../../ui/esc';
-import { lead } from './ui';
+import { formatNumber, type TranslationKey, t } from '../../ui/i18n';
 import { LEVEL_CAP } from '../data';
 import type { GuidePage } from './types';
+import { lead } from './ui';
 
 const QA: { q: TranslationKey; a: TranslationKey; cap?: boolean }[] = [
   { q: 'guide.faqPage.q1', a: 'guide.faqPage.a1' },
@@ -23,12 +23,10 @@ const QA: { q: TranslationKey; a: TranslationKey; cap?: boolean }[] = [
 export const faq: GuidePage = {
   titleKey: 'guide.nav.faq',
   render() {
-    const items = QA
-      .map(({ q, a, cap }) => {
-        const answer = cap ? t(a, { cap: formatNumber(LEVEL_CAP) }) : t(a);
-        return `<details class="guide-faq-item"><summary>${esc(t(q))}</summary><p>${esc(answer)}</p></details>`;
-      })
-      .join('');
+    const items = QA.map(({ q, a, cap }) => {
+      const answer = cap ? t(a, { cap: formatNumber(LEVEL_CAP) }) : t(a);
+      return `<details class="guide-faq-item"><summary>${esc(t(q))}</summary><p>${esc(answer)}</p></details>`;
+    }).join('');
     return `
       <article class="guide-article">
         <h1>${esc(t('guide.nav.faq'))}</h1>

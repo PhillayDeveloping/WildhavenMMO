@@ -2,26 +2,25 @@
 // logging into a single never-throws entry point. Routes call the convenience
 // wrappers in index.ts; this class holds the policy so it can be unit-tested
 // against a fake sender and a fake log, with no database or network.
-import { renderEmail } from './templates';
+
 import {
-  EVENT_CATEGORY,
   DEFAULT_EMAIL_LOCALE,
-  type EmailEvent,
   type EmailCategory,
   type EmailData,
+  type EmailEvent,
+  EVENT_CATEGORY,
 } from './events';
 import type { EmailSender } from './sender';
+import { renderEmail } from './templates';
 
-export interface EmailLogSink {
-  (entry: {
-    accountId: number | null;
-    event: EmailEvent;
-    toEmail: string;
-    category: string;
-    ok: boolean;
-    error?: string | null;
-  }): void;
-}
+export type EmailLogSink = (entry: {
+  accountId: number | null;
+  event: EmailEvent;
+  toEmail: string;
+  category: string;
+  ok: boolean;
+  error?: string | null;
+}) => void;
 
 export interface SendRequest<K extends EmailEvent> {
   event: K;
@@ -56,7 +55,14 @@ export class EmailService {
     const accountId = req.accountId ?? null;
     if (!req.to) return 'skipped';
     if (category === 'marketing' && !req.marketingOptIn) {
-      this.deps.log?.({ accountId, event: req.event, toEmail: req.to, category, ok: false, error: 'opt-out' });
+      this.deps.log?.({
+        accountId,
+        event: req.event,
+        toEmail: req.to,
+        category,
+        ok: false,
+        error: 'opt-out',
+      });
       return 'skipped';
     }
     const rendered = renderEmail(req.event, req.locale || DEFAULT_EMAIL_LOCALE, req.data);

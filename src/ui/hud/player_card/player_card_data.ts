@@ -13,7 +13,6 @@ export interface PlayerCardDataInput {
   characterImage: PlayerCardData['characterImage'];
   referral: ReferralInfo | null;
   standing: CharacterStanding | null;
-  balance: number | null;
   showDevBadges: boolean;
   slotName(slot: EquipSlot): string;
 }
@@ -91,7 +90,6 @@ export function buildPlayerCardData(world: IWorld, input: PlayerCardDataInput): 
     gear,
     ...(titleText ? { titleText } : {}),
     topPercent,
-    balance: input.balance,
     devTier: input.showDevBadges ? (player.devTier ?? null) : null,
     devMergedPrs: input.showDevBadges ? (player.devMergedPrs ?? null) : null,
     referralHandle: input.referral?.slug ?? playerCardSlug(player.name),

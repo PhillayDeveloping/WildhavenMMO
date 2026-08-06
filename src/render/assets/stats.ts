@@ -49,7 +49,8 @@ function shortUrl(url: string): string {
 }
 
 function resourceBytes(url: string): number {
-  if (typeof performance === 'undefined' || typeof performance.getEntriesByName !== 'function') return 0;
+  if (typeof performance === 'undefined' || typeof performance.getEntriesByName !== 'function')
+    return 0;
   const entries = performance.getEntriesByName(url) as PerformanceResourceTiming[];
   const r = entries[entries.length - 1];
   return Math.max(0, Number(r?.transferSize || r?.encodedBodySize || 0));
@@ -59,7 +60,12 @@ export function assetLoadStarted(): number {
   return now();
 }
 
-export function recordAssetLoad(type: string, url: string, startedAt: number, failed = false): void {
+export function recordAssetLoad(
+  type: string,
+  url: string,
+  startedAt: number,
+  failed = false,
+): void {
   const ms = Math.max(0, now() - startedAt);
   samples.push({ type, url: shortUrl(url), ms, bytes: failed ? 0 : resourceBytes(url), failed });
 }

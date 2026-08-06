@@ -21,8 +21,9 @@ export function impactCraterTerrainBlend(x: number, z: number): ImpactCraterTerr
   }
 
   const bowl = 1 - smoothstep(0, MIREFEN_IMPACT_CRATER.bowlRadius, d);
-  const lip = smoothstep(MIREFEN_IMPACT_CRATER.bowlRadius * 0.62, MIREFEN_IMPACT_CRATER.bowlRadius, d)
-    * (1 - smoothstep(MIREFEN_IMPACT_CRATER.bowlRadius, MIREFEN_IMPACT_CRATER.radius, d));
+  const lip =
+    smoothstep(MIREFEN_IMPACT_CRATER.bowlRadius * 0.62, MIREFEN_IMPACT_CRATER.bowlRadius, d) *
+    (1 - smoothstep(MIREFEN_IMPACT_CRATER.bowlRadius, MIREFEN_IMPACT_CRATER.radius, d));
   const scorch = Math.max(bowl, lip * 0.55);
 
   return {

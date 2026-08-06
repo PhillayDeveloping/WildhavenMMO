@@ -2,7 +2,7 @@
 // token to the user (in a link) and persist only its SHA-256, so a database leak
 // cannot be replayed into an inbox takeover. Mirrors the random-bytes approach
 // auth.ts uses for session tokens.
-import { randomBytes, createHash } from 'node:crypto';
+import { createHash, randomBytes } from 'node:crypto';
 
 export interface EmailToken {
   // The secret that travels in the email link. Never stored.

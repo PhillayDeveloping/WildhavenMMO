@@ -45,7 +45,6 @@ const inflight = new Map<string, Promise<void>>();
 
 interface SeedConfig {
   prizePoolUsd: number;
-  wocUsdPrice: number | null;
   tasks: DailyRewardTaskSeed[];
 }
 
@@ -72,13 +71,7 @@ export function buildSeedKey(day: string, realm: string, config: SeedConfig): st
   // no field separator. Erring toward a fresh key (for example if a config
   // object's property order ever varied) only costs one extra idempotent write,
   // the safe direction; a spurious SKIP would be the unsafe one.
-  return JSON.stringify([
-    day,
-    realm,
-    config.prizePoolUsd,
-    config.wocUsdPrice,
-    tasksSignature(config.tasks),
-  ]);
+  return JSON.stringify([day, realm, config.prizePoolUsd, tasksSignature(config.tasks)]);
 }
 
 function markSeeded(key: string): void {

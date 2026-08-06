@@ -24,11 +24,10 @@ import {
   REWARD_DAY_SHAPE,
 } from './daily_rewards_db';
 import { buildSeedKey, runSeedOnce } from './daily_rewards_seed_gate';
-import { accountAndScopeForToken, moderationStatusForAccount, walletForAccount } from './db';
+import { accountAndScopeForToken, moderationStatusForAccount } from './db';
 import { ctxAccountId } from './http/context';
 import { HttpError } from './http/errors';
 import { createActiveGuard } from './http/middleware/bearer_active_guard';
-import { rateLimit, SEEKER_SPIN_VERIFY_POLICY } from './http/middleware/rate_limit';
 import {
   DAILY_REWARD_SECRET_ENV,
   DAILY_REWARD_SECRET_HEADER,
@@ -36,15 +35,10 @@ import {
 } from './http/middleware/require_internal_secret';
 import type { Ctx, Middleware, RouteDef } from './http/types';
 import { json, readBody } from './http_util';
-import { verifySeekerSolanaArtifactAttestation } from './native_attestation';
 import { requestIp } from './ratelimit';
 import { REALM } from './realm';
-import { verifyCurrentSeekerEntitlement } from './seeker_entitlement';
-import { hasSeekerEntitlement } from './seeker_entitlement_db';
 import { isNativeAppRequest } from './web_login_guard';
-import { cachedWocBalance } from './woc_balance';
 
-const DEFAULT_MIN_USD = 20;
 const DEFAULT_POOL_USD = 150;
 const DEFAULT_ACTIVE_SECONDS = 120;
 const DEFAULT_DAY_START_UTC_MINUTES = 22 * 60;
@@ -124,25 +118,18 @@ interface RuntimeConfigCache {
   at: number;
 }
 
+// Participation is open to every account. The only thing that can hold a player
+// out is a moderation ban, so the reason vocabulary has exactly two members.
 interface Eligibility {
   eligible: boolean;
-  reason: 'eligible' | 'no_wallet' | 'under_minimum' | 'price_unavailable' | 'banned';
+  reason: 'eligible' | 'banned';
   banReason: string | null;
   banExpiresAt: string | null;
-  walletPubkey: string | null;
-  wocBalance: number | null;
-  wocUsdPrice: number | null;
-  usdValue: number | null;
-  minUsd: number;
 }
 
 export interface DailyRewardRuntimeConfig {
   enabled: boolean;
-  minUsd: number;
   prizePoolUsd: number;
-  prizePoolSol: number | null;
-  wocUsdPrice: number | null;
-  solUsdPrice: number | null;
   activeSeconds: number;
   dayStartUtcMinutes: number;
   tasks: DailyRewardTaskSeed[];
@@ -272,11 +259,7 @@ function parseTaskPayload(payload: unknown): DailyRewardTaskSeed[] {
 function fallbackRuntimeConfig(): DailyRewardRuntimeConfig {
   return {
     enabled: true,
-    minUsd: DEFAULT_MIN_USD,
     prizePoolUsd: DEFAULT_POOL_USD,
-    prizePoolSol: null,
-    wocUsdPrice: null,
-    solUsdPrice: null,
     activeSeconds: DEFAULT_ACTIVE_SECONDS,
     dayStartUtcMinutes: DEFAULT_DAY_START_UTC_MINUTES,
     tasks: DEFAULT_TASKS,
@@ -297,14 +280,10 @@ function parseRuntimeConfigPayload(payload: unknown): DailyRewardRuntimeConfig {
     // A configured authority must affirmatively enable rewards. Older/malformed
     // service responses fail closed; the no-service local path uses fallbackRuntimeConfig.
     enabled: record.enabled === true,
-    minUsd: finitePositive(record.minUsd) ?? finitePositive(record.min_usd) ?? fallback.minUsd,
     prizePoolUsd:
       finitePositive(record.prizePoolUsd) ??
       finitePositive(record.prize_pool_usd) ??
       fallback.prizePoolUsd,
-    prizePoolSol: finitePositive(record.prizePoolSol) ?? finitePositive(record.prize_pool_sol),
-    wocUsdPrice: finitePositive(record.wocUsdPrice) ?? finitePositive(record.woc_usd_price),
-    solUsdPrice: finitePositive(record.solUsdPrice) ?? finitePositive(record.sol_usd_price),
     activeSeconds:
       finitePositive(record.activeSeconds) ??
       finitePositive(record.active_seconds) ??
@@ -327,13 +306,11 @@ function parseStrictRuntimeConfigPayload(
   const record = payload as Record<string, unknown>;
   if (record.day !== expectedDay) throw new Error('config response day did not match request');
 
-  const minUsd = finitePositive(record.minUsd);
   const prizePoolUsd = finitePositive(record.prizePoolUsd);
   const activeSeconds = finitePositive(record.activeSeconds);
   const dayStartUtcMinutes = finiteDayStartUtcMinutes(record.dayStartUtcMinutes);
   if (
     typeof record.enabled !== 'boolean' ||
-    minUsd === null ||
     prizePoolUsd === null ||
     activeSeconds === null ||
     dayStartUtcMinutes === null
@@ -353,11 +330,7 @@ function parseStrictRuntimeConfigPayload(
 
   return {
     enabled: record.enabled,
-    minUsd,
     prizePoolUsd,
-    prizePoolSol: finitePositive(record.prizePoolSol),
-    wocUsdPrice: finitePositive(record.wocUsdPrice),
-    solUsdPrice: finitePositive(record.solUsdPrice),
     activeSeconds,
     dayStartUtcMinutes,
     tasks: tasks as DailyRewardTaskSeed[],
@@ -478,14 +451,6 @@ export async function dailyRewardRuntimeConfig(
   }
 }
 
-export async function wocUsdPrice(day = utcRewardDay()): Promise<number | null> {
-  return (await dailyRewardRuntimeConfig(day)).wocUsdPrice;
-}
-
-export async function solUsdPrice(day = utcRewardDay()): Promise<number | null> {
-  return (await dailyRewardRuntimeConfig(day)).solUsdPrice;
-}
-
 async function dailyRewardClock(now = new Date()): Promise<{
   day: string;
   config: DailyRewardRuntimeConfig;
@@ -552,60 +517,13 @@ export async function dailyRewardEventsCutoffDay(
   return cutoff;
 }
 
-async function prizePoolSol(config: DailyRewardRuntimeConfig): Promise<number | null> {
-  if (config.prizePoolSol !== null) return config.prizePoolSol;
-  if (config.solUsdPrice === null) return null;
-  return config.prizePoolUsd / config.solUsdPrice;
-}
-
-export async function dailyRewardEligibility(
-  accountId: number,
-  config?: DailyRewardRuntimeConfig,
-): Promise<Eligibility> {
-  const runtimeConfig = config ?? (await dailyRewardRuntimeConfig());
-  const wallet = await walletForAccount(accountId);
-  if (!wallet) {
-    return {
-      eligible: false,
-      reason: 'no_wallet',
-      banReason: null,
-      banExpiresAt: null,
-      walletPubkey: null,
-      wocBalance: null,
-      wocUsdPrice: runtimeConfig.wocUsdPrice,
-      usdValue: null,
-      minUsd: runtimeConfig.minUsd,
-    };
-  }
-  const [balance, price] = await Promise.all([
-    cachedWocBalance(wallet.pubkey),
-    Promise.resolve(runtimeConfig.wocUsdPrice),
-  ]);
-  if (balance === null || price === null) {
-    return {
-      eligible: false,
-      reason: 'price_unavailable',
-      banReason: null,
-      banExpiresAt: null,
-      walletPubkey: wallet.pubkey,
-      wocBalance: balance,
-      wocUsdPrice: price,
-      usdValue: null,
-      minUsd: runtimeConfig.minUsd,
-    };
-  }
-  const usdValue = balance * price;
-  return {
-    eligible: usdValue >= runtimeConfig.minUsd,
-    reason: usdValue >= runtimeConfig.minUsd ? 'eligible' : 'under_minimum',
-    banReason: null,
-    banExpiresAt: null,
-    walletPubkey: wallet.pubkey,
-    wocBalance: balance,
-    wocUsdPrice: price,
-    usdValue,
-    minUsd: runtimeConfig.minUsd,
-  };
+/**
+ * Every account may take part. The ban check is the caller's (see
+ * DailyRewardService.eligibility, which consults banForAccount first), so
+ * reaching here means the player is clear.
+ */
+export async function dailyRewardEligibility(): Promise<Eligibility> {
+  return { eligible: true, reason: 'eligible', banReason: null, banExpiresAt: null };
 }
 
 function pickSpinOutcome(seed = Math.random()): (typeof SPIN_OUTCOMES)[number] {
@@ -866,10 +784,7 @@ export class DailyRewardService {
     }));
   }
 
-  private async eligibility(
-    accountId: number,
-    config: DailyRewardRuntimeConfig,
-  ): Promise<Eligibility> {
+  private async eligibility(accountId: number): Promise<Eligibility> {
     const ban = await this.db.banForAccount(accountId);
     if (ban) {
       return {
@@ -877,14 +792,9 @@ export class DailyRewardService {
         reason: 'banned',
         banReason: ban.reason,
         banExpiresAt: ban.expiresAt,
-        walletPubkey: null,
-        wocBalance: null,
-        wocUsdPrice: config.wocUsdPrice,
-        usdValue: null,
-        minUsd: config.minUsd,
       };
     }
-    return dailyRewardEligibility(accountId, config);
+    return dailyRewardEligibility();
   }
 
   async activeSeconds(day?: string): Promise<number> {
@@ -899,7 +809,7 @@ export class DailyRewardService {
   // each re-issuing the pair on every call.
   private async ensureSeeded(day: string, config: DailyRewardRuntimeConfig): Promise<void> {
     await runSeedOnce(buildSeedKey(day, REALM, config), async () => {
-      await this.db.ensureDay(day, config.prizePoolUsd, config.wocUsdPrice);
+      await this.db.ensureDay(day, config.prizePoolUsd, null);
       await this.db.seedTasks(day, config.tasks);
     });
   }
@@ -918,17 +828,11 @@ export class DailyRewardService {
         day,
         resetAt: nextUtcResetIso(day, config.dayStartUtcMinutes),
         prizePoolUsd: config.prizePoolUsd,
-        prizePoolSol: config.prizePoolSol,
         eligibility: {
           eligible: false,
-          reason: 'price_unavailable',
+          reason: 'eligible',
           banReason: null,
           banExpiresAt: null,
-          walletPubkey: null,
-          wocBalance: null,
-          wocUsdPrice: config.wocUsdPrice,
-          usdValue: null,
-          minUsd: config.minUsd,
         },
         score: 0,
         rank: null,
@@ -939,7 +843,7 @@ export class DailyRewardService {
       };
     }
     await this.ensureSeeded(day, config);
-    const eligibility = await this.eligibility(accountId, config);
+    const eligibility = await this.eligibility(accountId);
     // The four ranked reads come from the board cache (one snapshot per TTL
     // window); the per-account reads stay live on the db.
     const [score, rank, spin, tasks, leaders, leaderboardTotal, onlineMinutes] = await Promise.all([
@@ -961,7 +865,6 @@ export class DailyRewardService {
       day,
       resetAt: nextUtcResetIso(day, config.dayStartUtcMinutes),
       prizePoolUsd: config.prizePoolUsd,
-      prizePoolSol: await prizePoolSol(config),
       eligibility,
       score,
       rank,
@@ -1009,7 +912,7 @@ export class DailyRewardService {
     const { day, config } = await dailyRewardClock();
     if (!config.enabled) return { error: 'daily rewards are disabled', status: 409 };
     await this.ensureSeeded(day, config);
-    const eligibility = await this.eligibility(accountId, config);
+    const eligibility = await this.eligibility(accountId);
     if (!eligibility.eligible)
       return { error: 'daily rewards are locked for this wallet', status: 403 };
     const existing = await this.db.spinForAccount(day, accountId);
@@ -1084,7 +987,7 @@ export class DailyRewardService {
     const { day, config } = await dailyRewardClock(completedAt);
     if (!config.enabled) return 0;
     await this.ensureSeeded(day, config);
-    const eligibility = await this.eligibility(accountId, config);
+    const eligibility = await this.eligibility(accountId);
     if (!eligibility.eligible) return 0;
     const tasks = await this.db.tasksForType(day, 'quest_completion');
     if (tasks.length === 0) return 0;
@@ -1141,7 +1044,7 @@ export class DailyRewardService {
     const { day, config } = await dailyRewardClock(completedAt);
     if (!config.enabled) return 0;
     await this.ensureSeeded(day, config);
-    const eligibility = await this.eligibility(accountId, config);
+    const eligibility = await this.eligibility(accountId);
     if (!eligibility.eligible) return 0;
     const tasks = await this.db.tasksForType(day, 'arena_result');
     if (tasks.length === 0) return 0;
@@ -1188,7 +1091,7 @@ export class DailyRewardService {
     const { day, config } = await dailyRewardClock(completedAt);
     if (!config.enabled) return 0;
     await this.ensureSeeded(day, config);
-    const eligibility = await this.eligibility(accountId, config);
+    const eligibility = await this.eligibility(accountId);
     if (!eligibility.eligible) return 0;
     const tasks = await this.db.tasksForType(day, 'delve_clear');
     if (tasks.length === 0) return 0;
@@ -1235,7 +1138,7 @@ export class DailyRewardService {
     const { day, config } = await dailyRewardClock(openedAt);
     if (!config.enabled) return 0;
     await this.ensureSeeded(day, config);
-    const eligibility = await this.eligibility(accountId, config);
+    const eligibility = await this.eligibility(accountId);
     if (!eligibility.eligible) return 0;
     const tasks = await this.db.tasksForType(day, 'delve_clear');
     if (tasks.length === 0) return 0;
@@ -1298,7 +1201,7 @@ export class DailyRewardService {
     const { day, config } = await dailyRewardClock(completedAt);
     if (!config.enabled) return 0;
     await this.ensureSeeded(day, config);
-    const eligibility = await this.eligibility(accountId, config);
+    const eligibility = await this.eligibility(accountId);
     if (!eligibility.eligible) return 0;
     const tasks = await this.db.tasksForType(day, 'vale_cup_result');
     if (tasks.length === 0) return 0;
@@ -1631,18 +1534,6 @@ function internalAuthorized(req: http.IncomingMessage): boolean {
 
 export const dailyRewardService = new DailyRewardService();
 
-let seekerSpinArtifactVerifier = verifySeekerSolanaArtifactAttestation;
-
-export function setDailyRewardSeekerArtifactVerifierForTests(
-  verifier: typeof verifySeekerSolanaArtifactAttestation,
-): void {
-  seekerSpinArtifactVerifier = verifier;
-}
-
-export function resetDailyRewardSeekerArtifactVerifierForTests(): void {
-  seekerSpinArtifactVerifier = verifySeekerSolanaArtifactAttestation;
-}
-
 // main.ts wires this into bustBoardCaches: the board cache is instance-scoped
 // on the module singleton above, so a bust exported from the cache module
 // itself would hold no handle to the live instance.
@@ -1667,41 +1558,6 @@ export async function handleDailyRewardApi(
   accountId: number,
 ): Promise<void> {
   const url = new URL(req.url ?? '/', 'http://localhost');
-  const nativeSpin =
-    isNativeAppRequest(req) && req.method === 'POST' && url.pathname === '/api/daily-rewards/spin';
-  if (
-    nativeSpin &&
-    !globallyAdmittedSeekerSpins.has(req) &&
-    !(await admitLegacySeekerSpin(req, res, accountId))
-  ) {
-    return;
-  }
-  if (nativeSpin) {
-    const body = await readBody(req);
-    const attestation = await seekerSpinArtifactVerifier(
-      req,
-      body.nativeAttestation,
-      'seeker-spin',
-    );
-    if (!attestation) {
-      return json(res, 403, {
-        error: 'Solana Store app verification required',
-        code: 'seeker.solana_artifact_required',
-      });
-    }
-  }
-  if (isNativeAppRequest(req) && !(await dailyRewardGuardDb().hasSeekerEntitlement(accountId))) {
-    return json(res, 403, {
-      error: 'verified Seeker entitlement required',
-      code: 'seeker.entitlement_required',
-    });
-  }
-  if (nativeSpin && !(await verifyCurrentSeekerEntitlement(accountId))) {
-    return json(res, 403, {
-      error: 'current Seeker Genesis Token ownership required',
-      code: 'seeker.current_ownership_required',
-    });
-  }
   if (req.method === 'GET' && url.pathname === '/api/daily-rewards') {
     return json(res, 200, await dailyRewardService.status(accountId));
   }
@@ -1837,9 +1693,8 @@ export async function handleDailyRewardInternalApi(
 // the ladder serves (handleDailyRewardApi / handleDailyRewardInternalApi)
 // UNCHANGED, so every body, the in-family 404 'unknown endpoint', the lenient
 // Number(...)|| limit decodes, and mark-payout's validation prose are
-// byte-identical with zero dual-edit drift. No withBody anywhere: native Seeker
-// spins self-read their artifact proof while web spins remain body-free, and
-// mark-payout SELF-READS via the core's un-caught readBody (the
+// byte-identical with zero dual-edit drift. No withBody anywhere: spins are
+// body-free, and mark-payout SELF-READS via the core's un-caught readBody (the
 // dailyRewardsOpsBodyValidationRemap deviation). Off-table shapes (wrong
 // method, unknown subpath, the no-slash '/api/daily-rewardsX' sibling, HEAD)
 // resolve unmatched and delegate to the ladder unchanged. v0.20.0 grew each
@@ -1853,9 +1708,8 @@ export async function handleDailyRewardInternalApi(
 // RESTART_COUNTDOWN_SECRET fallback). The gated core re-runs its own
 // internalAuthorized check (same env + header, per request), which passes
 // whenever the gate passed; keeping the core's check intact is what keeps the
-// composite delegate's legacy behavior frozen. Native Seeker spin alone adds
-// the shared ip+account ownership-verification admission policy in both
-// dispatch modes; the other ten routes retain their previous limiter behavior.
+// composite delegate's legacy behavior frozen. Every route retains its previous
+// limiter behavior.
 // dailyRewardService stays module-owned and importable by game.ts regardless of
 // route-table state; no boot injection is needed.
 
@@ -1864,7 +1718,7 @@ export async function handleDailyRewardInternalApi(
 // an eager literal would break every test that partial-mocks server/db and
 // loads the game (the lazy-db-bundle rule).
 function makeRealDailyRewardDb() {
-  return { accountAndScopeForToken, moderationStatusForAccount, hasSeekerEntitlement };
+  return { accountAndScopeForToken, moderationStatusForAccount };
 }
 type DailyRewardGuardDb = ReturnType<typeof makeRealDailyRewardDb>;
 let realDailyRewardDb: DailyRewardGuardDb | undefined;
@@ -1888,48 +1742,6 @@ export function resetDailyRewardDbForTests(): void {
 
 /** Full active session gate (mirrors the prefix arm's bearerActiveAccount). */
 const activeGuard = createActiveGuard(() => dailyRewardGuardDb());
-const globallyAdmittedSeekerSpins = new WeakSet<http.IncomingMessage>();
-
-async function admitLegacySeekerSpin(
-  req: http.IncomingMessage,
-  res: http.ServerResponse,
-  accountId: number,
-): Promise<boolean> {
-  let admitted = false;
-  // The retained legacy dispatcher has no pipeline Ctx. This narrow adapter
-  // supplies exactly the fields the shared ip+account policy reads, so rollback
-  // mode receives the same process-local and PostgreSQL-global admission gate.
-  const ctx = {
-    req,
-    res,
-    ip: requestIp(req),
-    account: { accountId, scope: 'full' },
-  } as Ctx;
-  try {
-    await rateLimit(SEEKER_SPIN_VERIFY_POLICY)(ctx, async () => {
-      admitted = true;
-    });
-  } catch (err) {
-    if (!(err instanceof HttpError) || err.status !== 429) throw err;
-    for (const [name, value] of Object.entries(err.headers ?? {})) {
-      res.setHeader(name, value);
-    }
-    json(res, 429, { error: 'rate limited' });
-  }
-  return admitted;
-}
-
-const seekerSpinAdmission: Middleware = async (ctx, next) => {
-  if (!isNativeAppRequest(ctx.req)) {
-    await next();
-    return;
-  }
-  await rateLimit(SEEKER_SPIN_VERIFY_POLICY)(ctx, async () => {
-    globallyAdmittedSeekerSpins.add(ctx.req);
-    await next();
-  });
-};
-
 /** The fail-closed payout-service gate, one instance shared by the seven ops routes. */
 const dailyRewardOpsGate = requireInternalSecretFailClosed({
   header: DAILY_REWARD_SECRET_HEADER,
@@ -1973,7 +1785,7 @@ export const routes: RouteDef[] = [
     method: 'POST',
     path: '/api/daily-rewards/spin',
     surface: 'api',
-    middleware: [activeGuard, seekerSpinAdmission],
+    middleware: [activeGuard],
     handler: dailyRewardPlayerHandler,
   },
   {

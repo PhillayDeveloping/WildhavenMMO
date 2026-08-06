@@ -3,6 +3,6 @@
 // the renderer (scene.ts) and GLB assembly (model.ts) load lazily on first activation, so
 // three.js never enters the main Guide bundle.
 
-export { modelViewerEmbed, type ModelEmbedOptions } from './embed';
-export { wireModelViewers, createViewer, hasWebGL } from './mount';
+export { type ModelEmbedOptions, modelViewerEmbed } from './embed';
+export { createViewer, hasWebGL, wireModelViewers } from './mount';
 export type { ModelViewer } from './scene';
