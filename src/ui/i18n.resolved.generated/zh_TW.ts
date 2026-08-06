@@ -409,9 +409,7 @@ export const zh_TW: EnTranslations = {
       "remainingHoursMinutes": "{hours}小時{minutes}分",
       "remainingDaysHours": "{days}天{hours}小時",
       "score": "分數",
-      "walletValue": "錢包價值 (WOC)",
       "usd": "{amount} USD",
-      "sol": "{amount} SOL",
       "unknown": "未知",
       "spinTitle": "每日轉盤",
       "spinDialogTitle": "每日獎勵轉盤",
@@ -436,17 +434,8 @@ export const zh_TW: EnTranslations = {
       "history": "歷屆得獎者",
       "noLeaders": "尚無點數。",
       "noHistory": "尚無派彩紀錄。",
-      "walletConnectTitle": "驗證錢包",
-      "walletConnectBody": "驗證持有 WOC 的 Solana 錢包以解鎖每日獎勵。",
-      "walletConnectButton": "驗證錢包",
-      "walletHoldTitle": "持有 WOC",
-      "walletHoldBody": "持有至少價值 {amount} USD 的 WOC 以解鎖每日獎勵。",
-      "walletPriceBody": "目前無法取得 WOC 價格，請稍後再試。",
       "reason": {
         "eligible": "獎勵已解鎖。",
-        "no_wallet": "請連接持有至少 $20 USD WOC 的錢包。",
-        "under_minimum": "錢包低於 $20 USD 的 WOC 最低要求。",
-        "price_unavailable": "無法取得 WOC 價格，獎勵暫時鎖定。",
         "banned": "您已被禁止參加每日獎勵。原因：{reason}",
         "bannedUntil": "您還將被禁止參加每日獎勵 {remaining}。恢復時間：{until}。原因：{reason}"
       }
@@ -472,18 +461,6 @@ export const zh_TW: EnTranslations = {
       "armoryEyebrow": "第一賽季",
       "armoryTitle": "兵器庫",
       "armoryBody": "第一賽季兵器庫限定武器外觀。全帳號通用，純裝飾性，周圍所有玩家都能看到。",
-      "wallet": {
-        "title": "Solana 錢包",
-        "unlinked": "連接錢包應用程式，然後簽署一次，將其公開地址綁定到你的 WoC 帳號。我們絕不會取得你的復原短語或私鑰。",
-        "connectedUnlinked": "錢包應用程式已連接到此瀏覽器，但其公開地址尚未綁定到你的 WoC 帳號。",
-        "linkedDisconnected": "你的公開地址已綁定。需要使用 SOL 或 WOC 付款時，請重新連接該錢包應用程式。",
-        "linkedConnected": "已綁定的錢包應用程式已連接，可以使用 SOL 或 WOC 購買。",
-        "mismatched": "目前連接的是另一個錢包。驗證它即可取代已綁定的地址，或重新連接原先綁定的錢包。",
-        "connect": "連接錢包",
-        "verify": "驗證並綁定",
-        "reconnect": "重新連接錢包",
-        "manage": "管理錢包"
-      },
       "collectionLine": "{collection}系列",
       "collections": {
         "guildmark": "公會印記",
@@ -685,20 +662,11 @@ export const zh_TW: EnTranslations = {
       "loading": "正在載入 Claudium…",
       "balanceLabel": "餘額",
       "balanceUnit": "{amount} Claudium",
-      "solBalance": "SOL：{amount}",
-      "usdcBalance": "USDC：{amount}",
-      "wocBalance": "WOC：{amount}",
       "unavailable": "Claudium 商店目前無法使用。您的餘額與購買不受影響，請稍後再試。",
       "disclosure": "Claudium 是單向軟貨幣：可用金錢購買並用於兌換外觀物品，不能贖回、轉讓或兌現。",
       "buyTitle": "購買 Claudium",
       "railLabel": "付款方式",
       "railStripe": "信用卡",
-      "railSol": "SOL",
-      "railUsdc": "USDC",
-      "railWoc": "WOC",
-      "railWocDiscount": "優惠 {percent}%",
-      "railWocUnavailable": "WOC 定價目前無法使用。",
-      "railNativeUnavailable": "SOL/WOC 無法使用",
       "amountLabel": "數量",
       "showAmounts": "顯示所有 Claudium 數量",
       "hideAmounts": "隱藏其他 Claudium 數量",
@@ -718,10 +686,7 @@ export const zh_TW: EnTranslations = {
       "checkoutPending": "交易處理中。請在錢包中確認，並保持此面板開啟。",
       "checkoutPendingButton": "處理中",
       "checkoutFailed": "無法載入結帳頁面，請再試一次。",
-      "checkoutUnavailable": "該 Claudium 購買項目目前無法使用。",
-      "checkoutWalletRequired": "使用加密貨幣購買 Claudium 前，請先連接 Solana 錢包。",
-      "checkoutWalletUnsupported": "此錢包無法簽署及傳送 Solana 交易。",
-      "checkoutNotSettled": "交易已傳送，但 Claudium 尚未入帳，請稍後再試。"
+      "checkoutUnavailable": "該 Claudium 購買項目目前無法使用。"
     },
     "theme": {
       "preset": "介面主題",
@@ -1196,8 +1161,6 @@ export const zh_TW: EnTranslations = {
       "clickFeedback": "點擊標記",
       "lockCursorOnRotate": "旋轉時鎖定游標",
       "keybindHelpLockCursorOnRotate": "拖曳旋轉鏡頭時將滑鼠游標保持在視窗內，使其無法到達螢幕邊緣或移動到另一台顯示器。若你偏好自由游標，請關閉此選項。",
-      "showWalletOnCharacterScreen": "在角色畫面顯示錢包",
-      "showWalletOnPlayerCard": "在玩家卡片顯示錢包",
       "showDevBadges": "顯示開發者徽章",
       "showOwnNameplate": "顯示我的姓名板",
       "showPlayerNameplates": "顯示玩家姓名板",
@@ -1373,9 +1336,7 @@ export const zh_TW: EnTranslations = {
         "aetherRush": "以太奔湧"
       }
     },
-    "playerCard": {
-      "showWalletBadge": "顯示錢包徽章"
-    },
+    "playerCard": {},
     "landing": {
       "highContrast": "高對比度",
       "highContrastAria": "切換高對比度背景：關閉動態預告片，使開始畫面文字保持清晰",
@@ -1564,7 +1525,6 @@ export const zh_TW: EnTranslations = {
       "loggedOutPrompt": "登入以管理您的帳號。",
       "memberSince": "註冊於 {date}",
       "sectionSettings": "帳號設定",
-      "sectionWallet": "$WOC 錢包",
       "sectionCharacters": "角色",
       "sectionDanger": "危險區域",
       "changePassword": "變更密碼",
@@ -1591,8 +1551,6 @@ export const zh_TW: EnTranslations = {
       "charactersSummary": "管理您的角色並進入遊戲世界。",
       "charactersCount": "角色：{count}",
       "goToCharacters": "查看角色",
-      "walletSummary": "驗證 Solana 錢包以在玩家卡片上顯示持有者標誌。",
-      "manageWallet": "管理錢包",
       "deactivate": "停用帳號",
       "deactivateWarning": "停用將鎖定您的帳號並在所有裝置上登出。請聯絡管理員以還原。請重新輸入使用者名稱和密碼以確認。",
       "confirmUsername": "輸入您的使用者名稱以確認",
@@ -2293,11 +2251,9 @@ export const zh_TW: EnTranslations = {
       "bonusStatusEarned": "+{count}",
       "bonusSourceEmail": "已驗證電子郵件",
       "bonusSourceDiscord": "已連結 Discord",
-      "bonusSourceWallet": "已連結錢包",
       "bonusSourceReferral": "已推薦的好友",
       "bonusAdvertEmail": "驗證電子郵件可獲得 2 個格子。",
       "bonusAdvertDiscord": "連結 Discord 可獲得 2 個格子。",
-      "bonusAdvertWallet": "連結錢包可獲得 2 個格子。",
       "bonusReferralProgress": "{count}/{cap}",
       "bonusReferralExplainer": "邀請好友：當好友升到 10 級，你們各獲得 2 個格子，最多 5 位好友。",
       "bonusSectionAria": "獎勵銀行格子及獲取方式",
@@ -3147,21 +3103,8 @@ export const zh_TW: EnTranslations = {
       "account_taken": "該 Epic 帳號已連結到另一個帳號。",
       "upstream": "Epic 未回應。請稍後重試。"
     },
-    "wallet": {
-      "handoff_invalid": "錢包授權已過期或無法驗證。請再試一次。"
-    },
     "ota_updates": {
       "invalid_input": "輸入無效。"
-    },
-    "seeker": {
-      "native_only": "Seeker 權益僅可在原生應用程式中使用。",
-      "attestation_failed": "裝置驗證失敗。請再試一次。",
-      "solana_artifact_required": "請使用 Solana Store 版應用程式繼續。",
-      "wallet_required": "請先連結並驗證錢包。",
-      "genesis_token_required": "需要已驗證的 Seeker Genesis Token。",
-      "genesis_token_claimed": "該 Seeker Genesis Token 已被領取。",
-      "entitlement_required": "需要已驗證的 Seeker 權益。",
-      "current_ownership_required": "需要目前持有 Seeker Genesis Token。"
     }
   },
   "guide": {
@@ -5133,10 +5076,7 @@ export const zh_TW: EnTranslations = {
     "playAria": "遊玩 World of ClaudeCraft",
     "serverLabel": "選擇你的世界",
     "serverAria": "選擇世界：線上或離線",
-    "serverOfflineSub": "即時本地世界",
-    "caLabel": "$WOC 合約地址",
-    "caCopyAria": "複製合約地址",
-    "caNote": "WOC 是我們的社群代幣，並非遊玩所需。加入 Discord 一起討論 WOC 的用途與飛輪效應。"
+    "serverOfflineSub": "即時本地世界"
   },
   "auth": {
     "enterRealm": "進入世界",
@@ -5184,171 +5124,6 @@ export const zh_TW: EnTranslations = {
       "failed": "無法儲存您的電子郵件，請重試。"
     }
   },
-  "wallet": {
-    "label": "$WOC 錢包",
-    "connect": "驗證錢包",
-    "connectTitle": "驗證你的 Solana 錢包",
-    "connectAria": "驗證你的 Solana 錢包",
-    "verify": "驗證錢包",
-    "verifyNew": "驗證新錢包",
-    "verifyTitle": "選擇一個錢包並簽名一次以驗證所有權。",
-    "verifyAria": "選擇一個錢包並簽名一次以驗證所有權",
-    "verifyAddressAria": "簽名以為你的帳號驗證錢包 {address}",
-    "appConnected": "應用程式已連線",
-    "connectApp": "連接應用程式",
-    "connectAppTitle": "在此瀏覽器中連接錢包應用程式",
-    "connectAppAria": "在此瀏覽器中連接錢包應用程式",
-    "verifying": "正在驗證...",
-    "verifyingTitle": "錢包驗證正在進行中。",
-    "switch": "切換",
-    "switchTitle": "驗證另一個錢包",
-    "switchAria": "驗證另一個錢包",
-    "unlink": "解除綁定",
-    "unlinkTitle": "從此帳號移除錢包驗證",
-    "unlinkAria": "從此帳號移除錢包驗證",
-    "signOut": "斷開連線",
-    "signOutTitle": "在此瀏覽器中斷開錢包應用程式",
-    "signOutAria": "在此瀏覽器中斷開錢包應用程式",
-    "hide": "隱藏",
-    "hideTitle": "在此畫面隱藏錢包列",
-    "hideAria": "在此畫面隱藏錢包列",
-    "hiddenNotice": "錢包列已隱藏。可在遊戲內的「選項 > 介面」中重新啟用。",
-    "linkedTitle": "錢包已為你的帳號驗證。點擊以管理錢包應用程式。",
-    "linkedDisconnectedTitle": "錢包仍為你的帳號保持驗證。重新連線以管理錢包應用程式。",
-    "linkedDisconnectedAria": "錢包仍為你的帳號保持驗證。重新連線以管理錢包應用程式。",
-    "linkTitle": "點擊簽名並將此錢包綁定到你的帳號。",
-    "connectedTitle": "已連線。登入後可將此錢包綁定到你的帳號。",
-    "balanceTitle": "已驗證 Solana 錢包的 $WOC 餘額",
-    "balanceAria": "已驗證 Solana 錢包餘額：{balance}",
-    "balancePreviewTitle": "已連線錢包的 $WOC 餘額預覽",
-    "balancePreviewAria": "已連線錢包餘額預覽：{balance}。綁定錢包即可驗證持有者標識。",
-    "balanceAmount": "{amount} $WOC",
-    "bagConnect": "綁定錢包",
-    "bagLink": "驗證錢包",
-    "bagReconnect": "重新連接錢包",
-    "connected": "已連線：{address}",
-    "connectedWithBalance": "已連線：{balance} - {address}",
-    "connectedLinked": "已驗證：{address}",
-    "connectedLinkedWithBalance": "已驗證：{balance} - {address}",
-    "helpDisconnected": "驗證 Solana 錢包以啟用持有者標識和玩家卡徽章。無需交易或 SOL。",
-    "helpLoginToLink": "已連線 {address}。登入後可將它綁定到你的帳號。",
-    "helpLoginToLinkWithBalance": "已連線 {address}，餘額 {balance}。登入後可將它綁定到你的帳號。",
-    "helpReadyToLink": "已選擇錢包：{address}。簽名一次即可驗證持有者標識和玩家卡。",
-    "helpReadyToLinkWithBalance": "已選擇錢包：{address}，餘額 {balance}。簽名一次即可驗證持有者標識和玩家卡。",
-    "helpLinked": "持有者特權已啟用。錢包應用程式已在此瀏覽器中連線。",
-    "helpLinkedWithBalance": "持有者特權已啟用。錢包應用程式已在此瀏覽器中連線。",
-    "helpLinkedDisconnected": "持有者特權已啟用。需要簽名或花費時請連接應用程式。",
-    "helpLinkedDisconnectedWithBalance": "持有者特權已啟用。需要簽名或花費時請連接應用程式。",
-    "extensionHelp": "若要在此處看到錢包，請保持 Solflare Wallet 等瀏覽器錢包擴充功能處於啟用狀態。",
-    "mobileAppHelp": "選擇 Phantom 或 Solflare。錢包應用程式會要求核准。請保持遊戲開啟，完成後返回遊戲。",
-    "seekerAppHelp": "使用 Seed Vault Wallet 繼續。在 Seed Vault 中檢視連線與驗證要求，然後返回遊戲。",
-    "standaloneAppHelp": "主畫面應用程式目前尚不支援連接錢包。若要使用 Phantom 或 Solflare，請在 Safari 或 Chrome 中開啟 World of ClaudeCraft。",
-    "openAppTitle": "在 {wallet} 中繼續",
-    "openAppHelp": "開啟 {wallet} 檢視此請求。錢包應用程式啟用時，請保持此遊戲分頁開啟。",
-    "openAppButton": "開啟 {wallet}",
-    "manualReturnBrowserHelp": "核准後請返回此遊戲分頁。如果 iOS 開啟了其他瀏覽器，請將其關閉並手動返回原本的瀏覽器。",
-    "manualReturnStandaloneHelp": "核准後請從主畫面返回 World of ClaudeCraft。如果 iOS 開啟了瀏覽器，請將其關閉並重新開啟主畫面 App。",
-    "preparingAppButton": "正在準備 {wallet}...",
-    "walletAppUnavailable": "無法準備 {wallet}。請關閉此視窗並重試。",
-    "flowConnect": "選擇一個錢包。驗證會自動繼續。",
-    "flowSign": "在錢包應用程式中簽署驗證訊息。無需交易或 SOL。",
-    "flowVerify": "正在驗證錢包所有權...",
-    "linkFailed": "錢包驗證失敗。",
-    "verifyFailed": "錢包驗證失敗。",
-    "unlinkFailed": "無法解除錢包綁定。",
-    "browser": {
-      "eyebrow": "桌面錢包授權",
-      "title": "連接 Solana 錢包",
-      "linkBody": "在此瀏覽器中選擇錢包擴充功能。簽署驗證訊息後返回桌面應用程式。",
-      "paymentBody": "選擇已連結至帳號的錢包，並在此瀏覽器中核准交易。",
-      "extensionHelp": "找不到相容的錢包擴充功能。請安裝或解鎖 Phantom、Solflare 或其他 Solana 瀏覽器錢包，然後再試一次。",
-      "safety": "World of ClaudeCraft 絕不會要求復原短語或私鑰。",
-      "continueWith": "使用 {wallet} 繼續",
-      "reviewTitle": "在錢包中檢視",
-      "reviewBody": "按照 {wallet} 的提示操作。請保持此瀏覽器頁面開啟。",
-      "completeTitle": "錢包授權完成",
-      "completeBody": "現在可以返回 World of ClaudeCraft 桌面應用程式。",
-      "returnButton": "返回桌面應用程式",
-      "failed": "錢包授權失敗或已過期。請返回桌面應用程式並再試一次。",
-      "retry": "再試一次"
-    },
-    "holder": "$WOC 持有者",
-    "holderTierTitle": "{tier} $WOC 持有者",
-    "holderTiers": {
-      "ember": {
-        "name": "餘燼",
-        "flavor": "火種已經點燃。"
-      },
-      "coinbearer": {
-        "name": "持幣者",
-        "flavor": "第一枚硬幣已入戰箱。"
-      },
-      "coppercrest": {
-        "name": "銅徽",
-        "flavor": "銅幣成堆，你的名字開始流傳。"
-      },
-      "silverbound": {
-        "name": "銀誓",
-        "flavor": "白銀相繫，錢袋漸豐。"
-      },
-      "gilded": {
-        "name": "鍍金",
-        "flavor": "金光加身，笑意盈盈。"
-      },
-      "vaultwarden": {
-        "name": "寶庫守望者",
-        "flavor": "如今守護著真正的寶庫：全部 $WOC 的 0.01%。"
-      },
-      "whale": {
-        "name": "巨鯨",
-        "flavor": "你游過時，深水也會分開：供應量的 0.1%。"
-      },
-      "leviathan": {
-        "name": "利維坦",
-        "flavor": "市場會感到你的動作：供應量的 1%。"
-      },
-      "tidelord": {
-        "name": "潮汐領主",
-        "flavor": "潮汐回應你的召喚：供應量的 2%。"
-      },
-      "stormcaller": {
-        "name": "喚雷者",
-        "flavor": "風暴因你的名字而聚集：供應量的 3%。"
-      },
-      "krakencrown": {
-        "name": "海淵冠冕",
-        "flavor": "深海為你加冕：供應量的 4%。"
-      },
-      "titanforged": {
-        "name": "泰坦鑄成",
-        "flavor": "在泰坦之間鍛造而成：供應量的 5%。"
-      },
-      "starhoard": {
-        "name": "星藏者",
-        "flavor": "能彎折星光的寶藏：供應量的 6%。"
-      },
-      "voidwarden": {
-        "name": "虛空守望者",
-        "flavor": "守在虛空邊緣：供應量的 7%。"
-      },
-      "realmshaper": {
-        "name": "塑界者",
-        "flavor": "你重塑著領域：供應量的 8%。"
-      },
-      "worldforger": {
-        "name": "鑄世者",
-        "flavor": "鍛造屬於你的世界：供應量的 9%。"
-      },
-      "worldbearer": {
-        "name": "承世者",
-        "flavor": "你肩負著世界的一片：供應量的 10%。"
-      },
-      "sovereign": {
-        "name": "君主",
-        "flavor": "整個領域為你俯首：全部供應量。"
-      }
-    }
-  },
   "playerCard": {
     "shareButton": "分享玩家卡",
     "title": "玩家卡",
@@ -5372,7 +5147,6 @@ export const zh_TW: EnTranslations = {
     "footerHandleWithRecruits": "@{handle} - {recruited}",
     "footerCta": "鑄就你的傳說：{siteUrl}",
     "arenaStat": "競技場",
-    "shareTierBit": "，{tier}級 $WOC 持有者",
     "shareText": "我正在 World of ClaudeCraft 中鑄就傳說：{level}級 {className}{tierBit}。加入我的世界：",
     "nativeShareTitle": "ClaudeCraft 世界",
     "fileNameFallback": "玩家",

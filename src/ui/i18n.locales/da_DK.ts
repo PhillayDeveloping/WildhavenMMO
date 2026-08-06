@@ -205,15 +205,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'apiError.epic.invalid_token':
     'Epic kunne ikke bekræfte denne tilknytningsanmodning. Prøv igen fra skrivebordsappen.',
   'apiError.epic.upstream': 'Epic svarede ikke. Prøv igen om et øjeblik.',
-  'apiError.seeker.native_only': 'Seeker-rettigheder er kun tilgængelige i den installerede app.',
-  'apiError.seeker.attestation_failed': 'Enhedsverificeringen mislykkedes. Prøv venligst igen.',
-  'apiError.seeker.solana_artifact_required': 'Brug Solana Store-appen for at fortsætte.',
-  'apiError.seeker.wallet_required': 'Tilknyt og verificer en pung først.',
-  'apiError.seeker.genesis_token_required': 'Der kræves et verificeret Seeker Genesis Token.',
-  'apiError.seeker.genesis_token_claimed': 'Det Seeker Genesis Token er allerede indløst.',
-  'apiError.seeker.entitlement_required': 'Der kræves en verificeret Seeker-rettighed.',
-  'apiError.seeker.current_ownership_required':
-    'Der kræves aktuelt ejerskab af et Seeker Genesis Token.',
   'guide.professions.archetypeSwitchBody':
     'En erklæring er heller ikke en livstidsdom. Et par, du aldrig har holdt, er blot en frisk afstemningsopgave, mens en tilbagevenden til et par, du gik fra, kræver, at du først gør bod: fem opgaver første gang, og tre mere lagt til for hver tilbagevenden, du allerede har foretaget (at tage et helt nyt par op hæver aldrig tallet). Valget forbliver meningsfuldt uden nogensinde at låse en dør for altid.',
   'guide.professions.whatBody':
@@ -323,8 +314,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
     'Indsamlingskastet starter på 2,5 sekunder og trimmes ned ad to veje: 0,4 sekunder for hvert værktøjsniveau, du bærer og kan håndtere over ressourcekildens eget niveau, og 0,15 sekunder, når dit fags tæller krydser sit 100-bånd, med et gulv på 1,5 sekunder. Flyt fra niveau 1-ressourcekilder op til niveau 3-ressourcekilder, og dit overskud forsvinder, så den samme hakke svinger langsommere igen. At holde præcis det krævede niveau køber ingen hastighed; det åbner kun ressourcekilden.\n\nFærdighedsoptjeningen falmer på samme måde som ved fremstilling: en ressourcekilde grånes, efterhånden som din proficiens klatrer forbi dens niveau (niveau 1-ressourcekilder lærer intet fra proficiens 75 og opefter), så svaret på langsom optjening er ressourcekilder på højere niveau. De kræver et værktøj på mindst deres eget niveau i dine tasker (ingen ressourcekilde bearbejdes nogensinde med bare hænder, niveau 1 inklusive), og et landværktøj over niveau 1 vil desuden først have sit håndteringsmærke, 40/70/85/100 i dets eget fag for niveau 2 til 5. Fiskeri følger sin egen aftrapning: fuld optjening under 50 proficiens, halvt under 100, et dryp på 0,1 under 150 og 0,02 under 200, skrammelfangster lærer slet intet fra 100 og opefter, og selve vandet sætter loft over lektien (niveau 1-vande holder op med at undervise ved 100, sumpens ved 150), så en tæller, der står stille, kan også betyde, at du er vokset fra vandet.',
   'guide.profPages.faq.a8':
     'Delvist. De ni almindelige markopskrifter (starterens våben-, rustnings-, mad- og trylledriksstandarder) kan fremstilles overalt, når som helst, og det samme gælder de tre komboopskrifter fra de svorne par. Alt andet over dem er bundet til en stationstype: smedje, køkkener, apotek, garveri, væv eller værktøjsværker, og du skal være inden for 20 yards af stationen, for at fremstillingen går igennem.\n\nVed 75 færdighed i et håndværk specialiserer du dig, og sammen med en materialerabat på 20 procent får du en mobil station: stil den op i felten, og den står i 10 minutter og betjener det håndværks opskrifter, som var du ved den ægte vare. Den mobile station er kun til fremstilling: at lære opskrifter og at afbinde kommissioner kræver altid den rigtige station i byen.',
-  'wallet.seekerAppHelp':
-    'Fortsæt med Seed Vault Wallet. Gennemgå forbindelses- og verificeringsanmodningerne i Seed Vault, og vend derefter tilbage til spillet.',
   'questUi.tracker.unknownQuest': 'Ukendt quest ({id})',
   'questUi.log.repeatableStatus': 'Gentagelig',
   'questUi.log.cooldownStatus': 'Tilgængelig igen snart',
@@ -720,8 +709,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'hud.prompts.resurrectionOffer': '{name} vil gerne bringe dig tilbage til livet. Accepterer du?',
   'questUi.dialog.profIntroHint': 'Se {name} for "{quest}".',
   'itemUi.stats.parry': 'Parering',
-  'apiError.wallet.handoff_invalid':
-    'Den pung-godkendelse udløb eller kunne ikke bekræftes. Prøv igen.',
   'cardDuel.close': 'Luk',
   'cardDuel.counts': 'Bunke: {deck} - Kasserede: {discard}',
   'cardDuel.forfeit': 'Giv op',
@@ -1001,58 +988,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'hudChrome.nameplate.mobLevel': '{level}',
   'hudChrome.specPanel.specUnlockBanner': 'Specialisering låst op!',
   'hudChrome.specPanel.specUnlockHint': 'Tryk N for at vælge din specialisering.',
-  'hudChrome.wocStore.wallet.connect': 'Tilslut pung',
-  'hudChrome.wocStore.wallet.connectedUnlinked':
-    'Pung-appen er tilsluttet denne browser, men dens offentlige adresse er endnu ikke knyttet til din WoC-konto.',
-  'hudChrome.wocStore.wallet.linkedConnected':
-    'Din tilknyttede pung-app er tilsluttet og klar til SOL- eller WOC-køb.',
-  'hudChrome.wocStore.wallet.linkedDisconnected':
-    'Din offentlige adresse er tilknyttet. Gentilslut den pung-app, når du vil betale med SOL eller WOC.',
-  'hudChrome.wocStore.wallet.manage': 'Administrer pung',
-  'hudChrome.wocStore.wallet.mismatched':
-    'En anden pung er tilsluttet. Bekræft den for at erstatte den tilknyttede adresse, eller gentilslut den tilknyttede pung.',
-  'hudChrome.wocStore.wallet.reconnect': 'Gentilslut pung',
-  'hudChrome.wocStore.wallet.title': 'Solana-pung',
-  'hudChrome.wocStore.wallet.unlinked':
-    'Tilslut en pung-app og underskriv derefter én gang for at knytte dens offentlige adresse til din WoC-konto. Vi modtager aldrig din genoprettelsesfrase eller private nøgle.',
-  'hudChrome.wocStore.wallet.verify': 'Bekræft og tilknyt',
-  'wallet.bagConnect': 'Tilknyt pung',
-  'wallet.bagLink': 'Bekræft pung',
-  'wallet.bagReconnect': 'Gentilslut pung',
-  'wallet.browser.completeBody':
-    'Du kan nu vende tilbage til World of ClaudeCraft-skrivebordsappen.',
-  'wallet.browser.completeTitle': 'Pung-godkendelse fuldført',
-  'wallet.browser.continueWith': 'Fortsæt med {wallet}',
-  'wallet.browser.extensionHelp':
-    'Ingen kompatibel pung-udvidelse blev fundet. Installer eller lås Phantom, Solflare eller en anden Solana-browserpung op og prøv derefter igen.',
-  'wallet.browser.eyebrow': 'Skrivebordsappens pung-godkendelse',
-  'wallet.browser.failed':
-    'Pung-godkendelse mislykkedes eller udløb. Vend tilbage til skrivebordsappen og prøv igen.',
-  'wallet.browser.linkBody':
-    'Vælg en pung-udvidelse i denne browser. Du underskriver en bekræftelsesbesked og vender derefter tilbage til skrivebordsappen.',
-  'wallet.browser.paymentBody':
-    'Vælg den pung, der er tilknyttet din konto, og godkend transaktionen i denne browser.',
-  'wallet.browser.retry': 'Prøv igen',
-  'wallet.browser.returnButton': 'Vend tilbage til skrivebordsapp',
-  'wallet.browser.reviewBody': 'Følg prompten fra {wallet}. Hold denne browserside åben.',
-  'wallet.browser.reviewTitle': 'Gennemse i din pung',
-  'wallet.browser.safety':
-    'World of ClaudeCraft beder aldrig om din genoprettelsesfrase eller private nøgle.',
-  'wallet.browser.title': 'Tilslut en Solana-pung',
-  'wallet.manualReturnBrowserHelp':
-    'Efter godkendelse kan du vende tilbage til denne spil-fane. Hvis iOS åbner en anden browser, skal du lukke den og manuelt vende tilbage til den oprindelige browser.',
-  'wallet.manualReturnStandaloneHelp':
-    'Efter godkendelse kan du vende tilbage til World of ClaudeCraft fra din startskærm. Hvis iOS åbner en browser, skal du lukke den og manuelt genåbne startskærmsappen.',
-  'wallet.mobileAppHelp':
-    'Vælg Phantom eller Solflare. Din pung-app beder om godkendelse. Hold dette spil åbent og vend tilbage, når du er færdig.',
-  'wallet.openAppButton': 'Åbn {wallet}',
-  'wallet.openAppHelp':
-    'Åbn {wallet} for at gennemgå denne anmodning. Hold denne spil-fane åben, mens pung-appen er aktiv.',
-  'wallet.openAppTitle': 'Fortsæt i {wallet}',
-  'wallet.preparingAppButton': 'Forbereder {wallet}...',
-  'wallet.standaloneAppHelp':
-    'Pungforbindelser er endnu ikke tilgængelige i startskærmsappen. Åbn World of ClaudeCraft i Safari eller Chrome for at bruge Phantom eller Solflare.',
-  'wallet.walletAppUnavailable': '{wallet} kunne ikke forberedes. Luk dette vindue og prøv igen.',
   'entities.abilities.primal_reflexes.description':
     'Dine instinkter skærpes og øger din chance for at undvige med 50% i 6 sek.',
   'entities.abilities.primal_reflexes.name': 'Primalreflekser',
@@ -2417,8 +2352,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'sim.delve.riteSequenceReady': 'Skrinene bliver mørke. Gentag sekvensen.',
   'sim.delve.riteWrong': 'Et hårdt klokkebrag. Sort vand sprøjter op om dine fødder.',
   'sim.delve.ropesSealed': 'Du bør prøve at trække i klokkerebene.',
-  'wallet.extensionHelp':
-    'For at se en pung her skal du holde en browser-pungudvidelse som Solflare Wallet aktiv.',
   'worldContent.delveReliquaryInteract': 'Det Druknede Relikvarium: Tryk på F for at begynde riten',
   'worldContent.delveRiteShrineBellInteract': 'Klokkeskrin: Tryk på F for at ringe med klokken',
   'worldContent.delveRiteShrineCandleInteract': 'Kerteskrin: Tryk på F for at røre det',
@@ -6469,7 +6402,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'hudChrome.account.logOut': 'Log ud',
   'hudChrome.account.logOutSummary': 'Log ud af denne enhed.',
   'hudChrome.account.loggedOutPrompt': 'Log ind for at administrere din konto.',
-  'hudChrome.account.manageWallet': 'Administrér wallet',
   'hudChrome.account.memberSince': 'Medlem siden {date}',
   'hudChrome.account.newPassword': 'Ny adgangskode',
   'hudChrome.account.passwordChanged': 'Adgangskode opdateret. Andre enheder er blevet logget ud.',
@@ -6479,7 +6411,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'hudChrome.account.sectionDanger': 'Farezone',
   'hudChrome.account.sectionSecurity': 'Sikkerhed',
   'hudChrome.account.sectionSettings': 'Kontoindstillinger',
-  'hudChrome.account.sectionWallet': '$WOC Wallet',
   'hudChrome.account.title': 'Konto',
   'hudChrome.account.twoFactorBegin': 'Begynd opsætning',
   'hudChrome.account.twoFactorBeginHint': 'Indtast din adgangskode for at begynde opsætningen.',
@@ -6508,8 +6439,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'hudChrome.account.twoFactorStatusOn': 'To-faktor-godkendelse er slået TIL for din konto.',
   'hudChrome.account.twoFactorTitle': 'To-faktor-godkendelse',
   'hudChrome.account.twoFactorVerifyBtn': 'Bekræft og aktivér',
-  'hudChrome.account.walletSummary':
-    'Bekræft en Solana-wallet for at vise holder-flair på dit spillerkort.',
   'hudChrome.bags.filterAll': 'Alle',
   'hudChrome.bags.filterArmor': 'Rustning',
   'hudChrome.bags.filterConsumable': 'Forbrugsvarer',
@@ -6757,8 +6686,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'hudChrome.options.keybindHelpLockCursorOnRotate':
     'Holder musemarkøren inde i vinduet, mens du trækker for at dreje kameraet, så den ikke kan nå skærmkanten eller flytte til en anden skærm. Slå fra, hvis du foretrækker en fri markør.',
   'hudChrome.options.lockCursorOnRotate': 'Lås markør under drejning',
-  'hudChrome.options.showWalletOnCharacterScreen': 'Vis pengepung på karakterskærm',
-  'hudChrome.options.showWalletOnPlayerCard': 'Vis pengepung på spillerkort',
   'hudChrome.options.uiScale': 'UI-skala',
   'hudChrome.paperdoll.unequipAria': 'Fjern {item}',
   'hudChrome.paperdoll.unequipHint':
@@ -6823,7 +6750,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'hudChrome.perf.units.mb': '{value} MB',
   'hudChrome.perf.units.memPair': '{used} / {limit} MB',
   'hudChrome.perf.units.ms': '{value} ms',
-  'hudChrome.playerCard.showWalletBadge': 'Vis pengepungsmærke',
   'hudChrome.plurals.characterCount.few': '{count} karakterer',
   'hudChrome.plurals.characterCount.many': '{count} karakterer',
   'hudChrome.plurals.characterCount.one': '{count} karakter',
@@ -7226,10 +7152,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'mobilePreflight.rotateSub': 'Spil i liggende fuldskærm for den bedste mobiloplevelse.',
   'mobilePreflight.rotateTitle': 'Drej til liggende format',
   'mobilePreflight.title': 'Spil i liggende fuldskærm',
-  'mode.caCopyAria': 'Kopiér kontraktadresse',
-  'mode.caLabel': '$WOC Kontraktadresse',
-  'mode.caNote':
-    'WOC er vores fællesskabstoken. Det er ikke nødvendigt for at spille. Tilslut dig Discord for at diskutere WOC-nytten og svinghjulet.',
   'mode.offlineAria': 'Spil offline: start en øjeblikkelig lokal singleplayer-session',
   'mode.offlineDesc':
     'Øjeblikkelig singleplayer-verden i din browser. Intet gemmes: perfekt til en hurtig dyst eller test.',
@@ -7296,7 +7218,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'playerCard.shareButton': 'Del spillerkort',
   'playerCard.shareText':
     'Jeg smeder min legende i World of ClaudeCraft: Niveau {level} {className}{tierBit}. Slut dig til min verden:',
-  'playerCard.shareTierBit': ', {tier}-rangeret $WOC-ejer',
   'playerCard.statusDownloaded': 'Kort downloadet.',
   'playerCard.statusGenericError': 'Noget gik galt.',
   'playerCard.statusOpenedXWithImage': 'Åbnede X. Indsæt kortbilledet i opslaget.',
@@ -7517,112 +7438,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'stats.playersOnline': 'Spillere online',
   'stats.realmName': 'Verdensnavn',
   'stats.title': 'Verdensstatus',
-  'wallet.appConnected': 'App forbundet',
-  'wallet.balanceAmount': '{amount} $WOC',
-  'wallet.balanceAria': 'Verificeret Solana-pungsaldo: {balance}',
-  'wallet.balancePreviewAria':
-    'Forhåndsvisning af forbundet pungs saldo: {balance}. Tilknyt pungen for at verificere ejer-pynt.',
-  'wallet.balancePreviewTitle': 'Forhåndsvisning af forbundet pungs $WOC-saldo',
-  'wallet.balanceTitle': 'Verificeret Solana-pungs $WOC-saldo',
-  'wallet.connect': 'Verificer pung',
-  'wallet.connectApp': 'Forbind app',
-  'wallet.connectAppAria': 'Forbind pung-appen i denne browser',
-  'wallet.connectAppTitle': 'Forbind pung-appen i denne browser',
-  'wallet.connectAria': 'Verificer din Solana-pung',
-  'wallet.connectTitle': 'Verificer din Solana-pung',
-  'wallet.connected': 'Forbundet: {address}',
-  'wallet.connectedLinked': 'Verificeret: {address}',
-  'wallet.connectedLinkedWithBalance': 'Verificeret: {balance} - {address}',
-  'wallet.connectedTitle': 'Forbundet. Log ind for at tilknytte denne pung til din konto.',
-  'wallet.connectedWithBalance': 'Forbundet: {balance} - {address}',
-  'wallet.flowConnect': 'Vælg en pung. Verificeringen fortsætter automatisk.',
-  'wallet.flowSign':
-    'Underskriv verificeringsbeskeden i din pung-app. Ingen transaktion eller SOL kræves.',
-  'wallet.flowVerify': 'Verificerer ejerskab af pung...',
-  'wallet.helpDisconnected':
-    'Verificer en Solana-pung for at aktivere ejer-pynt og spillerkort-mærker. Ingen transaktion eller SOL kræves.',
-  'wallet.helpLinked': 'Ejerfordele er aktive. Pung-app forbundet i denne browser.',
-  'wallet.helpLinkedDisconnected':
-    'Ejerfordele er aktive. Forbind appen, når du har brug for at underskrive eller bruge midler.',
-  'wallet.helpLinkedDisconnectedWithBalance':
-    'Ejerfordele er aktive. Forbind appen, når du har brug for at underskrive eller bruge midler.',
-  'wallet.helpLinkedWithBalance': 'Ejerfordele er aktive. Pung-app forbundet i denne browser.',
-  'wallet.helpLoginToLink': 'Forbundet {address}. Log ind for at tilknytte den til din konto.',
-  'wallet.helpLoginToLinkWithBalance':
-    'Forbundet {address} med {balance}. Log ind for at tilknytte den til din konto.',
-  'wallet.helpReadyToLink':
-    'Pung valgt: {address}. Underskriv én gang for at verificere ejer-pynt og spillerkort.',
-  'wallet.helpReadyToLinkWithBalance':
-    'Pung valgt: {address} med {balance}. Underskriv én gang for at verificere ejer-pynt og spillerkort.',
-  'wallet.hiddenNotice':
-    'Pung-rækken er skjult. Genaktiver den i spillet under Indstillinger > Brugerflade.',
-  'wallet.hide': 'Skjul',
-  'wallet.hideAria': 'Skjul pung-rækken på denne skærm',
-  'wallet.hideTitle': 'Skjul pung-rækken på denne skærm',
-  'wallet.holder': '$WOC-ejer',
-  'wallet.holderTierTitle': '{tier} $WOC-ejer',
-  'wallet.holderTiers.coinbearer.flavor': 'Første mønt i krigskisten.',
-  'wallet.holderTiers.coinbearer.name': 'Møntbærer',
-  'wallet.holderTiers.coppercrest.flavor': 'Kobber stablet, dit navn nævnt.',
-  'wallet.holderTiers.coppercrest.name': 'Kobberkam',
-  'wallet.holderTiers.ember.flavor': 'Gnisten er tændt.',
-  'wallet.holderTiers.ember.name': 'Glød',
-  'wallet.holderTiers.gilded.flavor': 'Forgyldt og grinende.',
-  'wallet.holderTiers.gilded.name': 'Forgyldt',
-  'wallet.holderTiers.krakencrown.flavor': 'Kronet af dybet: 4 % af forsyningen.',
-  'wallet.holderTiers.krakencrown.name': 'Krakenkrone',
-  'wallet.holderTiers.leviathan.flavor': 'Markederne mærker dig røre på dig: 1 % af forsyningen.',
-  'wallet.holderTiers.leviathan.name': 'Leviathan',
-  'wallet.holderTiers.realmshaper.flavor': 'Du omformer riget: 8 % af forsyningen.',
-  'wallet.holderTiers.realmshaper.name': 'Rigeformer',
-  'wallet.holderTiers.silverbound.flavor': 'Bundet i sølv, opbygger beholdningen.',
-  'wallet.holderTiers.silverbound.name': 'Sølvbundet',
-  'wallet.holderTiers.sovereign.flavor': 'Riget bøjer knæ: hele forsyningen.',
-  'wallet.holderTiers.sovereign.name': 'Suveræn',
-  'wallet.holderTiers.starhoard.flavor': 'Et skatkammer der bøjer stjernelys: 6 % af forsyningen.',
-  'wallet.holderTiers.starhoard.name': 'Stjerneskat',
-  'wallet.holderTiers.stormcaller.flavor': 'Storme samler sig ved dit navn: 3 % af forsyningen.',
-  'wallet.holderTiers.stormcaller.name': 'Stormkalder',
-  'wallet.holderTiers.tidelord.flavor': 'Tidevandet adlyder dit kald: 2 % af forsyningen.',
-  'wallet.holderTiers.tidelord.name': 'Tidevandsherre',
-  'wallet.holderTiers.titanforged.flavor': 'Smedet blandt titaner: 5 % af forsyningen.',
-  'wallet.holderTiers.titanforged.name': 'Titansmedet',
-  'wallet.holderTiers.vaultwarden.flavor': 'Vogter nu et ægte hvælv: 0,01 % af alle $WOC.',
-  'wallet.holderTiers.vaultwarden.name': 'Hvælvvogter',
-  'wallet.holderTiers.voidwarden.flavor': 'Vogter ved tomhedens rand: 7 % af forsyningen.',
-  'wallet.holderTiers.voidwarden.name': 'Tomhedsvogter',
-  'wallet.holderTiers.whale.flavor': 'Dybet deler sig, når du svømmer: 0,1 % af forsyningen.',
-  'wallet.holderTiers.whale.name': 'Hval',
-  'wallet.holderTiers.worldbearer.flavor': 'Du bærer et stykke af verden: 10 % af forsyningen.',
-  'wallet.holderTiers.worldbearer.name': 'Verdensbærer',
-  'wallet.holderTiers.worldforger.flavor': 'Smeder en verden helt din egen: 9 % af forsyningen.',
-  'wallet.holderTiers.worldforger.name': 'Verdenssmed',
-  'wallet.label': '$WOC-pung',
-  'wallet.linkFailed': 'Verificering af pung mislykkedes.',
-  'wallet.linkTitle': 'Klik for at underskrive og tilknytte denne pung til din konto.',
-  'wallet.linkedDisconnectedAria':
-    'Pungen forbliver verificeret for din konto. Genopret forbindelse for at administrere pung-appen.',
-  'wallet.linkedDisconnectedTitle':
-    'Pungen forbliver verificeret for din konto. Genopret forbindelse for at administrere pung-appen.',
-  'wallet.linkedTitle': 'Pung verificeret for din konto. Klik for at administrere pung-appen.',
-  'wallet.signOut': 'Afbryd forbindelse',
-  'wallet.signOutAria': 'Afbryd forbindelsen til pung-appen i denne browser',
-  'wallet.signOutTitle': 'Afbryd forbindelsen til pung-appen i denne browser',
-  'wallet.switch': 'Skift',
-  'wallet.switchAria': 'Verificer en anden pung',
-  'wallet.switchTitle': 'Verificer en anden pung',
-  'wallet.unlink': 'Frakobl',
-  'wallet.unlinkAria': 'Fjern pung-verificeringen fra denne konto',
-  'wallet.unlinkFailed': 'Kunne ikke frakoble pungen.',
-  'wallet.unlinkTitle': 'Fjern pung-verificeringen fra denne konto',
-  'wallet.verify': 'Verificer pung',
-  'wallet.verifyAddressAria': 'Underskriv for at verificere pungen {address} for din konto',
-  'wallet.verifyAria': 'Vælg en pung og underskriv én gang for at verificere ejerskab',
-  'wallet.verifyFailed': 'Verificering af pung mislykkedes.',
-  'wallet.verifyNew': 'Verificer ny pung',
-  'wallet.verifyTitle': 'Vælg en pung og underskriv én gang for at verificere ejerskab.',
-  'wallet.verifying': 'Verificerer...',
-  'wallet.verifyingTitle': 'Verificering af pung er i gang.',
   'wiki.cta': 'Gennemse wikien',
   'wiki.desc': 'Opdag rigets hemmeligheder, klasseguider og strategier.',
   'wiki.title': 'Spil-wiki og guide',
@@ -7906,16 +7721,11 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.noLeaders': 'Ingen point endnu.',
   'hudChrome.dailyRewards.prize': 'Præmiepulje',
   'hudChrome.dailyRewards.reason.eligible': 'Belønninger låst op.',
-  'hudChrome.dailyRewards.reason.no_wallet': 'Forbind en wallet med mindst 20 USD i WOC.',
-  'hudChrome.dailyRewards.reason.price_unavailable':
-    'WOC-prisen er utilgængelig, belønninger er midlertidigt låst.',
-  'hudChrome.dailyRewards.reason.under_minimum': 'Wallet er under WOC-minimummet på 20 USD.',
   'hudChrome.dailyRewards.remainingHoursMinutes': '{hours}t {minutes}m',
   'hudChrome.dailyRewards.remainingLessThanMinute': '<1m',
   'hudChrome.dailyRewards.remainingMinutes': '{minutes}m',
   'hudChrome.dailyRewards.reset': 'Nulstil',
   'hudChrome.dailyRewards.score': 'Score',
-  'hudChrome.dailyRewards.sol': '{amount} SOL',
   'hudChrome.dailyRewards.spinButton': 'Drej',
   'hudChrome.dailyRewards.spinClaimed': 'Indløst: +{points} point.',
   'hudChrome.dailyRewards.spinClose': 'Luk daglig drejning',
@@ -7931,16 +7741,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
     'Daglige belønninger er i øjeblikket deaktiveret. Vi annoncerer opdateringer til denne funktion i Discord-kanalen.',
   'hudChrome.dailyRewards.unknown': 'Ukendt',
   'hudChrome.dailyRewards.usd': '{amount} USD',
-  'hudChrome.dailyRewards.walletConnectBody':
-    'Verificer en Solana-wallet med WOC for at låse daglige belønninger op.',
-  'hudChrome.dailyRewards.walletConnectButton': 'Verificer wallet',
-  'hudChrome.dailyRewards.walletConnectTitle': 'Verificer wallet',
-  'hudChrome.dailyRewards.walletHoldBody':
-    'Behold mindst {amount} USD i WOC for at låse daglige belønninger op.',
-  'hudChrome.dailyRewards.walletHoldTitle': 'Behold WOC',
-  'hudChrome.dailyRewards.walletPriceBody':
-    'WOC-prissætning er utilgængelig lige nu. Kom tilbage om lidt.',
-  'hudChrome.dailyRewards.walletValue': 'Wallet-værdi (WOC)',
   'hudChrome.nativeUpdate.body':
     'En ny version af World of ClaudeCraft er tilgængelig. Opdater nu for de nyeste rettelser og forbedringer.',
   'hudChrome.nativeUpdate.bodyWithVersion':
@@ -8252,7 +8052,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'guide.economy.bankTitle': 'Banken',
   'hudChrome.bank.bonusAdvertDiscord': 'Forbind din Discord for at optjene 2 pladser.',
   'hudChrome.bank.bonusAdvertEmail': 'Bekræft din e-mail for at optjene 2 pladser.',
-  'hudChrome.bank.bonusAdvertWallet': 'Forbind en wallet for at optjene 2 pladser.',
   'hudChrome.bank.bonusEarned': '+{count}',
   'hudChrome.bank.bonusReferralExplainer':
     'Invitér en ven: når din ven når niveau 10, optjener I hver især 2 pladser, op til 5 venner.',
@@ -8261,7 +8060,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'hudChrome.bank.bonusSourceDiscord': 'Discord forbundet',
   'hudChrome.bank.bonusSourceEmail': 'Bekræftet e-mail',
   'hudChrome.bank.bonusSourceReferral': 'Henviste venner',
-  'hudChrome.bank.bonusSourceWallet': 'Wallet forbundet',
   'hudChrome.bank.bonusStatusEarned': '+{count}',
   'hudChrome.bank.bonusTitle': 'Bonuspladser',
   'hudChrome.bank.buyConfirm': 'Køb {count} ekstra bankpladser for {price}?',
@@ -9434,17 +9232,11 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'hudChrome.claudium.checkoutClose': 'Luk betalingsvinduet',
   'hudChrome.claudium.checkoutFailed': 'Betalingsvinduet kunne ikke indlæses. Prøv igen.',
   'hudChrome.claudium.checkoutLoading': 'Indlæser betalingsvinduet...',
-  'hudChrome.claudium.checkoutNotSettled':
-    'Transaktionen blev sendt, men Claudium er endnu ikke blevet tilføjet. Prøv igen om lidt.',
   'hudChrome.claudium.checkoutPending':
     'Transaktion i gang. Bekræft i din tegnebog, og hold dette panel åbent.',
   'hudChrome.claudium.checkoutPendingButton': 'Behandler',
   'hudChrome.claudium.checkoutTitle': 'Gennemfør køb',
   'hudChrome.claudium.checkoutUnavailable': 'Dette Claudium-køb er ikke tilgængeligt lige nu.',
-  'hudChrome.claudium.checkoutWalletRequired':
-    'Tilslut en Solana-tegnebog, før du køber Claudium med kryptovaluta.',
-  'hudChrome.claudium.checkoutWalletUnsupported':
-    'Denne tegnebog kan ikke underskrive og sende Solana-transaktioner.',
   'hudChrome.claudium.close': 'Luk Claudium',
   'hudChrome.claudium.disclosure':
     'Claudium er en virtuel valuta, der kun går én vej: Køb den for penge, og brug den på kosmetik. Den kan ikke indløses, overføres eller udbetales.',
@@ -9455,15 +9247,9 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'hudChrome.claudium.loading': 'Indlæser Claudium...',
   'hudChrome.claudium.open': 'Åbn Claudium',
   'hudChrome.claudium.railLabel': 'Betalingsmetode',
-  'hudChrome.claudium.railNativeUnavailable': 'SOL/WOC er slået fra.',
-  'hudChrome.claudium.railSol': 'SOL',
   'hudChrome.claudium.railStripe': 'Kort',
-  'hudChrome.claudium.railWoc': 'WOC',
-  'hudChrome.claudium.railWocDiscount': '{percent}% rabat',
-  'hudChrome.claudium.railWocUnavailable': 'WOC-priser er ikke tilgængelige lige nu.',
   'hudChrome.claudium.showAmounts': 'Vis alle Claudium-beløb',
   'hudChrome.claudium.skuRow': '{usd} til {claudium} Claudium',
-  'hudChrome.claudium.solBalance': 'SOL: {amount}',
   'hudChrome.claudium.spendButton': 'Brug',
   'hudChrome.claudium.storeCost': '{amount} Claudium',
   'hudChrome.claudium.storeEmpty': 'Ingen kosmetik er tilgængelig lige nu.',
@@ -9471,7 +9257,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'hudChrome.claudium.title': 'Claudium',
   'hudChrome.claudium.unavailable':
     'Claudium-butikken er ikke tilgængelig lige nu. Din saldo og dine køb er ikke påvirket. Prøv igen om lidt.',
-  'hudChrome.claudium.wocBalance': 'WOC: {amount}',
   'hudChrome.deeds.openBookHint': 'Åbn Bedrifternes Bog',
   'hudChrome.statInfo.desc.warfare':
     'Øger skade givet til spillere med {increase}% og reducerer skade modtaget fra spillere med {reduction}%.',
@@ -10024,8 +9809,6 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'entities.items.eastbrook_ritual_vestments.name': 'Østbæks Ritualegevandter',
   'entities.items.eastbrook_warded_leggings.name': 'Østbæks Beskyttede Benklæder',
   'entities.items.wardweave_cowl.name': 'Værnevævet Hætte',
-  'hudChrome.claudium.railUsdc': 'USDC',
-  'hudChrome.claudium.usdcBalance': 'USDC: {amount}',
   'hudChrome.dailyRewards.reason.bannedUntil':
     'Du er udelukket fra daglige belønninger i yderligere {remaining}. Adgangen vender tilbage {until}. Begrundelse: {reason}',
   'hudChrome.dailyRewards.remainingDaysHours': '{days} dage {hours} timer',

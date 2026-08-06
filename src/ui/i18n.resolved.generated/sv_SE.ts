@@ -409,9 +409,7 @@ export const sv_SE: EnTranslations = {
       "remainingHoursMinutes": "{hours} h {minutes} min",
       "remainingDaysHours": "{days} dagar {hours} timmar",
       "score": "Poäng",
-      "walletValue": "Plånbokens värde (WOC)",
       "usd": "{amount} USD",
-      "sol": "{amount} SOL",
       "unknown": "Okänd",
       "spinTitle": "Dagligt snurr",
       "spinDialogTitle": "Dagligt belöningssnurr",
@@ -436,17 +434,8 @@ export const sv_SE: EnTranslations = {
       "history": "Tidigare vinnare",
       "noLeaders": "Inga poäng ännu.",
       "noHistory": "Inga utbetalningar ännu.",
-      "walletConnectTitle": "Verifiera plånbok",
-      "walletConnectBody": "Verifiera en Solana-plånbok med WOC för att låsa upp dagliga belöningar.",
-      "walletConnectButton": "Verifiera plånbok",
-      "walletHoldTitle": "Håll WOC",
-      "walletHoldBody": "Håll minst {amount} USD i WOC för att låsa upp dagliga belöningar.",
-      "walletPriceBody": "WOC-prissättningen är otillgänglig just nu. Kom tillbaka snart.",
       "reason": {
         "eligible": "Belöningar upplåsta.",
-        "no_wallet": "Anslut en plånbok med minst 20 USD i WOC.",
-        "under_minimum": "Plånboken är under WOC-miniminivån på 20 USD.",
-        "price_unavailable": "WOC-priset är otillgängligt, belöningar är tillfälligt låsta.",
         "banned": "Du är avstängd från dagliga belöningar. Orsak: {reason}",
         "bannedUntil": "Du är avstängd från dagliga belöningar i ytterligare {remaining}. Åtkomsten återkommer {until}. Orsak: {reason}"
       }
@@ -472,18 +461,6 @@ export const sv_SE: EnTranslations = {
       "armoryEyebrow": "Säsong 1",
       "armoryTitle": "Vapenhuset",
       "armoryBody": "Begränsade vapenskins från säsong 1-vapenhuset. De gäller för hela kontot, är helt kosmetiska och visas för alla i din omgivning.",
-      "wallet": {
-        "title": "Solana-plånbok",
-        "unlinked": "Anslut en plånboksapp och signera sedan en gång för att länka dess offentliga adress till ditt WoC-konto. Vi tar aldrig emot din återställningsfras eller privata nyckel.",
-        "connectedUnlinked": "Plånboksappen är ansluten till denna webbläsare, men dess offentliga adress är ännu inte länkad till ditt WoC-konto.",
-        "linkedDisconnected": "Din offentliga adress är länkad. Återanslut den plånboksappen när du vill betala med SOL eller WOC.",
-        "linkedConnected": "Din länkade plånboksapp är ansluten och redo för SOL- eller WOC-köp.",
-        "mismatched": "En annan plånbok är ansluten. Verifiera den för att ersätta den länkade adressen, eller återanslut den länkade plånboken.",
-        "connect": "Anslut plånbok",
-        "verify": "Verifiera och länka",
-        "reconnect": "Återanslut plånbok",
-        "manage": "Hantera plånbok"
-      },
       "collectionLine": "{collection}-samlingen",
       "collections": {
         "guildmark": "Gillesmärke",
@@ -685,20 +662,11 @@ export const sv_SE: EnTranslations = {
       "loading": "Laddar Claudium...",
       "balanceLabel": "Saldo",
       "balanceUnit": "{amount} Claudium",
-      "solBalance": "SOL: {amount}",
-      "usdcBalance": "USDC: {amount}",
-      "wocBalance": "WOC: {amount}",
       "unavailable": "Claudium-butiken är inte tillgänglig just nu. Ditt saldo och dina köp påverkas inte. Försök igen om en stund.",
       "disclosure": "Claudium är en virtuell valuta som bara går åt ett håll: köp den för pengar och använd den till kosmetika. Den kan inte växlas in, överföras eller betalas ut.",
       "buyTitle": "Köp Claudium",
       "railLabel": "Betalningsmetod",
       "railStripe": "Kort",
-      "railSol": "SOL",
-      "railUsdc": "USDC",
-      "railWoc": "WOC",
-      "railWocDiscount": "{percent}% rabatt",
-      "railWocUnavailable": "WOC-priser är inte tillgängliga just nu.",
-      "railNativeUnavailable": "SOL/WOC är avstängt.",
       "amountLabel": "Belopp",
       "showAmounts": "Visa alla Claudium-belopp",
       "hideAmounts": "Dölj extra Claudium-belopp",
@@ -718,10 +686,7 @@ export const sv_SE: EnTranslations = {
       "checkoutPending": "Transaktion pågår. Bekräfta i din plånbok och håll denna panel öppen.",
       "checkoutPendingButton": "Bearbetar",
       "checkoutFailed": "Det gick inte att ladda kassan. Försök igen.",
-      "checkoutUnavailable": "Det Claudium-köpet är inte tillgängligt just nu.",
-      "checkoutWalletRequired": "Anslut en Solana-plånbok innan du köper Claudium med krypto.",
-      "checkoutWalletUnsupported": "Denna plånbok kan inte signera och skicka Solana-transaktioner.",
-      "checkoutNotSettled": "Transaktionen skickades men Claudium har inte krediterats ännu. Försök snart igen."
+      "checkoutUnavailable": "Det Claudium-köpet är inte tillgängligt just nu."
     },
     "theme": {
       "preset": "Gränssnittstema",
@@ -1196,8 +1161,6 @@ export const sv_SE: EnTranslations = {
       "clickFeedback": "Klickmarkör",
       "lockCursorOnRotate": "Lås pekare under rotation",
       "keybindHelpLockCursorOnRotate": "Håller muspekaren inuti fönstret medan du drar för att rotera kameran, så att den inte kan nå skärmkanten eller flytta till en annan skärm. Stäng av om du föredrar en fri pekare.",
-      "showWalletOnCharacterScreen": "Visa plånbok på karaktärsskärmen",
-      "showWalletOnPlayerCard": "Visa plånbok på spelarkortet",
       "showDevBadges": "Visa utvecklarmärken",
       "showOwnNameplate": "Visa min namnskylt",
       "showPlayerNameplates": "Visa spelares namnskyltar",
@@ -1373,9 +1336,7 @@ export const sv_SE: EnTranslations = {
         "aetherRush": "Eterrusning"
       }
     },
-    "playerCard": {
-      "showWalletBadge": "Visa plånboksmärke"
-    },
+    "playerCard": {},
     "landing": {
       "highContrast": "Hög kontrast",
       "highContrastAria": "Växla bakgrund med hög kontrast: inaktiverar den rörliga trailern så att texten på startskärmen förblir läsbar",
@@ -1564,7 +1525,6 @@ export const sv_SE: EnTranslations = {
       "loggedOutPrompt": "Logga in för att hantera ditt konto.",
       "memberSince": "Medlem sedan {date}",
       "sectionSettings": "Kontoinställningar",
-      "sectionWallet": "$WOC-plånbok",
       "sectionCharacters": "Rollfigurer",
       "sectionDanger": "Farozon",
       "changePassword": "Ändra lösenord",
@@ -1591,8 +1551,6 @@ export const sv_SE: EnTranslations = {
       "charactersSummary": "Hantera dina rollfigurer och gå in i världen.",
       "charactersCount": "Rollfigurer: {count}",
       "goToCharacters": "Visa rollfigurer",
-      "walletSummary": "Verifiera en Solana-plånbok för att visa innehavarsymbol på ditt spelarkort.",
-      "manageWallet": "Hantera plånbok",
       "deactivate": "Avaktivera konto",
       "deactivateWarning": "Avaktivering låser ditt konto och loggar ut dig överallt. Kontakta en administratör för att återställa det. Bekräfta genom att ange ditt användarnamn och lösenord igen.",
       "confirmUsername": "Skriv ditt användarnamn för att bekräfta",
@@ -2293,11 +2251,9 @@ export const sv_SE: EnTranslations = {
       "bonusStatusEarned": "+{count}",
       "bonusSourceEmail": "Verifierad e-post",
       "bonusSourceDiscord": "Discord länkat",
-      "bonusSourceWallet": "Plånbok länkad",
       "bonusSourceReferral": "Värvade vänner",
       "bonusAdvertEmail": "Verifiera din e-post för att tjäna 2 fack.",
       "bonusAdvertDiscord": "Länka ditt Discord för att tjäna 2 fack.",
-      "bonusAdvertWallet": "Länka en plånbok för att tjäna 2 fack.",
       "bonusReferralProgress": "{count}/{cap}",
       "bonusReferralExplainer": "Bjud in en vän: när vännen når nivå 10 tjänar ni 2 fack var, upp till 5 vänner.",
       "bonusSectionAria": "Bonusbankfack och hur du tjänar fler",
@@ -3147,21 +3103,8 @@ export const sv_SE: EnTranslations = {
       "account_taken": "Det Epic-kontot är redan länkat till ett annat konto.",
       "upstream": "Epic svarade inte. Försök igen om en stund."
     },
-    "wallet": {
-      "handoff_invalid": "Den plånboksbehörigheten har gått ut eller kunde inte verifieras. Försök igen."
-    },
     "ota_updates": {
       "invalid_input": "Ogiltig indata."
-    },
-    "seeker": {
-      "native_only": "Seeker-behörighet är endast tillgänglig i appen.",
-      "attestation_failed": "Enhetsverifieringen misslyckades. Försök igen.",
-      "solana_artifact_required": "Använd appen Solana Store för att fortsätta.",
-      "wallet_required": "Länka och verifiera en plånbok först.",
-      "genesis_token_required": "En verifierad Seeker Genesis Token krävs.",
-      "genesis_token_claimed": "Denna Seeker Genesis Token har redan hämtats.",
-      "entitlement_required": "Verifierad Seeker-behörighet krävs.",
-      "current_ownership_required": "Du måste fortfarande äga din Seeker Genesis Token."
     }
   },
   "guide": {
@@ -5133,10 +5076,7 @@ export const sv_SE: EnTranslations = {
     "playAria": "Spela World of ClaudeCraft",
     "serverLabel": "Välj din värld",
     "serverAria": "Välj värld: Online eller Offline",
-    "serverOfflineSub": "Direkt lokal värld",
-    "caLabel": "$WOC Kontraktsadress",
-    "caCopyAria": "Kopiera kontraktsadress",
-    "caNote": "WOC är vår community-token. Den behövs inte för att spela. Gå med i Discord för att diskutera WOC:s nytta och svänghjul."
+    "serverOfflineSub": "Direkt lokal värld"
   },
   "auth": {
     "enterRealm": "Träd in i världen",
@@ -5184,171 +5124,6 @@ export const sv_SE: EnTranslations = {
       "failed": "Det gick inte att spara din e-postadress. Försök igen."
     }
   },
-  "wallet": {
-    "label": "$WOC-plånbok",
-    "connect": "Verifiera plånbok",
-    "connectTitle": "Verifiera din Solana-plånbok",
-    "connectAria": "Verifiera din Solana-plånbok",
-    "verify": "Verifiera plånbok",
-    "verifyNew": "Verifiera ny plånbok",
-    "verifyTitle": "Välj en plånbok och signera en gång för att verifiera ägande.",
-    "verifyAria": "Välj en plånbok och signera en gång för att verifiera ägande",
-    "verifyAddressAria": "Signera för att verifiera plånboken {address} för ditt konto",
-    "appConnected": "App ansluten",
-    "connectApp": "Anslut app",
-    "connectAppTitle": "Anslut plånboksappen i den här webbläsaren",
-    "connectAppAria": "Anslut plånboksappen i den här webbläsaren",
-    "verifying": "Verifierar...",
-    "verifyingTitle": "Plånboksverifiering pågår.",
-    "switch": "Byt",
-    "switchTitle": "Verifiera en annan plånbok",
-    "switchAria": "Verifiera en annan plånbok",
-    "unlink": "Avlänka",
-    "unlinkTitle": "Ta bort plånboksverifieringen från det här kontot",
-    "unlinkAria": "Ta bort plånboksverifieringen från det här kontot",
-    "signOut": "Koppla från",
-    "signOutTitle": "Koppla från plånboksappen i den här webbläsaren",
-    "signOutAria": "Koppla från plånboksappen i den här webbläsaren",
-    "hide": "Dölj",
-    "hideTitle": "Dölj plånboksraden på den här skärmen",
-    "hideAria": "Dölj plånboksraden på den här skärmen",
-    "hiddenNotice": "Plånboksraden är dold. Aktivera den igen i spelet via Alternativ > Gränssnitt.",
-    "linkedTitle": "Plånboken är verifierad för ditt konto. Klicka för att hantera plånboksappen.",
-    "linkedDisconnectedTitle": "Plånboken är fortfarande verifierad för ditt konto. Återanslut för att hantera plånboksappen.",
-    "linkedDisconnectedAria": "Plånboken är fortfarande verifierad för ditt konto. Återanslut för att hantera plånboksappen.",
-    "linkTitle": "Klicka för att signera och länka den här plånboken till ditt konto.",
-    "connectedTitle": "Ansluten. Logga in för att länka plånboken till ditt konto.",
-    "balanceTitle": "Verifierat $WOC-saldo i Solana-plånbok",
-    "balanceAria": "Verifierat Solana-plånbokssaldo: {balance}",
-    "balancePreviewTitle": "Förhandsvisning av ansluten plånboks $WOC-saldo",
-    "balancePreviewAria": "Förhandsvisning av ansluten plånboks saldo: {balance}. Länka plånboken för att verifiera innehavarmärket.",
-    "balanceAmount": "{amount} $WOC",
-    "bagConnect": "Länka plånbok",
-    "bagLink": "Verifiera plånbok",
-    "bagReconnect": "Återanslut plånbok",
-    "connected": "Ansluten: {address}",
-    "connectedWithBalance": "Ansluten: {balance} - {address}",
-    "connectedLinked": "Verifierad: {address}",
-    "connectedLinkedWithBalance": "Verifierad: {balance} - {address}",
-    "helpDisconnected": "Verifiera en Solana-plånbok för att aktivera innehavarmärke och spelarkortsmärken. Ingen transaktion eller SOL krävs.",
-    "helpLoginToLink": "Ansluten {address}. Logga in för att länka den till ditt konto.",
-    "helpLoginToLinkWithBalance": "Ansluten {address} med {balance}. Logga in för att länka den till ditt konto.",
-    "helpReadyToLink": "Plånbok vald: {address}. Signera en gång för att verifiera innehavarmärke och spelarkort.",
-    "helpReadyToLinkWithBalance": "Plånbok vald: {address} med {balance}. Signera en gång för att verifiera innehavarmärke och spelarkort.",
-    "helpLinked": "Innehavarförmåner är aktiva. Plånboksappen är ansluten i den här webbläsaren.",
-    "helpLinkedWithBalance": "Innehavarförmåner är aktiva. Plånboksappen är ansluten i den här webbläsaren.",
-    "helpLinkedDisconnected": "Innehavarförmåner är aktiva. Anslut appen när du behöver signera eller spendera.",
-    "helpLinkedDisconnectedWithBalance": "Innehavarförmåner är aktiva. Anslut appen när du behöver signera eller spendera.",
-    "extensionHelp": "För att se en plånbok här, håll ett webbläsartillägg för plånböcker som Solflare Wallet aktivt.",
-    "mobileAppHelp": "Välj Phantom eller Solflare. Din plånboksapp ber om godkännande. Håll det här spelet öppet och återgå till det när du är klar.",
-    "seekerAppHelp": "Fortsätt med Seed Vault Wallet. Granska anslutnings- och verifieringsförfrågningarna i Seed Vault, och återgå sedan till spelet.",
-    "standaloneAppHelp": "Plånboksanslutningar är ännu inte tillgängliga i hemskärmsappen. Öppna World of ClaudeCraft i Safari eller Chrome för att använda Phantom eller Solflare.",
-    "openAppTitle": "Fortsätt i {wallet}",
-    "openAppHelp": "Öppna {wallet} för att granska denna begäran. Håll denna spelflik öppen medan plånboksappen är aktiv.",
-    "openAppButton": "Öppna {wallet}",
-    "manualReturnBrowserHelp": "Efter godkännande, återgå till denna spelflik. Om iOS öppnar en annan webbläsare, stäng den och återgå till den ursprungliga webbläsaren manuellt.",
-    "manualReturnStandaloneHelp": "Efter godkännande, återgå till World of ClaudeCraft från din hemskärm. Om iOS öppnar en webbläsare, stäng den och öppna hemskärmsappen manuellt igen.",
-    "preparingAppButton": "Förbereder {wallet}...",
-    "walletAppUnavailable": "{wallet} kunde inte förberedas. Stäng det här fönstret och försök igen.",
-    "flowConnect": "Välj en plånbok. Verifieringen fortsätter automatiskt.",
-    "flowSign": "Signera verifieringsmeddelandet i din plånboksapp. Ingen transaktion eller SOL krävs.",
-    "flowVerify": "Verifierar plånboksägande...",
-    "linkFailed": "Plånboksverifieringen misslyckades.",
-    "verifyFailed": "Plånboksverifieringen misslyckades.",
-    "unlinkFailed": "Det gick inte att avlänka plånboken.",
-    "browser": {
-      "eyebrow": "Skrivbordsplånboksbehörighet",
-      "title": "Anslut en Solana-plånbok",
-      "linkBody": "Välj ett plånbokstillägg i denna webbläsare. Du signerar ett verifieringsmeddelande och återvänder sedan till skrivbordsappen.",
-      "paymentBody": "Välj plånboken länkad till ditt konto och godkänn transaktionen i denna webbläsare.",
-      "extensionHelp": "Inget kompatibelt plånbokstillägg hittades. Installera eller lås upp Phantom, Solflare eller en annan Solana-webbläsarplånbok och försök sedan igen.",
-      "safety": "World of ClaudeCraft ber aldrig om din återställningsfras eller privata nyckel.",
-      "continueWith": "Fortsätt med {wallet}",
-      "reviewTitle": "Granska i din plånbok",
-      "reviewBody": "Följ uppmaningen från {wallet}. Håll denna webbläsarsida öppen.",
-      "completeTitle": "Plånboksbehörighet slutförd",
-      "completeBody": "Du kan återvända till skrivbordsappen för World of ClaudeCraft.",
-      "returnButton": "Återgå till skrivbordsappen",
-      "failed": "Plånboksbehörighet misslyckades eller gick ut. Återgå till skrivbordsappen och försök igen.",
-      "retry": "Försök igen"
-    },
-    "holder": "$WOC-innehavare",
-    "holderTierTitle": "{tier} $WOC-innehavare",
-    "holderTiers": {
-      "ember": {
-        "name": "Glöd",
-        "flavor": "Gnistan är tänd."
-      },
-      "coinbearer": {
-        "name": "Myntbärare",
-        "flavor": "Första myntet i krigskassan."
-      },
-      "coppercrest": {
-        "name": "Kopparkam",
-        "flavor": "Kopparmynt staplade, ditt namn på allas läppar."
-      },
-      "silverbound": {
-        "name": "Silverbunden",
-        "flavor": "Bunden i silver, bygger upp pungen."
-      },
-      "gilded": {
-        "name": "Förgylld",
-        "flavor": "Förgylld och leende."
-      },
-      "vaultwarden": {
-        "name": "Valvväktare",
-        "flavor": "Vaktar nu ett verkligt valv: 0,01 % av allt $WOC."
-      },
-      "whale": {
-        "name": "Val",
-        "flavor": "Djupet delar sig när du simmar: 0,1 % av tillgången."
-      },
-      "leviathan": {
-        "name": "Leviatan",
-        "flavor": "Marknaderna känner när du rör dig: 1 % av tillgången."
-      },
-      "tidelord": {
-        "name": "Tidvattenherre",
-        "flavor": "Tidvattnet lyder din kallelse: 2 % av tillgången."
-      },
-      "stormcaller": {
-        "name": "Stormkallare",
-        "flavor": "Stormar samlas vid ditt namn: 3 % av tillgången."
-      },
-      "krakencrown": {
-        "name": "Krakenkrona",
-        "flavor": "Krönt av djupet: 4 % av tillgången."
-      },
-      "titanforged": {
-        "name": "Titansmidd",
-        "flavor": "Smidd bland titaner: 5 % av tillgången."
-      },
-      "starhoard": {
-        "name": "Stjärnskatt",
-        "flavor": "En skatt som böjer stjärnljuset: 6 % av tillgången."
-      },
-      "voidwarden": {
-        "name": "Tomhetsväktare",
-        "flavor": "Väktare vid tomhetens rand: 7 % av tillgången."
-      },
-      "realmshaper": {
-        "name": "Rikesformare",
-        "flavor": "Du omformar riket: 8 % av tillgången."
-      },
-      "worldforger": {
-        "name": "Världssmidare",
-        "flavor": "Smider en egen värld: 9 % av tillgången."
-      },
-      "worldbearer": {
-        "name": "Världsbärare",
-        "flavor": "Du bär en bit av världen: 10 % av tillgången."
-      },
-      "sovereign": {
-        "name": "Härskare",
-        "flavor": "Riket böjer knä: hela tillgången."
-      }
-    }
-  },
   "playerCard": {
     "shareButton": "Dela spelarkort",
     "title": "Spelarkort",
@@ -5372,7 +5147,6 @@ export const sv_SE: EnTranslations = {
     "footerHandleWithRecruits": "@{handle} - {recruited}",
     "footerCta": "Skapa din legend: {siteUrl}",
     "arenaStat": "Arena",
-    "shareTierBit": ", {tier}-rankad $WOC-innehavare",
     "shareText": "Jag skapar min legend i World of ClaudeCraft: Nivå {level} {className}{tierBit}. Gå med i min värld:",
     "nativeShareTitle": "World of ClaudeCraft",
     "fileNameFallback": "spelare",

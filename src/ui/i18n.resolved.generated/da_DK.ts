@@ -409,9 +409,7 @@ export const da_DK: EnTranslations = {
       "remainingHoursMinutes": "{hours}t {minutes}m",
       "remainingDaysHours": "{days} dage {hours} timer",
       "score": "Score",
-      "walletValue": "Wallet-værdi (WOC)",
       "usd": "{amount} USD",
-      "sol": "{amount} SOL",
       "unknown": "Ukendt",
       "spinTitle": "Daglig drejning",
       "spinDialogTitle": "Daglig belønningsdrejning",
@@ -436,17 +434,8 @@ export const da_DK: EnTranslations = {
       "history": "Tidligere vindere",
       "noLeaders": "Ingen point endnu.",
       "noHistory": "Ingen udbetalinger endnu.",
-      "walletConnectTitle": "Verificer wallet",
-      "walletConnectBody": "Verificer en Solana-wallet med WOC for at låse daglige belønninger op.",
-      "walletConnectButton": "Verificer wallet",
-      "walletHoldTitle": "Behold WOC",
-      "walletHoldBody": "Behold mindst {amount} USD i WOC for at låse daglige belønninger op.",
-      "walletPriceBody": "WOC-prissætning er utilgængelig lige nu. Kom tilbage om lidt.",
       "reason": {
         "eligible": "Belønninger låst op.",
-        "no_wallet": "Forbind en wallet med mindst 20 USD i WOC.",
-        "under_minimum": "Wallet er under WOC-minimummet på 20 USD.",
-        "price_unavailable": "WOC-prisen er utilgængelig, belønninger er midlertidigt låst.",
         "banned": "Du er udelukket fra daglige belønninger. Årsag: {reason}",
         "bannedUntil": "Du er udelukket fra daglige belønninger i yderligere {remaining}. Adgangen vender tilbage {until}. Begrundelse: {reason}"
       }
@@ -472,18 +461,6 @@ export const da_DK: EnTranslations = {
       "armoryEyebrow": "Sæson 1",
       "armoryTitle": "Våbenhuset",
       "armoryBody": "Begrænsede våbenskins fra sæson 1-våbenhuset. De gælder for hele kontoen, er rent kosmetiske og vises for alle omkring dig.",
-      "wallet": {
-        "title": "Solana-pung",
-        "unlinked": "Tilslut en pung-app og underskriv derefter én gang for at knytte dens offentlige adresse til din WoC-konto. Vi modtager aldrig din genoprettelsesfrase eller private nøgle.",
-        "connectedUnlinked": "Pung-appen er tilsluttet denne browser, men dens offentlige adresse er endnu ikke knyttet til din WoC-konto.",
-        "linkedDisconnected": "Din offentlige adresse er tilknyttet. Gentilslut den pung-app, når du vil betale med SOL eller WOC.",
-        "linkedConnected": "Din tilknyttede pung-app er tilsluttet og klar til SOL- eller WOC-køb.",
-        "mismatched": "En anden pung er tilsluttet. Bekræft den for at erstatte den tilknyttede adresse, eller gentilslut den tilknyttede pung.",
-        "connect": "Tilslut pung",
-        "verify": "Bekræft og tilknyt",
-        "reconnect": "Gentilslut pung",
-        "manage": "Administrer pung"
-      },
       "collectionLine": "{collection}-samlingen",
       "collections": {
         "guildmark": "Laugsmærke",
@@ -685,20 +662,11 @@ export const da_DK: EnTranslations = {
       "loading": "Indlæser Claudium...",
       "balanceLabel": "Saldo",
       "balanceUnit": "{amount} Claudium",
-      "solBalance": "SOL: {amount}",
-      "usdcBalance": "USDC: {amount}",
-      "wocBalance": "WOC: {amount}",
       "unavailable": "Claudium-butikken er ikke tilgængelig lige nu. Din saldo og dine køb er ikke påvirket. Prøv igen om lidt.",
       "disclosure": "Claudium er en virtuel valuta, der kun går én vej: Køb den for penge, og brug den på kosmetik. Den kan ikke indløses, overføres eller udbetales.",
       "buyTitle": "Køb Claudium",
       "railLabel": "Betalingsmetode",
       "railStripe": "Kort",
-      "railSol": "SOL",
-      "railUsdc": "USDC",
-      "railWoc": "WOC",
-      "railWocDiscount": "{percent}% rabat",
-      "railWocUnavailable": "WOC-priser er ikke tilgængelige lige nu.",
-      "railNativeUnavailable": "SOL/WOC er slået fra.",
       "amountLabel": "Beløb",
       "showAmounts": "Vis alle Claudium-beløb",
       "hideAmounts": "Skjul ekstra Claudium-beløb",
@@ -718,10 +686,7 @@ export const da_DK: EnTranslations = {
       "checkoutPending": "Transaktion i gang. Bekræft i din tegnebog, og hold dette panel åbent.",
       "checkoutPendingButton": "Behandler",
       "checkoutFailed": "Betalingsvinduet kunne ikke indlæses. Prøv igen.",
-      "checkoutUnavailable": "Dette Claudium-køb er ikke tilgængeligt lige nu.",
-      "checkoutWalletRequired": "Tilslut en Solana-tegnebog, før du køber Claudium med kryptovaluta.",
-      "checkoutWalletUnsupported": "Denne tegnebog kan ikke underskrive og sende Solana-transaktioner.",
-      "checkoutNotSettled": "Transaktionen blev sendt, men Claudium er endnu ikke blevet tilføjet. Prøv igen om lidt."
+      "checkoutUnavailable": "Dette Claudium-køb er ikke tilgængeligt lige nu."
     },
     "theme": {
       "preset": "UI-tema",
@@ -1196,8 +1161,6 @@ export const da_DK: EnTranslations = {
       "clickFeedback": "Klikmarkør",
       "lockCursorOnRotate": "Lås markør under drejning",
       "keybindHelpLockCursorOnRotate": "Holder musemarkøren inde i vinduet, mens du trækker for at dreje kameraet, så den ikke kan nå skærmkanten eller flytte til en anden skærm. Slå fra, hvis du foretrækker en fri markør.",
-      "showWalletOnCharacterScreen": "Vis pengepung på karakterskærm",
-      "showWalletOnPlayerCard": "Vis pengepung på spillerkort",
       "showDevBadges": "Vis udviklermærker",
       "showOwnNameplate": "Vis mit navneskilt",
       "showPlayerNameplates": "Vis spillernavneskilte",
@@ -1373,9 +1336,7 @@ export const da_DK: EnTranslations = {
         "aetherRush": "Æterstrøm"
       }
     },
-    "playerCard": {
-      "showWalletBadge": "Vis pengepungsmærke"
-    },
+    "playerCard": {},
     "landing": {
       "highContrast": "Høj kontrast",
       "highContrastAria": "Slå baggrund med høj kontrast til/fra: deaktiverer den bevægende trailer, så teksten på startskærmen forbliver læselig",
@@ -1564,7 +1525,6 @@ export const da_DK: EnTranslations = {
       "loggedOutPrompt": "Log ind for at administrere din konto.",
       "memberSince": "Medlem siden {date}",
       "sectionSettings": "Kontoindstillinger",
-      "sectionWallet": "$WOC Wallet",
       "sectionCharacters": "Figurer",
       "sectionDanger": "Farezone",
       "changePassword": "Skift adgangskode",
@@ -1591,8 +1551,6 @@ export const da_DK: EnTranslations = {
       "charactersSummary": "Administrér dine figurer og gå ind i verdenen.",
       "charactersCount": "Figurer: {count}",
       "goToCharacters": "Vis figurer",
-      "walletSummary": "Bekræft en Solana-wallet for at vise holder-flair på dit spillerkort.",
-      "manageWallet": "Administrér wallet",
       "deactivate": "Deaktivér konto",
       "deactivateWarning": "Deaktivering låser din konto og logger dig ud overalt. Kontakt en administrator for at gendanne den. Bekræft ved at indtaste dit brugernavn og din adgangskode igen.",
       "confirmUsername": "Indtast dit brugernavn for at bekræfte",
@@ -2293,11 +2251,9 @@ export const da_DK: EnTranslations = {
       "bonusStatusEarned": "+{count}",
       "bonusSourceEmail": "Bekræftet e-mail",
       "bonusSourceDiscord": "Discord forbundet",
-      "bonusSourceWallet": "Wallet forbundet",
       "bonusSourceReferral": "Henviste venner",
       "bonusAdvertEmail": "Bekræft din e-mail for at optjene 2 pladser.",
       "bonusAdvertDiscord": "Forbind din Discord for at optjene 2 pladser.",
-      "bonusAdvertWallet": "Forbind en wallet for at optjene 2 pladser.",
       "bonusReferralProgress": "{count}/{cap}",
       "bonusReferralExplainer": "Invitér en ven: når din ven når niveau 10, optjener I hver især 2 pladser, op til 5 venner.",
       "bonusSectionAria": "Bonuspladser i banken, og hvordan du optjener flere",
@@ -3147,21 +3103,8 @@ export const da_DK: EnTranslations = {
       "account_taken": "Denne Epic-konto er allerede knyttet til en anden konto.",
       "upstream": "Epic svarede ikke. Prøv igen om et øjeblik."
     },
-    "wallet": {
-      "handoff_invalid": "Den pung-godkendelse udløb eller kunne ikke bekræftes. Prøv igen."
-    },
     "ota_updates": {
       "invalid_input": "Ugyldig indtastning."
-    },
-    "seeker": {
-      "native_only": "Seeker-rettigheder er kun tilgængelige i den installerede app.",
-      "attestation_failed": "Enhedsverificeringen mislykkedes. Prøv venligst igen.",
-      "solana_artifact_required": "Brug Solana Store-appen for at fortsætte.",
-      "wallet_required": "Tilknyt og verificer en pung først.",
-      "genesis_token_required": "Der kræves et verificeret Seeker Genesis Token.",
-      "genesis_token_claimed": "Det Seeker Genesis Token er allerede indløst.",
-      "entitlement_required": "Der kræves en verificeret Seeker-rettighed.",
-      "current_ownership_required": "Der kræves aktuelt ejerskab af et Seeker Genesis Token."
     }
   },
   "guide": {
@@ -5133,10 +5076,7 @@ export const da_DK: EnTranslations = {
     "playAria": "Spil World of ClaudeCraft",
     "serverLabel": "Vælg din verden",
     "serverAria": "Vælg verden: Online eller Offline",
-    "serverOfflineSub": "Øjeblikkelig lokal verden",
-    "caLabel": "$WOC Kontraktadresse",
-    "caCopyAria": "Kopiér kontraktadresse",
-    "caNote": "WOC er vores fællesskabstoken. Det er ikke nødvendigt for at spille. Tilslut dig Discord for at diskutere WOC-nytten og svinghjulet."
+    "serverOfflineSub": "Øjeblikkelig lokal verden"
   },
   "auth": {
     "enterRealm": "Træd ind i Verdenen",
@@ -5184,171 +5124,6 @@ export const da_DK: EnTranslations = {
       "failed": "Kunne ikke gemme din e-mail. Prøv igen."
     }
   },
-  "wallet": {
-    "label": "$WOC-pung",
-    "connect": "Verificer pung",
-    "connectTitle": "Verificer din Solana-pung",
-    "connectAria": "Verificer din Solana-pung",
-    "verify": "Verificer pung",
-    "verifyNew": "Verificer ny pung",
-    "verifyTitle": "Vælg en pung og underskriv én gang for at verificere ejerskab.",
-    "verifyAria": "Vælg en pung og underskriv én gang for at verificere ejerskab",
-    "verifyAddressAria": "Underskriv for at verificere pungen {address} for din konto",
-    "appConnected": "App forbundet",
-    "connectApp": "Forbind app",
-    "connectAppTitle": "Forbind pung-appen i denne browser",
-    "connectAppAria": "Forbind pung-appen i denne browser",
-    "verifying": "Verificerer...",
-    "verifyingTitle": "Verificering af pung er i gang.",
-    "switch": "Skift",
-    "switchTitle": "Verificer en anden pung",
-    "switchAria": "Verificer en anden pung",
-    "unlink": "Frakobl",
-    "unlinkTitle": "Fjern pung-verificeringen fra denne konto",
-    "unlinkAria": "Fjern pung-verificeringen fra denne konto",
-    "signOut": "Afbryd forbindelse",
-    "signOutTitle": "Afbryd forbindelsen til pung-appen i denne browser",
-    "signOutAria": "Afbryd forbindelsen til pung-appen i denne browser",
-    "hide": "Skjul",
-    "hideTitle": "Skjul pung-rækken på denne skærm",
-    "hideAria": "Skjul pung-rækken på denne skærm",
-    "hiddenNotice": "Pung-rækken er skjult. Genaktiver den i spillet under Indstillinger > Brugerflade.",
-    "linkedTitle": "Pung verificeret for din konto. Klik for at administrere pung-appen.",
-    "linkedDisconnectedTitle": "Pungen forbliver verificeret for din konto. Genopret forbindelse for at administrere pung-appen.",
-    "linkedDisconnectedAria": "Pungen forbliver verificeret for din konto. Genopret forbindelse for at administrere pung-appen.",
-    "linkTitle": "Klik for at underskrive og tilknytte denne pung til din konto.",
-    "connectedTitle": "Forbundet. Log ind for at tilknytte denne pung til din konto.",
-    "balanceTitle": "Verificeret Solana-pungs $WOC-saldo",
-    "balanceAria": "Verificeret Solana-pungsaldo: {balance}",
-    "balancePreviewTitle": "Forhåndsvisning af forbundet pungs $WOC-saldo",
-    "balancePreviewAria": "Forhåndsvisning af forbundet pungs saldo: {balance}. Tilknyt pungen for at verificere ejer-pynt.",
-    "balanceAmount": "{amount} $WOC",
-    "bagConnect": "Tilknyt pung",
-    "bagLink": "Bekræft pung",
-    "bagReconnect": "Gentilslut pung",
-    "connected": "Forbundet: {address}",
-    "connectedWithBalance": "Forbundet: {balance} - {address}",
-    "connectedLinked": "Verificeret: {address}",
-    "connectedLinkedWithBalance": "Verificeret: {balance} - {address}",
-    "helpDisconnected": "Verificer en Solana-pung for at aktivere ejer-pynt og spillerkort-mærker. Ingen transaktion eller SOL kræves.",
-    "helpLoginToLink": "Forbundet {address}. Log ind for at tilknytte den til din konto.",
-    "helpLoginToLinkWithBalance": "Forbundet {address} med {balance}. Log ind for at tilknytte den til din konto.",
-    "helpReadyToLink": "Pung valgt: {address}. Underskriv én gang for at verificere ejer-pynt og spillerkort.",
-    "helpReadyToLinkWithBalance": "Pung valgt: {address} med {balance}. Underskriv én gang for at verificere ejer-pynt og spillerkort.",
-    "helpLinked": "Ejerfordele er aktive. Pung-app forbundet i denne browser.",
-    "helpLinkedWithBalance": "Ejerfordele er aktive. Pung-app forbundet i denne browser.",
-    "helpLinkedDisconnected": "Ejerfordele er aktive. Forbind appen, når du har brug for at underskrive eller bruge midler.",
-    "helpLinkedDisconnectedWithBalance": "Ejerfordele er aktive. Forbind appen, når du har brug for at underskrive eller bruge midler.",
-    "extensionHelp": "For at se en pung her skal du holde en browser-pungudvidelse som Solflare Wallet aktiv.",
-    "mobileAppHelp": "Vælg Phantom eller Solflare. Din pung-app beder om godkendelse. Hold dette spil åbent og vend tilbage, når du er færdig.",
-    "seekerAppHelp": "Fortsæt med Seed Vault Wallet. Gennemgå forbindelses- og verificeringsanmodningerne i Seed Vault, og vend derefter tilbage til spillet.",
-    "standaloneAppHelp": "Pungforbindelser er endnu ikke tilgængelige i startskærmsappen. Åbn World of ClaudeCraft i Safari eller Chrome for at bruge Phantom eller Solflare.",
-    "openAppTitle": "Fortsæt i {wallet}",
-    "openAppHelp": "Åbn {wallet} for at gennemgå denne anmodning. Hold denne spil-fane åben, mens pung-appen er aktiv.",
-    "openAppButton": "Åbn {wallet}",
-    "manualReturnBrowserHelp": "Efter godkendelse kan du vende tilbage til denne spil-fane. Hvis iOS åbner en anden browser, skal du lukke den og manuelt vende tilbage til den oprindelige browser.",
-    "manualReturnStandaloneHelp": "Efter godkendelse kan du vende tilbage til World of ClaudeCraft fra din startskærm. Hvis iOS åbner en browser, skal du lukke den og manuelt genåbne startskærmsappen.",
-    "preparingAppButton": "Forbereder {wallet}...",
-    "walletAppUnavailable": "{wallet} kunne ikke forberedes. Luk dette vindue og prøv igen.",
-    "flowConnect": "Vælg en pung. Verificeringen fortsætter automatisk.",
-    "flowSign": "Underskriv verificeringsbeskeden i din pung-app. Ingen transaktion eller SOL kræves.",
-    "flowVerify": "Verificerer ejerskab af pung...",
-    "linkFailed": "Verificering af pung mislykkedes.",
-    "verifyFailed": "Verificering af pung mislykkedes.",
-    "unlinkFailed": "Kunne ikke frakoble pungen.",
-    "browser": {
-      "eyebrow": "Skrivebordsappens pung-godkendelse",
-      "title": "Tilslut en Solana-pung",
-      "linkBody": "Vælg en pung-udvidelse i denne browser. Du underskriver en bekræftelsesbesked og vender derefter tilbage til skrivebordsappen.",
-      "paymentBody": "Vælg den pung, der er tilknyttet din konto, og godkend transaktionen i denne browser.",
-      "extensionHelp": "Ingen kompatibel pung-udvidelse blev fundet. Installer eller lås Phantom, Solflare eller en anden Solana-browserpung op og prøv derefter igen.",
-      "safety": "World of ClaudeCraft beder aldrig om din genoprettelsesfrase eller private nøgle.",
-      "continueWith": "Fortsæt med {wallet}",
-      "reviewTitle": "Gennemse i din pung",
-      "reviewBody": "Følg prompten fra {wallet}. Hold denne browserside åben.",
-      "completeTitle": "Pung-godkendelse fuldført",
-      "completeBody": "Du kan nu vende tilbage til World of ClaudeCraft-skrivebordsappen.",
-      "returnButton": "Vend tilbage til skrivebordsapp",
-      "failed": "Pung-godkendelse mislykkedes eller udløb. Vend tilbage til skrivebordsappen og prøv igen.",
-      "retry": "Prøv igen"
-    },
-    "holder": "$WOC-ejer",
-    "holderTierTitle": "{tier} $WOC-ejer",
-    "holderTiers": {
-      "ember": {
-        "name": "Glød",
-        "flavor": "Gnisten er tændt."
-      },
-      "coinbearer": {
-        "name": "Møntbærer",
-        "flavor": "Første mønt i krigskisten."
-      },
-      "coppercrest": {
-        "name": "Kobberkam",
-        "flavor": "Kobber stablet, dit navn nævnt."
-      },
-      "silverbound": {
-        "name": "Sølvbundet",
-        "flavor": "Bundet i sølv, opbygger beholdningen."
-      },
-      "gilded": {
-        "name": "Forgyldt",
-        "flavor": "Forgyldt og grinende."
-      },
-      "vaultwarden": {
-        "name": "Hvælvvogter",
-        "flavor": "Vogter nu et ægte hvælv: 0,01 % af alle $WOC."
-      },
-      "whale": {
-        "name": "Hval",
-        "flavor": "Dybet deler sig, når du svømmer: 0,1 % af forsyningen."
-      },
-      "leviathan": {
-        "name": "Leviathan",
-        "flavor": "Markederne mærker dig røre på dig: 1 % af forsyningen."
-      },
-      "tidelord": {
-        "name": "Tidevandsherre",
-        "flavor": "Tidevandet adlyder dit kald: 2 % af forsyningen."
-      },
-      "stormcaller": {
-        "name": "Stormkalder",
-        "flavor": "Storme samler sig ved dit navn: 3 % af forsyningen."
-      },
-      "krakencrown": {
-        "name": "Krakenkrone",
-        "flavor": "Kronet af dybet: 4 % af forsyningen."
-      },
-      "titanforged": {
-        "name": "Titansmedet",
-        "flavor": "Smedet blandt titaner: 5 % af forsyningen."
-      },
-      "starhoard": {
-        "name": "Stjerneskat",
-        "flavor": "Et skatkammer der bøjer stjernelys: 6 % af forsyningen."
-      },
-      "voidwarden": {
-        "name": "Tomhedsvogter",
-        "flavor": "Vogter ved tomhedens rand: 7 % af forsyningen."
-      },
-      "realmshaper": {
-        "name": "Rigeformer",
-        "flavor": "Du omformer riget: 8 % af forsyningen."
-      },
-      "worldforger": {
-        "name": "Verdenssmed",
-        "flavor": "Smeder en verden helt din egen: 9 % af forsyningen."
-      },
-      "worldbearer": {
-        "name": "Verdensbærer",
-        "flavor": "Du bærer et stykke af verden: 10 % af forsyningen."
-      },
-      "sovereign": {
-        "name": "Suveræn",
-        "flavor": "Riget bøjer knæ: hele forsyningen."
-      }
-    }
-  },
   "playerCard": {
     "shareButton": "Del spillerkort",
     "title": "Spillerkort",
@@ -5372,7 +5147,6 @@ export const da_DK: EnTranslations = {
     "footerHandleWithRecruits": "@{handle} - {recruited}",
     "footerCta": "Smed din legende: {siteUrl}",
     "arenaStat": "Arena",
-    "shareTierBit": ", {tier}-rangeret $WOC-ejer",
     "shareText": "Jeg smeder min legende i World of ClaudeCraft: Niveau {level} {className}{tierBit}. Slut dig til min verden:",
     "nativeShareTitle": "World of ClaudeCraft",
     "fileNameFallback": "spiller",

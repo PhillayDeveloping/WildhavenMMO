@@ -409,9 +409,7 @@ export const pl_PL: EnTranslations = {
       "remainingHoursMinutes": "{hours} godz. {minutes} min",
       "remainingDaysHours": "{days} d {hours} godz.",
       "score": "Wynik",
-      "walletValue": "Wartość portfela (WOC)",
       "usd": "{amount} USD",
-      "sol": "{amount} SOL",
       "unknown": "Nieznane",
       "spinTitle": "Codzienne losowanie",
       "spinDialogTitle": "Losowanie codziennej nagrody",
@@ -436,17 +434,8 @@ export const pl_PL: EnTranslations = {
       "history": "Poprzedni zwycięzcy",
       "noLeaders": "Jeszcze brak punktów.",
       "noHistory": "Jeszcze brak wypłat.",
-      "walletConnectTitle": "Zweryfikuj portfel",
-      "walletConnectBody": "Zweryfikuj portfel Solana z WOC, aby odblokować codzienne nagrody.",
-      "walletConnectButton": "Zweryfikuj portfel",
-      "walletHoldTitle": "Trzymaj WOC",
-      "walletHoldBody": "Trzymaj co najmniej {amount} USD w WOC, aby odblokować codzienne nagrody.",
-      "walletPriceBody": "Wycena WOC jest obecnie niedostępna. Sprawdź ponownie za chwilę.",
       "reason": {
         "eligible": "Nagrody odblokowane.",
-        "no_wallet": "Podłącz portfel z co najmniej 20 USD w WOC.",
-        "under_minimum": "Portfel jest poniżej minimum 20 USD w WOC.",
-        "price_unavailable": "Cena WOC jest niedostępna, nagrody są tymczasowo zablokowane.",
         "banned": "Masz zakaz udziału w codziennych nagrodach. Powód: {reason}",
         "bannedUntil": "Masz zablokowany dostęp do codziennych nagród jeszcze przez {remaining}. Dostęp powróci {until}. Powód: {reason}"
       }
@@ -472,18 +461,6 @@ export const pl_PL: EnTranslations = {
       "armoryEyebrow": "Sezon 1",
       "armoryTitle": "Zbrojownia",
       "armoryBody": "Limitowane skórki broni ze Zbrojowni Sezonu 1. Dotyczy całego konta, ma wyłącznie charakter kosmetyczny i jest pokazywany wszystkim wokół Ciebie.",
-      "wallet": {
-        "title": "Portfel Solana",
-        "unlinked": "Podłącz aplikację portfela, a następnie podpisz raz, aby powiązać jej publiczny adres z twoim kontem WoC. Nigdy nie otrzymujemy twojej frazy odzyskiwania ani klucza prywatnego.",
-        "connectedUnlinked": "Aplikacja portfela jest podłączona do tej przeglądarki, lecz jej publiczny adres nie jest jeszcze powiązany z twoim kontem WoC.",
-        "linkedDisconnected": "Twój publiczny adres jest powiązany. Podłącz ponownie tę aplikację portfela, gdy chcesz płacić za pomocą SOL lub WOC.",
-        "linkedConnected": "Twój powiązany portfel jest podłączony i gotowy do zakupów za SOL lub WOC.",
-        "mismatched": "Podłączony jest inny portfel. Zweryfikuj go, aby zastąpić powiązany adres, lub podłącz ponownie powiązany portfel.",
-        "connect": "Podłącz portfel",
-        "verify": "Zweryfikuj i powiąż",
-        "reconnect": "Podłącz ponownie portfel",
-        "manage": "Zarządzaj portfelem"
-      },
       "collectionLine": "{collection} Kolekcja",
       "collections": {
         "guildmark": "Znak Gildii",
@@ -685,20 +662,11 @@ export const pl_PL: EnTranslations = {
       "loading": "Ładowanie Claudium...",
       "balanceLabel": "Saldo",
       "balanceUnit": "{amount} Klaudium",
-      "solBalance": "SOL: {amount}",
-      "usdcBalance": "USDC: {amount}",
-      "wocBalance": "WOC: {amount}",
       "unavailable": "Sklep Claudium jest obecnie niedostępny. Nie ma to wpływu na Twoje saldo i zakupy; sprawdź ponownie wkrótce.",
       "disclosure": "Claudium to jednokierunkowa miękka waluta: kup ją za pieniądze i wydawaj na kosmetyki. Nie można go wymienić, przenieść ani wypłacić.",
       "buyTitle": "Kup Claudium",
       "railLabel": "Metoda płatności",
       "railStripe": "Karta",
-      "railSol": "SOL",
-      "railUsdc": "USDC",
-      "railWoc": "WOC",
-      "railWocDiscount": "{percent}% zniżki",
-      "railWocUnavailable": "Ceny WOC są obecnie niedostępne.",
-      "railNativeUnavailable": "SOL/WOC są obecnie niedostępne.",
       "amountLabel": "Kwota",
       "showAmounts": "Pokaż wszystkie ilości Claudium",
       "hideAmounts": "Ukryj dodatkowe ilości Claudium",
@@ -718,10 +686,7 @@ export const pl_PL: EnTranslations = {
       "checkoutPending": "Transakcja w toku. Potwierdź w swoim portfelu i nie zamykaj tego panelu.",
       "checkoutPendingButton": "Przetwarzanie",
       "checkoutFailed": "Nie udało się wczytać kasy. Spróbuj ponownie.",
-      "checkoutUnavailable": "Ten zakup Claudium nie jest obecnie dostępny.",
-      "checkoutWalletRequired": "Podłącz portfel Solana przed zakupem Claudium za kryptowalutę.",
-      "checkoutWalletUnsupported": "Ten portfel nie może podpisywać i wysyłać transakcji Solana.",
-      "checkoutNotSettled": "Transakcja została wysłana, ale Claudium nie zostało jeszcze zaksięgowane. Spróbuj ponownie wkrótce."
+      "checkoutUnavailable": "Ten zakup Claudium nie jest obecnie dostępny."
     },
     "theme": {
       "preset": "Motyw interfejsu",
@@ -1196,8 +1161,6 @@ export const pl_PL: EnTranslations = {
       "clickFeedback": "Znacznik kliknięcia",
       "lockCursorOnRotate": "Blokuj kursor podczas obracania",
       "keybindHelpLockCursorOnRotate": "Utrzymuje kursor myszy wewnątrz okna podczas przeciągania w celu obracania kamery, aby nie mógł dotrzeć do krawędzi ekranu ani przejść na inny monitor. Wyłącz, jeśli wolisz swobodny kursor.",
-      "showWalletOnCharacterScreen": "Pokaż sakiewkę na ekranie postaci",
-      "showWalletOnPlayerCard": "Pokaż sakiewkę na karcie gracza",
       "showDevBadges": "Pokaż odznaki deweloperów",
       "showOwnNameplate": "Pokaż moją plakietkę",
       "showPlayerNameplates": "Pokaż plakietki graczy",
@@ -1373,9 +1336,7 @@ export const pl_PL: EnTranslations = {
         "aetherRush": "Napływ eteru"
       }
     },
-    "playerCard": {
-      "showWalletBadge": "Pokaż odznakę sakiewki"
-    },
+    "playerCard": {},
     "landing": {
       "highContrast": "Wysoki kontrast",
       "highContrastAria": "Przełącz tło o wysokim kontraście: wyłącza ruchomy zwiastun, aby tekst ekranu startowego pozostał czytelny",
@@ -1564,7 +1525,6 @@ export const pl_PL: EnTranslations = {
       "loggedOutPrompt": "Zaloguj się, aby zarządzać kontem.",
       "memberSince": "Członek od {date}",
       "sectionSettings": "Ustawienia konta",
-      "sectionWallet": "Portfel $WOC",
       "sectionCharacters": "Postacie",
       "sectionDanger": "Strefa zagrożenia",
       "changePassword": "Zmień hasło",
@@ -1591,8 +1551,6 @@ export const pl_PL: EnTranslations = {
       "charactersSummary": "Zarządzaj swoimi postaciami i wejdź do świata.",
       "charactersCount": "Postacie: {count}",
       "goToCharacters": "Zobacz postacie",
-      "walletSummary": "Zweryfikuj portfel Solana, aby pokazać znaczek posiadacza na swojej karcie gracza.",
-      "manageWallet": "Zarządzaj portfelem",
       "deactivate": "Dezaktywuj konto",
       "deactivateWarning": "Dezaktywacja blokuje konto i wylogowuje cię wszędzie. Skontaktuj się z administratorem, aby je przywrócić. Potwierdź, wpisując ponownie nazwę użytkownika i hasło.",
       "confirmUsername": "Wpisz swoją nazwę użytkownika, aby potwierdzić",
@@ -2293,11 +2251,9 @@ export const pl_PL: EnTranslations = {
       "bonusStatusEarned": "+{count}",
       "bonusSourceEmail": "Zweryfikowany e-mail",
       "bonusSourceDiscord": "Połączony Discord",
-      "bonusSourceWallet": "Połączony portfel",
       "bonusSourceReferral": "Zaproszeni przyjaciele",
       "bonusAdvertEmail": "Zweryfikuj swój e-mail, aby zdobyć 2 miejsca.",
       "bonusAdvertDiscord": "Połącz swój Discord, aby zdobyć 2 miejsca.",
-      "bonusAdvertWallet": "Połącz portfel, aby zdobyć 2 miejsca.",
       "bonusReferralProgress": "{count}/{cap}",
       "bonusReferralExplainer": "Zaproś przyjaciela: gdy osiągnie 10. poziom, oboje zdobywacie po 2 miejsca, maksymalnie za 5 przyjaciół.",
       "bonusSectionAria": "Premiowe miejsca w banku i jak zdobyć ich więcej",
@@ -3147,21 +3103,8 @@ export const pl_PL: EnTranslations = {
       "account_taken": "To konto Epic jest już powiązane z innym kontem.",
       "upstream": "Epic nie odpowiedział. Spróbuj ponownie za chwilę."
     },
-    "wallet": {
-      "handoff_invalid": "Autoryzacja portfela wygasła lub nie mogła zostać zweryfikowana. Spróbuj ponownie."
-    },
     "ota_updates": {
       "invalid_input": "Nieprawidłowe dane."
-    },
-    "seeker": {
-      "native_only": "Uprawnienie Seeker jest dostępne tylko w aplikacji natywnej.",
-      "attestation_failed": "Weryfikacja urządzenia nie powiodła się. Spróbuj ponownie.",
-      "solana_artifact_required": "Aby kontynuować, użyj aplikacji Solana Store.",
-      "wallet_required": "Najpierw powiąż i zweryfikuj portfel.",
-      "genesis_token_required": "Wymagany jest zweryfikowany Seeker Genesis Token.",
-      "genesis_token_claimed": "Ten Seeker Genesis Token został już odebrany.",
-      "entitlement_required": "Wymagane jest zweryfikowane uprawnienie Seeker.",
-      "current_ownership_required": "Musisz obecnie posiadać Seeker Genesis Token."
     }
   },
   "guide": {
@@ -5133,10 +5076,7 @@ export const pl_PL: EnTranslations = {
     "playAria": "Zagraj w World of ClaudeCraft",
     "serverLabel": "Wybierz swój świat",
     "serverAria": "Wybierz świat: online lub offline",
-    "serverOfflineSub": "Natychmiastowy lokalny świat",
-    "caLabel": "Adres kontraktu $WOC",
-    "caCopyAria": "Skopiuj adres kontraktu",
-    "caNote": "WOC to nasz token społecznościowy. Nie jest potrzebny do gry. Dołącz do Discorda, aby porozmawiać o użyteczności WOC i jego napędzie."
+    "serverOfflineSub": "Natychmiastowy lokalny świat"
   },
   "auth": {
     "enterRealm": "Wejdź do świata",
@@ -5184,171 +5124,6 @@ export const pl_PL: EnTranslations = {
       "failed": "Nie udało się zapisać adresu e-mail. Spróbuj ponownie."
     }
   },
-  "wallet": {
-    "label": "Portfel $WOC",
-    "connect": "Zweryfikuj portfel",
-    "connectTitle": "Zweryfikuj swój portfel Solana",
-    "connectAria": "Zweryfikuj swój portfel Solana",
-    "verify": "Zweryfikuj portfel",
-    "verifyNew": "Zweryfikuj nowy portfel",
-    "verifyTitle": "Wybierz portfel i podpisz raz, aby zweryfikować własność.",
-    "verifyAria": "Wybierz portfel i podpisz raz, aby zweryfikować własność",
-    "verifyAddressAria": "Podpisz, aby zweryfikować portfel {address} dla swojego konta",
-    "appConnected": "Aplikacja połączona",
-    "connectApp": "Połącz aplikację",
-    "connectAppTitle": "Połącz aplikację portfela w tej przeglądarce",
-    "connectAppAria": "Połącz aplikację portfela w tej przeglądarce",
-    "verifying": "Weryfikowanie...",
-    "verifyingTitle": "Trwa weryfikacja portfela.",
-    "switch": "Przełącz",
-    "switchTitle": "Zweryfikuj inny portfel",
-    "switchAria": "Zweryfikuj inny portfel",
-    "unlink": "Odepnij",
-    "unlinkTitle": "Usuń weryfikację portfela z tego konta",
-    "unlinkAria": "Usuń weryfikację portfela z tego konta",
-    "signOut": "Rozłącz",
-    "signOutTitle": "Rozłącz aplikację portfela w tej przeglądarce",
-    "signOutAria": "Rozłącz aplikację portfela w tej przeglądarce",
-    "hide": "Ukryj",
-    "hideTitle": "Ukryj wiersz portfela na tym ekranie",
-    "hideAria": "Ukryj wiersz portfela na tym ekranie",
-    "hiddenNotice": "Wiersz portfela ukryty. Włącz go ponownie w grze w Opcje > Interfejs.",
-    "linkedTitle": "Portfel zweryfikowany dla twojego konta. Kliknij, aby zarządzać aplikacją portfela.",
-    "linkedDisconnectedTitle": "Portfel pozostaje zweryfikowany dla twojego konta. Połącz ponownie, aby zarządzać aplikacją portfela.",
-    "linkedDisconnectedAria": "Portfel pozostaje zweryfikowany dla twojego konta. Połącz ponownie, aby zarządzać aplikacją portfela.",
-    "linkTitle": "Kliknij, aby podpisać i powiązać ten portfel ze swoim kontem.",
-    "connectedTitle": "Połączono. Zaloguj się, aby powiązać ten portfel ze swoim kontem.",
-    "balanceTitle": "Saldo $WOC zweryfikowanego portfela Solana",
-    "balanceAria": "Saldo zweryfikowanego portfela Solana: {balance}",
-    "balancePreviewTitle": "Podgląd salda $WOC połączonego portfela",
-    "balancePreviewAria": "Podgląd salda połączonego portfela: {balance}. Powiąż portfel, aby zweryfikować oznakę posiadacza.",
-    "balanceAmount": "{amount} $WOC",
-    "bagConnect": "Powiąż portfel",
-    "bagLink": "Zweryfikuj portfel",
-    "bagReconnect": "Podłącz ponownie portfel",
-    "connected": "Połączono: {address}",
-    "connectedWithBalance": "Połączono: {balance} - {address}",
-    "connectedLinked": "Zweryfikowano: {address}",
-    "connectedLinkedWithBalance": "Zweryfikowano: {balance} - {address}",
-    "helpDisconnected": "Zweryfikuj portfel Solana, aby włączyć oznakę posiadacza i odznaki na kartach gracza. Transakcja ani SOL nie są wymagane.",
-    "helpLoginToLink": "Połączono {address}. Zaloguj się, aby powiązać go ze swoim kontem.",
-    "helpLoginToLinkWithBalance": "Połączono {address} z saldem {balance}. Zaloguj się, aby powiązać go ze swoim kontem.",
-    "helpReadyToLink": "Wybrano portfel: {address}. Podpisz raz, aby zweryfikować oznakę posiadacza i karty gracza.",
-    "helpReadyToLinkWithBalance": "Wybrano portfel: {address} z saldem {balance}. Podpisz raz, aby zweryfikować oznakę posiadacza i karty gracza.",
-    "helpLinked": "Przywileje posiadacza są aktywne. Aplikacja portfela połączona w tej przeglądarce.",
-    "helpLinkedWithBalance": "Przywileje posiadacza są aktywne. Aplikacja portfela połączona w tej przeglądarce.",
-    "helpLinkedDisconnected": "Przywileje posiadacza są aktywne. Połącz aplikację, gdy musisz podpisać lub wydać środki.",
-    "helpLinkedDisconnectedWithBalance": "Przywileje posiadacza są aktywne. Połącz aplikację, gdy musisz podpisać lub wydać środki.",
-    "extensionHelp": "Aby zobaczyć tu portfel, utrzymuj aktywne rozszerzenie portfela w przeglądarce, na przykład Solflare Wallet.",
-    "mobileAppHelp": "Wybierz Phantom lub Solflare. Aplikacja portfela poprosi o zatwierdzenie. Pozostaw tę grę otwartą i wróć do niej po zakończeniu.",
-    "seekerAppHelp": "Kontynuuj z Seed Vault Wallet. Przejrzyj żądania połączenia i weryfikacji w Seed Vault, a następnie wróć do gry.",
-    "standaloneAppHelp": "Połączenia z portfelami nie są jeszcze dostępne w aplikacji z ekranu głównego. Otwórz World of ClaudeCraft w Safari lub Chrome, aby używać Phantom lub Solflare.",
-    "openAppTitle": "Kontynuuj w {wallet}",
-    "openAppHelp": "Otwórz {wallet}, aby przejrzeć to żądanie. Pozostaw tę kartę gry otwartą, gdy aplikacja portfela jest aktywna.",
-    "openAppButton": "Otwórz {wallet}",
-    "manualReturnBrowserHelp": "Po zatwierdzeniu wróć do tej karty gry. Jeśli iOS otworzy inną przeglądarkę, zamknij ją i wróć ręcznie do oryginalnej przeglądarki.",
-    "manualReturnStandaloneHelp": "Po zatwierdzeniu wróć do World of ClaudeCraft z ekranu głównego. Jeśli iOS otworzy przeglądarkę, zamknij ją i ręcznie otwórz ponownie aplikację z ekranu głównego.",
-    "preparingAppButton": "Przygotowywanie {wallet}...",
-    "walletAppUnavailable": "Nie udało się przygotować {wallet}. Zamknij to okno i spróbuj ponownie.",
-    "flowConnect": "Wybierz portfel. Weryfikacja przebiega automatycznie.",
-    "flowSign": "Podpisz wiadomość weryfikacyjną w aplikacji portfela. Transakcja ani SOL nie są wymagane.",
-    "flowVerify": "Weryfikowanie własności portfela...",
-    "linkFailed": "Weryfikacja portfela nie powiodła się.",
-    "verifyFailed": "Weryfikacja portfela nie powiodła się.",
-    "unlinkFailed": "Nie udało się odpiąć portfela.",
-    "browser": {
-      "eyebrow": "Autoryzacja portfela desktopowego",
-      "title": "Podłącz portfel Solana",
-      "linkBody": "Wybierz rozszerzenie portfela w tej przeglądarce. Podpiszesz wiadomość weryfikacyjną, a następnie wrócisz do aplikacji desktopowej.",
-      "paymentBody": "Wybierz portfel powiązany z twoim kontem i zatwierdź transakcję w tej przeglądarce.",
-      "extensionHelp": "Nie znaleziono zgodnego rozszerzenia portfela. Zainstaluj lub odblokuj Phantom, Solflare lub inny portfel Solana w przeglądarce, a następnie spróbuj ponownie.",
-      "safety": "World of ClaudeCraft nigdy nie prosi o frazę odzyskiwania ani klucz prywatny.",
-      "continueWith": "Kontynuuj z {wallet}",
-      "reviewTitle": "Sprawdź w swoim portfelu",
-      "reviewBody": "Postępuj zgodnie z monitem od {wallet}. Pozostaw tę stronę przeglądarki otwartą.",
-      "completeTitle": "Autoryzacja portfela zakończona",
-      "completeBody": "Możesz wrócić do aplikacji desktopowej World of ClaudeCraft.",
-      "returnButton": "Wróć do aplikacji desktopowej",
-      "failed": "Autoryzacja portfela nie powiodła się lub wygasła. Wróć do aplikacji desktopowej i spróbuj ponownie.",
-      "retry": "Spróbuj ponownie"
-    },
-    "holder": "Posiadacz $WOC",
-    "holderTierTitle": "Posiadacz $WOC: {tier}",
-    "holderTiers": {
-      "ember": {
-        "name": "Żar",
-        "flavor": "Iskra rozpalona."
-      },
-      "coinbearer": {
-        "name": "Monetonosiciel",
-        "flavor": "Pierwsza moneta w skarbcu wojennym."
-      },
-      "coppercrest": {
-        "name": "Miedziany Herb",
-        "flavor": "Miedziaki ułożone, twoje imię wymawiane."
-      },
-      "silverbound": {
-        "name": "Spętany Srebrem",
-        "flavor": "Spętany srebrem, gromadzący majątek."
-      },
-      "gilded": {
-        "name": "Pozłacany",
-        "flavor": "Pozłocony i uśmiechnięty."
-      },
-      "vaultwarden": {
-        "name": "Strażnik Skarbca",
-        "flavor": "Strzeże teraz prawdziwego skarbca: 0,01% całego $WOC."
-      },
-      "whale": {
-        "name": "Wieloryb",
-        "flavor": "Głębia rozstępuje się, gdy płyniesz: 0,1% podaży."
-      },
-      "leviathan": {
-        "name": "Lewiatan",
-        "flavor": "Rynki czują, gdy się poruszasz: 1% podaży."
-      },
-      "tidelord": {
-        "name": "Władca Przypływów",
-        "flavor": "Przypływ odpowiada na twoje wezwanie: 2% podaży."
-      },
-      "stormcaller": {
-        "name": "Przywoływacz Burz",
-        "flavor": "Burze gromadzą się na dźwięk twojego imienia: 3% podaży."
-      },
-      "krakencrown": {
-        "name": "Korona Krakena",
-        "flavor": "Ukoronowany przez głębię: 4% podaży."
-      },
-      "titanforged": {
-        "name": "Wykuty przez Tytanów",
-        "flavor": "Wykuty pośród tytanów: 5% podaży."
-      },
-      "starhoard": {
-        "name": "Gwiezdny Skarb",
-        "flavor": "Skarb, który ugina światło gwiazd: 6% podaży."
-      },
-      "voidwarden": {
-        "name": "Strażnik Pustki",
-        "flavor": "Stróż na krawędzi pustki: 7% podaży."
-      },
-      "realmshaper": {
-        "name": "Kształtownik Krainy",
-        "flavor": "Kształtujesz krainę na nowo: 8% podaży."
-      },
-      "worldforger": {
-        "name": "Kowal Światów",
-        "flavor": "Wykuwasz własny świat: 9% podaży."
-      },
-      "worldbearer": {
-        "name": "Dźwigacz Świata",
-        "flavor": "Dźwigasz cząstkę świata: 10% podaży."
-      },
-      "sovereign": {
-        "name": "Suweren",
-        "flavor": "Kraina zgina kolano: cała podaż."
-      }
-    }
-  },
   "playerCard": {
     "shareButton": "Udostępnij kartę gracza",
     "title": "Karta gracza",
@@ -5372,7 +5147,6 @@ export const pl_PL: EnTranslations = {
     "footerHandleWithRecruits": "@{handle} - {recruited}",
     "footerCta": "Wykuj swą legendę: {siteUrl}",
     "arenaStat": "Arena",
-    "shareTierBit": ", posiadacz $WOC rangi {tier}",
     "shareText": "Wykuwam swą legendę w World of ClaudeCraft: {className} na poziomie {level}{tierBit}. Dołącz do mojego świata:",
     "nativeShareTitle": "World of ClaudeCraft",
     "fileNameFallback": "gracz",

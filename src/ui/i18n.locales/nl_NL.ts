@@ -207,15 +207,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'apiError.epic.invalid_token':
     'Epic kon dit koppelingsverzoek niet verifiëren. Probeer het opnieuw vanuit de desktop-app.',
   'apiError.epic.upstream': 'Epic reageerde niet. Probeer het zo meteen opnieuw.',
-  'apiError.seeker.native_only': 'Seeker-rechten zijn alleen beschikbaar in de native app.',
-  'apiError.seeker.attestation_failed': 'Apparaatverificatie mislukt. Probeer het opnieuw.',
-  'apiError.seeker.solana_artifact_required': 'Gebruik de Solana Store-app om verder te gaan.',
-  'apiError.seeker.wallet_required': 'Koppel en verifieer eerst een portemonnee.',
-  'apiError.seeker.genesis_token_required': 'Een geverifieerd Seeker Genesis Token is vereist.',
-  'apiError.seeker.genesis_token_claimed': 'Dat Seeker Genesis Token is al geclaimd.',
-  'apiError.seeker.entitlement_required': 'Geverifieerde Seeker-rechten zijn vereist.',
-  'apiError.seeker.current_ownership_required':
-    'Actueel bezit van het Seeker Genesis Token is vereist.',
   'guide.professions.archetypeSwitchBody':
     'Een verklaring is bovendien geen levenslange straf. Een paar dat je nooit hebt gehad is gewoon een nieuwe afstemmingsquest, terwijl terugkeren naar een paar dat je hebt verlaten je eerst om boete vraagt: vijf opdrachten de eerste keer, en drie extra voor elke terugkeer die je al hebt gemaakt (een gloednieuw paar opnemen verhoogt dat aantal nooit). De keuze blijft betekenisvol zonder ooit een deur voorgoed op slot te doen.',
   'guide.professions.whatBody':
@@ -325,8 +316,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
     'De verzamelworp begint op 2,5 seconde en wordt op twee manieren afgeknipt: 0,4 seconde voor elke gereedschapsrang die je draagt en kunt hanteren boven de eigen rang van het grondstoffenpunt, en 0,15 seconde zodra de teller van je vak zijn band van 100 passeert, met een ondergrens van 1,5 seconde. Ga van rang 1-grondstoffenpunten naar rang 3-grondstoffenpunten en je overschot verdwijnt, dus dezelfde houweel zwaait weer trager. Precies de vereiste rang in handen hebben koopt geen snelheid; het opent alleen het grondstoffenpunt.\n\nVaardigheidswinst vervaagt op dezelfde manier als bij vervaardigen: een grondstoffenpunt wordt grijs naarmate je vaardigheid zijn rang voorbijklimt (rang 1-grondstoffenpunten leren je vanaf vaardigheid 75 niets meer), dus het antwoord op trage winst zijn grondstoffenpunten van hogere rang. Die vragen minstens gereedschap van hun eigen rang in je tassen (geen enkel grondstoffenpunt wordt ooit met blote handen bewerkt, rang 1 inbegrepen), en landgereedschap boven rang 1 wil eerst ook zijn hanteringsmerk, 40/70/85/100 in zijn eigen vak voor de rangen 2 tot en met 5. Vissen volgt zijn eigen aflopende schema: volle winst onder vaardigheid 50, de helft onder 100, een druppel van 0,1 onder 150 en 0,02 onder 200, rommelvangsten leren vanaf 100 helemaal niets meer, en het water zelf begrenst de les (rang 1-wateren stoppen met leren bij 100, het moeras bij 150), dus een vastgelopen teller kan ook betekenen dat je het water ontgroeid bent.',
   'guide.profPages.faq.a8':
     'Gedeeltelijk. De negen gewone veldrecepten (de basiswapens, wapenrusting, voedsel en drankjes voor beginners) maak je overal en altijd, en dat geldt ook voor de drie combinatierecepten van de gezworen paren. Alles daarboven is gebonden aan een stationstype: smederij, keukens, apotheek, leerlooierij, weefgetouw of gereedschapsmakerij, en je moet binnen 20 meter van het station staan om de vervaardiging te laten doorgaan.\n\nBij vaardigheid 75 in een ambacht specialiseer je je, en samen met 20 procent materiaalkorting krijg je een mobiel station: zet het neer in het veld en het blijft 10 minuten staan, waarbij het de recepten van dat ambacht bedient alsof je bij het echte station stond. Het mobiele station is er alleen om te vervaardigen: recepten leren en opdrachtstukken losmaken vereisen altijd het echte station in de stad.',
-  'wallet.seekerAppHelp':
-    'Ga verder met Seed Vault Wallet. Bekijk de verbindings- en verificatieverzoeken in Seed Vault en keer daarna terug naar het spel.',
   'questUi.tracker.unknownQuest': 'Onbekende quest ({id})',
   'questUi.log.repeatableStatus': 'Herhaalbaar',
   'questUi.log.cooldownStatus': 'Binnenkort weer beschikbaar',
@@ -731,8 +720,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'hud.prompts.resurrectionOffer': '{name} wil je terugbrengen tot leven. Aanvaarden?',
   'questUi.dialog.profIntroHint': 'Zie {name} voor "{quest}".',
   'itemUi.stats.parry': 'Pareren',
-  'apiError.wallet.handoff_invalid':
-    'Die portemonnee-autorisatie is verlopen of kon niet worden geverifieerd. Probeer het opnieuw.',
   'cardDuel.close': 'Sluiten',
   'cardDuel.counts': 'Deck: {deck} - Aflegstapel: {discard}',
   'cardDuel.forfeit': 'Opgeven',
@@ -1057,57 +1044,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.nameplate.mobLevel': '{level}',
   'hudChrome.specPanel.specUnlockBanner': 'Specialisatie Ontgrendeld!',
   'hudChrome.specPanel.specUnlockHint': 'Druk op N om je specialisatie te kiezen.',
-  'hudChrome.wocStore.wallet.connect': 'Portemonnee koppelen',
-  'hudChrome.wocStore.wallet.connectedUnlinked':
-    'De portemonnee-app is verbonden met deze browser, maar het openbare adres is nog niet gekoppeld aan je WoC-account.',
-  'hudChrome.wocStore.wallet.linkedConnected':
-    'Je gekoppelde portemonnee-app is verbonden en klaar voor SOL- of WOC-aankopen.',
-  'hudChrome.wocStore.wallet.linkedDisconnected':
-    'Je openbare adres is gekoppeld. Verbind die portemonnee-app opnieuw wanneer je met SOL of WOC wilt betalen.',
-  'hudChrome.wocStore.wallet.manage': 'Portemonnee beheren',
-  'hudChrome.wocStore.wallet.mismatched':
-    'Er is een andere portemonnee verbonden. Verifieer hem om het gekoppelde adres te vervangen, of verbind de gekoppelde portemonnee opnieuw.',
-  'hudChrome.wocStore.wallet.reconnect': 'Portemonnee opnieuw verbinden',
-  'hudChrome.wocStore.wallet.title': 'Solana-portemonnee',
-  'hudChrome.wocStore.wallet.unlinked':
-    'Verbind een portemonnee-app en teken eenmaal om het openbare adres aan je WoC-account te koppelen. We ontvangen nooit je herstelzin of privésleutel.',
-  'hudChrome.wocStore.wallet.verify': 'Verifiëren en koppelen',
-  'wallet.bagConnect': 'Portemonnee koppelen',
-  'wallet.bagLink': 'Portemonnee verifiëren',
-  'wallet.bagReconnect': 'Portemonnee opnieuw verbinden',
-  'wallet.browser.completeBody': 'Je kunt terugkeren naar de World of ClaudeCraft desktop-app.',
-  'wallet.browser.completeTitle': 'Portemonnee-autorisatie voltooid',
-  'wallet.browser.continueWith': 'Doorgaan met {wallet}',
-  'wallet.browser.extensionHelp':
-    'Geen compatibele portemonnee-extensie gevonden. Installeer of ontgrendel Phantom, Solflare of een andere Solana-browserportemonnee en probeer het opnieuw.',
-  'wallet.browser.eyebrow': 'Desktop-portemonnee-autorisatie',
-  'wallet.browser.failed':
-    'Portemonnee-autorisatie mislukt of verlopen. Keer terug naar de desktop-app en probeer het opnieuw.',
-  'wallet.browser.linkBody':
-    'Kies een portemonnee-extensie in deze browser. Je tekent een verificatiebericht en keert dan terug naar de desktop-app.',
-  'wallet.browser.paymentBody':
-    'Kies de aan je account gekoppelde portemonnee en keur de transactie goed in deze browser.',
-  'wallet.browser.retry': 'Opnieuw proberen',
-  'wallet.browser.returnButton': 'Terug naar desktop-app',
-  'wallet.browser.reviewBody': 'Volg de aanwijzing van {wallet}. Houd deze browserpagina open.',
-  'wallet.browser.reviewTitle': 'Bekijken in je portemonnee',
-  'wallet.browser.safety': 'World of ClaudeCraft vraagt nooit naar je herstelzin of privésleutel.',
-  'wallet.browser.title': 'Een Solana-portemonnee verbinden',
-  'wallet.manualReturnBrowserHelp':
-    'Keer na goedkeuring terug naar dit speltabblad. Als iOS een andere browser opent, sluit die dan en keer handmatig terug naar de oorspronkelijke browser.',
-  'wallet.manualReturnStandaloneHelp':
-    'Keer na goedkeuring terug naar World of ClaudeCraft via je beginscherm. Als iOS een browser opent, sluit die dan en open de beginscherm-app handmatig opnieuw.',
-  'wallet.mobileAppHelp':
-    'Kies Phantom of Solflare. Je portemonnee-app vraagt om goedkeuring. Houd dit spel open en keer ernaar terug wanneer je klaar bent.',
-  'wallet.openAppButton': 'Open {wallet}',
-  'wallet.openAppHelp':
-    'Open {wallet} om dit verzoek te bekijken. Houd dit speltabblad open terwijl de portemonnee-app actief is.',
-  'wallet.openAppTitle': 'Doorgaan in {wallet}',
-  'wallet.preparingAppButton': '{wallet} voorbereiden...',
-  'wallet.standaloneAppHelp':
-    'Portemonneeverbindingen zijn nog niet beschikbaar in de beginscherm-app. Open World of ClaudeCraft in Safari of Chrome om Phantom of Solflare te gebruiken.',
-  'wallet.walletAppUnavailable':
-    '{wallet} kon niet worden voorbereid. Sluit dit venster en probeer het opnieuw.',
   'entities.abilities.primal_reflexes.description':
     'Je instincten verscherpen, waardoor je kans om aan te wijken met 50% stijgt gedurende 6 sec.',
   'entities.abilities.primal_reflexes.name': 'Oerreflexen',
@@ -2654,8 +2590,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'sim.delve.riteSequenceReady': 'De schrijnen doven. Herhaal de reeks.',
   'sim.delve.riteWrong': 'Een schrille klokkenkraak. Zwart water spat op aan je voeten.',
   'sim.delve.ropesSealed': 'Probeer aan de klokkentouwen te trekken.',
-  'wallet.extensionHelp':
-    'Om hier een portemonnee te zien, houd je een browserextensie voor portemonnees zoals Solflare Wallet actief.',
   'worldContent.delveReliquaryInteract':
     'Verdronken Reliekschrijn: druk op F om het ritueel te beginnen',
   'worldContent.delveRiteShrineBellInteract': 'Klokkenschrijn: druk op F om de klok te luiden',
@@ -6716,7 +6650,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.account.logOut': 'Uitloggen',
   'hudChrome.account.logOutSummary': 'Meld je af op dit apparaat.',
   'hudChrome.account.loggedOutPrompt': 'Log in om je account te beheren.',
-  'hudChrome.account.manageWallet': 'Wallet Beheren',
   'hudChrome.account.memberSince': 'Lid sinds {date}',
   'hudChrome.account.newPassword': 'Nieuw wachtwoord',
   'hudChrome.account.passwordChanged': 'Wachtwoord bijgewerkt. Andere apparaten zijn afgemeld.',
@@ -6726,7 +6659,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.account.sectionDanger': 'Gevarenzone',
   'hudChrome.account.sectionSecurity': 'Beveiliging',
   'hudChrome.account.sectionSettings': 'Accountinstellingen',
-  'hudChrome.account.sectionWallet': '$WOC Wallet',
   'hudChrome.account.title': 'Account',
   'hudChrome.account.twoFactorBegin': 'Instellen Starten',
   'hudChrome.account.twoFactorBeginHint': 'Voer je wachtwoord in om het instellen te starten.',
@@ -6756,8 +6688,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.account.twoFactorStatusOn': 'Tweestapsverificatie staat AAN voor je account.',
   'hudChrome.account.twoFactorTitle': 'Tweestapsverificatie',
   'hudChrome.account.twoFactorVerifyBtn': 'Verifiëren en Inschakelen',
-  'hudChrome.account.walletSummary':
-    'Verifieer een Solana-wallet om houdersflair op je spelerskaart te tonen.',
   'hudChrome.bags.filterAll': 'Alle',
   'hudChrome.bags.filterArmor': 'Pantser',
   'hudChrome.bags.filterConsumable': 'Verbruiksartikelen',
@@ -6906,8 +6836,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.options.keybindHelpLockCursorOnRotate':
     'Houdt de muisaanwijzer binnen het venster terwijl je sleept om de camera te draaien, zodat deze de schermrand niet kan bereiken of naar een ander beeldscherm kan gaan. Schakel uit als je liever een vrije aanwijzer hebt.',
   'hudChrome.options.lockCursorOnRotate': 'Aanwijzer vergrendelen tijdens draaien',
-  'hudChrome.options.showWalletOnCharacterScreen': 'Portemonnee tonen op personagescherm',
-  'hudChrome.options.showWalletOnPlayerCard': 'Portemonnee tonen op spelerskaart',
   'hudChrome.options.uiScale': 'UI-schaal',
   'hudChrome.paperdoll.unequipAria': '{item} afdoen',
   'hudChrome.paperdoll.unequipHint':
@@ -6973,7 +6901,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.perf.units.mb': '{value} MB',
   'hudChrome.perf.units.memPair': '{used} / {limit} MB',
   'hudChrome.perf.units.ms': '{value} ms',
-  'hudChrome.playerCard.showWalletBadge': 'Geldbeursbadge tonen',
   'hudChrome.plurals.characterCount.few': '{count} personages',
   'hudChrome.plurals.characterCount.many': '{count} personages',
   'hudChrome.plurals.characterCount.one': '{count} personage',
@@ -7383,10 +7310,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'mobilePreflight.rotateSub': 'Speel in liggend volledig scherm voor de beste mobiele ervaring.',
   'mobilePreflight.rotateTitle': 'Draai naar Liggend',
   'mobilePreflight.title': 'Speel in Liggend Volledig Scherm',
-  'mode.caCopyAria': 'Contractadres kopiëren',
-  'mode.caLabel': '$WOC Contractadres',
-  'mode.caNote':
-    'WOC is onze communitytoken. Het is niet nodig om te spelen. Word lid van Discord om de WOC-toepassing en het vliegwiel te bespreken.',
   'mode.offlineAria': 'Offline Spelen: start direct een lokale singleplayer-sessie',
   'mode.offlineDesc':
     'Direct een singleplayer-wereld in je browser. Er wordt niets opgeslagen: perfect voor een snel gevecht of om te testen.',
@@ -7453,7 +7376,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'playerCard.shareButton': 'Spelerskaart Delen',
   'playerCard.shareText':
     'Ik smeed mijn legende in World of ClaudeCraft: Niveau {level} {className}{tierBit}. Sluit je aan bij mijn wereld:',
-  'playerCard.shareTierBit': ', {tier}-rang $WOC-houder',
   'playerCard.statusDownloaded': 'Kaart gedownload.',
   'playerCard.statusGenericError': 'Er is iets misgegaan.',
   'playerCard.statusOpenedXWithImage': 'X geopend. Plak de kaartafbeelding in de post.',
@@ -7677,115 +7599,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'stats.playersOnline': 'Spelers online',
   'stats.realmName': 'Wereldnaam',
   'stats.title': 'Wereldstatus',
-  'wallet.appConnected': 'App verbonden',
-  'wallet.balanceAmount': '{amount} $WOC',
-  'wallet.balanceAria': 'Geverifieerd Solana-portemonneesaldo: {balance}',
-  'wallet.balancePreviewAria':
-    'Voorbeeld van saldo van verbonden portemonnee: {balance}. Koppel de portemonnee om houderkenmerk te verifiëren.',
-  'wallet.balancePreviewTitle': 'Voorbeeld van $WOC-saldo van verbonden portemonnee',
-  'wallet.balanceTitle': 'Geverifieerd $WOC-saldo van Solana-portemonnee',
-  'wallet.connect': 'Portemonnee verifiëren',
-  'wallet.connectApp': 'App verbinden',
-  'wallet.connectAppAria': 'Verbind de portemonnee-app in deze browser',
-  'wallet.connectAppTitle': 'Verbind de portemonnee-app in deze browser',
-  'wallet.connectAria': 'Verifieer je Solana-portemonnee',
-  'wallet.connectTitle': 'Verifieer je Solana-portemonnee',
-  'wallet.connected': 'Verbonden: {address}',
-  'wallet.connectedLinked': 'Geverifieerd: {address}',
-  'wallet.connectedLinkedWithBalance': 'Geverifieerd: {balance} - {address}',
-  'wallet.connectedTitle': 'Verbonden. Log in om deze portemonnee aan je account te koppelen.',
-  'wallet.connectedWithBalance': 'Verbonden: {balance} - {address}',
-  'wallet.flowConnect': 'Kies een portemonnee. De verificatie gaat automatisch verder.',
-  'wallet.flowSign':
-    'Onderteken het verificatiebericht in je portemonnee-app. Geen transactie of SOL vereist.',
-  'wallet.flowVerify': 'Eigendom van portemonnee verifiëren...',
-  'wallet.helpDisconnected':
-    'Verifieer een Solana-portemonnee om houderkenmerk en spelerkaartinsignes in te schakelen. Geen transactie of SOL vereist.',
-  'wallet.helpLinked': 'Houdervoordelen zijn actief. Portemonnee-app verbonden in deze browser.',
-  'wallet.helpLinkedDisconnected':
-    'Houdervoordelen zijn actief. Verbind de app wanneer je moet ondertekenen of uitgeven.',
-  'wallet.helpLinkedDisconnectedWithBalance':
-    'Houdervoordelen zijn actief. Verbind de app wanneer je moet ondertekenen of uitgeven.',
-  'wallet.helpLinkedWithBalance':
-    'Houdervoordelen zijn actief. Portemonnee-app verbonden in deze browser.',
-  'wallet.helpLoginToLink': '{address} verbonden. Log in om deze aan je account te koppelen.',
-  'wallet.helpLoginToLinkWithBalance':
-    '{address} verbonden met {balance}. Log in om deze aan je account te koppelen.',
-  'wallet.helpReadyToLink':
-    'Portemonnee geselecteerd: {address}. Onderteken één keer om houderkenmerk en spelerkaarten te verifiëren.',
-  'wallet.helpReadyToLinkWithBalance':
-    'Portemonnee geselecteerd: {address} met {balance}. Onderteken één keer om houderkenmerk en spelerkaarten te verifiëren.',
-  'wallet.hiddenNotice':
-    'Portemonneerij verborgen. Schakel deze in het spel weer in via Opties > Interface.',
-  'wallet.hide': 'Verbergen',
-  'wallet.hideAria': 'Verberg de portemonneerij op dit scherm',
-  'wallet.hideTitle': 'Verberg de portemonneerij op dit scherm',
-  'wallet.holder': '$WOC-houder',
-  'wallet.holderTierTitle': '{tier} $WOC-houder',
-  'wallet.holderTiers.coinbearer.flavor': 'De eerste munt in de oorlogskist.',
-  'wallet.holderTiers.coinbearer.name': 'Muntdrager',
-  'wallet.holderTiers.coppercrest.flavor': 'Koper opgestapeld, je naam wordt genoemd.',
-  'wallet.holderTiers.coppercrest.name': 'Koperkam',
-  'wallet.holderTiers.ember.flavor': 'De vonk is ontstoken.',
-  'wallet.holderTiers.ember.name': 'Sintel',
-  'wallet.holderTiers.gilded.flavor': 'Verguld en grijnzend.',
-  'wallet.holderTiers.gilded.name': 'Verguld',
-  'wallet.holderTiers.krakencrown.flavor': 'Gekroond door de diepte: 4% van de voorraad.',
-  'wallet.holderTiers.krakencrown.name': 'Krakenkroon',
-  'wallet.holderTiers.leviathan.flavor': 'De markten voelen je bewegen: 1% van de voorraad.',
-  'wallet.holderTiers.leviathan.name': 'Leviathan',
-  'wallet.holderTiers.realmshaper.flavor': 'Jij hervormt het rijk: 8% van de voorraad.',
-  'wallet.holderTiers.realmshaper.name': 'Rijkvormer',
-  'wallet.holderTiers.silverbound.flavor': 'Gebonden in zilver, de buidel opbouwend.',
-  'wallet.holderTiers.silverbound.name': 'Zilvergebonden',
-  'wallet.holderTiers.sovereign.flavor': 'Het rijk buigt de knie: de gehele voorraad.',
-  'wallet.holderTiers.sovereign.name': 'Soeverein',
-  'wallet.holderTiers.starhoard.flavor': 'Een schat die sterrenlicht buigt: 6% van de voorraad.',
-  'wallet.holderTiers.starhoard.name': 'Sterrenschat',
-  'wallet.holderTiers.stormcaller.flavor':
-    'Stormen verzamelen zich bij je naam: 3% van de voorraad.',
-  'wallet.holderTiers.stormcaller.name': 'Stormroeper',
-  'wallet.holderTiers.tidelord.flavor': 'Het tij geeft gehoor aan je roep: 2% van de voorraad.',
-  'wallet.holderTiers.tidelord.name': 'Getijdenheer',
-  'wallet.holderTiers.titanforged.flavor': 'Gesmeed onder titanen: 5% van de voorraad.',
-  'wallet.holderTiers.titanforged.name': 'Titaangesmeed',
-  'wallet.holderTiers.vaultwarden.flavor': 'Bewaakt nu een echte kluis: 0,01% van alle $WOC.',
-  'wallet.holderTiers.vaultwarden.name': 'Kluiswachter',
-  'wallet.holderTiers.voidwarden.flavor': 'Hoeder aan de rand van de leegte: 7% van de voorraad.',
-  'wallet.holderTiers.voidwarden.name': 'Leegtewachter',
-  'wallet.holderTiers.whale.flavor': 'De diepte splijt wanneer je zwemt: 0,1% van de voorraad.',
-  'wallet.holderTiers.whale.name': 'Walvis',
-  'wallet.holderTiers.worldbearer.flavor': 'Je draagt een stuk van de wereld: 10% van de voorraad.',
-  'wallet.holderTiers.worldbearer.name': 'Werelddrager',
-  'wallet.holderTiers.worldforger.flavor': 'Een eigen wereld smedend: 9% van de voorraad.',
-  'wallet.holderTiers.worldforger.name': 'Wereldsmid',
-  'wallet.label': '$WOC-portemonnee',
-  'wallet.linkFailed': 'Portemonneeverificatie mislukt.',
-  'wallet.linkTitle': 'Klik om te ondertekenen en deze portemonnee aan je account te koppelen.',
-  'wallet.linkedDisconnectedAria':
-    'De portemonnee blijft geverifieerd voor je account. Verbind opnieuw om de portemonnee-app te beheren.',
-  'wallet.linkedDisconnectedTitle':
-    'De portemonnee blijft geverifieerd voor je account. Verbind opnieuw om de portemonnee-app te beheren.',
-  'wallet.linkedTitle':
-    'Portemonnee geverifieerd voor je account. Klik om de portemonnee-app te beheren.',
-  'wallet.signOut': 'Verbinding verbreken',
-  'wallet.signOutAria': 'Verbreek de verbinding met de portemonnee-app in deze browser',
-  'wallet.signOutTitle': 'Verbreek de verbinding met de portemonnee-app in deze browser',
-  'wallet.switch': 'Wisselen',
-  'wallet.switchAria': 'Verifieer een andere portemonnee',
-  'wallet.switchTitle': 'Verifieer een andere portemonnee',
-  'wallet.unlink': 'Ontkoppelen',
-  'wallet.unlinkAria': 'Verwijder portemonneeverificatie van dit account',
-  'wallet.unlinkFailed': 'Kon portemonnee niet ontkoppelen.',
-  'wallet.unlinkTitle': 'Verwijder portemonneeverificatie van dit account',
-  'wallet.verify': 'Portemonnee verifiëren',
-  'wallet.verifyAddressAria': 'Onderteken om portemonnee {address} voor je account te verifiëren',
-  'wallet.verifyAria': 'Kies een portemonnee en onderteken één keer om eigendom te verifiëren',
-  'wallet.verifyFailed': 'Portemonneeverificatie mislukt.',
-  'wallet.verifyNew': 'Nieuwe portemonnee verifiëren',
-  'wallet.verifyTitle': 'Kies een portemonnee en onderteken één keer om eigendom te verifiëren.',
-  'wallet.verifying': 'Verifiëren...',
-  'wallet.verifyingTitle': 'Portemonneeverificatie is bezig.',
   'wiki.cta': 'Blader door de Wiki',
   'wiki.desc': 'Ontdek de geheimen van het rijk, klassengidsen en strategieën.',
   'wiki.title': 'Spelwiki en -gids',
@@ -8074,18 +7887,11 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.noLeaders': 'Nog geen punten.',
   'hudChrome.dailyRewards.prize': 'Prijzenpot',
   'hudChrome.dailyRewards.reason.eligible': 'Beloningen ontgrendeld.',
-  'hudChrome.dailyRewards.reason.no_wallet':
-    'Verbind een portemonnee met minstens $20 USD aan WOC.',
-  'hudChrome.dailyRewards.reason.price_unavailable':
-    'WOC-prijs is niet beschikbaar, beloningen zijn tijdelijk vergrendeld.',
-  'hudChrome.dailyRewards.reason.under_minimum':
-    'Portemonnee ligt onder het WOC-minimum van $20 USD.',
   'hudChrome.dailyRewards.remainingHoursMinutes': '{hours} u {minutes} min',
   'hudChrome.dailyRewards.remainingLessThanMinute': '<1 min',
   'hudChrome.dailyRewards.remainingMinutes': '{minutes} min',
   'hudChrome.dailyRewards.reset': 'Reset',
   'hudChrome.dailyRewards.score': 'Score',
-  'hudChrome.dailyRewards.sol': '{amount} SOL',
   'hudChrome.dailyRewards.spinButton': 'Draaien',
   'hudChrome.dailyRewards.spinClaimed': 'Geclaimd: +{points} punten.',
   'hudChrome.dailyRewards.spinClose': 'Dagelijkse draai sluiten',
@@ -8101,16 +7907,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
     'Dagelijkse beloningen zijn momenteel uitgeschakeld. We kondigen updates voor deze functie aan in het Discord-kanaal.',
   'hudChrome.dailyRewards.unknown': 'Onbekend',
   'hudChrome.dailyRewards.usd': '{amount} USD',
-  'hudChrome.dailyRewards.walletConnectBody':
-    'Verifieer een Solana-portemonnee met WOC om dagelijkse beloningen te ontgrendelen.',
-  'hudChrome.dailyRewards.walletConnectButton': 'Portemonnee verifiëren',
-  'hudChrome.dailyRewards.walletConnectTitle': 'Portemonnee verifiëren',
-  'hudChrome.dailyRewards.walletHoldBody':
-    'Houd minstens {amount} USD aan WOC om dagelijkse beloningen te ontgrendelen.',
-  'hudChrome.dailyRewards.walletHoldTitle': 'WOC aanhouden',
-  'hudChrome.dailyRewards.walletPriceBody':
-    'WOC-prijzen zijn momenteel niet beschikbaar. Kom binnenkort terug.',
-  'hudChrome.dailyRewards.walletValue': 'Portemonneewaarde (WOC)',
   'hudChrome.nativeUpdate.body':
     'Er is een nieuwe versie van World of ClaudeCraft beschikbaar. Werk nu bij voor de nieuwste oplossingen en verbeteringen.',
   'hudChrome.nativeUpdate.bodyWithVersion':
@@ -8356,7 +8152,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'guide.economy.bankTitle': 'De bank',
   'hudChrome.bank.bonusAdvertDiscord': 'Koppel je Discord om 2 vakken te verdienen.',
   'hudChrome.bank.bonusAdvertEmail': 'Verifieer je e-mailadres om 2 vakken te verdienen.',
-  'hudChrome.bank.bonusAdvertWallet': 'Koppel een portemonnee om 2 vakken te verdienen.',
   'hudChrome.bank.bonusEarned': '+{count}',
   'hudChrome.bank.bonusReferralExplainer':
     'Nodig een vriend uit: wanneer die niveau 10 bereikt, verdienen jullie allebei 2 vakken, tot 5 vrienden.',
@@ -8365,7 +8160,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.bank.bonusSourceDiscord': 'Discord gekoppeld',
   'hudChrome.bank.bonusSourceEmail': 'E-mailadres geverifieerd',
   'hudChrome.bank.bonusSourceReferral': 'Aangebrachte vrienden',
-  'hudChrome.bank.bonusSourceWallet': 'Portemonnee gekoppeld',
   'hudChrome.bank.bonusStatusEarned': '+{count}',
   'hudChrome.bank.bonusTitle': 'Bonusvakken',
   'hudChrome.bank.buyConfirm': '{count} extra bankvakken kopen voor {price}?',
@@ -9508,18 +9302,12 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.claudium.checkoutClose': 'Betaalvenster sluiten',
   'hudChrome.claudium.checkoutFailed': 'Afrekenen kon niet worden geladen. Probeer het opnieuw.',
   'hudChrome.claudium.checkoutLoading': 'Afrekenen laden...',
-  'hudChrome.claudium.checkoutNotSettled':
-    'De transactie is verzonden, maar Claudium is nog niet gecrediteerd. Probeer het binnenkort opnieuw.',
   'hudChrome.claudium.checkoutPending':
     'Transactie in behandeling. Bevestig deze in je wallet en houd dit paneel open.',
   'hudChrome.claudium.checkoutPendingButton': 'Bezig',
   'hudChrome.claudium.checkoutTitle': 'Aankoop voltooien',
   'hudChrome.claudium.checkoutUnavailable':
     'Die aankoop van Claudium is momenteel niet beschikbaar.',
-  'hudChrome.claudium.checkoutWalletRequired':
-    'Koppel een Solana-wallet voordat je Claudium met cryptovaluta koopt.',
-  'hudChrome.claudium.checkoutWalletUnsupported':
-    'Deze wallet kan geen Solana-transacties ondertekenen en verzenden.',
   'hudChrome.claudium.close': 'Claudium sluiten',
   'hudChrome.claudium.disclosure':
     'Claudium is een virtuele valuta die maar één kant op gaat: koop het met geld en besteed het aan cosmetica. Het kan niet worden ingewisseld, overgedragen of uitbetaald.',
@@ -9530,15 +9318,9 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.claudium.loading': 'Claudium laden...',
   'hudChrome.claudium.open': 'Claudium openen',
   'hudChrome.claudium.railLabel': 'Betaalmethode',
-  'hudChrome.claudium.railNativeUnavailable': 'SOL/WOC staat uit.',
-  'hudChrome.claudium.railSol': 'SOL',
   'hudChrome.claudium.railStripe': 'Kaart',
-  'hudChrome.claudium.railWoc': 'WOC',
-  'hudChrome.claudium.railWocDiscount': '{percent}% korting',
-  'hudChrome.claudium.railWocUnavailable': 'WOC-prijzen zijn momenteel niet beschikbaar.',
   'hudChrome.claudium.showAmounts': 'Toon alle Claudium-bedragen',
   'hudChrome.claudium.skuRow': '{usd} voor {claudium} Claudium',
-  'hudChrome.claudium.solBalance': 'SOL: {amount}',
   'hudChrome.claudium.spendButton': 'Besteden',
   'hudChrome.claudium.storeCost': '{amount} Claudium',
   'hudChrome.claudium.storeEmpty': 'Er zijn momenteel geen cosmetica beschikbaar.',
@@ -9546,7 +9328,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.claudium.title': 'Claudium',
   'hudChrome.claudium.unavailable':
     'De Claudium-winkel is momenteel niet beschikbaar. Je saldo en aankopen zijn niet aangetast. Probeer het binnenkort opnieuw.',
-  'hudChrome.claudium.wocBalance': 'WOC: {amount}',
   'hudChrome.deeds.openBookHint': 'Open het Boek der Daden',
   'hudChrome.statInfo.desc.warfare':
     'Verhoogt de schade die aan spelers wordt toegebracht met {increase}% en vermindert de schade die aan spelers wordt toegebracht met {reduction}%.',
@@ -10108,8 +9889,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'entities.items.eastbrook_ritual_vestments.name': 'Rituele gewaden uit Oostbeek',
   'entities.items.eastbrook_warded_leggings.name': 'Beschermde beenstukken uit Oostbeek',
   'entities.items.wardweave_cowl.name': 'Kap van beschermweefsel',
-  'hudChrome.claudium.railUsdc': 'USDC',
-  'hudChrome.claudium.usdcBalance': 'USDC: {amount}',
   'hudChrome.dailyRewards.reason.bannedUntil':
     'Je bent nog {remaining} uitgesloten van dagelijkse beloningen. De toegang wordt hersteld op {until}. Reden: {reason}',
   'hudChrome.dailyRewards.remainingDaysHours': '{days} d {hours} u',

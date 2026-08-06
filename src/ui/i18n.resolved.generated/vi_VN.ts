@@ -409,9 +409,7 @@ export const vi_VN: EnTranslations = {
       "remainingHoursMinutes": "{hours}h {minutes}p",
       "remainingDaysHours": "{days} ngày {hours} giờ",
       "score": "Điểm",
-      "walletValue": "Giá Trị Ví (WOC)",
       "usd": "{amount} USD",
-      "sol": "{amount} SOL",
       "unknown": "Không rõ",
       "spinTitle": "Vòng Quay Hằng Ngày",
       "spinDialogTitle": "Vòng Quay Phần Thưởng Hằng Ngày",
@@ -436,17 +434,8 @@ export const vi_VN: EnTranslations = {
       "history": "Người Thắng Trước Đây",
       "noLeaders": "Chưa có điểm nào.",
       "noHistory": "Chưa có khoản chi trả nào.",
-      "walletConnectTitle": "Xác Minh Ví",
-      "walletConnectBody": "Xác minh một ví Solana có WOC để mở khóa phần thưởng hằng ngày.",
-      "walletConnectButton": "Xác Minh Ví",
-      "walletHoldTitle": "Giữ WOC",
-      "walletHoldBody": "Giữ ít nhất {amount} USD WOC để mở khóa phần thưởng hằng ngày.",
-      "walletPriceBody": "Hiện chưa có giá WOC. Vui lòng quay lại sau ít phút.",
       "reason": {
         "eligible": "Đã mở khóa phần thưởng.",
-        "no_wallet": "Kết nối một ví có ít nhất 20 USD WOC.",
-        "under_minimum": "Ví thấp hơn mức tối thiểu 20 USD WOC.",
-        "price_unavailable": "Giá WOC hiện không có sẵn, phần thưởng tạm thời bị khóa.",
         "banned": "Bạn đã bị cấm tham gia Phần Thưởng Hằng Ngày. Lý do: {reason}",
         "bannedUntil": "Bạn bị cấm nhận Phần Thưởng Hằng Ngày thêm {remaining}. Quyền truy cập trở lại vào {until}. Lý do: {reason}"
       }
@@ -472,18 +461,6 @@ export const vi_VN: EnTranslations = {
       "armoryEyebrow": "Mùa 1",
       "armoryTitle": "Kho Vũ Khí",
       "armoryBody": "Ngoại hình vũ khí giới hạn từ Kho Vũ Khí Mùa 1. Dùng chung toàn tài khoản, hoàn toàn mang tính thẩm mỹ và hiển thị với mọi người xung quanh bạn.",
-      "wallet": {
-        "title": "Ví Solana",
-        "unlinked": "Hãy kết nối một ứng dụng ví, rồi ký một lần để liên kết địa chỉ công khai của nó với tài khoản WoC của bạn. Chúng tôi không bao giờ nhận cụm từ khôi phục hoặc khóa riêng tư của bạn.",
-        "connectedUnlinked": "Ứng dụng ví đã kết nối với trình duyệt này, nhưng địa chỉ công khai của nó chưa được liên kết với tài khoản WoC của bạn.",
-        "linkedDisconnected": "Địa chỉ công khai của bạn đã được liên kết. Hãy kết nối lại ứng dụng ví đó khi bạn muốn thanh toán bằng SOL hoặc WOC.",
-        "linkedConnected": "Ứng dụng ví đã liên kết của bạn đã kết nối và sẵn sàng cho các giao dịch mua bằng SOL hoặc WOC.",
-        "mismatched": "Một ví khác đang kết nối. Hãy xác minh nó để thay thế địa chỉ đã liên kết, hoặc kết nối lại ví đã liên kết.",
-        "connect": "Kết nối ví",
-        "verify": "Xác minh và liên kết",
-        "reconnect": "Kết nối lại ví",
-        "manage": "Quản lý ví"
-      },
       "collectionLine": "Bộ sưu tập {collection}",
       "collections": {
         "guildmark": "Nhãn hiệu bang hội",
@@ -685,20 +662,11 @@ export const vi_VN: EnTranslations = {
       "loading": "Đang tải Claudium...",
       "balanceLabel": "Số dư",
       "balanceUnit": "{amount} Claudium",
-      "solBalance": "SOL: {amount}",
-      "usdcBalance": "USDC: {amount}",
-      "wocBalance": "WOC: {amount}",
       "unavailable": "Cửa hàng Claudium hiện không có sẵn. Số dư và giao dịch mua hàng của bạn không bị ảnh hưởng; vui lòng kiểm tra lại trong thời gian ngắn.",
       "disclosure": "Claudium là loại tiền mềm một chiều: mua bằng tiền và tiêu vào mỹ phẩm. Nó không thể được đổi, chuyển nhượng hoặc rút tiền mặt.",
       "buyTitle": "Mua Claudium",
       "railLabel": "Phương thức thanh toán",
       "railStripe": "Thẻ",
-      "railSol": "SOL",
-      "railUsdc": "USDC",
-      "railWoc": "WOC",
-      "railWocDiscount": "Giảm {percent}%",
-      "railWocUnavailable": "Giá WOC hiện không có sẵn.",
-      "railNativeUnavailable": "SOL/WOC hiện không khả dụng.",
       "amountLabel": "Số lượng",
       "showAmounts": "Hiển thị tất cả số lượng Claudium",
       "hideAmounts": "Ẩn số lượng Claudium bổ sung",
@@ -718,10 +686,7 @@ export const vi_VN: EnTranslations = {
       "checkoutPending": "Giao dịch đang được tiến hành. Xác nhận trong ví của bạn và giữ bảng này mở.",
       "checkoutPendingButton": "Xử lý",
       "checkoutFailed": "Không thể tải thanh toán. Vui lòng thử lại.",
-      "checkoutUnavailable": "Việc mua Claudium đó hiện không khả dụng.",
-      "checkoutWalletRequired": "Kết nối ví Solana trước khi mua Claudium bằng tiền điện tử.",
-      "checkoutWalletUnsupported": "Ví này không thể ký và gửi giao dịch Solana.",
-      "checkoutNotSettled": "Giao dịch đã được gửi nhưng Claudium vẫn chưa được ghi có. Vui lòng thử lại trong thời gian ngắn."
+      "checkoutUnavailable": "Việc mua Claudium đó hiện không khả dụng."
     },
     "theme": {
       "preset": "Giao Diện UI",
@@ -1196,8 +1161,6 @@ export const vi_VN: EnTranslations = {
       "clickFeedback": "Dấu Nhấp Chuột",
       "lockCursorOnRotate": "Khóa Con Trỏ Khi Xoay",
       "keybindHelpLockCursorOnRotate": "Giữ con trỏ chuột bên trong cửa sổ khi bạn kéo để xoay camera, để nó không thể chạm tới mép màn hình hoặc di chuyển sang màn hình khác. Hãy tắt nếu bạn thích con trỏ tự do.",
-      "showWalletOnCharacterScreen": "Hiện Ví Tiền Ở Màn Hình Nhân Vật",
-      "showWalletOnPlayerCard": "Hiện Ví Tiền Trên Thẻ Người Chơi",
       "showDevBadges": "Hiện Huy Hiệu Nhà Phát Triển",
       "showOwnNameplate": "Hiện Bảng Tên Của Tôi",
       "showPlayerNameplates": "Hiện Bảng Tên Người Chơi",
@@ -1373,9 +1336,7 @@ export const vi_VN: EnTranslations = {
         "aetherRush": "Dòng Ê-te"
       }
     },
-    "playerCard": {
-      "showWalletBadge": "Hiện huy hiệu ví tiền"
-    },
+    "playerCard": {},
     "landing": {
       "highContrast": "Tương Phản Cao",
       "highContrastAria": "Bật/tắt nền tương phản cao: tắt đoạn phim nền chuyển động để chữ trên màn hình bắt đầu vẫn dễ đọc",
@@ -1564,7 +1525,6 @@ export const vi_VN: EnTranslations = {
       "loggedOutPrompt": "Đăng nhập để quản lý tài khoản của bạn.",
       "memberSince": "Thành viên từ {date}",
       "sectionSettings": "Cài Đặt Tài Khoản",
-      "sectionWallet": "Ví $WOC",
       "sectionCharacters": "Nhân Vật",
       "sectionDanger": "Vùng Nguy Hiểm",
       "changePassword": "Đổi Mật Khẩu",
@@ -1591,8 +1551,6 @@ export const vi_VN: EnTranslations = {
       "charactersSummary": "Quản lý các nhân vật của bạn và bước vào thế giới.",
       "charactersCount": "Nhân vật: {count}",
       "goToCharacters": "Xem Nhân Vật",
-      "walletSummary": "Xác minh một ví Solana để hiển thị huy hiệu chủ sở hữu trên thẻ người chơi của bạn.",
-      "manageWallet": "Quản Lý Ví",
       "deactivate": "Vô Hiệu Hóa Tài Khoản",
       "deactivateWarning": "Vô hiệu hóa sẽ khóa tài khoản của bạn và đăng xuất bạn ở mọi nơi. Liên hệ quản trị viên để khôi phục. Xác nhận bằng cách nhập lại tên đăng nhập và mật khẩu của bạn.",
       "confirmUsername": "Nhập tên đăng nhập của bạn để xác nhận",
@@ -2293,11 +2251,9 @@ export const vi_VN: EnTranslations = {
       "bonusStatusEarned": "+{count}",
       "bonusSourceEmail": "Email đã xác minh",
       "bonusSourceDiscord": "Đã liên kết Discord",
-      "bonusSourceWallet": "Đã liên kết ví",
       "bonusSourceReferral": "Bạn bè được giới thiệu",
       "bonusAdvertEmail": "Xác minh email của bạn để nhận 2 ô.",
       "bonusAdvertDiscord": "Liên kết Discord của bạn để nhận 2 ô.",
-      "bonusAdvertWallet": "Liên kết một ví để nhận 2 ô.",
       "bonusReferralProgress": "{count}/{cap}",
       "bonusReferralExplainer": "Mời một người bạn: khi họ đạt cấp 10, cả bạn lẫn họ mỗi người nhận 2 ô, tối đa 5 người bạn.",
       "bonusSectionAria": "Ô ngân hàng thưởng và cách kiếm thêm",
@@ -3147,21 +3103,8 @@ export const vi_VN: EnTranslations = {
       "account_taken": "Tài khoản Epic đó đã được liên kết với một tài khoản khác.",
       "upstream": "Epic không phản hồi. Hãy thử lại sau giây lát."
     },
-    "wallet": {
-      "handoff_invalid": "Quyền ủy quyền ví đó đã hết hạn hoặc không thể xác minh. Hãy thử lại."
-    },
     "ota_updates": {
       "invalid_input": "Dữ liệu nhập không hợp lệ."
-    },
-    "seeker": {
-      "native_only": "Quyền lợi Seeker chỉ khả dụng trong ứng dụng gốc.",
-      "attestation_failed": "Xác minh thiết bị thất bại. Vui lòng thử lại.",
-      "solana_artifact_required": "Hãy dùng ứng dụng Solana Store để tiếp tục.",
-      "wallet_required": "Hãy liên kết và xác minh một ví trước.",
-      "genesis_token_required": "Cần có một Seeker Genesis Token đã được xác minh.",
-      "genesis_token_claimed": "Seeker Genesis Token đó đã được nhận rồi.",
-      "entitlement_required": "Cần có quyền lợi Seeker đã được xác minh.",
-      "current_ownership_required": "Bạn phải đang sở hữu Seeker Genesis Token."
     }
   },
   "guide": {
@@ -5133,10 +5076,7 @@ export const vi_VN: EnTranslations = {
     "playAria": "Chơi World of ClaudeCraft",
     "serverLabel": "Chọn thế giới của bạn",
     "serverAria": "Chọn thế giới: Trực Tuyến hoặc Ngoại Tuyến",
-    "serverOfflineSub": "Thế giới cục bộ tức thì",
-    "caLabel": "Địa Chỉ Hợp Đồng $WOC",
-    "caCopyAria": "Sao chép địa chỉ hợp đồng",
-    "caNote": "WOC là token cộng đồng của chúng tôi. Không cần nó để chơi. Hãy tham gia Discord để thảo luận về tiện ích và vòng xoáy tăng trưởng của WOC."
+    "serverOfflineSub": "Thế giới cục bộ tức thì"
   },
   "auth": {
     "enterRealm": "Vào Thế Giới",
@@ -5184,171 +5124,6 @@ export const vi_VN: EnTranslations = {
       "failed": "Không thể lưu email của bạn. Vui lòng thử lại."
     }
   },
-  "wallet": {
-    "label": "Ví $WOC",
-    "connect": "Xác minh ví",
-    "connectTitle": "Xác minh ví Solana của bạn",
-    "connectAria": "Xác minh ví Solana của bạn",
-    "verify": "Xác minh ví",
-    "verifyNew": "Xác minh ví mới",
-    "verifyTitle": "Chọn một ví và ký một lần để xác minh quyền sở hữu.",
-    "verifyAria": "Chọn một ví và ký một lần để xác minh quyền sở hữu",
-    "verifyAddressAria": "Ký để xác minh ví {address} cho tài khoản của bạn",
-    "appConnected": "Ứng dụng đã kết nối",
-    "connectApp": "Kết nối ứng dụng",
-    "connectAppTitle": "Kết nối ứng dụng ví trên trình duyệt này",
-    "connectAppAria": "Kết nối ứng dụng ví trên trình duyệt này",
-    "verifying": "Đang xác minh...",
-    "verifyingTitle": "Quá trình xác minh ví đang diễn ra.",
-    "switch": "Đổi ví",
-    "switchTitle": "Xác minh một ví khác",
-    "switchAria": "Xác minh một ví khác",
-    "unlink": "Hủy liên kết",
-    "unlinkTitle": "Gỡ xác minh ví khỏi tài khoản này",
-    "unlinkAria": "Gỡ xác minh ví khỏi tài khoản này",
-    "signOut": "Ngắt kết nối",
-    "signOutTitle": "Ngắt kết nối ứng dụng ví trên trình duyệt này",
-    "signOutAria": "Ngắt kết nối ứng dụng ví trên trình duyệt này",
-    "hide": "Ẩn",
-    "hideTitle": "Ẩn hàng ví trên màn hình này",
-    "hideAria": "Ẩn hàng ví trên màn hình này",
-    "hiddenNotice": "Đã ẩn hàng ví. Bật lại trong trò chơi từ Tùy Chọn > Giao Diện.",
-    "linkedTitle": "Ví đã được xác minh cho tài khoản của bạn. Nhấn để quản lý ứng dụng ví.",
-    "linkedDisconnectedTitle": "Ví vẫn được xác minh cho tài khoản của bạn. Kết nối lại để quản lý ứng dụng ví.",
-    "linkedDisconnectedAria": "Ví vẫn được xác minh cho tài khoản của bạn. Kết nối lại để quản lý ứng dụng ví.",
-    "linkTitle": "Nhấn để ký và liên kết ví này với tài khoản của bạn.",
-    "connectedTitle": "Đã kết nối. Đăng nhập để liên kết ví này với tài khoản của bạn.",
-    "balanceTitle": "Số dư $WOC của ví Solana đã xác minh",
-    "balanceAria": "Số dư ví Solana đã xác minh: {balance}",
-    "balancePreviewTitle": "Xem trước số dư $WOC của ví đã kết nối",
-    "balancePreviewAria": "Xem trước số dư ví đã kết nối: {balance}. Liên kết ví để xác minh huy hiệu chủ sở hữu.",
-    "balanceAmount": "{amount} $WOC",
-    "bagConnect": "Liên kết ví",
-    "bagLink": "Xác minh ví",
-    "bagReconnect": "Kết nối lại ví",
-    "connected": "Đã kết nối: {address}",
-    "connectedWithBalance": "Đã kết nối: {balance} - {address}",
-    "connectedLinked": "Đã xác minh: {address}",
-    "connectedLinkedWithBalance": "Đã xác minh: {balance} - {address}",
-    "helpDisconnected": "Xác minh một ví Solana để bật huy hiệu chủ sở hữu và phù hiệu trên thẻ người chơi. Không cần giao dịch hay SOL.",
-    "helpLoginToLink": "Đã kết nối {address}. Đăng nhập để liên kết nó với tài khoản của bạn.",
-    "helpLoginToLinkWithBalance": "Đã kết nối {address} với {balance}. Đăng nhập để liên kết nó với tài khoản của bạn.",
-    "helpReadyToLink": "Đã chọn ví: {address}. Ký một lần để xác minh huy hiệu chủ sở hữu và thẻ người chơi.",
-    "helpReadyToLinkWithBalance": "Đã chọn ví: {address} với {balance}. Ký một lần để xác minh huy hiệu chủ sở hữu và thẻ người chơi.",
-    "helpLinked": "Đặc quyền chủ sở hữu đang hoạt động. Ứng dụng ví đã kết nối trên trình duyệt này.",
-    "helpLinkedWithBalance": "Đặc quyền chủ sở hữu đang hoạt động. Ứng dụng ví đã kết nối trên trình duyệt này.",
-    "helpLinkedDisconnected": "Đặc quyền chủ sở hữu đang hoạt động. Kết nối ứng dụng khi bạn cần ký hoặc chi tiêu.",
-    "helpLinkedDisconnectedWithBalance": "Đặc quyền chủ sở hữu đang hoạt động. Kết nối ứng dụng khi bạn cần ký hoặc chi tiêu.",
-    "extensionHelp": "Để thấy ví ở đây, hãy giữ một tiện ích ví trình duyệt như Solflare Wallet đang hoạt động.",
-    "mobileAppHelp": "Hãy chọn Phantom hoặc Solflare. Ứng dụng ví của bạn sẽ yêu cầu phê duyệt. Giữ trò chơi này mở và quay lại khi hoàn thành.",
-    "seekerAppHelp": "Tiếp tục với ví Seed Vault. Hãy xem xét các yêu cầu kết nối và xác minh trong Seed Vault, rồi quay lại trò chơi.",
-    "standaloneAppHelp": "Kết nối ví chưa có sẵn trong ứng dụng Màn hình chính. Hãy mở World of ClaudeCraft trong Safari hoặc Chrome để sử dụng Phantom hoặc Solflare.",
-    "openAppTitle": "Tiếp tục trong {wallet}",
-    "openAppHelp": "Hãy mở {wallet} để xem xét yêu cầu này. Giữ tab trò chơi này mở trong khi ứng dụng ví đang hoạt động.",
-    "openAppButton": "Mở {wallet}",
-    "manualReturnBrowserHelp": "Sau khi phê duyệt, hãy quay lại tab trò chơi này. Nếu iOS mở một trình duyệt khác, hãy đóng nó và quay lại trình duyệt gốc thủ công.",
-    "manualReturnStandaloneHelp": "Sau khi phê duyệt, hãy quay lại World of ClaudeCraft từ Màn hình chính của bạn. Nếu iOS mở một trình duyệt, hãy đóng nó và mở lại ứng dụng Màn hình chính thủ công.",
-    "preparingAppButton": "Đang chuẩn bị {wallet}...",
-    "walletAppUnavailable": "Không thể chuẩn bị {wallet}. Hãy đóng cửa sổ này và thử lại.",
-    "flowConnect": "Chọn một ví. Quá trình xác minh sẽ tiếp tục tự động.",
-    "flowSign": "Ký vào thông điệp xác minh trong ứng dụng ví của bạn. Không cần giao dịch hay SOL.",
-    "flowVerify": "Đang xác minh quyền sở hữu ví...",
-    "linkFailed": "Xác minh ví thất bại.",
-    "verifyFailed": "Xác minh ví thất bại.",
-    "unlinkFailed": "Không thể hủy liên kết ví.",
-    "browser": {
-      "eyebrow": "Ủy quyền ví trên máy tính",
-      "title": "Kết Nối Ví Solana",
-      "linkBody": "Hãy chọn một tiện ích mở rộng ví trong trình duyệt này. Bạn sẽ ký một tin nhắn xác minh, sau đó quay lại ứng dụng máy tính.",
-      "paymentBody": "Hãy chọn ví đã liên kết với tài khoản của bạn và phê duyệt giao dịch trong trình duyệt này.",
-      "extensionHelp": "Không tìm thấy tiện ích mở rộng ví tương thích nào. Hãy cài đặt hoặc mở khóa Phantom, Solflare hoặc ví trình duyệt Solana khác, rồi thử lại.",
-      "safety": "World of ClaudeCraft không bao giờ yêu cầu cụm từ khôi phục hoặc khóa riêng tư của bạn.",
-      "continueWith": "Tiếp tục với {wallet}",
-      "reviewTitle": "Xem xét trong ví của bạn",
-      "reviewBody": "Làm theo hướng dẫn từ {wallet}. Giữ trang trình duyệt này mở.",
-      "completeTitle": "Ủy quyền ví hoàn tất",
-      "completeBody": "Bạn có thể quay lại ứng dụng máy tính World of ClaudeCraft.",
-      "returnButton": "Quay lại ứng dụng máy tính",
-      "failed": "Ủy quyền ví thất bại hoặc đã hết hạn. Hãy quay lại ứng dụng máy tính và thử lại.",
-      "retry": "Thử Lại"
-    },
-    "holder": "Chủ sở hữu $WOC",
-    "holderTierTitle": "Chủ sở hữu $WOC bậc {tier}",
-    "holderTiers": {
-      "ember": {
-        "name": "Tàn Lửa",
-        "flavor": "Tia lửa đã được nhen."
-      },
-      "coinbearer": {
-        "name": "Người Mang Tiền",
-        "flavor": "Đồng xu đầu tiên trong rương chiến."
-      },
-      "coppercrest": {
-        "name": "Mào Đồng",
-        "flavor": "Đồng đã chất, tên người được nhắc."
-      },
-      "silverbound": {
-        "name": "Ràng Bạc",
-        "flavor": "Gắn liền với bạc, gây dựng kho báu."
-      },
-      "gilded": {
-        "name": "Mạ Vàng",
-        "flavor": "Mạ vàng và rạng rỡ."
-      },
-      "vaultwarden": {
-        "name": "Cai Ngục Kho Báu",
-        "flavor": "Giờ canh giữ một kho báu thực sự: 0,01% toàn bộ $WOC."
-      },
-      "whale": {
-        "name": "Cá Voi",
-        "flavor": "Biển sâu rẽ lối khi bạn bơi: 0,1% nguồn cung."
-      },
-      "leviathan": {
-        "name": "Leviathan",
-        "flavor": "Thị trường cảm nhận bước đi của bạn: 1% nguồn cung."
-      },
-      "tidelord": {
-        "name": "Chúa Tể Thủy Triều",
-        "flavor": "Thủy triều đáp lời gọi của bạn: 2% nguồn cung."
-      },
-      "stormcaller": {
-        "name": "Người Gọi Bão",
-        "flavor": "Bão tố tụ về danh xưng của bạn: 3% nguồn cung."
-      },
-      "krakencrown": {
-        "name": "Vương Miện Kraken",
-        "flavor": "Được biển sâu phong vương: 4% nguồn cung."
-      },
-      "titanforged": {
-        "name": "Titan Rèn",
-        "flavor": "Rèn giữa các titan: 5% nguồn cung."
-      },
-      "starhoard": {
-        "name": "Kho Sao",
-        "flavor": "Kho báu bẻ cong ánh sao: 6% nguồn cung."
-      },
-      "voidwarden": {
-        "name": "Cai Ngục Hư Không",
-        "flavor": "Người gác bên rìa hư không: 7% nguồn cung."
-      },
-      "realmshaper": {
-        "name": "Người Tạo Hình Vương Quốc",
-        "flavor": "Bạn nhào nặn lại vương quốc: 8% nguồn cung."
-      },
-      "worldforger": {
-        "name": "Người Rèn Thế Giới",
-        "flavor": "Rèn nên một thế giới của riêng bạn: 9% nguồn cung."
-      },
-      "worldbearer": {
-        "name": "Người Mang Thế Giới",
-        "flavor": "Bạn mang theo một mảnh thế giới: 10% nguồn cung."
-      },
-      "sovereign": {
-        "name": "Quân Vương",
-        "flavor": "Vương quốc quỳ gối: toàn bộ nguồn cung."
-      }
-    }
-  },
   "playerCard": {
     "shareButton": "Chia Sẻ Thẻ Người Chơi",
     "title": "Thẻ Người Chơi",
@@ -5372,7 +5147,6 @@ export const vi_VN: EnTranslations = {
     "footerHandleWithRecruits": "@{handle} - {recruited}",
     "footerCta": "Rèn nên huyền thoại của bạn: {siteUrl}",
     "arenaStat": "Đấu Trường",
-    "shareTierBit": ", người nắm giữ $WOC hạng {tier}",
     "shareText": "Tôi đang rèn nên huyền thoại của mình trong World of ClaudeCraft: {className} cấp {level}{tierBit}. Hãy tham gia thế giới của tôi:",
     "nativeShareTitle": "World of ClaudeCraft",
     "fileNameFallback": "nguoichoi",

@@ -140,10 +140,6 @@ const BANK_BONUS_SOURCE_KEYS: Record<string, { label: TranslationKey; advert: Tr
     label: 'hudChrome.bank.bonusSourceDiscord',
     advert: 'hudChrome.bank.bonusAdvertDiscord',
   },
-  wallet: {
-    label: 'hudChrome.bank.bonusSourceWallet',
-    advert: 'hudChrome.bank.bonusAdvertWallet',
-  },
   referral: {
     label: 'hudChrome.bank.bonusSourceReferral',
     advert: 'hudChrome.bank.bonusReferralExplainer',

@@ -409,9 +409,7 @@ export const ja_JP: EnTranslations = {
       "remainingHoursMinutes": "{hours}時間{minutes}分",
       "remainingDaysHours": "{days}日{hours}時間",
       "score": "スコア",
-      "walletValue": "ウォレット価値 (WOC)",
       "usd": "{amount} USD",
-      "sol": "{amount} SOL",
       "unknown": "不明",
       "spinTitle": "デイリースピン",
       "spinDialogTitle": "デイリー報酬スピン",
@@ -436,17 +434,8 @@ export const ja_JP: EnTranslations = {
       "history": "過去の当選者",
       "noLeaders": "まだポイントがありません。",
       "noHistory": "まだ支払いがありません。",
-      "walletConnectTitle": "ウォレットを認証",
-      "walletConnectBody": "WOCを保有するSolanaウォレットを認証して、デイリー報酬を解放しましょう。",
-      "walletConnectButton": "ウォレットを認証",
-      "walletHoldTitle": "WOCを保有",
-      "walletHoldBody": "デイリー報酬を解放するには、少なくとも {amount} USD 相当のWOCを保有してください。",
-      "walletPriceBody": "現在WOCの価格を取得できません。しばらくしてから再度ご確認ください。",
       "reason": {
         "eligible": "報酬が解放されました。",
-        "no_wallet": "$20 USD 相当以上のWOCを保有するウォレットを接続してください。",
-        "under_minimum": "ウォレットが最低額の $20 USD 相当のWOCを下回っています。",
-        "price_unavailable": "WOCの価格を取得できないため、報酬は一時的にロックされています。",
         "banned": "デイリー報酬への参加が禁止されています。理由: {reason}",
         "bannedUntil": "デイリー報酬への参加はあと{remaining}禁止されています。解除日時: {until}。理由: {reason}"
       }
@@ -472,18 +461,6 @@ export const ja_JP: EnTranslations = {
       "armoryEyebrow": "シーズン1",
       "armoryTitle": "武器庫",
       "armoryBody": "シーズン1武器庫の限定武器スキン。アカウント共有の純粋な装飾で、周囲のプレイヤー全員に表示されます。",
-      "wallet": {
-        "title": "Solanaウォレット",
-        "unlinked": "ウォレットアプリを接続し、一度署名して公開アドレスをWoCアカウントにリンクしてください。リカバリーフレーズや秘密鍵を受け取ることはありません。",
-        "connectedUnlinked": "ウォレットアプリはこのブラウザに接続されていますが、公開アドレスはまだWoCアカウントにリンクされていません。",
-        "linkedDisconnected": "公開アドレスはリンク済みです。SOLまたはWOCで支払うときに、そのウォレットアプリを再接続してください。",
-        "linkedConnected": "リンク済みのウォレットアプリが接続され、SOLまたはWOCで購入できます。",
-        "mismatched": "別のウォレットが接続されています。認証してリンク済みアドレスを置き換えるか、リンク済みウォレットを再接続してください。",
-        "connect": "ウォレットを接続",
-        "verify": "認証してリンク",
-        "reconnect": "ウォレットを再接続",
-        "manage": "ウォレットを管理"
-      },
       "collectionLine": "{collection}コレクション",
       "collections": {
         "guildmark": "ギルドマーク",
@@ -685,20 +662,11 @@ export const ja_JP: EnTranslations = {
       "loading": "Claudiumを読み込み中…",
       "balanceLabel": "残高",
       "balanceUnit": "{amount} Claudium",
-      "solBalance": "SOL：{amount}",
-      "usdcBalance": "USDC：{amount}",
-      "wocBalance": "WOC：{amount}",
       "unavailable": "Claudiumストアは現在利用できません。残高と購入内容に影響はありません。しばらくしてからお試しください。",
       "disclosure": "Claudiumは一方向のゲーム内通貨です。現金で購入して外見アイテムに使用でき、換金、譲渡、払い戻しはできません。",
       "buyTitle": "Claudiumを購入",
       "railLabel": "支払い方法",
       "railStripe": "カード",
-      "railSol": "SOL",
-      "railUsdc": "USDC",
-      "railWoc": "WOC",
-      "railWocDiscount": "{percent}%オフ",
-      "railWocUnavailable": "WOC価格は現在利用できません。",
-      "railNativeUnavailable": "SOL/WOCは利用不可",
       "amountLabel": "数量",
       "showAmounts": "すべてのClaudium数量を表示",
       "hideAmounts": "追加のClaudium数量を隠す",
@@ -718,10 +686,7 @@ export const ja_JP: EnTranslations = {
       "checkoutPending": "取引を処理中です。ウォレットで確認し、このパネルを開いたままにしてください。",
       "checkoutPendingButton": "処理中",
       "checkoutFailed": "決済を読み込めませんでした。もう一度お試しください。",
-      "checkoutUnavailable": "そのClaudium購入は現在利用できません。",
-      "checkoutWalletRequired": "暗号資産でClaudiumを購入する前にSolanaウォレットを接続してください。",
-      "checkoutWalletUnsupported": "このウォレットではSolana取引の署名と送信ができません。",
-      "checkoutNotSettled": "取引は送信されましたが、Claudiumはまだ反映されていません。しばらくしてからお試しください。"
+      "checkoutUnavailable": "そのClaudium購入は現在利用できません。"
     },
     "theme": {
       "preset": "UIテーマ",
@@ -1196,8 +1161,6 @@ export const ja_JP: EnTranslations = {
       "clickFeedback": "クリックマーカー",
       "lockCursorOnRotate": "回転中はカーソルを固定",
       "keybindHelpLockCursorOnRotate": "ドラッグでカメラを回転させている間、マウスカーソルをウィンドウ内に固定し、画面の端や別のモニターに移動しないようにします。自由なカーソルを好む場合はオフにしてください。",
-      "showWalletOnCharacterScreen": "キャラクター画面にウォレットを表示",
-      "showWalletOnPlayerCard": "プレイヤーカードにウォレットを表示",
       "showDevBadges": "開発者バッジを表示",
       "showOwnNameplate": "自分のネームプレートを表示",
       "showPlayerNameplates": "プレイヤーのネームプレートを表示",
@@ -1373,9 +1336,7 @@ export const ja_JP: EnTranslations = {
         "aetherRush": "エーテルラッシュ"
       }
     },
-    "playerCard": {
-      "showWalletBadge": "ウォレットバッジを表示"
-    },
+    "playerCard": {},
     "landing": {
       "highContrast": "高コントラスト",
       "highContrastAria": "高コントラスト背景を切り替えます。動画トレーラーを無効にして、スタート画面のテキストを読みやすくします",
@@ -1564,7 +1525,6 @@ export const ja_JP: EnTranslations = {
       "loggedOutPrompt": "アカウントを管理するにはログインしてください。",
       "memberSince": "登録日：{date}",
       "sectionSettings": "アカウント設定",
-      "sectionWallet": "$WOC ウォレット",
       "sectionCharacters": "キャラクター",
       "sectionDanger": "危険な操作",
       "changePassword": "パスワードの変更",
@@ -1591,8 +1551,6 @@ export const ja_JP: EnTranslations = {
       "charactersSummary": "キャラクターを管理してワールドに入りましょう。",
       "charactersCount": "キャラクター：{count}",
       "goToCharacters": "キャラクターを表示",
-      "walletSummary": "Solana ウォレットを認証してプレイヤーカードに保有者バッジを表示します。",
-      "manageWallet": "ウォレットを管理",
       "deactivate": "アカウントを無効化",
       "deactivateWarning": "無効化するとアカウントがロックされ、すべてのデバイスからログアウトされます。復元するには管理者に連絡してください。ユーザー名とパスワードを再入力して確認してください。",
       "confirmUsername": "確認のためユーザー名を入力",
@@ -2293,11 +2251,9 @@ export const ja_JP: EnTranslations = {
       "bonusStatusEarned": "+{count}",
       "bonusSourceEmail": "メール認証済み",
       "bonusSourceDiscord": "Discord連携済み",
-      "bonusSourceWallet": "ウォレット連携済み",
       "bonusSourceReferral": "招待した友達",
       "bonusAdvertEmail": "メールを認証すると2スロット獲得できます。",
       "bonusAdvertDiscord": "Discordを連携すると2スロット獲得できます。",
-      "bonusAdvertWallet": "ウォレットを連携すると2スロット獲得できます。",
       "bonusReferralProgress": "{count}/{cap}",
       "bonusReferralExplainer": "友達を招待しましょう：友達がレベル10に達すると、お互いに2スロット獲得できます。友達は最大5人までです。",
       "bonusSectionAria": "ボーナス銀行スロットと獲得方法",
@@ -3147,21 +3103,8 @@ export const ja_JP: EnTranslations = {
       "account_taken": "そのEpicアカウントは既に別のアカウントに連携されています。",
       "upstream": "Epicから応答がありません。しばらくしてからもう一度お試しください。"
     },
-    "wallet": {
-      "handoff_invalid": "ウォレット認証の有効期限が切れたか、確認できませんでした。もう一度お試しください。"
-    },
     "ota_updates": {
       "invalid_input": "入力が無効です。"
-    },
-    "seeker": {
-      "native_only": "Seeker資格はネイティブアプリでのみ利用できます。",
-      "attestation_failed": "端末の検証に失敗しました。もう一度お試しください。",
-      "solana_artifact_required": "Solana Store版アプリを使用して続行してください。",
-      "wallet_required": "先にウォレットを連携して検証してください。",
-      "genesis_token_required": "検証済みのSeeker Genesis Tokenが必要です。",
-      "genesis_token_claimed": "そのSeeker Genesis Tokenはすでに取得されています。",
-      "entitlement_required": "検証済みのSeeker資格が必要です。",
-      "current_ownership_required": "現在Seeker Genesis Tokenを所有している必要があります。"
     }
   },
   "guide": {
@@ -5133,10 +5076,7 @@ export const ja_JP: EnTranslations = {
     "playAria": "World of ClaudeCraftをプレイ",
     "serverLabel": "ワールドを選択",
     "serverAria": "ワールドを選択：オンラインまたはオフライン",
-    "serverOfflineSub": "即座にローカルの世界へ",
-    "caLabel": "$WOC コントラクトアドレス",
-    "caCopyAria": "コントラクトアドレスをコピー",
-    "caNote": "WOCはコミュニティトークンです。プレイには必要ありません。Discordに参加して、WOCのユーティリティとフライホイールについて語り合いましょう。"
+    "serverOfflineSub": "即座にローカルの世界へ"
   },
   "auth": {
     "enterRealm": "ワールドに入る",
@@ -5184,171 +5124,6 @@ export const ja_JP: EnTranslations = {
       "failed": "メールアドレスを保存できませんでした。もう一度お試しください。"
     }
   },
-  "wallet": {
-    "label": "$WOC ウォレット",
-    "connect": "ウォレット認証",
-    "connectTitle": "Solanaウォレットを認証",
-    "connectAria": "Solanaウォレットを認証",
-    "verify": "ウォレット認証",
-    "verifyNew": "新しいウォレットを認証",
-    "verifyTitle": "ウォレットを選択し、一度署名して所有権を認証します。",
-    "verifyAria": "ウォレットを選択し、一度署名して所有権を認証",
-    "verifyAddressAria": "アカウントのウォレット {address} を認証するために署名",
-    "appConnected": "アプリ接続済み",
-    "connectApp": "アプリを接続",
-    "connectAppTitle": "このブラウザでウォレットアプリを接続",
-    "connectAppAria": "このブラウザでウォレットアプリを接続",
-    "verifying": "認証中...",
-    "verifyingTitle": "ウォレット認証を実行中です。",
-    "switch": "切替",
-    "switchTitle": "別のウォレットを認証",
-    "switchAria": "別のウォレットを認証",
-    "unlink": "連携解除",
-    "unlinkTitle": "このアカウントからウォレット認証を削除",
-    "unlinkAria": "このアカウントからウォレット認証を削除",
-    "signOut": "接続解除",
-    "signOutTitle": "このブラウザでウォレットアプリの接続を解除",
-    "signOutAria": "このブラウザでウォレットアプリの接続を解除",
-    "hide": "非表示",
-    "hideTitle": "この画面でウォレット行を非表示にする",
-    "hideAria": "この画面でウォレット行を非表示にする",
-    "hiddenNotice": "ウォレット行を非表示にしました。ゲーム内のオプション > インターフェイスから再度有効にできます。",
-    "linkedTitle": "ウォレットはアカウントで認証済みです。クリックしてウォレットアプリを管理します。",
-    "linkedDisconnectedTitle": "ウォレットはアカウントで認証されたままです。ウォレットアプリを管理するには再接続してください。",
-    "linkedDisconnectedAria": "ウォレットはアカウントで認証されたままです。ウォレットアプリを管理するには再接続してください。",
-    "linkTitle": "クリックして署名し、このウォレットをアカウントに連携します。",
-    "connectedTitle": "接続済みです。ログインすると、このウォレットをアカウントに連携できます。",
-    "balanceTitle": "認証済みSolanaウォレットの$WOC残高",
-    "balanceAria": "認証済みSolanaウォレット残高: {balance}",
-    "balancePreviewTitle": "接続中ウォレットの$WOC残高プレビュー",
-    "balancePreviewAria": "接続中ウォレット残高プレビュー: {balance}。ウォレットを連携するとホルダー表示を認証できます。",
-    "balanceAmount": "{amount} $WOC",
-    "bagConnect": "ウォレットをリンク",
-    "bagLink": "ウォレットを認証",
-    "bagReconnect": "ウォレットを再接続",
-    "connected": "接続済み: {address}",
-    "connectedWithBalance": "接続済み: {balance} - {address}",
-    "connectedLinked": "認証済み: {address}",
-    "connectedLinkedWithBalance": "認証済み: {balance} - {address}",
-    "helpDisconnected": "Solanaウォレットを認証して、ホルダー表示とプレイヤーカードのバッジを有効にします。トランザクションや SOL は不要です。",
-    "helpLoginToLink": "{address} に接続済みです。ログインするとアカウントに連携できます。",
-    "helpLoginToLinkWithBalance": "{address} に接続済み、残高は {balance} です。ログインするとアカウントに連携できます。",
-    "helpReadyToLink": "選択中のウォレット: {address}。一度署名すると、ホルダー表示とプレイヤーカードを認証できます。",
-    "helpReadyToLinkWithBalance": "選択中のウォレット: {address}、残高は {balance} です。一度署名すると、ホルダー表示とプレイヤーカードを認証できます。",
-    "helpLinked": "ホルダー特典が有効です。このブラウザでウォレットアプリが接続されています。",
-    "helpLinkedWithBalance": "ホルダー特典が有効です。このブラウザでウォレットアプリが接続されています。",
-    "helpLinkedDisconnected": "ホルダー特典が有効です。署名や支払いが必要なときはアプリを接続してください。",
-    "helpLinkedDisconnectedWithBalance": "ホルダー特典が有効です。署名や支払いが必要なときはアプリを接続してください。",
-    "extensionHelp": "ここにウォレットを表示するには、Solflare Wallet などのブラウザ用ウォレット拡張機能を有効にしておいてください。",
-    "mobileAppHelp": "Phantom または Solflare を選択してください。ウォレットアプリで承認を求められます。ゲームを開いたままにし、完了後に戻ってください。",
-    "seekerAppHelp": "Seed Vault Walletで続行します。Seed Vaultで接続と認証のリクエストを確認し、完了したらゲームに戻ってください。",
-    "standaloneAppHelp": "ホーム画面アプリでは、まだウォレットに接続できません。Phantom または Solflare を使用するには、Safari か Chrome で World of ClaudeCraft を開いてください。",
-    "openAppTitle": "{wallet} で続行",
-    "openAppHelp": "{wallet} を開いてこのリクエストを確認してください。ウォレットアプリの使用中も、このゲームタブを開いたままにしてください。",
-    "openAppButton": "{wallet} を開く",
-    "manualReturnBrowserHelp": "承認後、このゲームタブに戻ってください。iOS で別のブラウザが開いた場合は閉じ、元のブラウザに手動で戻ってください。",
-    "manualReturnStandaloneHelp": "承認後、ホーム画面から World of ClaudeCraft に戻ってください。iOS でブラウザが開いた場合は閉じ、ホーム画面のアプリをもう一度開いてください。",
-    "preparingAppButton": "{wallet} を準備中...",
-    "walletAppUnavailable": "{wallet} を準備できませんでした。このウィンドウを閉じて、もう一度お試しください。",
-    "flowConnect": "ウォレットを選択してください。認証は自動的に続行されます。",
-    "flowSign": "ウォレットアプリで認証メッセージに署名してください。トランザクションや SOL は不要です。",
-    "flowVerify": "ウォレット所有権を認証中...",
-    "linkFailed": "ウォレット認証に失敗しました。",
-    "verifyFailed": "ウォレット認証に失敗しました。",
-    "unlinkFailed": "ウォレット連携を解除できませんでした。",
-    "browser": {
-      "eyebrow": "デスクトップウォレット認証",
-      "title": "Solanaウォレットを接続",
-      "linkBody": "このブラウザでウォレット拡張機能を選択してください。確認メッセージに署名した後、デスクトップアプリに戻ります。",
-      "paymentBody": "アカウントにリンクされたウォレットを選択し、このブラウザで取引を承認してください。",
-      "extensionHelp": "対応するウォレット拡張機能が見つかりません。Phantom、Solflare、または別のSolanaブラウザウォレットをインストールまたはロック解除して、再試行してください。",
-      "safety": "World of ClaudeCraftがリカバリーフレーズや秘密鍵を求めることはありません。",
-      "continueWith": "{wallet}で続行",
-      "reviewTitle": "ウォレットで確認",
-      "reviewBody": "{wallet}の指示に従ってください。このブラウザページは開いたままにしてください。",
-      "completeTitle": "ウォレット認証が完了しました",
-      "completeBody": "World of ClaudeCraftデスクトップアプリに戻れます。",
-      "returnButton": "デスクトップアプリに戻る",
-      "failed": "ウォレット認証に失敗したか期限切れです。デスクトップアプリに戻って再試行してください。",
-      "retry": "再試行"
-    },
-    "holder": "$WOCホルダー",
-    "holderTierTitle": "{tier} $WOCホルダー",
-    "holderTiers": {
-      "ember": {
-        "name": "残り火",
-        "flavor": "火花が灯りました。"
-      },
-      "coinbearer": {
-        "name": "コインベアラー",
-        "flavor": "軍資金庫に最初の一枚。"
-      },
-      "coppercrest": {
-        "name": "銅の紋章",
-        "flavor": "銅貨は積み上がり、あなたの名が語られます。"
-      },
-      "silverbound": {
-        "name": "銀の誓約",
-        "flavor": "銀に結ばれ、資産を築いています。"
-      },
-      "gilded": {
-        "name": "黄金",
-        "flavor": "黄金に輝き、笑みを浮かべています。"
-      },
-      "vaultwarden": {
-        "name": "宝物庫の番人",
-        "flavor": "今や本物の金庫を守っています: $WOC 全体の 0.01%。"
-      },
-      "whale": {
-        "name": "クジラ",
-        "flavor": "泳げば深みが割れます: 供給量の 0.1%。"
-      },
-      "leviathan": {
-        "name": "リヴァイアサン",
-        "flavor": "あなたが動けば市場が感じ取ります: 供給量の 1%。"
-      },
-      "tidelord": {
-        "name": "潮の君主",
-        "flavor": "潮があなたの呼び声に応えます: 供給量の 2%。"
-      },
-      "stormcaller": {
-        "name": "嵐呼び",
-        "flavor": "あなたの名に嵐が集います: 供給量の 3%。"
-      },
-      "krakencrown": {
-        "name": "クラーケンの冠",
-        "flavor": "深海に冠を授けられています: 供給量の 4%。"
-      },
-      "titanforged": {
-        "name": "タイタン鍛造",
-        "flavor": "タイタンたちの間で鍛えられました: 供給量の 5%。"
-      },
-      "starhoard": {
-        "name": "星の秘蔵",
-        "flavor": "星光を曲げるほどの宝庫です: 供給量の 6%。"
-      },
-      "voidwarden": {
-        "name": "虚空の番人",
-        "flavor": "虚空の縁を守っています: 供給量の 7%。"
-      },
-      "realmshaper": {
-        "name": "領域形成者",
-        "flavor": "あなたは領域を作り変えます: 供給量の 8%。"
-      },
-      "worldforger": {
-        "name": "世界鍛造者",
-        "flavor": "自分だけの世界を鍛えています: 供給量の 9%。"
-      },
-      "worldbearer": {
-        "name": "世界を担う者",
-        "flavor": "あなたは世界の一片を背負っています: 供給量の 10%。"
-      },
-      "sovereign": {
-        "name": "君主",
-        "flavor": "レルムが膝をつきます: 供給量のすべて。"
-      }
-    }
-  },
   "playerCard": {
     "shareButton": "プレイヤーカードを共有",
     "title": "プレイヤーカード",
@@ -5372,7 +5147,6 @@ export const ja_JP: EnTranslations = {
     "footerHandleWithRecruits": "@{handle} - {recruited}",
     "footerCta": "あなたの伝説を鍛えよう: {siteUrl}",
     "arenaStat": "アリーナ",
-    "shareTierBit": ", {tier}ランクの$WOCホルダー",
     "shareText": "World of ClaudeCraftで伝説を鍛えています: レベル{level} {className}{tierBit}。私のワールドに参加してください:",
     "nativeShareTitle": "ClaudeCraftの世界",
     "fileNameFallback": "プレイヤー",

@@ -200,15 +200,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'apiError.epic.invalid_token':
     'Epic nemohl ověřit tento požadavek na propojení. Zkus to znovu z desktopové aplikace.',
   'apiError.epic.upstream': 'Epic neodpověděl. Zkus to za chvíli znovu.',
-  'apiError.seeker.native_only': 'Oprávnění Seeker je dostupné jen v nativní aplikaci.',
-  'apiError.seeker.attestation_failed': 'Ověření zařízení selhalo. Zkus to prosím znovu.',
-  'apiError.seeker.solana_artifact_required': 'Pro pokračování použij aplikaci Solana Store.',
-  'apiError.seeker.wallet_required': 'Nejdřív propoj a ověř peněženku.',
-  'apiError.seeker.genesis_token_required': 'Je vyžadován ověřený Seeker Genesis Token.',
-  'apiError.seeker.genesis_token_claimed': 'Tento Seeker Genesis Token už byl uplatněn.',
-  'apiError.seeker.entitlement_required': 'Je vyžadováno ověřené oprávnění Seeker.',
-  'apiError.seeker.current_ownership_required':
-    'Je vyžadováno aktuální vlastnictví Seeker Genesis Token.',
   'guide.professions.archetypeSwitchBody':
     'Ani prohlášení není doživotní trest. Pár, který jsi nikdy nedržel, je prostě nový úkol na naladění, zatímco návrat k páru, od kterého jsi odešel, po tobě chce nejdřív nápravu: pět úkolů poprvé a další tři přičtené za každý návrat, který jsi už udělal (převzetí zbrusu nového páru počet nikdy nezvyšuje). Volba zůstává významná, aniž by kdy nadobro zavřela dveře.',
   'guide.professions.whatBody':
@@ -318,8 +309,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
     'Sběratelské nahození začíná na 2,5 sekundy a zkracuje se dvěma způsoby: o 0,4 sekundy za každou úroveň nástroje, který neseš a umíš použít nad vlastní úrovní naleziště, a o 0,15 sekundy, jakmile počitadlo tvé živnosti překročí pásmo 100, s dolní hranicí 1,5 sekundy. Přejdi z nalezišť 1. úrovně na naleziště 3. úrovně a tvůj přebytek zmizí, takže stejný krumpáč se rozmáchne zase pomaleji. Držet přesně požadovanou úroveň nekupuje žádnou rychlost; jen otevírá naleziště.\n\nZisk dovednosti bledne stejně jako u výroby: naleziště šedne, jak tvá dovednost stoupá nad jeho úroveň (naleziště 1. úrovně od dovednosti 75 výše neučí nic), takže odpovědí na pomalé zisky jsou naleziště vyšší úrovně. Ta vyžadují v brašnách nástroj alespoň své úrovně (žádné naleziště se nikdy nezpracovává holýma rukama, 1. úroveň v to počítaje) a pozemní nástroj nad 1. úrovní chce nejdřív i svůj nárok na použití, 40/70/85/100 ve vlastní živnosti pro úrovně 2 až 5. Rybaření se zužuje po svém: plný zisk pod 50 zdatnosti, poloviční pod 100, kapka 0,1 pod 150 a 0,02 pod 200, odpadní úlovky od 100 výše neučí vůbec nic a strop lekci klade i sama voda (vody 1. úrovně přestávají učit na 100, močál na 150), takže zastavené počitadlo může znamenat i to, že jsi vodě odrostl.',
   'guide.profPages.faq.a8':
     'Zčásti. Devět běžných polních receptů (základní zbraň, zbroj, jídlo a lektvary) se vyrábí kdekoli a kdykoli a totéž platí pro tři kombinované recepty přísežných párů. Vše ostatní nad nimi je vázáno na typ stanice: kovárnu, kuchyně, lékárnu, koželužnu, tkalcovský stav nebo nástrojárnu, a abys výrobu dotáhl do konce, musíš být do 20 yardů od stanice.\n\nNa dovednosti 75 v řemesle se specializuješ a spolu se slevou 20 procent na materiál získáš mobilní stanici: postav ji v terénu a stojí 10 minut, obsluhuje recepty daného řemesla, jako bys stál u té pravé. Mobilní stanice slouží jen k výrobě: učení receptů a rušení pouta u zakázek vždy vyžaduje skutečnou stanici ve městě.',
-  'wallet.seekerAppHelp':
-    'Pokračuj s peněženkou Seed Vault. Zkontroluj požadavky na připojení a ověření v Seed Vault, poté se vrať do hry.',
   'questUi.tracker.unknownQuest': 'Neznámý úkol ({id})',
   'questUi.log.repeatableStatus': 'Opakovatelný',
   'questUi.log.cooldownStatus': 'Brzy opět dostupný',
@@ -719,8 +708,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'hud.prompts.resurrectionOffer': '{name} tě chce vrátit k životu. Přijímáš?',
   'questUi.dialog.profIntroHint': 'Viz {name} pro "{quest}".',
   'itemUi.stats.parry': 'Odražení',
-  'apiError.wallet.handoff_invalid':
-    'Toto oprávnění peněženky vypršelo nebo je neověřitelné. Zkus to znovu.',
   'cardDuel.close': 'Zavřít',
   'cardDuel.counts': 'Balíček: {deck} · Odložiště: {discard}',
   'cardDuel.forfeit': 'Vzdát se',
@@ -958,58 +945,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'hudChrome.nameplate.mobLevel': '{level}',
   'hudChrome.specPanel.specUnlockBanner': 'Specializace odemčena!',
   'hudChrome.specPanel.specUnlockHint': 'Stiskni N pro výběr specializace.',
-  'hudChrome.wocStore.wallet.connect': 'Připojit peněženku',
-  'hudChrome.wocStore.wallet.connectedUnlinked':
-    'Aplikace peněženky je připojena k tomuto prohlížeči, ale její veřejná adresa ještě není propojena s tvým účtem WoC.',
-  'hudChrome.wocStore.wallet.linkedConnected':
-    'Tvoje propojená aplikace peněženky je připojena a připravena na nákupy za SOL nebo WOC.',
-  'hudChrome.wocStore.wallet.linkedDisconnected':
-    'Tvoje veřejná adresa je propojena. Znovu připoj tuto aplikaci peněženky, když budeš chtít platit za SOL nebo WOC.',
-  'hudChrome.wocStore.wallet.manage': 'Spravovat peněženku',
-  'hudChrome.wocStore.wallet.mismatched':
-    'Je připojena jiná peněženka. Ověř ji pro nahrazení propojené adresy nebo znovu připoj propojenou peněženku.',
-  'hudChrome.wocStore.wallet.reconnect': 'Znovu připojit peněženku',
-  'hudChrome.wocStore.wallet.title': 'Peněženka Solana',
-  'hudChrome.wocStore.wallet.unlinked':
-    'Připoj aplikaci peněženky a jednou podpiš pro propojení její veřejné adresy s tvým účtem WoC. Nikdy nepřijmeme tvoji obnovovací frázi ani soukromý klíč.',
-  'hudChrome.wocStore.wallet.verify': 'Ověřit a propojit',
-  'wallet.bagConnect': 'Propojit peněženku',
-  'wallet.bagLink': 'Ověřit peněženku',
-  'wallet.bagReconnect': 'Znovu připojit peněženku',
-  'wallet.browser.completeBody': 'Můžeš se vrátit do desktopové aplikace World of ClaudeCraft.',
-  'wallet.browser.completeTitle': 'Autorizace peněženky dokončena',
-  'wallet.browser.continueWith': 'Pokračovat s {wallet}',
-  'wallet.browser.extensionHelp':
-    'Nebyla nalezena žádná kompatibilní rozšíření peněženky. Nainstaluj nebo odemkni Phantom, Solflare nebo jiný Solana prohlížečový wallet a zkus to znovu.',
-  'wallet.browser.eyebrow': 'Desktopová autorizace peněženky',
-  'wallet.browser.failed':
-    'Autorizace peněženky selhala nebo vypršela. Vrať se do desktopové aplikace a zkus to znovu.',
-  'wallet.browser.linkBody':
-    'Zvol rozšíření peněženky v tomto prohlížeči. Podepíšeš ověřovací zprávu a vrátíš se do desktopové aplikace.',
-  'wallet.browser.paymentBody':
-    'Zvol peněženku propojenou s tvým účtem a schval transakci v tomto prohlížeči.',
-  'wallet.browser.retry': 'Zkusit znovu',
-  'wallet.browser.returnButton': 'Vrátit se do desktopové aplikace',
-  'wallet.browser.reviewBody':
-    'Postupuj podle výzvy od {wallet}. Nechej tuto stránku prohlížeče otevřenou.',
-  'wallet.browser.reviewTitle': 'Zkontroluj ve své peněžence',
-  'wallet.browser.safety':
-    'World of ClaudeCraft nikdy nepožaduje tvoji obnovovací frázi ani soukromý klíč.',
-  'wallet.browser.title': 'Připojit peněženku Solana',
-  'wallet.manualReturnBrowserHelp':
-    'Po schválení se vrať na tuto záložku hry. Pokud iOS otevře jiný prohlížeč, zavři ho a ručně se vrať do původního prohlížeče.',
-  'wallet.manualReturnStandaloneHelp':
-    'Po schválení se vrať do World of ClaudeCraft z domovské obrazovky. Pokud iOS otevře prohlížeč, zavři ho a ručně znovu otevři aplikaci z domovské obrazovky.',
-  'wallet.mobileAppHelp':
-    'Zvol Phantom nebo Solflare. Tvoje aplikace peněženky požádá o schválení. Nechej tuto hru otevřenou a po dokončení se do ní vrať.',
-  'wallet.openAppButton': 'Otevřít {wallet}',
-  'wallet.openAppHelp':
-    'Otevři {wallet} pro kontrolu tohoto požadavku. Nechej tuto záložku hry otevřenou, zatímco je aplikace peněženky aktivní.',
-  'wallet.openAppTitle': 'Pokračovat v {wallet}',
-  'wallet.preparingAppButton': 'Připravuji {wallet}...',
-  'wallet.standaloneAppHelp':
-    'Připojení peněženky není zatím v aplikaci z domovské obrazovky dostupné. Otevři World of ClaudeCraft v Safari nebo Chrome pro použití Phantom nebo Solflare.',
-  'wallet.walletAppUnavailable': '{wallet} nelze připravit. Zavři toto okno a zkus to znovu.',
   'entities.abilities.primal_reflexes.description':
     'Tvoje instinkty se zostří a tvá šance na vyhnutí se útoku vzroste o 50 % po dobu 6 sekund.',
   'entities.abilities.primal_reflexes.name': 'Prvotní reflexy',
@@ -1853,10 +1788,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'auth.username': 'Uživatelské jméno',
   'auth.usernameError': 'Zadej uživatelské jméno.',
   'auth.usernamePlaceholder': 'Zadej uživatelské jméno',
-  'mode.caCopyAria': 'Kopírovat adresu kontraktu',
-  'mode.caLabel': 'Adresa kontraktu $WOC',
-  'mode.caNote':
-    'WOC je komunitní token. Ke hraní není potřeba. Připoj se na Discord a diskutuj o využití a ekonomickém modelu WOC.',
   'mode.offlineAria': 'Hrát offline: spustit okamžitou lokální hru pro jednoho hráče',
   'mode.offlineDesc':
     'Okamžitý svět pro jednoho hráče v prohlížeči. Nic se neukládá: ideální pro rychlou bitku nebo testování.',
@@ -2495,116 +2426,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
     'Vyrazí k nepříteli, vygeneruje 9 vzteku a omráčí ho na 1 s. Dosah 8-25 yardů.',
   'entities.abilities.bear_charge.description':
     'Vyrazí k nepříteli, vygeneruje 9 vzteku a omráčí ho na 1 s. Dosah 8-25 yardů. Pouze v medvědí podobě.',
-  'wallet.appConnected': 'Aplikace připojena',
-  'wallet.balanceAmount': '{amount} $WOC',
-  'wallet.balanceAria': 'Ověřený zůstatek peněženky Solana: {balance}',
-  'wallet.balancePreviewAria':
-    'Náhled zůstatku připojené peněženky: {balance}. Pro ověření odznaku držitele peněženku propoj.',
-  'wallet.balancePreviewTitle': 'Náhled zůstatku $WOC v připojené peněžence',
-  'wallet.balanceTitle': 'Ověřený zůstatek $WOC v peněžence Solana',
-  'wallet.connect': 'Ověřit peněženku',
-  'wallet.connectApp': 'Připojit aplikaci',
-  'wallet.connectAppAria': 'Připojit aplikaci peněženky v tomto prohlížeči',
-  'wallet.connectAppTitle': 'Připojit aplikaci peněženky v tomto prohlížeči',
-  'wallet.connectAria': 'Ověřit tvoji peněženku Solana',
-  'wallet.connectTitle': 'Ověřit tvoji peněženku Solana',
-  'wallet.connected': 'Připojeno: {address}',
-  'wallet.connectedLinked': 'Ověřeno: {address}',
-  'wallet.connectedLinkedWithBalance': 'Ověřeno: {balance} - {address}',
-  'wallet.connectedTitle': 'Připojeno. Přihlas se a propoj tuto peněženku se svým účtem.',
-  'wallet.connectedWithBalance': 'Připojeno: {balance} - {address}',
-  'wallet.extensionHelp':
-    'Aby se tu peněženka zobrazila, nech aktivní rozšíření prohlížeče, například Solflare Wallet.',
-  'wallet.flowConnect': 'Vyber peněženku. Ověření bude automaticky pokračovat.',
-  'wallet.flowSign':
-    'Podepiš ověřovací zprávu v aplikaci peněženky. Není potřeba žádná transakce ani SOL.',
-  'wallet.flowVerify': 'Ověřuje se vlastnictví peněženky...',
-  'wallet.helpDisconnected':
-    'Ověř peněženku Solana a zapni odznak držitele a odznaky na kartě hráče. Není potřeba žádná transakce ani SOL.',
-  'wallet.helpLinked':
-    'Výhody držitele jsou aktivní. Aplikace peněženky je v tomto prohlížeči připojena.',
-  'wallet.helpLinkedDisconnected':
-    'Výhody držitele jsou aktivní. Připoj aplikaci, až budeš potřebovat podepisovat nebo utrácet.',
-  'wallet.helpLinkedDisconnectedWithBalance':
-    'Výhody držitele jsou aktivní. Připoj aplikaci, až budeš potřebovat podepisovat nebo utrácet.',
-  'wallet.helpLinkedWithBalance':
-    'Výhody držitele jsou aktivní. Aplikace peněženky je v tomto prohlížeči připojena.',
-  'wallet.helpLoginToLink': 'Připojeno {address}. Přihlas se a propoj ji se svým účtem.',
-  'wallet.helpLoginToLinkWithBalance':
-    'Připojeno {address} se zůstatkem {balance}. Přihlas se a propoj ji se svým účtem.',
-  'wallet.helpReadyToLink':
-    'Vybraná peněženka: {address}. Jednou podepiš a ověř odznak držitele a karty hráče.',
-  'wallet.helpReadyToLinkWithBalance':
-    'Vybraná peněženka: {address} se zůstatkem {balance}. Jednou podepiš a ověř odznak držitele a karty hráče.',
-  'wallet.hiddenNotice':
-    'Řádek peněženky je skrytý. Znovu ho zapneš ve hře přes Možnosti > Rozhraní.',
-  'wallet.hide': 'Skrýt',
-  'wallet.hideAria': 'Skrýt řádek peněženky na této obrazovce',
-  'wallet.hideTitle': 'Skrýt řádek peněženky na této obrazovce',
-  'wallet.holder': 'držitel $WOC',
-  'wallet.holderTierTitle': 'Držitel $WOC: {tier}',
-  'wallet.holderTiers.coinbearer.flavor': 'První mince ve válečné truhle.',
-  'wallet.holderTiers.coinbearer.name': 'Nosič mincí',
-  'wallet.holderTiers.coppercrest.flavor': 'Měďáky se kupí a tvé jméno se šeptá.',
-  'wallet.holderTiers.coppercrest.name': 'Měděný erb',
-  'wallet.holderTiers.ember.flavor': 'Jiskra už hoří.',
-  'wallet.holderTiers.ember.name': 'Žhavý uhlík',
-  'wallet.holderTiers.gilded.flavor': 'Pozlacený a sebejistý.',
-  'wallet.holderTiers.gilded.name': 'Pozlacený',
-  'wallet.holderTiers.krakencrown.flavor': 'Korunován hlubinou: 4 % zásoby.',
-  'wallet.holderTiers.krakencrown.name': 'Koruna krakena',
-  'wallet.holderTiers.leviathan.flavor': 'Trhy cítí každý tvůj pohyb: 1 % zásoby.',
-  'wallet.holderTiers.leviathan.name': 'Leviatan',
-  'wallet.holderTiers.realmshaper.flavor': 'Přetváříš svět: 8 % zásoby.',
-  'wallet.holderTiers.realmshaper.name': 'Tvarovatel světa',
-  'wallet.holderTiers.silverbound.flavor': 'Spoutaný stříbrem, plnící měšec.',
-  'wallet.holderTiers.silverbound.name': 'Stříbrem spoutaný',
-  'wallet.holderTiers.sovereign.flavor': 'Svět kleká na koleno: celá zásoba.',
-  'wallet.holderTiers.sovereign.name': 'Suverén',
-  'wallet.holderTiers.starhoard.flavor': 'Pokladnice, která ohýbá světlo hvězd: 6 % zásoby.',
-  'wallet.holderTiers.starhoard.name': 'Hvězdný poklad',
-  'wallet.holderTiers.stormcaller.flavor': 'Bouře se stahují při tvém jménu: 3 % zásoby.',
-  'wallet.holderTiers.stormcaller.name': 'Volající bouři',
-  'wallet.holderTiers.tidelord.flavor': 'Příliv odpovídá na tvé volání: 2 % zásoby.',
-  'wallet.holderTiers.tidelord.name': 'Pán přílivu',
-  'wallet.holderTiers.titanforged.flavor': 'Kovaný mezi titány: 5 % zásoby.',
-  'wallet.holderTiers.titanforged.name': 'Titánsky kovaný',
-  'wallet.holderTiers.vaultwarden.flavor': 'Teď už střeží skutečný trezor: 0,01 % všech $WOC.',
-  'wallet.holderTiers.vaultwarden.name': 'Strážce trezoru',
-  'wallet.holderTiers.voidwarden.flavor': 'Strážce na okraji prázdnoty: 7 % zásoby.',
-  'wallet.holderTiers.voidwarden.name': 'Strážce prázdnoty',
-  'wallet.holderTiers.whale.flavor': 'Hlubiny se rozestupují, když plaveš: 0,1 % zásoby.',
-  'wallet.holderTiers.whale.name': 'Velryba',
-  'wallet.holderTiers.worldbearer.flavor': 'Neseš kus světa: 10 % zásoby.',
-  'wallet.holderTiers.worldbearer.name': 'Nosič světa',
-  'wallet.holderTiers.worldforger.flavor': 'Kuješ vlastní svět: 9 % zásoby.',
-  'wallet.holderTiers.worldforger.name': 'Kovář světa',
-  'wallet.label': '$WOC peněženka',
-  'wallet.linkFailed': 'Ověření peněženky selhalo.',
-  'wallet.linkTitle': 'Klikni, podepiš a propoj tuto peněženku se svým účtem.',
-  'wallet.linkedDisconnectedAria':
-    'Peněženka zůstává pro tvůj účet ověřená. Znovu se připoj, pokud chceš spravovat aplikaci peněženky.',
-  'wallet.linkedDisconnectedTitle':
-    'Peněženka zůstává pro tvůj účet ověřená. Znovu se připoj, pokud chceš spravovat aplikaci peněženky.',
-  'wallet.linkedTitle': 'Peněženka je ověřená pro tvůj účet. Klikni pro správu aplikace peněženky.',
-  'wallet.signOut': 'Odpojit',
-  'wallet.signOutAria': 'Odpojit aplikaci peněženky v tomto prohlížeči',
-  'wallet.signOutTitle': 'Odpojit aplikaci peněženky v tomto prohlížeči',
-  'wallet.switch': 'Změnit',
-  'wallet.switchAria': 'Ověřit jinou peněženku',
-  'wallet.switchTitle': 'Ověřit jinou peněženku',
-  'wallet.unlink': 'Odpojit od účtu',
-  'wallet.unlinkAria': 'Odebrat ověření peněženky z tohoto účtu',
-  'wallet.unlinkFailed': 'Peněženku se nepodařilo odpojit od účtu.',
-  'wallet.unlinkTitle': 'Odebrat ověření peněženky z tohoto účtu',
-  'wallet.verify': 'Ověřit peněženku',
-  'wallet.verifyAddressAria': 'Podepsat a ověřit peněženku {address} pro tvůj účet',
-  'wallet.verifyAria': 'Vyber peněženku a jednou podepiš pro ověření vlastnictví',
-  'wallet.verifyFailed': 'Ověření peněženky selhalo.',
-  'wallet.verifyNew': 'Ověřit novou peněženku',
-  'wallet.verifyTitle': 'Vyber peněženku a jednou podepiš pro ověření vlastnictví.',
-  'wallet.verifying': 'Ověřuje se...',
-  'wallet.verifyingTitle': 'Ověření peněženky probíhá.',
   'playerCard.actionCopyReferral': 'Kopírovat doporučovací odkaz',
   'playerCard.actionDownload': 'Stáhnout',
   'playerCard.actionShareNative': 'Sdílet...',
@@ -2634,7 +2455,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'playerCard.shareButton': 'Sdílet kartu hráče',
   'playerCard.shareText':
     'Kuji svou legendu ve World of ClaudeCraft: úroveň {level} {className}{tierBit}. Přidej se do mého světa:',
-  'playerCard.shareTierBit': ', držitel $WOC stupně {tier}',
   'playerCard.statusDownloaded': 'Karta stažena.',
   'playerCard.statusGenericError': 'Něco se pokazilo.',
   'playerCard.statusOpenedXWithImage': 'Otevřeno X. Vlož obrázek karty do příspěvku.',
@@ -3871,7 +3691,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'hudChrome.account.logOut': 'Odhlásit se',
   'hudChrome.account.logOutSummary': 'Odhlásit se z tohoto zařízení.',
   'hudChrome.account.loggedOutPrompt': 'Přihlas se, abys mohl(a) spravovat svůj účet.',
-  'hudChrome.account.manageWallet': 'Spravovat peněženku',
   'hudChrome.account.memberSince': 'Členem od {date}',
   'hudChrome.account.newPassword': 'Nové heslo',
   'hudChrome.account.passwordChanged': 'Heslo aktualizováno. Ostatní zařízení byla odhlášena.',
@@ -3881,7 +3700,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'hudChrome.account.sectionDanger': 'Nebezpečná zóna',
   'hudChrome.account.sectionSecurity': 'Zabezpečení',
   'hudChrome.account.sectionSettings': 'Nastavení účtu',
-  'hudChrome.account.sectionWallet': '$WOC peněženka',
   'hudChrome.account.title': 'Účet',
   'hudChrome.account.twoFactorBegin': 'Zahájit nastavení',
   'hudChrome.account.twoFactorBeginHint': 'Pro zahájení nastavení zadej heslo.',
@@ -3912,8 +3730,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'hudChrome.account.twoFactorStatusOn': 'Dvoufaktorové ověření je pro tvůj účet ZAPNUTÉ.',
   'hudChrome.account.twoFactorTitle': 'Dvoufaktorové ověření',
   'hudChrome.account.twoFactorVerifyBtn': 'Ověřit a zapnout',
-  'hudChrome.account.walletSummary':
-    'Ověř peněženku Solana a zobraz odznak držitele na kartě hráče.',
   'hudChrome.abilityScaling.bonus': '(+{value})',
   'hudChrome.bags.itemAriaInstanced': '{item}, množství {count}, kopie s výrobcovou značkou',
   'hudChrome.bags.backpack': 'Batoh',
@@ -4204,17 +4020,12 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.pointsGained': 'Získáno {points} bodů denních odměn.',
   'hudChrome.dailyRewards.prize': 'Prize pool',
   'hudChrome.dailyRewards.reason.eligible': 'Odměny odemčeny.',
-  'hudChrome.dailyRewards.reason.no_wallet': 'Připoj peněženku s alespoň 20 USD ve WOC.',
-  'hudChrome.dailyRewards.reason.price_unavailable':
-    'Cena WOC není dostupná, odměny jsou dočasně uzamčené.',
-  'hudChrome.dailyRewards.reason.under_minimum': 'Peněženka je pod minimem 20 USD ve WOC.',
   'hudChrome.dailyRewards.remainingHoursMinutes': '{hours} h {minutes} min',
   'hudChrome.dailyRewards.remainingLessThanMinute': '<1 min',
   'hudChrome.dailyRewards.remainingMinutes': '{minutes} min',
   'hudChrome.dailyRewards.reset': 'Reset',
   'hudChrome.dailyRewards.score': 'Skóre',
   'hudChrome.dailyRewards.showChestButton': 'Zobrazit truhlu',
-  'hudChrome.dailyRewards.sol': '{amount} SOL',
   'hudChrome.dailyRewards.spinButton': 'Zatočit',
   'hudChrome.dailyRewards.spinClaimed': 'Vyzvednuto: +{points} bodů.',
   'hudChrome.dailyRewards.spinClose': 'Zavřít denní zatočení',
@@ -4232,14 +4043,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.totalPlayers': '{count} hráčů dnes',
   'hudChrome.dailyRewards.unknown': 'Neznámé',
   'hudChrome.dailyRewards.usd': '{amount} USD',
-  'hudChrome.dailyRewards.walletConnectBody': 'Ověř peněženku Solana s WOC a odemkni denní odměny.',
-  'hudChrome.dailyRewards.walletConnectButton': 'Ověřit peněženku',
-  'hudChrome.dailyRewards.walletConnectTitle': 'Ověřit peněženku',
-  'hudChrome.dailyRewards.walletHoldBody':
-    'Drž alespoň {amount} USD ve WOC a odemkni denní odměny.',
-  'hudChrome.dailyRewards.walletHoldTitle': 'Drž WOC',
-  'hudChrome.dailyRewards.walletPriceBody': 'Cena WOC teď není dostupná. Vrať se za chvíli.',
-  'hudChrome.dailyRewards.walletValue': 'Hodnota peněženky (WOC)',
   'hudChrome.mailbox.arrivedBanner': 'Havran přistál: pošta od {name}.',
   'hudChrome.mailbox.arrivedLog': 'Máš novou poštu od {name}.',
   'hudChrome.mailbox.attachmentsBadge': 'Balík přiložen',
@@ -4415,8 +4218,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'hudChrome.options.showOwnNameplate': 'Zobrazit mou jmenovku',
   'hudChrome.options.showPlayerNameplates': 'Zobrazit jmenovky hráčů',
   'hudChrome.options.showSecondaryActionBar': 'Zobrazit sekundární akční lištu',
-  'hudChrome.options.showWalletOnCharacterScreen': 'Zobrazit peněženku na obrazovce postavy',
-  'hudChrome.options.showWalletOnPlayerCard': 'Zobrazit peněženku na kartě hráče',
   'hudChrome.options.startAttackOnAbility': 'Automatický útok při použití schopnosti',
   'hudChrome.options.targetFrameScale': 'Měřítko rámu cíle',
   'hudChrome.options.uiScale': 'Měřítko UI',
@@ -4801,7 +4602,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'hudChrome.loot.takeLootButton': 'Sebrat kořist',
   'hudChrome.loot.takeLootTooltip': 'Sebrat veškerou kořist',
   'hudChrome.loot.unifiedPressHint': 'Stiskni pro sebrání',
-  'hudChrome.playerCard.showWalletBadge': 'Zobrazit odznak peněženky',
   'hudChrome.rest.resting': 'Odpočinek',
   'hudChrome.spectate.banner': 'Sleduješ {name}',
   'hudChrome.talents.defaultBuildName': 'Sestava {n}',
@@ -8153,7 +7953,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'guide.economy.bankTitle': 'Banka',
   'hudChrome.bank.bonusAdvertDiscord': 'Propoj svůj Discord a získej 2 sloty.',
   'hudChrome.bank.bonusAdvertEmail': 'Ověř svůj e-mail a získej 2 sloty.',
-  'hudChrome.bank.bonusAdvertWallet': 'Propoj peněženku a získej 2 sloty.',
   'hudChrome.bank.bonusEarned': '+{count}',
   'hudChrome.bank.bonusReferralExplainer':
     'Pozvi přítele: až dosáhne úrovně 10, získáte oba po 2 slotech, nejvýše za 5 přátel.',
@@ -8162,7 +7961,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'hudChrome.bank.bonusSourceDiscord': 'Propojený Discord',
   'hudChrome.bank.bonusSourceEmail': 'Ověřený e-mail',
   'hudChrome.bank.bonusSourceReferral': 'Pozvaní přátelé',
-  'hudChrome.bank.bonusSourceWallet': 'Propojená peněženka',
   'hudChrome.bank.bonusStatusEarned': '+{count}',
   'hudChrome.bank.bonusTitle': 'Bonusové sloty',
   'hudChrome.bank.buyConfirm': 'Koupit {count} dalších slotů banky za {price}?',
@@ -9512,17 +9310,11 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'hudChrome.claudium.checkoutClose': 'Zavřít platbu',
   'hudChrome.claudium.checkoutFailed': 'Platbu se nepodařilo načíst. Zkus to znovu.',
   'hudChrome.claudium.checkoutLoading': 'Načítání platby…',
-  'hudChrome.claudium.checkoutNotSettled':
-    'Transakce byla odeslána, ale Claudium zatím nebylo připsáno. Zkus to za chvíli znovu.',
   'hudChrome.claudium.checkoutPending':
     'Transakce probíhá. Potvrď ji v peněžence a nech tento panel otevřený.',
   'hudChrome.claudium.checkoutPendingButton': 'Zpracovává se',
   'hudChrome.claudium.checkoutTitle': 'Dokončit nákup',
   'hudChrome.claudium.checkoutUnavailable': 'Tento nákup Claudium nyní není dostupný.',
-  'hudChrome.claudium.checkoutWalletRequired':
-    'Před nákupem Claudium za kryptoměnu připoj peněženku Solana.',
-  'hudChrome.claudium.checkoutWalletUnsupported':
-    'Tato peněženka neumí podepisovat a odesílat transakce Solana.',
   'hudChrome.claudium.close': 'Zavřít Claudium',
   'hudChrome.claudium.disclosure':
     'Claudium je jednosměrná herní měna: kupuje se za peníze a utrácí za kosmetické předměty. Nelze ji směnit zpět, převést ani vyplatit v hotovosti.',
@@ -9533,15 +9325,9 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'hudChrome.claudium.loading': 'Načítání Claudium…',
   'hudChrome.claudium.open': 'Otevřít Claudium',
   'hudChrome.claudium.railLabel': 'Způsob platby',
-  'hudChrome.claudium.railNativeUnavailable': 'SOL/WOC nedostupné',
-  'hudChrome.claudium.railSol': 'SOL',
   'hudChrome.claudium.railStripe': 'Karta',
-  'hudChrome.claudium.railWoc': 'WOC',
-  'hudChrome.claudium.railWocDiscount': 'Sleva {percent} %',
-  'hudChrome.claudium.railWocUnavailable': 'Cena ve WOC nyní není dostupná.',
   'hudChrome.claudium.showAmounts': 'Zobrazit všechny nabídky Claudium',
   'hudChrome.claudium.skuRow': '{claudium} Claudium za {usd}',
-  'hudChrome.claudium.solBalance': 'SOL: {amount}',
   'hudChrome.claudium.spendButton': 'Uplatnit',
   'hudChrome.claudium.storeCost': '{amount} Claudium',
   'hudChrome.claudium.storeEmpty': 'Žádná kosmetika nyní není dostupná.',
@@ -9549,7 +9335,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'hudChrome.claudium.title': 'Claudium',
   'hudChrome.claudium.unavailable':
     'Obchod Claudium nyní není dostupný. Tvůj zůstatek ani nákupy to neovlivní, zkus to za chvíli znovu.',
-  'hudChrome.claudium.wocBalance': 'WOC: {amount}',
   'hudChrome.deeds.openBookHint': 'Otevřít Knihu skutků',
   'hudChrome.statInfo.desc.warfare':
     'Zvýší poškození způsobené hráčům o {increase} % a sníží poškození utrpěné od hráčů o {reduction} %.',
@@ -10011,8 +9796,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.items.eastbrook_ritual_vestments.name': 'Eastbrookská rituální roucha',
   'entities.items.eastbrook_warded_leggings.name': 'Eastbrookské chráněné nohavice',
   'entities.items.wardweave_cowl.name': 'Kápě z ochranné tkaniny',
-  'hudChrome.claudium.railUsdc': 'USDC',
-  'hudChrome.claudium.usdcBalance': 'USDC: {amount}',
   'hudChrome.dailyRewards.reason.bannedUntil':
     'Ještě {remaining} máš zákaz přístupu k denním odměnám. Přístup se vrátí {until}. Důvod: {reason}',
   'hudChrome.dailyRewards.remainingDaysHours': '{days} d {hours} h',

@@ -409,9 +409,7 @@ export const fr_FR: EnTranslations = {
       "remainingHoursMinutes": "{hours}h {minutes}min",
       "remainingDaysHours": "{days} j {hours} h",
       "score": "Score",
-      "walletValue": "Valeur du portefeuille (WOC)",
       "usd": "{amount} USD",
-      "sol": "{amount} SOL",
       "unknown": "Inconnu",
       "spinTitle": "Tour quotidien",
       "spinDialogTitle": "Tour de récompense quotidien",
@@ -436,17 +434,8 @@ export const fr_FR: EnTranslations = {
       "history": "Anciens gagnants",
       "noLeaders": "Aucun point pour l'instant.",
       "noHistory": "Aucun versement pour l'instant.",
-      "walletConnectTitle": "Vérifier le portefeuille",
-      "walletConnectBody": "Vérifiez un portefeuille Solana contenant du WOC pour débloquer les récompenses quotidiennes.",
-      "walletConnectButton": "Vérifier le portefeuille",
-      "walletHoldTitle": "Détenir du WOC",
-      "walletHoldBody": "Détenez au moins {amount} USD en WOC pour débloquer les récompenses quotidiennes.",
-      "walletPriceBody": "Le cours du WOC est indisponible pour le moment. Revenez d'ici peu.",
       "reason": {
         "eligible": "Récompenses débloquées.",
-        "no_wallet": "Connectez un portefeuille contenant au moins 20 USD en WOC.",
-        "under_minimum": "Le portefeuille est en dessous du minimum de 20 USD en WOC.",
-        "price_unavailable": "Le cours du WOC est indisponible, les récompenses sont temporairement verrouillées.",
         "banned": "Vous êtes exclu des Récompenses quotidiennes. Motif : {reason}",
         "bannedUntil": "Vous êtes exclu des Récompenses quotidiennes pour encore {remaining}. L’accès sera rétabli {until}. Motif : {reason}"
       }
@@ -472,18 +461,6 @@ export const fr_FR: EnTranslations = {
       "armoryEyebrow": "Saison 1",
       "armoryTitle": "L’Armurerie",
       "armoryBody": "Des apparences d’armes à durée limitée provenant de l’Armurerie de la saison 1. Elles sont valables pour tout le compte, purement cosmétiques et visibles par tous les joueurs autour de vous.",
-      "wallet": {
-        "title": "Portefeuille Solana",
-        "unlinked": "Connectez une application de portefeuille, puis signez une fois pour lier son adresse publique à votre compte WoC. Nous ne recevons jamais votre phrase de récupération ni votre clé privée.",
-        "connectedUnlinked": "L'application de portefeuille est connectée à ce navigateur, mais son adresse publique n'est pas encore liée à votre compte WoC.",
-        "linkedDisconnected": "Votre adresse publique est liée. Reconnectez cette application de portefeuille quand vous souhaitez payer en SOL ou WOC.",
-        "linkedConnected": "Votre application de portefeuille liée est connectée et prête pour les achats en SOL ou WOC.",
-        "mismatched": "Un portefeuille différent est connecté. Vérifiez-le pour remplacer l'adresse liée, ou reconnectez le portefeuille lié.",
-        "connect": "Connecter un portefeuille",
-        "verify": "Vérifier et lier",
-        "reconnect": "Reconnecter le portefeuille",
-        "manage": "Gérer le portefeuille"
-      },
       "collectionLine": "Collection {collection}",
       "collections": {
         "guildmark": "Marque de guilde",
@@ -685,20 +662,11 @@ export const fr_FR: EnTranslations = {
       "loading": "Chargement du Claudium...",
       "balanceLabel": "Solde",
       "balanceUnit": "{amount} Claudium",
-      "solBalance": "SOL : {amount}",
-      "usdcBalance": "USDC : {amount}",
-      "wocBalance": "WOC : {amount}",
       "unavailable": "La boutique de Claudium est indisponible pour le moment. Votre solde et vos achats ne sont pas affectés. Veuillez revenir dans quelques instants.",
       "disclosure": "Le Claudium est une monnaie virtuelle à sens unique : achetez-en avec de l’argent et dépensez-le en objets cosmétiques. Il ne peut être ni remboursé, ni transféré, ni converti en argent.",
       "buyTitle": "Acheter du Claudium",
       "railLabel": "Mode de paiement",
       "railStripe": "Carte",
-      "railSol": "SOL",
-      "railUsdc": "USDC",
-      "railWoc": "WOC",
-      "railWocDiscount": "{percent} % de réduction",
-      "railWocUnavailable": "Les prix en WOC sont indisponibles pour le moment.",
-      "railNativeUnavailable": "SOL/WOC désactivé.",
       "amountLabel": "Montant",
       "showAmounts": "Afficher tous les montants de Claudium",
       "hideAmounts": "Masquer les montants de Claudium supplémentaires",
@@ -718,10 +686,7 @@ export const fr_FR: EnTranslations = {
       "checkoutPending": "Transaction en cours. Confirmez-la dans votre portefeuille et gardez ce panneau ouvert.",
       "checkoutPendingButton": "Traitement en cours",
       "checkoutFailed": "Impossible de charger le paiement. Veuillez réessayer.",
-      "checkoutUnavailable": "Cet achat de Claudium est indisponible pour le moment.",
-      "checkoutWalletRequired": "Connectez un portefeuille Solana avant d’acheter du Claudium avec des cryptomonnaies.",
-      "checkoutWalletUnsupported": "Ce portefeuille ne peut ni signer ni envoyer de transactions Solana.",
-      "checkoutNotSettled": "La transaction a été envoyée, mais le Claudium n’a pas encore été crédité. Veuillez réessayer dans quelques instants."
+      "checkoutUnavailable": "Cet achat de Claudium est indisponible pour le moment."
     },
     "theme": {
       "preset": "Thème de l'interface",
@@ -1196,8 +1161,6 @@ export const fr_FR: EnTranslations = {
       "clickFeedback": "Repère de clic",
       "lockCursorOnRotate": "Verrouiller le curseur pendant la rotation",
       "keybindHelpLockCursorOnRotate": "Maintient le curseur de la souris dans la fenêtre pendant que vous faites glisser pour faire pivoter la caméra, afin qu'il n'atteigne pas le bord de l'écran et ne passe pas sur un autre moniteur. Désactivez cette option si vous préférez un curseur libre.",
-      "showWalletOnCharacterScreen": "Afficher le portefeuille sur l’écran des personnages",
-      "showWalletOnPlayerCard": "Afficher le portefeuille sur la carte de joueur",
       "showDevBadges": "Afficher les badges de développeur",
       "showOwnNameplate": "Afficher ma plaque de nom",
       "showPlayerNameplates": "Afficher les plaques de noms des joueurs",
@@ -1373,9 +1336,7 @@ export const fr_FR: EnTranslations = {
         "aetherRush": "Ruée d’Aether"
       }
     },
-    "playerCard": {
-      "showWalletBadge": "Afficher l’insigne de portefeuille"
-    },
+    "playerCard": {},
     "landing": {
       "highContrast": "Contraste élevé",
       "highContrastAria": "Basculer l’arrière-plan à contraste élevé : désactive la bande-annonce animée pour que le texte de l’écran de démarrage reste lisible",
@@ -1564,7 +1525,6 @@ export const fr_FR: EnTranslations = {
       "loggedOutPrompt": "Connectez-vous pour gérer votre compte.",
       "memberSince": "Membre depuis {date}",
       "sectionSettings": "Paramètres du compte",
-      "sectionWallet": "Portefeuille $WOC",
       "sectionCharacters": "Personnages",
       "sectionDanger": "Zone de danger",
       "changePassword": "Changer le mot de passe",
@@ -1591,8 +1551,6 @@ export const fr_FR: EnTranslations = {
       "charactersSummary": "Gérez vos personnages et entrez dans le monde.",
       "charactersCount": "Personnages : {count}",
       "goToCharacters": "Voir les personnages",
-      "walletSummary": "Vérifiez un portefeuille Solana pour afficher l'apparat de détenteur sur votre carte de joueur.",
-      "manageWallet": "Gérer le portefeuille",
       "deactivate": "Désactiver le compte",
       "deactivateWarning": "La désactivation verrouille votre compte et vous déconnecte partout. Contactez un admin pour le rétablir. Confirmez en saisissant de nouveau votre nom d'utilisateur et votre mot de passe.",
       "confirmUsername": "Saisissez votre nom d'utilisateur pour confirmer",
@@ -2293,11 +2251,9 @@ export const fr_FR: EnTranslations = {
       "bonusStatusEarned": "+{count}",
       "bonusSourceEmail": "Adresse e-mail vérifiée",
       "bonusSourceDiscord": "Discord lié",
-      "bonusSourceWallet": "Portefeuille lié",
       "bonusSourceReferral": "Amis parrainés",
       "bonusAdvertEmail": "Vérifiez votre adresse e-mail pour gagner 2 emplacements.",
       "bonusAdvertDiscord": "Liez votre Discord pour gagner 2 emplacements.",
-      "bonusAdvertWallet": "Liez un portefeuille pour gagner 2 emplacements.",
       "bonusReferralProgress": "{count}/{cap}",
       "bonusReferralExplainer": "Invitez un ami : quand il atteint le niveau 10, vous gagnez chacun 2 emplacements, jusqu'à 5 amis.",
       "bonusSectionAria": "Emplacements de banque bonus et comment en gagner d'autres",
@@ -3147,21 +3103,8 @@ export const fr_FR: EnTranslations = {
       "account_taken": "Ce compte Epic est déjà lié à un autre compte.",
       "upstream": "Epic n’a pas répondu. Réessayez dans un instant."
     },
-    "wallet": {
-      "handoff_invalid": "Cette autorisation de portefeuille a expiré ou n'a pas pu être vérifiée. Réessayez."
-    },
     "ota_updates": {
       "invalid_input": "Saisie invalide."
-    },
-    "seeker": {
-      "native_only": "Les droits Seeker ne sont disponibles que dans l'application native.",
-      "attestation_failed": "Échec de la vérification de l'appareil. Veuillez réessayer.",
-      "solana_artifact_required": "Utilisez l'application Solana Store pour continuer.",
-      "wallet_required": "Liez et vérifiez d'abord un portefeuille.",
-      "genesis_token_required": "Un Seeker Genesis Token vérifié est requis.",
-      "genesis_token_claimed": "Ce Seeker Genesis Token a déjà été réclamé.",
-      "entitlement_required": "Des droits Seeker vérifiés sont requis.",
-      "current_ownership_required": "La possession actuelle d'un Seeker Genesis Token est requise."
     }
   },
   "guide": {
@@ -5133,10 +5076,7 @@ export const fr_FR: EnTranslations = {
     "playAria": "Jouer à World of ClaudeCraft",
     "serverLabel": "Choisissez votre monde",
     "serverAria": "Choisir le monde : En ligne ou Hors ligne",
-    "serverOfflineSub": "Monde local instantané",
-    "caLabel": "Adresse du contrat $WOC",
-    "caCopyAria": "Copier l'adresse du contrat",
-    "caNote": "WOC est notre jeton communautaire. Il n'est pas nécessaire pour jouer. Rejoignez le Discord pour discuter de l'utilité et de la dynamique du WOC."
+    "serverOfflineSub": "Monde local instantané"
   },
   "auth": {
     "enterRealm": "Entrer dans le monde",
@@ -5184,171 +5124,6 @@ export const fr_FR: EnTranslations = {
       "failed": "Impossible d'enregistrer votre e-mail. Veuillez réessayer."
     }
   },
-  "wallet": {
-    "label": "Portefeuille $WOC",
-    "connect": "Vérifier le portefeuille",
-    "connectTitle": "Vérifiez votre portefeuille Solana",
-    "connectAria": "Vérifiez votre portefeuille Solana",
-    "verify": "Vérifier le portefeuille",
-    "verifyNew": "Vérifier un nouveau portefeuille",
-    "verifyTitle": "Choisissez un portefeuille et signez une fois pour confirmer que vous en êtes propriétaire.",
-    "verifyAria": "Choisissez un portefeuille et signez une fois pour confirmer que vous en êtes propriétaire",
-    "verifyAddressAria": "Signer pour vérifier le portefeuille {address} pour votre compte",
-    "appConnected": "Appli connectée",
-    "connectApp": "Connecter l'appli",
-    "connectAppTitle": "Connecter l'appli de portefeuille sur ce navigateur",
-    "connectAppAria": "Connecter l'appli de portefeuille sur ce navigateur",
-    "verifying": "Vérification...",
-    "verifyingTitle": "La vérification du portefeuille est en cours.",
-    "switch": "Changer",
-    "switchTitle": "Vérifier un autre portefeuille",
-    "switchAria": "Vérifier un autre portefeuille",
-    "unlink": "Dissocier",
-    "unlinkTitle": "Retirer la vérification du portefeuille de ce compte",
-    "unlinkAria": "Retirer la vérification du portefeuille de ce compte",
-    "signOut": "Déconnecter",
-    "signOutTitle": "Déconnecter l'appli de portefeuille sur ce navigateur",
-    "signOutAria": "Déconnecter l'appli de portefeuille sur ce navigateur",
-    "hide": "Masquer",
-    "hideTitle": "Masquer la ligne de portefeuille sur cet écran",
-    "hideAria": "Masquer la ligne de portefeuille sur cet écran",
-    "hiddenNotice": "Ligne de portefeuille masquée. Réactivez-la en jeu depuis Options > Interface.",
-    "linkedTitle": "Portefeuille vérifié pour votre compte. Cliquez pour gérer l'appli de portefeuille.",
-    "linkedDisconnectedTitle": "Le portefeuille reste vérifié pour votre compte. Reconnectez-vous pour gérer l'appli de portefeuille.",
-    "linkedDisconnectedAria": "Le portefeuille reste vérifié pour votre compte. Reconnectez-vous pour gérer l'appli de portefeuille.",
-    "linkTitle": "Cliquez pour signer et associer ce portefeuille à votre compte.",
-    "connectedTitle": "Connecté. Connectez-vous pour associer ce portefeuille à votre compte.",
-    "balanceTitle": "Solde $WOC du portefeuille Solana vérifié",
-    "balanceAria": "Solde du portefeuille Solana vérifié: {balance}",
-    "balancePreviewTitle": "Aperçu du solde $WOC du portefeuille connecté",
-    "balancePreviewAria": "Aperçu du solde du portefeuille connecté: {balance}. Associez le portefeuille pour vérifier l'apparat de détenteur.",
-    "balanceAmount": "{amount} $WOC",
-    "bagConnect": "Lier un portefeuille",
-    "bagLink": "Vérifier le portefeuille",
-    "bagReconnect": "Reconnecter le portefeuille",
-    "connected": "Connecté: {address}",
-    "connectedWithBalance": "Connecté: {balance} - {address}",
-    "connectedLinked": "Vérifié: {address}",
-    "connectedLinkedWithBalance": "Vérifié: {balance} - {address}",
-    "helpDisconnected": "Vérifiez un portefeuille Solana pour activer l'apparat de détenteur et les badges de carte de joueur. Aucune transaction ni SOL requis.",
-    "helpLoginToLink": "{address} connecté. Connectez-vous pour l'associer à votre compte.",
-    "helpLoginToLinkWithBalance": "{address} connecté avec {balance}. Connectez-vous pour l'associer à votre compte.",
-    "helpReadyToLink": "Portefeuille sélectionné: {address}. Signez une fois pour vérifier l'apparat de détenteur et les cartes de joueur.",
-    "helpReadyToLinkWithBalance": "Portefeuille sélectionné: {address} avec {balance}. Signez une fois pour vérifier l'apparat de détenteur et les cartes de joueur.",
-    "helpLinked": "Les avantages de détenteur sont actifs. L'appli de portefeuille est connectée sur ce navigateur.",
-    "helpLinkedWithBalance": "Les avantages de détenteur sont actifs. L'appli de portefeuille est connectée sur ce navigateur.",
-    "helpLinkedDisconnected": "Les avantages de détenteur sont actifs. Connectez l'appli lorsque vous devez signer ou dépenser.",
-    "helpLinkedDisconnectedWithBalance": "Les avantages de détenteur sont actifs. Connectez l'appli lorsque vous devez signer ou dépenser.",
-    "extensionHelp": "Pour voir un portefeuille ici, gardez active une extension de portefeuille de navigateur telle que Solflare Wallet.",
-    "mobileAppHelp": "Choisissez Phantom ou Solflare. Votre application de portefeuille demandera une approbation. Gardez ce jeu ouvert et revenez-y une fois terminé.",
-    "seekerAppHelp": "Continuez avec Seed Vault Wallet. Examinez les demandes de connexion et de vérification dans Seed Vault, puis revenez au jeu.",
-    "standaloneAppHelp": "Les connexions de portefeuille ne sont pas encore disponibles dans l'application de l'écran d'accueil. Ouvrez World of ClaudeCraft dans Safari ou Chrome pour utiliser Phantom ou Solflare.",
-    "openAppTitle": "Continuer dans {wallet}",
-    "openAppHelp": "Ouvrez {wallet} pour examiner cette demande. Gardez cet onglet de jeu ouvert pendant que l'application de portefeuille est active.",
-    "openAppButton": "Ouvrir {wallet}",
-    "manualReturnBrowserHelp": "Après approbation, revenez à cet onglet de jeu. Si iOS ouvre un autre navigateur, fermez-le et revenez manuellement au navigateur d'origine.",
-    "manualReturnStandaloneHelp": "Après approbation, revenez à World of ClaudeCraft depuis votre écran d'accueil. Si iOS ouvre un navigateur, fermez-le et rouvrez manuellement l'application de l'écran d'accueil.",
-    "preparingAppButton": "Préparation de {wallet}...",
-    "walletAppUnavailable": "{wallet} n'a pas pu être préparé. Fermez cette fenêtre et réessayez.",
-    "flowConnect": "Choisissez un portefeuille. La vérification continue automatiquement.",
-    "flowSign": "Signez le message de vérification dans votre appli de portefeuille. Aucune transaction ni SOL requis.",
-    "flowVerify": "Vérification de la propriété du portefeuille...",
-    "linkFailed": "La vérification du portefeuille a échoué.",
-    "verifyFailed": "La vérification du portefeuille a échoué.",
-    "unlinkFailed": "Impossible de dissocier le portefeuille.",
-    "browser": {
-      "eyebrow": "Autorisation du portefeuille de bureau",
-      "title": "Connecter un portefeuille Solana",
-      "linkBody": "Choisissez une extension de portefeuille dans ce navigateur. Vous signerez un message de vérification, puis retournerez dans l'application de bureau.",
-      "paymentBody": "Choisissez le portefeuille lié à votre compte et approuvez la transaction dans ce navigateur.",
-      "extensionHelp": "Aucune extension de portefeuille compatible n'a été trouvée. Installez ou déverrouillez Phantom, Solflare ou un autre portefeuille Solana pour navigateur, puis réessayez.",
-      "safety": "World of ClaudeCraft ne vous demande jamais votre phrase de récupération ni votre clé privée.",
-      "continueWith": "Continuer avec {wallet}",
-      "reviewTitle": "Vérifier dans votre portefeuille",
-      "reviewBody": "Suivez l'invite de {wallet}. Gardez cette page de navigateur ouverte.",
-      "completeTitle": "Autorisation du portefeuille effectuée",
-      "completeBody": "Vous pouvez retourner dans l'application de bureau World of ClaudeCraft.",
-      "returnButton": "Retourner dans l'application de bureau",
-      "failed": "L'autorisation du portefeuille a échoué ou a expiré. Retournez dans l'application de bureau et réessayez.",
-      "retry": "Réessayer"
-    },
-    "holder": "Détenteur $WOC",
-    "holderTierTitle": "Détenteur $WOC de rang {tier}",
-    "holderTiers": {
-      "ember": {
-        "name": "Braise",
-        "flavor": "L'étincelle est allumée."
-      },
-      "coinbearer": {
-        "name": "Porteur de pièces",
-        "flavor": "La première pièce dans le coffre de guerre."
-      },
-      "coppercrest": {
-        "name": "Crête de cuivre",
-        "flavor": "Les cuivres s'empilent, votre nom circule."
-      },
-      "silverbound": {
-        "name": "Lié à l'argent",
-        "flavor": "Lié par l'argent, vous remplissez la bourse."
-      },
-      "gilded": {
-        "name": "Doré",
-        "flavor": "Doré et souriant."
-      },
-      "vaultwarden": {
-        "name": "Gardien du coffre",
-        "flavor": "Vous gardez désormais un vrai coffre: 0,01 % de tout $WOC."
-      },
-      "whale": {
-        "name": "Baleine",
-        "flavor": "Vous entrez dans les profondeurs: 0,1 % de l'offre."
-      },
-      "leviathan": {
-        "name": "Léviathan",
-        "flavor": "Les marchés sentent chacun de vos mouvements: 1 % de l'offre."
-      },
-      "tidelord": {
-        "name": "Seigneur des marées",
-        "flavor": "La marée répond à votre appel: 2 % de l'offre."
-      },
-      "stormcaller": {
-        "name": "Invocateur de tempêtes",
-        "flavor": "Les tempêtes se rassemblent à votre nom: 3 % de l'offre."
-      },
-      "krakencrown": {
-        "name": "Couronne du kraken",
-        "flavor": "Couronné par les profondeurs: 4 % de l'offre."
-      },
-      "titanforged": {
-        "name": "Forgé parmi les titans",
-        "flavor": "Forgé parmi les titans: 5 % de l'offre."
-      },
-      "starhoard": {
-        "name": "Trésor d'étoiles",
-        "flavor": "Un trésor qui courbe la lumière des étoiles: 6 % de l'offre."
-      },
-      "voidwarden": {
-        "name": "Gardien du vide",
-        "flavor": "Gardien au bord du vide: 7 % de l'offre."
-      },
-      "realmshaper": {
-        "name": "Façonneur de royaume",
-        "flavor": "Vous remodelez le royaume: 8 % de l'offre."
-      },
-      "worldforger": {
-        "name": "Forgeur de monde",
-        "flavor": "Vous forgez votre propre monde: 9 % de l'offre."
-      },
-      "worldbearer": {
-        "name": "Porte-monde",
-        "flavor": "Vous portez une part du monde: 10 % de l'offre."
-      },
-      "sovereign": {
-        "name": "Souverain",
-        "flavor": "Le royaume plie le genou: toute l'offre."
-      }
-    }
-  },
   "playerCard": {
     "shareButton": "Partager la carte de joueur",
     "title": "Carte de joueur",
@@ -5372,7 +5147,6 @@ export const fr_FR: EnTranslations = {
     "footerHandleWithRecruits": "@{handle} - {recruited}",
     "footerCta": "Forgez votre légende: {siteUrl}",
     "arenaStat": "Arène",
-    "shareTierBit": ", détenteur $WOC de rang {tier}",
     "shareText": "Je forge ma légende dans World of ClaudeCraft : niveau {level} {className}{tierBit}. Rejoignez mon monde :",
     "nativeShareTitle": "Monde de ClaudeCraft",
     "fileNameFallback": "joueur",

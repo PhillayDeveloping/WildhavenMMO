@@ -223,17 +223,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'apiError.epic.invalid_token':
     'Epic n’a pas pu vérifier cette demande de liaison. Réessayez depuis l’application de bureau.',
   'apiError.epic.upstream': 'Epic n’a pas répondu. Réessayez dans un instant.',
-  'apiError.seeker.native_only':
-    "Les droits Seeker ne sont disponibles que dans l'application native.",
-  'apiError.seeker.attestation_failed':
-    "Échec de la vérification de l'appareil. Veuillez réessayer.",
-  'apiError.seeker.solana_artifact_required': "Utilisez l'application Solana Store pour continuer.",
-  'apiError.seeker.wallet_required': "Liez et vérifiez d'abord un portefeuille.",
-  'apiError.seeker.genesis_token_required': 'Un Seeker Genesis Token vérifié est requis.',
-  'apiError.seeker.genesis_token_claimed': 'Ce Seeker Genesis Token a déjà été réclamé.',
-  'apiError.seeker.entitlement_required': 'Des droits Seeker vérifiés sont requis.',
-  'apiError.seeker.current_ownership_required':
-    "La possession actuelle d'un Seeker Genesis Token est requise.",
   'guide.professions.archetypeSwitchBody':
     "Une déclaration n'est pas non plus une condamnation à perpétuité. Une paire que vous n'avez jamais tenue est simplement une nouvelle quête d'harmonisation, tandis que revenir à une paire que vous avez quittée vous demande d'abord de faire amende honorable : cinq tâches la première fois, et trois de plus ajoutées pour chaque retour que vous avez déjà effectué (prendre une paire toute neuve n'augmente jamais ce compte). Le choix reste lourd de sens sans jamais fermer une porte pour de bon.",
   'guide.professions.whatBody':
@@ -343,8 +332,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
     "L'incantation de récolte part de 2,5 secondes et se raccourcit de deux façons : 0,4 seconde par palier d'outil que vous portez et pouvez manier au-dessus du palier propre au nœud, et 0,15 seconde dès que le compteur de votre métier franchit sa tranche 100, avec un plancher de 1,5 seconde. Passez des nœuds de palier 1 aux nœuds de palier 3 et votre excédent s'évapore : le même pic frappe donc de nouveau plus lentement. Détenir exactement le palier requis n'achète aucune vitesse ; cela ne fait qu'ouvrir le nœud.\n\nLe gain de compétence s'estompe exactement comme pour l'artisanat : un nœud passe au gris à mesure que votre maîtrise dépasse son palier (les nœuds de palier 1 n'enseignent plus rien à partir de 75 de maîtrise), la réponse aux gains trop lents est donc des nœuds de palier supérieur. Ceux-ci exigent dans vos sacs un outil au moins de leur palier (aucun nœud ne se travaille jamais à mains nues, palier 1 compris), et un outil terrestre au-dessus du palier 1 réclame d'abord sa marque de maniement, 40/70/85/100 dans son propre métier pour les paliers 2 à 5. La Pêche suit sa propre décrue : gain complet en dessous de 50 de maîtrise, la moitié en dessous de 100, un filet de 0,1 en dessous de 150 et de 0,02 en dessous de 200, les prises de camelote n'enseignent plus rien du tout à partir de 100, et l'eau elle-même plafonne la leçon (les eaux de palier 1 cessent d'enseigner à 100, celles du marais à 150), si bien qu'un compteur bloqué peut aussi vouloir dire que vous avez dépassé cette eau.",
   'guide.profPages.faq.a8':
     "En partie. Les neuf recettes de terrain communes (l'arme, l'armure, la nourriture et la potion de base du départ) se fabriquent n'importe où et n'importe quand, tout comme les trois recettes combinées des paires jurées. Tout le reste au-dessus est lié à un type de station : forge, cuisines, apothicaire, tannerie, métier à tisser ou atelier d'outillage, et vous devez vous trouver à moins de 20 mètres de la station pour que la fabrication aboutisse.\n\nÀ 75 de compétence dans un métier, vous vous spécialisez, et avec la réduction de 20 pour cent sur les matériaux vous gagnez une station mobile : posez-la sur le terrain et elle tient 10 minutes, servant les recettes de ce métier comme si vous étiez devant la vraie. La station mobile ne sert qu'à fabriquer : apprendre des recettes et délier des pièces de commande exige toujours la véritable station en ville.",
-  'wallet.seekerAppHelp':
-    'Continuez avec Seed Vault Wallet. Examinez les demandes de connexion et de vérification dans Seed Vault, puis revenez au jeu.',
   'questUi.tracker.unknownQuest': 'Quête inconnue ({id})',
   'questUi.log.repeatableStatus': 'Répétable',
   'questUi.log.cooldownStatus': 'De nouveau disponible bientôt',
@@ -749,8 +736,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'hud.prompts.resurrectionOffer': '{name} souhaite vous ramener à la vie. Acceptez-vous ?',
   'questUi.dialog.profIntroHint': 'Voir {name} pour "{quest}".',
   'itemUi.stats.parry': 'Parade',
-  'apiError.wallet.handoff_invalid':
-    "Cette autorisation de portefeuille a expiré ou n'a pas pu être vérifiée. Réessayez.",
   'cardDuel.close': 'Fermer',
   'cardDuel.counts': 'Deck : {deck} · Défausse : {discard}',
   'cardDuel.forfeit': 'Abandonner',
@@ -1102,60 +1087,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.nameplate.mobLevel': '{level}',
   'hudChrome.specPanel.specUnlockBanner': 'Spécialisation débloquée !',
   'hudChrome.specPanel.specUnlockHint': 'Appuyez sur N pour choisir votre spécialisation.',
-  'hudChrome.wocStore.wallet.connect': 'Connecter un portefeuille',
-  'hudChrome.wocStore.wallet.connectedUnlinked':
-    "L'application de portefeuille est connectée à ce navigateur, mais son adresse publique n'est pas encore liée à votre compte WoC.",
-  'hudChrome.wocStore.wallet.linkedConnected':
-    'Votre application de portefeuille liée est connectée et prête pour les achats en SOL ou WOC.',
-  'hudChrome.wocStore.wallet.linkedDisconnected':
-    'Votre adresse publique est liée. Reconnectez cette application de portefeuille quand vous souhaitez payer en SOL ou WOC.',
-  'hudChrome.wocStore.wallet.manage': 'Gérer le portefeuille',
-  'hudChrome.wocStore.wallet.mismatched':
-    "Un portefeuille différent est connecté. Vérifiez-le pour remplacer l'adresse liée, ou reconnectez le portefeuille lié.",
-  'hudChrome.wocStore.wallet.reconnect': 'Reconnecter le portefeuille',
-  'hudChrome.wocStore.wallet.title': 'Portefeuille Solana',
-  'hudChrome.wocStore.wallet.unlinked':
-    'Connectez une application de portefeuille, puis signez une fois pour lier son adresse publique à votre compte WoC. Nous ne recevons jamais votre phrase de récupération ni votre clé privée.',
-  'hudChrome.wocStore.wallet.verify': 'Vérifier et lier',
-  'wallet.bagConnect': 'Lier un portefeuille',
-  'wallet.bagLink': 'Vérifier le portefeuille',
-  'wallet.bagReconnect': 'Reconnecter le portefeuille',
-  'wallet.browser.completeBody':
-    "Vous pouvez retourner dans l'application de bureau World of ClaudeCraft.",
-  'wallet.browser.completeTitle': 'Autorisation du portefeuille effectuée',
-  'wallet.browser.continueWith': 'Continuer avec {wallet}',
-  'wallet.browser.extensionHelp':
-    "Aucune extension de portefeuille compatible n'a été trouvée. Installez ou déverrouillez Phantom, Solflare ou un autre portefeuille Solana pour navigateur, puis réessayez.",
-  'wallet.browser.eyebrow': 'Autorisation du portefeuille de bureau',
-  'wallet.browser.failed':
-    "L'autorisation du portefeuille a échoué ou a expiré. Retournez dans l'application de bureau et réessayez.",
-  'wallet.browser.linkBody':
-    "Choisissez une extension de portefeuille dans ce navigateur. Vous signerez un message de vérification, puis retournerez dans l'application de bureau.",
-  'wallet.browser.paymentBody':
-    'Choisissez le portefeuille lié à votre compte et approuvez la transaction dans ce navigateur.',
-  'wallet.browser.retry': 'Réessayer',
-  'wallet.browser.returnButton': "Retourner dans l'application de bureau",
-  'wallet.browser.reviewBody':
-    "Suivez l'invite de {wallet}. Gardez cette page de navigateur ouverte.",
-  'wallet.browser.reviewTitle': 'Vérifier dans votre portefeuille',
-  'wallet.browser.safety':
-    'World of ClaudeCraft ne vous demande jamais votre phrase de récupération ni votre clé privée.',
-  'wallet.browser.title': 'Connecter un portefeuille Solana',
-  'wallet.manualReturnBrowserHelp':
-    "Après approbation, revenez à cet onglet de jeu. Si iOS ouvre un autre navigateur, fermez-le et revenez manuellement au navigateur d'origine.",
-  'wallet.manualReturnStandaloneHelp':
-    "Après approbation, revenez à World of ClaudeCraft depuis votre écran d'accueil. Si iOS ouvre un navigateur, fermez-le et rouvrez manuellement l'application de l'écran d'accueil.",
-  'wallet.mobileAppHelp':
-    'Choisissez Phantom ou Solflare. Votre application de portefeuille demandera une approbation. Gardez ce jeu ouvert et revenez-y une fois terminé.',
-  'wallet.openAppButton': 'Ouvrir {wallet}',
-  'wallet.openAppHelp':
-    "Ouvrez {wallet} pour examiner cette demande. Gardez cet onglet de jeu ouvert pendant que l'application de portefeuille est active.",
-  'wallet.openAppTitle': 'Continuer dans {wallet}',
-  'wallet.preparingAppButton': 'Préparation de {wallet}...',
-  'wallet.standaloneAppHelp':
-    "Les connexions de portefeuille ne sont pas encore disponibles dans l'application de l'écran d'accueil. Ouvrez World of ClaudeCraft dans Safari ou Chrome pour utiliser Phantom ou Solflare.",
-  'wallet.walletAppUnavailable':
-    "{wallet} n'a pas pu être préparé. Fermez cette fenêtre et réessayez.",
   'entities.abilities.primal_reflexes.description':
     "Vos instincts s'aiguisent, augmentant votre chance d'esquiver de 50 % pendant 6 sec.",
   'entities.abilities.primal_reflexes.name': 'Réflexes primordiaux',
@@ -1582,18 +1513,12 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.claudium.checkoutClose': 'Fermer le paiement',
   'hudChrome.claudium.checkoutFailed': 'Impossible de charger le paiement. Veuillez réessayer.',
   'hudChrome.claudium.checkoutLoading': 'Chargement du paiement...',
-  'hudChrome.claudium.checkoutNotSettled':
-    'La transaction a été envoyée, mais le Claudium n’a pas encore été crédité. Veuillez réessayer dans quelques instants.',
   'hudChrome.claudium.checkoutPending':
     'Transaction en cours. Confirmez-la dans votre portefeuille et gardez ce panneau ouvert.',
   'hudChrome.claudium.checkoutPendingButton': 'Traitement en cours',
   'hudChrome.claudium.checkoutTitle': 'Finaliser l’achat',
   'hudChrome.claudium.checkoutUnavailable':
     'Cet achat de Claudium est indisponible pour le moment.',
-  'hudChrome.claudium.checkoutWalletRequired':
-    'Connectez un portefeuille Solana avant d’acheter du Claudium avec des cryptomonnaies.',
-  'hudChrome.claudium.checkoutWalletUnsupported':
-    'Ce portefeuille ne peut ni signer ni envoyer de transactions Solana.',
   'hudChrome.claudium.close': 'Fermer le Claudium',
   'hudChrome.claudium.disclosure':
     'Le Claudium est une monnaie virtuelle à sens unique : achetez-en avec de l’argent et dépensez-le en objets cosmétiques. Il ne peut être ni remboursé, ni transféré, ni converti en argent.',
@@ -1604,15 +1529,9 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.claudium.loading': 'Chargement du Claudium...',
   'hudChrome.claudium.open': 'Ouvrir le Claudium',
   'hudChrome.claudium.railLabel': 'Mode de paiement',
-  'hudChrome.claudium.railNativeUnavailable': 'SOL/WOC désactivé.',
-  'hudChrome.claudium.railSol': 'SOL',
   'hudChrome.claudium.railStripe': 'Carte',
-  'hudChrome.claudium.railWoc': 'WOC',
-  'hudChrome.claudium.railWocDiscount': '{percent} % de réduction',
-  'hudChrome.claudium.railWocUnavailable': 'Les prix en WOC sont indisponibles pour le moment.',
   'hudChrome.claudium.showAmounts': 'Afficher tous les montants de Claudium',
   'hudChrome.claudium.skuRow': '{claudium} Claudium pour {usd}',
-  'hudChrome.claudium.solBalance': 'SOL : {amount}',
   'hudChrome.claudium.spendButton': 'Échanger',
   'hudChrome.claudium.storeCost': '{amount} Claudium',
   'hudChrome.claudium.storeEmpty': 'Aucun objet cosmétique n’est disponible pour le moment.',
@@ -1620,7 +1539,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.claudium.title': 'Claudium',
   'hudChrome.claudium.unavailable':
     'La boutique de Claudium est indisponible pour le moment. Votre solde et vos achats ne sont pas affectés. Veuillez revenir dans quelques instants.',
-  'hudChrome.claudium.wocBalance': 'WOC : {amount}',
   'hudChrome.deeds.openBookHint': 'Ouvrir le Livre des hauts faits',
   'hudChrome.statInfo.desc.warfare':
     'Augmente de {increase} % les dégâts infligés aux joueurs et réduit de {reduction} % les dégâts que les joueurs vous infligent.',
@@ -2946,8 +2864,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'sim.delve.riteSequenceReady': "Les autels s'éteignent. Répétez la séquence.",
   'sim.delve.riteWrong': "Un claquement de cloche discordant. De l'eau noire éclabousse vos pieds.",
   'sim.delve.ropesSealed': 'Vous devriez essayer de tirer les cordes des cloches.',
-  'wallet.extensionHelp':
-    'Pour voir un portefeuille ici, gardez active une extension de portefeuille de navigateur telle que Solflare Wallet.',
   'worldContent.delveReliquaryInteract': 'Reliquaire noyé : appuyez sur F pour commencer le rite',
   'worldContent.delveRiteShrineBellInteract': 'Autel de la cloche : appuyez sur F pour la sonner',
   'worldContent.delveRiteShrineCandleInteract':
@@ -3276,10 +3192,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.options.clickMoveRight': 'Clic droit',
   'hudChrome.options.footstepSounds': 'Sons de pas',
   'hudChrome.options.interfaceSounds': 'Sons d’interface et retours sonores',
-  'hudChrome.options.showWalletOnCharacterScreen':
-    'Afficher le portefeuille sur l’écran des personnages',
-  'hudChrome.options.showWalletOnPlayerCard': 'Afficher le portefeuille sur la carte de joueur',
-  'hudChrome.playerCard.showWalletBadge': 'Afficher l’insigne de portefeuille',
   'hudChrome.options.uiScale': 'Échelle de l’interface',
   'hudChrome.options.highContrastBackground': 'Arrière-plan à contraste élevé',
   'hudChrome.options.showItemLevel': "Afficher le niveau d'objet",
@@ -3491,121 +3403,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'auth.enterWorld': 'Entrer dans le monde',
   'auth.offlineCharacter': 'Personnage hors ligne',
   'auth.create': 'Créer',
-  'wallet.label': 'Portefeuille $WOC',
-  'wallet.connect': 'Vérifier le portefeuille',
-  'wallet.connectTitle': 'Vérifiez votre portefeuille Solana',
-  'wallet.connectAria': 'Vérifiez votre portefeuille Solana',
-  'wallet.verify': 'Vérifier le portefeuille',
-  'wallet.verifyNew': 'Vérifier un nouveau portefeuille',
-  'wallet.verifyTitle':
-    'Choisissez un portefeuille et signez une fois pour confirmer que vous en êtes propriétaire.',
-  'wallet.verifyAria':
-    'Choisissez un portefeuille et signez une fois pour confirmer que vous en êtes propriétaire',
-  'wallet.verifyAddressAria': 'Signer pour vérifier le portefeuille {address} pour votre compte',
-  'wallet.appConnected': 'Appli connectée',
-  'wallet.connectApp': "Connecter l'appli",
-  'wallet.connectAppTitle': "Connecter l'appli de portefeuille sur ce navigateur",
-  'wallet.connectAppAria': "Connecter l'appli de portefeuille sur ce navigateur",
-  'wallet.verifying': 'Vérification...',
-  'wallet.verifyingTitle': 'La vérification du portefeuille est en cours.',
-  'wallet.switch': 'Changer',
-  'wallet.switchTitle': 'Vérifier un autre portefeuille',
-  'wallet.switchAria': 'Vérifier un autre portefeuille',
-  'wallet.unlink': 'Dissocier',
-  'wallet.unlinkTitle': 'Retirer la vérification du portefeuille de ce compte',
-  'wallet.unlinkAria': 'Retirer la vérification du portefeuille de ce compte',
-  'wallet.signOut': 'Déconnecter',
-  'wallet.signOutTitle': "Déconnecter l'appli de portefeuille sur ce navigateur",
-  'wallet.signOutAria': "Déconnecter l'appli de portefeuille sur ce navigateur",
-  'wallet.hide': 'Masquer',
-  'wallet.hideTitle': 'Masquer la ligne de portefeuille sur cet écran',
-  'wallet.hideAria': 'Masquer la ligne de portefeuille sur cet écran',
-  'wallet.hiddenNotice':
-    'Ligne de portefeuille masquée. Réactivez-la en jeu depuis Options > Interface.',
-  'wallet.linkedTitle':
-    "Portefeuille vérifié pour votre compte. Cliquez pour gérer l'appli de portefeuille.",
-  'wallet.linkedDisconnectedTitle':
-    "Le portefeuille reste vérifié pour votre compte. Reconnectez-vous pour gérer l'appli de portefeuille.",
-  'wallet.linkedDisconnectedAria':
-    "Le portefeuille reste vérifié pour votre compte. Reconnectez-vous pour gérer l'appli de portefeuille.",
-  'wallet.linkTitle': 'Cliquez pour signer et associer ce portefeuille à votre compte.',
-  'wallet.connectedTitle': 'Connecté. Connectez-vous pour associer ce portefeuille à votre compte.',
-  'wallet.balanceTitle': 'Solde $WOC du portefeuille Solana vérifié',
-  'wallet.balanceAria': 'Solde du portefeuille Solana vérifié: {balance}',
-  'wallet.balancePreviewTitle': 'Aperçu du solde $WOC du portefeuille connecté',
-  'wallet.balancePreviewAria':
-    "Aperçu du solde du portefeuille connecté: {balance}. Associez le portefeuille pour vérifier l'apparat de détenteur.",
-  'wallet.balanceAmount': '{amount} $WOC',
-  'wallet.connected': 'Connecté: {address}',
-  'wallet.connectedWithBalance': 'Connecté: {balance} - {address}',
-  'wallet.connectedLinked': 'Vérifié: {address}',
-  'wallet.connectedLinkedWithBalance': 'Vérifié: {balance} - {address}',
-  'wallet.helpDisconnected':
-    "Vérifiez un portefeuille Solana pour activer l'apparat de détenteur et les badges de carte de joueur. Aucune transaction ni SOL requis.",
-  'wallet.helpLoginToLink': "{address} connecté. Connectez-vous pour l'associer à votre compte.",
-  'wallet.helpLoginToLinkWithBalance':
-    "{address} connecté avec {balance}. Connectez-vous pour l'associer à votre compte.",
-  'wallet.helpReadyToLink':
-    "Portefeuille sélectionné: {address}. Signez une fois pour vérifier l'apparat de détenteur et les cartes de joueur.",
-  'wallet.helpReadyToLinkWithBalance':
-    "Portefeuille sélectionné: {address} avec {balance}. Signez une fois pour vérifier l'apparat de détenteur et les cartes de joueur.",
-  'wallet.helpLinked':
-    "Les avantages de détenteur sont actifs. L'appli de portefeuille est connectée sur ce navigateur.",
-  'wallet.helpLinkedWithBalance':
-    "Les avantages de détenteur sont actifs. L'appli de portefeuille est connectée sur ce navigateur.",
-  'wallet.helpLinkedDisconnected':
-    "Les avantages de détenteur sont actifs. Connectez l'appli lorsque vous devez signer ou dépenser.",
-  'wallet.helpLinkedDisconnectedWithBalance':
-    "Les avantages de détenteur sont actifs. Connectez l'appli lorsque vous devez signer ou dépenser.",
-  'wallet.flowConnect': 'Choisissez un portefeuille. La vérification continue automatiquement.',
-  'wallet.flowSign':
-    'Signez le message de vérification dans votre appli de portefeuille. Aucune transaction ni SOL requis.',
-  'wallet.flowVerify': 'Vérification de la propriété du portefeuille...',
-  'wallet.linkFailed': 'La vérification du portefeuille a échoué.',
-  'wallet.verifyFailed': 'La vérification du portefeuille a échoué.',
-  'wallet.unlinkFailed': 'Impossible de dissocier le portefeuille.',
-  'wallet.holder': 'Détenteur $WOC',
-  'wallet.holderTierTitle': 'Détenteur $WOC de rang {tier}',
-  'wallet.holderTiers.ember.name': 'Braise',
-  'wallet.holderTiers.ember.flavor': "L'étincelle est allumée.",
-  'wallet.holderTiers.coinbearer.name': 'Porteur de pièces',
-  'wallet.holderTiers.coinbearer.flavor': 'La première pièce dans le coffre de guerre.',
-  'wallet.holderTiers.coppercrest.name': 'Crête de cuivre',
-  'wallet.holderTiers.coppercrest.flavor': "Les cuivres s'empilent, votre nom circule.",
-  'wallet.holderTiers.silverbound.name': "Lié à l'argent",
-  'wallet.holderTiers.silverbound.flavor': "Lié par l'argent, vous remplissez la bourse.",
-  'wallet.holderTiers.gilded.name': 'Doré',
-  'wallet.holderTiers.gilded.flavor': 'Doré et souriant.',
-  'wallet.holderTiers.vaultwarden.name': 'Gardien du coffre',
-  'wallet.holderTiers.vaultwarden.flavor':
-    'Vous gardez désormais un vrai coffre: 0,01 % de tout $WOC.',
-  'wallet.holderTiers.whale.name': 'Baleine',
-  'wallet.holderTiers.whale.flavor': "Vous entrez dans les profondeurs: 0,1 % de l'offre.",
-  'wallet.holderTiers.leviathan.name': 'Léviathan',
-  'wallet.holderTiers.leviathan.flavor':
-    "Les marchés sentent chacun de vos mouvements: 1 % de l'offre.",
-  'wallet.holderTiers.tidelord.name': 'Seigneur des marées',
-  'wallet.holderTiers.tidelord.flavor': "La marée répond à votre appel: 2 % de l'offre.",
-  'wallet.holderTiers.stormcaller.name': 'Invocateur de tempêtes',
-  'wallet.holderTiers.stormcaller.flavor':
-    "Les tempêtes se rassemblent à votre nom: 3 % de l'offre.",
-  'wallet.holderTiers.krakencrown.name': 'Couronne du kraken',
-  'wallet.holderTiers.krakencrown.flavor': "Couronné par les profondeurs: 4 % de l'offre.",
-  'wallet.holderTiers.titanforged.name': 'Forgé parmi les titans',
-  'wallet.holderTiers.titanforged.flavor': "Forgé parmi les titans: 5 % de l'offre.",
-  'wallet.holderTiers.starhoard.name': "Trésor d'étoiles",
-  'wallet.holderTiers.starhoard.flavor':
-    "Un trésor qui courbe la lumière des étoiles: 6 % de l'offre.",
-  'wallet.holderTiers.voidwarden.name': 'Gardien du vide',
-  'wallet.holderTiers.voidwarden.flavor': "Gardien au bord du vide: 7 % de l'offre.",
-  'wallet.holderTiers.realmshaper.name': 'Façonneur de royaume',
-  'wallet.holderTiers.realmshaper.flavor': "Vous remodelez le royaume: 8 % de l'offre.",
-  'wallet.holderTiers.worldforger.name': 'Forgeur de monde',
-  'wallet.holderTiers.worldforger.flavor': "Vous forgez votre propre monde: 9 % de l'offre.",
-  'wallet.holderTiers.worldbearer.name': 'Porte-monde',
-  'wallet.holderTiers.worldbearer.flavor': "Vous portez une part du monde: 10 % de l'offre.",
-  'wallet.holderTiers.sovereign.name': 'Souverain',
-  'wallet.holderTiers.sovereign.flavor': "Le royaume plie le genou: toute l'offre.",
   'playerCard.shareButton': 'Partager la carte de joueur',
   'playerCard.title': 'Carte de joueur',
   'playerCard.close': 'Fermer la carte de joueur',
@@ -3629,7 +3426,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'playerCard.footerHandleWithRecruits': '@{handle} - {recruited}',
   'playerCard.footerCta': 'Forgez votre légende: {siteUrl}',
   'playerCard.arenaStat': 'Arène',
-  'playerCard.shareTierBit': ', détenteur $WOC de rang {tier}',
   'playerCard.shareText':
     'Je forge ma légende dans World of ClaudeCraft : niveau {level} {className}{tierBit}. Rejoignez mon monde :',
   'playerCard.nativeShareTitle': 'Monde de ClaudeCraft',
@@ -6343,10 +6139,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'hud.errors.silenced': 'Vous êtes réduit au silence !',
   'hud.pet.noPetFood': "Vous n'avez aucune nourriture pour votre familier.",
   'hud.pet.petEatsFoodOnly': 'Votre familier ne peut manger que de la nourriture.',
-  'mode.caCopyAria': "Copier l'adresse du contrat",
-  'mode.caLabel': 'Adresse du contrat $WOC',
-  'mode.caNote':
-    "WOC est notre jeton communautaire. Il n'est pas nécessaire pour jouer. Rejoignez le Discord pour discuter de l'utilité et de la dynamique du WOC.",
   'mode.play': 'Jouer',
   'mode.playAria': 'Jouer à World of ClaudeCraft',
   'mode.serverAria': 'Choisir le monde : En ligne ou Hors ligne',
@@ -6878,7 +6670,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.account.logOut': 'Se déconnecter',
   'hudChrome.account.logOutSummary': 'Déconnectez-vous de cet appareil.',
   'hudChrome.account.loggedOutPrompt': 'Connectez-vous pour gérer votre compte.',
-  'hudChrome.account.manageWallet': 'Gérer le portefeuille',
   'hudChrome.account.memberSince': 'Membre depuis {date}',
   'hudChrome.account.newPassword': 'Nouveau mot de passe',
   'hudChrome.account.passwordChanged':
@@ -6888,10 +6679,7 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.account.sectionCharacters': 'Personnages',
   'hudChrome.account.sectionDanger': 'Zone de danger',
   'hudChrome.account.sectionSettings': 'Paramètres du compte',
-  'hudChrome.account.sectionWallet': 'Portefeuille $WOC',
   'hudChrome.account.title': 'Compte',
-  'hudChrome.account.walletSummary':
-    "Vérifiez un portefeuille Solana pour afficher l'apparat de détenteur sur votre carte de joueur.",
   'hudChrome.questTracker.count': '({count})',
   'hudChrome.questTracker.collapseHint': 'Réduire le suivi des quêtes',
   'hudChrome.questTracker.expandHint': 'Développer le suivi des quêtes',
@@ -8658,18 +8446,11 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.noLeaders': "Aucun point pour l'instant.",
   'hudChrome.dailyRewards.prize': 'Cagnotte',
   'hudChrome.dailyRewards.reason.eligible': 'Récompenses débloquées.',
-  'hudChrome.dailyRewards.reason.no_wallet':
-    'Connectez un portefeuille contenant au moins 20 USD en WOC.',
-  'hudChrome.dailyRewards.reason.price_unavailable':
-    'Le cours du WOC est indisponible, les récompenses sont temporairement verrouillées.',
-  'hudChrome.dailyRewards.reason.under_minimum':
-    'Le portefeuille est en dessous du minimum de 20 USD en WOC.',
   'hudChrome.dailyRewards.remainingHoursMinutes': '{hours}h {minutes}min',
   'hudChrome.dailyRewards.remainingLessThanMinute': '<1min',
   'hudChrome.dailyRewards.remainingMinutes': '{minutes}min',
   'hudChrome.dailyRewards.reset': 'Réinitialisation',
   'hudChrome.dailyRewards.score': 'Score',
-  'hudChrome.dailyRewards.sol': '{amount} SOL',
   'hudChrome.dailyRewards.spinButton': 'Tourner',
   'hudChrome.dailyRewards.spinClaimed': 'Récupéré : +{points} points.',
   'hudChrome.dailyRewards.spinClose': 'Fermer le tour quotidien',
@@ -8685,16 +8466,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
     'Les récompenses quotidiennes sont actuellement désactivées. Nous annoncerons les mises à jour de cette fonctionnalité sur le canal Discord.',
   'hudChrome.dailyRewards.unknown': 'Inconnu',
   'hudChrome.dailyRewards.usd': '{amount} USD',
-  'hudChrome.dailyRewards.walletConnectBody':
-    'Vérifiez un portefeuille Solana contenant du WOC pour débloquer les récompenses quotidiennes.',
-  'hudChrome.dailyRewards.walletConnectButton': 'Vérifier le portefeuille',
-  'hudChrome.dailyRewards.walletConnectTitle': 'Vérifier le portefeuille',
-  'hudChrome.dailyRewards.walletHoldBody':
-    'Détenez au moins {amount} USD en WOC pour débloquer les récompenses quotidiennes.',
-  'hudChrome.dailyRewards.walletHoldTitle': 'Détenir du WOC',
-  'hudChrome.dailyRewards.walletPriceBody':
-    "Le cours du WOC est indisponible pour le moment. Revenez d'ici peu.",
-  'hudChrome.dailyRewards.walletValue': 'Valeur du portefeuille (WOC)',
   'hudChrome.nativeUpdate.body':
     'Une nouvelle version de World of ClaudeCraft est disponible. Mettez à jour maintenant pour les derniers correctifs et améliorations.',
   'hudChrome.nativeUpdate.bodyWithVersion':
@@ -8931,7 +8702,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'guide.economy.bankTitle': 'La banque',
   'hudChrome.bank.bonusAdvertDiscord': 'Liez votre Discord pour gagner 2 emplacements.',
   'hudChrome.bank.bonusAdvertEmail': 'Vérifiez votre adresse e-mail pour gagner 2 emplacements.',
-  'hudChrome.bank.bonusAdvertWallet': 'Liez un portefeuille pour gagner 2 emplacements.',
   'hudChrome.bank.bonusEarned': '+{count}',
   'hudChrome.bank.bonusReferralExplainer':
     "Invitez un ami : quand il atteint le niveau 10, vous gagnez chacun 2 emplacements, jusqu'à 5 amis.",
@@ -8940,7 +8710,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.bank.bonusSourceDiscord': 'Discord lié',
   'hudChrome.bank.bonusSourceEmail': 'Adresse e-mail vérifiée',
   'hudChrome.bank.bonusSourceReferral': 'Amis parrainés',
-  'hudChrome.bank.bonusSourceWallet': 'Portefeuille lié',
   'hudChrome.bank.bonusStatusEarned': '+{count}',
   'hudChrome.bank.bonusTitle': 'Emplacements bonus',
   'hudChrome.bank.buyConfirm':
@@ -10443,8 +10212,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'entities.items.eastbrook_ritual_vestments.name': 'Habits rituels d’Eastbrook',
   'entities.items.eastbrook_warded_leggings.name': 'Jambières protégées d’Eastbrook',
   'entities.items.wardweave_cowl.name': 'Capuche de tissage protecteur',
-  'hudChrome.claudium.railUsdc': 'USDC',
-  'hudChrome.claudium.usdcBalance': 'USDC : {amount}',
   'hudChrome.dailyRewards.reason.bannedUntil':
     'Vous êtes exclu des Récompenses quotidiennes pour encore {remaining}. L’accès sera rétabli {until}. Motif : {reason}',
   'hudChrome.dailyRewards.remainingDaysHours': '{days} j {hours} h',

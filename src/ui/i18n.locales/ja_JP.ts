@@ -216,24 +216,6 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'hudChrome.wocStore.armoryTitle': '武器庫',
   'hudChrome.wocStore.armoryBody':
     'シーズン1武器庫の限定武器スキン。アカウント共有の純粋な装飾で、周囲のプレイヤー全員に表示されます。',
-  'hudChrome.wocStore.wallet.title': 'Solanaウォレット',
-  'hudChrome.wocStore.wallet.unlinked':
-    'ウォレットアプリを接続し、一度署名して公開アドレスをWoCアカウントにリンクしてください。リカバリーフレーズや秘密鍵を受け取ることはありません。',
-  'hudChrome.wocStore.wallet.connectedUnlinked':
-    'ウォレットアプリはこのブラウザに接続されていますが、公開アドレスはまだWoCアカウントにリンクされていません。',
-  'hudChrome.wocStore.wallet.linkedDisconnected':
-    '公開アドレスはリンク済みです。SOLまたはWOCで支払うときに、そのウォレットアプリを再接続してください。',
-  'hudChrome.wocStore.wallet.linkedConnected':
-    'リンク済みのウォレットアプリが接続され、SOLまたはWOCで購入できます。',
-  'hudChrome.wocStore.wallet.mismatched':
-    '別のウォレットが接続されています。認証してリンク済みアドレスを置き換えるか、リンク済みウォレットを再接続してください。',
-  'hudChrome.wocStore.wallet.connect': 'ウォレットを接続',
-  'hudChrome.wocStore.wallet.verify': '認証してリンク',
-  'hudChrome.wocStore.wallet.reconnect': 'ウォレットを再接続',
-  'hudChrome.wocStore.wallet.manage': 'ウォレットを管理',
-  'wallet.bagConnect': 'ウォレットをリンク',
-  'wallet.bagLink': 'ウォレットを認証',
-  'wallet.bagReconnect': 'ウォレットを再接続',
   'hudChrome.wocStore.collectionLine': '{collection}コレクション',
   'hudChrome.wocStore.collections.guildmark': 'ギルドマーク',
   'hudChrome.wocStore.collections.emberwrought': '残り火鍛造',
@@ -427,14 +409,7 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
     'Claudiumは一方向のゲーム内通貨です。現金で購入して外見アイテムに使用でき、換金、譲渡、払い戻しはできません。',
   'hudChrome.claudium.buyTitle': 'Claudiumを購入',
   'hudChrome.claudium.railLabel': '支払い方法',
-  'hudChrome.claudium.railNativeUnavailable': 'SOL/WOCは利用不可',
-  'hudChrome.claudium.railSol': 'SOL',
   'hudChrome.claudium.railStripe': 'カード',
-  'hudChrome.claudium.railWoc': 'WOC',
-  'hudChrome.claudium.railWocDiscount': '{percent}%オフ',
-  'hudChrome.claudium.solBalance': 'SOL：{amount}',
-  'hudChrome.claudium.wocBalance': 'WOC：{amount}',
-  'hudChrome.claudium.railWocUnavailable': 'WOC価格は現在利用できません。',
   'hudChrome.claudium.amountLabel': '数量',
   'hudChrome.claudium.showAmounts': 'すべてのClaudium数量を表示',
   'hudChrome.claudium.hideAmounts': '追加のClaudium数量を隠す',
@@ -456,12 +431,6 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'hudChrome.claudium.checkoutPendingButton': '処理中',
   'hudChrome.claudium.checkoutFailed': '決済を読み込めませんでした。もう一度お試しください。',
   'hudChrome.claudium.checkoutUnavailable': 'そのClaudium購入は現在利用できません。',
-  'hudChrome.claudium.checkoutWalletRequired':
-    '暗号資産でClaudiumを購入する前にSolanaウォレットを接続してください。',
-  'hudChrome.claudium.checkoutWalletUnsupported':
-    'このウォレットではSolana取引の署名と送信ができません。',
-  'hudChrome.claudium.checkoutNotSettled':
-    '取引は送信されましたが、Claudiumはまだ反映されていません。しばらくしてからお試しください。',
   'hudChrome.itemHeroicTag': '[ヒロイック]',
   'hudChrome.readyCheck.notInPartyError':
     '準備確認を開始するにはパーティーに参加している必要があります。',
@@ -531,7 +500,6 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.prize': '賞金プール',
   'hudChrome.dailyRewards.reset': 'リセット',
   'hudChrome.dailyRewards.score': 'スコア',
-  'hudChrome.dailyRewards.walletValue': 'ウォレット価値 (WOC)',
   'hudChrome.dailyRewards.unknown': '不明',
   'hudChrome.dailyRewards.spinTitle': 'デイリースピン',
   'hudChrome.dailyRewards.spinDialogTitle': 'デイリー報酬スピン',
@@ -557,22 +525,7 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.history': '過去の当選者',
   'hudChrome.dailyRewards.noLeaders': 'まだポイントがありません。',
   'hudChrome.dailyRewards.noHistory': 'まだ支払いがありません。',
-  'hudChrome.dailyRewards.walletConnectTitle': 'ウォレットを認証',
-  'hudChrome.dailyRewards.walletConnectBody':
-    'WOCを保有するSolanaウォレットを認証して、デイリー報酬を解放しましょう。',
-  'hudChrome.dailyRewards.walletConnectButton': 'ウォレットを認証',
-  'hudChrome.dailyRewards.walletHoldTitle': 'WOCを保有',
-  'hudChrome.dailyRewards.walletHoldBody':
-    'デイリー報酬を解放するには、少なくとも {amount} USD 相当のWOCを保有してください。',
-  'hudChrome.dailyRewards.walletPriceBody':
-    '現在WOCの価格を取得できません。しばらくしてから再度ご確認ください。',
   'hudChrome.dailyRewards.reason.eligible': '報酬が解放されました。',
-  'hudChrome.dailyRewards.reason.no_wallet':
-    '$20 USD 相当以上のWOCを保有するウォレットを接続してください。',
-  'hudChrome.dailyRewards.reason.under_minimum':
-    'ウォレットが最低額の $20 USD 相当のWOCを下回っています。',
-  'hudChrome.dailyRewards.reason.price_unavailable':
-    'WOCの価格を取得できないため、報酬は一時的にロックされています。',
   'hudChrome.dailyRewards.reason.banned': 'デイリー報酬への参加が禁止されています。理由: {reason}',
   'hudChrome.dailyRewards.reason.bannedUntil':
     'デイリー報酬への参加はあと{remaining}禁止されています。解除日時: {until}。理由: {reason}',
@@ -1022,12 +975,9 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'hudChrome.options.lockCursorOnRotate': '回転中はカーソルを固定',
   'hudChrome.options.keybindHelpLockCursorOnRotate':
     'ドラッグでカメラを回転させている間、マウスカーソルをウィンドウ内に固定し、画面の端や別のモニターに移動しないようにします。自由なカーソルを好む場合はオフにしてください。',
-  'hudChrome.options.showWalletOnCharacterScreen': 'キャラクター画面にウォレットを表示',
-  'hudChrome.options.showWalletOnPlayerCard': 'プレイヤーカードにウォレットを表示',
   'hudChrome.options.showDevBadges': '開発者バッジを表示',
   'hudChrome.options.showOwnNameplate': '自分のネームプレートを表示',
   'hudChrome.options.showPlayerNameplates': 'プレイヤーのネームプレートを表示',
-  'hudChrome.playerCard.showWalletBadge': 'ウォレットバッジを表示',
   'hudChrome.options.uiScale': 'UIスケール',
   'hudChrome.options.highContrastBackground': '高コントラスト背景',
   'hudChrome.options.showItemLevel': 'アイテムレベルを表示',
@@ -1261,154 +1211,6 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'auth.twoFactorPlaceholder': '6桁のコードまたはリカバリーコード',
   'auth.twoFactorHint':
     '認証アプリに表示されたコード、またはリカバリーコードのいずれかを入力してください。',
-  'wallet.label': '$WOC ウォレット',
-  'wallet.connect': 'ウォレット認証',
-  'wallet.connectTitle': 'Solanaウォレットを認証',
-  'wallet.connectAria': 'Solanaウォレットを認証',
-  'wallet.verify': 'ウォレット認証',
-  'wallet.verifyNew': '新しいウォレットを認証',
-  'wallet.verifyTitle': 'ウォレットを選択し、一度署名して所有権を認証します。',
-  'wallet.verifyAria': 'ウォレットを選択し、一度署名して所有権を認証',
-  'wallet.verifyAddressAria': 'アカウントのウォレット {address} を認証するために署名',
-  'wallet.appConnected': 'アプリ接続済み',
-  'wallet.connectApp': 'アプリを接続',
-  'wallet.connectAppTitle': 'このブラウザでウォレットアプリを接続',
-  'wallet.connectAppAria': 'このブラウザでウォレットアプリを接続',
-  'wallet.verifying': '認証中...',
-  'wallet.verifyingTitle': 'ウォレット認証を実行中です。',
-  'wallet.switch': '切替',
-  'wallet.switchTitle': '別のウォレットを認証',
-  'wallet.switchAria': '別のウォレットを認証',
-  'wallet.unlink': '連携解除',
-  'wallet.unlinkTitle': 'このアカウントからウォレット認証を削除',
-  'wallet.unlinkAria': 'このアカウントからウォレット認証を削除',
-  'wallet.signOut': '接続解除',
-  'wallet.signOutTitle': 'このブラウザでウォレットアプリの接続を解除',
-  'wallet.signOutAria': 'このブラウザでウォレットアプリの接続を解除',
-  'wallet.hide': '非表示',
-  'wallet.hideTitle': 'この画面でウォレット行を非表示にする',
-  'wallet.hideAria': 'この画面でウォレット行を非表示にする',
-  'wallet.hiddenNotice':
-    'ウォレット行を非表示にしました。ゲーム内のオプション > インターフェイスから再度有効にできます。',
-  'wallet.linkedTitle':
-    'ウォレットはアカウントで認証済みです。クリックしてウォレットアプリを管理します。',
-  'wallet.linkedDisconnectedTitle':
-    'ウォレットはアカウントで認証されたままです。ウォレットアプリを管理するには再接続してください。',
-  'wallet.linkedDisconnectedAria':
-    'ウォレットはアカウントで認証されたままです。ウォレットアプリを管理するには再接続してください。',
-  'wallet.linkTitle': 'クリックして署名し、このウォレットをアカウントに連携します。',
-  'wallet.connectedTitle':
-    '接続済みです。ログインすると、このウォレットをアカウントに連携できます。',
-  'wallet.balanceTitle': '認証済みSolanaウォレットの$WOC残高',
-  'wallet.balanceAria': '認証済みSolanaウォレット残高: {balance}',
-  'wallet.balancePreviewTitle': '接続中ウォレットの$WOC残高プレビュー',
-  'wallet.balancePreviewAria':
-    '接続中ウォレット残高プレビュー: {balance}。ウォレットを連携するとホルダー表示を認証できます。',
-  'wallet.balanceAmount': '{amount} $WOC',
-  'wallet.connected': '接続済み: {address}',
-  'wallet.connectedWithBalance': '接続済み: {balance} - {address}',
-  'wallet.connectedLinked': '認証済み: {address}',
-  'wallet.connectedLinkedWithBalance': '認証済み: {balance} - {address}',
-  'wallet.helpDisconnected':
-    'Solanaウォレットを認証して、ホルダー表示とプレイヤーカードのバッジを有効にします。トランザクションや SOL は不要です。',
-  'wallet.helpLoginToLink': '{address} に接続済みです。ログインするとアカウントに連携できます。',
-  'wallet.helpLoginToLinkWithBalance':
-    '{address} に接続済み、残高は {balance} です。ログインするとアカウントに連携できます。',
-  'wallet.helpReadyToLink':
-    '選択中のウォレット: {address}。一度署名すると、ホルダー表示とプレイヤーカードを認証できます。',
-  'wallet.helpReadyToLinkWithBalance':
-    '選択中のウォレット: {address}、残高は {balance} です。一度署名すると、ホルダー表示とプレイヤーカードを認証できます。',
-  'wallet.helpLinked': 'ホルダー特典が有効です。このブラウザでウォレットアプリが接続されています。',
-  'wallet.helpLinkedWithBalance':
-    'ホルダー特典が有効です。このブラウザでウォレットアプリが接続されています。',
-  'wallet.helpLinkedDisconnected':
-    'ホルダー特典が有効です。署名や支払いが必要なときはアプリを接続してください。',
-  'wallet.helpLinkedDisconnectedWithBalance':
-    'ホルダー特典が有効です。署名や支払いが必要なときはアプリを接続してください。',
-  'wallet.extensionHelp':
-    'ここにウォレットを表示するには、Solflare Wallet などのブラウザ用ウォレット拡張機能を有効にしておいてください。',
-  'wallet.mobileAppHelp':
-    'Phantom または Solflare を選択してください。ウォレットアプリで承認を求められます。ゲームを開いたままにし、完了後に戻ってください。',
-  'wallet.seekerAppHelp':
-    'Seed Vault Walletで続行します。Seed Vaultで接続と認証のリクエストを確認し、完了したらゲームに戻ってください。',
-  'wallet.standaloneAppHelp':
-    'ホーム画面アプリでは、まだウォレットに接続できません。Phantom または Solflare を使用するには、Safari か Chrome で World of ClaudeCraft を開いてください。',
-  'wallet.openAppTitle': '{wallet} で続行',
-  'wallet.openAppHelp':
-    '{wallet} を開いてこのリクエストを確認してください。ウォレットアプリの使用中も、このゲームタブを開いたままにしてください。',
-  'wallet.openAppButton': '{wallet} を開く',
-  'wallet.manualReturnBrowserHelp':
-    '承認後、このゲームタブに戻ってください。iOS で別のブラウザが開いた場合は閉じ、元のブラウザに手動で戻ってください。',
-  'wallet.manualReturnStandaloneHelp':
-    '承認後、ホーム画面から World of ClaudeCraft に戻ってください。iOS でブラウザが開いた場合は閉じ、ホーム画面のアプリをもう一度開いてください。',
-  'wallet.preparingAppButton': '{wallet} を準備中...',
-  'wallet.walletAppUnavailable':
-    '{wallet} を準備できませんでした。このウィンドウを閉じて、もう一度お試しください。',
-  'wallet.flowConnect': 'ウォレットを選択してください。認証は自動的に続行されます。',
-  'wallet.flowSign':
-    'ウォレットアプリで認証メッセージに署名してください。トランザクションや SOL は不要です。',
-  'wallet.flowVerify': 'ウォレット所有権を認証中...',
-  'wallet.linkFailed': 'ウォレット認証に失敗しました。',
-  'wallet.verifyFailed': 'ウォレット認証に失敗しました。',
-  'wallet.browser.eyebrow': 'デスクトップウォレット認証',
-  'wallet.browser.title': 'Solanaウォレットを接続',
-  'wallet.browser.linkBody':
-    'このブラウザでウォレット拡張機能を選択してください。確認メッセージに署名した後、デスクトップアプリに戻ります。',
-  'wallet.browser.paymentBody':
-    'アカウントにリンクされたウォレットを選択し、このブラウザで取引を承認してください。',
-  'wallet.browser.extensionHelp':
-    '対応するウォレット拡張機能が見つかりません。Phantom、Solflare、または別のSolanaブラウザウォレットをインストールまたはロック解除して、再試行してください。',
-  'wallet.browser.safety':
-    'World of ClaudeCraftがリカバリーフレーズや秘密鍵を求めることはありません。',
-  'wallet.browser.continueWith': '{wallet}で続行',
-  'wallet.browser.reviewTitle': 'ウォレットで確認',
-  'wallet.browser.reviewBody':
-    '{wallet}の指示に従ってください。このブラウザページは開いたままにしてください。',
-  'wallet.browser.completeTitle': 'ウォレット認証が完了しました',
-  'wallet.browser.completeBody': 'World of ClaudeCraftデスクトップアプリに戻れます。',
-  'wallet.browser.returnButton': 'デスクトップアプリに戻る',
-  'wallet.browser.failed':
-    'ウォレット認証に失敗したか期限切れです。デスクトップアプリに戻って再試行してください。',
-  'wallet.browser.retry': '再試行',
-  'wallet.unlinkFailed': 'ウォレット連携を解除できませんでした。',
-  'wallet.holder': '$WOCホルダー',
-  'wallet.holderTierTitle': '{tier} $WOCホルダー',
-  'wallet.holderTiers.ember.name': '残り火',
-  'wallet.holderTiers.ember.flavor': '火花が灯りました。',
-  'wallet.holderTiers.coinbearer.name': 'コインベアラー',
-  'wallet.holderTiers.coinbearer.flavor': '軍資金庫に最初の一枚。',
-  'wallet.holderTiers.coppercrest.name': '銅の紋章',
-  'wallet.holderTiers.coppercrest.flavor': '銅貨は積み上がり、あなたの名が語られます。',
-  'wallet.holderTiers.silverbound.name': '銀の誓約',
-  'wallet.holderTiers.silverbound.flavor': '銀に結ばれ、資産を築いています。',
-  'wallet.holderTiers.gilded.name': '黄金',
-  'wallet.holderTiers.gilded.flavor': '黄金に輝き、笑みを浮かべています。',
-  'wallet.holderTiers.vaultwarden.name': '宝物庫の番人',
-  'wallet.holderTiers.vaultwarden.flavor': '今や本物の金庫を守っています: $WOC 全体の 0.01%。',
-  'wallet.holderTiers.whale.name': 'クジラ',
-  'wallet.holderTiers.whale.flavor': '泳げば深みが割れます: 供給量の 0.1%。',
-  'wallet.holderTiers.leviathan.name': 'リヴァイアサン',
-  'wallet.holderTiers.leviathan.flavor': 'あなたが動けば市場が感じ取ります: 供給量の 1%。',
-  'wallet.holderTiers.tidelord.name': '潮の君主',
-  'wallet.holderTiers.tidelord.flavor': '潮があなたの呼び声に応えます: 供給量の 2%。',
-  'wallet.holderTiers.stormcaller.name': '嵐呼び',
-  'wallet.holderTiers.stormcaller.flavor': 'あなたの名に嵐が集います: 供給量の 3%。',
-  'wallet.holderTiers.krakencrown.name': 'クラーケンの冠',
-  'wallet.holderTiers.krakencrown.flavor': '深海に冠を授けられています: 供給量の 4%。',
-  'wallet.holderTiers.titanforged.name': 'タイタン鍛造',
-  'wallet.holderTiers.titanforged.flavor': 'タイタンたちの間で鍛えられました: 供給量の 5%。',
-  'wallet.holderTiers.starhoard.name': '星の秘蔵',
-  'wallet.holderTiers.starhoard.flavor': '星光を曲げるほどの宝庫です: 供給量の 6%。',
-  'wallet.holderTiers.voidwarden.name': '虚空の番人',
-  'wallet.holderTiers.voidwarden.flavor': '虚空の縁を守っています: 供給量の 7%。',
-  'wallet.holderTiers.realmshaper.name': '領域形成者',
-  'wallet.holderTiers.realmshaper.flavor': 'あなたは領域を作り変えます: 供給量の 8%。',
-  'wallet.holderTiers.worldforger.name': '世界鍛造者',
-  'wallet.holderTiers.worldforger.flavor': '自分だけの世界を鍛えています: 供給量の 9%。',
-  'wallet.holderTiers.worldbearer.name': '世界を担う者',
-  'wallet.holderTiers.worldbearer.flavor': 'あなたは世界の一片を背負っています: 供給量の 10%。',
-  'wallet.holderTiers.sovereign.name': '君主',
-  'wallet.holderTiers.sovereign.flavor': 'レルムが膝をつきます: 供給量のすべて。',
   'playerCard.shareButton': 'プレイヤーカードを共有',
   'playerCard.title': 'プレイヤーカード',
   'playerCard.close': 'プレイヤーカードを閉じる',
@@ -1432,7 +1234,6 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'playerCard.footerHandleWithRecruits': '@{handle} - {recruited}',
   'playerCard.footerCta': 'あなたの伝説を鍛えよう: {siteUrl}',
   'playerCard.arenaStat': 'アリーナ',
-  'playerCard.shareTierBit': ', {tier}ランクの$WOCホルダー',
   'playerCard.shareText':
     'World of ClaudeCraftで伝説を鍛えています: レベル{level} {className}{tierBit}。私のワールドに参加してください:',
   'playerCard.nativeShareTitle': 'ClaudeCraftの世界',
@@ -5121,10 +4922,6 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'hud.errors.silenced': '沈黙状態です！',
   'hud.pet.noPetFood': 'ペットに与える食べ物がありません。',
   'hud.pet.petEatsFoodOnly': 'ペットは食べ物しか食べられません。',
-  'mode.caCopyAria': 'コントラクトアドレスをコピー',
-  'mode.caLabel': '$WOC コントラクトアドレス',
-  'mode.caNote':
-    'WOCはコミュニティトークンです。プレイには必要ありません。Discordに参加して、WOCのユーティリティとフライホイールについて語り合いましょう。',
   'mode.play': 'プレイ',
   'mode.playAria': 'World of ClaudeCraftをプレイ',
   'mode.serverAria': 'ワールドを選択：オンラインまたはオフライン',
@@ -5581,7 +5378,6 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'hudChrome.account.loggedOutPrompt': 'アカウントを管理するにはログインしてください。',
   'hudChrome.account.memberSince': '登録日：{date}',
   'hudChrome.account.sectionSettings': 'アカウント設定',
-  'hudChrome.account.sectionWallet': '$WOC ウォレット',
   'hudChrome.account.sectionCharacters': 'キャラクター',
   'hudChrome.account.sectionDanger': '危険な操作',
   'hudChrome.account.changePassword': 'パスワードの変更',
@@ -5611,9 +5407,6 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'hudChrome.account.charactersSummary': 'キャラクターを管理してワールドに入りましょう。',
   'hudChrome.account.charactersCount': 'キャラクター：{count}',
   'hudChrome.account.goToCharacters': 'キャラクターを表示',
-  'hudChrome.account.walletSummary':
-    'Solana ウォレットを認証してプレイヤーカードに保有者バッジを表示します。',
-  'hudChrome.account.manageWallet': 'ウォレットを管理',
   'hudChrome.account.deactivate': 'アカウントを無効化',
   'hudChrome.account.deactivateWarning':
     '無効化するとアカウントがロックされ、すべてのデバイスからログアウトされます。復元するには管理者に連絡してください。ユーザー名とパスワードを再入力して確認してください。',
@@ -8182,7 +7975,6 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.remainingDaysHours': '{days}日{hours}時間',
   'hudChrome.dailyRewards.remainingLessThanMinute': '1分未満',
   'hudChrome.dailyRewards.remainingMinutes': '{minutes}分',
-  'hudChrome.dailyRewards.sol': '{amount} SOL',
   'hudChrome.dailyRewards.usd': '{amount} USD',
   'guide.professions.intro':
     '戦闘やクエストだけでなく、この世界は大地を耕し鍛冶場に立つあなたにも報いてくれます。原材料を採集し、十の製作職を通じてそれを装備や品物へと変え、それらの職が体現する十のアーキタイプのひとつとして自らのアイデンティティを築いていきます。',
@@ -8207,17 +7999,6 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'apiError.deeds.invalid_input': '入力が無効です。',
   'apiError.ota_updates.invalid_input': '入力が無効です。',
   'apiError.steam.disabled': 'Steam連携は現在利用できません。',
-  'apiError.wallet.handoff_invalid':
-    'ウォレット認証の有効期限が切れたか、確認できませんでした。もう一度お試しください。',
-  'apiError.seeker.native_only': 'Seeker資格はネイティブアプリでのみ利用できます。',
-  'apiError.seeker.attestation_failed': '端末の検証に失敗しました。もう一度お試しください。',
-  'apiError.seeker.solana_artifact_required': 'Solana Store版アプリを使用して続行してください。',
-  'apiError.seeker.wallet_required': '先にウォレットを連携して検証してください。',
-  'apiError.seeker.genesis_token_required': '検証済みのSeeker Genesis Tokenが必要です。',
-  'apiError.seeker.genesis_token_claimed': 'そのSeeker Genesis Tokenはすでに取得されています。',
-  'apiError.seeker.entitlement_required': '検証済みのSeeker資格が必要です。',
-  'apiError.seeker.current_ownership_required':
-    '現在Seeker Genesis Tokenを所有している必要があります。',
   'apiError.steam.invalid_ticket':
     'Steamがこの連携リクエストを確認できませんでした。デスクトップアプリからもう一度お試しください。',
   'apiError.steam.banned': 'そのSteamアカウントは連携できません。',
@@ -8952,11 +8733,9 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'hudChrome.bank.bonusStatusEarned': '+{count}',
   'hudChrome.bank.bonusSourceEmail': 'メール認証済み',
   'hudChrome.bank.bonusSourceDiscord': 'Discord連携済み',
-  'hudChrome.bank.bonusSourceWallet': 'ウォレット連携済み',
   'hudChrome.bank.bonusSourceReferral': '招待した友達',
   'hudChrome.bank.bonusAdvertEmail': 'メールを認証すると2スロット獲得できます。',
   'hudChrome.bank.bonusAdvertDiscord': 'Discordを連携すると2スロット獲得できます。',
-  'hudChrome.bank.bonusAdvertWallet': 'ウォレットを連携すると2スロット獲得できます。',
   'hudChrome.bank.bonusReferralProgress': '{count}/{cap}',
   'hudChrome.bank.bonusReferralExplainer':
     '友達を招待しましょう：友達がレベル10に達すると、お互いに2スロット獲得できます。友達は最大5人までです。',
@@ -9747,8 +9526,6 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
     'サーバーのチート機能には引き続き ALLOW_DEV_COMMANDS=1 が必要です。',
   'devCommand.subtitle': '現在のワールドをサーバー権限でテストするための操作です。',
   'devCommand.title': 'コマンドセンター',
-  'hudChrome.claudium.railUsdc': 'USDC',
-  'hudChrome.claudium.usdcBalance': 'USDC：{amount}',
   'hudChrome.partyFrames.healthNone': 'なし',
   'hudChrome.partyFrames.sortName': '名前',
   'hudChrome.partyFrames.sortRole': 'ロール',

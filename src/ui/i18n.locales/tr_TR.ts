@@ -204,16 +204,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'apiError.epic.invalid_token':
     'Epic bu bağlantı isteğini doğrulayamadı. Masaüstü uygulamasından tekrar deneyin.',
   'apiError.epic.upstream': 'Epic yanıt vermedi. Birazdan tekrar deneyin.',
-  'apiError.seeker.native_only': 'Seeker hakkı yalnızca yerel uygulamada kullanılabilir.',
-  'apiError.seeker.attestation_failed': 'Cihaz doğrulaması başarısız oldu. Lütfen tekrar deneyin.',
-  'apiError.seeker.solana_artifact_required':
-    'Devam etmek için Solana Store uygulamasını kullanın.',
-  'apiError.seeker.wallet_required': 'Önce bir cüzdan bağlayıp doğrulayın.',
-  'apiError.seeker.genesis_token_required': 'Doğrulanmış bir Seeker Genesis Token gerekir.',
-  'apiError.seeker.genesis_token_claimed': 'Bu Seeker Genesis Token zaten talep edilmiş.',
-  'apiError.seeker.entitlement_required': 'Doğrulanmış bir Seeker hakkı gerekir.',
-  'apiError.seeker.current_ownership_required':
-    "Seeker Genesis Token'a şu anda sahip olmanız gerekir.",
   'guide.professions.archetypeSwitchBody':
     'Bir beyan ömür boyu hüküm de değildir. Hiç sahip olmadığınız bir çift yalnızca yeni bir uyum görevidir; bırakıp gittiğiniz bir çifte dönmek ise önce barışı tesis etmenizi ister: ilk seferinde beş görev ve daha önce yaptığınız her dönüş için üç görev daha eklenir (yepyeni bir çifti benimsemek bu sayıyı asla artırmaz). Seçim, hiçbir kapıyı temelli kilitlemeden anlamlı kalır.',
   'guide.professions.whatBody':
@@ -323,8 +313,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
     "Toplama yayı 2,5 saniyeden başlar ve iki şekilde kısalır: taşıdığınız ve kullanabildiğiniz, düğümün kendi kademesinin üzerindeki her alet kademesi için 0,4 saniye ve mesleğinizin sayacı 100 bandını geçtiğinde 0,15 saniye; 1,5 saniyelik bir taban vardır. Kademe 1 düğümlerden kademe 3 düğümlere geçin, fazlanız buharlaşır ve aynı kazma yeniden daha yavaş sallanır. Tam olarak gereken kademeyi elde tutmak hız satın almaz; yalnızca düğümü açar.\n\nBeceri kazanımı, üretimde olduğu gibi solar: yetkinliğiniz bir düğümün kademesini aştıkça o düğüm grileşir (kademe 1 düğümler yetkinlik 75'ten itibaren hiçbir şey öğretmez), dolayısıyla yavaş kazanımın cevabı daha yüksek kademeli düğümlerdir. Bunlar çantanızda en az kendi kademelerinde bir alet ister (hiçbir düğüm çıplak elle işlenmez, kademe 1 dahil) ve kademe 1'in üzerindeki bir kara aleti önce kendi kullanım işaretini de ister: kademe 2'den 5'e kadar kendi mesleğinde 40/70/85/100. Balıkçılık kendi azalma çizelgesini izler: yetkinlik 50'nin altında tam kazanım, 100'ün altında yarım, 150'nin altında 0,1'lik bir sızıntı ve 200'ün altında 0,02; döküntü avlar 100'den itibaren hiçbir şey öğretmez ve suyun kendisi de dersi sınırlar (kademe 1 suları 100'de, bataklık 150'de öğretmeyi bırakır), yani duran bir sayaç, suyu aştığınız anlamına da gelebilir.",
   'guide.profPages.faq.a8':
     "Kısmen. Dokuz sıradan alan tarifi (başlangıç silahı, zırhı, yiyeceği ve iksiri gibi temel işler) her yerde, her zaman üretilir; yemin edilmiş çiftlerin üç kombinasyon tarifi de öyle. Bunların üzerindeki her şey bir istasyon türüne bağlıdır: demirhane, mutfaklar, eczane, tabakhane, dokuma tezgahı ya da alet atölyesi; ve üretimin gerçekleşmesi için istasyona 20 yarda mesafede olmanız gerekir.\n\nBir zanaatta beceri 75'te uzmanlaşırsınız ve yüzde 20 malzeme indiriminin yanında bir de mobil istasyon kazanırsınız: sahaya kurun, 10 dakika ayakta kalır ve gerçeğinin başındaymışsınız gibi o zanaatın tariflerine hizmet eder. Mobil istasyon yalnızca üretim içindir: tarif öğrenmek ve sipariş parçalarını bağdan kurtarmak her zaman kasabadaki gerçek istasyonu gerektirir.",
-  'wallet.seekerAppHelp':
-    "Seed Vault Wallet ile devam et. Bağlantı ve doğrulama isteklerini Seed Vault'ta incele, sonra oyuna dön.",
   'questUi.tracker.unknownQuest': 'Bilinmeyen görev ({id})',
   'questUi.log.repeatableStatus': 'Tekrarlanabilir',
   'questUi.log.cooldownStatus': 'Yakında tekrar açılacak',
@@ -723,8 +711,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'hud.prompts.resurrectionOffer': '{name} seni hayata döndürmek istiyor. Kabul ediyor musun?',
   'questUi.dialog.profIntroHint': "{quest} görevi için {name}'e git.",
   'itemUi.stats.parry': 'Savuşturma',
-  'apiError.wallet.handoff_invalid':
-    'Cüzdan yetkilendirmesi süresi dolmuş veya doğrulanamadı. Tekrar dene.',
   'cardDuel.close': 'Kapat',
   'cardDuel.counts': 'Deste: {deck} · Atılan: {discard}',
   'cardDuel.forfeit': 'Teslim Ol',
@@ -955,57 +941,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.nameplate.mobLevel': '{level}',
   'hudChrome.specPanel.specUnlockBanner': 'Uzmanlık Kilidi Açıldı!',
   'hudChrome.specPanel.specUnlockHint': "Uzmanlığını seçmek için N'ye bas.",
-  'hudChrome.wocStore.wallet.connect': 'Cüzdan bağla',
-  'hudChrome.wocStore.wallet.connectedUnlinked':
-    'Cüzdan uygulaması bu tarayıcıya bağlı, ancak açık adresi henüz WoC hesabına bağlanmamış.',
-  'hudChrome.wocStore.wallet.linkedConnected':
-    'Bağlı cüzdan uygulan bağlı ve SOL veya WOC alımlarına hazır.',
-  'hudChrome.wocStore.wallet.linkedDisconnected':
-    'Açık adresin bağlı. SOL veya WOC ile ödeme yapmak istediğinde o cüzdan uygulamasını yeniden bağla.',
-  'hudChrome.wocStore.wallet.manage': 'Cüzdanı yönet',
-  'hudChrome.wocStore.wallet.mismatched':
-    'Farklı bir cüzdan bağlı. Bağlı adresi değiştirmek için doğrula ya da bağlı cüzdanı yeniden bağla.',
-  'hudChrome.wocStore.wallet.reconnect': 'Cüzdanı yeniden bağla',
-  'hudChrome.wocStore.wallet.title': 'Solana cüzdanı',
-  'hudChrome.wocStore.wallet.unlinked':
-    'Bir cüzdan uygulaması bağla, ardından açık adresini WoC hesabına bağlamak için bir kez imzala. Kurtarma ifadeni veya özel anahtarını hiçbir zaman almıyoruz.',
-  'hudChrome.wocStore.wallet.verify': 'Doğrula ve bağla',
-  'wallet.bagConnect': 'Cüzdanı bağla',
-  'wallet.bagLink': 'Cüzdanı doğrula',
-  'wallet.bagReconnect': 'Cüzdanı yeniden bağla',
-  'wallet.browser.completeBody': 'World of ClaudeCraft masaüstü uygulamasına dönebilirsin.',
-  'wallet.browser.completeTitle': 'Cüzdan yetkilendirmesi tamamlandı',
-  'wallet.browser.continueWith': '{wallet} ile devam et',
-  'wallet.browser.extensionHelp':
-    'Uyumlu cüzdan uzantısı bulunamadı. Phantom, Solflare veya başka bir Solana tarayıcı cüzdanını yükle ya da kilidini aç, ardından tekrar dene.',
-  'wallet.browser.eyebrow': 'Masaüstü cüzdan yetkilendirmesi',
-  'wallet.browser.failed':
-    'Cüzdan yetkilendirmesi başarısız oldu veya süresi doldu. Masaüstü uygulamasına dön ve tekrar dene.',
-  'wallet.browser.linkBody':
-    'Bu tarayıcıda bir cüzdan uzantısı seç. Bir doğrulama mesajı imzalayacak, ardından masaüstü uygulamasına döneceksin.',
-  'wallet.browser.paymentBody': 'Hesabına bağlı cüzdanı seç ve bu tarayıcıda işlemi onayla.',
-  'wallet.browser.retry': 'Tekrar dene',
-  'wallet.browser.returnButton': 'Masaüstü uygulamasına dön',
-  'wallet.browser.reviewBody':
-    "{wallet}'dan gelen istemi takip et. Bu tarayıcı sayfasını açık bırak.",
-  'wallet.browser.reviewTitle': 'Cüzdanında incele',
-  'wallet.browser.safety':
-    'World of ClaudeCraft hiçbir zaman kurtarma ifadeni veya özel anahtarını istemez.',
-  'wallet.browser.title': 'Solana Cüzdanı Bağla',
-  'wallet.manualReturnBrowserHelp':
-    'Onayladıktan sonra bu oyun sekmesine dön. iOS başka bir tarayıcı açarsa, kapat ve orijinal tarayıcıya manuel olarak dön.',
-  'wallet.manualReturnStandaloneHelp':
-    "Onayladıktan sonra Ana Ekranından World of ClaudeCraft'a dön. iOS bir tarayıcı açarsa, kapat ve Ana Ekran uygulamasını manuel olarak yeniden aç.",
-  'wallet.mobileAppHelp':
-    "Phantom veya Solflare'i seç. Cüzdan uygulan onay isteyecek. Bu oyunu açık bırak ve bittiğinde geri dön.",
-  'wallet.openAppButton': "{wallet}'u aç",
-  'wallet.openAppHelp':
-    "Bu isteği incelemek için {wallet}'u aç. Cüzdan uygulaması etkinken bu oyun sekmesini açık bırak.",
-  'wallet.openAppTitle': "{wallet}'da devam et",
-  'wallet.preparingAppButton': '{wallet} hazırlanıyor...',
-  'wallet.standaloneAppHelp':
-    "Ana Ekran uygulamasında cüzdan bağlantıları henüz mevcut değil. Phantom veya Solflare kullanmak için World of ClaudeCraft'ı Safari veya Chrome'da aç.",
-  'wallet.walletAppUnavailable': '{wallet} hazırlanamadı. Bu pencereyi kapat ve tekrar dene.',
   'entities.abilities.primal_reflexes.description':
     'İçgüdülerin keskinleşerek 6 sn boyunca savurma şansını %50 artırır.',
   'entities.abilities.primal_reflexes.name': 'Yaban Refleksleri',
@@ -2528,8 +2463,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'sim.delve.riteSequenceReady': 'Sunaklar kararır. Diziyi tekrarla.',
   'sim.delve.riteWrong': 'Sert bir çan çatlaması. Ayaklarına kara su sıçrar.',
   'sim.delve.ropesSealed': 'Çan iplerini çekmeyi denemelisin.',
-  'wallet.extensionHelp':
-    'Burada bir cüzdan görmek için Solflare Wallet gibi bir tarayıcı cüzdan uzantısını etkin tutun.',
   'worldContent.delveReliquaryInteract': "Boğulmuş Emanetlik: Ayini başlatmak için F'ye bas",
   'worldContent.delveRiteShrineBellInteract': "Çan Sunağı: Çalmak için F'ye bas",
   'worldContent.delveRiteShrineCandleInteract': "Mum Sunağı: Dokunmak için F'ye bas",
@@ -7246,7 +7179,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.account.logOut': 'Çıkış Yap',
   'hudChrome.account.logOutSummary': 'Bu cihazdan çıkış yapın.',
   'hudChrome.account.loggedOutPrompt': 'Hesabınızı yönetmek için giriş yapın.',
-  'hudChrome.account.manageWallet': 'Cüzdanı Yönet',
   'hudChrome.account.memberSince': 'Üyelik tarihi: {date}',
   'hudChrome.account.newPassword': 'Yeni parola',
   'hudChrome.account.passwordChanged': 'Parola güncellendi. Diğer cihazlardan çıkış yapıldı.',
@@ -7256,7 +7188,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.account.sectionDanger': 'Tehlikeli Bölge',
   'hudChrome.account.sectionSecurity': 'Güvenlik',
   'hudChrome.account.sectionSettings': 'Hesap Ayarları',
-  'hudChrome.account.sectionWallet': '$WOC Cüzdanı',
   'hudChrome.account.title': 'Hesap',
   'hudChrome.account.twoFactorBegin': 'Kuruluma Başla',
   'hudChrome.account.twoFactorBeginHint': 'Kuruluma başlamak için parolanızı girin.',
@@ -7286,8 +7217,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.account.twoFactorStatusOn': 'Hesabınız için iki adımlı kimlik doğrulama AÇIK.',
   'hudChrome.account.twoFactorTitle': 'İki Adımlı Kimlik Doğrulama',
   'hudChrome.account.twoFactorVerifyBtn': 'Doğrula ve Etkinleştir',
-  'hudChrome.account.walletSummary':
-    'Oyuncu kartınızda sahip rozetini göstermek için bir Solana cüzdanını doğrulayın.',
   'hudChrome.bags.filterAll': 'Tümü',
   'hudChrome.bags.filterArmor': 'Zırh',
   'hudChrome.bags.filterConsumable': 'Sarf Malzemeleri',
@@ -7436,8 +7365,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.options.keybindHelpLockCursorOnRotate':
     'Kamerayı döndürmek için sürüklerken fare imlecini pencerenin içinde tutar, böylece ekran kenarına ulaşamaz veya başka bir monitöre geçemez. Serbest imleç tercih ediyorsanız kapatın.',
   'hudChrome.options.lockCursorOnRotate': 'Döndürürken İmleci Kilitle',
-  'hudChrome.options.showWalletOnCharacterScreen': 'Cüzdanı Karakter Ekranında Göster',
-  'hudChrome.options.showWalletOnPlayerCard': 'Cüzdanı Oyuncu Kartında Göster',
   'hudChrome.options.uiScale': 'Arayüz Ölçeği',
   'hudChrome.paperdoll.unequipAria': '{item} eşyasını çıkar',
   'hudChrome.paperdoll.unequipHint':
@@ -7503,7 +7430,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.perf.units.mb': '{value} MB',
   'hudChrome.perf.units.memPair': '{used} / {limit} MB',
   'hudChrome.perf.units.ms': '{value} ms',
-  'hudChrome.playerCard.showWalletBadge': 'Cüzdan rozetini göster',
   'hudChrome.plurals.characterCount.few': '{count} karakter',
   'hudChrome.plurals.characterCount.many': '{count} karakter',
   'hudChrome.plurals.characterCount.one': '{count} karakter',
@@ -7905,10 +7831,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'mobilePreflight.rotateSub': 'En iyi mobil deneyim için yatay tam ekranda oynayın.',
   'mobilePreflight.rotateTitle': 'Yatay Konuma Çevir',
   'mobilePreflight.title': 'Yatay Tam Ekranda Oyna',
-  'mode.caCopyAria': 'Sözleşme adresini kopyala',
-  'mode.caLabel': '$WOC Sözleşme Adresi',
-  'mode.caNote':
-    "WOC topluluk jetonumuzdur. Oynamak için gerekli değildir. WOC'un faydasını ve döngüsünü tartışmak için Discord'a katılın.",
   'mode.offlineAria': 'Çevrimdışı Oyna: anında yerel tek oyunculu oturum başlat',
   'mode.offlineDesc':
     'Tarayıcınızda anında tek oyunculu dünya. Hiçbir şey kaydedilmez: hızlı bir kapışma veya test için ideal.',
@@ -7974,7 +7896,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'playerCard.shareButton': 'Oyuncu Kartını Paylaş',
   'playerCard.shareText':
     "World of ClaudeCraft'ta efsanemi yaratıyorum: Seviye {level} {className}{tierBit}. Dünyama katıl:",
-  'playerCard.shareTierBit': ', {tier}-derece $WOC sahibi',
   'playerCard.statusDownloaded': 'Kart indirildi.',
   'playerCard.statusGenericError': 'Bir şeyler ters gitti.',
   'playerCard.statusOpenedXWithImage': 'X açıldı. Kart görselini gönderiye yapıştır.',
@@ -8247,114 +8168,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'stats.realmName': 'Dünya Adı',
   'stats.charactersCreated': 'Oluşturulan Karakterler',
   'stats.title': 'Dünya Durumu',
-  'wallet.appConnected': 'Uygulama Bağlandı',
-  'wallet.balanceAmount': '{amount} $WOC',
-  'wallet.balanceAria': 'Doğrulanmış Solana cüzdanı bakiyesi: {balance}',
-  'wallet.balancePreviewAria':
-    'Bağlı cüzdan bakiyesi önizlemesi: {balance}. Sahip rozetini doğrulamak için cüzdanı bağlayın.',
-  'wallet.balancePreviewTitle': 'Bağlı cüzdan $WOC bakiyesi önizlemesi',
-  'wallet.balanceTitle': 'Doğrulanmış Solana cüzdanı $WOC bakiyesi',
-  'wallet.connect': 'Cüzdanı Doğrula',
-  'wallet.connectApp': 'Uygulamayı Bağla',
-  'wallet.connectAppAria': 'Bu tarayıcıda cüzdan uygulamasını bağlayın',
-  'wallet.connectAppTitle': 'Bu tarayıcıda cüzdan uygulamasını bağlayın',
-  'wallet.connectAria': 'Solana cüzdanınızı doğrulayın',
-  'wallet.connectTitle': 'Solana cüzdanınızı doğrulayın',
-  'wallet.connected': 'Bağlandı: {address}',
-  'wallet.connectedLinked': 'Doğrulandı: {address}',
-  'wallet.connectedLinkedWithBalance': 'Doğrulandı: {balance} - {address}',
-  'wallet.connectedTitle': 'Bağlandı. Bu cüzdanı hesabınıza bağlamak için giriş yapın.',
-  'wallet.connectedWithBalance': 'Bağlandı: {balance} - {address}',
-  'wallet.flowConnect': 'Bir cüzdan seçin. Doğrulama otomatik olarak devam eder.',
-  'wallet.flowSign': 'Cüzdan uygulamanızda doğrulama mesajını imzalayın. İşlem veya SOL gerekmez.',
-  'wallet.flowVerify': 'Cüzdan sahipliği doğrulanıyor...',
-  'wallet.helpDisconnected':
-    'Sahip rozetini ve oyuncu kartı nişanlarını etkinleştirmek için bir Solana cüzdanı doğrulayın. İşlem veya SOL gerekmez.',
-  'wallet.helpLinked': 'Sahip ayrıcalıkları etkin. Cüzdan uygulaması bu tarayıcıda bağlı.',
-  'wallet.helpLinkedDisconnected':
-    'Sahip ayrıcalıkları etkin. İmzalamanız veya harcamanız gerektiğinde uygulamayı bağlayın.',
-  'wallet.helpLinkedDisconnectedWithBalance':
-    'Sahip ayrıcalıkları etkin. İmzalamanız veya harcamanız gerektiğinde uygulamayı bağlayın.',
-  'wallet.helpLinkedWithBalance':
-    'Sahip ayrıcalıkları etkin. Cüzdan uygulaması bu tarayıcıda bağlı.',
-  'wallet.helpLoginToLink': '{address} bağlandı. Hesabınıza bağlamak için giriş yapın.',
-  'wallet.helpLoginToLinkWithBalance':
-    '{address} adresi {balance} ile bağlandı. Hesabınıza bağlamak için giriş yapın.',
-  'wallet.helpReadyToLink':
-    'Cüzdan seçildi: {address}. Sahip rozetini ve oyuncu kartlarını doğrulamak için bir kez imzalayın.',
-  'wallet.helpReadyToLinkWithBalance':
-    'Cüzdan seçildi: {address}, bakiye {balance}. Sahip rozetini ve oyuncu kartlarını doğrulamak için bir kez imzalayın.',
-  'wallet.hiddenNotice':
-    'Cüzdan satırı gizlendi. Oyun içinde Seçenekler > Arayüz menüsünden yeniden etkinleştirin.',
-  'wallet.hide': 'Gizle',
-  'wallet.hideAria': 'Bu ekranda cüzdan satırını gizle',
-  'wallet.hideTitle': 'Bu ekranda cüzdan satırını gizle',
-  'wallet.holder': '$WOC sahibi',
-  'wallet.holderTierTitle': '{tier} $WOC sahibi',
-  'wallet.holderTiers.coinbearer.flavor': 'Savaş hazinesindeki ilk sikke.',
-  'wallet.holderTiers.coinbearer.name': 'Sikke Taşıyıcı',
-  'wallet.holderTiers.coppercrest.flavor': 'Bakırlar yığıldı, adın anıldı.',
-  'wallet.holderTiers.coppercrest.name': 'Bakır Arması',
-  'wallet.holderTiers.ember.flavor': 'Kıvılcım tutuştu.',
-  'wallet.holderTiers.ember.name': 'Köz',
-  'wallet.holderTiers.gilded.flavor': 'Yaldızlanmış ve sırıtan.',
-  'wallet.holderTiers.gilded.name': 'Yaldızlı',
-  'wallet.holderTiers.krakencrown.flavor': "Derinliklerin tacı: arzın %4'ü.",
-  'wallet.holderTiers.krakencrown.name': 'Kraken Tacı',
-  'wallet.holderTiers.leviathan.flavor': "Piyasalar hareketini hisseder: arzın %1'i.",
-  'wallet.holderTiers.leviathan.name': 'Leviathan',
-  'wallet.holderTiers.realmshaper.flavor': "Diyarı yeniden şekillendirirsin: arzın %8'i.",
-  'wallet.holderTiers.realmshaper.name': 'Diyar Şekillendiren',
-  'wallet.holderTiers.silverbound.flavor': 'Gümüşe bağlı, kese büyüyor.',
-  'wallet.holderTiers.silverbound.name': 'Gümüş Bağlı',
-  'wallet.holderTiers.sovereign.flavor': 'Diyar diz çöker: arzın tamamı.',
-  'wallet.holderTiers.sovereign.name': 'Hükümdar',
-  'wallet.holderTiers.starhoard.flavor': "Yıldız ışığını büken bir hazine: arzın %6'sı.",
-  'wallet.holderTiers.starhoard.name': 'Yıldız Hazinesi',
-  'wallet.holderTiers.stormcaller.flavor': "Adının anılmasıyla fırtınalar toplanır: arzın %3'ü.",
-  'wallet.holderTiers.stormcaller.name': 'Fırtına Çağıran',
-  'wallet.holderTiers.tidelord.flavor': "Gelgit çağrına yanıt verir: arzın %2'si.",
-  'wallet.holderTiers.tidelord.name': 'Gelgit Efendisi',
-  'wallet.holderTiers.titanforged.flavor': "Titanlar arasında dövülmüş: arzın %5'i.",
-  'wallet.holderTiers.titanforged.name': 'Titan Dövmesi',
-  'wallet.holderTiers.vaultwarden.flavor':
-    "Artık gerçek bir kasayı koruyorsun: tüm $WOC'nin %0,01'i.",
-  'wallet.holderTiers.vaultwarden.name': 'Kasa Muhafızı',
-  'wallet.holderTiers.voidwarden.flavor': "Boşluğun kıyısındaki bekçi: arzın %7'si.",
-  'wallet.holderTiers.voidwarden.name': 'Boşluk Muhafızı',
-  'wallet.holderTiers.whale.flavor': "Yüzdüğünde derinlik ikiye ayrılır: arzın %0,1'i.",
-  'wallet.holderTiers.whale.name': 'Balina',
-  'wallet.holderTiers.worldbearer.flavor': "Dünyanın bir parçasını taşırsın: arzın %10'u.",
-  'wallet.holderTiers.worldbearer.name': 'Dünya Taşıyıcı',
-  'wallet.holderTiers.worldforger.flavor': "Kendine ait bir dünya döversin: arzın %9'u.",
-  'wallet.holderTiers.worldforger.name': 'Dünya Döven',
-  'wallet.label': '$WOC Cüzdanı',
-  'wallet.linkFailed': 'Cüzdan doğrulaması başarısız oldu.',
-  'wallet.linkTitle': 'Bu cüzdanı imzalayıp hesabınıza bağlamak için tıklayın.',
-  'wallet.linkedDisconnectedAria':
-    'Cüzdan hesabınız için doğrulanmış kalır. Cüzdan uygulamasını yönetmek için yeniden bağlanın.',
-  'wallet.linkedDisconnectedTitle':
-    'Cüzdan hesabınız için doğrulanmış kalır. Cüzdan uygulamasını yönetmek için yeniden bağlanın.',
-  'wallet.linkedTitle':
-    'Cüzdan hesabınız için doğrulandı. Cüzdan uygulamasını yönetmek için tıklayın.',
-  'wallet.signOut': 'Bağlantıyı Kes',
-  'wallet.signOutAria': 'Bu tarayıcıdaki cüzdan uygulamasının bağlantısını kes',
-  'wallet.signOutTitle': 'Bu tarayıcıdaki cüzdan uygulamasının bağlantısını kes',
-  'wallet.switch': 'Değiştir',
-  'wallet.switchAria': 'Farklı bir cüzdan doğrula',
-  'wallet.switchTitle': 'Farklı bir cüzdan doğrula',
-  'wallet.unlink': 'Bağlantıyı Kaldır',
-  'wallet.unlinkAria': 'Bu hesaptan cüzdan doğrulamasını kaldır',
-  'wallet.unlinkFailed': 'Cüzdan bağlantısı kaldırılamadı.',
-  'wallet.unlinkTitle': 'Bu hesaptan cüzdan doğrulamasını kaldır',
-  'wallet.verify': 'Cüzdanı Doğrula',
-  'wallet.verifyAddressAria': 'Hesabınız için {address} cüzdanını doğrulamak üzere imzalayın',
-  'wallet.verifyAria': 'Bir cüzdan seçin ve sahipliği doğrulamak için bir kez imzalayın',
-  'wallet.verifyFailed': 'Cüzdan doğrulaması başarısız oldu.',
-  'wallet.verifyNew': 'Yeni Cüzdan Doğrula',
-  'wallet.verifyTitle': 'Bir cüzdan seçin ve sahipliği doğrulamak için bir kez imzalayın.',
-  'wallet.verifying': 'Doğrulanıyor...',
-  'wallet.verifyingTitle': 'Cüzdan doğrulaması sürüyor.',
   'wiki.cta': "Wiki'ye Göz At",
   'wiki.desc': 'Diyarın sırlarını, sınıf rehberlerini ve stratejilerini keşfedin.',
   'wiki.title': 'Oyun Wiki ve Rehberi',
@@ -8643,17 +8456,11 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.noLeaders': 'Henüz puan yok.',
   'hudChrome.dailyRewards.prize': 'Ödül Havuzu',
   'hudChrome.dailyRewards.reason.eligible': 'Ödüllerin kilidi açıldı.',
-  'hudChrome.dailyRewards.reason.no_wallet': 'En az 20 USD değerinde WOC bulunan bir cüzdan bağla.',
-  'hudChrome.dailyRewards.reason.price_unavailable':
-    'WOC fiyatı alınamıyor, ödüller geçici olarak kilitli.',
-  'hudChrome.dailyRewards.reason.under_minimum':
-    'Cüzdan, 20 USD değerindeki WOC alt sınırının altında.',
   'hudChrome.dailyRewards.remainingHoursMinutes': '{hours}sa {minutes}dk',
   'hudChrome.dailyRewards.remainingLessThanMinute': '<1dk',
   'hudChrome.dailyRewards.remainingMinutes': '{minutes}dk',
   'hudChrome.dailyRewards.reset': 'Sıfırla',
   'hudChrome.dailyRewards.score': 'Skor',
-  'hudChrome.dailyRewards.sol': '{amount} SOL',
   'hudChrome.dailyRewards.spinButton': 'Çevir',
   'hudChrome.dailyRewards.spinClaimed': 'Alındı: +{points} puan.',
   'hudChrome.dailyRewards.spinClose': 'Günlük çevirmeyi kapat',
@@ -8669,16 +8476,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
     'Günlük Ödüller şu anda devre dışı. Bu özellikle ilgili güncellemeleri Discord kanalında duyuracağız.',
   'hudChrome.dailyRewards.unknown': 'Bilinmiyor',
   'hudChrome.dailyRewards.usd': '{amount} USD',
-  'hudChrome.dailyRewards.walletConnectBody':
-    'Günlük ödüllerin kilidini açmak için WOC bulunan bir Solana cüzdanını doğrula.',
-  'hudChrome.dailyRewards.walletConnectButton': 'Cüzdanı Doğrula',
-  'hudChrome.dailyRewards.walletConnectTitle': 'Cüzdanı Doğrula',
-  'hudChrome.dailyRewards.walletHoldBody':
-    'Günlük ödüllerin kilidini açmak için en az {amount} USD değerinde WOC bulundur.',
-  'hudChrome.dailyRewards.walletHoldTitle': 'WOC Bulundur',
-  'hudChrome.dailyRewards.walletPriceBody':
-    'WOC fiyatı şu anda alınamıyor. Kısa süre sonra tekrar bak.',
-  'hudChrome.dailyRewards.walletValue': 'Cüzdan Değeri (WOC)',
   'hudChrome.nativeUpdate.body':
     "World of ClaudeCraft'ın yeni bir sürümü mevcut. En son düzeltmeler ve iyileştirmeler için şimdi güncelle.",
   'hudChrome.nativeUpdate.bodyWithVersion':
@@ -8938,11 +8735,9 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.bank.bonusStatusEarned': '+{count}',
   'hudChrome.bank.bonusSourceEmail': 'Doğrulanmış e-posta',
   'hudChrome.bank.bonusSourceDiscord': 'Discord bağlandı',
-  'hudChrome.bank.bonusSourceWallet': 'Cüzdan bağlandı',
   'hudChrome.bank.bonusSourceReferral': 'Davet edilen arkadaşlar',
   'hudChrome.bank.bonusAdvertEmail': '2 yuva kazanmak için e-postanı doğrula.',
   'hudChrome.bank.bonusAdvertDiscord': '2 yuva kazanmak için Discord hesabını bağla.',
-  'hudChrome.bank.bonusAdvertWallet': '2 yuva kazanmak için bir cüzdan bağla.',
   'hudChrome.bank.bonusReferralProgress': '{count}/{cap}',
   'hudChrome.bank.bonusReferralExplainer':
     'Bir arkadaşını davet et: arkadaşın 10. seviyeye ulaştığında ikiniz de 2 yuva kazanırsınız (en fazla 5 arkadaş).',
@@ -9422,17 +9217,11 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.claudium.checkoutClose': 'Ödemeyi kapat',
   'hudChrome.claudium.checkoutFailed': 'Ödeme yüklenemedi. Lütfen tekrar deneyin.',
   'hudChrome.claudium.checkoutLoading': 'Ödeme yükleniyor...',
-  'hudChrome.claudium.checkoutNotSettled':
-    "İşlem gönderildi ancak Claudium'a henüz para yatırılmadı. Lütfen kısa süre sonra tekrar deneyin.",
   'hudChrome.claudium.checkoutPending':
     'İşlem devam ediyor. Cüzdanınızda onaylayın ve bu paneli açık tutun.',
   'hudChrome.claudium.checkoutPendingButton': 'İşleme',
   'hudChrome.claudium.checkoutTitle': 'Satın alma işlemini tamamla',
   'hudChrome.claudium.checkoutUnavailable': 'Bu Claudium satın alımı şu anda mevcut değil.',
-  'hudChrome.claudium.checkoutWalletRequired':
-    "Claudium'u kriptoyla satın almadan önce bir Solana cüzdanı bağlayın.",
-  'hudChrome.claudium.checkoutWalletUnsupported':
-    'Bu cüzdan Solana işlemlerini imzalayamaz ve gönderemez.',
   'hudChrome.claudium.close': "Claudium'u kapat",
   'hudChrome.claudium.disclosure':
     'Claudium tek yönlü yumuşak bir para birimidir: Parayla satın alın ve kozmetik ürünlerine harcayın. Kullanılamaz, devredilemez veya nakde çevrilemez.',
@@ -9443,15 +9232,9 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.claudium.loading': 'Claudium yükleniyor...',
   'hudChrome.claudium.open': "Claudium'u aç",
   'hudChrome.claudium.railLabel': 'Ödeme yöntemi',
-  'hudChrome.claudium.railNativeUnavailable': 'SOL/WOC şu anda kullanılamıyor.',
-  'hudChrome.claudium.railSol': 'SOL',
   'hudChrome.claudium.railStripe': 'Kart',
-  'hudChrome.claudium.railWoc': 'WOC',
-  'hudChrome.claudium.railWocDiscount': '%{percent} indirim',
-  'hudChrome.claudium.railWocUnavailable': 'WOC fiyatlandırması şu anda mevcut değil.',
   'hudChrome.claudium.showAmounts': 'Tüm Claudium miktarlarını göster',
   'hudChrome.claudium.skuRow': '{claudium} Claudium için {usd}',
-  'hudChrome.claudium.solBalance': 'SOL: {amount}',
   'hudChrome.claudium.spendButton': 'Kullan',
   'hudChrome.claudium.storeCost': '{amount} Claudium',
   'hudChrome.claudium.storeEmpty': 'Şu anda kozmetik mevcut değil.',
@@ -9459,7 +9242,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.claudium.title': 'Claudium',
   'hudChrome.claudium.unavailable':
     'Claudium mağazası şu anda kullanılamıyor. Bakiyeniz ve satın alımlarınız etkilenmez; lütfen kısa süre sonra tekrar kontrol edin.',
-  'hudChrome.claudium.wocBalance': 'WOC: {amount}',
   'hudChrome.deeds.openBookHint': "Yiğitlikler Kitabı'nı açın",
   'hudChrome.statInfo.desc.warfare':
     'Oyunculara verilen hasarı {increase}% artırır ve oyunculardan alınan hasarı {reduction}% azaltır.',
@@ -10016,8 +9798,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'entities.items.eastbrook_ritual_vestments.name': 'Doğudere Ayin Cübbesi',
   'entities.items.eastbrook_warded_leggings.name': 'Doğudere Koruma Tozlukları',
   'entities.items.wardweave_cowl.name': 'Koruma Dokumalı Başlık',
-  'hudChrome.claudium.railUsdc': 'USDC',
-  'hudChrome.claudium.usdcBalance': 'USDC: {amount}',
   'hudChrome.dailyRewards.reason.bannedUntil':
     "Günlük Ödüller'e erişim yasağın {remaining} daha sürecek. Erişim {until} tarihinde geri açılır. Gerekçe: {reason}",
   'hudChrome.dailyRewards.remainingDaysHours': '{days} gün {hours} saat',

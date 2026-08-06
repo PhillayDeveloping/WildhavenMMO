@@ -57,13 +57,7 @@ function appNavigationOrigins(appOrigin, devServerUrl) {
 
 // Third-party origins the app legitimately embeds in a SUBFRAME only (never the main
 // frame): the Cloudflare Turnstile bot-gate renders in its own cross-origin iframe.
-const EMBEDDED_SUBFRAME_ORIGINS = new Set([
-  'https://challenges.cloudflare.com',
-  'https://secure.walletconnect.com',
-  'https://secure.walletconnect.org',
-  'https://verify.walletconnect.com',
-  'https://verify.walletconnect.org',
-]);
+const EMBEDDED_SUBFRAME_ORIGINS = new Set(['https://challenges.cloudflare.com']);
 
 // Decide whether a navigation to `url` is permitted. Main-frame navigations may only
 // target the app or dev origin (the top-level hijack surface that setWindowOpenHandler
@@ -95,33 +89,17 @@ const CSP_ORIGINS = {
     'https://www.googletagmanager.com',
     'https://connect.facebook.net',
     'https://www.facebook.com',
-    'https://*.walletconnect.com',
-    'wss://*.walletconnect.com',
-    'https://*.walletconnect.org',
-    'wss://*.walletconnect.org',
-    'https://api.web3modal.org',
-    'https://pulse.walletconnect.org',
   ],
   // tracking-pixel image beacons.
   img: [
     'https://www.google-analytics.com',
     'https://www.facebook.com',
-    'https://secure.walletconnect.com',
-    'https://secure.walletconnect.org',
-    'https://api.web3modal.org',
   ],
   // Cloudflare Turnstile: api.js (script) plus the challenge iframe (frame).
   turnstile: 'https://challenges.cloudflare.com',
   // Google Fonts: the stylesheet origin (style-src) and the font-file origin (font-src).
   fontsStyle: 'https://fonts.googleapis.com',
   fontsFile: 'https://fonts.gstatic.com',
-  reownFonts: 'https://fonts.reown.com',
-  walletFrames: [
-    'https://secure.walletconnect.com',
-    'https://secure.walletconnect.org',
-    'https://verify.walletconnect.com',
-    'https://verify.walletconnect.org',
-  ],
 };
 
 // Extract a CSP source-hash (`sha256-<base64>`) for every INLINE <script> in html
@@ -195,9 +173,9 @@ function buildContentSecurityPolicy({ apiOrigin, scriptHashes = [] } = {}) {
     connectSrc,
     imgSrc,
     `style-src 'self' 'unsafe-inline' ${CSP_ORIGINS.fontsStyle}`,
-    `font-src 'self' ${CSP_ORIGINS.fontsFile} ${CSP_ORIGINS.reownFonts}`,
+    `font-src 'self' ${CSP_ORIGINS.fontsFile}`,
     "worker-src 'self' blob:",
-    `frame-src ${CSP_ORIGINS.turnstile} ${CSP_ORIGINS.walletFrames.join(' ')}`,
+    `frame-src ${CSP_ORIGINS.turnstile}`,
     "object-src 'none'",
     "base-uri 'none'",
     "frame-ancestors 'none'",

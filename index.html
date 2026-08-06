@@ -769,18 +769,6 @@
           <button type="button" id="btn-online" class="play-compat-trigger" tabindex="-1" aria-hidden="true"></button>
           <button type="button" id="btn-offline" class="play-compat-trigger" tabindex="-1" aria-hidden="true"></button>
 
-          <div id="token-ca">
-            <span class="token-ca-label" data-i18n="mode.caLabel">$WOC Contract Address</span>
-            <button type="button" id="btn-copy-ca" class="token-ca-pill" data-ca="3WjLscH2JsXLEFJZRA9z8ti8yRGxWGKbqymPd7UicRth" data-i18n-aria="mode.caCopyAria" aria-label="Copy contract address">
-              <code class="token-ca-addr">3WjLscH2JsXLEFJZRA9z8ti8yRGxWGKbqymPd7UicRth</code>
-              <span class="token-ca-copy" aria-hidden="true">
-                <svg class="icon-clipboard" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                <svg class="icon-check" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </span>
-            </button>
-            <p class="token-ca-note" data-i18n="mode.caNote">WOC is our community token. It is not needed to play. Join Discord to discuss the WOC utility and flywheel.</p>
-          </div>
-
           <!-- Tip — part of the same play container (divider above). -->
           <div class="play-tip">
             <p id="performance-tip"><b data-i18n="mode.tipTitle">TIP:</b> <span data-i18n="mode.tipText">For the smoothest experience, turn off ad blocker extensions on this site. Community reports found some blockers can cause lag.</span></p>
@@ -1039,36 +1027,6 @@
                   <div id="cs-sort-menu" class="cs-realm-menu cs-sort-menu" role="listbox" data-i18n-aria="character.sortMenuLabel" aria-label="Sort options" hidden></div>
                 </div>
               </div>
-              <div class="cs-wallet cs-wallet-group">
-                <span class="cs-wallet-label" data-i18n="wallet.label">$WOC Wallet</span>
-                <div class="cs-wallet-main">
-                  <div class="cs-wallet-actions">
-                    <button type="button" class="wallet-cta" id="btn-wallet" data-i18n-title="wallet.connectTitle" data-i18n-aria="wallet.connectAria" title="Verify your Solana wallet" aria-label="Verify your Solana wallet">
-                      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h13a1 1 0 0 1 1 1v2"></path><path d="M3 7v10a2 2 0 0 0 2 2h14a1 1 0 0 0 1-1v-3"></path><path d="M21 11h-4a2 2 0 0 0 0 4h4a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1Z"></path></svg>
-                      <span id="wallet-label" data-i18n="wallet.connect">Verify Wallet</span>
-                    </button>
-                    <span class="wallet-status" id="wallet-status" aria-live="polite" hidden></span>
-                    <button type="button" class="wallet-mini" id="btn-wallet-switch" data-i18n-title="wallet.switchTitle" data-i18n-aria="wallet.switchAria" title="Verify a different wallet" aria-label="Verify a different wallet" hidden>
-                      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
-                      <span data-i18n="wallet.switch">Switch</span>
-                    </button>
-                    <button type="button" class="wallet-mini" id="btn-wallet-unlink" data-i18n-title="wallet.unlinkTitle" data-i18n-aria="wallet.unlinkAria" title="Remove wallet verification from this account" aria-label="Remove wallet verification from this account" hidden>
-                      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.07 0l2.12-2.12a5 5 0 0 0-7.07-7.07L11 4.93"></path><path d="M14 11a5 5 0 0 0-7.07 0L4.81 13.12a5 5 0 0 0 7.07 7.07L13 19.07"></path><path d="M3 3l18 18"></path></svg>
-                      <span data-i18n="wallet.unlink">Unlink</span>
-                    </button>
-                    <button type="button" class="wallet-mini" id="btn-wallet-signout" data-i18n-title="wallet.signOutTitle" data-i18n-aria="wallet.signOutAria" title="Disconnect the wallet app on this browser" aria-label="Disconnect the wallet app on this browser" hidden>
-                      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
-                      <span data-i18n="wallet.signOut">Disconnect</span>
-                    </button>
-                    <button type="button" class="wallet-mini" id="btn-wallet-hide" data-i18n-title="wallet.hideTitle" data-i18n-aria="wallet.hideAria" title="Hide wallet row on this screen" aria-label="Hide wallet row on this screen">
-                      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"></path><circle cx="12" cy="12" r="3"></circle><path d="M3 3l18 18"></path></svg>
-                      <span data-i18n="wallet.hide">Hide</span>
-                    </button>
-                  </div>
-                  <div class="cs-wallet-help" id="wallet-help" data-i18n="wallet.helpDisconnected">Verify a Solana wallet to enable holder flair and player-card badges. No transaction or SOL required.</div>
-                </div>
-              </div>
-              <div class="cs-wallet-hidden-note" id="wallet-hidden-note" role="status" aria-live="polite" hidden></div>
               <div class="cs-wallet cs-github-group" id="cs-github-group" hidden>
                 <span class="cs-wallet-label" data-i18n="hudChrome.devBadge.title">Developer</span>
                 <div class="cs-wallet-main">
@@ -1415,13 +1373,6 @@
                 <button type="button" class="btn btn-secondary" id="account-export-btn" data-i18n="hudChrome.account.exportBtn">Download My Data</button>
                 <div id="account-export-msg" class="auth-field-msg" aria-live="polite"></div>
               </div>
-            </section>
-
-            <!-- Wallet / $WOC -->
-            <section class="account-card account-wallet-card">
-              <h3 class="account-card-title" data-i18n="hudChrome.account.sectionWallet">$WOC Wallet</h3>
-              <p class="account-summary" data-i18n="hudChrome.account.walletSummary">Verify a Solana wallet to show holder flair on your player card.</p>
-              <button type="button" class="btn btn-secondary" id="account-manage-wallet" data-i18n="hudChrome.account.manageWallet">Manage Wallet</button>
             </section>
 
             <!-- Characters -->

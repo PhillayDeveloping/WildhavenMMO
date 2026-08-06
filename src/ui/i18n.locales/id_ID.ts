@@ -206,16 +206,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'apiError.epic.invalid_token':
     'Epic tidak dapat memverifikasi permintaan penautan ini. Coba lagi dari aplikasi desktop.',
   'apiError.epic.upstream': 'Epic tidak merespons. Coba lagi sebentar lagi.',
-  'apiError.seeker.native_only': 'Hak akses Seeker hanya tersedia di aplikasi native.',
-  'apiError.seeker.attestation_failed': 'Verifikasi perangkat gagal. Silakan coba lagi.',
-  'apiError.seeker.solana_artifact_required':
-    'Gunakan aplikasi versi Solana Store untuk melanjutkan.',
-  'apiError.seeker.wallet_required': 'Tautkan dan verifikasi dompet terlebih dahulu.',
-  'apiError.seeker.genesis_token_required': 'Diperlukan Seeker Genesis Token yang terverifikasi.',
-  'apiError.seeker.genesis_token_claimed': 'Seeker Genesis Token itu sudah diklaim.',
-  'apiError.seeker.entitlement_required': 'Diperlukan hak akses Seeker yang terverifikasi.',
-  'apiError.seeker.current_ownership_required':
-    'Diperlukan kepemilikan Seeker Genesis Token saat ini.',
   'guide.professions.archetypeSwitchBody':
     'Sebuah deklarasi juga bukan hukuman seumur hidup. Pasangan yang belum pernah kamu pegang hanyalah misi penyelarasan yang baru, sementara kembali ke pasangan yang pernah kamu tinggalkan menuntutmu menebus diri lebih dulu: lima tugas pada kali pertama, dan tiga tugas tambahan untuk setiap kepulangan yang sudah pernah kamu lakukan (mengambil pasangan yang benar-benar baru tidak pernah menaikkan hitungan itu). Pilihan itu tetap bermakna tanpa pernah mengunci pintu selamanya.',
   'guide.professions.whatBody':
@@ -325,8 +315,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
     'Rapal panen dimulai pada 2,5 detik dan dipangkas dengan dua cara: 0,4 detik untuk setiap tingkat alat yang kamu bawa dan bisa kamu gunakan di atas tingkat simpul itu sendiri, dan 0,15 detik begitu penghitung perdaganganmu melewati band 100-nya, dengan lantai 1,5 detik. Berpindah dari simpul tingkat 1 ke simpul tingkat 3 dan kelebihanmu lenyap, sehingga beliung yang sama mengayun lebih lambat lagi. Memegang tepat tingkat yang disyaratkan tidak membeli kecepatan; itu hanya membuka simpulnya.\n\nPerolehan keahlian memudar dengan cara yang sama seperti pembuatan: sebuah simpul berubah abu-abu saat kecakapanmu naik melewati tingkatnya (simpul tingkat 1 tidak mengajarkan apa pun mulai dari kecakapan 75), jadi jawaban untuk perolehan yang lambat adalah simpul bertingkat lebih tinggi. Simpul itu membutuhkan alat setidaknya setingkat dengannya di tasmu (tidak ada simpul yang pernah dikerjakan dengan tangan kosong, tingkat 1 sekalipun), dan alat darat di atas tingkat 1 juga menuntut tanda penggunaannya lebih dulu, 40/70/85/100 dalam perdagangannya sendiri untuk tingkat 2 sampai 5. Memancing mengikuti penirusannya sendiri: perolehan penuh di bawah kecakapan 50, setengah di bawah 100, tetesan 0,1 di bawah 150 dan 0,02 di bawah 200, tangkapan rongsokan tidak mengajarkan apa pun sama sekali mulai dari 100, dan airnya sendiri membatasi pelajaran (perairan tingkat 1 berhenti mengajar pada 100, rawa pada 150), sehingga penghitung yang mandek juga bisa berarti kamu sudah melampaui airnya.',
   'guide.profPages.faq.a8':
     'Sebagian. Sembilan resep lapangan biasa (senjata, zirah, makanan, dan ramuan pokok untuk pemula) bisa dibuat di mana saja, kapan saja, begitu pula tiga resep kombinasi milik pasangan yang telah disumpah. Selebihnya di atas itu terikat pada satu jenis stasiun: tempa, dapur, apoteker, penyamakan, alat tenun, atau bengkel alat, dan kamu harus berada dalam 20 yard dari stasiun agar pembuatan bisa berjalan.\n\nPada keahlian 75 dalam sebuah kerajinan kamu terspesialisasi, dan bersama diskon material 20 persen kamu mendapatkan stasiun bergerak: letakkan di lapangan dan ia berdiri selama 10 menit, melayani resep kerajinan itu seolah-olah kamu berada di stasiun sungguhan. Stasiun bergerak hanya untuk membuat: mempelajari resep dan melepas ikatan karya pesanan selalu membutuhkan stasiun asli di kota.',
-  'wallet.seekerAppHelp':
-    'Lanjutkan dengan Seed Vault Wallet. Tinjau permintaan koneksi dan verifikasi di Seed Vault, lalu kembali ke permainan.',
   'questUi.tracker.unknownQuest': 'Misi tak dikenal ({id})',
   'questUi.log.repeatableStatus': 'Berulang',
   'questUi.log.cooldownStatus': 'Segera tersedia lagi',
@@ -728,8 +716,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'hud.prompts.resurrectionOffer': '{name} ingin menghidupkanmu kembali. Apakah kamu menerima?',
   'questUi.dialog.profIntroHint': 'Temui {name} untuk "{quest}".',
   'itemUi.stats.parry': 'Tangkis',
-  'apiError.wallet.handoff_invalid':
-    'Otorisasi dompet itu telah kedaluwarsa atau tidak dapat diverifikasi. Coba lagi.',
   'cardDuel.close': 'Tutup',
   'cardDuel.counts': 'Dek: {deck} · Buang: {discard}',
   'cardDuel.forfeit': 'Menyerah',
@@ -966,59 +952,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'hudChrome.nameplate.mobLevel': '{level}',
   'hudChrome.specPanel.specUnlockBanner': 'Spesialisasi Terbuka!',
   'hudChrome.specPanel.specUnlockHint': 'Tekan N untuk memilih spesialisasimu.',
-  'hudChrome.wocStore.wallet.connect': 'Hubungkan dompet',
-  'hudChrome.wocStore.wallet.connectedUnlinked':
-    'Aplikasi dompet terhubung ke browser ini, namun alamat publiknya belum ditautkan ke akun WoC-mu.',
-  'hudChrome.wocStore.wallet.linkedConnected':
-    'Aplikasi dompet tertautmu terhubung dan siap untuk pembelian SOL atau WOC.',
-  'hudChrome.wocStore.wallet.linkedDisconnected':
-    'Alamat publikmu sudah tertaut. Hubungkan kembali aplikasi dompet itu saat kamu ingin membayar dengan SOL atau WOC.',
-  'hudChrome.wocStore.wallet.manage': 'Kelola dompet',
-  'hudChrome.wocStore.wallet.mismatched':
-    'Dompet berbeda sedang terhubung. Verifikasi untuk mengganti alamat tertaut, atau hubungkan kembali dompet yang tertaut.',
-  'hudChrome.wocStore.wallet.reconnect': 'Hubungkan ulang dompet',
-  'hudChrome.wocStore.wallet.title': 'Dompet Solana',
-  'hudChrome.wocStore.wallet.unlinked':
-    'Hubungkan aplikasi dompet, lalu tanda tangani sekali untuk menautkan alamat publiknya ke akun WoC-mu. Kami tidak pernah menerima frasa pemulihan atau kunci privatmu.',
-  'hudChrome.wocStore.wallet.verify': 'Verifikasi dan tautkan',
-  'wallet.bagConnect': 'Tautkan dompet',
-  'wallet.bagLink': 'Verifikasi dompet',
-  'wallet.bagReconnect': 'Hubungkan ulang dompet',
-  'wallet.browser.completeBody': 'Kamu dapat kembali ke aplikasi desktop World of ClaudeCraft.',
-  'wallet.browser.completeTitle': 'Otorisasi dompet selesai',
-  'wallet.browser.continueWith': 'Lanjutkan dengan {wallet}',
-  'wallet.browser.extensionHelp':
-    'Tidak ada ekstensi dompet yang kompatibel ditemukan. Instal atau buka Phantom, Solflare, atau dompet browser Solana lainnya, lalu coba lagi.',
-  'wallet.browser.eyebrow': 'Otorisasi dompet desktop',
-  'wallet.browser.failed':
-    'Otorisasi dompet gagal atau kedaluwarsa. Kembali ke aplikasi desktop dan coba lagi.',
-  'wallet.browser.linkBody':
-    'Pilih ekstensi dompet di browser ini. Kamu akan menandatangani pesan verifikasi, lalu kembali ke aplikasi desktop.',
-  'wallet.browser.paymentBody':
-    'Pilih dompet yang tertaut ke akunmu dan setujui transaksi di browser ini.',
-  'wallet.browser.retry': 'Coba Lagi',
-  'wallet.browser.returnButton': 'Kembali ke aplikasi desktop',
-  'wallet.browser.reviewBody':
-    'Ikuti perintah dari {wallet}. Jaga halaman browser ini tetap terbuka.',
-  'wallet.browser.reviewTitle': 'Tinjau di dompetmu',
-  'wallet.browser.safety':
-    'World of ClaudeCraft tidak pernah meminta frasa pemulihan atau kunci privatmu.',
-  'wallet.browser.title': 'Hubungkan Dompet Solana',
-  'wallet.manualReturnBrowserHelp':
-    'Setelah persetujuan, kembali ke tab permainan ini. Jika iOS membuka browser lain, tutup dan kembali ke browser asli secara manual.',
-  'wallet.manualReturnStandaloneHelp':
-    'Setelah persetujuan, kembali ke World of ClaudeCraft dari Layar Utamamu. Jika iOS membuka browser, tutup dan buka kembali aplikasi Layar Utama secara manual.',
-  'wallet.mobileAppHelp':
-    'Pilih Phantom atau Solflare. Aplikasi dompetmu akan meminta persetujuan. Jaga permainan ini tetap terbuka dan kembali ke sana saat selesai.',
-  'wallet.openAppButton': 'Buka {wallet}',
-  'wallet.openAppHelp':
-    'Buka {wallet} untuk meninjau permintaan ini. Jaga tab permainan ini tetap terbuka saat aplikasi dompet aktif.',
-  'wallet.openAppTitle': 'Lanjutkan di {wallet}',
-  'wallet.preparingAppButton': 'Mempersiapkan {wallet}...',
-  'wallet.standaloneAppHelp':
-    'Koneksi dompet belum tersedia di aplikasi Layar Utama. Buka World of ClaudeCraft di Safari atau Chrome untuk menggunakan Phantom atau Solflare.',
-  'wallet.walletAppUnavailable':
-    '{wallet} tidak dapat dipersiapkan. Tutup jendela ini dan coba lagi.',
   'entities.abilities.primal_reflexes.description':
     'Nalurimu menajam, meningkatkan peluang menghindar sebesar 50% selama 6 detik.',
   'entities.abilities.primal_reflexes.name': 'Refleks Purba',
@@ -2548,8 +2481,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'sim.delve.riteSequenceReady': 'Altar-altar menjadi gelap. Ulangi urutannya.',
   'sim.delve.riteWrong': 'Bunyi lonceng retak yang kasar. Air hitam menciprat di kakimu.',
   'sim.delve.ropesSealed': 'Sebaiknya kamu coba menarik tali-tali lonceng itu.',
-  'wallet.extensionHelp':
-    'Agar dompet tampil di sini, biarkan ekstensi dompet peramban seperti Solflare Wallet tetap aktif.',
   'worldContent.delveReliquaryInteract': 'Relikuari Tenggelam: Tekan F untuk memulai ritus',
   'worldContent.delveRiteShrineBellInteract': 'Altar Lonceng: Tekan F untuk membunyikannya',
   'worldContent.delveRiteShrineCandleInteract': 'Altar Lilin: Tekan F untuk menyentuhnya',
@@ -7322,7 +7253,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'hudChrome.account.logOut': 'Keluar',
   'hudChrome.account.logOutSummary': 'Keluar dari perangkat ini.',
   'hudChrome.account.loggedOutPrompt': 'Masuk untuk mengelola akunmu.',
-  'hudChrome.account.manageWallet': 'Kelola Dompet',
   'hudChrome.account.memberSince': 'Anggota sejak {date}',
   'hudChrome.account.newPassword': 'Kata sandi baru',
   'hudChrome.account.passwordChanged': 'Kata sandi diperbarui. Perangkat lain telah dikeluarkan.',
@@ -7332,7 +7262,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'hudChrome.account.sectionDanger': 'Zona Bahaya',
   'hudChrome.account.sectionSecurity': 'Keamanan',
   'hudChrome.account.sectionSettings': 'Pengaturan Akun',
-  'hudChrome.account.sectionWallet': 'Dompet $WOC',
   'hudChrome.account.title': 'Akun',
   'hudChrome.account.twoFactorBegin': 'Mulai Pengaturan',
   'hudChrome.account.twoFactorBeginHint': 'Masukkan kata sandimu untuk memulai pengaturan.',
@@ -7362,8 +7291,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'hudChrome.account.twoFactorStatusOn': 'Autentikasi dua-faktor AKTIF untuk akunmu.',
   'hudChrome.account.twoFactorTitle': 'Autentikasi Dua-Faktor',
   'hudChrome.account.twoFactorVerifyBtn': 'Verifikasi dan Aktifkan',
-  'hudChrome.account.walletSummary':
-    'Verifikasi dompet Solana untuk menampilkan lencana pemegang di kartu pemainmu.',
   'hudChrome.bags.filterAll': 'Semua',
   'hudChrome.bags.filterArmor': 'Zirah',
   'hudChrome.bags.filterConsumable': 'Konsumsi',
@@ -7525,8 +7452,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'hudChrome.options.keybindHelpLockCursorOnRotate':
     'Menjaga kursor mouse tetap di dalam jendela saat Anda menyeret untuk memutar kamera, sehingga tidak mencapai tepi layar atau berpindah ke monitor lain. Matikan jika Anda lebih suka kursor bebas.',
   'hudChrome.options.lockCursorOnRotate': 'Kunci Kursor Saat Memutar',
-  'hudChrome.options.showWalletOnCharacterScreen': 'Tampilkan Dompet di Layar Karakter',
-  'hudChrome.options.showWalletOnPlayerCard': 'Tampilkan Dompet di Kartu Pemain',
   'hudChrome.options.uiScale': 'Skala UI',
   'hudChrome.paperdoll.unequipAria': 'Lepas {item}',
   'hudChrome.paperdoll.unequipHint': 'Klik ×, klik kanan, atau seret ke tas untuk melepas',
@@ -7591,7 +7516,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'hudChrome.perf.units.mb': '{value} MB',
   'hudChrome.perf.units.memPair': '{used} / {limit} MB',
   'hudChrome.perf.units.ms': '{value} ms',
-  'hudChrome.playerCard.showWalletBadge': 'Tampilkan lencana dompet',
   'hudChrome.plurals.characterCount.few': '{count} karakter',
   'hudChrome.plurals.characterCount.many': '{count} karakter',
   'hudChrome.plurals.characterCount.one': '{count} karakter',
@@ -7999,10 +7923,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
     'Mainkan dalam layar penuh posisi lanskap untuk pengalaman seluler terbaik.',
   'mobilePreflight.rotateTitle': 'Putar ke Lanskap',
   'mobilePreflight.title': 'Mainkan dalam Layar Penuh Lanskap',
-  'mode.caCopyAria': 'Salin alamat kontrak',
-  'mode.caLabel': 'Alamat Kontrak $WOC',
-  'mode.caNote':
-    'WOC adalah token komunitas kami. Token ini tidak diperlukan untuk bermain. Gabung Discord untuk membahas utilitas dan flywheel WOC.',
   'mode.offlineAria': 'Main Luring: mulai sesi pemain-tunggal lokal seketika',
   'mode.offlineDesc':
     'Dunia pemain-tunggal seketika di peramban kamu. Tidak ada yang disimpan: sempurna untuk pertarungan singkat atau pengujian.',
@@ -8069,7 +7989,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'playerCard.shareButton': 'Bagikan Kartu Pemain',
   'playerCard.shareText':
     'Aku sedang menempa legendaku di World of ClaudeCraft: Level {level} {className}{tierBit}. Bergabunglah dengan duniaku:',
-  'playerCard.shareTierBit': ', pemegang $WOC peringkat {tier}',
   'playerCard.statusDownloaded': 'Kartu terunduh.',
   'playerCard.statusGenericError': 'Ada yang tidak beres.',
   'playerCard.statusOpenedXWithImage': 'X dibuka. Tempel gambar kartu ke dalam unggahan.',
@@ -8293,115 +8212,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'stats.playersOnline': 'Pemain Online',
   'stats.realmName': 'Nama Dunia',
   'stats.title': 'Status Dunia',
-  'wallet.appConnected': 'Aplikasi Terhubung',
-  'wallet.balanceAmount': '{amount} $WOC',
-  'wallet.balanceAria': 'Saldo dompet Solana terverifikasi: {balance}',
-  'wallet.balancePreviewAria':
-    'Pratinjau saldo dompet terhubung: {balance}. Tautkan dompet untuk memverifikasi lencana pemegang.',
-  'wallet.balancePreviewTitle': 'Pratinjau saldo $WOC dompet terhubung',
-  'wallet.balanceTitle': 'Saldo $WOC dompet Solana terverifikasi',
-  'wallet.connect': 'Verifikasi Dompet',
-  'wallet.connectApp': 'Hubungkan Aplikasi',
-  'wallet.connectAppAria': 'Hubungkan aplikasi dompet di peramban ini',
-  'wallet.connectAppTitle': 'Hubungkan aplikasi dompet di peramban ini',
-  'wallet.connectAria': 'Verifikasi dompet Solana Anda',
-  'wallet.connectTitle': 'Verifikasi dompet Solana Anda',
-  'wallet.connected': 'Terhubung: {address}',
-  'wallet.connectedLinked': 'Terverifikasi: {address}',
-  'wallet.connectedLinkedWithBalance': 'Terverifikasi: {balance} - {address}',
-  'wallet.connectedTitle': 'Terhubung. Masuk untuk menautkan dompet ini ke akun Anda.',
-  'wallet.connectedWithBalance': 'Terhubung: {balance} - {address}',
-  'wallet.flowConnect': 'Pilih sebuah dompet. Verifikasi berlanjut secara otomatis.',
-  'wallet.flowSign':
-    'Tanda tangani pesan verifikasi di aplikasi dompet Anda. Tidak perlu transaksi atau SOL.',
-  'wallet.flowVerify': 'Memverifikasi kepemilikan dompet...',
-  'wallet.helpDisconnected':
-    'Verifikasi dompet Solana untuk mengaktifkan lencana pemegang dan tanda di kartu pemain. Tidak perlu transaksi atau SOL.',
-  'wallet.helpLinked': 'Manfaat pemegang aktif. Aplikasi dompet terhubung di peramban ini.',
-  'wallet.helpLinkedDisconnected':
-    'Manfaat pemegang aktif. Hubungkan aplikasi saat Anda perlu menandatangani atau membelanjakan.',
-  'wallet.helpLinkedDisconnectedWithBalance':
-    'Manfaat pemegang aktif. Hubungkan aplikasi saat Anda perlu menandatangani atau membelanjakan.',
-  'wallet.helpLinkedWithBalance':
-    'Manfaat pemegang aktif. Aplikasi dompet terhubung di peramban ini.',
-  'wallet.helpLoginToLink': 'Terhubung {address}. Masuk untuk menautkannya ke akun Anda.',
-  'wallet.helpLoginToLinkWithBalance':
-    'Terhubung {address} dengan {balance}. Masuk untuk menautkannya ke akun Anda.',
-  'wallet.helpReadyToLink':
-    'Dompet dipilih: {address}. Tanda tangani sekali untuk memverifikasi lencana pemegang dan kartu pemain.',
-  'wallet.helpReadyToLinkWithBalance':
-    'Dompet dipilih: {address} dengan {balance}. Tanda tangani sekali untuk memverifikasi lencana pemegang dan kartu pemain.',
-  'wallet.hiddenNotice':
-    'Baris dompet disembunyikan. Aktifkan kembali di dalam game dari Opsi > Antarmuka.',
-  'wallet.hide': 'Sembunyikan',
-  'wallet.hideAria': 'Sembunyikan baris dompet di layar ini',
-  'wallet.hideTitle': 'Sembunyikan baris dompet di layar ini',
-  'wallet.holder': 'pemegang $WOC',
-  'wallet.holderTierTitle': 'Pemegang $WOC {tier}',
-  'wallet.holderTiers.coinbearer.flavor': 'Koin pertama di pundi perang.',
-  'wallet.holderTiers.coinbearer.name': 'Pembawa Koin',
-  'wallet.holderTiers.coppercrest.flavor': 'Tembaga menumpuk, namamu disebut.',
-  'wallet.holderTiers.coppercrest.name': 'Puncak Tembaga',
-  'wallet.holderTiers.ember.flavor': 'Percikan telah menyala.',
-  'wallet.holderTiers.ember.name': 'Bara',
-  'wallet.holderTiers.gilded.flavor': 'Berlapis emas dan tersenyum lebar.',
-  'wallet.holderTiers.gilded.name': 'Berlapis Emas',
-  'wallet.holderTiers.krakencrown.flavor': 'Dimahkotai oleh kedalaman: 4% dari pasokan.',
-  'wallet.holderTiers.krakencrown.name': 'Mahkota Kraken',
-  'wallet.holderTiers.leviathan.flavor': 'Pasar merasakan gerakanmu: 1% dari pasokan.',
-  'wallet.holderTiers.leviathan.name': 'Leviathan',
-  'wallet.holderTiers.realmshaper.flavor': 'Kau membentuk ulang ranah: 8% dari pasokan.',
-  'wallet.holderTiers.realmshaper.name': 'Pembentuk Ranah',
-  'wallet.holderTiers.silverbound.flavor': 'Terikat perak, membangun kekayaan.',
-  'wallet.holderTiers.silverbound.name': 'Terikat Perak',
-  'wallet.holderTiers.sovereign.flavor': 'Ranah bertekuk lutut: seluruh pasokan.',
-  'wallet.holderTiers.sovereign.name': 'Penguasa',
-  'wallet.holderTiers.starhoard.flavor':
-    'Timbunan yang membelokkan cahaya bintang: 6% dari pasokan.',
-  'wallet.holderTiers.starhoard.name': 'Timbunan Bintang',
-  'wallet.holderTiers.stormcaller.flavor': 'Badai berkumpul mendengar namamu: 3% dari pasokan.',
-  'wallet.holderTiers.stormcaller.name': 'Pemanggil Badai',
-  'wallet.holderTiers.tidelord.flavor': 'Pasang menjawab panggilanmu: 2% dari pasokan.',
-  'wallet.holderTiers.tidelord.name': 'Penguasa Pasang',
-  'wallet.holderTiers.titanforged.flavor': 'Ditempa di antara para titan: 5% dari pasokan.',
-  'wallet.holderTiers.titanforged.name': 'Tempaan Titan',
-  'wallet.holderTiers.vaultwarden.flavor': 'Kini menjaga brankas sejati: 0,01% dari seluruh $WOC.',
-  'wallet.holderTiers.vaultwarden.name': 'Penjaga Brankas',
-  'wallet.holderTiers.voidwarden.flavor': 'Penjaga di tepi kehampaan: 7% dari pasokan.',
-  'wallet.holderTiers.voidwarden.name': 'Penjaga Kehampaan',
-  'wallet.holderTiers.whale.flavor': 'Kedalaman terbelah saat kau berenang: 0,1% dari pasokan.',
-  'wallet.holderTiers.whale.name': 'Paus',
-  'wallet.holderTiers.worldbearer.flavor': 'Kau memikul sekeping dunia: 10% dari pasokan.',
-  'wallet.holderTiers.worldbearer.name': 'Pemikul Dunia',
-  'wallet.holderTiers.worldforger.flavor': 'Menempa dunia milikmu sendiri: 9% dari pasokan.',
-  'wallet.holderTiers.worldforger.name': 'Penempa Dunia',
-  'wallet.label': 'Dompet $WOC',
-  'wallet.linkFailed': 'Verifikasi dompet gagal.',
-  'wallet.linkTitle': 'Klik untuk menandatangani dan menautkan dompet ini ke akun Anda.',
-  'wallet.linkedDisconnectedAria':
-    'Dompet tetap terverifikasi untuk akun Anda. Hubungkan kembali untuk mengelola aplikasi dompet.',
-  'wallet.linkedDisconnectedTitle':
-    'Dompet tetap terverifikasi untuk akun Anda. Hubungkan kembali untuk mengelola aplikasi dompet.',
-  'wallet.linkedTitle':
-    'Dompet terverifikasi untuk akun Anda. Klik untuk mengelola aplikasi dompet.',
-  'wallet.signOut': 'Putuskan Hubungan',
-  'wallet.signOutAria': 'Putuskan hubungan aplikasi dompet di peramban ini',
-  'wallet.signOutTitle': 'Putuskan hubungan aplikasi dompet di peramban ini',
-  'wallet.switch': 'Ganti',
-  'wallet.switchAria': 'Verifikasi dompet yang berbeda',
-  'wallet.switchTitle': 'Verifikasi dompet yang berbeda',
-  'wallet.unlink': 'Lepas Tautan',
-  'wallet.unlinkAria': 'Hapus verifikasi dompet dari akun ini',
-  'wallet.unlinkFailed': 'Tidak dapat melepas tautan dompet.',
-  'wallet.unlinkTitle': 'Hapus verifikasi dompet dari akun ini',
-  'wallet.verify': 'Verifikasi Dompet',
-  'wallet.verifyAddressAria': 'Tanda tangani untuk memverifikasi dompet {address} bagi akun Anda',
-  'wallet.verifyAria': 'Pilih dompet dan tanda tangani sekali untuk memverifikasi kepemilikan',
-  'wallet.verifyFailed': 'Verifikasi dompet gagal.',
-  'wallet.verifyNew': 'Verifikasi Dompet Baru',
-  'wallet.verifyTitle': 'Pilih dompet dan tanda tangani sekali untuk memverifikasi kepemilikan.',
-  'wallet.verifying': 'Memverifikasi...',
-  'wallet.verifyingTitle': 'Verifikasi dompet sedang berlangsung.',
   'wiki.cta': 'Jelajahi Wiki',
   'wiki.desc': 'Temukan rahasia ranah, panduan kelas, dan strategi.',
   'wiki.title': 'Wiki & Panduan Game',
@@ -8696,17 +8506,11 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.noLeaders': 'Belum ada poin.',
   'hudChrome.dailyRewards.prize': 'Kolam Hadiah',
   'hudChrome.dailyRewards.reason.eligible': 'Hadiah terbuka.',
-  'hudChrome.dailyRewards.reason.no_wallet':
-    'Hubungkan dompet dengan setidaknya $20 USD dalam WOC.',
-  'hudChrome.dailyRewards.reason.price_unavailable':
-    'Harga WOC tidak tersedia, hadiah terkunci sementara.',
-  'hudChrome.dailyRewards.reason.under_minimum': 'Dompet di bawah batas minimum $20 USD WOC.',
   'hudChrome.dailyRewards.remainingHoursMinutes': '{hours}j {minutes}m',
   'hudChrome.dailyRewards.remainingLessThanMinute': '<1m',
   'hudChrome.dailyRewards.remainingMinutes': '{minutes}m',
   'hudChrome.dailyRewards.reset': 'Atur Ulang',
   'hudChrome.dailyRewards.score': 'Skor',
-  'hudChrome.dailyRewards.sol': '{amount} SOL',
   'hudChrome.dailyRewards.spinButton': 'Putar',
   'hudChrome.dailyRewards.spinClaimed': 'Diklaim: +{points} poin.',
   'hudChrome.dailyRewards.spinClose': 'Tutup putaran harian',
@@ -8722,16 +8526,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
     'Hadiah Harian saat ini dinonaktifkan. Kami akan mengumumkan pembaruan fitur ini di kanal Discord.',
   'hudChrome.dailyRewards.unknown': 'Tidak diketahui',
   'hudChrome.dailyRewards.usd': '{amount} USD',
-  'hudChrome.dailyRewards.walletConnectBody':
-    'Verifikasi dompet Solana berisi WOC untuk membuka hadiah harian.',
-  'hudChrome.dailyRewards.walletConnectButton': 'Verifikasi Dompet',
-  'hudChrome.dailyRewards.walletConnectTitle': 'Verifikasi Dompet',
-  'hudChrome.dailyRewards.walletHoldBody':
-    'Simpan minimal {amount} USD dalam WOC untuk membuka hadiah harian.',
-  'hudChrome.dailyRewards.walletHoldTitle': 'Simpan WOC',
-  'hudChrome.dailyRewards.walletPriceBody':
-    'Harga WOC tidak tersedia saat ini. Silakan cek kembali sebentar lagi.',
-  'hudChrome.dailyRewards.walletValue': 'Nilai Dompet (WOC)',
   'hudChrome.nativeUpdate.body':
     'Versi baru World of ClaudeCraft tersedia. Perbarui sekarang untuk perbaikan dan peningkatan terbaru.',
   'hudChrome.nativeUpdate.bodyWithVersion':
@@ -9062,11 +8856,9 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'hudChrome.bank.bonusStatusEarned': '+{count}',
   'hudChrome.bank.bonusSourceEmail': 'Email terverifikasi',
   'hudChrome.bank.bonusSourceDiscord': 'Discord tertaut',
-  'hudChrome.bank.bonusSourceWallet': 'Dompet tertaut',
   'hudChrome.bank.bonusSourceReferral': 'Teman yang dirujuk',
   'hudChrome.bank.bonusAdvertEmail': 'Verifikasi emailmu untuk mendapat 2 slot.',
   'hudChrome.bank.bonusAdvertDiscord': 'Tautkan Discord-mu untuk mendapat 2 slot.',
-  'hudChrome.bank.bonusAdvertWallet': 'Tautkan dompet untuk mendapat 2 slot.',
   'hudChrome.bank.bonusReferralExplainer':
     'Undang seorang teman: saat ia mencapai level 10, kalian masing-masing mendapat 2 slot, hingga 5 teman.',
   'hudChrome.bank.bonusReferralProgress': '{count}/{cap}',
@@ -9544,17 +9336,11 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'hudChrome.claudium.checkoutClose': 'Tutup pembayaran',
   'hudChrome.claudium.checkoutFailed': 'Pembayaran tidak dapat dimuat. Silakan coba lagi.',
   'hudChrome.claudium.checkoutLoading': 'Memuat pembayaran...',
-  'hudChrome.claudium.checkoutNotSettled':
-    'Transaksi sudah terkirim tetapi Claudium belum dikreditkan. Silakan coba lagi sebentar lagi.',
   'hudChrome.claudium.checkoutPending':
     'Transaksi sedang berlangsung. Konfirmasikan di dompet Anda dan biarkan panel ini tetap terbuka.',
   'hudChrome.claudium.checkoutPendingButton': 'Diproses',
   'hudChrome.claudium.checkoutTitle': 'Selesaikan pembelian',
   'hudChrome.claudium.checkoutUnavailable': 'Pembelian Claudium tersebut tidak tersedia saat ini.',
-  'hudChrome.claudium.checkoutWalletRequired':
-    'Hubungkan dompet Solana sebelum membeli Claudium dengan kripto.',
-  'hudChrome.claudium.checkoutWalletUnsupported':
-    'Dompet ini tidak dapat menandatangani dan mengirim transaksi Solana.',
   'hudChrome.claudium.close': 'Tutup Claudium',
   'hudChrome.claudium.disclosure':
     'Claudium adalah mata uang lunak satu arah: beli dengan uang dan belanjakan untuk kosmetik. Itu tidak dapat ditebus, ditransfer, atau diuangkan.',
@@ -9565,15 +9351,9 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'hudChrome.claudium.loading': 'Memuat Claudium...',
   'hudChrome.claudium.open': 'Buka Claudium',
   'hudChrome.claudium.railLabel': 'Metode pembayaran',
-  'hudChrome.claudium.railNativeUnavailable': 'SOL/WOC tidak tersedia.',
-  'hudChrome.claudium.railSol': 'SOL',
   'hudChrome.claudium.railStripe': 'Kartu',
-  'hudChrome.claudium.railWoc': 'WOC',
-  'hudChrome.claudium.railWocDiscount': 'Diskon {percent}%.',
-  'hudChrome.claudium.railWocUnavailable': 'Harga WOC tidak tersedia saat ini.',
   'hudChrome.claudium.showAmounts': 'Tampilkan semua jumlah Claudium',
   'hudChrome.claudium.skuRow': '{usd} untuk {claudium} Claudium',
-  'hudChrome.claudium.solBalance': 'SOL: {amount}',
   'hudChrome.claudium.spendButton': 'Tukar',
   'hudChrome.claudium.storeCost': '{amount} Claudium',
   'hudChrome.claudium.storeEmpty': 'Tidak ada kosmetik yang tersedia saat ini.',
@@ -9581,7 +9361,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'hudChrome.claudium.title': 'Claudium',
   'hudChrome.claudium.unavailable':
     'Toko Claudium tidak tersedia saat ini. Saldo dan pembelian Anda tidak terpengaruh; harap segera periksa kembali.',
-  'hudChrome.claudium.wocBalance': 'WOC: {amount}',
   'hudChrome.deeds.openBookHint': 'Buka Kitab Jasa',
   'hudChrome.statInfo.desc.warfare':
     'Meningkatkan kerusakan yang diberikan kepada pemain sebesar {increase}% dan mengurangi kerusakan yang diterima dari pemain sebesar {reduction}%.',
@@ -10137,8 +9916,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'entities.items.eastbrook_ritual_vestments.name': 'Jubah Ritual Eastbrook',
   'entities.items.eastbrook_warded_leggings.name': 'Celana Pelindung Eastbrook',
   'entities.items.wardweave_cowl.name': 'Tudung Tenun Pelindung',
-  'hudChrome.claudium.railUsdc': 'USDC',
-  'hudChrome.claudium.usdcBalance': 'USDC: {amount}',
   'hudChrome.dailyRewards.reason.bannedUntil':
     'Kamu dilarang mengikuti Hadiah Harian selama {remaining} lagi. Akses kembali pada {until}. Alasan: {reason}',
   'hudChrome.dailyRewards.remainingDaysHours': '{days} hari {hours} jam',
