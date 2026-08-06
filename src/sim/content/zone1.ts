@@ -1,0 +1,1703 @@
+// Zone 1 — Eastbrook Vale (levels 1-7). The starter zone: town of Eastbrook,
+// wolves and boars, the bandit camp, and Brother Aldric's Gravecaller chain
+// leading to the Hollow Crypt.
+
+import { EASTBROOK_GRAND_ARMOURY } from '../building_layout';
+import {
+  EASTBROOK_LAYOUT,
+  EASTBROOK_NPC_PLACEMENTS_BY_ID,
+  wallSegmentMirrored,
+} from '../eastbrook_layout';
+import { WORK_ORDER_CADENCE_TICKS } from '../professions/cadence';
+import type {
+  CampDef,
+  GroundObjectDef,
+  MobTemplate,
+  NpcDef,
+  QuestDef,
+  ZoneDef,
+  ZonePropsDef,
+} from '../types';
+
+export const TOWN_RADIUS = 26;
+export const GRAVEYARD_POS = { ...EASTBROOK_LAYOUT.services.graveyard.legacyReleasePoint };
+// Basin carved into the heightfield. Pushed to the far northeast so its
+// shoreline meets the fishing dock and the murloc camp instead of drowning them.
+export const LAKE = { x: -92, z: 88, radius: 30 };
+
+export const ZONE1_ZONE: ZoneDef = {
+  id: 'eastbrook_vale',
+  name: 'Eastbrook Vale',
+  zMin: -180,
+  zMax: 180,
+  levelRange: [1, 7],
+  biome: 'vale',
+  hub: { x: 0, z: 0, radius: TOWN_RADIUS, name: 'Eastbrook' },
+  graveyard: GRAVEYARD_POS,
+  lakes: [LAKE],
+  pois: [
+    { x: 0, z: -3, label: 'Eastbrook', id: 'eastbrook' },
+    { x: -2, z: 70, label: 'Wolf Run', id: 'wolf_run' },
+    { x: 65, z: 0, label: 'Boar Meadow', id: 'boar_meadow' },
+    { x: -88, z: 82, label: 'Mirror Lake', id: 'mirror_lake' },
+    { x: -60, z: 4, label: 'Sableweb', id: 'sableweb' },
+    { x: -84, z: -64, label: 'Copper Dig', id: 'copper_dig' },
+    { x: 76, z: -76, label: 'Bandit Camp', id: 'bandit_camp' },
+    { x: 80, z: 80, label: 'Fallen Chapel', id: 'fallen_chapel' },
+    { x: -5, z: -52, label: 'Reliquary Hill', id: 'reliquary_hill' },
+    { x: 40, z: 140, label: 'Brightwood Glade', id: 'brightwood_glade' },
+    { x: -11, z: -112, label: 'The Sowfield', id: 'the_sowfield' },
+    { x: 150, z: -46, label: 'The Farshore Causeway', id: 'the_farshore_causeway' },
+  ],
+  welcome: 'Find Marshal Redbrook in town - he has work for you.',
+  welcomeQuestId: 'q_wolves',
+};
+
+// ---------------------------------------------------------------------------
+// Mobs
+// ---------------------------------------------------------------------------
+
+export const ZONE1_MOBS: Record<string, MobTemplate> = {
+  warlock_imp: {
+    id: 'warlock_imp',
+    name: 'Fire Demon',
+    minLevel: 1,
+    maxLevel: 20,
+    family: 'demon',
+    hpBase: 24,
+    hpPerLevel: 11,
+    dmgBase: 2,
+    dmgPerLevel: 0.7,
+    attackSpeed: 2.0,
+    armorPerLevel: 5,
+    moveSpeed: 8,
+    aggroRadius: 0,
+    loot: [],
+    scale: 0.65,
+    color: 0xff5a2e,
+    petRole: 'ranged_dps',
+    petSpell: { name: 'Ashbolt', school: 'fire', min: 8, max: 11, range: 24, every: 2.0 },
+  },
+  warlock_voidwalker: {
+    id: 'warlock_voidwalker',
+    name: 'Void Demon',
+    minLevel: 10,
+    maxLevel: 20,
+    family: 'demon',
+    hpBase: 95,
+    hpPerLevel: 24,
+    dmgBase: 3,
+    dmgPerLevel: 1.0,
+    attackSpeed: 2.4,
+    armorPerLevel: 28,
+    moveSpeed: 7.2,
+    aggroRadius: 0,
+    loot: [],
+    scale: 0.9,
+    color: 0x6b4bb5,
+    petRole: 'melee_tank',
+  },
+  forest_wolf: {
+    id: 'forest_wolf',
+    name: 'Forest Wolf',
+    minLevel: 1,
+    maxLevel: 2,
+    family: 'beast',
+    hpBase: 40,
+    hpPerLevel: 14,
+    dmgBase: 3,
+    dmgPerLevel: 1.6,
+    attackSpeed: 2.0,
+    armorPerLevel: 10,
+    moveSpeed: 8,
+    aggroRadius: 10,
+    loot: [
+      { copper: 8, chance: 1 },
+      { itemId: 'wolf_fang', chance: 0.45 },
+      { itemId: 'milepost_boots', chance: 0.1 },
+      { itemId: 'wolfhide_satchel', chance: 0.02 },
+    ],
+    scale: 0.9,
+    color: 0x7f8c8d,
+    packFrenzy: { radius: 12, hasteMult: 1.3, duration: 8 },
+    componentTags: ['hide', 'fang'],
+  },
+  old_greyjaw: {
+    id: 'old_greyjaw',
+    name: 'Old Greyjaw',
+    minLevel: 4,
+    maxLevel: 4,
+    family: 'beast',
+    rare: true,
+    hpBase: 110,
+    hpPerLevel: 20,
+    dmgBase: 5,
+    dmgPerLevel: 2.0,
+    attackSpeed: 1.8,
+    armorPerLevel: 16,
+    moveSpeed: 8.5,
+    aggroRadius: 12,
+    // The old wolf turns savage as the fight wears on: each wound it takes can
+    // send it into a blood frenzy, swinging 30% faster for 8s.
+    frenzyOnHit: { chance: 0.25, hasteMult: 1.3, duration: 8, name: 'Blood Frenzy' },
+    loot: [
+      { copper: 60, chance: 1 },
+      { itemId: 'greyjaw_fang', chance: 1, questId: 'q_greyjaw' },
+      { itemId: 'wolf_fang', chance: 1 },
+      { itemId: 'wolfhide_satchel', chance: 0.35 },
+      { itemId: 'acolyte_chain_grips', chance: 0.25 },
+    ],
+    scale: 1.25,
+    color: 0x566061,
+    componentTags: ['hide', 'fang', 'claw'],
+  },
+  wild_boar: {
+    id: 'wild_boar',
+    name: 'Wild Boar',
+    minLevel: 2,
+    maxLevel: 3,
+    family: 'beast',
+    hpBase: 38,
+    hpPerLevel: 16,
+    dmgBase: 4,
+    dmgPerLevel: 1.8,
+    attackSpeed: 2.2,
+    armorPerLevel: 14,
+    moveSpeed: 7.5,
+    aggroRadius: 9,
+    // Stiff bristles prick anyone who melees the boar.
+    thorns: { value: 2, name: 'Bristled Hide' },
+    loot: [
+      { copper: 12, chance: 1 },
+      { itemId: 'boar_hide', chance: 0.6, questId: 'q_boars' },
+      { itemId: 'tough_jerky', chance: 0.3 },
+      { itemId: 'trail_leggings', chance: 0.1 },
+    ],
+    scale: 0.85,
+    color: 0x935116,
+    componentTags: ['hide', 'tusk', 'meat'],
+  },
+  webwood_spider: {
+    id: 'webwood_spider',
+    name: 'Sableweb Lurker',
+    minLevel: 2,
+    maxLevel: 4,
+    family: 'spider',
+    hpBase: 36,
+    hpPerLevel: 15,
+    dmgBase: 4,
+    dmgPerLevel: 1.7,
+    attackSpeed: 1.8,
+    armorPerLevel: 8,
+    moveSpeed: 8,
+    aggroRadius: 10,
+    venom: {
+      chance: 0.35,
+      perTick: 2,
+      interval: 2,
+      duration: 10,
+      name: 'Spider Venom',
+      school: 'nature',
+    },
+    ensnare: { chance: 0.25, duration: 3, name: 'Sticky Web', school: 'nature' },
+    loot: [
+      { copper: 14, chance: 1 },
+      { itemId: 'webwood_silk', chance: 0.55, questId: 'q_spiders' },
+      { itemId: 'spider_leg', chance: 0.4 },
+      { itemId: 'mosshide_vest', chance: 0.12 },
+    ],
+    scale: 0.9,
+    color: 0x4a235a,
+    componentTags: ['venomSac', 'silk'],
+  },
+  mogger: {
+    id: 'mogger',
+    name: 'Mogger',
+    minLevel: 6,
+    maxLevel: 6,
+    family: 'humanoid',
+    rare: true,
+    elite: true,
+    canSwim: true,
+    ccImmune: true,
+    respawnMult: 4,
+    hpBase: 300,
+    hpPerLevel: 58,
+    dmgBase: 12,
+    dmgPerLevel: 3.5,
+    attackSpeed: 2.2,
+    armorPerLevel: 34,
+    moveSpeed: 7.4,
+    aggroRadius: 14,
+    aoePulse: { min: 14, max: 20, radius: 8, every: 10, name: 'Ground Pound', school: 'physical' },
+    summonAdds: { mobId: 'mogger_lackey', count: 2, atHpPct: [0.7] },
+    enrage: { belowHpPct: 0.3, dmgMult: 1.6, hasteMult: 1.3 },
+    wardAllies: {
+      radius: 12,
+      every: 12,
+      amount: 70,
+      duration: 8,
+      name: 'Bracing Order',
+      school: 'physical',
+    },
+    loot: [
+      { copper: 180, chance: 1 },
+      { itemId: 'linen_scrap', chance: 1 },
+      { itemId: 'moggers_stomper_boots', chance: 0.3 },
+      { itemId: 'moggers_shiv', chance: 0.25, rollGroup: 'mogger_chase' },
+      { itemId: 'cryptstalker_jerkin', chance: 0.25, rollGroup: 'mogger_chase' },
+      { itemId: 'valefire_lantern', chance: 0.2 },
+    ],
+    scale: 1.28,
+    color: 0x8e5b33,
+  },
+  mogger_lackey: {
+    id: 'mogger_lackey',
+    name: 'Mogger Lackey',
+    minLevel: 5,
+    maxLevel: 6,
+    family: 'humanoid',
+    hpBase: 44,
+    hpPerLevel: 18,
+    dmgBase: 6,
+    dmgPerLevel: 2.0,
+    attackSpeed: 2.0,
+    armorPerLevel: 18,
+    moveSpeed: 7.5,
+    aggroRadius: 12,
+    stunOnHit: { chance: 0.12, duration: 1, name: 'Skullthump', school: 'physical' },
+    loot: [],
+    scale: 0.95,
+    color: 0x7b4b2b,
+  },
+  mudfin_murloc: {
+    id: 'mudfin_murloc',
+    name: 'Mudfin Skulker',
+    minLevel: 3,
+    maxLevel: 5,
+    family: 'mudfin',
+    hpBase: 36,
+    hpPerLevel: 17,
+    dmgBase: 5,
+    dmgPerLevel: 1.9,
+    attackSpeed: 1.9,
+    armorPerLevel: 12,
+    moveSpeed: 8,
+    aggroRadius: 13, // murlocs aggro from far and bring friends
+    loot: [
+      { copper: 18, chance: 1 },
+      { itemId: 'mudfin_scale', chance: 0.5 },
+      { itemId: 'linen_scrap', chance: 0.2 },
+    ],
+    scale: 0.8,
+    color: 0x52be80,
+    componentTags: ['gills', 'hide'],
+    // Mudfin Hex: the skulker's oracle-chant briefly turns a foe into a critter.
+    // Low chance and it breaks the instant the victim takes damage (the murloc's
+    // own next bite ends it), so it's a brief flavor incap — but a murloc pack
+    // can chain it just long enough to make a careless pull dangerous.
+    polymorphHex: { chance: 0.12, duration: 4, name: 'Mudfin Hex', school: 'nature' },
+  },
+  tunnel_rat: {
+    id: 'tunnel_rat',
+    name: 'Deeprock Digger',
+    minLevel: 4,
+    maxLevel: 6,
+    family: 'burrower',
+    hpBase: 42,
+    hpPerLevel: 18,
+    dmgBase: 6,
+    dmgPerLevel: 2.0,
+    attackSpeed: 2.1,
+    armorPerLevel: 16,
+    moveSpeed: 7,
+    aggroRadius: 10,
+    loot: [
+      { copper: 22, chance: 1 },
+      { itemId: 'tallow_candle', chance: 0.6 },
+      { itemId: 'blessed_wax', chance: 0.45, questId: 'q_rite' },
+      { itemId: 'linen_scrap', chance: 0.25 },
+      { itemId: 'mossy_handwraps', chance: 0.15 },
+      { itemId: 'thornling_grips', chance: 0.15 },
+    ],
+    scale: 0.85,
+    color: 0x9c640c,
+  },
+  grix_the_tunnelking: {
+    id: 'grix_the_tunnelking',
+    name: 'Grix the Tunnelking',
+    minLevel: 7,
+    maxLevel: 7,
+    family: 'burrower',
+    rare: true,
+    elite: true,
+    canSwim: true,
+    ccImmune: true,
+    respawnMult: 432,
+    hpBase: 280,
+    hpPerLevel: 52,
+    dmgBase: 11,
+    dmgPerLevel: 3.3,
+    attackSpeed: 2.0,
+    armorPerLevel: 24,
+    moveSpeed: 7,
+    aggroRadius: 13,
+    // Hard tether: the Tunnelking fights on his own ground. Kiting him past 50
+    // yards of his spawn (the town square is 100+) sends him home to a full
+    // reset, adds swept with him.
+    hardLeashRadius: 50,
+    aoePulse: { min: 12, max: 18, radius: 8, every: 9, name: 'Cave-In', school: 'physical' },
+    summonAdds: { mobId: 'tunnel_rat', count: 2, atHpPct: [0.55, 0.3] },
+    enrage: { belowHpPct: 0.3, dmgMult: 1.4, hasteMult: 1.3 },
+    loot: [
+      { copper: 150, chance: 1 },
+      { itemId: 'tallow_candle', chance: 1 },
+      // The hoarder's stash — a guaranteed step up the potion ladder this early.
+      { itemId: 'lesser_healing_potion', chance: 1 },
+      { itemId: 'tunnelkings_spade', chance: 0.3 },
+      { itemId: 'moggers_copper_cudgel', chance: 0.25, rollGroup: 'grix_tunnelking_chase' },
+      { itemId: 'hollowbone_hauberk', chance: 0.25, rollGroup: 'grix_tunnelking_chase' },
+      { itemId: 'briarroot_staff', chance: 0.3 },
+    ],
+    scale: 1.15,
+    color: 0xb9770e,
+  },
+  vale_bandit: {
+    id: 'vale_bandit',
+    name: 'Vale Bandit',
+    minLevel: 3,
+    maxLevel: 5,
+    family: 'humanoid',
+    hpBase: 40,
+    hpPerLevel: 18,
+    dmgBase: 5,
+    dmgPerLevel: 2.0,
+    attackSpeed: 2.0,
+    armorPerLevel: 20,
+    moveSpeed: 7,
+    aggroRadius: 11,
+    loot: [
+      { copper: 25, chance: 1 },
+      { itemId: 'bandit_bandana', chance: 0.5 },
+      { itemId: 'linen_scrap', chance: 0.3 },
+    ],
+    scale: 1.0,
+    color: 0x943126,
+    // A practiced thug flings a handful of road grit to foul your aim.
+    blind: { chance: 0.25, miss: 0.3, duration: 5, name: 'Blinding Powder', school: 'physical' },
+    componentTags: ['cloth'],
+  },
+  restless_bones: {
+    id: 'restless_bones',
+    name: 'Restless Bones',
+    minLevel: 5,
+    maxLevel: 7,
+    family: 'undead',
+    hpBase: 46,
+    hpPerLevel: 19,
+    dmgBase: 7,
+    dmgPerLevel: 2.1,
+    attackSpeed: 2.3,
+    armorPerLevel: 14,
+    moveSpeed: 6.5,
+    aggroRadius: 11,
+    loot: [
+      { copper: 30, chance: 1 },
+      { itemId: 'bone_fragments', chance: 0.6 },
+      { itemId: 'ghostly_essence', chance: 0.55, questId: 'q_rite' },
+      { itemId: 'restless_skull', chance: 1, questId: 'q_bones' },
+    ],
+    scale: 1.0,
+    color: 0xd5dbdb,
+    // A grave-cold wail saps the strength from the living it strikes.
+    demoralize: { ap: 20, duration: 8, name: 'Withering Wail' },
+    // Grave-touch: a clawing swing may fester a creeping necrotic rot (shadow DoT).
+    soulrot: { chance: 0.25, perTick: 4, interval: 3, duration: 12, name: 'Soulrot' },
+  },
+  captain_verlan: {
+    // A rare named undead champion risen among the ruins' Restless Bones —
+    // the undead family's rare elite, filling the gap beside Old Greyjaw
+    // (beast), Elder Bristleback (beast), Sableweb Matriarch (spider) and
+    // Mogger (humanoid). A heavy, slow striker that erupts in a shadow nova
+    // and goes berserk when low; loot mirrors the other rare elites.
+    id: 'captain_verlan',
+    name: 'Captain Verlan',
+    minLevel: 7,
+    maxLevel: 7,
+    family: 'undead',
+    rare: true,
+    elite: true,
+    ccImmune: true,
+    respawnMult: 7.2,
+    hpBase: 280,
+    hpPerLevel: 56,
+    dmgBase: 12,
+    dmgPerLevel: 3.4,
+    attackSpeed: 2.6,
+    armorPerLevel: 32,
+    moveSpeed: 7.4,
+    aggroRadius: 13,
+    aoePulse: {
+      min: 13,
+      max: 19,
+      radius: 9,
+      every: 9,
+      name: 'Hollow Nova',
+      school: 'shadow',
+      fx: 'nova',
+    },
+    enrage: { belowHpPct: 0.3, dmgMult: 1.5, hasteMult: 1.3 },
+    loot: [
+      { copper: 160, chance: 1 },
+      { itemId: 'bone_fragments', chance: 1 },
+      { itemId: 'oathbound_greaves', chance: 0.3 },
+      { itemId: 'verlans_oathblade', chance: 0.25, rollGroup: 'verlan_chase' },
+      { itemId: 'hollow_vigil_staff', chance: 0.25, rollGroup: 'verlan_chase' },
+      { itemId: 'gravewardens_shiv', chance: 0.25, rollGroup: 'verlan_chase' },
+    ],
+    scale: 1.26,
+    color: 0x3b4a5a,
+  },
+  wraithbinder_maldrec: {
+    id: 'wraithbinder_maldrec',
+    name: 'Wraithbinder Maldrec',
+    minLevel: 7,
+    maxLevel: 7,
+    family: 'undead',
+    rare: true,
+    elite: true,
+    ccImmune: true,
+    respawnMult: 432,
+    hpBase: 320,
+    hpPerLevel: 60,
+    dmgBase: 12,
+    dmgPerLevel: 3.4,
+    attackSpeed: 2.3,
+    armorPerLevel: 28,
+    moveSpeed: 6.8,
+    aggroRadius: 13,
+    // A fallen Gravecaller who bound his own soul to the chapel dead. A pulse of
+    // grave-cold shadow rolls off him, and he tears the restless bones from the
+    // ground to fight at his side, growing frantic as he is unmade.
+    aoePulse: { min: 13, max: 19, radius: 9, every: 9, name: 'Grave Chill', school: 'shadow' },
+    summonAdds: { mobId: 'restless_bones', count: 2, atHpPct: [0.65, 0.35] },
+    enrage: { belowHpPct: 0.3, dmgMult: 1.5, hasteMult: 1.3 },
+    loot: [
+      { copper: 160, chance: 1 },
+      { itemId: 'bone_fragments', chance: 1 },
+      { itemId: 'maldrecs_soulbinder', chance: 0.25 },
+      { itemId: 'hollowbone_hauberk', chance: 0.25, rollGroup: 'maldrec_chase' },
+      { itemId: 'gravewoven_raiment', chance: 0.25, rollGroup: 'maldrec_chase' },
+      { itemId: 'cryptstalker_jerkin', chance: 0.25, rollGroup: 'maldrec_chase' },
+    ],
+    scale: 1.22,
+    color: 0x6f7f8f,
+  },
+  gorrak: {
+    id: 'gorrak',
+    name: 'Gorrak the Ruthless',
+    minLevel: 6,
+    maxLevel: 6,
+    family: 'humanoid',
+    hpBase: 160,
+    hpPerLevel: 30,
+    dmgBase: 8,
+    dmgPerLevel: 2.4,
+    attackSpeed: 2.4,
+    armorPerLevel: 30,
+    moveSpeed: 7,
+    aggroRadius: 13,
+    boss: true,
+    loot: [
+      { copper: 250, chance: 1 },
+      { itemId: 'bandit_bandana', chance: 1 },
+      { itemId: 'oiled_boots', chance: 0.5 },
+      { itemId: 'quilted_trousers', chance: 0.5 },
+      { itemId: 'gorraks_cruel_chopper', chance: 0.25 },
+      { itemId: 'gorraks_cleaver', chance: 0.3 },
+      { itemId: 'votive_chain_belt', chance: 0.3 },
+    ],
+    scale: 1.25,
+    color: 0x6c3483,
+  },
+};
+
+// ---------------------------------------------------------------------------
+// NPCs
+// ---------------------------------------------------------------------------
+
+export const ZONE1_NPCS: Record<string, NpcDef> = {
+  the_merchant: {
+    id: 'the_merchant',
+    name: 'The Merchant',
+    title: 'Keeper of the World Market',
+    pos: { ...EASTBROOK_NPC_PLACEMENTS_BY_ID.the_merchant.position },
+    facing: EASTBROOK_NPC_PLACEMENTS_BY_ID.the_merchant.facing,
+    color: 0xd4af37,
+    questIds: [],
+    market: true,
+    greeting:
+      'Welcome to the World Market, $C. Buy from every adventurer in the realm — or set out your own wares and let coin find you.',
+  },
+  marshal_redbrook: {
+    id: 'marshal_redbrook',
+    name: 'Marshal Redbrook',
+    title: 'Town Marshal',
+    pos: { ...EASTBROOK_NPC_PLACEMENTS_BY_ID.marshal_redbrook.position },
+    facing: EASTBROOK_NPC_PLACEMENTS_BY_ID.marshal_redbrook.facing,
+    color: 0xb7950b,
+    questIds: ['q_wolves', 'q_greyjaw', 'q_bandits', 'q_ringleader', 'q_mogger'],
+    greeting: 'Keep your blade close, $C. The Vale is not what it was.',
+  },
+  trader_wilkes: {
+    id: 'trader_wilkes',
+    name: 'Trader Wilkes',
+    title: 'Provisioner',
+    pos: { ...EASTBROOK_NPC_PLACEMENTS_BY_ID.trader_wilkes.position },
+    facing: EASTBROOK_NPC_PLACEMENTS_BY_ID.trader_wilkes.facing,
+    color: 0x1e8449,
+    questIds: ['q_boars', 'q_supplies'],
+    vendorItems: [
+      'baked_bread',
+      'spring_water',
+      'roasted_boar',
+      'tough_jerky',
+      'minor_healing_potion',
+      'minor_mana_potion',
+      'linen_pouch',
+      'travelers_knapsack',
+      // Gathering tools, TIER 1 ONLY (#2343's rule: each zone hub stocks the
+      // tiers its own nodes use). Eastbrook is entirely tier-1 ground, so a
+      // tier-2 or tier-3 land tool opens nothing here; the marsh and the peaks
+      // sell the rungs their own veins need, and this counter used to be the
+      // one place in the world that sold the whole ladder at the front door.
+      // The tiered rods stay, and Wilkes is now the one counter carrying the
+      // WHOLE rod ladder rather than the only one carrying any of it: each
+      // zone's water has a required rod tier of its own now
+      // (professions/fishing_zones.ts), so the marsh and the peaks stock the
+      // rung they ask for and this counter is where you buy ahead.
+      'copper_mining_pick',
+      'handaxe',
+      'gathering_sickle',
+      'ironreel_fishing_rod',
+      'silverstream_fishing_rod',
+    ],
+    greeting: 'Fresh bread, clean water, fair prices. What can I get you?',
+  },
+  apothecary_lin: {
+    id: 'apothecary_lin',
+    name: 'Apothecary Lin',
+    title: 'Herbalist',
+    pos: { ...EASTBROOK_NPC_PLACEMENTS_BY_ID.apothecary_lin.position },
+    facing: EASTBROOK_NPC_PLACEMENTS_BY_ID.apothecary_lin.facing,
+    color: 0x7d3c98,
+    questIds: ['q_spiders'],
+    greeting: 'Careful where you step in the eastern woods, friend.',
+  },
+  brother_aldric: {
+    id: 'brother_aldric',
+    name: 'Brother Aldric',
+    title: 'Priest of the Vale',
+    pos: { ...EASTBROOK_NPC_PLACEMENTS_BY_ID.brother_aldric.position },
+    facing: EASTBROOK_NPC_PLACEMENTS_BY_ID.brother_aldric.facing,
+    color: 0xf7f9f9,
+    questIds: [
+      'q_bones',
+      'q_whispers',
+      'q_names_of_the_dead',
+      'q_silence_the_call',
+      'q_rite',
+      'q_sexton',
+      'q_hollow',
+      'q_gravecallers_trail',
+      'q_fenbridge_muster',
+    ],
+    greeting: 'The Light keep you. Even the dead find no rest here of late.',
+  },
+  smith_haldren: {
+    id: 'smith_haldren',
+    name: 'Smith Haldren',
+    title: 'Armorer & Weaponsmith',
+    pos: { ...EASTBROOK_NPC_PLACEMENTS_BY_ID.smith_haldren.position },
+    facing: EASTBROOK_NPC_PLACEMENTS_BY_ID.smith_haldren.facing,
+    color: 0x707b7c,
+    questIds: ['q_prof_hobby_switch'],
+    vendorItems: [
+      'eastbrook_arming_sword',
+      'eastbrook_greatsword',
+      'bronzework_mace',
+      'vale_carving_knife',
+      'hickory_shortstaff',
+      'eastbrook_buckler',
+      'eastbrook_chain_vest',
+      'valespun_robe',
+      'tanned_leather_jerkin',
+      'hobnail_boots',
+      'eastbrook_wool_trousers',
+    ],
+    greeting: 'Mind the sparks, $C. Good steel is the difference between a scar and a grave.',
+  },
+  fisherman_brandt: {
+    id: 'fisherman_brandt',
+    name: 'Fisherman Brandt',
+    title: 'Old Salt',
+    pos: { ...EASTBROOK_NPC_PLACEMENTS_BY_ID.fisherman_brandt.position },
+    facing: EASTBROOK_NPC_PLACEMENTS_BY_ID.fisherman_brandt.facing,
+    color: 0x2471a3,
+    questIds: ['q_murlocs'],
+    vendorItems: ['simple_fishing_pole'],
+    greeting: 'Blrb-glub— sorry, been listening to those fish-men too long.',
+  },
+  foreman_odell: {
+    id: 'foreman_odell',
+    name: 'Foreman Odell',
+    title: 'Mine Foreman',
+    pos: { ...EASTBROOK_NPC_PLACEMENTS_BY_ID.foreman_odell.position },
+    facing: EASTBROOK_NPC_PLACEMENTS_BY_ID.foreman_odell.facing,
+    color: 0xa04000,
+    questIds: ['q_prof_intro', 'q_mine'],
+    greeting: "Whole dig's crawling with those dirt-caked vermin!",
+  },
+  bursar_fernando: {
+    id: 'bursar_fernando',
+    name: 'Bursar Fernando',
+    title: 'The Gilded Strongbox',
+    pos: { ...EASTBROOK_NPC_PLACEMENTS_BY_ID.bursar_fernando.position },
+    facing: EASTBROOK_NPC_PLACEMENTS_BY_ID.bursar_fernando.facing,
+    color: 0xc9a227,
+    questIds: [],
+    banker: true,
+    greeting: 'Welcome to the Gilded Strongbox. Your goods rest safe behind our locks.',
+  },
+  card_master: {
+    id: 'card_master',
+    name: 'Card Master',
+    title: 'Dealer of Chance',
+    pos: { ...EASTBROOK_NPC_PLACEMENTS_BY_ID.card_master.position },
+    facing: EASTBROOK_NPC_PLACEMENTS_BY_ID.card_master.facing,
+    color: 0x7a2f8f,
+    questIds: [],
+    cardMaster: true,
+    greeting: 'Care for a Card Duel? Best of three, winner takes the bragging rights.',
+  },
+  groundskeeper_bram: {
+    id: 'groundskeeper_bram',
+    name: 'Groundskeeper Bram',
+    title: 'Keeper of the Sowfield',
+    // At the Sowfield's north gate with the book of fixtures (vale_cup_layout
+    // BRAM_POS). dynamic: the generic surface-placement loop skips him; the
+    // Vale Cup module spawns him at world init under a RESERVED entity id so
+    // adding him never shifts the ctor id sequence (parity goldens pin nextId).
+    pos: { x: -6, z: -82 },
+    facing: Math.PI,
+    color: 0x3f7d34,
+    questIds: [],
+    dynamic: true,
+    greeting:
+      'The truce holds at the Sowfield, $C: boots and shoulders only. Care to play for the Copper Pail?',
+  },
+  chronicler_saul: {
+    id: 'chronicler_saul',
+    name: 'Saul the Chronicler',
+    title: 'The Vale Chronicle',
+    pos: { ...EASTBROOK_NPC_PLACEMENTS_BY_ID.chronicler_saul.position },
+    facing: EASTBROOK_NPC_PLACEMENTS_BY_ID.chronicler_saul.facing,
+    color: 0xd08a2e, // warm amber: the chronicler tint is his identity (shared mage visual)
+    questIds: [],
+    greeting:
+      'Every deed worth doing is worth writing down twice, $N: once for the ledger and once for the fireside.',
+  },
+  // Crafting-station masters (Professions 2.0): each stands 1 to 3
+  // units beside their station (content/professions.ts STATIONS) with a
+  // guard-safe camp margin (pinned in tests/professions_station_placement.test.ts).
+  forgemistress_darva: {
+    id: 'forgemistress_darva',
+    name: 'Forgemistress Darva',
+    title: 'Master of the Forge',
+    pos: { ...EASTBROOK_NPC_PLACEMENTS_BY_ID.forgemistress_darva.position },
+    facing: EASTBROOK_NPC_PLACEMENTS_BY_ID.forgemistress_darva.facing,
+    color: 0xb5541c,
+    // Professions 2.0: the Smith pair's anchor master. Attunement and
+    // its escalating make-amends return live here now (moved off Smith Haldren),
+    // plus the repeatable forge work order.
+    questIds: ['q_prof_attune_smith', 'q_prof_amends_smith', 'q_prof_workorder_forge'],
+    // Station stocking: the forge master sells the tools and the vendor-only
+    // staple its station's recipes need. thorium_ore, the premium reagent
+    // recipe_sootscale_mantle consumes, is NOT here: it is a node yield, and no
+    // NPC stocks a gathered material (professions.md, Locked rulings). The
+    // pick is tier 1 alone, the tier Eastbrook's own veins use; the higher
+    // rungs moved to the hubs whose ground needs them.
+    vendorItems: ['copper_mining_pick', 'smithing_flux'],
+    greeting: 'The forge answers to me, $C. Bring good ore and it will answer to you too.',
+  },
+  cook_marlow: {
+    id: 'cook_marlow',
+    name: 'Cook Marlow',
+    title: 'Master of the Kitchens',
+    pos: { ...EASTBROOK_NPC_PLACEMENTS_BY_ID.cook_marlow.position },
+    facing: EASTBROOK_NPC_PLACEMENTS_BY_ID.cook_marlow.facing,
+    color: 0xc98a4b,
+    // Professions 2.0: the Apothecary pair's (alchemy + cooking) anchor
+    // master. Attunement, make-amends return, and the repeatable kitchens work
+    // order live here.
+    questIds: ['q_prof_attune_apothecary', 'q_prof_amends_apothecary', 'q_prof_workorder_kitchens'],
+    vendorItems: [
+      'baked_bread',
+      'spring_water',
+      'roasted_boar',
+      'tough_jerky',
+      'brightwood_venison',
+      'cooking_salt',
+    ],
+    greeting: 'Nothing leaves my kitchens half-cooked, $C. Sit, eat, then get back out there.',
+  },
+  weaver_ottilie: {
+    id: 'weaver_ottilie',
+    name: 'Weaver Ottilie',
+    title: 'Master of the Loom',
+    pos: { ...EASTBROOK_NPC_PLACEMENTS_BY_ID.weaver_ottilie.position },
+    facing: EASTBROOK_NPC_PLACEMENTS_BY_ID.weaver_ottilie.facing,
+    color: 0x7161a8,
+    // Professions 2.0: the Outfitter pair's (leatherworking + tailoring)
+    // anchor master. Attunement, make-amends return, and the repeatable loom work
+    // order live here.
+    questIds: ['q_prof_attune_outfitter', 'q_prof_amends_outfitter', 'q_prof_workorder_loom'],
+    // Station stocking: the loom master sells its own goods, the tier-1 sickle,
+    // and the vendor-only thread staple. thorium_ore used to sit here as a
+    // premium reagent; it is a node yield, and no NPC stocks a gathered
+    // material (professions.md, Locked rulings).
+    vendorItems: ['linen_pouch', 'travelers_knapsack', 'gathering_sickle', 'spool_of_thread'],
+    greeting: 'Mind the threads, $C. A steady hand at the loom beats a strong one.',
+  },
+  tinker_gizzel: {
+    id: 'tinker_gizzel',
+    name: 'Tinker Gizzel',
+    title: 'Master of the Toolworks',
+    pos: { ...EASTBROOK_NPC_PLACEMENTS_BY_ID.tinker_gizzel.position },
+    facing: EASTBROOK_NPC_PLACEMENTS_BY_ID.tinker_gizzel.facing,
+    color: 0xb08d57,
+    // Professions 2.0: the Bombardier pair's (engineering + alchemy)
+    // anchor master. Attunement, make-amends return, and the repeatable toolworks
+    // work order live here.
+    questIds: [
+      'q_prof_attune_bombardier',
+      'q_prof_amends_bombardier',
+      'q_prof_workorder_toolworks',
+    ],
+    // Station stocking: the toolworks tools, plus arcanite_bar, the one premium
+    // reagent TOOL_RECIPES consume that a counter may carry. The other five
+    // (thorium_ore, ashwood_log, elderwood_log, goldleaf_herb, sunpetal_herb)
+    // are node yields, and no NPC stocks a gathered material (professions.md,
+    // Locked rulings): a tool above tier 3 is gathered up to, not bought.
+    // Tier-1 implements only, the tier Eastbrook's own stands and patches use.
+    // The tier-2 and tier-3 axes and sickles moved to the marsh and the peaks;
+    // the tier-1 sickle still sits on Ottilie rather than here, the shipped
+    // split between the two masters.
+    vendorItems: ['handaxe', 'simple_fishing_pole', 'arcanite_bar'],
+    greeting:
+      'Springs, sprockets, and sharp edges, $C: the toolworks has whatever your hands lack.',
+  },
+};
+
+// ---------------------------------------------------------------------------
+// Quests
+// ---------------------------------------------------------------------------
+
+export const ZONE1_QUESTS: Record<string, QuestDef> = {
+  // Professions onboarding (issue #1701 follow-up): the very first quest a
+  // new adventurer can take, no prerequisite and no minLevel gate (defaults
+  // to available at level 1, same as q_wolves). Gathering/crafting/town focus
+  // are otherwise entirely undiscoverable: nothing in the starting flow ever
+  // points a new player at them (see the professions.ts GATHERING_PROFESSIONS
+  // comment: no level/quest/tool gate exists at the mechanic level either, so
+  // there was no natural "unlock" moment to hang a quest off before this).
+  // A genuine gather objective credits successful ore-node harvests directly.
+  // It deliberately does not target the node's shared bone_fragments output:
+  // that material also drops from mobs, salvage, and the market, so inventory
+  // ownership cannot prove that the player mined it. foreman_odell is the
+  // existing mine-themed NPC (already gives q_mine), so this reuses him rather
+  // than inventing a new trainer NPC.
+  q_prof_intro: {
+    id: 'q_prof_intro',
+    name: 'A Trade for Every Hand',
+    giverNpcId: 'foreman_odell',
+    turnInNpcId: 'foreman_odell',
+    text: "Every soul in Eastbrook works a trade besides the sword, $N. There are ore veins in the rocks around the Copper Dig, southeast of town. Go swing a pick and work 5 of them yourself, mind; I'll know the difference.",
+    completionText:
+      "See? Ore gathered and callus on your hands. Keep at the mining, logging, and herb-picking as you travel the roads, and when you're back in town, mind the Town Focus board by the market and the crafting bench nearby. There's a fair trade waiting in all of it, if you want it.",
+    objectives: [{ type: 'gather', nodeType: 'ore', count: 5, label: 'Ore vein harvested' }],
+    xpReward: 150,
+    copperReward: 50,
+    itemRewards: {},
+    // The quest says to go swing a pick, and under the always-require-tool rule
+    // (#2343) a bare-handed harvest is denied outright. A new character starts
+    // with zero copper, so the game's FIRST quest silently required a detour to
+    // earn 20 copper and buy a pick before its objective could move at all (the
+    // pick is a vendor staple, so this was a dead end only until the player
+    // found that out). questFallbackGrants hands the pick over on accept and
+    // re-grants it if it is ever lost, exactly like a prerequisite quest item.
+    requiredItems: ['copper_mining_pick'],
+  },
+  q_wolves: {
+    id: 'q_wolves',
+    name: 'Wolves at the Door',
+    giverNpcId: 'marshal_redbrook',
+    turnInNpcId: 'marshal_redbrook',
+    text: 'The forest wolves grow bold, snapping at travelers on the north road. Thin their numbers, $N. Slay 8 Forest Wolves and Eastbrook will breathe easier.',
+    completionText: 'Fine work. The road feels safer already.',
+    objectives: [
+      { type: 'kill', targetMobId: 'forest_wolf', count: 8, label: 'Forest Wolf slain' },
+    ],
+    xpReward: 250,
+    copperReward: 75,
+    itemRewards: {},
+  },
+  q_greyjaw: {
+    id: 'q_greyjaw',
+    name: 'The Old Wolf',
+    giverNpcId: 'marshal_redbrook',
+    turnInNpcId: 'marshal_redbrook',
+    text: "There is one wolf no trap has held: Old Greyjaw. He has taken three hounds and a stable boy's arm. He prowls the deep woods north of the wolf runs. Bring me his fang.",
+    completionText:
+      'So the old devil is dead at last. The stable boy will sleep easier — and so will I.',
+    objectives: [
+      { type: 'collect', itemId: 'greyjaw_fang', count: 1, label: "Old Greyjaw's Fang" },
+    ],
+    xpReward: 450,
+    copperReward: 150,
+    itemRewards: {
+      warrior: 'greyjaw_pelt_cloak',
+      mage: 'greyjaw_pelt_cloak',
+      rogue: 'greyjaw_pelt_cloak',
+    },
+    requiresQuest: 'q_wolves',
+  },
+  q_boars: {
+    id: 'q_boars',
+    name: 'Bristly Boar Hides',
+    giverNpcId: 'trader_wilkes',
+    turnInNpcId: 'trader_wilkes',
+    text: 'Boar hide makes the finest travel packs, and the meadows west of town are crawling with the beasts. Bring me 5 Bristly Boar Hides and I will make it worth your time.',
+    completionText: 'Ah, fine bristly hides! These will fetch a good price.',
+    objectives: [{ type: 'collect', itemId: 'boar_hide', count: 5, label: 'Bristly Boar Hide' }],
+    xpReward: 350,
+    copperReward: 120,
+    itemRewards: {},
+  },
+  q_spiders: {
+    id: 'q_spiders',
+    name: 'Sableweb Menace',
+    giverNpcId: 'apothecary_lin',
+    turnInNpcId: 'apothecary_lin',
+    text: 'The lurkers in the eastern woods spin a silk I need for my poultices — and they have grown far too numerous besides. Cull 6 Sableweb Lurkers and cut 4 silk glands from their bellies.',
+    completionText: "Ugh, still twitching. Perfect. Here, you've earned this.",
+    objectives: [
+      { type: 'kill', targetMobId: 'webwood_spider', count: 6, label: 'Sableweb Lurker slain' },
+      { type: 'collect', itemId: 'webwood_silk', count: 4, label: 'Sableweb Silk Gland' },
+    ],
+    xpReward: 420,
+    copperReward: 140,
+    itemRewards: {},
+    minLevel: 2,
+  },
+  q_murlocs: {
+    id: 'q_murlocs',
+    name: 'Trouble at the Lake',
+    giverNpcId: 'fisherman_brandt',
+    turnInNpcId: 'fisherman_brandt',
+    text: 'Twenty years I have fished Mirror Lake, and never lost a net until those gurgling fish-men crawled out of the shallows. Drive the Mudfin back — slay 8 of them. And watch yourself: where there is one mudfin, there are five.',
+    completionText: 'Hah! That will teach them to mind their own mudholes.',
+    objectives: [
+      { type: 'kill', targetMobId: 'mudfin_murloc', count: 8, label: 'Mudfin Skulker slain' },
+    ],
+    xpReward: 520,
+    copperReward: 180,
+    itemRewards: {},
+    minLevel: 3,
+  },
+  q_mine: {
+    id: 'q_mine',
+    name: 'Rats in the Mine',
+    giverNpcId: 'foreman_odell',
+    turnInNpcId: 'foreman_odell',
+    text: 'We struck a fine copper vein and then those burrowing vermin came boiling out of the hillside. My crew will not set foot in the dig until it is cleared. Put down 10 Deeprock Diggers.',
+    completionText: 'Ha! Back to work, lads! You have my thanks — and my coin.',
+    objectives: [
+      { type: 'kill', targetMobId: 'tunnel_rat', count: 10, label: 'Deeprock Digger slain' },
+    ],
+    xpReward: 620,
+    copperReward: 220,
+    itemRewards: {},
+    minLevel: 4,
+  },
+  q_bones: {
+    id: 'q_bones',
+    rev: 1, // objective rework (zones 1-3 dedupe): pre-rework in-flight runs reset on restore
+    name: 'The Restless Dead',
+    giverNpcId: 'brother_aldric',
+    turnInNpcId: 'brother_aldric',
+    text: 'The old ruin on the northwest hill was a chapel once, and its yard a resting place. Something has stirred the dead from their sleep. Put them down and bring me a skull from each you lay to rest, $N, eight in all, so I may speak the rites over them and grant the peace they were denied.',
+    completionText: 'May they rest now, and may the Light forgive whatever woke them.',
+    objectives: [
+      {
+        type: 'collect',
+        itemId: 'restless_skull',
+        count: 8,
+        label: 'Restless Skulls recovered',
+      },
+    ],
+    xpReward: 700,
+    copperReward: 260,
+    itemRewards: {},
+    minLevel: 5,
+  },
+  q_supplies: {
+    id: 'q_supplies',
+    name: 'Stolen Supplies',
+    giverNpcId: 'trader_wilkes',
+    turnInNpcId: 'trader_wilkes',
+    text: 'Those bandits hit my last wagon and made off with four crates of goods: tools, salt, good Eastbrook linen. The crates are stacked around their camp in the southwest hills. Steal them back for me, would you?',
+    completionText: 'My crates! Barely a scratch on them. You are a wonder.',
+    objectives: [
+      { type: 'collect', itemId: 'supply_crate', count: 4, label: 'Stolen Supply Crate' },
+    ],
+    xpReward: 550,
+    copperReward: 250,
+    itemRewards: {},
+    minLevel: 3,
+  },
+  q_whispers: {
+    id: 'q_whispers',
+    name: 'Whispers Below',
+    giverNpcId: 'brother_aldric',
+    turnInNpcId: 'brother_aldric',
+    text: 'You have laid the dead to rest, but they will not stay resting — something calls them back. Search the chapel ruin for any trace of the one doing the calling. If you find a sigil or seal, bring it to me untouched.',
+    completionText:
+      'This sigil... it bears the mark of the Gravecallers, a sect I had prayed was extinct. This is worse than I feared, $N.',
+    objectives: [
+      { type: 'collect', itemId: 'gravecaller_sigil', count: 1, label: "Gravecaller's Sigil" },
+    ],
+    xpReward: 400,
+    copperReward: 150,
+    itemRewards: {},
+    requiresQuest: 'q_bones',
+  },
+  q_names_of_the_dead: {
+    id: 'q_names_of_the_dead',
+    name: 'The Names of the Dead',
+    giverNpcId: 'brother_aldric',
+    turnInNpcId: 'brother_aldric',
+    text: 'If the Gravecallers raised our dead, I must know whose graves they robbed. The chapel sexton kept a burial ledger, and the wind has scattered its pages across the chapel yard. Gather 3 of them for me, $N — the dead deserve to be called by their names.',
+    completionText:
+      "These poor souls... and look here. Sexton Marrow — the chapel's own living caretaker — his grave the first disturbed. Morthen began with the very man who buried Eastbrook's dead.",
+    objectives: [
+      {
+        type: 'collect',
+        itemId: 'weathered_ledger_page',
+        count: 3,
+        label: 'Weathered Ledger Page',
+      },
+    ],
+    xpReward: 600,
+    copperReward: 250,
+    itemRewards: {},
+    requiresQuest: 'q_whispers',
+  },
+  q_silence_the_call: {
+    id: 'q_silence_the_call',
+    name: 'Silence the Call',
+    giverNpcId: 'brother_aldric',
+    turnInNpcId: 'brother_aldric',
+    text: "Every name in that ledger is a soul Morthen means to drag from the earth, and the chapel yard already crawls with those he has called. Return 12 Restless Bones to their graves, $N, before the Gravecaller's whisper swells into a chorus.",
+    completionText:
+      'The yard grows quieter — but the calling has not stopped. It rises from below now, $N. From the crypt itself.',
+    objectives: [
+      { type: 'kill', targetMobId: 'restless_bones', count: 12, label: 'Restless Bones silenced' },
+    ],
+    xpReward: 750,
+    copperReward: 300,
+    itemRewards: {},
+    requiresQuest: 'q_names_of_the_dead',
+  },
+  q_rite: {
+    id: 'q_rite',
+    name: 'The Binding Rite',
+    giverNpcId: 'brother_aldric',
+    turnInNpcId: 'brother_aldric',
+    text: "The crypt beneath the chapel must be unsealed if we are to stop the Gravecaller — but only a binding rite will let the living pass. I need 4 lumps of Blessed Tallow — the mine's burrowers hoard tallow by the crate — and 6 Ghostly Essences from the restless dead.",
+    completionText:
+      'It is done. The way below stands open... and may the Light forgive me for opening it. Gather your strongest companions before you descend, $N. No one should face the Hollow alone.',
+    objectives: [
+      { type: 'collect', itemId: 'blessed_wax', count: 4, label: 'Blessed Tallow' },
+      { type: 'collect', itemId: 'ghostly_essence', count: 6, label: 'Ghostly Essence' },
+    ],
+    xpReward: 700,
+    copperReward: 500,
+    itemRewards: {},
+    requiresQuest: 'q_whispers',
+  },
+  q_hollow: {
+    id: 'q_hollow',
+    name: 'Into the Hollow',
+    giverNpcId: 'brother_aldric',
+    turnInNpcId: 'brother_aldric',
+    text: "Morthen the Gravecaller waits at the bottom of the Hollow Crypt, ringed by the elite dead he has raised. He is far beyond any one hero — take four companions, no fewer. End him, and the Vale's dead will finally sleep.",
+    completionText:
+      'The whispering has stopped. You have done what the whole Vale could not, $N — the dead sleep, and Eastbrook owes you everything it has.',
+    objectives: [
+      { type: 'kill', targetMobId: 'morthen', count: 1, label: 'Morthen the Gravecaller slain' },
+    ],
+    xpReward: 1500,
+    copperReward: 10000,
+    itemRewards: {
+      warrior: 'gravecaller_blade',
+      rogue: 'widowfang_dirk',
+      mage: 'gravecaller_staff',
+    },
+    requiresQuest: 'q_rite',
+    suggestedPlayers: 5,
+  },
+  q_sexton: {
+    id: 'q_sexton',
+    name: "The Sexton's Bell",
+    giverNpcId: 'brother_aldric',
+    turnInNpcId: 'brother_aldric',
+    text: "The ledger named him and the crypt holds him: Sexton Marrow, the chapel's caretaker, the first man Morthen raised — guarding his master's door in death as faithfully as he kept the chapel in life. Take four companions into the Hollow Crypt and grant the old sexton the rest he was robbed of, $N.",
+    completionText:
+      'So Marrow is free at last. Ring no bell for him — he heard enough of them in life.',
+    objectives: [
+      { type: 'kill', targetMobId: 'sexton_marrow', count: 1, label: 'Sexton Marrow laid to rest' },
+    ],
+    xpReward: 1000,
+    copperReward: 600,
+    itemRewards: {
+      warrior: 'marrowtread_boots',
+      mage: 'sextons_slippers',
+      rogue: 'gravewalker_softboots',
+    },
+    requiresQuest: 'q_rite',
+    suggestedPlayers: 5,
+  },
+  q_gravecallers_trail: {
+    id: 'q_gravecallers_trail',
+    name: "The Gravecaller's Trail",
+    giverNpcId: 'brother_aldric',
+    turnInNpcId: 'brother_aldric',
+    text: 'Morthen is dead, yet a question gnaws at me: a sect that hid for a century does not spend itself on one village chapel. He kept a grimoire — his rites, his correspondence. If anything of it survives, it lies in the vestry of the ruined chapel above the crypt. Search the ruin and bring me whatever remains of his writings, $N.',
+    completionText:
+      "Morthen wrote to a 'Fogbinder' in the northern fen. The sect is not dead, $N — it has merely been patient.",
+    objectives: [
+      { type: 'collect', itemId: 'morthen_grimoire', count: 1, label: "Morthen's Grimoire" },
+    ],
+    xpReward: 900,
+    copperReward: 400,
+    itemRewards: {},
+    requiresQuest: 'q_hollow',
+  },
+  q_bandits: {
+    id: 'q_bandits',
+    name: 'Bandits of the Vale',
+    giverNpcId: 'marshal_redbrook',
+    turnInNpcId: 'marshal_redbrook',
+    text: 'A pack of cutthroats has made camp in the southwest hills. They have robbed three wagons this week. Drive them out — slay 10 Vale Bandits.',
+    completionText: 'Ten fewer knives in the dark. Take this — you have earned it.',
+    objectives: [
+      { type: 'kill', targetMobId: 'vale_bandit', count: 10, label: 'Vale Bandit slain' },
+    ],
+    xpReward: 550,
+    copperReward: 200,
+    itemRewards: { warrior: 'redbrook_blade', mage: 'apprentice_staff', rogue: 'keen_dirk' },
+    requiresQuest: 'q_wolves',
+  },
+  q_ringleader: {
+    id: 'q_ringleader',
+    name: 'The Ringleader',
+    giverNpcId: 'marshal_redbrook',
+    turnInNpcId: 'marshal_redbrook',
+    text: 'The bandits answer to one man: Gorrak the Ruthless. Cut off the head and the body will scatter. He skulks at the heart of their camp. End him, $N.',
+    completionText:
+      'Gorrak is dead? Then the Vale is free of his shadow. You have done Eastbrook a great service.',
+    objectives: [
+      { type: 'kill', targetMobId: 'gorrak', count: 1, label: 'Gorrak the Ruthless slain' },
+    ],
+    xpReward: 800,
+    copperReward: 500,
+    itemRewards: { warrior: 'militia_vest', mage: 'woven_robe', rogue: 'shadow_jerkin' },
+    requiresQuest: 'q_bandits',
+  },
+  q_mogger: {
+    id: 'q_mogger',
+    name: 'Mogger Must Fall',
+    giverNpcId: 'marshal_redbrook',
+    turnInNpcId: 'marshal_redbrook',
+    text: 'Mogger has split carts, flattened fences, and killed enough livestock to empty half the Vale. Do not face him alone. Take two strong companions into the western meadow and put the brute down for good.',
+    completionText:
+      "Mogger dead at last. Eastbrook's fields are safer, and you leave the Vale with one more tale worth retelling.",
+    objectives: [{ type: 'kill', targetMobId: 'mogger', count: 1, label: 'Mogger slain' }],
+    xpReward: 1200,
+    copperReward: 900,
+    itemRewards: {
+      warrior: 'bristleback_maul',
+      mage: 'sableweb_slippers',
+      rogue: 'moggers_stomper_boots',
+    },
+    requiresQuest: 'q_gravecallers_trail',
+    minLevel: 6,
+    suggestedPlayers: 3,
+  },
+  // Profession attunement (Professions 2.0): each of the four wave-one
+  // archetype pairs has its own anchor master and its own fixed-pair acceptance
+  // quest, so the masters are independent entry points (no q_prof_intro gate).
+  // The chosen pair is carried on the quest's completionEffect.pairId; the
+  // authoritative turn-in effect revalidates it before attuning. Each acceptance
+  // quest's body states the whole bargain up front (which two crafts become
+  // majors, that a hobby slot exists, that other crafts go dormant not lost, and
+  // that returning to an abandoned pair later costs an escalating make-amends
+  // task) so the choice is legible before it is made.
+  q_prof_attune_smith: {
+    id: 'q_prof_attune_smith',
+    name: "The Smith's Promise",
+    giverNpcId: 'forgemistress_darva',
+    turnInNpcId: 'forgemistress_darva',
+    text: 'Steel does not forgive a wandering hand, so I will tell you plain before you swear anything. Bind yourself to my forge and Weaponcrafting and Armorcrafting become your two majors, the only crafts you may carry past rare work. The craft across the wheel from them settles in as your hobby, worked to rare and no further. Your other trades do not burn away, $N: they simply go quiet, dormant until you call them back. And know this before the hammer falls: leave this pair for another and you will crawl back through honest labor to return to it, five foes put down the first time you come home, eight the next, eleven after that, more each time you stray. Still standing here? Then bring me three veins of ore worked from the Vale with your own hands, and we will call the promise struck.',
+    completionText:
+      'Good ore, and good hands to work it. Weaponcrafting and Armorcrafting are yours to master now. Earn the rest.',
+    objectives: [{ type: 'gather', nodeType: 'ore', count: 3, label: 'Ore vein harvested' }],
+    xpReward: 150,
+    copperReward: 0,
+    itemRewards: {},
+    shareable: false,
+    // An anchor master is an independent entry point (no q_prof_intro gate), so
+    // this one cannot lean on the intro quest's pick: it grants its own.
+    requiredItems: ['copper_mining_pick'],
+    completionEffect: { type: 'attunePair', mode: 'new', pairId: 'weaponcrafting+armorcrafting' },
+  },
+  q_prof_attune_outfitter: {
+    id: 'q_prof_attune_outfitter',
+    name: "The Outfitter's Measure",
+    giverNpcId: 'weaver_ottilie',
+    turnInNpcId: 'weaver_ottilie',
+    text: 'Measure the cost before you cut, that is the first rule at my loom. Choose me and Leatherworking and Tailoring become your two majors, the pair you may carry beyond rare work; the craft opposite them settles in as your hobby, taken to rare and left there. The trades you set aside are not unravelled, $N, only folded away, dormant until you take them up again. Be certain, though: should you leave this pair and later want it back, the way home is paid in labor that lengthens each time, five culled at first, then eight, then eleven, always a little more. If your mind is made, cull four webwood spiders and bring their silk to the loom, for good thread starts every good garment.',
+    completionText:
+      'Even thread, even hand. Leatherworking and Tailoring are yours to carry as far as your skill will reach. Measure twice, and they will not fail you.',
+    objectives: [
+      { type: 'kill', targetMobId: 'webwood_spider', count: 4, label: 'Webwood Spider culled' },
+    ],
+    xpReward: 150,
+    copperReward: 0,
+    itemRewards: {},
+    shareable: false,
+    completionEffect: { type: 'attunePair', mode: 'new', pairId: 'leatherworking+tailoring' },
+  },
+  q_prof_attune_apothecary: {
+    id: 'q_prof_attune_apothecary',
+    name: 'A Recipe Worth Keeping',
+    giverNpcId: 'cook_marlow',
+    turnInNpcId: 'cook_marlow',
+    text: 'Every good dish is two flavors that belong together, and so is a good craft, $N. Sit with me and Alchemy and Cooking become your two majors, the two you may simmer past rare work; the craft on the far side of the wheel is your hobby, seasoned up to rare and no hotter. The rest of your trades keep in the pantry, dormant, not spoiled, ready whenever you fetch them back. Fair warning while the pot is still cold: wander off to another pair and coming home is a chore that grows, five beasts seen to the first time, eight the next, eleven the time after, heavier with every helping. Still hungry for it? Then hunt me four wild boars, because a kitchen worth its salt starts with good meat.',
+    completionText:
+      'Now that is a start with some meat on it. Alchemy and Cooking are yours to cook as high as you like. Come back hungry.',
+    objectives: [{ type: 'kill', targetMobId: 'wild_boar', count: 4, label: 'Wild Boar hunted' }],
+    xpReward: 150,
+    copperReward: 0,
+    itemRewards: {},
+    shareable: false,
+    completionEffect: { type: 'attunePair', mode: 'new', pairId: 'alchemy+cooking' },
+  },
+  q_prof_attune_bombardier: {
+    id: 'q_prof_attune_bombardier',
+    name: 'A Volatile Arrangement',
+    giverNpcId: 'tinker_gizzel',
+    turnInNpcId: 'tinker_gizzel',
+    text: 'Oh, oh, you want the good stuff, the loud stuff, yes? Listen, listen, before you touch anything that ticks: say the word and Engineering and Alchemy become your two majors, the only two you get to push past rare work (that is where it gets FUN, trust me). The craft opposite goes in your pocket as a hobby, rare and no further, do not pout. Your other trades? Not gone, $N, just napping, dormant, wake them whenever you like. But (there is always a but, hold the fuse) ditch this pair and waddle back later and it costs you sweat that piles up, five things put down the first time, eight the next, eleven after, more, more, every single time you get cold feet. Yes? YES? Then go pick me three patches of herbs, the volatile ones, do not ask which, they are all a little volatile if you believe hard enough.',
+    completionText:
+      'HA. Reagents, real ones, and all your fingers still attached, good, good. Engineering and Alchemy, yours, go make something that regrets it. Off you go.',
+    objectives: [{ type: 'gather', nodeType: 'herb', count: 3, label: 'Herb patch harvested' }],
+    xpReward: 150,
+    copperReward: 0,
+    itemRewards: {},
+    shareable: false,
+    // A herb objective, so this one grants the SICKLE, not the pick: a mining
+    // tool does not satisfy the herbalism tool gate.
+    requiredItems: ['gathering_sickle'],
+    completionEffect: { type: 'attunePair', mode: 'new', pairId: 'engineering+alchemy' },
+  },
+  // Make-amends returns (Professions 2.0): repeatable, one per anchor
+  // master, taken only for a pair the character has held before. The first
+  // objective's count is resolved at accept time from the character's return
+  // history (resolvedObjectiveCounts 'archetypeAmends' -> 5 + 3 * switchCount),
+  // so the authored count is only a placeholder. The turn-in effect returns the
+  // former pair to active (attunePair mode 'return').
+  q_prof_amends_smith: {
+    id: 'q_prof_amends_smith',
+    name: 'Back to the Forge',
+    giverNpcId: 'forgemistress_darva',
+    turnInNpcId: 'forgemistress_darva',
+    text: 'So you have come back to the forge. I will not pretend it does not sting, $N, but I am a fair hand and the work is fair too. You know the price of returning: labor, and more of it each time you have strayed. Put down the wolves harrying the north road, and the swing of it will remind your arms what this pair once asked of them.',
+    completionText:
+      'The rhythm is back in your hands. Weaponcrafting and Armorcrafting are your majors once more. Do not make a habit of leaving.',
+    objectives: [
+      { type: 'kill', targetMobId: 'forest_wolf', count: 5, label: 'Forest Wolf slain' },
+    ],
+    xpReward: 100,
+    copperReward: 0,
+    itemRewards: {},
+    repeatable: true,
+    shareable: false,
+    resolvedObjectiveCounts: 'archetypeAmends',
+    completionEffect: {
+      type: 'attunePair',
+      mode: 'return',
+      pairId: 'weaponcrafting+armorcrafting',
+    },
+  },
+  q_prof_amends_outfitter: {
+    id: 'q_prof_amends_outfitter',
+    name: 'Threads Rejoined',
+    giverNpcId: 'weaver_ottilie',
+    turnInNpcId: 'weaver_ottilie',
+    text: 'Back at my loom after all. I hold no grudge, $N, but the thread remembers a hand that let it go, and the cost of taking it up again is measured out longer each time. Cull the webwood spiders crowding the eastern woods, and the labor will settle your hands before they touch good silk again.',
+    completionText:
+      'Steady again. Leatherworking and Tailoring return to your hands as majors. Measure twice this time before you wander.',
+    objectives: [
+      { type: 'kill', targetMobId: 'webwood_spider', count: 5, label: 'Webwood Spider culled' },
+    ],
+    xpReward: 100,
+    copperReward: 0,
+    itemRewards: {},
+    repeatable: true,
+    shareable: false,
+    resolvedObjectiveCounts: 'archetypeAmends',
+    completionEffect: { type: 'attunePair', mode: 'return', pairId: 'leatherworking+tailoring' },
+  },
+  q_prof_amends_apothecary: {
+    id: 'q_prof_amends_apothecary',
+    name: 'Back on the Stove',
+    giverNpcId: 'cook_marlow',
+    turnInNpcId: 'cook_marlow',
+    text: 'Well, look who is back at my pot. No hard feelings, $N, a kitchen always has room, but you know the tab runs longer every time you walk out on it. Go thin the wild boars in the west meadow, because honest sweat is the first ingredient, and it will remind your hands of the work.',
+    completionText:
+      'There is the old flavor. Alchemy and Cooking are back on your stove as majors. Stay a while this time.',
+    objectives: [{ type: 'kill', targetMobId: 'wild_boar', count: 5, label: 'Wild Boar hunted' }],
+    xpReward: 100,
+    copperReward: 0,
+    itemRewards: {},
+    repeatable: true,
+    shareable: false,
+    resolvedObjectiveCounts: 'archetypeAmends',
+    completionEffect: { type: 'attunePair', mode: 'return', pairId: 'alchemy+cooking' },
+  },
+  q_prof_amends_bombardier: {
+    id: 'q_prof_amends_bombardier',
+    name: 'The Ledger Grows',
+    giverNpcId: 'tinker_gizzel',
+    turnInNpcId: 'tinker_gizzel',
+    text: 'You came BACK, ha, they always come back, the loud stuff has a pull, yes? No sulking from me, $N, but the ledger, oh the ledger, it grows every time you skip out, more each return, that is only fair. Go clear the tunnel rats out of the dig for me, sweat first, sparks later, that is the rule I just made up.',
+    completionText:
+      'THERE it is, the itch is back in your hands. Engineering and Alchemy, majors again, go on, go make a bang. Try to stay put this time, eh?',
+    objectives: [
+      { type: 'kill', targetMobId: 'tunnel_rat', count: 5, label: 'Tunnel Rat exterminated' },
+    ],
+    xpReward: 100,
+    copperReward: 0,
+    itemRewards: {},
+    repeatable: true,
+    shareable: false,
+    resolvedObjectiveCounts: 'archetypeAmends',
+    completionEffect: { type: 'attunePair', mode: 'return', pairId: 'engineering+alchemy' },
+  },
+  // Repeatable craft work orders (Professions 2.0): a master takes a
+  // stack of their craft's staple material off your hands for coin, a light
+  // economy sink on a fixed cadence (repeatCadenceTicks WORK_ORDER_CADENCE_TICKS).
+  // The collect turn-in consumes the materials (turnInQuestCore via
+  // removePreferFungible: plain stacks first, signed copies last).
+  // copperReward is floor(0.5 * summed vendor sell value of the requested
+  // materials); xpReward matches the only repeatable-quest precedent in the game,
+  // the make-amends band (100), since no zone-2/3 repeatable exists to scale to.
+  q_prof_workorder_forge: {
+    id: 'q_prof_workorder_forge',
+    name: 'Forge Work Order',
+    giverNpcId: 'forgemistress_darva',
+    turnInNpcId: 'forgemistress_darva',
+    text: 'The forge always wants feeding, $N. Bring me eight lumps of copper ore and I will see you paid for the haul. No ceremony, just ore and coin.',
+    completionText:
+      'Good weight, no slag. Here is your due. The forge will be hungry again soon enough.',
+    objectives: [
+      { type: 'collect', itemId: 'copper_ore', count: 8, label: 'Copper Ore delivered' },
+    ],
+    xpReward: 100,
+    // floor(0.5 * 8 * 4) = 16 (copper_ore sellValue 4).
+    copperReward: 16,
+    itemRewards: {},
+    repeatable: true,
+    shareable: false,
+    repeatCadenceTicks: WORK_ORDER_CADENCE_TICKS,
+  },
+  q_prof_workorder_kitchens: {
+    id: 'q_prof_workorder_kitchens',
+    name: 'Kitchens Work Order',
+    giverNpcId: 'cook_marlow',
+    turnInNpcId: 'cook_marlow',
+    text: 'My larder is looking thin, $N, and thin larders make grumpy cooks. Fetch me eight cuts of game meat and there is coin in it for you, plus my undying gratitude, which is worth less but tastes better.',
+    completionText:
+      'Now that is a full pantry. Here is your pay. Come back when your bags are heavy again.',
+    objectives: [{ type: 'collect', itemId: 'game_meat', count: 8, label: 'Game Meat delivered' }],
+    xpReward: 100,
+    // floor(0.5 * 8 * 4) = 16 (game_meat sellValue 4).
+    copperReward: 16,
+    itemRewards: {},
+    repeatable: true,
+    shareable: false,
+    repeatCadenceTicks: WORK_ORDER_CADENCE_TICKS,
+  },
+  q_prof_workorder_loom: {
+    id: 'q_prof_workorder_loom',
+    name: 'Loom Work Order',
+    giverNpcId: 'weaver_ottilie',
+    turnInNpcId: 'weaver_ottilie',
+    text: 'The loom runs dry and idle hands waste daylight, $N. Bring me six skeins of spider silk and I will pay you a fair rate, counted out to the copper.',
+    completionText:
+      'Fine silk, evenly spun. Your coin, exactly measured. The loom thanks you, and so do I.',
+    objectives: [
+      { type: 'collect', itemId: 'spider_silk', count: 6, label: 'Spider Silk delivered' },
+    ],
+    xpReward: 100,
+    // floor(0.5 * 6 * 5) = 15 (spider_silk sellValue 5).
+    copperReward: 15,
+    itemRewards: {},
+    repeatable: true,
+    shareable: false,
+    repeatCadenceTicks: WORK_ORDER_CADENCE_TICKS,
+  },
+  q_prof_workorder_toolworks: {
+    id: 'q_prof_workorder_toolworks',
+    name: 'Toolworks Work Order',
+    giverNpcId: 'tinker_gizzel',
+    turnInNpcId: 'tinker_gizzel',
+    text: 'Hafts, handles, stocks, I go through wood like it is going out of style, which it is NOT, wood is eternal, $N. Haul me eight ironbark logs and I will pay you, coin, real coin, not a favor, I promise, mostly.',
+    completionText:
+      'Perfect, perfect, straight grain, no rot. Here, your coin, see, I keep my word (mostly). Bring more when you trip over a tree.',
+    objectives: [
+      { type: 'collect', itemId: 'ironbark_log', count: 8, label: 'Ironbark Log delivered' },
+    ],
+    xpReward: 100,
+    // floor(0.5 * 8 * 4) = 16 (ironbark_log sellValue 4).
+    copperReward: 16,
+    itemRewards: {},
+    repeatable: true,
+    shareable: false,
+    repeatCadenceTicks: WORK_ORDER_CADENCE_TICKS,
+  },
+  q_prof_hobby_switch: {
+    id: 'q_prof_hobby_switch',
+    name: 'A Different Pastime',
+    giverNpcId: 'smith_haldren',
+    turnInNpcId: 'smith_haldren',
+    text: 'Majors demand a vow. A hobby only asks where your curiosity wanders, $N. Gather a few herbs and decide which craft opposite your majors you want to pursue.',
+    completionText:
+      'A lighter choice, but a useful one. Follow that curiosity as far as rare work will take it.',
+    objectives: [{ type: 'gather', nodeType: 'herb', count: 3, label: 'Herb patch harvested' }],
+    // 0 XP on purpose. The hobby switch is a repeatable identity
+    // toggle; any XP on it becomes a farmable trickle, so it pays nothing.
+    xpReward: 0,
+    copperReward: 0,
+    itemRewards: {},
+    requiresQuest: 'q_prof_intro',
+    repeatable: true,
+    shareable: false,
+    // The same 30-minute window its four work-order siblings carry. The iron
+    // gate on the tool mint is the accept-time presence predicate
+    // (quests/quest_item_presence.ts, spanning bank/mail/escrow). The cadence
+    // bounds ONLY the turn-in loop (armCadence fires in turnInQuestCore;
+    // abandoning arms nothing), so the one transfer route left deliberately
+    // open (direct trade, R10) still moves one sickle per accept-abandon
+    // cycle. What actually bounds that route is the value ceiling: the tools
+    // carry noVendorSell and noMarketList, so a traded copy has no route to
+    // copper (guarded in tests/professions_starter_tools.test.ts).
+    repeatCadenceTicks: WORK_ORDER_CADENCE_TICKS,
+    // Also a herb objective, so also the sickle. This is the repeatable one, so
+    // it is the reason the tier-1 tools carry noVendorSell (items.ts): without
+    // that flag, accept-sell-abandon would be an unbounded copper faucet.
+    requiredItems: ['gathering_sickle'],
+    completionEffect: { type: 'switchHobby' },
+  },
+};
+
+export const ZONE1_QUEST_ORDER = [
+  'q_prof_intro',
+  'q_wolves',
+  'q_boars',
+  'q_spiders',
+  'q_greyjaw',
+  'q_murlocs',
+  'q_supplies',
+  'q_bandits',
+  'q_mine',
+  'q_bones',
+  'q_ringleader',
+  'q_whispers',
+  'q_names_of_the_dead',
+  'q_silence_the_call',
+  'q_rite',
+  'q_sexton',
+  'q_hollow',
+  'q_gravecallers_trail',
+  'q_mogger',
+  'q_prof_attune_smith',
+  'q_prof_attune_outfitter',
+  'q_prof_attune_apothecary',
+  'q_prof_attune_bombardier',
+  'q_prof_amends_smith',
+  'q_prof_amends_outfitter',
+  'q_prof_amends_apothecary',
+  'q_prof_amends_bombardier',
+  'q_prof_workorder_forge',
+  'q_prof_workorder_kitchens',
+  'q_prof_workorder_loom',
+  'q_prof_workorder_toolworks',
+  'q_prof_hobby_switch',
+];
+
+// ---------------------------------------------------------------------------
+// World layout. Town sits at origin. +z north, +x WEST (east is -x:
+// facing 0 looks along +z and turning right decreases facing, so the
+// rendered world and the corrected map both put -x on your right).
+// ---------------------------------------------------------------------------
+
+// STARTER PACING: every packed camp whose disc reaches within 100 yd of the town
+// hub is spaced so adjacent mobs stand at least 11.5 yd apart (radius / sqrt(count),
+// camp_scatter.ts), no disc comes closer than 38 yd to the hub, and NO TWO
+// POPULATIONS OVERLAP: two camps of DIFFERENT mobIds keep their discs fully apart
+// (distance >= radiusA + radiusB + 2). Two camps of the SAME mobId are one
+// population split in two, so they may still abut ((rA + rB) * 0.75 + 8).
+// Below that the packs chain-pull: aggro radii here run 9-13 yd, so a camp
+// scattered tighter than its own aggro radius drags neighbours onto a level-1
+// player, and two interleaved camps pull two different families at once. The
+// lever is spacing and (where a camp could not otherwise fit) a small count cut;
+// aggroRadius and the social-aggro flee-rally (src/sim/mob/social_aggro.ts) are
+// deliberately unchanged, and no named rare or elite was ever thinned. Counts were
+// trimmed by one per crowded camp (murlocs by three, see below) on maintainer
+// authorization, 2026-07-28, and every camp stays at or above half of the largest
+// single kill-quest requirement against its mobId. Camps were pushed OUTWARD along
+// their existing bearing so each stays in its own corner.
+// Guarded by tests/eastbrook_camp_spacing.test.ts. Row ORDER is a determinism
+// contract (see the CAMPS merge in data.ts): edit values, never reorder.
+export const ZONE1_CAMPS: CampDef[] = [
+  // Compass check for every placement comment and quest text below: the
+  // canonical convention statement lives higher in this file (the pois
+  // block: +z north, +x WEST, east is -x), and reading +X as east is what
+  // produced a run of mirrored quest directions; verify any direction claim
+  // against that note, never against raw signs.
+  // Wolves: north woods
+  { mobId: 'forest_wolf', center: { x: -27, z: 71 }, radius: 28.5, count: 6 },
+  { mobId: 'forest_wolf', center: { x: 24, z: 70 }, radius: 26, count: 5 },
+  // Nudged north to stay ahead of the widened wolf runs (q_greyjaw sends the
+  // player to "the deep woods north of the wolf runs").
+  { mobId: 'old_greyjaw', center: { x: 0, z: 100 }, radius: 8, count: 1 },
+  // Boars: west meadow
+  { mobId: 'wild_boar', center: { x: 63, z: 16 }, radius: 26, count: 5 },
+  { mobId: 'wild_boar', center: { x: 84, z: -27 }, radius: 23.5, count: 4 },
+  { mobId: 'mogger', center: { x: 118, z: -26 }, radius: 5, count: 1 },
+  // Spiders: eastern woods
+  { mobId: 'webwood_spider', center: { x: -68, z: 2 }, radius: 28.5, count: 6 },
+  // Murlocs: lake shore northeast, camp still straddles the waterline. This camp is
+  // radius-capped by Mirror Lake, not by its neighbours: the terrain flatten disc is
+  // radius * 1.8, so a radius wide enough for 11.5 yd spacing drags a 59 yd flatten
+  // across the lake and lifts its bed above swim depth (the lake stops needing a
+  // swim, fish stop leaping, the map stops painting it as water). Even radius 15.5
+  // reshapes the south shore enough to break the mount-versus-swimmer waterline
+  // (tests/mount_transition.test.ts), so 15 is the measured shore-safe ceiling and
+  // the COUNT comes down instead: 8 to 5. That keeps Fisher Dunwall's "where there
+  // is one mudfin, there are five" literal, still covers half of his slay-8, and
+  // lifts spacing from 4.95 to 6.71 yd. It is the one camp that cannot reach 11.5;
+  // the documented exception and the lake guard live in
+  // tests/eastbrook_camp_spacing.test.ts.
+  { mobId: 'mudfin_murloc', center: { x: -75, z: 57 }, radius: 15, count: 5 },
+  // Kobolds: mine southeast. Held in place (the mine and its colliders are here).
+  { mobId: 'tunnel_rat', center: { x: -82, z: -62 }, radius: 33, count: 8 },
+  // Bandits: southwest camp. Shifted off its own campfire collider and clear of the
+  // boar meadow; the tents, crates and supply drops all stay inside the disc, and it
+  // no longer merges with the outpost below.
+  { mobId: 'vale_bandit', center: { x: 50, z: -72 }, radius: 28.5, count: 6 },
+  { mobId: 'vale_bandit', center: { x: 90, z: -90 }, radius: 16, count: 5 },
+  { mobId: 'gorrak', center: { x: 92, z: -92 }, radius: 2, count: 1 },
+  // Undead: ruins northwest. The chapel guardians below are the same population, so
+  // they may still flank the altar inside this disc.
+  { mobId: 'restless_bones', center: { x: 82, z: 78 }, radius: 28.5, count: 6 },
+  { mobId: 'captain_verlan', center: { x: 92, z: 90 }, radius: 4, count: 1 },
+];
+
+// Spawned LAST in the merged CAMPS array (see data.ts) so these appended draws
+// fall after every other zone's camp spawns — and the camp loop is the final
+// RNG consumer at construction (ground objects, dungeon doors and addPlayer draw
+// none). Keeping the rare elite at the tail means adding it shifts no other
+// content's deterministic spawn rolls, so fixed-seed tests stay stable.
+export const ZONE1_CHAPEL_CAMPS: CampDef[] = [
+  // A pair of bone guardians flank the chapel's broken altar; their binder lurks within.
+  { mobId: 'restless_bones', center: { x: 88, z: 90 }, radius: 6, count: 2 },
+  { mobId: 'wraithbinder_maldrec', center: { x: 88, z: 92 }, radius: 3, count: 1 },
+];
+
+export const ZONE1_OBJECTS: GroundObjectDef[] = [
+  {
+    itemId: 'supply_crate',
+    name: 'Stolen Supply Crate',
+    positions: [
+      { x: 58, z: -58 },
+      { x: 73, z: -70 },
+      { x: 86, z: -82 },
+      { x: 95, z: -97 },
+      { x: 64, z: -76 },
+      { x: 81, z: -94 },
+    ],
+  },
+  {
+    itemId: 'gravecaller_sigil',
+    name: "Gravecaller's Sigil",
+    positions: [
+      { x: 84, z: 88 },
+      { x: 76, z: 92 },
+    ],
+  },
+  {
+    itemId: 'weathered_ledger_page',
+    name: 'Weathered Ledger Page',
+    positions: [
+      { x: 78, z: 84 },
+      { x: 83, z: 88 },
+      { x: 86, z: 92 },
+    ],
+  },
+  {
+    itemId: 'morthen_grimoire',
+    name: "Morthen's Grimoire",
+    positions: [{ x: 78, z: 86 }],
+  },
+];
+
+// Roads from town toward each hub — used for terrain painting and the map.
+// Roads from town toward each hub — used for terrain painting and the map.
+export const ZONE1_ROADS: { x: number; z: number }[][] = [
+  [...EASTBROOK_LAYOUT.roads[0].points, { x: -8, z: 30 }, { x: -15, z: 55 }, { x: -2, z: 78 }], // north to wolves
+  [...EASTBROOK_LAYOUT.roads[1].points, { x: 30, z: 8 }, { x: 55, z: 12 }], // west to boars
+  [...EASTBROOK_LAYOUT.roads[2].points, { x: 30, z: -30 }, { x: 50, z: -50 }, { x: 65, z: -65 }], // southwest to bandits
+  [...EASTBROOK_LAYOUT.roads[3].points, { x: -35, z: 25 }, { x: -58, z: 48 }, { x: -66, z: 58 }], // northeast to lake
+  [...EASTBROOK_LAYOUT.roads[4].points, { x: -30, z: -28 }, { x: -55, z: -45 }, { x: -70, z: -55 }], // southeast to mine
+  [...EASTBROOK_LAYOUT.roads[5].points, { x: 35, z: 35 }, { x: 60, z: 60 }, { x: 78, z: 74 }], // northwest to ruins
+];
+
+// ---------------------------------------------------------------------------
+// Static props (rendering + collision share this placement data)
+// ---------------------------------------------------------------------------
+
+export const ZONE1_PROPS: ZonePropsDef = {
+  buildings: [
+    {
+      id: EASTBROOK_LAYOUT.preservedBuildings[0].id,
+      assetId: EASTBROOK_LAYOUT.preservedBuildings[0].assetId,
+      kind: EASTBROOK_LAYOUT.preservedBuildings[0].kind,
+      landmark: EASTBROOK_GRAND_ARMOURY.landmark,
+      ...EASTBROOK_GRAND_ARMOURY.lot,
+      height: EASTBROOK_GRAND_ARMOURY.aboveGradeHeight,
+    },
+    ...EASTBROOK_LAYOUT.buildings.map((building) => ({
+      id: building.id,
+      assetId: building.assetId,
+      kind: building.kind,
+      x: building.position.x,
+      z: building.position.z,
+      w: building.nativeDimensions.width,
+      d: building.nativeDimensions.depth,
+      rot: building.rotation,
+      height: building.nativeDimensions.height,
+    })),
+  ],
+  wells: [
+    {
+      id: EASTBROOK_LAYOUT.civic.wellBeacon.id,
+      assetId: EASTBROOK_LAYOUT.civic.wellBeacon.assetId,
+      x: EASTBROOK_LAYOUT.civic.wellBeacon.position.x,
+      z: EASTBROOK_LAYOUT.civic.wellBeacon.position.z,
+      r: EASTBROOK_LAYOUT.civic.wellBeacon.radius,
+      height: EASTBROOK_LAYOUT.civic.wellBeacon.height,
+    },
+  ],
+  stalls: EASTBROOK_LAYOUT.market.stalls.map((stall) => ({
+    id: stall.id,
+    assetId: stall.assetId,
+    x: stall.position.x,
+    z: stall.position.z,
+    rot: stall.rotation,
+    r: Math.hypot(stall.width / 2, stall.depth / 2),
+    w: stall.width,
+    d: stall.depth,
+    height: stall.height,
+    canopyVariant: stall.canopyVariant,
+  })),
+  mines: [{ x: -88, z: -68, rot: 0.8 }],
+  docks: [{ x: -64, z: 60, rot: -2.2, hutLocal: { x: 2.8, z: 2.4, hw: 1.7, hd: 1.5 } }],
+  tents: [
+    { x: 62, z: -61, rot: 0.4, scale: 1 },
+    { x: 69, z: -69, rot: 2.1, scale: 1 },
+    { x: 88, z: -86, rot: 1.2, scale: 1.3 },
+    { x: 95, z: -94, rot: -0.6, scale: 1 },
+  ],
+  crates: [
+    [60, -63],
+    [66, -67],
+    [87, -88],
+    [93, -90],
+    [70, -72],
+  ],
+  campfires: [
+    [65, -65],
+    [90, -90],
+    [-80, -60],
+    [-61, 56],
+  ],
+  mudHuts: [
+    [-73, 59],
+    [-78, 54],
+    [-69, 55],
+  ],
+  marshReeds: [],
+  ruinRings: [
+    { x: 80, z: 78, ringR: 7, columns: 7 },
+    { x: -5, z: -60, ringR: 8, columns: 6 },
+  ],
+  fences: EASTBROOK_LAYOUT.fences.map((fence) => ({
+    id: fence.id,
+    assetId: fence.assetId,
+    x1: fence.start.x,
+    z1: fence.start.z,
+    x2: fence.end.x,
+    z2: fence.end.z,
+    width: fence.width,
+    height: fence.height,
+  })),
+  benches: EASTBROOK_LAYOUT.civic.benches.map((bench) => ({
+    id: bench.id,
+    assetId: bench.assetId,
+    x: bench.position.x,
+    z: bench.position.z,
+    w: bench.width,
+    d: bench.depth,
+    rot: bench.rotation,
+    height: 1,
+  })),
+  walls: EASTBROOK_LAYOUT.wall.segments.map((segment) => ({
+    id: segment.id,
+    assetId: segment.assetId,
+    x: segment.footprint.center.x,
+    z: segment.footprint.center.z,
+    w: segment.footprint.halfWidth * 2,
+    d: segment.footprint.halfDepth * 2,
+    rot: segment.footprint.rotation,
+    height: segment.height,
+    // The wing's tall lantern pillar sits gate-side on mirrored segments;
+    // the collider builder places the pylon colliders from this.
+    ...(wallSegmentMirrored(segment) ? { mirrored: true as const } : {}),
+  })),
+  graveyards: [{ ...EASTBROOK_LAYOUT.services.graveyard.position }, { x: 4, z: -56 }],
+  delveMarkers: [{ x: -5, z: -52, delveId: 'collapsed_reliquary' }],
+};

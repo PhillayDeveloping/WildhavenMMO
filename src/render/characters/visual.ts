@@ -1,0 +1,2158 @@
+// Per-entity character visual: a SkeletonUtils clone of a manifest asset with
+// its own AnimationMixer, a clip-driven state machine fed by renderer-derived
+// state, a baked static idle-pose far LOD, and a shadow-only proxy for the
+// mid-distance band. All geometry/materials are shared caches, dispose()
+// only releases mixer bindings.
+import * as THREE from 'three';
+import { offhandMirrorsWeaponSkin } from '../../sim/content/weapon_skin_rules';
+import { WEAPON_SKINS } from '../../sim/content/weapon_skins';
+import type { OverheadEmoteId } from '../../world_api';
+import { GFX } from '../gfx';
+import { createWeaponVfx, WEAPON_VFX, type WeaponVfxHandle } from '../weapon_vfx';
+import { weaponVfxTuningFor } from '../weapon_vfx_tuning';
+import {
+  type AnimActionWeight,
+  type AnimState,
+  advanceSwimBlend,
+  type BaseState,
+  desiredBaseState,
+  drivesPose,
+  locomotionTimeScale,
+  pickProxyHeight,
+  scanAnimRepair,
+  shouldPlayLanding,
+} from './anim_state';
+import {
+  applyMaterials,
+  assembleModel,
+  ensureSkinTexture,
+  prepareVisual,
+  setHeldOffhand,
+  setHeldWeapon,
+  setWeaponsStowed,
+  skinEmissiveTexture,
+  skinTexture,
+  tintedFarMaterials,
+} from './assets';
+import { buildHalo } from './halo';
+import type { EmoteClipSpec, VisualDef, WeaponLayoutOverride } from './manifest';
+import { SkeletonUpdateCache, type SkeletonUpdateStats } from './skeleton_update_cache';
+import { SKIN_ATTACK_CLIP_NAMES, weaponSkinAttackClips, weaponSkinOrientPin } from './skin_attack';
+import { configureTightBoneTextures } from './skin_gpu_layout';
+import { createStowTransition, forceStow, requestStow, tickStow } from './stow_transition';
+import { weaponAttackStyle } from './weapon_attack_style_core';
+import {
+  disposeOwnedWeaponSkinMaterials,
+  markOwnedWeaponSkinMaterials,
+} from './weapon_skin_materials';
+
+export type { AnimState, BaseState } from './anim_state';
+
+// Current canvas height in device pixels, pushed by the renderer on resolution
+// changes so newly created weapon-skin VFX rigs size their point sprites right.
+let weaponVfxViewportHeight = 1080;
+
+export function setWeaponVfxViewportHeight(heightPx: number): void {
+  weaponVfxViewportHeight = Math.max(1, Math.round(heightPx));
+}
+
+// The VFX rig sizes point sprites for the inspector's 35 degree vertical fov.
+// Rendering under a different camera needs an equivalent-height correction or
+// particles draw the wrong size (the 60 degree world camera showed them ~1.8x
+// too large). Each visual carries the factor for the camera it renders under.
+const VFX_RIG_FOV_DEG = 35;
+
+export function weaponVfxSpriteScaleForFov(fovDeg: number): number {
+  return Math.tan((VFX_RIG_FOV_DEG * Math.PI) / 360) / Math.tan((fovDeg * Math.PI) / 360);
+}
+
+// World camera default (CAMERA_BASE_FOV = 60 in renderer.ts).
+const WORLD_FOV_SPRITE_SCALE = weaponVfxSpriteScaleForFov(60);
+
+// Scratch quaternions for the per-frame bow orientation pin (no allocation).
+const BOW_Q_ROOT = new THREE.Quaternion();
+const BOW_Q_B = new THREE.Quaternion();
+const BOW_Q_TARGET = new THREE.Quaternion();
+// Root-relative aim orientation a firing bow blends to: upright limbs (the
+// variant convention authors limbs along +Y), STRING toward the archer (the
+// belly faces the target), the full profile square to the aim.
+const BOW_AIM_QUAT = new THREE.Quaternion().setFromEuler(
+  new THREE.Euler(0, -Math.PI / 2, 0, 'XYZ'),
+);
+// Root-relative carry for a bow-slot gun outside the shot: muzzle (authored
+// along +Y) pitched forward to the horizon, then rolled a quarter turn about
+// the barrel so the handle lies parallel to the hunter's body instead of
+// jutting out sideways. The shot itself keeps the hand-tuned grip.
+const GUN_CARRY_QUAT = new THREE.Quaternion()
+  .setFromEuler(new THREE.Euler(Math.PI / 2, 0, 0, 'XYZ'))
+  .multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), -Math.PI / 2));
+const BOW_PIN_BLEND_S = 0.12; // engage/disengage fade for the orientation pins
+
+const FADE = 0.22;
+const ONESHOT_FADE = 0.1;
+// Z-key sheathe gesture: the 1H chop's WINDUP raises the hand over the shoulder
+// toward the back (grabbing/planting the hilt). The held-prop swap lands at the
+// windup peak, where update() also cuts the clip so the downswing never plays.
+const STOW_GESTURE_TIMESCALE = 1.15;
+// Frozen-pose sweep of the chop: the hand peaks beside the shoulder (right
+// where the on-back hilt sits) at ~28% in; by 40% the downswing has started.
+const STOW_SWAP_FRACTION = 0.28;
+// Additive post-mixer raise on the right upper arm so the hand climbs clearly
+// above the shoulder toward the hilt (the clip alone tops out at shoulder
+// height). Negative X lifts on this rig; past ~-1.0 the oversized helmet hides
+// the whole arm from the chase camera, so -0.85 is the readable peak.
+const STOW_ARM_BONE = 'upperarmr';
+const STOW_ARM_LIFT_RAD = -0.85;
+// Ledge climb, posed by hand: the KayKit rigs ship no climb clip, so the pull
+// up is built from the airborne base pose plus additive bone work, sequenced
+// like a real mantle: hands FLY to the lip first, the torso curls in behind
+// them and the knees tuck as the body rises, then everything releases as the
+// body vaults over and plants. The leading limbs move a beat before the
+// trailing ones; that asymmetry is what sells it as effort rather than a
+// lift. Negative X raises an arm on this rig (see the stow lift above); the
+// joints are the shared rig names with GLTF's dot-stripping applied.
+const CLIMB_ARM_BONES = ['upperarml', 'upperarmr'] as const;
+const CLIMB_FOREARM_BONES = ['lowerarml', 'lowerarmr'] as const;
+/** Deep overhead raise: the hands must read ABOVE the head, grasping the lip,
+ *  not out at the sides. Negative X swings an arm forward and up on this rig;
+ *  -2.5 carries it past vertical so the hands hang over the ledge line. */
+const CLIMB_ARM_RAISE_RAD = -2.5;
+/** Roll the raised arms toward the body's midline so the hands finish at
+ *  shoulder width above the head instead of flaring into a T. Mirrored per
+ *  side (left +, right -). */
+const CLIMB_ARM_ROLL_RAD = 0.45;
+/** Elbow hook while the hands own the lip: a straight arm reads as a plank. */
+const CLIMB_ELBOW_RAD = 0.55;
+/** Chin up at the lip while the hands fly to it: the eyes lead the grab. */
+const CLIMB_HEAD_TILT_RAD = -0.35;
+/** The off hand plants this far (in phase) behind the lead hand. */
+const CLIMB_ARM_LEAD = 0.05;
+const CLIMB_LEG_BONES = ['upperlegl', 'upperlegr'] as const;
+const CLIMB_SHIN_BONES = ['lowerlegl', 'lowerlegr'] as const;
+const CLIMB_THIGH_TUCK_RAD = -0.9;
+const CLIMB_SHIN_FOLD_RAD = 1.05;
+/** The trailing leg tucks this far (in phase) behind, at reduced depth. */
+const CLIMB_LEG_TRAIL = 0.08;
+const CLIMB_TORSO_BONE = 'chest';
+const CLIMB_TORSO_CURL_RAD = 0.45;
+const CLIMB_BODY_PITCH = 0.3;
+const CLIMB_BODY_DUCK = -0.18;
+/** Blend in/out rate for the whole climb pose (1/s). */
+const CLIMB_BLEND_RATE = 14;
+/** Fallback local clock for the pose envelope, used only when no sim phase
+ *  arrives (an older server); normally the pose tracks the climb's real,
+ *  height-scaled progress via setClimbing's phase. */
+const CLIMB_POSE_DURATION = 0.5;
+/** Chase rate toward the sim-reported phase (1/s): fast enough to track a
+ *  20 Hz feed within a frame or three, slow enough to never visibly snap. */
+const CLIMB_TRACK_RATE = 20;
+/** Smoothstep of `t` across [a, b]: the one easing all climb envelopes use. */
+const env01 = (t: number, a: number, b: number): number => {
+  const c = Math.min(1, Math.max(0, (t - a) / (b - a)));
+  return c * c * (3 - 2 * c);
+};
+const HIT_REACT_COOLDOWN = 0.9;
+
+// Contact-frame hitstop (gallery melee "bite": timeScale ~0.07 for ~0.11s at
+// contact). Only THIS rig's animation clock slows, the world, the sim, and
+// every other character keep running, so it is multiplayer-safe by
+// construction. After a hold ends, a short refractory swallows re-triggers so
+// a fast swing chain cannot smear the rig into slow motion.
+const HOLD_REFRACTORY_S = 0.25;
+// Windup lean spring (gallery updateBodyFeel: -0.085 rad ease during windup,
+// released through a small forward recoil snap). Fed per frame; auto-releases
+// when feeding stops.
+const LEAN_FEED_S = 0.12;
+const LEAN_RECOIL_S = 0.14;
+const LEAN_MAX_RAD = 0.12;
+
+// Lie_Idle already lays the rig flat, a touch of extra pitch reads as a
+// The climb's baked clips (player rigs all ship both): Spellcast_Raise's
+// first stretch throws the arms overhead (the reach to the lip), and
+// Sit_Floor_Down run BACKWARD is a floor-crouch rising to a stand (the
+// top-out over the lip). Scrub fractions are hand-tuned against the clips.
+const CLIMB_REACH_CLIP = 'Spellcast_Raise';
+const CLIMB_MANTLE_CLIP = 'Sit_Floor_Down';
+/** Fraction of Spellcast_Raise where the arms crest overhead; held there. */
+const CLIMB_REACH_CREST = 0.45;
+/** Climb phase by which the reach finishes rising to the crest. */
+const CLIMB_REACH_RISE_END = 0.3;
+/** Climb phase band over which reach hands off to the top-out. */
+const CLIMB_HANDOFF_START = 0.5;
+const CLIMB_HANDOFF_END = 0.72;
+/** Climb phase by which the top-out stands fully upright. */
+const CLIMB_TOPOUT_END = 0.98;
+
+// Lie_Idle already lays the rig flat, a touch of extra pitch reads as a
+const SWIM_PITCH_CLIP = 0.35;
+const SWIM_PITCH_PROCEDURAL = 1.18;
+const SWIM_RISE = 0.95; // body must break the surface or only the hat floats
+const MIXER_DT_CAP = 0.3; // throttled entities never integrate a huge step
+const SPIN_RATE = 14;
+const SPIN_ATTACK_TIMESCALE = 1.6;
+const SPIN_ONCE_DURATION = 0.55;
+const SPIN_ONCE_RATE = 18;
+const GHOST_OPACITY = 0.34;
+// Stealth (Duskveil/Smokestep) reads as a faded-but-solid silhouette, a touch
+// denser than the spirit run's 0.34 (owner: stealth was "too transparent").
+const STEALTH_OPACITY = 0.45;
+const SOUL_REND_OPACITY = 0.58;
+const SOUL_REND_TINT = new THREE.Color(0x4f0505);
+const SHADOWFORM_OPACITY = 0.9;
+const SHADOWFORM_TINT = new THREE.Color(0x5a2a8f);
+// Moonkin Form: a brighter, more luminous violet than the ghost run (owner's brief: a
+// purplish tint like ghost form but a bit brighter).
+const MOONKIN_OPACITY = 0.72;
+const MOONKIN_TINT = new THREE.Color(0x9d6bff);
+// Metamorphosis: a monstrous demon shell, deep fel-purple body with a hot glow
+// (the fire aura around it comes from vfx.formAura, not the material). Kept
+// dark enough that the body still shades and the flames read against it.
+const METAMORPH_TINT = new THREE.Color(0x4f2170);
+
+/** Translucent-rig flavor: 'spirit' is the thin ghost run (released spirits,
+ *  ghost wolf, the graveyard angel); 'stealth' is the denser Duskveil fade. */
+export type GhostStyle = 'spirit' | 'stealth';
+
+/** The live mixer facts the pure watchdog decides on (see anim_state.ts). */
+function readActionWeight(a: THREE.AnimationAction, into?: AnimActionWeight): AnimActionWeight {
+  const scheduled = a.isScheduled();
+  const effectiveWeight = a.getEffectiveWeight();
+  if (!into) return { scheduled, effectiveWeight };
+  into.scheduled = scheduled;
+  into.effectiveWeight = effectiveWeight;
+  return into;
+}
+
+// shared invisible click capsule, raycaster ignores `visible`, render doesn't
+let clickGeoSingleton: THREE.CylinderGeometry | null = null;
+function clickGeo(): THREE.CylinderGeometry {
+  if (!clickGeoSingleton) {
+    clickGeoSingleton = new THREE.CylinderGeometry(0.5, 0.5, 1, 8);
+    clickGeoSingleton.translate(0, 0.5, 0);
+  }
+  return clickGeoSingleton;
+}
+let clickMatSingleton: THREE.Material | null = null;
+function clickMat(): THREE.Material {
+  clickMatSingleton ??= new THREE.MeshBasicMaterial();
+  return clickMatSingleton;
+}
+
+// shadow-only material: writes neither color nor depth so the main pass
+// rasterizes nothing while the shadow pass still renders the proxy
+let shadowOnlySingleton: THREE.Material | null = null;
+function shadowOnlyMat(): THREE.Material {
+  shadowOnlySingleton ??= new THREE.MeshBasicMaterial({ colorWrite: false, depthWrite: false });
+  return shadowOnlySingleton;
+}
+
+// Tip-scoped weapon aura: how far up the blade the wash starts (fraction of
+// the blade's long axis measured from the grip) and how quickly it ramps in.
+const WEAPON_AURA_TIP_START = 0.55;
+const WEAPON_AURA_TIP_RAMP = 0.35;
+
+/** A private clone of the weapon mesh geometry carrying an RGBA vertex-color
+ *  ramp: opaque white at the blade tip fading to alpha 0 toward the grip, so
+ *  an additive overlay in this geometry reads as a tipped weapon (Adder's
+ *  Bite) instead of the full soak. The blade axis is the geometry's longest
+ *  bbox extent; the tip is whichever end of it sits farther from the grip
+ *  (the holder origin, transformed into this mesh's local space so quantized
+ *  or recentered geometry cannot flip the ramp). Returns null when the
+ *  geometry cannot be ramped (no position attribute); callers fall back to
+ *  the full-blade overlay. The clone is aura-owned: dispose it with the aura. */
+function tipFadedWeaponGeometry(
+  mesh: THREE.Mesh,
+  holder: THREE.Object3D,
+): THREE.BufferGeometry | null {
+  const srcPos = mesh.geometry.getAttribute('position');
+  if (!srcPos) return null;
+  // grip point (the holder origin; weapon models author the grip at origin)
+  // in this mesh's local space: compose the mesh -> holder chain from TRS
+  // (world matrices can be stale during a rebuild), then invert.
+  const toHolder = new THREE.Matrix4().compose(mesh.position, mesh.quaternion, mesh.scale);
+  const step = new THREE.Matrix4();
+  let node = mesh.parent;
+  while (node && node !== holder) {
+    step.compose(node.position, node.quaternion, node.scale);
+    toHolder.premultiply(step);
+    node = node.parent;
+  }
+  const gripLocal = new THREE.Vector3(0, 0, 0);
+  if (node === holder) gripLocal.applyMatrix4(toHolder.invert());
+  const box = new THREE.Box3().setFromBufferAttribute(srcPos as THREE.BufferAttribute);
+  const size = new THREE.Vector3();
+  box.getSize(size);
+  const axis = size.x >= size.y && size.x >= size.z ? 'x' : size.y >= size.z ? 'y' : 'z';
+  const min = box.min[axis];
+  const max = box.max[axis];
+  const span = max - min;
+  if (!(span > 1e-6)) return null;
+  // orient the ramp: 1 at the end farther from the grip (the tip)
+  const tipAtMax = max - gripLocal[axis] >= gripLocal[axis] - min;
+  const geometry = mesh.geometry.clone();
+  const pos = geometry.getAttribute('position');
+  const rgba = new Float32Array(pos.count * 4);
+  for (let i = 0; i < pos.count; i++) {
+    const v = axis === 'x' ? pos.getX(i) : axis === 'y' ? pos.getY(i) : pos.getZ(i);
+    let t = (v - min) / span;
+    if (!tipAtMax) t = 1 - t;
+    const alpha = Math.min(1, Math.max(0, (t - WEAPON_AURA_TIP_START) / WEAPON_AURA_TIP_RAMP));
+    rgba.set([1, 1, 1, alpha], i * 4);
+  }
+  geometry.setAttribute('color', new THREE.BufferAttribute(rgba, 4));
+  return geometry;
+}
+
+export class CharacterVisual {
+  /** add to the entity group; pivot at feet, faces +Z; renderer applies e.scale */
+  readonly root = new THREE.Group();
+  /** unscaled world-unit height, nameplate anchor = height * e.scale + 0.5 */
+  readonly height: number;
+  /** invisible capsule for picking (userData.entityId set by the renderer) */
+  readonly clickProxy: THREE.Mesh;
+  /** click-capsule radius (measured body extent); the pick proxy's standing scale.y
+   *  is `height`, collapsed to a flat profile while dead (see enterDeath/revive). */
+  private readonly clickRadius: number;
+
+  private def: VisualDef;
+  private key: string;
+  private entityColor: number;
+  private skinIndex: number;
+  private weaponItemId: string | null;
+  private offhandItemId: string | null;
+  private weaponSkinId: string | null = null;
+  private weaponVfx: WeaponVfxHandle[] = [];
+  // Skin payloads whose orientation blends to a root-relative pin (see
+  // applySkinOrientation): bows aim upright DURING the shot, bow-slot guns
+  // carry forward OUTSIDE it. qGrip is the authored grip-local orientation.
+  private orientPins: {
+    payload: THREE.Object3D;
+    qGrip: THREE.Quaternion;
+    blend: number;
+    duringShot: boolean;
+  }[] = [];
+  private weaponVfxSpriteScale = WORLD_FOV_SPRITE_SCALE;
+  private stow = createStowTransition();
+  // Set whenever the held-prop graph is rebuilt OUTSIDE a renderer-driven call
+  // (the deferred stow swap); the renderer consumes it to re-rank view lights.
+  private weaponGraphDirty = false;
+  // The gesture's additive arm-raise window: t rises 0..dur (peak at dur/2,
+  // the swap moment); -1 = inactive. Bone resolved lazily once (null = absent).
+  private stowLift = { t: -1, dur: 0 };
+  private stowArmBone: THREE.Object3D | null | undefined;
+  private disposed = false;
+  private ghosted = false;
+  private ghostStyle: GhostStyle = 'spirit';
+  private mixer: THREE.AnimationMixer;
+  private skeletonUpdates: SkeletonUpdateCache;
+  private actions = new Map<string, THREE.AnimationAction>();
+  private model: THREE.Object3D;
+  private modelWrap = new THREE.Group();
+  private poseWrap = new THREE.Group();
+  private farMesh: THREE.Mesh | null = null;
+  private farMaterials: THREE.Material | THREE.Material[] | null = null;
+  private shadowProxy: THREE.Mesh | null = null;
+  private casters: THREE.Mesh[] = [];
+  private originalMaterials = new Map<THREE.Mesh, THREE.Material | THREE.Material[]>();
+  /** The halo's build-time shared additive material. Re-snapshots after a
+   *  swap must record THIS handle, not the live material: a swap under an
+   *  active overlay (ghost/shadowform/...) would otherwise capture the
+   *  overlay clone as "original" and the golden ring never restores. */
+  private haloBaseMaterial: THREE.Material | THREE.Material[] | null = null;
+  private weaponAuraMeshes: THREE.Mesh[] = [];
+  private weaponAuraColor: number | null = null;
+  private weaponAuraTip = false;
+  private ghostMaterials = new Map<THREE.Material, THREE.Material>();
+  private soulRendMaterials = new Map<THREE.Material, THREE.Material>();
+  private shadowformMaterials = new Map<THREE.Material, THREE.Material>();
+  private moonkinMaterials = new Map<THREE.Material, THREE.Material>();
+  private metamorphMaterials = new Map<THREE.Material, THREE.Material>();
+  // Ability VFX body glow (the gallery rim read): per-visual material clones
+  // carrying an emissive tint while a spec'd cast or buff aura is live. Cloned
+  // once per original because base materials are SHARED per-asset caches;
+  // writing emissive on those would leak the glow across every same-skin rig.
+  private auraGlowMaterials = new Map<THREE.Material, THREE.Material>();
+  private auraGlowColor = 0xffffff;
+  private auraGlowIntensity = 0;
+
+  private baseState: BaseState = 'idle';
+  private current: THREE.AnimationAction | null = null;
+  private currentIsOneShot = false;
+  private currentOneShotIsEmote = false;
+  private deadLock = false;
+  /** consecutive frames with no action driving the pose (the T-pose watchdog) */
+  private starvedFrames = 0;
+  /** Per-frame scratch view of every action's mixer weight, refilled in place:
+   *  a fresh array per rig per frame would be real GC churn at raid rig counts. */
+  private readonly weightScan: AnimActionWeight[] = [];
+  private readonly currentWeight: AnimActionWeight = {
+    scheduled: false,
+    effectiveWeight: 0,
+  };
+  private wasDead = false;
+  /** previous frame's airborne flag, for the touchdown edge (see ClipMap.land) */
+  private wasAirborne = false;
+  private initialized = false;
+  private attackIdx = 0;
+  private hitCooldown = 0;
+  // contact-frame hitstop state (see HOLD_REFRACTORY_S)
+  private holdT = 0;
+  private holdScale = 1;
+  private holdCooldown = 0;
+  // windup lean spring (see LEAN_FEED_S); applied on poseWrap pitch
+  private lean = 0;
+  private leanTarget = 0;
+  private leanFeed = 0;
+  private leanRecoil = 0;
+  private pendingDt = 0;
+  private swimBlend = 0;
+  private swimBobTime = 0;
+  // Ledge-climb pose: `blend` fades the whole gesture, `phase` runs 0..1 over
+  // the pull so the arms plant early and the body clears late. `target` is
+  // the sim-reported phase the local one chases (null = free-run local clock).
+  private climbOn = false;
+  private climbBlend = 0;
+  private climbPhase = 0;
+  private climbTarget: number | null = null;
+  private climbArmBones: (THREE.Object3D | null)[] | undefined;
+  private climbForearmBones: (THREE.Object3D | null)[] | undefined;
+  private climbLegBones: (THREE.Object3D | null)[] | undefined;
+  private climbShinBones: (THREE.Object3D | null)[] | undefined;
+  private climbTorsoBone: THREE.Object3D | null | undefined;
+  private climbHeadBone: THREE.Object3D | null | undefined;
+  /** True while the climb's baked clips own the mixer (restore on release). */
+  private climbClipsActive = false;
+  private spinAngle = 0;
+  private spinOnceTimer = 0;
+
+  private shadowOn = true;
+  private far = false;
+  private soulRend = false;
+  private shadowform = false;
+  private moonkin = false;
+  private metamorph = false;
+  private bobPhase = Math.random() * Math.PI * 2;
+
+  constructor(
+    key: string,
+    entityColor: number,
+    skinIndex = 0,
+    weaponItemId: string | null = null,
+    weaponOverride: WeaponLayoutOverride | null = null,
+    offhandItemId: string | null = null,
+  ) {
+    const prep = prepareVisual(key);
+    // A cosmetic body (the Combat Mech) keeps its model/clips but can adopt the
+    // wearer class's independent mainhand and offhand layout.
+    // Override only the held-item layout on a shallow def clone, leaving the rest of
+    // the def (clips/height/tint) intact and never mutating the shared cached def.
+    this.def = weaponOverride
+      ? {
+          ...prep.def,
+          attach: weaponOverride.attach,
+          weaponSlots: weaponOverride.weaponSlots,
+          offhandSlot: weaponOverride.offhandSlot,
+        }
+      : prep.def;
+    this.key = key;
+    this.entityColor = entityColor;
+    this.skinIndex = skinIndex;
+    this.weaponItemId = weaponItemId;
+    this.offhandItemId = offhandItemId;
+    this.height = prep.def.height;
+
+    // model: yaw/scale/feet normalization wrapper around the skinned clone. The
+    // equipped mainhand item (if the class swaps; see VisualDef.weaponSlot) picks
+    // the held weapon model, so the visual is born holding the right weapon.
+    this.model = assembleModel(this.def, weaponItemId, offhandItemId);
+    configureTightBoneTextures(this.model);
+    applyMaterials(
+      this.model,
+      this.def,
+      entityColor,
+      skinTexture(key, skinIndex),
+      skinEmissiveTexture(key, skinIndex),
+    );
+    // Class halo (the priest's Light): a glowing ring behind the head bone.
+    // Added AFTER applyMaterials (its additive material must not be re-mapped)
+    // and BEFORE the originalMaterials snapshot, so ghost/stealth material
+    // swaps restore it like any other mesh.
+    if (this.def.halo !== undefined) {
+      const head = this.model.getObjectByName('head');
+      if (head) {
+        const halo = buildHalo(this.def.halo, this.def.haloUpOffset, this.def.haloRadius);
+        this.haloBaseMaterial = halo.material;
+        head.add(halo);
+      }
+    }
+    this.model.traverse((o) => {
+      const mesh = o as THREE.Mesh;
+      if (mesh.isMesh) this.originalMaterials.set(mesh, mesh.material);
+    });
+    this.modelWrap.rotation.y = prep.def.yaw ?? 0;
+    this.modelWrap.scale.setScalar(prep.normScale);
+    this.modelWrap.position.y = prep.yOffset;
+    this.modelWrap.add(this.model);
+    this.poseWrap.add(this.modelWrap);
+    this.root.add(this.poseWrap);
+
+    this.model.traverse((o) => {
+      const mesh = o as THREE.Mesh;
+      // the halo is an unlit additive FX quad: keep it out of the caster list
+      // or this sweep overwrites buildHalo's castShadow = false
+      if (!mesh.isMesh || mesh.name === 'class_halo') return;
+      mesh.castShadow = true;
+      mesh.receiveShadow = false;
+      // skinned bounds drift outside bind-pose spheres; entity-level culling
+      // (80u draw range) already bounds the cost
+      if ((mesh as unknown as THREE.SkinnedMesh).isSkinnedMesh) mesh.frustumCulled = false;
+      this.casters.push(mesh);
+    });
+
+    // far LOD + shadow proxy share the baked idle-pose geometry per key. Skin
+    // aware from the start (see applySkinMaterials): a character that spawns
+    // already wearing a non-default skin must not LOD out to the embedded one.
+    if (prep.idleGeo) {
+      this.farMesh = new THREE.Mesh(
+        prep.idleGeo,
+        tintedFarMaterials(
+          prep.def,
+          entityColor,
+          prep.idleSrcMats,
+          prep.idleSrcIsBody,
+          skinTexture(key, skinIndex),
+          skinEmissiveTexture(key, skinIndex),
+        ),
+      );
+      this.farMaterials = this.farMesh.material;
+      this.farMesh.visible = false;
+      this.poseWrap.add(this.farMesh);
+      if (GFX.tier !== 'low') {
+        this.shadowProxy = new THREE.Mesh(prep.idleGeo, shadowOnlyMat());
+        this.shadowProxy.castShadow = true;
+        this.shadowProxy.visible = false;
+        this.poseWrap.add(this.shadowProxy);
+      }
+    }
+
+    // capsule from measured body extents, long/wide creatures (wolves,
+    // dragons) were nearly unclickable with a height-derived sliver
+    const r = prep.clickRadius;
+    this.clickRadius = r;
+    this.clickProxy = new THREE.Mesh(clickGeo(), clickMat());
+    this.clickProxy.scale.set(r * 2, this.height, r * 2);
+    this.clickProxy.visible = false;
+    this.root.add(this.clickProxy);
+
+    this.mixer = new THREE.AnimationMixer(this.model);
+    this.skeletonUpdates = new SkeletonUpdateCache(this.model);
+    for (const name of [...clipNamesOf(prep.def), ...SKIN_ATTACK_CLIP_NAMES]) {
+      const clip = prep.clips.get(name);
+      if (clip) this.actions.set(name, this.mixer.clipAction(clip));
+    }
+    this.mixer.addEventListener('finished', (ev) => this.onFinished(ev.action));
+
+    const idle = this.action(this.def.clips.idle);
+    if (idle) {
+      idle.play();
+      this.current = idle;
+    }
+
+    // The atlas for a non-default skin may not be resident at construction: the
+    // packaged iOS shell defers the boot atlas sweep (assets.ts), so a visual
+    // born with a cosmetic skin applies the embedded default above and heals
+    // here once the atlas arrives - the same ensure + re-apply round-trip
+    // setSkin() already runs for live swaps. No-op when the atlas is resident
+    // (ensureSkinTexture returns null), so eager platforms are unchanged.
+    const pendingAtlas = ensureSkinTexture(this.key, skinIndex);
+    if (pendingAtlas) {
+      void pendingAtlas
+        .then(() => {
+          if (!this.disposed && this.skinIndex === skinIndex) this.applySkinMaterials(skinIndex);
+        })
+        .catch((err) => console.error('failed to load skin atlas:', err));
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // Per-frame update
+  // -------------------------------------------------------------------------
+
+  /** `animate=false` skips mixer integration (distance throttling); state
+   *  edges still latch so the pose catches up when the entity nears. */
+  update(dt: number, s: AnimState, animate: boolean): void {
+    this.hitCooldown = Math.max(0, this.hitCooldown - dt);
+    if (this.holdCooldown > 0) this.holdCooldown = Math.max(0, this.holdCooldown - dt);
+    // Deferred sheathe swap: lands at the gesture's windup peak (see
+    // setWeaponStowed), where the clip is also cut so the chop's downswing never
+    // plays. Ticks even when `animate` is false so a throttled rig still settles.
+    const stowTick = tickStow(this.stow, dt);
+    if (stowTick !== 'none') {
+      if (stowTick === 'swap') this.applyStowSwap();
+      this.endStowGesture();
+    }
+
+    // death is a level sim-side, edge-trigger the clip locally
+    if (s.dead && !this.wasDead) this.enterDeath();
+    else if (!s.dead && this.wasDead) this.revive();
+    this.wasDead = s.dead;
+    this.initialized = true;
+
+    // Touchdown, edge-triggered locally like death/revive. Runs BEFORE the base
+    // machine below so its `currentIsOneShot` latch suppresses the jump->idle
+    // fade; onFinished then hands back to whatever base state we landed into.
+    const landClip = this.def.clips.land;
+    if (
+      landClip &&
+      shouldPlayLanding(this.wasAirborne, s.airborne, s.dead, !!this.action(landClip))
+    )
+      this.playOneShot(landClip, 1);
+    this.wasAirborne = s.airborne;
+
+    if (!this.deadLock) {
+      const desired = this.desiredBase(s);
+      const baseChanged = desired !== this.baseState;
+      if (baseChanged) this.baseState = desired;
+      if (this.currentOneShotIsEmote && this.shouldInterruptEmote(s)) {
+        this.currentIsOneShot = false;
+        this.currentOneShotIsEmote = false;
+        this.fadeTo(this.baseAction(), FADE, false);
+      } else if (baseChanged && !this.currentIsOneShot) {
+        this.fadeTo(this.baseAction(), FADE, false);
+      }
+      // foot-speed matching on locomotion cycles
+      if (!this.currentIsOneShot && this.current) {
+        const timeScale = locomotionTimeScale(this.baseState, s, this.def.walkRef, this.def.runRef);
+        if (timeScale !== null) {
+          if (timeScale < 0 && this.current.time <= 1e-3)
+            this.current.time = Math.max(0, this.current.getClip().duration - 1e-3);
+          this.current.timeScale = timeScale;
+        }
+        if (this.baseState === 'spin') this.current.timeScale = SPIN_ATTACK_TIMESCALE;
+      }
+    }
+
+    // Zero-weight watchdog. The fades above only run on a base-state EDGE, so
+    // any transient that leaves NO action driving the rig keeps it in bind pose
+    // (the T-pose) for as long as the state is held, and strafe/cast/walk are
+    // all held states. Re-drive the base pose instead of waiting for the next
+    // edge. Debounced, so a legitimate crossfade can never trip it.
+    if (this.current && drivesPose(readActionWeight(this.current, this.currentWeight))) {
+      this.starvedFrames = 0;
+    } else {
+      const scan = scanAnimRepair(this.starvedFrames, this.readActionWeights(), this.deadLock);
+      this.starvedFrames = scan.starvedFrames;
+      if (scan.repair) this.repairPose();
+    }
+
+    if (s.spinning && !s.dead) {
+      this.spinAngle = (this.spinAngle + dt * SPIN_RATE) % (Math.PI * 2);
+      this.spinOnceTimer = 0;
+    } else if (this.spinOnceTimer > 0 && !s.dead) {
+      this.spinOnceTimer = Math.max(0, this.spinOnceTimer - dt);
+      this.spinAngle =
+        this.spinOnceTimer > 0 ? (this.spinAngle + dt * SPIN_ONCE_RATE) % (Math.PI * 2) : 0;
+    } else {
+      this.spinAngle = 0;
+    }
+    this.poseWrap.rotation.y = this.spinAngle;
+
+    // swim pose: Lie_Idle (when the rig has it) + pitch and surface bob
+    const proneAngle = this.action(this.def.clips.swim) ? SWIM_PITCH_CLIP : SWIM_PITCH_PROCEDURAL;
+    this.swimBlend = advanceSwimBlend(this.swimBlend, s.swimming && !s.dead, dt);
+    this.swimBobTime += dt;
+    // windup lean/recoil spring: while fed (setWindupLean each ceremony frame)
+    // the body eases back toward the target; when feeding stops (the release)
+    // it snaps forward through a small recoil, then settles to neutral
+    if (this.leanFeed > 0) {
+      this.leanFeed -= dt;
+      this.lean += (this.leanTarget - this.lean) * Math.min(1, dt * 10);
+      if (this.leanFeed <= 0) this.leanRecoil = LEAN_RECOIL_S;
+    } else if (this.leanRecoil > 0) {
+      this.leanRecoil -= dt;
+      this.lean += (-this.leanTarget * 0.45 - this.lean) * Math.min(1, dt * 22);
+    } else if (this.lean !== 0) {
+      this.lean += -this.lean * Math.min(1, dt * 9);
+      if (Math.abs(this.lean) < 1e-3) this.lean = 0;
+    }
+    // Ledge climb rides the SAME pose channels rather than fighting them:
+    // these three lines are rewritten every frame, so a climb pose written
+    // anywhere else would be stomped. Blend and phase are advanced here too.
+    this.advanceClimbPose(dt, s.dead);
+    const climb = this.climbBlend;
+    // Pitch into the wall through the pull, level out as the body tops the
+    // lip so the plant lands upright.
+    const climbLevel = 1 - env01(this.climbPhase, 0.62, 0.98);
+    // Both pose contributions ride the SAME channel and are additive offsets:
+    // the windup lean/recoil spring above and the ledge-climb pitch. Writing
+    // either one alone here would silently stomp the other (main's note: this
+    // line is rewritten every frame, so a pose written elsewhere is lost).
+    this.poseWrap.rotation.x =
+      proneAngle * this.swimBlend + this.lean + CLIMB_BODY_PITCH * climb * climbLevel;
+    this.poseWrap.rotation.z = 0;
+    this.poseWrap.position.y =
+      this.swimBlend * (SWIM_RISE + Math.sin(this.swimBobTime * 2 + this.bobPhase) * 0.08) +
+      // Compress at the start of the pull, back to neutral as the body rises.
+      CLIMB_BODY_DUCK * climb * (1 - env01(this.climbPhase, 0.1, 0.55));
+
+    // distant corpses show the static idle far mesh, tip it over
+    if (this.farMesh?.visible) {
+      if (s.dead) {
+        this.farMesh.rotation.z = Math.PI / 2;
+        this.farMesh.position.y = this.height * 0.16;
+      } else {
+        this.farMesh.rotation.z = 0;
+        this.farMesh.position.y = 0;
+      }
+    }
+
+    // hitstop: the held rig integrates a slowed dt (its clock, not the world's)
+    this.pendingDt = Math.min(
+      MIXER_DT_CAP,
+      this.pendingDt + (this.holdT > 0 ? dt * this.holdScale : dt),
+    );
+    if (this.holdT > 0) {
+      this.holdT -= dt;
+      if (this.holdT <= 0) this.holdCooldown = HOLD_REFRACTORY_S;
+    }
+    if (animate) {
+      // BEFORE the mixer integrates: scrub the climb's baked clips (weights
+      // and frozen times are mixer INPUTS, unlike the additive lifts below).
+      this.driveClimbClips();
+      this.updateMixer(this.pendingDt);
+      this.pendingDt = 0;
+      // AFTER the mixer wrote the sampled pose: the sheathe gesture's additive
+      // arm raise (never applied on skipped-mixer frames, so it cannot accumulate).
+      this.applyStowArmLift(dt);
+      // Same rule for the climb's overhead reach.
+      this.applyClimbPose();
+    }
+  }
+
+  /**
+   * Advance the bounded clocks that must not stall while this cosmetic rig is
+   * outside the camera frustum. The next visible update consumes the mixer
+   * debt, while state-machine, pose, and skeleton-palette work stays asleep.
+   * Actionable rigs never enter this path.
+   */
+  advanceOffscreen(dt: number): void {
+    this.hitCooldown = Math.max(0, this.hitCooldown - dt);
+    if (this.holdCooldown > 0) this.holdCooldown = Math.max(0, this.holdCooldown - dt);
+    const stowTick = tickStow(this.stow, dt);
+    if (stowTick !== 'none') {
+      if (stowTick === 'swap') this.applyStowSwap();
+      this.endStowGesture();
+    }
+    this.pendingDt = Math.min(
+      MIXER_DT_CAP,
+      this.pendingDt + (this.holdT > 0 ? dt * this.holdScale : dt),
+    );
+    if (this.holdT > 0) {
+      this.holdT -= dt;
+      if (this.holdT <= 0) this.holdCooldown = HOLD_REFRACTORY_S;
+    }
+  }
+
+  /**
+   * The baked half of the climb, on the rigs that ship the clips (all player
+   * archetypes): the REACH rides Spellcast_Raise scrubbed up to its
+   * arms-overhead crest and held, and the TOP-OUT rides Sit_Floor_Down played
+   * in reverse (floor-crouch rising to a stand), cross-faded at the pull's
+   * midpoint. Both actions are paused and time-scrubbed by the climb phase,
+   * so the sim's real progress (netted via `cl`) drives every frame and no
+   * clock can drift. Rigs missing either clip keep the hand-authored bone
+   * pose in applyClimbPose.
+   */
+  private driveClimbClips(): void {
+    const active = this.climbBlend > 1e-3;
+    const reach = this.action(CLIMB_REACH_CLIP);
+    const mantle = this.action(CLIMB_MANTLE_CLIP);
+    if (!reach || !mantle) return;
+    if (!active) {
+      if (this.climbClipsActive) {
+        this.climbClipsActive = false;
+        reach.stop();
+        mantle.stop();
+        this.current?.setEffectiveWeight(1);
+      }
+      return;
+    }
+    this.climbClipsActive = true;
+    const t = this.climbPhase;
+    const k = this.climbBlend;
+    for (const a of [reach, mantle]) {
+      if (!a.isRunning()) {
+        a.reset();
+        a.setLoop(THREE.LoopOnce, 1);
+        a.clampWhenFinished = true;
+        a.play();
+      }
+      a.paused = true;
+      a.timeScale = 1;
+    }
+    // Hands fly overhead early and hold the crest through the hang.
+    const reachDur = reach.getClip().duration;
+    reach.time = Math.min(
+      reachDur - 1e-3,
+      reachDur * CLIMB_REACH_CREST * env01(t, 0, CLIMB_REACH_RISE_END),
+    );
+    // The top-out unwinds the sit: seated crouch at the lip, standing at 1.
+    const mantleDur = mantle.getClip().duration;
+    const rise = env01(t, CLIMB_HANDOFF_START, CLIMB_TOPOUT_END);
+    mantle.time = Math.max(1e-3, Math.min(mantleDur - 1e-3, mantleDur * (1 - rise)));
+    // Cross-fade reach into top-out at the pull's midpoint; the base action
+    // yields while the climb owns the body and returns as the blend releases.
+    const hand = env01(t, CLIMB_HANDOFF_START, CLIMB_HANDOFF_END);
+    reach.setEffectiveWeight(k * (1 - hand));
+    mantle.setEffectiveWeight(k * hand);
+    if (this.current && this.current !== reach && this.current !== mantle) {
+      this.current.setEffectiveWeight(1 - k);
+    }
+  }
+
+  /**
+   * Advance the climb blend and phase. Kept next to the pose block that reads
+   * them so the two can never drift out of step.
+   */
+  private advanceClimbPose(dt: number, dead: boolean): void {
+    const want = this.climbOn && !dead ? 1 : 0;
+    this.climbBlend += (want - this.climbBlend) * Math.min(1, dt * CLIMB_BLEND_RATE);
+    if (this.climbBlend < 1e-3 && want === 0) {
+      this.climbBlend = 0;
+      this.climbPhase = 0;
+      return;
+    }
+    if (!this.climbOn) return;
+    if (this.climbTarget !== null) {
+      // Track the sim's real progress: chase it fast, never run backwards, so
+      // the 20 Hz feed reads as one continuous pull at any frame rate.
+      const chased =
+        this.climbPhase + (this.climbTarget - this.climbPhase) * Math.min(1, dt * CLIMB_TRACK_RATE);
+      this.climbPhase = Math.max(this.climbPhase, Math.min(1, chased));
+    } else {
+      this.climbPhase = Math.min(1, this.climbPhase + dt / CLIMB_POSE_DURATION);
+    }
+  }
+
+  /**
+   * The hand-authored half of the climb, in three overlapping beats: hands
+   * fly to the lip (lead hand a breath early), the torso curls in and the
+   * knees tuck as the body rises, then every channel releases as the body
+   * vaults over and plants. Additive on top of whatever the mixer produced,
+   * applied ONLY on frames the mixer actually ran, exactly like the stow
+   * lift, so it can never accumulate into a permanent deformation.
+   */
+  private applyClimbPose(): void {
+    if (this.climbBlend <= 1e-3) return;
+    if (this.climbClipsActive) {
+      // The baked clips own the limbs; only the eyes-lead head tilt rides on
+      // top (neither clip looks up at the lip).
+      if (this.climbHeadBone === undefined) {
+        this.climbHeadBone = this.model.getObjectByName('head') ?? null;
+      }
+      if (this.climbHeadBone) {
+        const look = env01(this.climbPhase, 0, 0.18) * (1 - env01(this.climbPhase, 0.5, 0.85));
+        this.climbHeadBone.rotation.x += CLIMB_HEAD_TILT_RAD * look * this.climbBlend;
+      }
+      return;
+    }
+    if (this.climbArmBones === undefined) {
+      this.climbArmBones = CLIMB_ARM_BONES.map((n) => this.model.getObjectByName(n) ?? null);
+    }
+    if (this.climbLegBones === undefined) {
+      this.climbLegBones = CLIMB_LEG_BONES.map((n) => this.model.getObjectByName(n) ?? null);
+    }
+    if (this.climbShinBones === undefined) {
+      this.climbShinBones = CLIMB_SHIN_BONES.map((n) => this.model.getObjectByName(n) ?? null);
+    }
+    if (this.climbTorsoBone === undefined) {
+      this.climbTorsoBone = this.model.getObjectByName(CLIMB_TORSO_BONE) ?? null;
+    }
+    if (this.climbForearmBones === undefined) {
+      this.climbForearmBones = CLIMB_FOREARM_BONES.map(
+        (n) => this.model.getObjectByName(n) ?? null,
+      );
+    }
+    const t = this.climbPhase;
+    const k = this.climbBlend;
+    // Hands fly ABOVE THE HEAD to the lip (deep forward raise rolled toward
+    // the midline so they finish at shoulder width, never a T), hook the lip
+    // with a bent elbow, press through the pull, release on the vault.
+    for (let i = 0; i < this.climbArmBones.length; i++) {
+      const bone = this.climbArmBones[i];
+      if (!bone) continue;
+      const lead = i === 0 ? 0 : CLIMB_ARM_LEAD;
+      const reach = env01(t - lead, 0, 0.2) * (1 - env01(t, 0.58, 0.95));
+      bone.rotation.x += CLIMB_ARM_RAISE_RAD * reach * k;
+      bone.rotation.z += (i === 0 ? 1 : -1) * CLIMB_ARM_ROLL_RAD * reach * k;
+      const forearm = this.climbForearmBones[i];
+      if (forearm) forearm.rotation.x += CLIMB_ELBOW_RAD * reach * k;
+    }
+    // Knees tuck while the body rises and extend to plant as it tops out; the
+    // trailing leg follows a beat behind at reduced depth.
+    for (let i = 0; i < this.climbLegBones.length; i++) {
+      const trail = i === 0 ? 0 : CLIMB_LEG_TRAIL;
+      const amp = i === 0 ? 1 : 0.78;
+      const tuck = env01(t - trail, 0.14, 0.44) * (1 - env01(t - trail, 0.66, 0.96)) * amp * k;
+      const thigh = this.climbLegBones[i];
+      if (thigh) thigh.rotation.x += CLIMB_THIGH_TUCK_RAD * tuck;
+      const shin = this.climbShinBones?.[i] ?? null;
+      if (shin) shin.rotation.x += CLIMB_SHIN_FOLD_RAD * tuck;
+    }
+    // The torso curls in behind the hands and straightens over the lip.
+    if (this.climbTorsoBone) {
+      const curl = env01(t, 0.06, 0.4) * (1 - env01(t, 0.7, 1));
+      this.climbTorsoBone.rotation.x += CLIMB_TORSO_CURL_RAD * curl * k;
+    }
+    // The eyes lead: chin up at the lip while the hands fly to it.
+    if (this.climbHeadBone === undefined) {
+      this.climbHeadBone = this.model.getObjectByName('head') ?? null;
+    }
+    if (this.climbHeadBone) {
+      const look = env01(t, 0, 0.18) * (1 - env01(t, 0.5, 0.85));
+      this.climbHeadBone.rotation.x += CLIMB_HEAD_TILT_RAD * look * k;
+    }
+  }
+
+  /**
+   * Drive the ledge-climb pose. The sim owns the move; this says whether it
+   * is running and how far through it is (0..1). Both hosts feed the real
+   * phase (offline from the entity's climb arc, online from the mirrored
+   * snapshot progress), so hands plant exactly when the body reaches the lip
+   * whatever the climb's height-scaled duration. Phase omitted falls back to
+   * a local clock (an older server that only sent the boolean).
+   */
+  setClimbing(on: boolean, phase?: number): void {
+    const clamped = typeof phase === 'number' ? Math.min(1, Math.max(0, phase)) : null;
+    // Joining mid-pull (a remote climber entering interest range) seeds the
+    // pose at the right beat instead of replaying the reach from zero.
+    if (on && !this.climbOn) this.climbPhase = clamped ?? 0;
+    this.climbOn = on;
+    this.climbTarget = on ? clamped : null;
+  }
+
+  /** Ease the extra arm raise in toward the swap moment and back out after it;
+   *  an attack/hit one-shot stealing the gesture cancels the lift outright. */
+  private applyStowArmLift(dt: number): void {
+    const lift = this.stowLift;
+    if (lift.t < 0 || lift.dur <= 0) return;
+    const clip = this.def.clips.stow;
+    const gesture = clip ? this.action(clip) : null;
+    if (this.deadLock || !gesture || (this.currentIsOneShot && this.current !== gesture)) {
+      lift.t = -1;
+      return;
+    }
+    lift.t += dt;
+    const p = lift.t / lift.dur;
+    if (p >= 1) {
+      lift.t = -1;
+      return;
+    }
+    if (this.stowArmBone === undefined) {
+      this.stowArmBone = this.model.getObjectByName(STOW_ARM_BONE) ?? null;
+    }
+    if (!this.stowArmBone) {
+      lift.t = -1;
+      return;
+    }
+    this.stowArmBone.rotation.x += STOW_ARM_LIFT_RAD * Math.sin(Math.PI * p);
+  }
+
+  // -------------------------------------------------------------------------
+  // One-shot triggers (sim events)
+  // -------------------------------------------------------------------------
+
+  /** A one-shot (attack/hit/emote) is still playing. The renderer's spellfx
+   *  handler reads this to avoid restarting a windup-started throw animation
+   *  when the projectile releases mid-clip. */
+  get isMidOneShot(): boolean {
+    return this.currentIsOneShot;
+  }
+
+  /** A channel-start event can arrive just before its authoritative entity
+   * snapshot. Enter the looping cast pose immediately and interrupt any short
+   * projectile one-shot that would otherwise mask the first part of the channel. */
+  beginCastChannel(): void {
+    if (this.deadLock) return;
+    this.baseState = 'cast';
+    this.currentIsOneShot = false;
+    this.currentOneShotIsEmote = false;
+    this.fadeTo(this.action(this.def.clips.cast) ?? this.action(this.def.clips.idle), FADE, false);
+  }
+
+  /** An authored per-ability one-shot exists on this rig (attackByAbility
+   *  entry with a live action). The ability-VFX painter gates its ceremonial
+   *  cast gestures on this, so a heal/blessing cue can never fall back to a
+   *  weapon swing on a rig without the authored clip. */
+  hasAttackClipOverride(abilityId: string): boolean {
+    const override = this.def.clips.attackByAbility?.[abilityId];
+    return override !== undefined && this.action(override) !== null;
+  }
+
+  playAttack(abilityId?: string): void {
+    if (this.deadLock) return;
+    const override = abilityId ? this.def.clips.attackByAbility?.[abilityId] : undefined;
+    if (override && this.action(override)) {
+      this.playOneShot(override, this.def.attackTimeScale ?? 1.3);
+      return;
+    }
+    const skinAttack = weaponSkinAttackClips(this.weaponSkinId);
+    const style = weaponAttackStyle(this.weaponItemId, this.offhandItemId);
+    const handClip = style ? this.def.clips.attackByHand?.[style] : undefined;
+    if (!skinAttack && handClip && this.action(handClip)) {
+      this.playOneShot(handClip, this.def.attackTimeScale ?? 1.3);
+      return;
+    }
+    const clips = skinAttack?.clips ?? this.def.clips.attack;
+    if (clips.length === 0) return;
+    const name = clips[this.attackIdx++ % clips.length];
+    this.playOneShot(name, skinAttack?.timeScale ?? this.def.attackTimeScale ?? 1.3);
+  }
+
+  /** Bladed Gyre is instant, so it uses one short body spin instead of the
+   *  held Bladestorm channel pose. Repeated AoE hits only refresh the timer. */
+  playWhirl(): void {
+    if (this.deadLock) return;
+    this.spinOnceTimer = SPIN_ONCE_DURATION;
+    const clips = this.def.clips.attack;
+    if (clips.length > 0) {
+      this.playOneShot(clips[this.attackIdx++ % clips.length], SPIN_ATTACK_TIMESCALE);
+    }
+  }
+
+  playHit(): void {
+    if (this.deadLock || this.currentIsOneShot || this.hitCooldown > 0) return;
+    const clips = this.def.clips.hit;
+    if (!clips || clips.length === 0) return;
+    this.hitCooldown = HIT_REACT_COOLDOWN;
+    this.playOneShot(clips[Math.floor(Math.random() * clips.length)], 1.2);
+  }
+
+  /** Contact-frame hitstop: hold THIS rig's animation at `scale` speed for
+   *  `dur` seconds (the melee "bite"; also the struck target's flinch-freeze).
+   *  Overlapping requests merge, longest duration, slowest scale, and the
+   *  post-hold refractory swallows rapid re-triggers, so stacking strikes can
+   *  never chain the rig into visible slow motion. */
+  holdFrame(scale: number, dur: number): void {
+    if (this.deadLock || dur <= 0) return;
+    if (this.holdT > 0) {
+      this.holdT = Math.max(this.holdT, dur);
+      this.holdScale = Math.min(this.holdScale, Math.max(0.02, scale));
+      return;
+    }
+    if (this.holdCooldown > 0) return;
+    this.holdT = dur;
+    this.holdScale = Math.max(0.02, scale);
+  }
+
+  /** Feed the cast-windup lean for this frame (anticipation): the body eases
+   *  toward `amount` rad of backward pitch while fed each frame; once feeding
+   *  stops (the release moment) the spring snaps through a small forward
+   *  recoil back to neutral. Rig-group rotation only, no bone surgery. */
+  setWindupLean(amount: number): void {
+    if (this.deadLock) return;
+    this.leanTarget = -Math.min(LEAN_MAX_RAD, Math.max(0, amount));
+    this.leanFeed = LEAN_FEED_S;
+  }
+
+  playEmote(id: OverheadEmoteId, repeatsOverride?: number): void {
+    if (this.deadLock) return;
+    const spec = this.def.clips.emote?.[id];
+    const clip = firstLoadedEmoteClip(spec, (name) => this.action(name));
+    if (!clip) return;
+    this.playOneShot(clip, spec?.timeScale ?? 1, repeatsOverride ?? spec?.repeats ?? 1, id);
+  }
+
+  /** The summon gesture: the rider throws an arm up as a mount is called. A thin
+   *  wrapper over the Spellcast_Raise one-shot, time-scaled so the single raise
+   *  roughly fills the transition window (clamped so a very short or long window
+   *  still reads as a deliberate pose). No-ops on rigs without the clip. */
+  playCallPose(durationSeconds: number): void {
+    if (this.deadLock) return;
+    const a = this.action('Spellcast_Raise');
+    if (!a) return;
+    const window = Math.max(0.2, durationSeconds);
+    const timeScale = Math.min(2, Math.max(0.5, a.getClip().duration / window));
+    this.playOneShot('Spellcast_Raise', timeScale);
+  }
+
+  // -------------------------------------------------------------------------
+  // Static posing (player-card capture). poseFreeze() locks the rig on a chosen
+  // clip's frame so an offscreen render captures a deliberate pose instead of
+  // whatever idle frame happens to be up; clearPose() resumes the idle loop.
+  // -------------------------------------------------------------------------
+
+  /**
+   * Pose the rig on the first available clip from `candidates`, frozen at
+   * `fraction` (0..1) of that clip's duration, and hold it paused. Returns the
+   * chosen clip name, or null if none of the candidates exist on this model.
+   * Only contributes the chosen action (others are stopped) so the frame is
+   * clean. Pair with clearPose() to return to the idle loop.
+   */
+  poseFreeze(candidates: readonly string[], fraction: number): string | null {
+    let chosen: THREE.AnimationAction | null = null;
+    let name: string | null = null;
+    for (const c of candidates) {
+      const a = this.action(c);
+      if (a) {
+        chosen = a;
+        name = c;
+        break;
+      }
+    }
+    if (!chosen) return null;
+    for (const a of this.actions.values()) if (a !== chosen) a.stop();
+    chosen.stop();
+    chosen.reset();
+    chosen.setLoop(THREE.LoopOnce, 1);
+    chosen.clampWhenFinished = true;
+    chosen.timeScale = 1;
+    chosen.setEffectiveWeight(1);
+    chosen.play();
+    const dur = chosen.getClip().duration;
+    chosen.time = dur > 0 ? Math.max(0, Math.min(dur - 1e-3, dur * fraction)) : 0;
+    chosen.paused = true; // hold the frame
+    this.current = chosen;
+    this.currentIsOneShot = true;
+    this.currentOneShotIsEmote = false;
+    this.updateMixer(0);
+    return name;
+  }
+
+  /** Resume the looping idle after poseFreeze() so the live preview isn't stuck. */
+  clearPose(): void {
+    this.currentIsOneShot = false;
+    this.currentOneShotIsEmote = false;
+    this.baseState = 'idle';
+    const idle = this.action(this.def.clips.idle);
+    if (!idle) return;
+    for (const a of this.actions.values()) if (a !== idle) a.stop();
+    idle.reset();
+    idle.setLoop(THREE.LoopRepeat, Infinity);
+    idle.clampWhenFinished = false;
+    idle.timeScale = 1;
+    idle.paused = false;
+    idle.setEffectiveWeight(1);
+    idle.play();
+    this.current = idle;
+    this.updateMixer(0);
+  }
+
+  // -------------------------------------------------------------------------
+  // LOD / shadow plumbing (memoized, called every frame by the renderer)
+  // -------------------------------------------------------------------------
+
+  /**
+   * Terrain lean, in the body's own frame (see `render/ground_tilt_core.ts`).
+   * Written on `root`, which nothing else transforms: `poseWrap` rewrites its
+   * own rotation every frame for the swim pose, so a lean applied there would
+   * be stomped. Two float writes, elided when the plan has not moved.
+   */
+  setGroundTilt(pitch: number, roll: number): void {
+    if (this.root.rotation.x === pitch && this.root.rotation.z === roll) return;
+    this.root.rotation.x = pitch;
+    this.root.rotation.z = roll;
+  }
+
+  setShadow(on: boolean): void {
+    if (on === this.shadowOn) return;
+    this.shadowOn = on;
+    for (const m of this.casters) m.castShadow = on;
+  }
+
+  setProxyShadow(on: boolean): void {
+    if (this.shadowProxy && this.shadowProxy.visible !== on) this.shadowProxy.visible = on;
+  }
+
+  setFar(far: boolean): void {
+    if (far === this.far) return;
+    this.far = far;
+    this.modelWrap.visible = !far || !this.farMesh;
+    if (this.farMesh) this.farMesh.visible = far;
+  }
+
+  get isFar(): boolean {
+    return this.far;
+  }
+
+  setGhost(on: boolean, style: GhostStyle = 'spirit'): void {
+    if (on === this.ghosted && style === this.ghostStyle) return;
+    this.ghosted = on;
+    this.ghostStyle = style;
+    this.applyVisualMaterials();
+  }
+
+  /** Ability VFX body glow (buff/cast rim): tint the rig's emissive toward the
+   *  spec color at the given intensity (0 restores the shared originals). The
+   *  material swap runs only on the off/on edge; while on, per-frame calls just
+   *  rewrite emissive on this visual's private clones. Death and shapeshift
+   *  treatments keep priority over the glow. */
+  setAuraGlow(colorHex: number, intensity: number): void {
+    const on = intensity > 0.01;
+    const wasOn = this.auraGlowIntensity > 0.01;
+    this.auraGlowColor = colorHex;
+    this.auraGlowIntensity = intensity;
+    if (on !== wasOn) this.applyVisualMaterials();
+    if (!on) return;
+    for (const glow of this.auraGlowMaterials.values()) this.writeAuraGlow(glow);
+  }
+
+  private writeAuraGlow(material: THREE.Material): void {
+    const m = material as THREE.Material & { emissive?: THREE.Color; emissiveIntensity?: number };
+    if (!m.emissive) return;
+    m.emissive.setHex(this.auraGlowColor);
+    // the gallery cap: the rim accents the body, never repaints it
+    m.emissiveIntensity = Math.min(0.85, this.auraGlowIntensity);
+  }
+
+  private auraGlowMaterial(material: THREE.Material): THREE.Material {
+    if ((material as THREE.Material & { emissive?: THREE.Color }).emissive === undefined)
+      return material; // no emissive channel (low-tier basic materials): no glow
+    const cached = this.auraGlowMaterials.get(material);
+    if (cached) {
+      this.writeAuraGlow(cached);
+      return cached;
+    }
+    const glow = material.clone();
+    this.writeAuraGlow(glow);
+    this.auraGlowMaterials.set(material, glow);
+    return glow;
+  }
+
+  setSoulRend(on: boolean): void {
+    if (on === this.soulRend) return;
+    this.soulRend = on;
+    this.applyVisualMaterials();
+  }
+
+  setShadowform(on: boolean): void {
+    if (on === this.shadowform) return;
+    this.shadowform = on;
+    this.applyVisualMaterials();
+  }
+
+  setMoonkin(on: boolean): void {
+    if (on === this.moonkin) return;
+    this.moonkin = on;
+    this.applyVisualMaterials();
+  }
+
+  setMetamorph(on: boolean): void {
+    if (on === this.metamorph) return;
+    this.metamorph = on;
+    this.applyVisualMaterials();
+  }
+
+  private applyVisualMaterials(): void {
+    for (const [mesh, original] of this.originalMaterials) {
+      mesh.material = this.effectMaterial(original);
+    }
+    if (this.farMesh && this.farMaterials) {
+      this.farMesh.material = this.effectMaterial(this.farMaterials);
+    }
+  }
+
+  /** Swap the body skin (alternate texture atlas) at runtime; no-op if unchanged.
+   *  Reuses the shared skin-keyed material cache, so this is a cheap reassign. */
+  setSkin(skinIndex: number): void {
+    if (skinIndex === this.skinIndex) return;
+    this.skinIndex = skinIndex;
+    this.applySkinMaterials(skinIndex);
+    // If the alternate atlas for this skin has not finished loading yet,
+    // skinTexture() returned null and the body is showing the embedded default.
+    // Load it on demand and re-apply once it arrives, but only if this is still
+    // the requested skin (a newer setSkin must win). Without this, a freshly
+    // selected skin stayed on the default until a relog warmed the atlas cache.
+    const pending = ensureSkinTexture(this.key, skinIndex);
+    if (pending) {
+      void pending
+        .then(() => {
+          // Bail if the model was disposed while the atlas was loading, applying
+          // materials to a torn-down model is wasted work (and re-snapshots a stale
+          // material map). Also guard that this is still the requested skin.
+          if (!this.disposed && this.skinIndex === skinIndex) this.applySkinMaterials(skinIndex);
+        })
+        .catch((err) => console.error('failed to load skin atlas:', err));
+    }
+  }
+
+  private applySkinMaterials(skinIndex: number): void {
+    applyMaterials(
+      this.model,
+      this.def,
+      this.entityColor,
+      skinTexture(this.key, skinIndex),
+      skinEmissiveTexture(this.key, skinIndex),
+    );
+    // re-snapshot the material map ghost/restore relies on, then re-ghost if stealthed
+    this.originalMaterials.clear();
+    this.model.traverse((o) => {
+      const mesh = o as THREE.Mesh;
+      // VFX rig meshes stay out of the ghost/restore cycle: their shader
+      // materials are owned by the weapon-skin handle, never overlaid.
+      if (!mesh.isMesh || mesh.userData.weaponVfxMesh) return;
+      // applyMaterials skips the halo, so mid-overlay its live material is
+      // the overlay clone; snapshot the build-time handle instead
+      const original =
+        mesh.name === 'class_halo' ? (this.haloBaseMaterial ?? mesh.material) : mesh.material;
+      this.originalMaterials.set(mesh, original);
+    });
+    // The far LOD mesh is a separate baked geometry (see the constructor):
+    // it needs its own skin-aware material rebuild or a distant player LOD
+    // pop reverts to the model's embedded default skin.
+    if (this.farMesh) {
+      const prep = prepareVisual(this.key);
+      this.farMaterials = tintedFarMaterials(
+        this.def,
+        this.entityColor,
+        prep.idleSrcMats,
+        prep.idleSrcIsBody,
+        skinTexture(this.key, skinIndex),
+        skinEmissiveTexture(this.key, skinIndex),
+      );
+    }
+    this.applyVisualMaterials();
+  }
+
+  /** Swap the held mainhand weapon model at runtime (gear equip/unequip); no-op if
+   *  unchanged or if this class keeps a fixed weapon (hunter crossbow, mobs/NPCs,    *  no VisualDef.weaponSlot). Mirrors setSkin: re-attach the prop, re-run the
+   *  shared material pass, re-snapshot the original-material map, then re-apply any
+   *  active ghost/soul-rend overlay. Cheap (one prop clone) and keeps the mixer/
+   *  animation state, unlike a full visual rebuild. Returns the newly attached
+   *  payload(s) (for the caller's compile gate), or null on a no-op. */
+  setWeapon(weaponItemId: string | null): THREE.Object3D[] | null {
+    if (weaponItemId === this.weaponItemId) return null;
+    this.weaponItemId = weaponItemId;
+    if (!this.def.weaponSlots?.length) return null;
+    return this.reattachHeldWeapon();
+  }
+
+  /** Swap the actual offhand. When neither the old nor the new offhand mirrors the
+   *  active weapon skin, this is the lean path that never disturbs the mainhand
+   *  cosmetic pipeline (its rarity VFX keep running). When the offhand crosses into,
+   *  out of, or between skin-mirrored states (a matching-type weapon), it
+   *  routes through the full re-attach so the offhand gains or loses the skin model
+   *  and its rarity VFX in step with the mainhand. Returns the newly attached
+   *  payload(s) (for the caller's compile gate), or null on a no-op. */
+  setOffhand(offhandItemId: string | null): THREE.Object3D[] | null {
+    if (offhandItemId === this.offhandItemId) return null;
+    if (this.def.offhandSlot === undefined) {
+      this.offhandItemId = offhandItemId;
+      return null;
+    }
+    const wasMirrored = offhandMirrorsWeaponSkin(this.weaponSkinId, this.offhandItemId);
+    this.offhandItemId = offhandItemId;
+    const nowMirrored = offhandMirrorsWeaponSkin(this.weaponSkinId, this.offhandItemId);
+    if (wasMirrored || nowMirrored) {
+      return this.reattachHeldWeapon();
+    }
+    const payloads = setHeldOffhand(
+      this.model,
+      this.def,
+      offhandItemId,
+      this.weaponSkinId,
+      this.stow.attached,
+    );
+    for (const payload of payloads) {
+      configureTightBoneTextures(payload);
+      applyMaterials(
+        payload,
+        this.def,
+        this.entityColor,
+        skinTexture(this.key, this.skinIndex),
+        skinEmissiveTexture(this.key, this.skinIndex),
+      );
+    }
+    this.originalMaterials.clear();
+    this.rebuildCasters();
+    this.applyVisualMaterials();
+    return payloads;
+  }
+
+  /** Apply or clear a Season 1 Armory weapon-skin cosmetic: the skin's model
+   *  replaces the held weapon (all swap slots, or the hunter's fixed ranged
+   *  attach) and its rarity VFX ride the new payloads. Null restores the
+   *  equipped item's own model. Returns the newly attached payload(s) (for the
+   *  caller's compile gate), or null on a no-op. */
+  setWeaponSkin(weaponSkinId: string | null): THREE.Object3D[] | null {
+    if (weaponSkinId === this.weaponSkinId) return null;
+    this.weaponSkinId = weaponSkinId;
+    return this.reattachHeldWeapon();
+  }
+
+  /** Re-attach BOTH held hands (gear swap / skin change), honoring an active
+   *  sheathe so a weapon swapped while stowed lands on the back, not the hand. The
+   *  offhand re-attaches with skin awareness: when the active skin mirrors onto a
+   *  matching-type offhand weapon, that payload joins the skin VFX/material
+   *  set; a shield, held offhand, or different-type weapon re-attaches with its own
+   *  model and stays out of that set (pixel-untouched). Returns the newly attached
+   *  payload(s), for the caller's compile gate. */
+  private reattachHeldWeapon(): THREE.Object3D[] {
+    this.disposeWeaponVfx();
+    this.disposeWeaponSkinMaterials();
+    const payloads = setHeldWeapon(
+      this.model,
+      this.def,
+      this.weaponItemId,
+      this.weaponSkinId,
+      this.stow.attached,
+    );
+    const offPayloads = setHeldOffhand(
+      this.model,
+      this.def,
+      this.offhandItemId,
+      this.weaponSkinId,
+      this.stow.attached,
+    );
+    if (offhandMirrorsWeaponSkin(this.weaponSkinId, this.offhandItemId)) {
+      payloads.push(...offPayloads);
+    }
+    this.finishWeaponAttach(payloads);
+    return payloads;
+  }
+
+  /** The shared tail of every re-attach (slot swap, skin change, sheathe swap):
+   *  re-pin skin orientation, re-run the material pass, re-snapshot originals,
+   *  and rebuild the skin VFX on the payloads that now exist. */
+  private finishWeaponAttach(payloads: THREE.Object3D[]): void {
+    for (const payload of payloads) configureTightBoneTextures(payload);
+    // Ranged skins take a root-relative orientation pin (position always rides
+    // the hand): a bow aims upright WHILE the shot one-shot plays (the string
+    // hand rolls a glued bow sideways mid-draw); a bow-slot gun carries muzzle
+    // forward OUTSIDE the shot (the hanging idle arm points it at the ground)
+    // and keeps the hand-tuned grip during the shouldered aim
+    // (applySkinOrientation each frame). A SHEATHED weapon takes no pin: its
+    // pose is the on-back grip, which the pin would fight every frame.
+    {
+      const mode = this.stow.attached ? null : weaponSkinOrientPin(this.weaponSkinId);
+      this.orientPins = mode
+        ? payloads.map((payload) => ({
+            payload,
+            qGrip: payload.quaternion.clone(),
+            blend: 0,
+            duringShot: mode === 'aimDuringShot',
+          }))
+        : [];
+    }
+    applyMaterials(
+      this.model,
+      this.def,
+      this.entityColor,
+      skinTexture(this.key, this.skinIndex),
+      skinEmissiveTexture(this.key, this.skinIndex),
+    );
+    // A VFX-tier skin's emissive derive mutates its payload materials in place,
+    // so give each payload exclusive clones BEFORE the caster snapshot: the
+    // shared tinted-material cache must never carry derived state (two players
+    // with one skin, or a rogue's two hands, would corrupt each other), and the
+    // ghost/stealth snapshot below must target the clones the rig restores.
+    if (this.weaponSkinVfxSpec()) {
+      for (const payload of payloads) {
+        payload.traverse((o) => {
+          const mesh = o as THREE.Mesh;
+          if (!mesh.isMesh) return;
+          mesh.material = Array.isArray(mesh.material)
+            ? mesh.material.map((m) => m.clone())
+            : mesh.material.clone();
+          mesh.userData.weaponSkinIsolated = true;
+          markOwnedWeaponSkinMaterials(mesh);
+        });
+      }
+    }
+    // the model graph changed (weapon meshes added/removed): rebuild the caster
+    // list and re-snapshot originals, then re-apply ghost/stealth overlays.
+    this.originalMaterials.clear();
+    this.rebuildCasters();
+    this.applyVisualMaterials();
+    this.buildWeaponVfx(payloads);
+    this.rebuildWeaponAura();
+  }
+
+  /** Hold the imbued-weapon overlay in `colorHex` (null clears it). Driven per
+   *  frame by the renderer from characterWeaponAuraInto - the buff spec's
+   *  weaponAura knob - so the soak lives exactly as long as the worn aura
+   *  (Sanguine Blade's blood red, Pyrebrand's flame lick, Rimebound's rime).
+   *  `tip` scopes the overlay to the blade's far end (Adder's Bite's green
+   *  tip against Festering Venom's full-blade wash). */
+  setWeaponAura(colorHex: number | null, tip = false): void {
+    if (colorHex === this.weaponAuraColor && tip === this.weaponAuraTip) return;
+    this.weaponAuraColor = colorHex;
+    this.weaponAuraTip = tip;
+    this.rebuildWeaponAura();
+  }
+
+  private rebuildWeaponAura(): void {
+    this.disposeWeaponAura();
+    if (this.weaponAuraColor === null) return;
+    const auraColor = this.weaponAuraColor;
+
+    const weaponHolders: THREE.Object3D[] = [];
+    this.model.traverse((o) => {
+      if (o.userData.swapWeaponHolder) weaponHolders.push(o);
+    });
+    const mainhand = weaponHolders.find((o) => o.userData.heldSlot === 0) ?? weaponHolders[0];
+    if (!mainhand) return;
+    mainhand.traverse((o) => {
+      const mesh = o as THREE.Mesh;
+      if (!mesh.isMesh || !mesh.userData.weaponMesh || !mesh.parent) return;
+      const tipGeometry = this.weaponAuraTip ? tipFadedWeaponGeometry(mesh, mainhand) : null;
+      const aura = new THREE.Mesh(
+        tipGeometry ?? mesh.geometry,
+        new THREE.MeshBasicMaterial({
+          // Additive translucent clone of the weapon mesh in the spec-authored
+          // soak color (sanguine_aura keeps its established bright blood red;
+          // the shaman imbues author their own warm/icy hues). Brightness
+          // class is fixed here - only the hue is data. Tip scope rides a
+          // vertex-alpha ramp baked into the cloned geometry.
+          color: auraColor,
+          transparent: true,
+          opacity: 0.42,
+          depthWrite: false,
+          blending: THREE.AdditiveBlending,
+          side: THREE.DoubleSide,
+          vertexColors: tipGeometry !== null,
+        }),
+      );
+      aura.position.copy(mesh.position);
+      aura.quaternion.copy(mesh.quaternion);
+      aura.scale.copy(mesh.scale).multiplyScalar(1.08);
+      aura.renderOrder = 3;
+      aura.userData.weaponVfxMesh = true;
+      if (tipGeometry) aura.userData.ownsAuraGeometry = true;
+      mesh.parent.add(aura);
+      this.weaponAuraMeshes.push(aura);
+    });
+  }
+
+  private disposeWeaponAura(): void {
+    for (const mesh of this.weaponAuraMeshes) {
+      mesh.removeFromParent();
+      (mesh.material as THREE.Material).dispose();
+      // full-blade auras share the weapon's cached geometry (never disposed);
+      // tip auras own their vertex-alpha clone
+      if (mesh.userData.ownsAuraGeometry) mesh.geometry.dispose();
+    }
+    this.weaponAuraMeshes.length = 0;
+  }
+
+  private weaponSkinVfxSpec() {
+    const skin = this.weaponSkinId ? WEAPON_SKINS[this.weaponSkinId] : null;
+    return skin ? (WEAPON_VFX[skin.model] ?? null) : null;
+  }
+
+  /** Attach the skin's rarity VFX rig to each held payload (in-hand mode: no
+   *  backdrop dome, no ground pool; emissive + particles ride the weapon). */
+  private buildWeaponVfx(payloads: THREE.Object3D[]): void {
+    const skin = this.weaponSkinId ? WEAPON_SKINS[this.weaponSkinId] : null;
+    const spec = skin ? (WEAPON_VFX[skin.model] ?? null) : null;
+    if (!skin || !spec) return;
+    for (const payload of payloads) {
+      const handle = createWeaponVfx(payload, spec, { grounded: false });
+      handle.setBackdropVisible(false);
+      handle.setTuning(weaponVfxTuningFor(skin.model, spec.tier));
+      handle.setPixelScale(weaponVfxViewportHeight * this.weaponVfxSpriteScale);
+      // Tag the rig's own scene nodes: applyMaterials must never tint its
+      // ShaderMaterials and the shadow pass has no business with sprite shells.
+      handle.group.traverse((o) => {
+        o.userData.weaponVfxMesh = true;
+        const mesh = o as THREE.Mesh;
+        if (mesh.isMesh) mesh.castShadow = false;
+      });
+      this.weaponVfx.push(handle);
+    }
+  }
+
+  /** True exactly once after a deferred re-attach rebuilt the held-prop graph
+   *  (the sheathe swap): the caller must re-reconcile its point lights. */
+  consumeWeaponGraphDirty(): boolean {
+    if (!this.weaponGraphDirty) return false;
+    this.weaponGraphDirty = false;
+    return true;
+  }
+
+  /** Advance the weapon-skin VFX (shader time, pulse, flicker). Cheap no-op
+   *  without an active skin; the renderer calls it once per entity per frame.
+   *  Also re-pins bow payload orientation (see reattachHeldWeapon). */
+  updateWeaponVfx(dt: number): void {
+    this.applySkinOrientation(dt);
+    for (const handle of this.weaponVfx) handle.update(dt);
+  }
+
+  /** Blend pinned skin payloads between the authored grip glue and their
+   *  root-relative pin: a bow to BOW_AIM_QUAT while the shot one-shot plays, a
+   *  bow-slot gun to GUN_CARRY_QUAT everywhere BUT the shot (and never while
+   *  dead: a corpse's weapon just lies with the hand). Position always follows
+   *  the hand. No-op without pinned payloads. */
+  private applySkinOrientation(dt: number): void {
+    if (this.orientPins.length === 0) return;
+    const shot = this.currentIsOneShot && !this.currentOneShotIsEmote;
+    const step = dt / BOW_PIN_BLEND_S;
+    this.root.getWorldQuaternion(BOW_Q_ROOT);
+    for (const entry of this.orientPins) {
+      const parent = entry.payload.parent;
+      if (!parent) continue;
+      const engaged = !this.deadLock && (entry.duringShot ? shot : !shot);
+      entry.blend = Math.min(1, Math.max(0, entry.blend + (engaged ? step : -step)));
+      if (entry.blend === 0) {
+        entry.payload.quaternion.copy(entry.qGrip);
+        continue;
+      }
+      // pinned local = parentWorld^-1 * rootWorld * pin target
+      parent.getWorldQuaternion(BOW_Q_B).invert();
+      BOW_Q_TARGET.copy(BOW_Q_B)
+        .multiply(BOW_Q_ROOT)
+        .multiply(entry.duringShot ? BOW_AIM_QUAT : GUN_CARRY_QUAT);
+      entry.payload.quaternion.copy(entry.qGrip).slerp(BOW_Q_TARGET, entry.blend);
+    }
+  }
+
+  /** Re-scale VFX point sprites after a viewport/pixel-ratio change. */
+  setWeaponVfxPixelScale(heightPx: number): void {
+    for (const handle of this.weaponVfx) {
+      handle.setPixelScale(heightPx * this.weaponVfxSpriteScale);
+    }
+  }
+
+  /** Set the camera fov this visual renders under (preview rigs differ from the
+   *  world camera); re-scales any live VFX sprites to match. */
+  setWeaponVfxCameraFov(fovDeg: number): void {
+    this.weaponVfxSpriteScale = weaponVfxSpriteScaleForFov(fovDeg);
+  }
+
+  private disposeWeaponVfx(): void {
+    for (const handle of this.weaponVfx) handle.dispose();
+    this.weaponVfx.length = 0;
+  }
+
+  private disposeWeaponSkinMaterials(): void {
+    disposeOwnedWeaponSkinMaterials(this.model, this.originalMaterials, [
+      this.ghostMaterials,
+      this.soulRendMaterials,
+      this.auraGlowMaterials,
+    ]);
+  }
+
+  private disposeEffectMaterials(): void {
+    const materials = new Set<THREE.Material>([
+      ...this.ghostMaterials.values(),
+      ...this.soulRendMaterials.values(),
+      ...this.auraGlowMaterials.values(),
+    ]);
+    for (const material of materials) material.dispose();
+    this.ghostMaterials.clear();
+    this.soulRendMaterials.clear();
+    this.auraGlowMaterials.clear();
+  }
+
+  /** Move every held prop between the hands and the sheathed on-back pose (the
+   *  Z-key stow toggle). On a live rig this plays the ClipMap `stow` arm gesture
+   *  and defers the actual re-parent to the gesture's midpoint (stow_transition),
+   *  so the swap lands while the hand passes the shoulder; spawn-in sync, dead
+   *  rigs, and clip-less defs snap immediately instead. */
+  setWeaponStowed(stowed: boolean): void {
+    if (!this.def.attach?.length) {
+      forceStow(this.stow, stowed);
+      return;
+    }
+    const clip = this.def.clips.stow;
+    const gesture = clip ? this.action(clip) : null;
+    if (!this.initialized || this.deadLock || !gesture) {
+      if (forceStow(this.stow, stowed)) this.applyStowSwap();
+      return;
+    }
+    const swapDelay = (gesture.getClip().duration / STOW_GESTURE_TIMESCALE) * STOW_SWAP_FRACTION;
+    if (requestStow(this.stow, stowed, swapDelay)) {
+      this.playOneShot(clip as string, STOW_GESTURE_TIMESCALE);
+      // Arm-raise window: peaks exactly at the swap, eases back out after it.
+      this.stowLift.t = 0;
+      this.stowLift.dur = swapDelay * 2;
+    }
+  }
+
+  /** Cut the stow gesture at its windup peak: hand back to base so the chop
+   *  clip's downswing never plays (mirrors onFinished's one-shot hand-off). */
+  private endStowGesture(): void {
+    const clip = this.def.clips.stow;
+    const gesture = clip ? this.action(clip) : null;
+    if (!gesture || this.current !== gesture || this.deadLock) return;
+    this.currentIsOneShot = false;
+    this.currentOneShotIsEmote = false;
+    this.fadeTo(this.baseAction(), 0.18, false);
+  }
+
+  /** The deferred half of setWeaponStowed: re-attach every held prop to the pose
+   *  the transition just landed on, keeping the applied weapon skin, then run the
+   *  shared re-attach tail (materials, caster snapshot, skin VFX rebuilt on the
+   *  new payloads). Mixer state is untouched. */
+  private applyStowSwap(): void {
+    // The swap lands mid-gesture, long after the renderer's stow diff returned,
+    // so the rig it rebuilds (and the skin VFX point light hanging off it) can
+    // only be reconciled into the light budget on a later frame: raise an edge
+    // the renderer consumes (consumeWeaponGraphDirty).
+    this.weaponGraphDirty = true;
+    this.disposeWeaponVfx();
+    this.disposeWeaponSkinMaterials();
+    const payloads = setWeaponsStowed(
+      this.model,
+      this.def,
+      this.weaponItemId,
+      this.weaponSkinId,
+      this.stow.attached,
+      this.offhandItemId,
+    );
+    this.finishWeaponAttach(payloads);
+  }
+
+  /** Rebuild the shadow-caster list and original-material snapshot after the model
+   *  graph changes (a weapon swap adds/removes bone-child meshes). */
+  private rebuildCasters(): void {
+    this.casters.length = 0;
+    this.model.traverse((o) => {
+      const mesh = o as THREE.Mesh;
+      if (!mesh.isMesh || mesh.userData.weaponVfxMesh) return;
+      if (mesh.name === 'class_halo') {
+        // unlit additive FX quad: never a shadow caster, but its material must
+        // stay in the snapshot so ghost/stealth swaps restore it; snapshot the
+        // build-time handle, since the live one may be an overlay clone when
+        // the swap happens mid-ghost/shadowform
+        this.originalMaterials.set(mesh, this.haloBaseMaterial ?? mesh.material);
+        return;
+      }
+      mesh.castShadow = this.shadowOn;
+      mesh.receiveShadow = false;
+      if ((mesh as unknown as THREE.SkinnedMesh).isSkinnedMesh) mesh.frustumCulled = false;
+      this.originalMaterials.set(mesh, mesh.material);
+      this.casters.push(mesh);
+    });
+  }
+
+  dispose(): void {
+    this.disposed = true;
+    this.disposeWeaponAura();
+    this.disposeWeaponVfx();
+    this.disposeWeaponSkinMaterials();
+    this.disposeEffectMaterials();
+    this.mixer.stopAllAction();
+    this.mixer.uncacheRoot(this.model);
+    this.skeletonUpdates.dispose();
+    this.root.removeFromParent();
+    // SkeletonUtils.clone gives each instance exclusive Skeletons whose GPU
+    // bone textures the renderer allocates lazily, release them here or
+    // online interest churn strands one per despawned entity. Geometries and
+    // materials remain shared per-asset caches and are never disposed.
+    const skeletons = new Set<THREE.Skeleton>();
+    this.model.traverse((o) => {
+      const sm = o as THREE.SkinnedMesh;
+      if (sm.isSkinnedMesh && sm.skeleton) skeletons.add(sm.skeleton);
+    });
+    for (const skeleton of skeletons) skeleton.dispose();
+  }
+
+  // -------------------------------------------------------------------------
+  // State machine internals
+  // -------------------------------------------------------------------------
+
+  private desiredBase(s: AnimState): BaseState {
+    // Whether the LOADED rig has the clip, not whether the ClipMap names one:
+    // every player ClipMap names walkBack, but baseAction() silently falls back
+    // to walk when the GLB lacks it, and the machine would then hold a state
+    // nothing is playing.
+    return desiredBaseState(s, !!this.action(this.def.clips.walkBack));
+  }
+
+  /** Refill the weight scratch from the live mixer (see `weightScan`). */
+  private readActionWeights(): AnimActionWeight[] {
+    const scan = this.weightScan;
+    let i = 0;
+    for (const a of this.actions.values()) {
+      const slot = scan[i];
+      if (slot) readActionWeight(a, slot);
+      else scan.push(readActionWeight(a));
+      i++;
+    }
+    return scan;
+  }
+
+  /** Measured requests vs actual palette rebuilds for browser-side accounting. */
+  skeletonUpdateStats(): SkeletonUpdateStats {
+    return this.skeletonUpdates.stats();
+  }
+
+  private updateMixer(dt: number): void {
+    this.mixer.update(dt);
+    this.skeletonUpdates.markPoseChanged();
+  }
+
+  /** Nothing is driving the rig (see `needsAnimRepair`): drop the stale handle
+   *  so fadeTo cannot early-return on it, release the one-shot latch a missed
+   *  `finished` may have left set, and re-drive the base state. beginAction
+   *  snaps rather than fades, since there is no live pose to blend from. */
+  private repairPose(): void {
+    this.currentIsOneShot = false;
+    this.currentOneShotIsEmote = false;
+    this.current = null;
+    this.fadeTo(this.baseAction(), FADE, false);
+  }
+
+  private effectMaterial<T extends THREE.Material | THREE.Material[]>(material: T): T {
+    if (Array.isArray(material)) return material.map((m) => this.effectSingleMaterial(m)) as T;
+    return this.effectSingleMaterial(material) as T;
+  }
+
+  private effectSingleMaterial(material: THREE.Material): THREE.Material {
+    // Death treatments (soul rend, ghost run) win over the shapeshift tints.
+    if (this.soulRend) return this.soulRendMaterial(material);
+    if (this.ghosted) return this.ghostMaterial(material);
+    if (this.metamorph) return this.metamorphMaterial(material);
+    if (this.moonkin) return this.moonkinMaterial(material);
+    if (this.shadowform) return this.shadowformMaterial(material);
+    // lowest priority: the ability VFX buff/cast body glow
+    if (this.auraGlowIntensity > 0.01) return this.auraGlowMaterial(material);
+    return material;
+  }
+
+  private ghostMaterial(material: THREE.Material): THREE.Material {
+    const opacity = this.ghostStyle === 'stealth' ? STEALTH_OPACITY : GHOST_OPACITY;
+    const cached = this.ghostMaterials.get(material);
+    if (cached) {
+      // one cache serves both flavors; rewrite the opacity on style flips
+      // (stealth -> die -> ghost run reuses the same clones)
+      cached.opacity = opacity;
+      return cached;
+    }
+    const ghost = material.clone();
+    ghost.transparent = true;
+    ghost.opacity = opacity;
+    // depthWrite stays ON: with it off the whole rig depth-blends against
+    // itself, so back faces and far limbs shine through the chest - the x-ray
+    // the owner reported on Duskveil. Writing depth lets nearer faces occlude
+    // farther ones and the body reads as one uniformly faded silhouette.
+    ghost.depthWrite = true;
+    this.ghostMaterials.set(material, ghost);
+    return ghost;
+  }
+
+  private soulRendMaterial(material: THREE.Material): THREE.Material {
+    const cached = this.soulRendMaterials.get(material);
+    if (cached) return cached;
+    const marked = material.clone();
+    marked.transparent = true;
+    marked.opacity = SOUL_REND_OPACITY;
+    marked.depthWrite = false;
+    const withColor = marked as THREE.Material & {
+      color?: THREE.Color;
+      emissive?: THREE.Color;
+      emissiveIntensity?: number;
+    };
+    if (withColor.color) withColor.color.copy(SOUL_REND_TINT);
+    if (withColor.emissive) {
+      withColor.emissive.setHex(0x2a0000);
+      withColor.emissiveIntensity = Math.max(withColor.emissiveIntensity ?? 0, 0.35);
+    }
+    this.soulRendMaterials.set(material, marked);
+    return marked;
+  }
+
+  private shadowformMaterial(material: THREE.Material): THREE.Material {
+    const cached = this.shadowformMaterials.get(material);
+    if (cached) return cached;
+    const marked = material.clone();
+    marked.transparent = true;
+    marked.opacity = SHADOWFORM_OPACITY;
+    marked.depthWrite = true;
+    const withColor = marked as THREE.Material & {
+      color?: THREE.Color;
+      emissive?: THREE.Color;
+      emissiveIntensity?: number;
+    };
+    if (withColor.color) withColor.color.copy(SHADOWFORM_TINT);
+    if (withColor.emissive) {
+      withColor.emissive.setHex(0x2a0a4a);
+      withColor.emissiveIntensity = Math.max(withColor.emissiveIntensity ?? 0, 0.4);
+    }
+    this.shadowformMaterials.set(material, marked);
+    return marked;
+  }
+
+  private moonkinMaterial(material: THREE.Material): THREE.Material {
+    const cached = this.moonkinMaterials.get(material);
+    if (cached) return cached;
+    const marked = material.clone();
+    marked.transparent = true;
+    marked.opacity = MOONKIN_OPACITY;
+    marked.depthWrite = true;
+    const withColor = marked as THREE.Material & {
+      color?: THREE.Color;
+      emissive?: THREE.Color;
+      emissiveIntensity?: number;
+    };
+    if (withColor.color) withColor.color.copy(MOONKIN_TINT);
+    if (withColor.emissive) {
+      withColor.emissive.setHex(0x6a3fd0);
+      withColor.emissiveIntensity = Math.max(withColor.emissiveIntensity ?? 0, 0.55);
+    }
+    this.moonkinMaterials.set(material, marked);
+    return marked;
+  }
+
+  private metamorphMaterial(material: THREE.Material): THREE.Material {
+    const cached = this.metamorphMaterials.get(material);
+    if (cached) return cached;
+    const marked = material.clone();
+    const withColor = marked as THREE.Material & {
+      color?: THREE.Color;
+      emissive?: THREE.Color;
+      emissiveIntensity?: number;
+    };
+    if (withColor.color) withColor.color.copy(METAMORPH_TINT);
+    if (withColor.emissive) {
+      withColor.emissive.setHex(0x7a1abf);
+      // Set, don't floor: the source materials ship emissiveIntensity 1 (with a
+      // black emissive color), so a Math.max floor keeps full-strength glow and
+      // the body renders as flat neon, drowning the fire aura and all shading.
+      withColor.emissiveIntensity = 0.35;
+    }
+    this.metamorphMaterials.set(material, marked);
+    return marked;
+  }
+
+  private action(name: string | undefined): THREE.AnimationAction | null {
+    return name ? (this.actions.get(name) ?? null) : null;
+  }
+
+  private baseAction(): THREE.AnimationAction | null {
+    const c = this.def.clips;
+    switch (this.baseState) {
+      case 'walk':
+        return this.action(c.walk) ?? this.action(c.idle);
+      case 'walkBack':
+        return this.action(c.walkBack) ?? this.action(c.walk);
+      case 'run':
+        return this.action(c.run) ?? this.action(c.walk);
+      case 'cast':
+        return this.action(c.cast) ?? this.action(c.idle);
+      case 'spin':
+        return this.action(c.attack[0]) ?? this.action(c.idle);
+      case 'swim':
+        return this.action(c.swim) ?? this.action(c.idle);
+      case 'sit':
+        return this.action(c.sitDown) ?? this.action(c.sitIdle) ?? this.action(c.idle);
+      case 'jump':
+        return this.action(c.jump) ?? this.action(c.idle);
+      default:
+        return this.action(c.idle);
+    }
+  }
+
+  private shouldInterruptEmote(s: AnimState): boolean {
+    return s.moving || s.airborne || s.swimming || s.casting || !!s.spinning || s.sitting || s.dead;
+  }
+
+  private fadeTo(next: THREE.AnimationAction | null, fade: number, oneShot: boolean): void {
+    if (!next) return;
+    if (next === this.current && !oneShot) return;
+    const prev = this.current;
+    next.reset();
+    next.setLoop(oneShot || this.isOnce(next) ? THREE.LoopOnce : THREE.LoopRepeat, Infinity);
+    next.clampWhenFinished = true;
+    next.timeScale = 1;
+    this.beginAction(next, prev, fade);
+    this.current = next;
+    this.currentIsOneShot = oneShot;
+    this.currentOneShotIsEmote = false;
+  }
+
+  /**
+   * Start `next`, crossfading out of `prev` while it still drives the rig.
+   * With no outgoing partner (nothing active, the same clip re-triggered, or a
+   * `current` that was stopped out from under us) a fadeIn would ramp the ONLY
+   * contributing action up from zero, and the mixer blends that whole deficit
+   * toward BIND pose: a T-pose for the length of the fade. Snap to full weight
+   * in that case, since there is no live pose to blend from anyway.
+   */
+  private beginAction(
+    next: THREE.AnimationAction,
+    prev: THREE.AnimationAction | null,
+    fade: number,
+  ): void {
+    if (prev && prev !== next && drivesPose(readActionWeight(prev))) {
+      prev.fadeOut(fade);
+      next.fadeIn(fade).play();
+      return;
+    }
+    next.setEffectiveWeight(1);
+    next.play();
+  }
+
+  /** Base clips that play once and CLAMP instead of looping: a sit-down
+   *  transition (which then hands off to the sit-idle loop), and the jump clip
+   *  of a rig that ships a landing one-shot, which holds its airborne pose for
+   *  as long as the body is off the ground. Rigs without a `land` clip keep
+   *  looping `jump` unchanged. */
+  private isOnce(a: THREE.AnimationAction): boolean {
+    if (this.baseState === 'sit') return a === this.action(this.def.clips.sitDown);
+    if (this.baseState === 'jump' && this.def.clips.land)
+      return a === this.action(this.def.clips.jump);
+    return false;
+  }
+
+  private playOneShot(
+    name: string,
+    timeScale: number,
+    repeats = 1,
+    emoteId: OverheadEmoteId | null = null,
+  ): void {
+    const a = this.action(name);
+    if (!a) return;
+    const prev = this.current;
+    // reset (not stop) restarts the clip in place: stopping the clip that is
+    // ALREADY driving the rig, then fading it back in from zero with no
+    // outgoing partner, T-poses the rig for the whole fade on every same-clip
+    // re-trigger (a repeated swing, a re-fired emote, the sheathe gesture).
+    a.reset();
+    const repeatCount = Math.max(1, Math.floor(repeats));
+    a.setLoop(repeatCount === 1 ? THREE.LoopOnce : THREE.LoopRepeat, repeatCount);
+    // clamp on the last frame: an unclamped LoopOnce action zeroes its weight
+    // the instant it finishes, which blends the rig toward bind pose for the
+    // whole 0.18s hand-off fade (a visible T-pose pop after every swing)
+    a.clampWhenFinished = true;
+    a.timeScale = timeScale;
+    this.beginAction(a, prev, ONESHOT_FADE);
+    this.current = a;
+    this.currentIsOneShot = true;
+    this.currentOneShotIsEmote = emoteId !== null;
+  }
+
+  private onFinished(a: THREE.AnimationAction): void {
+    if (this.deadLock) return; // death clip clamps on its last frame
+    if (this.baseState === 'sit' && a === this.action(this.def.clips.sitDown)) {
+      this.fadeTo(this.action(this.def.clips.sitIdle) ?? a, 0.25, false);
+      return;
+    }
+    if (a === this.current) {
+      this.currentIsOneShot = false;
+      this.currentOneShotIsEmote = false;
+      this.fadeTo(this.baseAction(), 0.18, false);
+    }
+  }
+
+  /** Two-state prop mobs (VisualDef.corpseMeshSwap): alive shows `hide`,
+   *  dead shows `show` (the dragonkin egg's cracked shell IS its corpse).
+   *  assembleModel seeds the alive state; the death/revive edges flip it. */
+  private applyCorpseMeshSwap(dead: boolean): void {
+    const swap = this.def.corpseMeshSwap;
+    if (!swap) return;
+    this.model.traverse((n) => {
+      if (n.name === swap.hide) n.visible = !dead;
+      else if (n.name === swap.show) n.visible = dead;
+    });
+  }
+
+  /** One-shot the flourish clip (skeleton awaken / boss taunt / the dragonkin
+   *  brood's Shout and the whelp's hatch pounce), off the 'shout'/'flourish'
+   *  spellfx cues. No-op for rigs without a flourish clip. */
+  playFlourish(): void {
+    const clip = this.def.clips.flourish;
+    if (clip && this.action(clip)) this.playOneShot(clip, 1);
+  }
+
+  private enterDeath(): void {
+    this.deadLock = true;
+    this.currentIsOneShot = false;
+    this.currentOneShotIsEmote = false;
+    this.applyCorpseMeshSwap(true);
+    // Collapse the upright pick capsule to a flat, ground-hugging profile so a
+    // near-eye click behind or above the now-lying corpse no longer intersects an
+    // invisible standing column (issue 1486). The ground-level footprint stays, so
+    // a lootable corpse remains clickable. Restored in revive(). Set here (not the
+    // per-frame update) since it only changes on the death/revive edge, and this
+    // runs on every enterDeath path including the created-already-dead snapshot.
+    this.clickProxy.scale.y = pickProxyHeight(this.height, this.clickRadius, true);
+    const death = this.action(this.def.clips.death);
+    if (!death) {
+      // No death clip: the corpse holds whatever pose was driving it. dead-lock
+      // freezes the zero-weight watchdog, so leave the machine on something
+      // real, or the rig sits in bind pose until it revives (and revive() would
+      // inherit a stale `current` it can neither fade out of nor blend from).
+      if (!drivesPose(this.current ? readActionWeight(this.current) : null)) {
+        this.baseState = 'idle';
+        this.current = null;
+        this.fadeTo(this.baseAction(), ONESHOT_FADE, false);
+      }
+      return;
+    }
+    const prev = this.current;
+    death.reset();
+    death.setLoop(THREE.LoopOnce, 1);
+    death.clampWhenFinished = true;
+    death.timeScale = this.def.deathTimeScale ?? 1.15;
+    if (!this.initialized) {
+      // created already-dead (corpse entering interest): snap to the end pose
+      if (prev && prev !== death) prev.stop();
+      death.play();
+      death.time = Math.max(0, death.getClip().duration - 1e-3);
+      this.current = death;
+      this.updateMixer(0);
+      return;
+    }
+    this.beginAction(death, prev, ONESHOT_FADE);
+    this.current = death;
+  }
+
+  private revive(): void {
+    this.deadLock = false;
+    this.baseState = 'idle';
+    this.applyCorpseMeshSwap(false);
+    // Release the one-shot latch: a `finished` that never arrived (the rig was
+    // throttled, or the clip was cut) would otherwise leave every later base
+    // change committing its state while silently skipping its fade.
+    this.currentIsOneShot = false;
+    this.currentOneShotIsEmote = false;
+    // Restore the upright pick capsule (the corpse-flatten from enterDeath).
+    this.clickProxy.scale.y = pickProxyHeight(this.height, this.clickRadius, false);
+    // The clamped death pose stays the OUTGOING partner of the fade below (a
+    // paused action still fades out). Stopping it first, or clearing `current`,
+    // left the incoming clip ramping up from zero with nothing else driving the
+    // rig: bind pose (the T-pose) for the whole fade, on every single respawn.
+    const death = this.action(this.def.clips.death);
+    if (death && death !== this.current) death.stop();
+    const flourishClip = this.def.clips.flourish;
+    if (flourishClip && this.action(flourishClip)) {
+      this.playOneShot(flourishClip, 1); // skeletons claw out of the ground; bosses taunt
+      return;
+    }
+    this.fadeTo(this.action(this.def.clips.idle), 0.2, false);
+  }
+}
+
+function clipNamesOf(def: VisualDef): string[] {
+  const c = def.clips;
+  return [
+    c.idle,
+    c.walk,
+    c.run,
+    c.death,
+    ...(c.attack ?? []),
+    ...Object.values(c.attackByAbility ?? {}),
+    ...Object.values(c.attackByHand ?? {}),
+    ...(c.hit ?? []),
+    c.cast,
+    c.sitDown,
+    c.sitIdle,
+    c.swim,
+    c.jump,
+    c.land,
+    c.walkBack,
+    c.flourish,
+    c.stow,
+    ...Object.values(c.emote ?? {}).flatMap((spec) => spec.clips),
+  ].filter((n): n is string => !!n);
+}
+
+function firstLoadedEmoteClip(
+  spec: EmoteClipSpec | undefined,
+  action: (name: string) => THREE.AnimationAction | null,
+): string | null {
+  if (!spec) return null;
+  return spec.clips.find((name) => action(name)) ?? null;
+}

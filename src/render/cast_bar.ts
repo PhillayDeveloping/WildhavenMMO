@@ -1,0 +1,142 @@
+// Pure presentation logic for the overhead spell cast/channel bar. Kept DOM-free
+// (and free of i18n: no t()/tEntity here) so the fill + label rules stay
+// unit-testable without a WebGL context. The renderer turns this into DOM and
+// resolves the visible text (fishing/gathering label vs. ability name) via
+// i18n. Fishing shows a constant full waiting bar (the bite is signaled by
+// the bobber + cue, never by the bar); the gather cast fills like any
+// hardcast and its label rides `label` + castDisplayName.
+import { MOUNT_SUMMON_SECONDS } from '../sim/mounts';
+import { CONSUME_DURATION, type Consuming, type Entity, FISHING_CAST_ID } from '../sim/types';
+
+export interface CastBarState {
+  /** whether the bar should be shown at all this frame */
+  visible: boolean;
+  /** channels drain (true); hardcasts fill toward completion (false) */
+  channel: boolean;
+  /** 0..1 width fraction — casts grow toward 1, channels shrink toward 0 */
+  fill: number;
+  /**
+   * Stable discriminator for the renderer to localize, never display text:
+   * the raw castingAbility id (an ABILITIES key, or an unknown id rendered
+   * verbatim). When `fishing` is true this is the fishing cast id.
+   */
+  label: string;
+  /** the cast is the fishing channel → renderer shows the localized fishing label */
+  fishing: boolean;
+}
+
+const HIDDEN: CastBarState = { visible: false, channel: false, fill: 0, label: '', fishing: false };
+
+export function castBarState(e: Entity): CastBarState {
+  // corpses, doors/crates, and idle entities show nothing; guard the divide too
+  if (e.dead || e.kind === 'object' || !e.castingAbility || e.castTotal <= 0) return HIDDEN;
+  const remaining = Math.max(0, Math.min(1, e.castRemaining / e.castTotal));
+  // Fishing (Professions 2.0) renders a CONSTANT full waiting bar:
+  // the bite moment is the bobber + cue, and the bar must carry no bite (or
+  // session-progress) information a modified client could read timing off.
+  // The gather cast is an ordinary filling hardcast through the generic path.
+  const fill = e.castingAbility === FISHING_CAST_ID ? 1 : e.channeling ? remaining : 1 - remaining;
+  return {
+    visible: true,
+    channel: e.channeling,
+    fill,
+    label: e.castingAbility,
+    fishing: e.castingAbility === FISHING_CAST_ID,
+  };
+}
+
+/**
+ * Stable eat/drink discriminator the renderer localizes (it is never display
+ * text): which consumable(s) are running. Follows the same i18n-free precedent
+ * as `label` (the raw ability id the renderer turns into a name): the core emits
+ * the mode, the painter resolves the localized 'eating'/'drinking' label.
+ */
+export type ConsumeMode = 'eat' | 'drink' | 'eatdrink';
+
+/** The eat/drink overlay state. A PLAYER-ONLY concern: only players eat/drink, so
+ *  this rides on the player cast-bar instance and the generic-Entity `castBarState`
+ *  path (which the target also uses) stays a pure cast/channel function. */
+export interface ConsumeBarState {
+  /** whether the eat/drink overlay should be shown at all this frame */
+  visible: boolean;
+  /** 0..1 width fraction; drains from full toward 0 as the timer ticks down,
+   *  like a channel (the consume bar uses the channel styling) */
+  fill: number;
+  /** stable discriminator for the renderer to localize: eat vs drink vs both */
+  mode: ConsumeMode;
+  /** seconds left on the bar-driving consumable (the longer-running one), for the
+   *  timer text the painter formats */
+  remaining: number;
+}
+
+const CONSUME_HIDDEN: ConsumeBarState = { visible: false, fill: 0, mode: 'eat', remaining: 0 };
+
+/** Mount summon channel state. Only the PLAYER sees this bar: the summon is
+ *  player-initiated and the cast is cancelled by any movement input (handled
+ *  in player_motion.ts). The bar drains like a channel over MOUNT_SUMMON_SECONDS.
+ *  `mountKey` is the stable discriminator the painter localizes to the mount name;
+ *  absent (empty) means no active summon. */
+export interface MountSummonBarState {
+  /** Whether the summon bar should be shown this frame. */
+  visible: boolean;
+  /** 0..1 fraction; 1.0 at cast start, draining to 0 on completion. */
+  fill: number;
+  /** The mount key being summoned (e.g. 'valorsteed'), for the painter to localize. */
+  mountKey: string;
+  /** Seconds remaining, for the timer text. */
+  remaining: number;
+}
+
+const MOUNT_SUMMON_HIDDEN: MountSummonBarState = {
+  visible: false,
+  fill: 0,
+  mountKey: '',
+  remaining: 0,
+};
+
+/** Derive the player's mount summon bar state from the entity's mountCastRemaining
+ *  and mountCastKey. Shown when mountCastKey is non-empty (summon in progress);
+ *  hidden during a dismount channel (mountCastKey === ''). */
+export function mountSummonBarState(
+  mountCastRemaining: number,
+  mountCastKey: string,
+): MountSummonBarState {
+  // mountCastKey is '' during a dismount channel; only show the summon bar during
+  // an actual summon (key is the target mount's key).
+  if (!mountCastKey || mountCastRemaining <= 0) return MOUNT_SUMMON_HIDDEN;
+  return {
+    visible: true,
+    fill: Math.max(0, Math.min(1, mountCastRemaining / MOUNT_SUMMON_SECONDS)),
+    mountKey: mountCastKey,
+    remaining: mountCastRemaining,
+  };
+}
+
+/**
+ * Derive the player's eat/drink overlay from the food/drink timers. Food and
+ * drink run concurrently; when both are active the longer-remaining one drives
+ * the bar (matching the inline HUD block this replaced). i18n-free: emits the
+ * `mode` discriminator only, never a `t()` call or visible text. Same input gives
+ * the same output; no Math.random/Date.now/performance.now.
+ */
+export function consumeBarState(
+  eating: Consuming | null,
+  drinking: Consuming | null,
+): ConsumeBarState {
+  // the longer-remaining consumable drives the bar (matching the inline HUD block);
+  // null only when neither food nor drink is active
+  const driver =
+    eating && drinking
+      ? eating.remaining >= drinking.remaining
+        ? eating
+        : drinking
+      : (eating ?? drinking);
+  if (!driver) return CONSUME_HIDDEN;
+  const mode: ConsumeMode = eating && drinking ? 'eatdrink' : eating ? 'eat' : 'drink';
+  return {
+    visible: true,
+    fill: Math.max(0, Math.min(1, driver.remaining / CONSUME_DURATION)),
+    mode,
+    remaining: driver.remaining,
+  };
+}

@@ -1,0 +1,210 @@
+// Pure view-core for the Ravenpost mailbox window (DOM/Three/i18n-free).
+// Maps the IWorld mail mirror plus the window's local state (tab, opened
+// letter, staged attachments) to a render model the thin painter
+// (mailbox_window.ts) draws. Registered in UI_PURE_CORES; unit-tested against
+// both Sim- and ClientWorld-shaped inputs in tests/mailbox_view.test.ts.
+
+import { itemInstancePayloadsEqual } from '../sim/item_instance_merge';
+import type { InvSlot, ItemInstancePayload } from '../sim/types';
+import type { MailInfo, MailKindView } from '../world_api';
+
+export type MailTab = 'inbox' | 'send';
+
+export interface MailInboxRow {
+  id: number;
+  unread: boolean;
+  hasAttachments: boolean;
+  kind: MailKindView;
+  // Authored letter id (system/NPC mail): the painter localizes sender,
+  // subject and body through it; null for player mail (verbatim text).
+  letterId: string | null;
+  senderName: string;
+  subject: string;
+  copper: number;
+  items: InvSlot[];
+}
+
+export interface MailInboxBody {
+  rows: MailInboxRow[];
+  totalCount: number;
+  unread: number;
+  // The letter open in the reading pane, resolved against the live rows so a
+  // letter deleted under us closes the pane instead of showing stale text.
+  opened: (MailInboxRow & { body: string }) | null;
+}
+
+export interface MailSendBody {
+  postage: number;
+  maxAttachments: number;
+  deliverySeconds: number;
+  attachments: InvSlot[];
+  canAttachMore: boolean;
+}
+
+export type MailboxView =
+  | { kind: 'no-data' }
+  | { kind: 'inbox'; body: MailInboxBody }
+  | { kind: 'send'; body: MailSendBody };
+
+export function buildMailboxView(input: {
+  info: MailInfo | null;
+  tab: MailTab;
+  openedId: number | null;
+  attachments: InvSlot[];
+}): MailboxView {
+  const { info } = input;
+  if (!info) return { kind: 'no-data' };
+  if (input.tab === 'send') {
+    return {
+      kind: 'send',
+      body: {
+        postage: info.postage,
+        maxAttachments: info.maxAttachments,
+        deliverySeconds: info.deliverySeconds,
+        attachments: input.attachments,
+        canAttachMore: input.attachments.length < info.maxAttachments,
+      },
+    };
+  }
+  const rows: MailInboxRow[] = info.messages.map((m) => ({
+    id: m.id,
+    unread: !m.read,
+    hasAttachments: m.copper > 0 || m.items.length > 0,
+    kind: m.kind,
+    letterId: m.letterId ?? null,
+    senderName: m.senderName,
+    subject: m.subject,
+    copper: m.copper,
+    items: m.items,
+  }));
+  const openedSource =
+    input.openedId === null ? null : (info.messages.find((m) => m.id === input.openedId) ?? null);
+  const openedRow =
+    openedSource === null ? null : (rows.find((r) => r.id === openedSource.id) ?? null);
+  return {
+    kind: 'inbox',
+    body: {
+      rows,
+      totalCount: info.totalCount,
+      unread: info.unread,
+      opened: openedRow && openedSource ? { ...openedRow, body: openedSource.body } : null,
+    },
+  };
+}
+
+// Clamps a parcel's staged quantity after a +/- stepper click (#1444): never
+// below 1 (use the remove chip to drop it entirely) and never above what the
+// bag actually holds, so the stepper cannot stage more than is owned. The
+// floor wins over the ceiling if the bag empties to 0 between paints (the
+// item is still staged, just no longer purchasable): the sim's own
+// countFungibleItem re-check refuses the send regardless, so this is a
+// display-only edge case, never a dupe/loss vector.
+export function clampParcelQty(current: number, delta: number, owned: number): number {
+  const max = Math.max(1, Math.floor(owned));
+  return Math.min(max, Math.max(1, Math.floor(current) + Math.floor(delta)));
+}
+
+/**
+ * Parse a TYPED parcel quantity (the chip's editable field) into the legal
+ * 1..owned range. Garbage, empty, or non-finite input restores `fallback` (the
+ * currently staged count) instead of NaN-poisoning the clamp: clampParcelQty
+ * alone returns NaN for NaN input because Math.max(1, NaN) is NaN. Purely a UX
+ * convenience: the sim re-validates every send authoritatively regardless
+ * (post_office floors counts, rejects < 1, and checks fungible stock).
+ */
+export function parseParcelQty(raw: string, owned: number, fallback: number): number {
+  const parsed = Number.parseInt(raw.trim(), 10);
+  const base = Number.isFinite(parsed) ? parsed : fallback;
+  return clampParcelQty(Number.isFinite(base) ? base : 1, 0, owned);
+}
+
+/** How many byte-equal copies of one instanced payload are already staged.
+ *  Byte-equal copies are interchangeable (item_instance_merge.ts is the one
+ *  equality rule the sim escrows by), so they are counted, never deduped. */
+export function stagedInstancedCopies(
+  staged: readonly InvSlot[],
+  itemId: string,
+  instance: ItemInstancePayload,
+): number {
+  let n = 0;
+  for (const s of staged) {
+    if (s.itemId === itemId && s.instance && itemInstancePayloadsEqual(s.instance, instance)) {
+      n += s.count;
+    }
+  }
+  return n;
+}
+
+/** True when one more copy of this exact instanced payload may be staged.
+ *  Bounded by BOTH what the player actually holds unlocked and the letter's
+ *  parcel limit, mirroring the sim's own escrow validation
+ *  (mail/post_office.ts counts every entry naming the same payload against
+ *  countMatchingUnlocked). The sim has always accepted several byte-equal
+ *  instanced entries in one letter; the window used to dedupe them down to
+ *  one, which made a stack of signed rare materials mailable only one copy per
+ *  letter, at full postage each. */
+export function canStageInstancedCopy(
+  staged: readonly InvSlot[],
+  itemId: string,
+  instance: ItemInstancePayload,
+  ownedUnlocked: number,
+  maxAttachments: number,
+): boolean {
+  if (staged.length >= Math.max(0, Math.floor(maxAttachments))) return false;
+  return stagedInstancedCopies(staged, itemId, instance) < Math.max(0, Math.floor(ownedUnlocked));
+}
+
+// The full price of sending: the attached coin plus the flat postage.
+export function mailSendCost(attachedCopper: number, postage: number): number {
+  return Math.max(0, Math.floor(attachedCopper)) + postage;
+}
+
+// Client-side pre-check mirrored from the sim's authoritative validation, so
+// the Send button can disable with a reason instead of round-tripping a
+// guaranteed refusal. The sim re-validates everything regardless.
+export type MailSendBlock = 'needRecipient' | 'cantAffordPostage' | null;
+
+export function mailSendBlocked(form: {
+  to: string;
+  attachedCopper: number;
+  postage: number;
+  purse: number;
+}): MailSendBlock {
+  if (form.to.trim().length === 0) return 'needRecipient';
+  if (form.purse < mailSendCost(form.attachedCopper, form.postage)) return 'cantAffordPostage';
+  return null;
+}
+
+// The HUD envelope indicator: visible only while something unread waits.
+export interface MailIndicatorView {
+  visible: boolean;
+  count: number;
+}
+
+export function mailIndicatorView(unread: number): MailIndicatorView {
+  const count = Number.isFinite(unread) ? Math.max(0, Math.floor(unread)) : 0;
+  return { visible: count > 0, count };
+}
+
+export interface RecipientSuggestion {
+  name: string;
+  cls: string;
+  level: number;
+}
+
+export function recipientSuggestions(
+  results: RecipientSuggestion[],
+  selfName: string,
+  max: number,
+): RecipientSuggestion[] {
+  const self = selfName.trim();
+  const limit = Math.max(0, Math.floor(max));
+  if (limit === 0) return [];
+  return results.filter((r) => r.name !== self).slice(0, limit);
+}
+
+export function wrappedSuggestionIndex(current: number, delta: number, total: number): number {
+  if (total <= 0) return -1;
+  if (current < 0) return delta > 0 ? 0 : total - 1;
+  return (current + delta + total) % total;
+}

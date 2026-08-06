@@ -1,0 +1,535 @@
+import { describe, expect, it } from 'vitest';
+import type { PlayerClass } from '../src/sim/types';
+import {
+  blockRows,
+  friendRows,
+  type GuildRosterItem,
+  guildDisplayedRole,
+  guildRosterItems,
+  guildView,
+  ignoreRows,
+  raidView,
+  type SocialTab,
+  socialDot,
+  socialStructSig,
+  TENURE_RECRUIT_MS,
+  TENURE_VETERAN_MS,
+  tenureTier,
+} from '../src/ui/social_view';
+import type {
+  FriendInfo,
+  GuildInfo,
+  GuildMemberInfo,
+  PartyInfo,
+  PartyMemberInfo,
+  SocialInfo,
+} from '../src/world_api';
+
+// The social core derives the panel's structural signature (the full-rebuild vs
+// refresh-in-place gate) and the per-tab row view models from socialInfo +
+// partyInfo. These tests pin (1) the signature stability across no-op content
+// ticks, (2) the tab list + permission rules, and (3) the
+// ClientWorld-vs-Sim parity: a Sim-shaped and a ClientWorld-mirror-shaped source
+// yield identical models.
+
+function friend(over: Partial<FriendInfo> & { name: string }): FriendInfo {
+  return {
+    id: 1,
+    cls: 'warrior',
+    level: 10,
+    realm: 'Test',
+    online: true,
+    ...over,
+    activeTitle: over.activeTitle ?? null,
+  };
+}
+
+function guildMember(over: Partial<GuildMemberInfo> & { name: string }): GuildMemberInfo {
+  return {
+    ...friend(over),
+    rank: over.rank ?? 'member',
+    lastLogin: over.lastLogin ?? null,
+    joinedAt: over.joinedAt ?? null,
+  };
+}
+
+function partyMember(
+  over: Partial<PartyMemberInfo> & { pid: number; group: 1 | 2 },
+): PartyMemberInfo {
+  return {
+    name: `p${over.pid}`,
+    cls: 'warrior' as PlayerClass,
+    level: 10,
+    hp: 100,
+    mhp: 100,
+    res: 0,
+    mres: 0,
+    rtype: null,
+    x: 0,
+    z: 0,
+    dead: 0,
+    inCombat: 0,
+    ...over,
+  };
+}
+
+const SOCIAL: SocialInfo = {
+  friends: [
+    friend({ name: 'Aria', online: true, status: 'combat', zone: 'zone:elwynn' }),
+    friend({ name: 'Borin', online: false }),
+  ],
+  blocks: [{ id: 9, name: 'Spammer' }],
+  ignores: [{ id: 11, name: 'Chatterbox' }],
+  guild: {
+    id: 7,
+    name: 'Wolves',
+    rank: 'leader',
+    members: [
+      guildMember({ name: 'Me', rank: 'leader' }),
+      guildMember({ name: 'Off', rank: 'officer', online: true }),
+      guildMember({ name: 'Grunt', rank: 'member', online: false }),
+    ],
+  } as GuildInfo,
+};
+
+describe('socialStructSig', () => {
+  it('is stable across a no-op content tick (same tab + structure)', () => {
+    const a = socialStructSig('friends', SOCIAL, null);
+    // a content-only change (a friend coming online) must NOT change the struct sig
+    const moved: SocialInfo = {
+      ...SOCIAL,
+      friends: [friend({ name: 'Aria', online: false }), friend({ name: 'Borin', online: true })],
+    };
+    const b = socialStructSig('friends', moved, null);
+    expect(b).toBe(a);
+  });
+
+  it('changes when the tab, online state, or guild rank changes', () => {
+    const base = socialStructSig('friends', SOCIAL, null);
+    expect(socialStructSig('guild', SOCIAL, null)).not.toBe(base);
+    expect(socialStructSig('friends', null, null)).not.toBe(base);
+    const demoted: SocialInfo = {
+      ...SOCIAL,
+      guild: { ...(SOCIAL.guild as GuildInfo), rank: 'member' },
+    };
+    expect(socialStructSig('friends', demoted, null)).not.toBe(base);
+  });
+
+  it('encodes the raid roster shape so a regroup forces a rebuild', () => {
+    const a: PartyInfo = {
+      leader: 1,
+      raid: true,
+      master: { enabled: false, looter: 0, threshold: 'uncommon' },
+      members: [partyMember({ pid: 1, group: 1 }), partyMember({ pid: 2, group: 1 })],
+    };
+    const b: PartyInfo = {
+      ...a,
+      members: [partyMember({ pid: 1, group: 1 }), partyMember({ pid: 2, group: 2 })],
+    };
+    expect(socialStructSig('raid', null, b)).not.toBe(socialStructSig('raid', null, a));
+  });
+});
+
+describe('socialDot', () => {
+  it('is off when offline, the status (or online) when online', () => {
+    expect(socialDot(false, 'combat')).toBe('off');
+    expect(socialDot(true, undefined)).toBe('online');
+    expect(socialDot(true, 'dungeon')).toBe('dungeon');
+  });
+});
+
+describe('per-tab row models', () => {
+  it('derives friend rows in source order with dot kinds', () => {
+    const rows = friendRows(SOCIAL);
+    expect(rows.map((r) => r.name)).toEqual(['Aria', 'Borin']);
+    expect(rows[0].dot).toBe('combat');
+    expect(rows[1].dot).toBe('off');
+  });
+
+  it('derives the two player tiers from their OWN lists, never from each other', () => {
+    // The Ignored and Blocked tabs render one tier each. A cross-wire that fed
+    // blocks into the Ignored tab (or vice versa) trips on either row set.
+    expect(blockRows(SOCIAL).map((r) => r.name)).toEqual(['Spammer']);
+    expect(blockRows(null)).toEqual([]);
+    expect(ignoreRows(SOCIAL).map((r) => r.name)).toEqual(['Chatterbox']);
+    expect(ignoreRows(null)).toEqual([]);
+  });
+
+  it('resolves guild action permissions against the viewer rank', () => {
+    const view = guildView(SOCIAL, 'Me');
+    expect(view.guild?.rows.map((r) => r.name)).toEqual(['Me', 'Off', 'Grunt']);
+    const me = view.guild!.rows.find((r) => r.name === 'Me')!;
+    expect(me.self).toBe(true);
+    expect(me.canKick).toBe(false);
+    const off = view.guild!.rows.find((r) => r.name === 'Off')!;
+    expect(off.canDemote).toBe(true);
+    expect(off.canPromote).toBe(false);
+    expect(off.canKick).toBe(true);
+    const grunt = view.guild!.rows.find((r) => r.name === 'Grunt')!;
+    expect(grunt.canPromote).toBe(true);
+    expect(grunt.canTransfer).toBe(true);
+  });
+
+  it('returns a null guild for a guildless viewer', () => {
+    expect(guildView({ ...SOCIAL, guild: null }, 'Me').guild).toBeNull();
+  });
+
+  it('passes the billboard through and resolves canEditMotd per rank', () => {
+    const withMotd = (rank: 'leader' | 'officer' | 'member'): SocialInfo => ({
+      ...SOCIAL,
+      guild: {
+        ...(SOCIAL.guild as GuildInfo),
+        rank,
+        motd: 'Raid night Friday. Discord: discord.gg/example',
+        motdSetBy: 'Gizzelda',
+      },
+    });
+    const asLeader = guildView(withMotd('leader'), 'Me').guild!;
+    expect(asLeader.motd).toBe('Raid night Friday. Discord: discord.gg/example');
+    expect(asLeader.motdSetBy).toBe('Gizzelda');
+    expect(asLeader.canEditMotd).toBe(true);
+    expect(guildView(withMotd('officer'), 'Off').guild!.canEditMotd).toBe(true);
+    expect(guildView(withMotd('member'), 'Grunt').guild!.canEditMotd).toBe(false);
+  });
+
+  it('defaults missing billboard fields to empty strings (older-server frames)', () => {
+    // SOCIAL.guild is cast and carries no motd fields, the pre-billboard shape.
+    const v = guildView(SOCIAL, 'Me').guild!;
+    expect(v.motd).toBe('');
+    expect(v.motdSetBy).toBe('');
+  });
+
+  it('passes each row activeTitle through as a DEED ID (null untitled), both tabs', () => {
+    const social: SocialInfo = {
+      ...SOCIAL,
+      friends: [friend({ name: 'Titled', activeTitle: 'prog_veteran' }), friend({ name: 'Plain' })],
+      guild: {
+        ...(SOCIAL.guild as GuildInfo),
+        members: [
+          guildMember({ name: 'MTitled', rank: 'member', activeTitle: 'hid_saul_footnote' }),
+          guildMember({ name: 'MPlain', rank: 'member' }),
+        ],
+      },
+    };
+    const friends = friendRows(social);
+    expect(friends.find((r) => r.name === 'Titled')?.activeTitle).toBe('prog_veteran');
+    expect(friends.find((r) => r.name === 'Plain')?.activeTitle).toBeNull();
+    const rows = guildView(social, 'Me').guild!.rows;
+    expect(rows.find((r) => r.name === 'MTitled')?.activeTitle).toBe('hid_saul_footnote');
+    expect(rows.find((r) => r.name === 'MPlain')?.activeTitle).toBeNull();
+  });
+
+  it('maps each member last_login into the guild row (null when unknown)', () => {
+    const iso = '2026-01-02T03:04:05.000Z';
+    const social: SocialInfo = {
+      ...SOCIAL,
+      guild: {
+        ...(SOCIAL.guild as GuildInfo),
+        members: [
+          guildMember({ name: 'Seen', rank: 'member', online: false, lastLogin: iso }),
+          guildMember({ name: 'NeverSeen', rank: 'member', online: false }),
+        ],
+      },
+    };
+    const rows = guildView(social, 'Me').guild!.rows;
+    expect(rows.find((r) => r.name === 'Seen')?.lastLogin).toBe(iso);
+    expect(rows.find((r) => r.name === 'NeverSeen')?.lastLogin).toBeNull();
+  });
+
+  it('maps each member joinedAt into the guild row (null when unknown)', () => {
+    const joined = Date.UTC(2026, 0, 2, 3, 4, 5);
+    const social: SocialInfo = {
+      ...SOCIAL,
+      guild: {
+        ...(SOCIAL.guild as GuildInfo),
+        members: [
+          guildMember({ name: 'Dated', rank: 'member', joinedAt: joined }),
+          guildMember({ name: 'Undated', rank: 'member' }),
+        ],
+      },
+    };
+    const rows = guildView(social, 'Me').guild!.rows;
+    expect(rows.find((r) => r.name === 'Dated')?.joinedAt).toBe(joined);
+    expect(rows.find((r) => r.name === 'Undated')?.joinedAt).toBeNull();
+  });
+});
+
+describe('tenureTier', () => {
+  const DAY = 24 * 60 * 60 * 1000;
+  const NOW = Date.UTC(2026, 7, 1); // any fixed clock; the helper is pure
+
+  it('pins the locked thresholds: 7 days recruit, 30 days veteran', () => {
+    expect(TENURE_RECRUIT_MS).toBe(7 * DAY);
+    expect(TENURE_VETERAN_MS).toBe(30 * DAY);
+  });
+
+  it('marks a member a recruit strictly under 7 days (6d23h boundary)', () => {
+    expect(tenureTier(NOW - (6 * DAY + 23 * 60 * 60 * 1000), NOW)).toBe('recruit');
+  });
+
+  it('drops the recruit role at exactly 7 days', () => {
+    expect(tenureTier(NOW - 7 * DAY, NOW)).toBeNull();
+  });
+
+  it('shows the plain tier through 29 days', () => {
+    expect(tenureTier(NOW - 29 * DAY, NOW)).toBeNull();
+  });
+
+  it('marks a member veteran at exactly 30 days and beyond', () => {
+    expect(tenureTier(NOW - 30 * DAY, NOW)).toBe('veteran');
+    expect(tenureTier(NOW - 400 * DAY, NOW)).toBe('veteran');
+  });
+
+  it('treats a just-joined and a future (clock-skewed) joinedAt as a recruit', () => {
+    expect(tenureTier(NOW, NOW)).toBe('recruit');
+    expect(tenureTier(NOW + DAY, NOW)).toBe('recruit');
+  });
+
+  it('shows no badge when joinedAt is unknown', () => {
+    expect(tenureTier(null, NOW)).toBeNull();
+  });
+});
+
+describe('guildDisplayedRole (the one role chip per roster row)', () => {
+  const DAY = 24 * 60 * 60 * 1000;
+  const NOW = Date.UTC(2026, 7, 1); // any fixed clock; the helpers are pure
+  const roleAt = (rank: string, joinedAgoMs: number | null) =>
+    guildDisplayedRole(rank, tenureTier(joinedAgoMs === null ? null : NOW - joinedAgoMs, NOW));
+
+  it('a member shows the tenure tier AS the role across the locked boundaries', () => {
+    expect(roleAt('member', 6 * DAY + 23 * 60 * 60 * 1000)).toBe('recruit'); // 6d23h
+    expect(roleAt('member', 7 * DAY)).toBe('member'); // exactly 7d drops Recruit
+    expect(roleAt('member', 29 * DAY)).toBe('member');
+    expect(roleAt('member', 30 * DAY)).toBe('veteran'); // exactly 30d gains Veteran
+  });
+
+  it('a member with an unknown joinedAt shows the plain member role', () => {
+    expect(roleAt('member', null)).toBe('member');
+    expect(guildDisplayedRole('member', null)).toBe('member');
+  });
+
+  it('officers and the leader pass their rank through and NEVER a tenure role', () => {
+    // Regression teeth: an officer/leader must keep the rank label even when
+    // their tenure would resolve to a tier (fresh recruit or long veteran).
+    for (const rank of ['leader', 'officer'] as const) {
+      expect(roleAt(rank, 3 * DAY)).toBe(rank);
+      expect(roleAt(rank, 400 * DAY)).toBe(rank);
+      expect(roleAt(rank, null)).toBe(rank);
+      expect(guildDisplayedRole(rank, 'recruit')).toBe(rank);
+      expect(guildDisplayedRole(rank, 'veteran')).toBe(rank);
+    }
+  });
+
+  it('an unrecognized rank falls back to the member arm (rankLabel parity)', () => {
+    expect(guildDisplayedRole('somefuturerank', 'recruit')).toBe('recruit');
+    expect(guildDisplayedRole('somefuturerank', null)).toBe('member');
+  });
+});
+
+describe('guildRosterItems (online-first grouping + hide-offline filter)', () => {
+  // Build guild rows through guildView so the grouping is tested against the REAL row
+  // models the painter consumes (not a hand-shaped stand-in). Viewer is 'Nobody' so no
+  // row is self (irrelevant to grouping, which keys only on `online`).
+  function roster(members: Array<{ name: string; online: boolean }>) {
+    const social: SocialInfo = {
+      ...SOCIAL,
+      guild: {
+        ...(SOCIAL.guild as GuildInfo),
+        members: members.map((m) =>
+          guildMember({ name: m.name, rank: 'member', online: m.online }),
+        ),
+      },
+    };
+    return guildView(social, 'Nobody').guild!.rows;
+  }
+
+  it('groups online members first, then offline, each header carrying its count', () => {
+    const rows = roster([
+      { name: 'A', online: false },
+      { name: 'B', online: true },
+      { name: 'C', online: false },
+      { name: 'D', online: true },
+    ]);
+    // Online group keeps the source order (B before D); offline keeps it too (A before C).
+    expect(guildRosterItems(rows, false)).toEqual([
+      { kind: 'header', group: 'online', count: 2 },
+      { kind: 'member', row: rows.find((r) => r.name === 'B') },
+      { kind: 'member', row: rows.find((r) => r.name === 'D') },
+      { kind: 'header', group: 'offline', count: 2 },
+      { kind: 'member', row: rows.find((r) => r.name === 'A') },
+      { kind: 'member', row: rows.find((r) => r.name === 'C') },
+    ]);
+  });
+
+  it('renders exactly one group for an all-online roster (no empty Offline header)', () => {
+    const rows = roster([
+      { name: 'A', online: true },
+      { name: 'B', online: true },
+    ]);
+    const items = guildRosterItems(rows, false);
+    expect(items.filter((i) => i.kind === 'header')).toEqual([
+      { kind: 'header', group: 'online', count: 2 },
+    ]);
+    expect(items.some((i) => i.kind === 'header' && i.group === 'offline')).toBe(false);
+  });
+
+  it('renders exactly one group for an all-offline roster (no empty Online header)', () => {
+    const rows = roster([
+      { name: 'A', online: false },
+      { name: 'B', online: false },
+    ]);
+    const items = guildRosterItems(rows, false);
+    expect(items.filter((i) => i.kind === 'header')).toEqual([
+      { kind: 'header', group: 'offline', count: 2 },
+    ]);
+    expect(items.some((i) => i.kind === 'header' && i.group === 'online')).toBe(false);
+  });
+
+  it('hide-offline drops the offline header AND its member rows, leaving online intact', () => {
+    const rows = roster([
+      { name: 'On1', online: true },
+      { name: 'Off1', online: false },
+      { name: 'On2', online: true },
+    ]);
+    expect(guildRosterItems(rows, true)).toEqual([
+      { kind: 'header', group: 'online', count: 2 },
+      { kind: 'member', row: rows.find((r) => r.name === 'On1') },
+      { kind: 'member', row: rows.find((r) => r.name === 'On2') },
+    ]);
+    // No offline row (or its header) survives the filter.
+    const hidden = guildRosterItems(rows, true);
+    expect(hidden.some((i) => i.kind === 'member' && i.row.name === 'Off1')).toBe(false);
+    expect(hidden.some((i) => i.kind === 'header' && i.group === 'offline')).toBe(false);
+  });
+
+  it('hide-offline on an all-offline roster yields an empty roster (the toggle still lets it back)', () => {
+    const rows = roster([{ name: 'A', online: false }]);
+    expect(guildRosterItems(rows, true)).toEqual([]);
+  });
+
+  it('online header count reflects real online membership, unaffected by the hide-offline filter', () => {
+    const rows = roster([
+      { name: 'A', online: true },
+      { name: 'B', online: false },
+    ]);
+    const onlineHeader = (its: GuildRosterItem[]) =>
+      its.find((i) => i.kind === 'header' && i.group === 'online');
+    expect(onlineHeader(guildRosterItems(rows, false))).toEqual({
+      kind: 'header',
+      group: 'online',
+      count: 1,
+    });
+    expect(onlineHeader(guildRosterItems(rows, true))).toEqual({
+      kind: 'header',
+      group: 'online',
+      count: 1,
+    });
+  });
+
+  it('is a pure projection (same rows -> deeply-equal grouping)', () => {
+    const rows = roster([
+      { name: 'A', online: true },
+      { name: 'B', online: false },
+    ]);
+    expect(guildRosterItems(rows, false)).toEqual(guildRosterItems(rows, false));
+  });
+});
+
+describe('raidView', () => {
+  it('flags convert eligibility for a 5+ party leader', () => {
+    const party: PartyInfo = {
+      leader: 1,
+      raid: false,
+      master: { enabled: false, looter: 0, threshold: 'uncommon' },
+      members: [1, 2, 3, 4, 5].map((pid) => partyMember({ pid, group: 1 })),
+    };
+    const view = raidView(party, 1);
+    expect(view.raid).toBe(false);
+    expect(view.canConvert).toBe(true);
+    expect(view.canUnconvert).toBe(false);
+    expect(raidView(party, 2).canConvert).toBe(false);
+  });
+
+  it('builds two groups with hp percent + move eligibility, and un-convert for a small raid', () => {
+    const party: PartyInfo = {
+      leader: 1,
+      raid: true,
+      master: { enabled: false, looter: 0, threshold: 'uncommon' },
+      members: [
+        partyMember({ pid: 1, group: 1, hp: 50, mhp: 200 }),
+        partyMember({ pid: 2, group: 2, hp: 100, mhp: 100 }),
+      ],
+    };
+    const view = raidView(party, 1);
+    expect(view.raid).toBe(true);
+    expect(view.canUnconvert).toBe(true);
+    const [g1, g2] = view.groups!;
+    expect(g1.members[0].hpPct).toBe(25);
+    expect(g1.members[0].isLead).toBe(true);
+    expect(g1.members[0].moveTo).toBe(2);
+    expect(g2.members[0].moveTo).toBe(1);
+  });
+
+  it('hides the move button when the other group is full at 5', () => {
+    const members: PartyMemberInfo[] = [
+      ...[1, 2, 3, 4, 5].map((pid) => partyMember({ pid, group: 2 })),
+      partyMember({ pid: 6, group: 1 }),
+    ];
+    const view = raidView(
+      {
+        leader: 1,
+        raid: true,
+        master: { enabled: false, looter: 0, threshold: 'uncommon' },
+        members,
+      },
+      1,
+    );
+    const g1 = view.groups![0];
+    expect(g1.members[0].moveTo).toBeNull();
+  });
+});
+
+describe('same input -> same output (pure projection)', () => {
+  it('returns deeply-equal models for identical input', () => {
+    const tab: SocialTab = 'guild';
+    expect(socialStructSig(tab, SOCIAL, null)).toBe(socialStructSig(tab, SOCIAL, null));
+    expect(guildView(SOCIAL, 'Me')).toEqual(guildView(SOCIAL, 'Me'));
+    expect(friendRows(SOCIAL)).toEqual(friendRows(SOCIAL));
+  });
+});
+
+describe('ClientWorld-vs-Sim parity', () => {
+  // The Sim exposes socialInfo/partyInfo directly; a ClientWorld mirrors them from a
+  // server snapshot (a structural clone). Feed BOTH shapes the same logical data and
+  // assert identical models, so the offline-only-shape trap (party presence fields)
+  // can't drift the panel between the two hosts.
+  function simShaped(): { social: SocialInfo; party: PartyInfo } {
+    return {
+      social: SOCIAL,
+      party: {
+        leader: 1,
+        raid: true,
+        master: { enabled: false, looter: 0, threshold: 'uncommon' },
+        members: [partyMember({ pid: 1, group: 1 }), partyMember({ pid: 2, group: 2 })],
+      },
+    };
+  }
+  function clientShaped(): { social: SocialInfo; party: PartyInfo } {
+    const s = simShaped();
+    // a ClientWorld mirror is a JSON round-trip of the server snapshot
+    return JSON.parse(JSON.stringify(s)) as { social: SocialInfo; party: PartyInfo };
+  }
+
+  it('yields identical row + signature models from a Sim-shaped and a mirror-shaped source', () => {
+    const sim = simShaped();
+    const cli = clientShaped();
+    for (const tab of ['friends', 'guild', 'ignore', 'block', 'raid'] as SocialTab[]) {
+      expect(socialStructSig(tab, sim.social, sim.party)).toBe(
+        socialStructSig(tab, cli.social, cli.party),
+      );
+    }
+    expect(friendRows(sim.social)).toEqual(friendRows(cli.social));
+    expect(guildView(sim.social, 'Me')).toEqual(guildView(cli.social, 'Me'));
+    expect(raidView(sim.party, 1)).toEqual(raidView(cli.party, 1));
+  });
+});

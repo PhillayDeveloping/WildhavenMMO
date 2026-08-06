@@ -1,0 +1,329 @@
+// Pure, host-agnostic core for the Social panel (#social-window): friends,
+// guild, ignore, and raid tabs. It owns the two DOM-free decisions the panel
+// makes: (1) the structural signature that tells the per-frame loop whether the
+// panel must be fully rebuilt (tab / online / guild-membership / raid-roster
+// change) versus refreshed in place, and (2) the per-tab row view models (which
+// rows, each row's status-dot kind, link-vs-plain name, and which guild/raid
+// action buttons are allowed). i18n + DOM live in social_window; this returns
+// keyed (not localized) labels so the marking + permission rules are unit-tested
+// in Node, mirroring the vendor/talents pure cores.
+//
+// DOM/Three-free and i18n-free (registered in tests/architecture.test.ts
+// UI_PURE_CORES); world types are imported type-only from world_api so the same
+// model is derived from a Sim and a ClientWorld mirror.
+
+import type {
+  FriendInfo,
+  GuildMemberInfo,
+  PartyInfo,
+  PartyMemberInfo,
+  SocialInfo,
+} from '../world_api';
+
+export type SocialTab = 'friends' | 'guild' | 'ignore' | 'block' | 'raid';
+
+/** Structural identity of the panel: which tab, online or not, and the guild
+ *  membership/rank (which changes the footer) plus the raid roster shape.
+ *  Content within a tab (a friend's zone, a member's hp) does NOT count, so it
+ *  refreshes in place rather than triggering a full rebuild. */
+export function socialStructSig(
+  tab: SocialTab,
+  social: SocialInfo | null,
+  party: PartyInfo | null,
+): string {
+  const g = social?.guild ?? null;
+  const raidSig = party
+    ? `${party.raid ? 1 : 0}:${party.leader}:${party.members.map((m) => `${m.pid}.${m.group}`).join(',')}`
+    : 'solo';
+  return `${tab}|${social !== null}|${g?.id ?? 0}|${g?.rank ?? ''}|${raidSig}`;
+}
+
+/** The status dot kind for a presence row: 'off' when offline, otherwise the
+ *  presence status ('online' when none is reported). */
+export function socialDot(online: boolean, status: string | undefined): string {
+  return online ? (status ?? 'online') : 'off';
+}
+
+export interface FriendRow {
+  name: string;
+  cls: string;
+  level: number;
+  online: boolean;
+  /** Status dot kind: 'off' | 'online' | 'combat' | 'dungeon' | 'dead' | 'afk'. */
+  dot: string;
+  status: string | undefined;
+  zone: string | undefined;
+  /** The selected Book of Deeds title as a DEED ID (null untitled); the
+   *  painter localizes through deed_i18n.ts and hides on ''. */
+  activeTitle: string | null;
+}
+
+/** Friends-tab rows in source order. */
+export function friendRows(social: SocialInfo | null): FriendRow[] {
+  const friends = social?.friends ?? [];
+  return friends.map((f: FriendInfo) => ({
+    name: f.name,
+    cls: f.cls,
+    level: f.level,
+    online: f.online,
+    dot: socialDot(f.online, f.status),
+    status: f.status,
+    zone: f.zone,
+    activeTitle: f.activeTitle ?? null,
+  }));
+}
+
+export interface IgnoreRow {
+  name: string;
+}
+
+/** Blocked-tab rows in source order: the BLOCKED list (the heavy tier). */
+export function blockRows(social: SocialInfo | null): IgnoreRow[] {
+  const blocks = social?.blocks ?? [];
+  return blocks.map((b) => ({ name: b.name }));
+}
+
+/** Blocked-tab rows in source order: the IGNORED list (chat-only, the light tier). */
+export function ignoreRows(social: SocialInfo | null): IgnoreRow[] {
+  const ignores = social?.ignores ?? [];
+  return ignores.map((i) => ({ name: i.name }));
+}
+
+export interface GuildRow {
+  name: string;
+  cls: string;
+  level: number;
+  online: boolean;
+  dot: string;
+  status: string | undefined;
+  zone: string | undefined;
+  /** ISO-8601 timestamp of the member's last world entry, or null if unknown.
+   *  The painter formats it (relative/date) and localizes; the core just
+   *  passes it through. */
+  lastLogin: string | null;
+  /** Epoch-ms timestamp of when the member joined the guild, or null if
+   *  unknown. The painter derives the tenure badge from it (tenureTier);
+   *  the core just passes it through. */
+  joinedAt: number | null;
+  /** The selected Book of Deeds title as a DEED ID (null untitled), as on
+   *  FriendRow. */
+  activeTitle: string | null;
+  /** This member's guild rank key ('leader' | 'officer' | 'member'). */
+  rank: string;
+  /** True when this row is the viewing player. */
+  self: boolean;
+  /** Whisper button is shown (online + not self). */
+  canWhisper: boolean;
+  /** Hand over leadership (viewer is leader, target is not self). */
+  canTransfer: boolean;
+  /** Promote member -> officer (viewer is leader, target a member). */
+  canPromote: boolean;
+  /** Demote officer -> member (viewer is leader, target an officer). */
+  canDemote: boolean;
+  /** Remove from guild: leaders may remove members + officers; officers may
+   *  remove only members; never self or another leader. */
+  canKick: boolean;
+}
+
+export interface GuildView {
+  /** Null when the viewer has no guild (the tab shows the empty state). */
+  guild: {
+    name: string;
+    rank: string;
+    memberCount: number;
+    /** The guild billboard message ('' when unset) and its setter's display
+     *  name ('' when unset). The painter escapes the text; never linkified. */
+    motd: string;
+    motdSetBy: string;
+    /** True iff the viewer may edit the billboard (rank leader or officer);
+     *  UX only, the server enforces the real gate. */
+    canEditMotd: boolean;
+    rows: GuildRow[];
+  } | null;
+}
+
+/** Guild-tab view: the header (name + viewer rank + count) and per-member rows
+ *  with each action button's permission resolved against the viewer's rank. */
+export function guildView(social: SocialInfo | null, myName: string): GuildView {
+  const guild = social?.guild ?? null;
+  if (!guild) return { guild: null };
+  const me = guild.rank;
+  const rows = guild.members.map((m: GuildMemberInfo) => {
+    const self = m.name === myName;
+    const canKick =
+      !self &&
+      ((me === 'leader' && m.rank !== 'leader') || (me === 'officer' && m.rank === 'member'));
+    return {
+      name: m.name,
+      cls: m.cls,
+      level: m.level,
+      online: m.online,
+      dot: socialDot(m.online, m.status),
+      status: m.status,
+      zone: m.zone,
+      lastLogin: m.lastLogin ?? null,
+      joinedAt: m.joinedAt ?? null,
+      activeTitle: m.activeTitle ?? null,
+      rank: m.rank,
+      self,
+      canWhisper: m.online && !self,
+      canTransfer: !self && me === 'leader',
+      canPromote: !self && me === 'leader' && m.rank === 'member',
+      canDemote: !self && me === 'leader' && m.rank === 'officer',
+      canKick,
+    };
+  });
+  return {
+    guild: {
+      name: guild.name,
+      rank: me,
+      memberCount: guild.members.length,
+      motd: guild.motd ?? '',
+      motdSetBy: guild.motdSetBy ?? '',
+      canEditMotd: me === 'leader' || me === 'officer',
+      rows,
+    },
+  };
+}
+
+/** Membership under 7 days marks a member a "recruit". */
+export const TENURE_RECRUIT_MS = 7 * 24 * 60 * 60 * 1000;
+/** Membership of 30 days or more marks a member "veteran". */
+export const TENURE_VETERAN_MS = 30 * 24 * 60 * 60 * 1000;
+
+export type TenureTier = 'recruit' | 'veteran';
+
+/**
+ * Guild-roster tenure tier from the member's joinedAt (epoch ms) and the
+ * caller's clock: under 7 days is 'recruit', 30 days or more is 'veteran', in
+ * between (and unknown joinedAt) is no tier (guildDisplayedRole renders the
+ * plain member role then). A joinedAt in the future (clock skew) lands in the
+ * 'recruit' arm by construction. Returns a keyed tier, never display text: the
+ * painter localizes. Cosmetic-only by design: the tier is derived from the
+ * viewer's own clock and only styles the viewer's roster, so it must never
+ * gate a permission or any gameplay outcome; if tenure ever becomes
+ * gameplay-relevant, compute it server-side first.
+ */
+export function tenureTier(joinedAt: number | null, now: number): TenureTier | null {
+  if (joinedAt === null) return null;
+  const tenureMs = now - joinedAt;
+  if (tenureMs < TENURE_RECRUIT_MS) return 'recruit';
+  if (tenureMs >= TENURE_VETERAN_MS) return 'veteran';
+  return null;
+}
+
+/** The one keyed role label a guild-roster row displays: a rank for officers
+ *  and the leader, a tenure-derived role for everyone else. */
+export type GuildDisplayedRole = 'leader' | 'officer' | 'member' | 'recruit' | 'veteran';
+
+/**
+ * Resolve the ONE role chip a guild-roster row shows (one chip per row, by
+ * design): officers and the leader display their rank label exactly as
+ * before and never a tenure label; a regular member displays the tenure tier
+ * AS the role ('recruit' under 7 days, 'veteran' at 30 days or more) and the
+ * plain 'member' role in between or when joinedAt is unknown (a null tier).
+ * DISPLAY-ONLY: the underlying rank, every permission computation, and the
+ * roster sort are untouched; this only picks the chip's keyed label, which
+ * the painter localizes.
+ */
+export function guildDisplayedRole(rank: string, tier: TenureTier | null): GuildDisplayedRole {
+  if (rank === 'leader' || rank === 'officer') return rank;
+  return tier ?? 'member';
+}
+
+export type GuildRosterGroup = 'online' | 'offline';
+
+/** A guild-roster render item for the grouped view: either a group HEADER carrying
+ *  the group's member count, or a single MEMBER row. */
+export type GuildRosterItem =
+  | { kind: 'header'; group: GuildRosterGroup; count: number }
+  | { kind: 'member'; row: GuildRow };
+
+/**
+ * Group a guild roster online-first: an "online" header (+ count) over the online
+ * members, then an "offline" header (+ count) over the offline members. Preserves
+ * the source order within each group (guildView's secondary sort). Empty groups emit
+ * NO header (never an empty "Offline (0)"), so an all-online or all-offline roster
+ * renders exactly one group. `hideOffline` drops the offline header AND its rows
+ * entirely (the online header's count still reflects the real online membership, since
+ * the filter only suppresses the offline group's rendering). A DOM-free, i18n-free
+ * pure projection: the painter localizes each header and formats the count.
+ */
+export function guildRosterItems(rows: GuildRow[], hideOffline: boolean): GuildRosterItem[] {
+  const online = rows.filter((r) => r.online);
+  const offline = rows.filter((r) => !r.online);
+  const items: GuildRosterItem[] = [];
+  if (online.length > 0) {
+    items.push({ kind: 'header', group: 'online', count: online.length });
+    for (const row of online) items.push({ kind: 'member', row });
+  }
+  if (!hideOffline && offline.length > 0) {
+    items.push({ kind: 'header', group: 'offline', count: offline.length });
+    for (const row of offline) items.push({ kind: 'member', row });
+  }
+  return items;
+}
+
+export interface RaidMemberRow {
+  pid: number;
+  name: string;
+  cls: PartyMemberInfo['cls'];
+  level: number;
+  /** Health percent, rounded, 0..100 (mhp floored to 1 to avoid divide-by-0). */
+  hpPct: number;
+  /** True when this member leads the raid. */
+  isLead: boolean;
+  /** Group to move this member to, or null when no move button is shown
+   *  (viewer not leader, or the other group is full at 5). */
+  moveTo: 1 | 2 | null;
+}
+
+export interface RaidGroupView {
+  group: 1 | 2;
+  count: number;
+  members: RaidMemberRow[];
+}
+
+export interface RaidView {
+  /** True when the party is a raid (the two-group layout is shown). */
+  raid: boolean;
+  /** When not a raid: whether the viewer (leader of a 5+ party) may convert. */
+  canConvert: boolean;
+  /** When a raid: whether the viewer (leader of a <=5 raid) may fold it back into
+   *  a normal party. Raid groups cannot enter standard instances, so a small raid
+   *  can un-convert; a larger one must shed members first. */
+  canUnconvert: boolean;
+  /** Present only when raid is true. */
+  groups: [RaidGroupView, RaidGroupView] | null;
+}
+
+/** Raid-tab view: when not a raid, a flag for the convert action; when a raid,
+ *  the two groups with each member's hp percent and move-target eligibility,
+ *  plus whether the leader may un-convert a small raid. */
+export function raidView(party: PartyInfo | null, myPid: number): RaidView {
+  if (!party?.raid) {
+    const canConvert = !!party && party.leader === myPid && party.members.length >= 5;
+    return { raid: false, canConvert, canUnconvert: false, groups: null };
+  }
+  const leader = party.leader === myPid;
+  const byGroup: Record<1 | 2, PartyMemberInfo[]> = {
+    1: party.members.filter((m) => m.group === 1),
+    2: party.members.filter((m) => m.group === 2),
+  };
+  const buildGroup = (group: 1 | 2): RaidGroupView => {
+    const otherGroup: 1 | 2 = group === 1 ? 2 : 1;
+    const otherFull = byGroup[otherGroup].length >= 5;
+    const members = byGroup[group].map((m) => ({
+      pid: m.pid,
+      name: m.name,
+      cls: m.cls,
+      level: m.level,
+      hpPct: Math.round((m.hp / Math.max(1, m.mhp)) * 100),
+      isLead: m.pid === party.leader,
+      moveTo: leader && !otherFull ? otherGroup : null,
+    }));
+    return { group, count: byGroup[group].length, members };
+  };
+  const canUnconvert = leader && party.members.length <= 5;
+  return { raid: true, canConvert: false, canUnconvert, groups: [buildGroup(1), buildGroup(2)] };
+}
