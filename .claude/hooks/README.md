@@ -1,6 +1,6 @@
 # Project hooks
 
-World of ClaudeCraft enforces its quality bar in layers so the bar holds without slowing the
+Wildhaven enforces its quality bar in layers so the bar holds without slowing the
 Claude Code edit loop. These two hooks are the local, always-on part. They are checked in, so
 they run for every contributor.
 

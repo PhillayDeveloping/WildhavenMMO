@@ -4,11 +4,11 @@
 
 </div>
 
-# 为 World of ClaudeCraft 做贡献
+# 为 Wildhaven 做贡献
 
-首先，感谢你的到来。World of ClaudeCraft 由一群热爱经典 MMO 的人共同打造，每一份贡献，无论大小，都让它变得更好。修正一个错别字、翻译游戏、报告一个 bug、搭建一座全新的副本：这些都很重要，我们欢迎你的加入。
+首先，感谢你的到来。Wildhaven 由一群热爱经典 MMO 的人共同打造，每一份贡献，无论大小，都让它变得更好。修正一个错别字、翻译游戏、报告一个 bug、搭建一座全新的副本：这些都很重要，我们欢迎你的加入。
 
-本指南会帮你完成环境搭建，让你的第一次贡献顺顺利利。你不需要是专家。如果有任何不清楚的地方，欢迎到 [Discord](https://discord.com/invite/worldofclaudecraft) 上提问，会有人乐意帮你。
+本指南会帮你完成环境搭建，让你的第一次贡献顺顺利利。你不需要是专家。如果有任何不清楚的地方，欢迎到 [Discord](https://discord.com/invite/wildhaven) 上提问，会有人乐意帮你。
 
 参与即表示你同意遵守我们的[行为准则](../../CODE_OF_CONDUCT.md)。
 
@@ -17,11 +17,11 @@
 这里人人都有用武之地：
 
 - **代码。** 修复 bug、增加功能，或者提升性能。带有
-  [`good first issue`](https://github.com/levy-street/world-of-claudecraft/labels/good%20first%20issue)
-  和 [`help wanted`](https://github.com/levy-street/world-of-claudecraft/labels/help%20wanted)
+  [`good first issue`](https://github.com/levy-street/wildhaven/labels/good%20first%20issue)
+  和 [`help wanted`](https://github.com/levy-street/wildhaven/labels/help%20wanted)
   标签的 issue 是不错的起点。
 - **翻译。** 通过改进或补全某种语言，帮助世界各地的玩家。请看下方的[翻译游戏](#translating-the-game)。这是最容易上手、也最有影响力的入门方式之一。
-- **bug 报告与功能想法。** 提交一个 [issue](https://github.com/levy-street/world-of-claudecraft/issues/new/choose)。一份清晰的 bug 报告本身就是实打实的贡献。
+- **bug 报告与功能想法。** 提交一个 [issue](https://github.com/levy-street/wildhaven/issues/new/choose)。一份清晰的 bug 报告本身就是实打实的贡献。
 - **文档。** 像这份指南、README，以及 `docs/` 里的设计文档，都还有改进的空间。
 - **试玩与反馈。** 玩玩这个游戏，告诉我们哪里感觉不对劲，并在 Discord 上分享你的想法。
 
@@ -33,8 +33,8 @@
 
 ```bash
 # 1. Fork the repo on GitHub, then clone your fork
-git clone https://github.com/<your-username>/world-of-claudecraft.git
-cd world-of-claudecraft
+git clone https://github.com/<your-username>/wildhaven.git
+cd wildhaven
 
 # 2. Install pnpm once (same command on macOS, Linux, Windows)
 #    Match the packageManager pin in package.json (today: 10.34.5).
@@ -138,7 +138,7 @@ CI 全绿加上一份完整的清单，是我们合并前所看重的。维护�
 
 ## 本地化
 
-World of ClaudeCraft 以多种语言发行。每一条玩家可见的字符串都必须是一个翻译键，而功能贡献者通常只需要添加英文原文。
+Wildhaven 以多种语言发行。每一条玩家可见的字符串都必须是一个翻译键，而功能贡献者通常只需要添加英文原文。
 
 - 所有面向用户的文本都是 `t()` 键。请把新的英文文案加到 [`src/ui/i18n.catalog/`](../../src/ui/i18n.catalog/) 下对应的分域模块里（新的 HUD 外框相关文案放在 `hud_chrome.ts`），然后用 `t('dotted.key', values)` 渲染。对于功能类 PR，只提供英文正是正确的做法：其他语言由维护者在发布时补齐，所以你不需要改动 `src/ui/i18n.locales/` 中的 overlay，也绝不要在里面留下英文占位符或 `// TODO`。唯一的例外是 M16，即新增一条文字量较大的英文值时，还需要在同一次改动中补上 [`src/ui/CLAUDE.md`](../../src/ui/CLAUDE.md) 里说明的五种非拉丁语言翻译。
 - 数字、金额、日期、单位和百分比要经过格式化函数（`formatNumber`、`formatMoney`、`formatDateTime`、`Intl`），而不是手动拼接字符串。
@@ -157,30 +157,30 @@ World of ClaudeCraft 以多种语言发行。每一条玩家可见的字符串�
 2. 改进现有的翻译，或者补全任何读起来别扭的地方。
 3. 运行 `pnpm run i18n:gen`，把重新生成的 bundle 和你的 overlay 改动一起提交，然后跑本地化套件（`npx vitest run tests/i18n_completeness.test.ts tests/localization_coverage.test.ts`）并提交 PR。只做类型检查是看不出某个键有没有遗漏的，因为 overlay 本来就是有意稀疏的。
 
-要提议一门全新的语言，或者讨论语气和术语，请到 [Discord](https://discord.com/invite/worldofclaudecraft) 上开个话题，我们会帮你把它接进来。尤其欢迎母语者和流利使用者。好的翻译能让各地玩家都觉得游戏像家一样亲切。
+要提议一门全新的语言，或者讨论语气和术语，请到 [Discord](https://discord.com/invite/wildhaven) 上开个话题，我们会帮你把它接进来。尤其欢迎母语者和流利使用者。好的翻译能让各地玩家都觉得游戏像家一样亲切。
 
 ## 报告 bug 与请求功能
 
-请使用 [issue 模板](https://github.com/levy-street/world-of-claudecraft/issues/new/choose)：
+请使用 [issue 模板](https://github.com/levy-street/wildhaven/issues/new/choose)：
 
-- **bug 报告。** 请先搜索[现有的 issue](https://github.com/levy-street/world-of-claudecraft/issues) 以避免重复，然后写明复现步骤、你的预期、实际发生了什么，以及你的环境（离线还是在线、浏览器、桌面端还是移动端）。
+- **bug 报告。** 请先搜索[现有的 issue](https://github.com/levy-street/wildhaven/issues) 以避免重复，然后写明复现步骤、你的预期、实际发生了什么，以及你的环境（离线还是在线、浏览器、桌面端还是移动端）。
 - **功能请求。** 描述你想解决的问题，而不只是解决方案。背景信息能帮我们设计出真正合适的东西。
 - **安全漏洞。** 请不要提交公开 issue。请按照 [SECURITY.md](../../SECURITY.md) 的说明私下报告，我们会和你一起推进修复与披露。
 
 ## 获取帮助
 
-卡住了，或者只是想打个招呼？欢迎加入[社区 Discord](https://discord.com/invite/worldofclaudecraft)。没有什么问题是太小的，我们始终欢迎新的贡献者。
+卡住了，或者只是想打个招呼？欢迎加入[社区 Discord](https://discord.com/invite/wildhaven)。没有什么问题是太小的，我们始终欢迎新的贡献者。
 
 ## 许可证
 
 贡献代码即表示，你同意你的代码贡献将依据项目的 [MIT 许可证](../../LICENSE)进行授权，与覆盖整个项目的许可证相同。
 
-MIT 许可证就是字面意思：任何人都可以使用、修改和再分发这些代码，无论商用与否。我们的[服务条款](https://worldofclaudecraft.com/terms)约束的是我们在 worldofclaudecraft.com 上运营的托管版游戏（账号、行为、虚拟物品），并不限制 MIT 许可证赋予你或其他任何人对这些代码的权利。"World of ClaudeCraft" 和 "Levy Street" 这两个名称及其品牌标识不在 MIT 许可证的覆盖范围内。
+MIT 许可证就是字面意思：任何人都可以使用、修改和再分发这些代码，无论商用与否。我们的[服务条款](https://wildhaven.example/terms)约束的是我们在 wildhaven.example 上运营的托管版游戏（账号、行为、虚拟物品），并不限制 MIT 许可证赋予你或其他任何人对这些代码的权利。"Wildhaven" 和 "Levy Street" 这两个名称及其品牌标识不在 MIT 许可证的覆盖范围内。
 
 原创的创作素材（录音、音乐、美术及类似的著作作品）是个例外。如果你贡献一份自己创作的原创素材，你可以选择保留版权，并按你选定的许可证（例如 CC BY-NC 4.0）来贡献它，但需要满足以下条件：
 
 - 该许可证、它所覆盖的素材路径，以及对你的署名，要在同一个 pull request 中记录到 [CREDITS.md](../../CREDITS.md) 的许可证表格里；并且
-- 它至少包含一项永久、免版税的授权，允许 Levy Street 在 World of ClaudeCraft 中商业性地使用这些素材，包括官方发行版本和游戏内商店。
+- 它至少包含一项永久、免版税的授权，允许 Levy Street 在 Wildhaven 中商业性地使用这些素材，包括官方发行版本和游戏内商店。
 
 对于列在 CREDITS.md 表格中的素材，那里记录的许可证优先于项目默认的 MIT 许可证。
 
@@ -190,4 +190,4 @@ MIT 许可证就是字面意思：任何人都可以使用、修改和再分发�
 
 ---
 
-感谢你为 World of ClaudeCraft 做出贡献。我们迫不及待想看到你和我们一起创造出什么。
+感谢你为 Wildhaven 做出贡献。我们迫不及待想看到你和我们一起创造出什么。

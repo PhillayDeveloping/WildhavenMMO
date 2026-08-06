@@ -1,6 +1,6 @@
 ---
 name: woc-feature-plan
-description: "Plan a large or multi-session World of ClaudeCraft feature as architecture-aligned vertical slices with explicit decisions, verification, and handoff state. Use when the user requests a phased implementation plan, planning packet, session breakdown, or scalable approach before implementation."
+description: "Plan a large or multi-session Wildhaven feature as architecture-aligned vertical slices with explicit decisions, verification, and handoff state. Use when the user requests a phased implementation plan, planning packet, session breakdown, or scalable approach before implementation."
 ---
 
 # Feature Plan

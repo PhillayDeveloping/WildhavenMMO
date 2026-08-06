@@ -199,7 +199,7 @@ async function preflight() {
   }
   if (!/claudecraft/i.test(text)) {
     die(
-      `the server at ${GAME_URL} does not look like World of ClaudeCraft (another app on this port?); set GAME_URL to the right origin`,
+      `the server at ${GAME_URL} does not look like Wildhaven (another app on this port?); set GAME_URL to the right origin`,
     );
   }
 }

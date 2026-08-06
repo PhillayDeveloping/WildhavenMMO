@@ -364,7 +364,7 @@ Rebobinar, las barreras y una cura directa fiable, pero propone que el ciclo hab
 Cronomancia gire alrededor de infligir daño Arcano para sanar aliados preparados.
 
 La referencia conceptual es un healer ofensivo, pero la implementación y el balance deben ser
-propios de World of Claudecraft. Cronomancia no puede aportar simultáneamente el daño completo de
+propios de Wildhaven. Cronomancia no puede aportar simultáneamente el daño completo de
 una especialización DPS y la curación completa de un healer.
 
 ### 13.1 Nueva mecánica central: Eco temporal

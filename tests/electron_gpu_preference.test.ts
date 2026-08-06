@@ -23,7 +23,7 @@ import {
 } from '../electron/gpu_preference.cjs';
 
 const EXE =
-  'C:\\Users\\p\\AppData\\Local\\Programs\\world-of-claudecraft\\World of ClaudeCraft.exe';
+  'C:\\Users\\p\\AppData\\Local\\Programs\\wildhaven\\Wildhaven.exe';
 
 /** The error execFileSync surfaces when reg.exe exits 1 (value or key not found). */
 function missingValueError(): Error {
@@ -460,14 +460,14 @@ describe('relaunchForLinuxPrime', () => {
       deps({
         spawn,
         env,
-        execPath: '/usr/bin/world-of-claudecraft',
+        execPath: '/usr/bin/wildhaven',
         argv: ['--some-flag'],
         log: { info: vi.fn() },
       }),
     );
     expect(result).toBe(true);
     expect(calls).toHaveLength(1);
-    expect(calls[0].command).toBe('/usr/bin/world-of-claudecraft');
+    expect(calls[0].command).toBe('/usr/bin/wildhaven');
     expect(calls[0].args).toEqual(['--some-flag', '--ozone-platform=x11']);
     // Full options pin (not a subset match): a stray option here changes spawn semantics.
     expect(calls[0].options).toEqual({
@@ -500,9 +500,9 @@ describe('relaunchForLinuxPrime', () => {
     // exits; the outer file survives and brings up a fresh runtime + mount (the same
     // source electron-updater restarts from).
     const { spawn, calls } = fakeSpawn();
-    const env = { APPIMAGE: '/home/p/Applications/world-of-claudecraft.AppImage' };
+    const env = { APPIMAGE: '/home/p/Applications/wildhaven.AppImage' };
     relaunchForLinuxPrime(deps({ spawn, env, execPath: '/tmp/.mount_worldXYZ/binary', argv: [] }));
-    expect(calls[0].command).toBe('/home/p/Applications/world-of-claudecraft.AppImage');
+    expect(calls[0].command).toBe('/home/p/Applications/wildhaven.AppImage');
   });
 
   it('ignores a non-absolute APPIMAGE value and falls back to execPath', () => {

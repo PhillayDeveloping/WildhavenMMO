@@ -12,7 +12,7 @@
 import type { AdminTranslations } from '../i18n.en';
 
 export const zh_TW: AdminTranslations = {
-  "app.title": "World of ClaudeCraft - 管理後台",
+  "app.title": "Wildhaven - 管理後台",
   "app.shortTitle": "沃克管理員",
   "auth.username": "使用者名稱",
   "auth.password": "密碼",

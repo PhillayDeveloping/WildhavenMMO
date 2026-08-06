@@ -152,26 +152,26 @@ describe('i18n whole-catalog completeness', () => {
   // it is a genuine brand/URL that should never be translated.
   it('non-Latin player surfaces ship no untranslated English', () => {
     const BRAND_ALLOW = new Set([
-      'footer.copyright', // "{year} World of ClaudeCraft" - brand
+      'footer.copyright', // "{year} Wildhaven" - brand
       'footer.githubLink', // repository URL
       'fiesta.bracket', // "Fiesta" event brand
-      'serverUnavailable.logoAlt', // "World of ClaudeCraft" logo alt text - brand
-      'guide.brand', // "World of ClaudeCraft" - brand (Guide)
+      'serverUnavailable.logoAlt', // "Wildhaven" logo alt text - brand
+      'guide.brand', // "Wildhaven" - brand (Guide)
       'guide.brandShort', // "ClaudeCraft" - brand (Guide)
-      'guide.home.title', // "World of ClaudeCraft" - brand (Guide hero)
-      'guide.footer.rights', // "World of ClaudeCraft" - brand (Guide footer)
+      'guide.home.title', // "Wildhaven" - brand (Guide hero)
+      'guide.footer.rights', // "Wildhaven" - brand (Guide footer)
       'hudChrome.discord.title', // "Discord" - brand
       'hudChrome.discord.open', // "Discord" - brand
       'hudChrome.steam.title', // "Steam" - brand
       'hudChrome.epic.title', // "Epic" - brand
-      'hudChrome.discord.panelTitle', // "World of ClaudeCraft" - brand
+      'hudChrome.discord.panelTitle', // "Wildhaven" - brand
       'hudChrome.discord.linkedTitle', // "Discord: {name}" - brand + player name
       'hudChrome.keybinds.discord', // "Discord" - brand (Key Bindings action label)
       'hudChrome.claudium.title', // "Claudium" - in-game currency brand
       'hudChrome.claudium.balanceUnit', // "{amount} Claudium" - currency brand
       'hudChrome.claudium.storeCost', // "{amount} Claudium" - currency brand
       'guide.controls.discord', // "Discord" - brand (Guide controls-page action label)
-      'desktop.crash.title', // "World of ClaudeCraft" - brand (desktop crash dialog title)
+      'desktop.crash.title', // "Wildhaven" - brand (desktop crash dialog title)
       'auth.emailPlaceholder', // "you@example.com" - RFC 2606 example address, kept verbatim
       // Rift boss mechanic names: authored fantasy proper nouns that do not translate.
       'abilityUi.cast.rift_frost_execution',

@@ -39,7 +39,7 @@ function checkinBody(overrides: Record<string, unknown> = {}): Record<string, un
   return {
     platform: 'ios',
     device_id: 'device-1',
-    app_id: 'com.worldofclaudecraft',
+    app_id: 'com.wildhaven',
     plugin_version: '8.0.0',
     version_build: '0.32.0',
     version_code: '320',

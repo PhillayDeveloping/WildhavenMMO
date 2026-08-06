@@ -396,7 +396,7 @@ describe('item webp icons', () => {
     for (const id of [...BAG_IDS.filter((bagId) => bagId !== 'silkspun_satchel'), 'backpack']) {
       const entry = m.entries.find((e) => e.itemId === id);
       expect(entry?.license, `${id} must carry its own license override`).toContain(
-        'World of ClaudeCraft original art',
+        'Wildhaven original art',
       );
     }
     expect(m.entries.some((entry) => entry.itemId === 'silkspun_satchel')).toBe(false);
@@ -459,7 +459,7 @@ describe('item webp icons', () => {
         `${declared?.batch}/masters/${id}.png (accepted ${declared?.acceptedVersion})`,
       );
       expect(entry?.license, `${id} must override the mapping's CraftPix default`).toContain(
-        'World of ClaudeCraft original art',
+        'Wildhaven original art',
       );
     }
   });

@@ -1,4 +1,4 @@
-# bot/: World of ClaudeCraft Discord bot
+# bot/: Wildhaven Discord bot
 
 A standalone Node process (separate from the game server) that bridges the
 official Discord server and the game two ways:

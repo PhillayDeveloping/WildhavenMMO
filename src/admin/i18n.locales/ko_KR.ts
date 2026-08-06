@@ -264,7 +264,7 @@ export const ko_KR: Record<string, string> = {
   'usage.metric.githubLinkFailure': 'GitHub 연동 실패',
   'usage.metric.githubLinkRateLimited': 'GitHub 연동 요청 제한',
   'usage.metric.githubLinkRequest': 'GitHub 연동 요청',
-  'app.title': 'World of ClaudeCraft - 관리자',
+  'app.title': 'Wildhaven - 관리자',
   'app.shortTitle': 'WoC 관리자',
   'auth.username': '사용자명',
   'auth.password': '비밀번호',

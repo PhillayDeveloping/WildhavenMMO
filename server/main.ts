@@ -911,7 +911,7 @@ async function refreshReleases(): Promise<ReleaseEntry[]> {
         headers: {
           Accept: 'application/vnd.github+json',
           'X-GitHub-Api-Version': '2022-11-28',
-          'User-Agent': 'world-of-claudecraft-server',
+          'User-Agent': 'wildhaven-server',
           ...(githubToken ? { Authorization: `Bearer ${githubToken}` } : {}),
         },
         signal: AbortSignal.timeout(8000),
@@ -3045,7 +3045,7 @@ export async function startServer(): Promise<http.Server> {
 
   game.start();
   server.listen(config.port, () => {
-    console.log(`World of ClaudeCraft server listening on http://localhost:${config.port}`);
+    console.log(`Wildhaven server listening on http://localhost:${config.port}`);
     console.log(`  REST: /api/register /api/login /api/characters /api/status`);
     console.log(`  WS:   /ws, then first message {t:"${ONLINE_WORLD_AUTH_TYPE}",token,character}`);
   });

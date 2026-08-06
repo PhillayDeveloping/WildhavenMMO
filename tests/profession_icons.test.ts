@@ -314,7 +314,7 @@ describe('profession webp icons', () => {
       listed.filter((id) => !files.includes(id)),
       'mapping.json lists art that is not committed: drop the stale entry',
     ).toEqual([]);
-    expect(m.license).toContain('World of ClaudeCraft original art');
+    expect(m.license).toContain('Wildhaven original art');
     for (const entry of m.entries) {
       expect(entry.name.trim(), `${entry.id} must retain a human-readable name`).not.toBe('');
       expect(entry.batch, `${entry.id} batch`).toMatch(/^batch-\d+$/);
@@ -327,7 +327,7 @@ describe('profession webp icons', () => {
       );
       expect(entry.sourceSha256, `${entry.id} source master SHA-256`).toMatch(/^[0-9a-f]{64}$/);
       expect(entry.license, `${entry.id} license`).toBe(
-        'World of ClaudeCraft original art (project-owned, created for this game)',
+        'Wildhaven original art (project-owned, created for this game)',
       );
     }
     const wrong: string[] = [];

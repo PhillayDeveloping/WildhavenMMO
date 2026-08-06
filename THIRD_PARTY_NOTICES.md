@@ -1,6 +1,6 @@
 # Third Party Notices
 
-World of ClaudeCraft project code is licensed under the MIT License in
+Wildhaven project code is licensed under the MIT License in
 `LICENSE`. Bundled art asset credits are tracked separately in `CREDITS.md`.
 
 This file records the third-party runtime dependency notices added for the

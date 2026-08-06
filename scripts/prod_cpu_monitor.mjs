@@ -55,7 +55,7 @@ const HELP = `Usage: node scripts/prod_cpu_monitor.mjs [options]
 Options:
   --once                         Poll once and exit
   --dry-run                      Never profile, even if CPU is high
-  --host NAME                    SSH target (default: world-of-claudecraft-prod)
+  --host NAME                    SSH target (default: wildhaven-prod)
   --jump-host NAME               SSH jump host (default: minivac)
   --direct                       SSH directly from an always-on ops host
   --container NAME               Docker container (default: eastbrook-game)

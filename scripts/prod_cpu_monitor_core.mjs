@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 export const DEFAULT_MONITOR_OPTIONS = Object.freeze({
-  targetHost: 'world-of-claudecraft-prod',
+  targetHost: 'wildhaven-prod',
   jumpHost: 'minivac',
   container: 'eastbrook-game',
   threshold: 90,

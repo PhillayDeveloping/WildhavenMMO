@@ -2020,7 +2020,7 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'editor.confirm.discardBody': 'Je hebt niet-opgeslagen wijzigingen in "{name}". Deze verwerpen?',
   'editor.confirm.discardTitle': 'Wijzigingen verwerpen?',
   'editor.confirm.ok': 'OK',
-  'editor.docTitle': 'Kaarteditor - World of ClaudeCraft',
+  'editor.docTitle': 'Kaarteditor - Wildhaven',
   'editor.eraseTool.blockerHint':
     'Klikken bij een blokkademuur verwijdert in plaats daarvan die muur.',
   'editor.eraseTool.hint':
@@ -2690,9 +2690,9 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.statInfo.sources.header': 'Opgebouwd uit:',
   'hudChrome.statInfo.sources.talents': 'Talenten en effecten: {value}',
   'a11y.characterActions': 'Personageacties',
-  'a11y.discordCommunity': 'Word lid van de World of ClaudeCraft Discord-community',
-  'a11y.donateProject': 'Doneer om World of ClaudeCraft te steunen',
-  'a11y.githubProject': 'Open het World of ClaudeCraft GitHub-project',
+  'a11y.discordCommunity': 'Word lid van de Wildhaven Discord-community',
+  'a11y.donateProject': 'Doneer om Wildhaven te steunen',
+  'a11y.githubProject': 'Open het Wildhaven GitHub-project',
   'a11y.goHome': 'Ga naar de startpagina',
   'a11y.languageSelection': 'Taalkeuze',
   'a11y.mainNavigation': 'Hoofdnavigatie',
@@ -4831,10 +4831,10 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'fiesta.word.shutdown': 'AFGESLACHT!',
   'fiesta.word.spree': '{n}× REEKS!',
   'fiesta.word.wave': 'AUGMENTS!',
-  'footer.copyright': '2026 World of ClaudeCraft',
+  'footer.copyright': '2026 Wildhaven',
   'footer.discordLabel': 'Word lid van de Discord',
   'footer.githubLabel': 'Opensourceproject',
-  'footer.githubLink': 'https://github.com/levy-street/world-of-claudecraft',
+  'footer.githubLink': 'https://github.com/levy-street/wildhaven',
   'footer.whitepaper': 'Whitepaper',
   'footer.privacy': 'Privacybeleid',
   'footer.terms': 'Servicevoorwaarden',
@@ -5107,7 +5107,7 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'guide.bestiary.levelsSame': 'Niveau {min}',
   'guide.bestiary.notedLabel': 'Opmerkelijk',
   'guide.bestiary.rare': 'Zeldzaam',
-  'guide.brand': 'World of ClaudeCraft',
+  'guide.brand': 'Wildhaven',
   'guide.brandShort': 'ClaudeCraft',
   'guide.breadcrumb.home': 'Gids',
   'guide.breadcrumb.label': 'Kruimelpad',
@@ -5373,7 +5373,7 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'guide.footer.discord': 'Word lid van de Discord',
   'guide.footer.github': 'Broncode op GitHub',
   'guide.footer.playNow': 'Speel nu',
-  'guide.footer.rights': 'World of ClaudeCraft',
+  'guide.footer.rights': 'Wildhaven',
   'guide.gear.consumablesElixirs':
     'Elixers geven een tijdelijke buff terwijl je avontuurt, een klein voordeel dat helpt wanneer je net iets verder wilt doorzetten.',
   'guide.gear.consumablesFood':
@@ -5536,7 +5536,7 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
     'De wereld is solo te spelen, maar de beste buit wacht achter een goede groep.',
   'guide.home.subtitle':
     'Quest, sluit je aaneen en verken een handgebouwde wereld, gratis in je browser.',
-  'guide.home.title': 'World of ClaudeCraft',
+  'guide.home.title': 'Wildhaven',
   'guide.home.what.heading': 'Een klassieke MMO, gemaakt om zo op te pakken',
   'guide.home.what.pillarClassesBody':
     'Tanken, genezen of de schade uitdelen. Elke klasse speelt zoals zijn archetype hoort, met talenten om hem van jou te maken.',
@@ -5965,7 +5965,7 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'guide.worldPage.heading': 'De wereld',
   'guide.worldPage.hub': 'Thuisbasis',
   'guide.worldPage.intro':
-    'World of ClaudeCraft is één aaneengesloten land dat je te voet doorkruist, drie zones van zuid naar noord. Er is geen snelreizen, dus de reis is onderdeel van het avontuur.',
+    'Wildhaven is één aaneengesloten land dat je te voet doorkruist, drie zones van zuid naar noord. Er is geen snelreizen, dus de reis is onderdeel van het avontuur.',
   'guide.worldPage.mapHeading': 'De weg naar het noorden',
   'guide.worldPage.mapSub':
     'Drie zones, van zuid naar noord, elk een stap hoger in niveau. Volg het questspoor en het land draagt je van het dal naar de toppen.',
@@ -7289,7 +7289,7 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
     'Voor volledig scherm op Android moet je deze pagina eerst installeren of aan je beginscherm toevoegen.',
   'mobilePreflight.androidInstallStep':
     'Tik in Chrome op het menu en daarna op App installeren of Toevoegen aan beginscherm.',
-  'mobilePreflight.androidOpenStep': 'Open World of ClaudeCraft vanaf het nieuwe pictogram.',
+  'mobilePreflight.androidOpenStep': 'Open Wildhaven vanaf het nieuwe pictogram.',
   'mobilePreflight.androidStandaloneDetail':
     'Je bent in de volledig-scherm-appmodus. Houd het apparaat in liggende stand.',
   'mobilePreflight.baseLandscape':
@@ -7300,7 +7300,7 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'mobilePreflight.iosInstallDetail':
     'Voor echt volledig scherm op iPhone of iPad moet je deze pagina eerst aan je beginscherm toevoegen.',
   'mobilePreflight.iosOpenStep':
-    'Open World of ClaudeCraft vanaf het nieuwe pictogram op het beginscherm.',
+    'Open Wildhaven vanaf het nieuwe pictogram op het beginscherm.',
   'mobilePreflight.iosShareStep': 'Tik in Safari op Deel en daarna op Zet op beginscherm.',
   'mobilePreflight.iosStandaloneDetail':
     'Je bent in de volledig-scherm-modus vanaf het beginscherm. Houd het apparaat in liggende stand.',
@@ -7319,7 +7319,7 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
     'Log in op de wereld. Je personages leven op de server en je deelt de wereld met iedereen die online is.',
   'mode.onlineTitle': 'Online Spelen',
   'mode.play': 'Spelen',
-  'mode.playAria': 'Speel World of ClaudeCraft',
+  'mode.playAria': 'Speel Wildhaven',
   'mode.serverAria': 'Kies wereld: Online of Offline',
   'mode.serverLabel': 'Kies je wereld',
   'mode.serverOffline': 'Offline',
@@ -7352,16 +7352,16 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'playerCard.actionShareNative': 'Delen...',
   'playerCard.actionShareX': 'Delen op X',
   'playerCard.arenaStat': 'Arena',
-  'playerCard.brandWordmark': 'WORLD OF CLAUDECRAFT',
+  'playerCard.brandWordmark': 'WILDHAVEN',
   'playerCard.close': 'Spelerskaart sluiten',
-  'playerCard.defaultRealm': 'World of ClaudeCraft',
+  'playerCard.defaultRealm': 'Wildhaven',
   'playerCard.fileNameFallback': 'speler',
   'playerCard.footerCta': 'Smeed je legende: {siteUrl}',
   'playerCard.footerHandle': '@{handle}',
   'playerCard.footerHandleWithRecruits': '@{handle} - {recruited}',
   'playerCard.levelClass': 'Niveau {level} - {className}',
   'playerCard.loading': 'Je kaart wordt gesmeed...',
-  'playerCard.nativeShareTitle': 'World of ClaudeCraft',
+  'playerCard.nativeShareTitle': 'Wildhaven',
   'playerCard.poseBattle': 'Strijd',
   'playerCard.poseGroup': 'Pose',
   'playerCard.poseHero': 'Held',
@@ -7375,7 +7375,7 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'playerCard.renderFailedStatus': 'Kaartweergave mislukt.',
   'playerCard.shareButton': 'Spelerskaart Delen',
   'playerCard.shareText':
-    'Ik smeed mijn legende in World of ClaudeCraft: Niveau {level} {className}{tierBit}. Sluit je aan bij mijn wereld:',
+    'Ik smeed mijn legende in Wildhaven: Niveau {level} {className}{tierBit}. Sluit je aan bij mijn wereld:',
   'playerCard.statusDownloaded': 'Kaart gedownload.',
   'playerCard.statusGenericError': 'Er is iets misgegaan.',
   'playerCard.statusOpenedXWithImage': 'X geopend. Plak de kaartafbeelding in de post.',
@@ -7479,21 +7479,21 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'realmTypes.rpPvp': 'RP-PvP',
   'seo.applicationCategory': 'Spel',
   'seo.description':
-    'Begin aan een episch avontuur in World of ClaudeCraft, een micro-MMO in klassieke stijl die je rechtstreeks in je browser kunt spelen. Sluit je aan bij een blijvende gedeelde wereld, level je klassen op en versla vijanden!',
+    'Begin aan een episch avontuur in Wildhaven, een micro-MMO in klassieke stijl die je rechtstreeks in je browser kunt spelen. Sluit je aan bij een blijvende gedeelde wereld, level je klassen op en versla vijanden!',
   'seo.genre': 'MMORPG',
   'seo.officialBody':
-    'worldofclaudecraft.com is de officiële gratis browser-MMO voor de Claudemoon-wereld. Speel online met een blijvend personage, verken solo offline, lees de wiki en volg geverifieerde communitylinks vanaf deze site.',
-  'seo.officialLabel': 'Officiële website van World of ClaudeCraft',
+    'wildhaven.example is de officiële gratis browser-MMO voor de Claudemoon-wereld. Speel online met een blijvend personage, verken solo offline, lees de wiki en volg geverifieerde communitylinks vanaf deze site.',
+  'seo.officialLabel': 'Officiële website van Wildhaven',
   'seo.operatingSystem': 'Webbrowser',
   'seo.playMode': 'Multiplayer',
-  'seo.title': 'World of ClaudeCraft: Web-MMO in Klassieke Stijl',
+  'seo.title': 'Wildhaven: Web-MMO in Klassieke Stijl',
   'serverUnavailable.body':
     'We herstarten de gameservice en verwachten dat Claudemoon binnenkort weer terug is. Deze pagina blijft automatisch controleren.',
   'serverUnavailable.eyebrow': 'Wereldonderhoud',
   'serverUnavailable.heading': 'De wereld is tijdelijk niet beschikbaar.',
-  'serverUnavailable.logoAlt': 'World of ClaudeCraft',
+  'serverUnavailable.logoAlt': 'Wildhaven',
   'serverUnavailable.status': 'Snel terug',
-  'serverUnavailable.title': 'World of ClaudeCraft - Wereld niet beschikbaar',
+  'serverUnavailable.title': 'Wildhaven - Wereld niet beschikbaar',
   'settings.languageLoadFailed': 'Kon die taal niet laden. Je huidige taal blijft behouden.',
   'settings.languageLoadUnavailable': 'Die taal is niet beschikbaar.',
   'settings.languageLoading': 'Taal laden...',
@@ -7745,7 +7745,7 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.leaderboard.guildXp': 'Totaal XP',
   'hudChrome.leaderboard.guildEmpty': 'Nog geen gerangschikte gildes.',
   'hudChrome.discord.title': 'Discord',
-  'hudChrome.discord.panelTitle': 'World of ClaudeCraft',
+  'hudChrome.discord.panelTitle': 'Wildhaven',
   'hudChrome.discord.open': 'Discord',
   'hudChrome.discord.close': 'Sluiten',
   'hudChrome.discord.keybind': 'Discord-paneel',
@@ -7866,10 +7866,10 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
     'Desktop-inlogcode is ongeldig of verlopen. Probeer het opnieuw.',
   'desktop.crash.body': 'De spelweergave werkt niet meer. Opnieuw laden?',
   'desktop.crash.fatalBody':
-    'World of ClaudeCraft is op een onverwachte fout gestuit en moet worden afgesloten.',
+    'Wildhaven is op een onverwachte fout gestuit en moet worden afgesloten.',
   'desktop.crash.quit': 'Afsluiten',
   'desktop.crash.reload': 'Opnieuw laden',
-  'desktop.crash.title': 'World of ClaudeCraft',
+  'desktop.crash.title': 'Wildhaven',
   'desktop.update.downloadingTitle': 'Update {version} wordt gedownload...',
   'desktop.update.later': 'Later',
   'desktop.update.readyTitle': 'Update {version} is klaar',
@@ -7908,9 +7908,9 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.unknown': 'Onbekend',
   'hudChrome.dailyRewards.usd': '{amount} USD',
   'hudChrome.nativeUpdate.body':
-    'Er is een nieuwe versie van World of ClaudeCraft beschikbaar. Werk nu bij voor de nieuwste oplossingen en verbeteringen.',
+    'Er is een nieuwe versie van Wildhaven beschikbaar. Werk nu bij voor de nieuwste oplossingen en verbeteringen.',
   'hudChrome.nativeUpdate.bodyWithVersion':
-    'Versie {version} van World of ClaudeCraft is beschikbaar. Werk nu bij voor de nieuwste oplossingen en verbeteringen.',
+    'Versie {version} van Wildhaven is beschikbaar. Werk nu bij voor de nieuwste oplossingen en verbeteringen.',
   'hudChrome.nativeUpdate.notNow': 'Niet nu',
   'hudChrome.nativeUpdate.title': 'Update beschikbaar',
   'hudChrome.nativeUpdate.update': 'Bijwerken',

@@ -266,7 +266,7 @@ describe('missing painted icon accepted-art manifest', () => {
       expect(asset.source.colourspace).toBe('srgb');
       expect(asset.generation).toMatchObject({
         source: 'OpenAI built-in image generation',
-        owner: 'World of ClaudeCraft',
+        owner: 'Wildhaven',
       });
       expect(asset.generation.license).toContain('project asset');
       expect(asset.generation.prompt).toBeTruthy();
@@ -419,7 +419,7 @@ describe('missing painted ability integration', () => {
         const asset = assetById.get(entry.abilityId);
         expect(asset, `${entry.abilityId} manifest owner`).toBeDefined();
         expect(entry.source).toBe('OpenAI built-in image generation');
-        expect(entry.owner).toBe('World of ClaudeCraft');
+        expect(entry.owner).toBe('Wildhaven');
         expect(entry.license).toContain('project asset');
         expect(entry.license).not.toContain('CraftPix');
         expect(entry.sourceFile).toBe(asset?.source.path);
@@ -493,7 +493,7 @@ describe('missing painted item integration', () => {
       const owner = owners[0];
       const asset = assetById.get(id);
       expect(owner.source).toBe('OpenAI built-in image generation');
-      expect(owner.owner).toBe('World of ClaudeCraft');
+      expect(owner.owner).toBe('Wildhaven');
       expect(owner.license).toContain('project asset');
       expect(owner.styleReference).toBeTruthy();
       expect(owner.commonPrompt).toBeTruthy();
@@ -535,7 +535,7 @@ describe('missing painted deed and Heroic weapon integration', () => {
       line.startsWith('| Generated Book of Deeds additions'),
     );
     expect(commissionedRow).toContain('excluding the fourteen generated additions listed next');
-    expect(generatedRow).toContain('World of ClaudeCraft');
+    expect(generatedRow).toContain('Wildhaven');
     expect(generatedRow).toContain('OpenAI built-in image generation');
     for (const id of accepted.targetSets.deeds) {
       expect(credits, `${id} credits`).toContain(id);

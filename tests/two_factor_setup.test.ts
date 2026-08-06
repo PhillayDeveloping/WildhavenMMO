@@ -61,7 +61,7 @@ describe('formatRecoveryCodesFile', () => {
     // Pinned to the literal expected English (the default `en` locale in tests) so
     // swapping the Hint/Warn keys, or resolving the wrong key on the header line,
     // fails this test even though both strings would still be present in the blob.
-    expect(lines[0]).toBe('World of ClaudeCraft recovery codes');
+    expect(lines[0]).toBe('Wildhaven recovery codes');
     expect(lines[1]).toBe('Account: Aelwyn');
     expect(lines[2]).toBe('');
     expect(lines[3]).toBe(
@@ -73,7 +73,7 @@ describe('formatRecoveryCodesFile', () => {
     // Independently confirm the lines are t()-resolved (not decoupled literals that
     // happen to match), so a future catalog wording change still updates this pin.
     expect(lines[0]).toBe(
-      t('hudChrome.account.recoveryCodesFileHeader', { brand: 'World of ClaudeCraft' }),
+      t('hudChrome.account.recoveryCodesFileHeader', { brand: 'Wildhaven' }),
     );
     expect(lines[3]).toBe(t('hudChrome.account.recoveryCodesFileHint'));
     expect(lines[4]).toBe(t('hudChrome.account.recoveryCodesFileWarn'));

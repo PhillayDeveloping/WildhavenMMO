@@ -70,7 +70,7 @@ node_modules in the asar, all seven fuses set.
 
 1. At build time, electron-builder bakes `resources/app-update.yml` into the
    app (from `build.publish`: generic provider, feed URL
-   `https://updates.worldofclaudecraft.com/desktop`), and the publish channel
+   `https://updates.wildhaven.example/desktop`), and the publish channel
    is derived from the baked API origin (`electron/update_guard.cjs`): the
    production origin emits the `latest` feed files, any other origin (dev,
    staging, localhost smoke packs) emits `dev` ones, and each emitted feed
@@ -200,9 +200,9 @@ node_modules in the asar, all seven fuses set.
 2. On each OS runner, with that platform's signing env set:
    `npm run electron:build`. Outputs land in `release/`.
 3. Upload to the update host directory (keep exact filenames):
-   - mac: `world-of-claudecraft-<v>-mac-universal.dmg` (download page),
+   - mac: `wildhaven-<v>-mac-universal.dmg` (download page),
      `...-mac-universal.zip` + `.zip.blockmap` + `latest-mac.yml` (updater).
-   - win: `world-of-claudecraft-<v>-win-x64.exe` and `...-win-arm64.exe` (one
+   - win: `wildhaven-<v>-win-x64.exe` and `...-win-arm64.exe` (one
      installer per arch: `build.nsis.buildUniversalInstaller: false`, see
      `docs/desktop-release.md`), each with its `.exe.blockmap`, plus the one
      `latest.yml` both artifacts list in (Windows update-info filenames carry
@@ -246,9 +246,9 @@ bump the version, rebuild, upload, and watch the toast + install cycle.
 ## Details worth knowing (grab bag)
 
 - **Log files** (paths follow the package NAME): mac
-  `~/Library/Logs/world-of-claudecraft/main.log`, win
-  `%APPDATA%\world-of-claudecraft\logs\main.log`, linux
-  `~/.config/world-of-claudecraft/logs/main.log`. 5 MB rotation, one `.old`.
+  `~/Library/Logs/wildhaven/main.log`, win
+  `%APPDATA%\wildhaven\logs\main.log`, linux
+  `~/.config/wildhaven/logs/main.log`. 5 MB rotation, one `.old`.
   The startup banner logs version, channel, updater state, crash-dump dir, and
   the log path itself. Ask players to attach it to bug reports.
 - **Crash minidumps** accumulate under the Crashpad dir printed in the banner
@@ -262,7 +262,7 @@ bump the version, rebuild, upload, and watch the toast + install cycle.
 - **Sign-in**: email and Discord only, exactly the web flow (email/password
   in-app; Discord via the default browser and the deep link below). There is
   no Steam sign-in on any channel.
-- **Deep link**: `worldofclaudecraft://desktop-login?code=...` completes the
+- **Deep link**: `wildhaven://desktop-login?code=...` completes the
   browser login handoff (cold start and second-instance both handled).
 - **Inspect a build's channel**: `npx asar extract-file <app>/Contents/
   Resources/app.asar package.json` (run OUTSIDE the repo root: it writes
@@ -272,7 +272,7 @@ bump the version, rebuild, upload, and watch the toast + install cycle.
   verification builds. `WOC_DISTRIBUTION=steam npm run electron:dev` exercises
   the steam runtime path unpackaged.
 - **Production server dependency**: the packaged app calls
-  `https://worldofclaudecraft.com` from origin `app://worldofclaudecraft`;
+  `https://wildhaven.example` from origin `app://wildhaven`;
   production must be running this branch's server (CORS reflection for that
   origin) or every REST call fails. The log file shows the CORS errors
   plainly until then. Deploying is the standard server update in `DEPLOY.md`
@@ -290,7 +290,7 @@ bump the version, rebuild, upload, and watch the toast + install cycle.
   actual Windows and Linux builds + launches, a real signed+notarized mac
   build, a full universal-arch `electron:build`, an end-to-end update apply
   (requires a signed build + a live feed), and the two login paths + the
-  `worldofclaudecraft://desktop-login` deep-link handoff AGAINST PRODUCTION
+  `wildhaven://desktop-login` deep-link handoff AGAINST PRODUCTION
   (blocked until this branch's server deploys and production reflects CORS for
   the `app://` origin; both flows have packaged-build evidence against a local
   server from the earlier shell passes). Everything else in this file has

@@ -265,7 +265,7 @@ export const ja_JP: Record<string, string> = {
   'usage.metric.githubLinkFailure': 'GitHubリンクの失敗',
   'usage.metric.githubLinkRateLimited': 'GitHubリンクのレート制限リクエスト',
   'usage.metric.githubLinkRequest': 'GitHubリンクのリクエスト',
-  'app.title': 'World of ClaudeCraft - 管理',
+  'app.title': 'Wildhaven - 管理',
   'app.shortTitle': 'WoC管理者',
   'auth.username': 'ユーザー名',
   'auth.password': 'パスワード',

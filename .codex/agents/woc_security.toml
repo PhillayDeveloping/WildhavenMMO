@@ -3,7 +3,7 @@ description = "Read-only security reviewer for authority, auth, secrets, validat
 sandbox_mode = "read-only"
 
 developer_instructions = """
-Perform a scoped privacy and security review of World of ClaudeCraft changes.
+Perform a scoped privacy and security review of Wildhaven changes.
 
 Read the root CLAUDE.md and every applicable local CLAUDE.md. Start with changed files and added lines. Exit early when no security surface changed and the quick secret and sim-integrity scan is clean.
 

@@ -4,16 +4,16 @@
 
 </div>
 
-# Bidra till World of ClaudeCraft
+# Bidra till Wildhaven
 
-Först och främst, tack för att du är här. World of ClaudeCraft byggs av en
+Först och främst, tack för att du är här. Wildhaven byggs av en
 gemenskap av människor som älskar klassiska MMO-spel, och varje bidrag, stort som
 litet, gör det bättre. Att rätta ett stavfel, översätta spelet, rapportera en
 bugg, bygga en helt ny instans: allt räknas, och du är välkommen här.
 
 Den här guiden hjälper dig att komma igång och göra ditt första bidrag smidigt.
 Du behöver inte vara expert. Om något är oklart, fråga på
-[Discord](https://discord.com/invite/worldofclaudecraft) så hjälper någon dig gärna.
+[Discord](https://discord.com/invite/wildhaven) så hjälper någon dig gärna.
 
 Genom att delta godkänner du att följa vår [uppförandekod](../../CODE_OF_CONDUCT.md).
 
@@ -23,13 +23,13 @@ Det finns en plats för alla här:
 
 - **Kod.** Rätta en bugg, lägg till en funktion eller förbättra prestandan. Issues
   märkta
-  [`good first issue`](https://github.com/levy-street/world-of-claudecraft/labels/good%20first%20issue)
-  och [`help wanted`](https://github.com/levy-street/world-of-claudecraft/labels/help%20wanted)
+  [`good first issue`](https://github.com/levy-street/wildhaven/labels/good%20first%20issue)
+  och [`help wanted`](https://github.com/levy-street/wildhaven/labels/help%20wanted)
   är bra ställen att börja på.
 - **Översättningar.** Hjälp spelare runt om i världen genom att förbättra eller
   färdigställa ett språk. Se [Översätta spelet](#translating-the-game) nedan. Det
   är ett av de enklaste och mest verkningsfulla sätten att börja.
-- **Buggrapporter och funktionsidéer.** Öppna ett [issue](https://github.com/levy-street/world-of-claudecraft/issues/new/choose).
+- **Buggrapporter och funktionsidéer.** Öppna ett [issue](https://github.com/levy-street/wildhaven/issues/new/choose).
   En tydlig buggrapport är ett verkligt bidrag.
 - **Dokumentation.** Guider som den här, README-filen och designdokumenten i
   `docs/` kan alltid förbättras.
@@ -44,8 +44,8 @@ Du behöver [Node.js 26](https://nodejs.org/) och **pnpm 10.34.x** (exakt pin i 
 
 ```bash
 # 1. Fork the repo on GitHub, then clone your fork
-git clone https://github.com/<your-username>/world-of-claudecraft.git
-cd world-of-claudecraft
+git clone https://github.com/<your-username>/wildhaven.git
+cd wildhaven
 
 # 2. Install pnpm once (same command on macOS, Linux, Windows)
 #    Match the packageManager pin in package.json (today: 10.34.5).
@@ -238,7 +238,7 @@ konstruktiva i granskningen, och vi ber dig om detsamma.
 
 ## Lokalisering
 
-World of ClaudeCraft levereras på många språk. Varje spelarsynlig sträng måste
+Wildhaven levereras på många språk. Varje spelarsynlig sträng måste
 vara en översättningsnyckel, medan den som bidrar med en funktion normalt bara
 lägger till den engelska källtexten.
 
@@ -290,15 +290,15 @@ behöver inte skriva någon spelkod för att göra det:
    saknas, eftersom överläggen medvetet är glesa.
 
 För att föreslå ett helt nytt språk, eller för att diskutera ton och terminologi,
-starta en tråd på [Discord](https://discord.com/invite/worldofclaudecraft) så hjälper vi dig att
+starta en tråd på [Discord](https://discord.com/invite/wildhaven) så hjälper vi dig att
 koppla in det. Modersmåls- och flytande talare är särskilt välkomna. Bra
 översättningar får spelet att kännas som hemma för spelare överallt.
 
 ## Rapportera buggar och begära funktioner
 
-Använd [issue-mallarna](https://github.com/levy-street/world-of-claudecraft/issues/new/choose):
+Använd [issue-mallarna](https://github.com/levy-street/wildhaven/issues/new/choose):
 
-- **Buggrapport.** Sök bland [befintliga issues](https://github.com/levy-street/world-of-claudecraft/issues)
+- **Buggrapport.** Sök bland [befintliga issues](https://github.com/levy-street/wildhaven/issues)
   först för att undvika dubbletter, och inkludera sedan steg för att återskapa, vad
   du förväntade dig, vad som hände och din miljö (offline eller online, webbläsare,
   dator eller mobil).
@@ -311,7 +311,7 @@ Använd [issue-mallarna](https://github.com/levy-street/world-of-claudecraft/iss
 ## Få hjälp
 
 Fastnat, eller vill bara säga hej? Gå med i
-[gemenskapens Discord](https://discord.com/invite/worldofclaudecraft). Ingen fråga är för liten, och
+[gemenskapens Discord](https://discord.com/invite/wildhaven). Ingen fråga är för liten, och
 nya bidragsgivare är alltid välkomna.
 
 ## Licens
@@ -321,10 +321,10 @@ projektets [MIT-licens](../../LICENSE), samma licens som täcker projektet.
 
 MIT-licensen betyder precis vad den säger: vem som helst får använda, ändra och
 vidaredistribuera koden, kommersiellt eller inte. Våra
-[användarvillkor](https://worldofclaudecraft.com/terms) styr det värdbaserade
-spelet vi driver på worldofclaudecraft.com (konton, uppförande, virtuella föremål)
+[användarvillkor](https://wildhaven.example/terms) styr det värdbaserade
+spelet vi driver på wildhaven.example (konton, uppförande, virtuella föremål)
 och begränsar inte de rättigheter MIT-licensen ger dig eller någon annan i den här
-koden. Namnen och varumärkena "World of ClaudeCraft" och "Levy Street" omfattas
+koden. Namnen och varumärkena "Wildhaven" och "Levy Street" omfattas
 inte av MIT-licensen.
 
 Ursprungliga kreativa tillgångar (ljudinspelningar, musik, konst och liknande
@@ -336,7 +336,7 @@ under en licens du väljer (till exempel CC BY-NC 4.0), förutsatt att:
   licenstabellen i [CREDITS.md](../../CREDITS.md) som en del av samma pull
   request, och
 - den minst innefattar en evig, royaltyfri rätt för Levy Street att använda
-  tillgångarna kommersiellt i World of ClaudeCraft, inklusive officiella releaser
+  tillgångarna kommersiellt i Wildhaven, inklusive officiella releaser
   och butiken i spelet.
 
 För tillgångar som listas i tabellen i CREDITS.md gäller den registrerade licensen
@@ -357,5 +357,5 @@ om de får föra din tillgång vidare, och vissa rader är märkta
 
 ---
 
-Tack för att du bidrar till World of ClaudeCraft. Vi kan inte vänta på att få se
+Tack för att du bidrar till Wildhaven. Vi kan inte vänta på att få se
 vad du bygger tillsammans med oss.

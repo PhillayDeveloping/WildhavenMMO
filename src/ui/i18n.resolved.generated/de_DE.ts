@@ -808,8 +808,8 @@ export const de_DE: EnTranslations = {
     },
     "nativeUpdate": {
       "title": "Update verfügbar",
-      "body": "Eine neue Version von World of ClaudeCraft ist verfügbar. Aktualisiere jetzt für die neuesten Fehlerbehebungen und Verbesserungen.",
-      "bodyWithVersion": "Version {version} von World of ClaudeCraft ist verfügbar. Aktualisiere jetzt für die neuesten Fehlerbehebungen und Verbesserungen.",
+      "body": "Eine neue Version von Wildhaven ist verfügbar. Aktualisiere jetzt für die neuesten Fehlerbehebungen und Verbesserungen.",
+      "bodyWithVersion": "Version {version} von Wildhaven ist verfügbar. Aktualisiere jetzt für die neuesten Fehlerbehebungen und Verbesserungen.",
       "notNow": "Jetzt nicht",
       "update": "Aktualisieren"
     },
@@ -1961,7 +1961,7 @@ export const de_DE: EnTranslations = {
     },
     "discord": {
       "title": "Discord",
-      "panelTitle": "World of ClaudeCraft",
+      "panelTitle": "Wildhaven",
       "open": "Discord",
       "close": "Schließen",
       "keybind": "Discord-Panel",
@@ -3108,7 +3108,7 @@ export const de_DE: EnTranslations = {
     }
   },
   "guide": {
-    "brand": "World of ClaudeCraft",
+    "brand": "Wildhaven",
     "brandShort": "ClaudeCraft",
     "tagline": "Ein MMO im klassischen Stil, das du kostenlos in deinem Browser spielst.",
     "skipToContent": "Zum Hauptinhalt springen",
@@ -3174,7 +3174,7 @@ export const de_DE: EnTranslations = {
       "github": "Quellcode auf GitHub",
       "discord": "Tritt dem Discord bei",
       "communityWiki": "Community-Wiki",
-      "rights": "World of ClaudeCraft",
+      "rights": "Wildhaven",
       "linksLabel": "Spiel- und Community-Links"
     },
     "language": {
@@ -3197,7 +3197,7 @@ export const de_DE: EnTranslations = {
     },
     "home": {
       "eyebrow": "Browser-MMO im klassischen Stil",
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "subtitle": "Erfülle Quests, schließe dich mit anderen zusammen und erkunde eine handgebaute Welt, kostenlos in deinem Browser.",
       "ctaPlay": "Jetzt spielen",
       "ctaLearn": "So wird gespielt",
@@ -3712,7 +3712,7 @@ export const de_DE: EnTranslations = {
     },
     "worldPage": {
       "heading": "Die Welt",
-      "intro": "World of ClaudeCraft ist ein zusammenhängendes Land, das du zu Fuß durchquerst, drei Gebiete von Süden nach Norden gereiht. Es gibt keine Schnellreise, die Reise selbst ist also Teil des Abenteuers.",
+      "intro": "Wildhaven ist ein zusammenhängendes Land, das du zu Fuß durchquerst, drei Gebiete von Süden nach Norden gereiht. Es gibt keine Schnellreise, die Reise selbst ist also Teil des Abenteuers.",
       "hub": "Heimatbasis",
       "mapHeading": "Der Weg nach Norden",
       "mapSub": "Drei Gebiete, von Süden nach Norden, jedes eine Stufe höher im Level. Folge der Questspur, und das Land trägt dich vom Tal bis zu den Gipfeln.",
@@ -4539,7 +4539,7 @@ export const de_DE: EnTranslations = {
   },
   "editor": {
     "appTitle": "Karteneditor",
-    "docTitle": "Karteneditor - World of ClaudeCraft",
+    "docTitle": "Karteneditor - Wildhaven",
     "untitledMap": "Unbenannte Karte",
     "playtestPlayerName": "Kartenbauer",
     "topbar": {
@@ -5015,8 +5015,8 @@ export const de_DE: EnTranslations = {
     "realmName": "Weltname"
   },
   "footer": {
-    "copyright": "2026 World of ClaudeCraft",
-    "githubLink": "https://github.com/levy-street/world-of-claudecraft",
+    "copyright": "2026 Wildhaven",
+    "githubLink": "https://github.com/levy-street/wildhaven",
     "githubLabel": "Open-Source-Projekt",
     "whitepaper": "Whitepaper",
     "terms": "Nutzungsbedingungen",
@@ -5073,7 +5073,7 @@ export const de_DE: EnTranslations = {
     "serverOnline": "Online",
     "serverOffline": "Offline",
     "play": "Spielen",
-    "playAria": "World of ClaudeCraft spielen",
+    "playAria": "Wildhaven spielen",
     "serverLabel": "Wähle deine Welt",
     "serverAria": "Welt wählen: Online oder Offline",
     "serverOfflineSub": "Sofortige lokale Welt"
@@ -5141,13 +5141,13 @@ export const de_DE: EnTranslations = {
     "topPercent": "TOP {percent} %",
     "realmSubtitle": "Welt {realm}",
     "defaultRealm": "Welt von ClaudeCraft",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "brandWordmark": "WILDHAVEN",
     "recruited": "{count} rekrutiert",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",
     "footerCta": "Schmiedet Eure Legende: {siteUrl}",
     "arenaStat": "Arena",
-    "shareText": "Ich schmiede meine Legende in World of ClaudeCraft: Stufe {level} {className}{tierBit}. Tritt meiner Welt bei:",
+    "shareText": "Ich schmiede meine Legende in Wildhaven: Stufe {level} {className}{tierBit}. Tritt meiner Welt bei:",
     "nativeShareTitle": "Welt von ClaudeCraft",
     "fileNameFallback": "spieler",
     "actionShareX": "Auf X teilen",
@@ -5848,14 +5848,14 @@ export const de_DE: EnTranslations = {
     }
   },
   "seo": {
-    "title": "World of ClaudeCraft: Klassisches Web-MMO",
-    "description": "Begib dich in World of ClaudeCraft auf ein episches Abenteuer, ein Micro-MMO im klassischen Stil direkt im Browser. Tritt einer dauerhaften, gemeinsamen Welt bei, steigere Klassen und besiege Gegner.",
+    "title": "Wildhaven: Klassisches Web-MMO",
+    "description": "Begib dich in Wildhaven auf ein episches Abenteuer, ein Micro-MMO im klassischen Stil direkt im Browser. Tritt einer dauerhaften, gemeinsamen Welt bei, steigere Klassen und besiege Gegner.",
     "genre": "MMORPG",
     "playMode": "Mehrspieler",
     "applicationCategory": "Spiel",
     "operatingSystem": "Webbrowser",
-    "officialLabel": "Offizielle Website von World of ClaudeCraft",
-    "officialBody": "worldofclaudecraft.com ist das offizielle kostenlose Browser-MMO für die Welt Claudemoon. Spiele online mit einem dauerhaften Charakter, erkunde solo offline, lies das Wiki und folge den verifizierten Community-Links auf dieser Website."
+    "officialLabel": "Offizielle Website von Wildhaven",
+    "officialBody": "wildhaven.example ist das offizielle kostenlose Browser-MMO für die Welt Claudemoon. Spiele online mit einem dauerhaften Charakter, erkunde solo offline, lies das Wiki und folge den verifizierten Community-Links auf dieser Website."
   },
   "a11y": {
     "goHome": "Zur Startseite",
@@ -5863,9 +5863,9 @@ export const de_DE: EnTranslations = {
     "mainNavigation": "Hauptnavigation",
     "languageSelection": "Sprachauswahl",
     "characterActions": "Charakteraktionen",
-    "githubProject": "World of ClaudeCraft-Projekt auf GitHub öffnen",
-    "discordCommunity": "Der World of ClaudeCraft-Community auf Discord beitreten",
-    "donateProject": "Spenden, um World of ClaudeCraft zu unterstützen"
+    "githubProject": "Wildhaven-Projekt auf GitHub öffnen",
+    "discordCommunity": "Der Wildhaven-Community auf Discord beitreten",
+    "donateProject": "Spenden, um Wildhaven zu unterstützen"
   },
   "entryGuard": {
     "title": "Grafik verringert",
@@ -5952,11 +5952,11 @@ export const de_DE: EnTranslations = {
       "dismiss": "Schließen"
     },
     "crash": {
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "body": "Die Spielansicht funktioniert nicht mehr. Neu laden?",
       "reload": "Neu laden",
       "quit": "Beenden",
-      "fatalBody": "World of ClaudeCraft ist auf einen unerwarteten Fehler gestoßen und muss geschlossen werden."
+      "fatalBody": "Wildhaven ist auf einen unerwarteten Fehler gestoßen und muss geschlossen werden."
     }
   },
   "gpuNotice": {
@@ -6095,17 +6095,17 @@ export const de_DE: EnTranslations = {
     "iosStandaloneDetail": "Du bist im Vollbildmodus vom Home-Bildschirm. Halte das Gerät im Querformat.",
     "iosInstallDetail": "Für echtes Vollbild auf iPhone oder iPad füge diese Seite zuerst zum Home-Bildschirm hinzu.",
     "iosShareStep": "Tippe in Safari auf Teilen und dann auf Zum Home-Bildschirm.",
-    "iosOpenStep": "Öffne World of ClaudeCraft über das neue Symbol auf dem Home-Bildschirm.",
+    "iosOpenStep": "Öffne Wildhaven über das neue Symbol auf dem Home-Bildschirm.",
     "androidStandaloneDetail": "Du bist im Vollbild-App-Modus. Halte das Gerät im Querformat.",
     "androidInstallDetail": "Installiere diese Seite auf Android oder füge sie zum Startbildschirm hinzu, um Vollbild zu nutzen.",
     "androidInstallStep": "Tippe in Chrome auf das Menü und dann auf App installieren oder Zum Startbildschirm hinzufügen.",
-    "androidOpenStep": "Öffne World of ClaudeCraft über das neue Symbol.",
+    "androidOpenStep": "Öffne Wildhaven über das neue Symbol.",
     "otherStandaloneDetail": "Halte dein Gerät im Vollbild-Querformat.",
     "otherInstallDetail": "Installiere diese Seite oder füge sie zum Startbildschirm hinzu, um das beste mobile Vollbild-Erlebnis zu erhalten."
   },
   "serverUnavailable": {
-    "title": "World of ClaudeCraft - Welt nicht verfügbar",
-    "logoAlt": "World of ClaudeCraft",
+    "title": "Wildhaven - Welt nicht verfügbar",
+    "logoAlt": "Wildhaven",
     "eyebrow": "Weltwartung",
     "heading": "Die Welt ist vorübergehend nicht verfügbar.",
     "body": "Wir starten den Spieldienst neu und erwarten, dass Claudemoon bald zurückkehrt. Diese Seite prüft automatisch weiter.",

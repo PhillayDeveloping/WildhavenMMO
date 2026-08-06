@@ -1,12 +1,12 @@
 <div align="center">
 
-# World of ClaudeCraft
+# Wildhaven
 
 **Plň questy, spoj se do skupiny a raiduj ručně stavěný svět, zdarma ve svém prohlížeči. Open source, web3 a online právě teď.**
 
-**Oficiální web: https://worldofclaudecraft.com/**
+**Oficiální web: https://wildhaven.example/**
 
-[![CI](https://github.com/levy-street/world-of-claudecraft/actions/workflows/ci.yml/badge.svg)](https://github.com/levy-street/world-of-claudecraft/actions/workflows/ci.yml)
+[![CI](https://github.com/levy-street/wildhaven/actions/workflows/ci.yml/badge.svg)](https://github.com/levy-street/wildhaven/actions/workflows/ci.yml)
 [![TypeScript](https://img.shields.io/badge/TypeScript-7.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Three.js](https://img.shields.io/badge/Three.js-r165-000000?logo=threedotjs&logoColor=white)](https://threejs.org/)
 [![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
@@ -16,23 +16,23 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](../../LICENSE)
 [![Version](https://img.shields.io/badge/version-0.34.0-blue)](../../package.json)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.cs_CZ.md)
-[![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.com/invite/worldofclaudecraft)
+[![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.com/invite/wildhaven)
 
 [English](../../README.md) · [Español](README.es.md) · [Español (España)](README.es_ES.md) · [Français](README.fr_FR.md) · [Français (Canada)](README.fr_CA.md) · [Italiano](README.it_IT.md) · [Deutsch](README.de_DE.md) · [简体中文](README.zh_CN.md) · [繁體中文](README.zh_TW.md) · [한국어](README.ko_KR.md) · [日本語](README.ja_JP.md) · [Português (Brasil)](README.pt_BR.md) · [Русский](README.ru_RU.md) · **Čeština** · [Nederlands](README.nl_NL.md) · [Polski](README.pl_PL.md) · [Bahasa Indonesia](README.id_ID.md) · [Türkçe](README.tr_TR.md) · [Svenska](README.sv_SE.md) · [Tiếng Việt](README.vi_VN.md) · [Dansk](README.da_DK.md)
 
-[Hraj hned](https://worldofclaudecraft.com/) · [Postav si vlastní svět](#host-your-own-world-one-command) · [Vytrénuj agenta](#train-an-agent-headless-rl) · [Web3](#web3) · [Přispívání](CONTRIBUTING.cs_CZ.md) · [Discord](https://discord.com/invite/worldofclaudecraft)
+[Hraj hned](https://wildhaven.example/) · [Postav si vlastní svět](#host-your-own-world-one-command) · [Vytrénuj agenta](#train-an-agent-headless-rl) · [Web3](#web3) · [Přispívání](CONTRIBUTING.cs_CZ.md) · [Discord](https://discord.com/invite/wildhaven)
 
-![Úvodní obrazovka World of ClaudeCraft](../../docs/screenshots/title-screen.jpg)
+![Úvodní obrazovka Wildhaven](../../docs/screenshots/title-screen.jpg)
 
 </div>
 
 ## Co to je
 
-World of ClaudeCraft je kompletní MMO klasické éry, které si můžeš zahrát hned teď v prohlížeči, jedním příkazem hostovat sám a dokonce na něm trénovat AI agenty, aby ho hráli. Je zdarma, open source a běží živě na [worldofclaudecraft.com](https://worldofclaudecraft.com/).
+Wildhaven je kompletní MMO klasické éry, které si můžeš zahrát hned teď v prohlížeči, jedním příkazem hostovat sám a dokonce na něm trénovat AI agenty, aby ho hráli. Je zdarma, open source a běží živě na [wildhaven.example](https://wildhaven.example/).
 
 Jeden sdílený svět běží na třech místech, všechna z téhož herního jádra:
 
-- **autoritativní multiplayerový server**, živý svět, který hraješ na worldofclaudecraft.com, kde účty uložené v Postgresu sdílejí jednu trvalou říši,
+- **autoritativní multiplayerový server**, živý svět, který hraješ na wildhaven.example, kde účty uložené v Postgresu sdílejí jednu trvalou říši,
 - **offline svět v prohlížeči**, lokální Sim pro jednoho hráče, který dostaneš z vývojového serveru, užitečný pro vývoj a pro přečtení herního jádra od začátku do konce,
 - **bezhlavé RL prostředí**, kde Python řídí skutečnou hru přes rozhraní Gym.
 
@@ -77,7 +77,7 @@ Počasí je řízené biomy a existuje jen ve vykreslování, takže se nikdy ne
 
 ## Zahraj si
 
-Hraj v prohlížeči na [worldofclaudecraft.com](https://worldofclaudecraft.com/), nebo si nainstaluj nativní aplikaci pro Windows, Linux, macOS, iOS či Android. Každý klient se připojuje k témuž online světu.
+Hraj v prohlížeči na [wildhaven.example](https://wildhaven.example/), nebo si nainstaluj nativní aplikaci pro Windows, Linux, macOS, iOS či Android. Každý klient se připojuje k témuž online světu.
 
 ### Online, s ostatními hráči
 
@@ -96,9 +96,9 @@ Pojmenuj svou postavu, vyber si kteroukoli z devíti tříd a začínáš v **Ea
 
 ### Desktopové aplikace pro Windows, Linux a macOS
 
-World of ClaudeCraft se dodává jako plnohodnotná desktopová aplikace pro všechny tři hlavní desktopové platformy: podepsané instalátory pro Windows, balíčky AppImage a deb pro Linux a podepsané a notarizované univerzální buildy pro macOS. Používají stejného herního klienta a stejný online svět jako prohlížeč, s nativním balením a automatickými aktualizacemi.
+Wildhaven se dodává jako plnohodnotná desktopová aplikace pro všechny tři hlavní desktopové platformy: podepsané instalátory pro Windows, balíčky AppImage a deb pro Linux a podepsané a notarizované univerzální buildy pro macOS. Používají stejného herního klienta a stejný online svět jako prohlížeč, s nativním balením a automatickými aktualizacemi.
 
-Online přihlášení běží jen přes Discord a e-mail, přesně jako na webu: e-mail a heslo tě přihlásí přímo v aplikaci a "Continue with Discord" otevře tvůj výchozí prohlížeč na stránce `/desktop-login`, která předá aplikaci jednorázový kód přes hluboký odkaz `worldofclaudecraft://`, jejž aplikace vymění za běžný session token World of ClaudeCraft.
+Online přihlášení běží jen přes Discord a e-mail, přesně jako na webu: e-mail a heslo tě přihlásí přímo v aplikaci a "Continue with Discord" otevře tvůj výchozí prohlížeč na stránce `/desktop-login`, která předá aplikaci jednorázový kód přes hluboký odkaz `wildhaven://`, jejž aplikace vymění za běžný session token Wildhaven.
 
 ```bash
 npm run electron:dev          # Vite + Electron dev shell
@@ -113,7 +113,7 @@ Nasměruj shell na jiné API pomocí `VITE_DESKTOP_API_ORIGIN`, například na l
 VITE_DESKTOP_API_ORIGIN=http://127.0.0.1:8787 npm run electron:dev
 ```
 
-Produkční API origin pro staging buildy přepíšeš pomocí `VITE_DESKTOP_API_ORIGIN=https://dev.worldofclaudecraft.com` (je to hodnota z doby BUILDU: zapeče se do bundlu a otiskne se do zabalené aplikace, a nainstalované buildy ji jako runtime proměnnou prostředí ignorují). Steam je distribuční kanál (tentýž Electron bundle, nahraný přes SteamPipe) a desktopoví hráči si mohou propojit účet na Steamu a zrcadlit do Steam achievementů deeds, které si vyslouží; samotné přihlášení zůstává e-mail a Discord. Kompletní release runbook (podepisování, notarizace, publikování automatické aktualizace, SteamPipe depoty, nasazení serveru) je `docs/desktop-release.md`. iOS a Android se dodávají přes Capacitor a mají vlastní runbook v `docs/mobile-store-release.md`.
+Produkční API origin pro staging buildy přepíšeš pomocí `VITE_DESKTOP_API_ORIGIN=https://dev.wildhaven.example` (je to hodnota z doby BUILDU: zapeče se do bundlu a otiskne se do zabalené aplikace, a nainstalované buildy ji jako runtime proměnnou prostředí ignorují). Steam je distribuční kanál (tentýž Electron bundle, nahraný přes SteamPipe) a desktopoví hráči si mohou propojit účet na Steamu a zrcadlit do Steam achievementů deeds, které si vyslouží; samotné přihlášení zůstává e-mail a Discord. Kompletní release runbook (podepisování, notarizace, publikování automatické aktualizace, SteamPipe depoty, nasazení serveru) je `docs/desktop-release.md`. iOS a Android se dodávají přes Capacitor a mají vlastní runbook v `docs/mobile-store-release.md`.
 
 <a id="host-your-own-world-one-command"></a>
 
@@ -184,7 +184,7 @@ Protokol a bindingy jsou zdokumentované v `headless/CLAUDE.md` a `python/CLAUDE
 
 ## Web3
 
-World of ClaudeCraft je web3 nativní kolem **$WOC**, našeho komunitního tokenu na Solaně. Připoj Solana peněženku, propoj ji s účtem jediným podpisem (nekustodiálně, žádná transakce ke schválení) a tvůj $WOC zůstatek pro čtení se objeví v HUD vedle kosmetického odznaku úrovně držitele.
+Wildhaven je web3 nativní kolem **$WOC**, našeho komunitního tokenu na Solaně. Připoj Solana peněženku, propoj ji s účtem jediným podpisem (nekustodiálně, žádná transakce ke schválení) a tvůj $WOC zůstatek pro čtení se objeví v HUD vedle kosmetického odznaku úrovně držitele.
 
 $WOC má také volitelnou utilitu v živé hře:
 
@@ -200,7 +200,7 @@ Nic z toho není ke hraní potřeba. Propojení peněženky je volitelné a neku
 3WjLscH2JsXLEFJZRA9z8ti8yRGxWGKbqymPd7UicRth
 ```
 
-Více o tokenu na [worldofclaudecraft.com](https://worldofclaudecraft.com/).
+Více o tokenu na [wildhaven.example](https://wildhaven.example/).
 
 ## Prohlídka světa
 
@@ -390,7 +390,7 @@ Každý řetězec viditelný pro hráče se rozřeší přes `t()` a hra vycház
 
 ## Přispívání
 
-Příspěvky všeho druhu jsou vítané: kód, překlady, hlášení chyb i dokumentace. Začni s [CONTRIBUTING.cs_CZ.md](CONTRIBUTING.cs_CZ.md) kvůli nastavení, přečti si [Kodex chování](../../CODE_OF_CONDUCT.md) a než nahlásíš zranitelnost, projdi si [SECURITY.md](../../SECURITY.md). Jsi tu nový? Poohlédni se po issues se štítkem [`good first issue`](https://github.com/levy-street/world-of-claudecraft/labels/good%20first%20issue), otevři [issue](https://github.com/levy-street/world-of-claudecraft/issues/new/choose) nebo pozdrav na [Discordu](https://discord.com/invite/worldofclaudecraft).
+Příspěvky všeho druhu jsou vítané: kód, překlady, hlášení chyb i dokumentace. Začni s [CONTRIBUTING.cs_CZ.md](CONTRIBUTING.cs_CZ.md) kvůli nastavení, přečti si [Kodex chování](../../CODE_OF_CONDUCT.md) a než nahlásíš zranitelnost, projdi si [SECURITY.md](../../SECURITY.md). Jsi tu nový? Poohlédni se po issues se štítkem [`good first issue`](https://github.com/levy-street/wildhaven/labels/good%20first%20issue), otevři [issue](https://github.com/levy-street/wildhaven/issues/new/choose) nebo pozdrav na [Discordu](https://discord.com/invite/wildhaven).
 
 Aktivní vývoj běží na nejnovější větvi `release/vX.Y.Z`. Nedomýšlej si ji, radši si ji vyhledej, pak se z ní odděl a na ni miř svůj pull request. Nikdy nevětvi z `main` ani na něj nemiř, ta dostane release větev až ve chvíli, kdy daná verze vyjde. [CONTRIBUTING.md](CONTRIBUTING.cs_CZ.md) obsahuje jednořádkový příkaz, který tu aktuální najde.
 
@@ -404,7 +404,7 @@ Tři věci jsou licencované zvlášť, takže stojí za třicet sekund vědět,
 |---|---|---|
 | **Zdrojový kód**, tedy všechen kromě mediálních assetů vyčleněných níže | [MIT](../../LICENSE) | Ano. I komerčně. |
 | **Mediální assety**: modely, textury, HDRI, ikony, zvuky, fonty (většinou pod `public/`) | Podle assetu, zaznamenáno v [CREDITS.md](../../CREDITS.md) | Většinou ano (většina je CC0). Některé ne, viz níže. |
-| **Jméno a branding**: "World of ClaudeCraft", "Levy Street", loga | Nelicencováno | Ne. |
+| **Jméno a branding**: "Wildhaven", "Levy Street", loga | Nelicencováno | Ne. |
 
 **Forkni to a hostuj si vlastní svět. To funguje a assety ti v tom nestojí v cestě.** Většina toho, co vidíš, je CC0 volné dílo (KayKit, Quaternius, Kenney, ambientCG, Poly Haven) a naše vlastní generované propy, tvorové, pozadí a zvuky rozhraní se dodávají s projektem, takže fork běží rovnou po vybalení. Jen je nemůžeš vytáhnout ven a prodávat jako samostatnou grafiku.
 
@@ -418,4 +418,4 @@ Co bys musel odstranit nebo nahradit, než to budeš šířit dál:
 
 [CREDITS.md](../../CREDITS.md) je autoritativní seznam se sloupcem o dalším šíření pro každý asset. Kde je asset uvedený tam, tamní licence má přednost před MIT licencí projektu. Ten registr se pořád ještě dokončuje, takže mediální asset, který v něm chybí, je nezaznamenaný, ne volný: než se na něj spolehneš, zeptej se. U zdrojového kódu to platí naopak a všechno, co není vyčleněné, je MIT.
 
-Naše [Podmínky služby](https://worldofclaudecraft.com/terms) pokrývají hostovanou hru, kterou provozujeme na worldofclaudecraft.com: účty, chování, virtuální předměty. Neomezují práva, která ti k tomuto zdrojovému kódu dává MIT licence.
+Naše [Podmínky služby](https://wildhaven.example/terms) pokrývají hostovanou hru, kterou provozujeme na wildhaven.example: účty, chování, virtuální předměty. Neomezují práva, která ti k tomuto zdrojovému kódu dává MIT licence.

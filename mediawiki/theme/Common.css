@@ -1,5 +1,5 @@
 /* =========================================================================
-   World of Claudecraft Wiki — "Aged Grimoire" theme for Vector 2022.
+   Wildhaven Wiki — "Aged Grimoire" theme for Vector 2022.
    Warm parchment reading surface, deep oak chrome, gold + wax-seal-red
    accents, elegant serif display headings.
    ========================================================================= */
@@ -304,7 +304,7 @@ body {
   padding: 14px;
   background:
     linear-gradient(rgba(24, 15, 10, 0), rgba(24, 15, 10, 0.85)),
-    url('/wiki/resources/assets/worldofclaudecraft-logo.png') center / contain no-repeat;
+    url('/wiki/resources/assets/wildhaven-logo.png') center / contain no-repeat;
   color: var(--woc-gold-soft);
   font-family: var(--woc-display);
   font-weight: 700;

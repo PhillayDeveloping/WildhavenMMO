@@ -39,7 +39,7 @@ STEP 0 - PRE-FLIGHT (do all of this before any edit)
    windows are not yet instrumented, STOP and surface the gap; do not build the
    announcer from scratch here.
 3. Memory scan. Read project MEMORY.md (path redacted)
-   world-of-claudecraft/memory/MEMORY.md and the notes it indexes for these topics:
+   wildhaven/memory/MEMORY.md and the notes it indexes for these topics:
    hud, i18n, shared-worktree, never-push-to-fork, no-em-dashes-or-emojis,
    live-site-and-test-creds. Honor all of them (push branches/PRs to origin
    levy-street, never the fork; no em dashes or emojis anywhere; use the live-site

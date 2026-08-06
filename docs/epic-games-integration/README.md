@@ -1,6 +1,6 @@
 # Epic Games Store integration
 
-World of ClaudeCraft ships on the Epic Games Store as a third desktop
+Wildhaven ships on the Epic Games Store as a third desktop
 distribution channel (beside website downloads and Steam), with the same
 merge-safe, env-gated shape as the Steam link and Book of Deeds achievement
 mirror.
@@ -25,7 +25,7 @@ Code can merge while the surface stays dark. Live portal setup, first BPT
 upload, Dev sandbox smoke, store submission, and production lighting are tracked
 in:
 
-- **https://github.com/levy-street/world-of-claudecraft/issues/2708**
+- **https://github.com/levy-street/wildhaven/issues/2708**
 
 Open items called out there include EOS C SDK vendor path (O3), Mac artifact
 naming (O4), and store support URL (O5).

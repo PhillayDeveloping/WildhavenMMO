@@ -1,8 +1,8 @@
 # Mobile Store Release
 
-World of ClaudeCraft ships to iOS and Android through Capacitor. The native apps
+Wildhaven ships to iOS and Android through Capacitor. The native apps
 bundle the built Vite client and connect to the production backend at
-`https://worldofclaudecraft.com`.
+`https://wildhaven.example`.
 
 ## Prerequisites
 
@@ -56,7 +56,7 @@ npm run native:open:android
 
 ```sh
 VITE_NATIVE_APP=1
-VITE_API_ORIGIN=https://worldofclaudecraft.com
+VITE_API_ORIGIN=https://wildhaven.example
 ```
 
 The copied web assets under the native projects are generated and ignored by git.
@@ -183,7 +183,7 @@ supported client-email and signing-PEM environment variables. Never commit
 these values. The server also requires:
 
 ```env
-SEEKER_SOLANA_INTEGRITY_PACKAGE_NAME=com.worldofclaudecraft
+SEEKER_SOLANA_INTEGRITY_PACKAGE_NAME=com.wildhaven
 SEEKER_SOLANA_INTEGRITY_CERT_DIGESTS=<SOLANA_STORE_RELEASE_CERT_BASE64URL_SHA256>
 SEEKER_SOLANA_INTEGRITY_DEVICE_VERDICT=MEETS_DEVICE_INTEGRITY
 ```
@@ -366,7 +366,7 @@ belong to server tests rather than the Android release procedure.
 ## Native Discord Authentication
 
 Discord login and account linking open the system browser, return through the
-`worldofclaudecraft://discord-auth` app URL, and exchange a short-lived,
+`wildhaven://discord-auth` app URL, and exchange a short-lived,
 single-use handoff code with the game server. The exchange also requires an
 app-generated verifier that never appears in the callback URL, so another app
 cannot use an intercepted custom-scheme callback. Starting the flow also uses
@@ -396,13 +396,13 @@ Apple relay email addresses are accepted and stored only when Apple marks the ad
 verified.
 
 The production server needs no new secret for native iOS sign-in. It defaults the token
-audience to the existing bundle ID, `com.worldofclaudecraft`. Set
-`APPLE_CLIENT_ID=com.worldofclaudecraft` only if an explicit deployment value is
+audience to the existing bundle ID, `com.wildhaven`. Set
+`APPLE_CLIENT_ID=com.wildhaven` only if an explicit deployment value is
 preferred. A different bundle ID must set `APPLE_CLIENT_ID` to that exact identifier.
 
 Before archiving:
 
-1. In Apple Developer, open Identifiers, select `com.worldofclaudecraft`, enable
+1. In Apple Developer, open Identifiers, select `com.wildhaven`, enable
    Sign in with Apple, and configure it as the primary App ID unless it belongs to an
    existing Sign in with Apple app group.
 2. In Xcode, confirm the App target has the Sign in with Apple capability. The checked-in
@@ -440,8 +440,8 @@ offline launch to ensure startup does not depend on an update service.
 
 ## Store Review Notes
 
-- App name: World of ClaudeCraft.
-- Bundle/application ID: `com.worldofclaudecraft`.
+- App name: Wildhaven.
+- Bundle/application ID: `com.wildhaven`.
 - App Store tags: Action, Fantasy, Free, Co-Op, PvP, Leaderboard, MMO,
   Multiplayer, Open World.
 - The iOS asset catalog includes Light, Dark, and Tinted app icon variants. The
@@ -452,5 +452,5 @@ offline launch to ensure startup does not depend on an update service.
   native builds.
 - Online play uses the hosted production REST and WebSocket backend.
 - Privacy and terms URLs:
-  - `https://worldofclaudecraft.com/privacy.html`
-  - `https://worldofclaudecraft.com/terms.html`
+  - `https://wildhaven.example/privacy.html`
+  - `https://wildhaven.example/terms.html`

@@ -1,9 +1,9 @@
-# Deploying World of ClaudeCraft on AWS
+# Deploying Wildhaven on AWS
 
 > **Levy Street production** is deployed via Ansible, not this document:
 > the `eastbrook_game` role in the internal `ansible-scripts` repo runs
 > the stack on `idyllic-games-prod` behind nginx + certbot at
-> https://worldofclaudecraft.com. Re-running
+> https://wildhaven.example. Re-running
 > `ansible-playbook playbooks/setup_server.yml -e target_host=idyllic-games-prod`
 > pulls and redeploys. The guide below is the generic, standalone path.
 
@@ -14,7 +14,7 @@ One EC2 instance runs everything: the game server, Postgres, MediaWiki, and Cadd
 ## 1. Confirm the repo is public
 
 The standalone first-boot script clones
-`https://github.com/levy-street/world-of-claudecraft.git` anonymously. If you
+`https://github.com/levy-street/wildhaven.git` anonymously. If you
 are deploying a private fork instead, use a deploy key or another secret
 manager-specific flow; do not paste long-lived personal access tokens into EC2
 user data.
@@ -194,8 +194,8 @@ console transport: emails are logged, never sent. To deliver for real via SES:
 ```bash
 EMAIL_PROVIDER=ses
 EMAIL_SES_REGION=us-east-1
-EMAIL_FROM="World of ClaudeCraft <noreply@worldofclaudecraft.com>"
-EMAIL_BASE_URL=https://worldofclaudecraft.com
+EMAIL_FROM="Wildhaven <noreply@wildhaven.example>"
+EMAIL_BASE_URL=https://wildhaven.example
 ```
 
 Then `docker compose up -d game`. The startup log line
@@ -822,7 +822,7 @@ empty or non-positive value, so an unset key is always safe and a blank line in
 | Key | Default | What it does / incident guidance |
 |---|---|---|
 | `GAME_SERVER_URL` | `http://game:8787` from compose (`http://127.0.0.1:8787` in code) | Base URL for the internal API. Compose pins this one (no host `.env` interpolation), so changing it means editing `docker-compose.yml`. Leave the compose value alone unless the game runs outside this compose network, and in that case point it at a private or loopback address of the game host, never the public domain: the edge answers 404 for all of `/internal/*`, so a bot aimed through Caddy syncs nothing, and every internal call carries `DISCORD_BOT_SECRET` over plain `http`, so any hop that leaves the host or the private network exposes the shared secret in transit regardless of what the edge answers. |
-| `PUBLIC_GAME_URL` | `http://localhost:8787` from compose (`https://worldofclaudecraft.com` in code) | The public URL shown in bot replies and deep-link buttons. Set it to your real domain, or players get links they cannot use. |
+| `PUBLIC_GAME_URL` | `http://localhost:8787` from compose (`https://wildhaven.example` in code) | The public URL shown in bot replies and deep-link buttons. Set it to your real domain, or players get links they cannot use. |
 
 **Channel ids** (each feature is off when its channel is unset):
 
@@ -1037,7 +1037,7 @@ representative direct invocation from that host is:
 ```bash
 npm run ops:cpu-monitor -- \
   --direct \
-  --host world-of-claudecraft-prod \
+  --host wildhaven-prod \
   --container eastbrook-game \
   --out-dir /var/lib/woc-prod-cpu-monitor
 ```
@@ -1088,7 +1088,7 @@ Docker commands and run one controlled check:
 
 ```bash
 npm run ops:cpu-monitor -- --once --dry-run --direct \
-  --host world-of-claudecraft-prod \
+  --host wildhaven-prod \
   --container eastbrook-game \
   --out-dir /var/lib/woc-prod-cpu-monitor
 ```
@@ -1103,7 +1103,7 @@ extra instrumentation active on every tick.
 The admin dashboard (account/character/session metrics, live players,
 server health) is served by the same game server process:
 
-- **Production**: point `admin.worldofclaudecraft.com` at the instance
+- **Production**: point `admin.wildhaven.example` at the instance
   (A record) and add a server block for it in the nginx config in the
   internal `ansible-scripts` repo, proxying to the same game port as the
   main site. The Node server serves the dashboard for any hostname

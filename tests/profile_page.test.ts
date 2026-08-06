@@ -38,7 +38,7 @@ async function renderProfile(state: Record<string, unknown>): Promise<string> {
   mockGetCharacterById.mockResolvedValueOnce(charRow(state));
   const req = {
     url: '/c/Hilda',
-    headers: { host: 'worldofclaudecraft.com' },
+    headers: { host: 'wildhaven.example' },
     socket: { remoteAddress: `10.1.2.${Math.floor(Math.random() * 250)}` },
   } as never;
   let body = '';

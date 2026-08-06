@@ -1,4 +1,4 @@
-# World of ClaudeCraft Design Language
+# Wildhaven Design Language
 
 **Status:** Adopted standard. Interface changes land in the phases of section 15, in
 order, never as isolated fragments.
@@ -9,7 +9,7 @@ screenshots; only mobile-specific LAYOUT work is deferred to its own program. Ev
 still owes the mobile-coverage decisions in section 13.5.
 **Updated:** 2026-07-15.
 
-This document is the source of truth for how World of ClaudeCraft's interface should look,
+This document is the source of truth for how Wildhaven's interface should look,
 move, and feel. It pairs the approved design references (section 2) with the systems this
 repo already has: the token and theme engine, the painter families, the fairness, i18n,
 accessibility, and performance contracts. Where this document and the current code

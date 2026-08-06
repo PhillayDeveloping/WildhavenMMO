@@ -1,12 +1,12 @@
 <div align="center">
 
-# World of ClaudeCraft
+# Wildhaven
 
 **Tag på quests, dan grupper, og raid en håndbygget verden, gratis i din browser. Open source, web3, og online lige nu.**
 
-**Officiel hjemmeside: https://worldofclaudecraft.com/**
+**Officiel hjemmeside: https://wildhaven.example/**
 
-[![CI](https://github.com/levy-street/world-of-claudecraft/actions/workflows/ci.yml/badge.svg)](https://github.com/levy-street/world-of-claudecraft/actions/workflows/ci.yml)
+[![CI](https://github.com/levy-street/wildhaven/actions/workflows/ci.yml/badge.svg)](https://github.com/levy-street/wildhaven/actions/workflows/ci.yml)
 [![TypeScript](https://img.shields.io/badge/TypeScript-7.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Three.js](https://img.shields.io/badge/Three.js-r165-000000?logo=threedotjs&logoColor=white)](https://threejs.org/)
 [![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
@@ -16,23 +16,23 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](../../LICENSE)
 [![Version](https://img.shields.io/badge/version-0.34.0-blue)](../../package.json)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.da_DK.md)
-[![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.com/invite/worldofclaudecraft)
+[![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.com/invite/wildhaven)
 
 [English](../../README.md) · [Español](README.es.md) · [Español (España)](README.es_ES.md) · [Français](README.fr_FR.md) · [Français (Canada)](README.fr_CA.md) · [Italiano](README.it_IT.md) · [Deutsch](README.de_DE.md) · [简体中文](README.zh_CN.md) · [繁體中文](README.zh_TW.md) · [한국어](README.ko_KR.md) · [日本語](README.ja_JP.md) · [Português (Brasil)](README.pt_BR.md) · [Русский](README.ru_RU.md) · [Čeština](README.cs_CZ.md) · [Nederlands](README.nl_NL.md) · [Polski](README.pl_PL.md) · [Bahasa Indonesia](README.id_ID.md) · [Türkçe](README.tr_TR.md) · [Svenska](README.sv_SE.md) · [Tiếng Việt](README.vi_VN.md) · **Dansk**
 
-[Spil nu](https://worldofclaudecraft.com/) · [Hav din egen verden](#host-your-own-world-one-command) · [Træn en agent](#train-an-agent-headless-rl) · [Web3](#web3) · [Bidrag](CONTRIBUTING.da_DK.md) · [Discord](https://discord.com/invite/worldofclaudecraft)
+[Spil nu](https://wildhaven.example/) · [Hav din egen verden](#host-your-own-world-one-command) · [Træn en agent](#train-an-agent-headless-rl) · [Web3](#web3) · [Bidrag](CONTRIBUTING.da_DK.md) · [Discord](https://discord.com/invite/wildhaven)
 
-![World of ClaudeCraft titelskærm](../../docs/screenshots/title-screen.jpg)
+![Wildhaven titelskærm](../../docs/screenshots/title-screen.jpg)
 
 </div>
 
 ## Hvad er dette
 
-World of ClaudeCraft er en komplet MMO i klassisk stil, som du kan spille lige nu i din browser, selv hoste med en enkelt kommando, og endda træne AI-agenter til at spille. Den er gratis, open source, og live på [worldofclaudecraft.com](https://worldofclaudecraft.com/).
+Wildhaven er en komplet MMO i klassisk stil, som du kan spille lige nu i din browser, selv hoste med en enkelt kommando, og endda træne AI-agenter til at spille. Den er gratis, open source, og live på [wildhaven.example](https://wildhaven.example/).
 
 Én fælles verden kører tre steder, alt sammen fra den samme spilkerne:
 
-- den **autoritative multiplayer-server**, den levende verden du spiller i på worldofclaudecraft.com, hvor Postgres-understøttede konti deler ét persistent realm,
+- den **autoritative multiplayer-server**, den levende verden du spiller i på wildhaven.example, hvor Postgres-understøttede konti deler ét persistent realm,
 - den **offline browser-verden**, en lokal single-player Sim som du får fra dev-serveren, nyttig til udvikling og til at læse spilkernen fra ende til anden,
 - det **headless RL-miljø**, hvor Python driver det rigtige spil gennem en Gym-grænseflade.
 
@@ -77,7 +77,7 @@ Vejret er biome-drevet og findes kun i rendereren, så det rører aldrig den det
 
 ## Spil det
 
-Spil i din browser på [worldofclaudecraft.com](https://worldofclaudecraft.com/), eller installer den native app til Windows, Linux, macOS, iOS, eller Android. Hver klient forbinder til den samme online verden.
+Spil i din browser på [wildhaven.example](https://wildhaven.example/), eller installer den native app til Windows, Linux, macOS, iOS, eller Android. Hver klient forbinder til den samme online verden.
 
 ### Online, med andre spillere
 
@@ -96,9 +96,9 @@ Navngiv din karakter, vælg en af de ni klasser, og du starter i **Eastbrook Val
 
 ### Desktop-apps til Windows, Linux, og macOS
 
-World of ClaudeCraft leveres som fulde desktop-apps til alle tre store desktop-platforme: signerede Windows-installere, Linux AppImage- og deb-pakker, og signerede og notariserede universelle macOS-builds. De bruger den samme spilklient og den samme online verden som browseren, med native pakning og automatiske opdateringer.
+Wildhaven leveres som fulde desktop-apps til alle tre store desktop-platforme: signerede Windows-installere, Linux AppImage- og deb-pakker, og signerede og notariserede universelle macOS-builds. De bruger den samme spilklient og den samme online verden som browseren, med native pakning og automatiske opdateringer.
 
-Online-login er kun Discord og email, præcis som web-flowet: email og password logger ind inde i appen, og "Continue with Discord" åbner din standardbrowser på `/desktop-login`-siden, som sender en engangskode tilbage til appen over et `worldofclaudecraft://` deep link, som appen veksler til et normalt World of ClaudeCraft-sessionstoken.
+Online-login er kun Discord og email, præcis som web-flowet: email og password logger ind inde i appen, og "Continue with Discord" åbner din standardbrowser på `/desktop-login`-siden, som sender en engangskode tilbage til appen over et `wildhaven://` deep link, som appen veksler til et normalt Wildhaven-sessionstoken.
 
 ```bash
 npm run electron:dev          # Vite + Electron dev shell
@@ -113,7 +113,7 @@ Peg shell'en mod et andet API med `VITE_DESKTOP_API_ORIGIN`, for eksempel en lok
 VITE_DESKTOP_API_ORIGIN=http://127.0.0.1:8787 npm run electron:dev
 ```
 
-Tilsidesæt produktions-API-origin for staging-builds med `VITE_DESKTOP_API_ORIGIN=https://dev.worldofclaudecraft.com` (en værdi på BUILD-tidspunktet: den bages ind i bundlen og stemples ind i den pakkede app, og installerede builds ignorerer den som runtime-env-variabel). Steam er en distributionskanal (den samme Electron-bundle, uploadet via SteamPipe), og desktop-spillere kan linke en Steam-konto for at spejle de deeds de optjener over i Steam-achievements; selve login forbliver email og Discord. Den fulde release-runbook (signering, notarisering, udgivelse af en auto-opdatering, SteamPipe-depoter, server-deploy) er `docs/desktop-release.md`. iOS og Android leveres gennem Capacitor, med deres egen runbook i `docs/mobile-store-release.md`.
+Tilsidesæt produktions-API-origin for staging-builds med `VITE_DESKTOP_API_ORIGIN=https://dev.wildhaven.example` (en værdi på BUILD-tidspunktet: den bages ind i bundlen og stemples ind i den pakkede app, og installerede builds ignorerer den som runtime-env-variabel). Steam er en distributionskanal (den samme Electron-bundle, uploadet via SteamPipe), og desktop-spillere kan linke en Steam-konto for at spejle de deeds de optjener over i Steam-achievements; selve login forbliver email og Discord. Den fulde release-runbook (signering, notarisering, udgivelse af en auto-opdatering, SteamPipe-depoter, server-deploy) er `docs/desktop-release.md`. iOS og Android leveres gennem Capacitor, med deres egen runbook i `docs/mobile-store-release.md`.
 
 <a id="host-your-own-world-one-command"></a>
 
@@ -184,7 +184,7 @@ Protokollen og bindingsene er dokumenteret i `headless/CLAUDE.md` og `python/CLA
 
 ## Web3
 
-World of ClaudeCraft er web3-native omkring **$WOC**, vores community-token på Solana. Forbind en Solana-wallet, link den til din konto med en enkelt signatur (non-custodial, ingen transaktion at godkende), og din skrivebeskyttede $WOC-balance dukker op i HUD'en ved siden af et kosmetisk holder-tier-badge.
+Wildhaven er web3-native omkring **$WOC**, vores community-token på Solana. Forbind en Solana-wallet, link den til din konto med en enkelt signatur (non-custodial, ingen transaktion at godkende), og din skrivebeskyttede $WOC-balance dukker op i HUD'en ved siden af et kosmetisk holder-tier-badge.
 
 $WOC har også valgfri nytte i det levende spil:
 
@@ -200,7 +200,7 @@ Intet af dette er nødvendigt for at spille. Wallet-linking er valgfrit og non-c
 3WjLscH2JsXLEFJZRA9z8ti8yRGxWGKbqymPd7UicRth
 ```
 
-Mere om token'et på [worldofclaudecraft.com](https://worldofclaudecraft.com/).
+Mere om token'et på [wildhaven.example](https://wildhaven.example/).
 
 ## En rundtur i verdenen
 
@@ -390,7 +390,7 @@ Hver spiller-synlig streng resolver gennem `t()`, og spillet leveres på **22 sp
 
 ## Bidrag
 
-Bidrag af enhver art er velkomne: kode, oversættelser, fejlrapporter, og dokumentation. Start med [CONTRIBUTING.md](CONTRIBUTING.da_DK.md) for opsætning, læs [Code of Conduct](../../CODE_OF_CONDUCT.md), og tjek [SECURITY.md](../../SECURITY.md) før du rapporterer en sårbarhed. Ny her? Kig efter issues mærket [`good first issue`](https://github.com/levy-street/world-of-claudecraft/labels/good%20first%20issue), åbn et [issue](https://github.com/levy-street/world-of-claudecraft/issues/new/choose), eller sig hej på [Discord](https://discord.com/invite/worldofclaudecraft).
+Bidrag af enhver art er velkomne: kode, oversættelser, fejlrapporter, og dokumentation. Start med [CONTRIBUTING.md](CONTRIBUTING.da_DK.md) for opsætning, læs [Code of Conduct](../../CODE_OF_CONDUCT.md), og tjek [SECURITY.md](../../SECURITY.md) før du rapporterer en sårbarhed. Ny her? Kig efter issues mærket [`good first issue`](https://github.com/levy-street/wildhaven/labels/good%20first%20issue), åbn et [issue](https://github.com/levy-street/wildhaven/issues/new/choose), eller sig hej på [Discord](https://discord.com/invite/wildhaven).
 
 Den aktive udvikling foregår på den nyeste `release/vX.Y.Z`-branch. Slå den op i stedet for at antage, og forgren så fra den og ret din pull request mod den. Forgren aldrig fra `main` og ret aldrig mod den, da den kun modtager en release-branch når den version udkommer. [CONTRIBUTING.md](CONTRIBUTING.da_DK.md) indeholder den ene kommandolinje, der finder den aktuelle.
 
@@ -404,7 +404,7 @@ Tre ting er licenseret separat, så det er tredive sekunder værd at vide hvad d
 |---|---|---|
 | **Kildekode**, altså det hele undtagen de medieassets der er skåret ud nedenfor | [MIT](../../LICENSE) | Ja. Også kommercielt. |
 | **Medieassets**: modeller, teksturer, HDRIs, ikoner, lyde, fonte (for det meste under `public/`) | Per asset, noteret i [CREDITS.md](../../CREDITS.md) | For det meste ja (de fleste er CC0). Nogle er ikke, se nedenfor. |
-| **Navn og branding**: "World of ClaudeCraft", "Levy Street", logoerne | Ikke licenseret | Nej. |
+| **Navn og branding**: "Wildhaven", "Levy Street", logoerne | Ikke licenseret | Nej. |
 
 **Fork den og host din egen verden. Det virker, og assets står ikke i vejen for dig.** Det meste af det du ser er CC0 public domain (KayKit, Quaternius, Kenney, ambientCG, Poly Haven), og vores egne genererede props, skabninger, baggrunde, og interface-lyde leveres med projektet, så et fork kører ud af boksen. Du kan bare ikke løfte dem ud og sælge dem som selvstændig kunst.
 
@@ -418,4 +418,4 @@ Hvad du ville skulle fjerne eller erstatte før videredistribution:
 
 [CREDITS.md](../../CREDITS.md) er den autoritative liste, med en kolonne om videredistribution per asset. Hvor et asset er opført der, gælder den licens over projektets MIT-licens. Det register er stadig ved at blive færdiggjort, så et medieasset der mangler i det, er uregistreret snarere end frit: spørg før du regner med det. For kildekode er det omvendt, og alt der ikke er skåret ud, er MIT.
 
-Vores [Servicevilkår](https://worldofclaudecraft.com/terms) dækker det hostede spil, som vi kører på worldofclaudecraft.com: konti, adfærd, virtuelle genstande. De begrænser ikke de rettigheder, MIT-licensen giver dig i denne kildekode.
+Vores [Servicevilkår](https://wildhaven.example/terms) dækker det hostede spil, som vi kører på wildhaven.example: konti, adfærd, virtuelle genstande. De begrænser ikke de rettigheder, MIT-licensen giver dig i denne kildekode.

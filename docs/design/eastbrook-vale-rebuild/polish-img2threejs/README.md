@@ -2,7 +2,7 @@
 
 This packet applies the installed `img2threejs` 1.3.0 intake and strict sculpt contract to the
 replacement Ravenpost mailbox and the new Eastbrook noticeboard. Both are original stylized
-World of ClaudeCraft assets for a real-time browser MMO. They are procedural reconstructions
+Wildhaven assets for a real-time browser MMO. They are procedural reconstructions
 from AI-generated turnarounds, not mesh extraction, photogrammetry, or manufacturing models.
 
 ## Reference decision

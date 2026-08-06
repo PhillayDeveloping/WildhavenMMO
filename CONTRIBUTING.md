@@ -4,16 +4,16 @@
 
 </div>
 
-# Contributing to World of ClaudeCraft
+# Contributing to Wildhaven
 
-First off, thank you for being here. World of ClaudeCraft is built by a community
+First off, thank you for being here. Wildhaven is built by a community
 of people who love classic MMOs, and every contribution, big or small, makes it
 better. Fixing a typo, translating the game, reporting a bug, building a whole new
 dungeon: it all counts, and you're welcome here.
 
 This guide will help you get set up and make your first contribution a smooth one.
 You don't need to be an expert. If anything is unclear, ask on
-[Discord](https://discord.com/invite/worldofclaudecraft) and someone will be happy to help.
+[Discord](https://discord.com/invite/wildhaven) and someone will be happy to help.
 
 By participating, you agree to follow our [Code of Conduct](CODE_OF_CONDUCT.md).
 
@@ -22,13 +22,13 @@ By participating, you agree to follow our [Code of Conduct](CODE_OF_CONDUCT.md).
 There's a place for everyone here:
 
 - **Code.** Fix a bug, add a feature, or improve performance. Issues labeled
-  [`good first issue`](https://github.com/levy-street/world-of-claudecraft/labels/good%20first%20issue)
-  and [`help wanted`](https://github.com/levy-street/world-of-claudecraft/labels/help%20wanted)
+  [`good first issue`](https://github.com/levy-street/wildhaven/labels/good%20first%20issue)
+  and [`help wanted`](https://github.com/levy-street/wildhaven/labels/help%20wanted)
   are good places to start.
 - **Translations.** Help players around the world by improving or completing a
   language. See [Translating the game](#translating-the-game) below. This is one
   of the easiest and most impactful ways to start.
-- **Bug reports and feature ideas.** Open an [issue](https://github.com/levy-street/world-of-claudecraft/issues/new/choose).
+- **Bug reports and feature ideas.** Open an [issue](https://github.com/levy-street/wildhaven/issues/new/choose).
   A clear bug report is a real contribution.
 - **Documentation.** Guides like this one, the README, and the design docs in
   `docs/` can always be improved.
@@ -47,8 +47,8 @@ Node. That path is the same on macOS, Linux, and Windows.
 
 ```bash
 # 1. Fork the repo on GitHub, then clone your fork
-git clone https://github.com/<your-username>/world-of-claudecraft.git
-cd world-of-claudecraft
+git clone https://github.com/<your-username>/wildhaven.git
+cd wildhaven
 
 # 2. Install pnpm once (same command on macOS, Linux, Windows)
 #    Match the packageManager pin in package.json (today: 10.34.5).
@@ -319,7 +319,7 @@ the same of you.
 
 ## Localization
 
-World of ClaudeCraft ships in many languages. Every player-visible string must be a
+Wildhaven ships in many languages. Every player-visible string must be a
 translation key, while feature contributors normally add only the English source.
 
 - All user-facing text is a `t()` key. Add new English copy to the matching
@@ -365,15 +365,15 @@ write any game code to do it:
    since the overlays are intentionally sparse.
 
 To propose a brand-new locale, or to discuss tone and terminology, start a thread
-on [Discord](https://discord.com/invite/worldofclaudecraft) and we'll help you wire it up. Native
+on [Discord](https://discord.com/invite/wildhaven) and we'll help you wire it up. Native
 and fluent speakers are especially welcome. Good translations make the game feel
 like home for players everywhere.
 
 ## Reporting bugs and requesting features
 
-Please use the [issue templates](https://github.com/levy-street/world-of-claudecraft/issues/new/choose):
+Please use the [issue templates](https://github.com/levy-street/wildhaven/issues/new/choose):
 
-- **Bug report.** Search [existing issues](https://github.com/levy-street/world-of-claudecraft/issues)
+- **Bug report.** Search [existing issues](https://github.com/levy-street/wildhaven/issues)
   first to avoid duplicates, then include steps to reproduce, what you expected,
   what happened, and your environment (offline or online, browser, desktop or
   mobile).
@@ -386,7 +386,7 @@ Please use the [issue templates](https://github.com/levy-street/world-of-claudec
 ## Getting help
 
 Stuck, or just want to say hi? Join the
-[community Discord](https://discord.com/invite/worldofclaudecraft). No question is too small, and
+[community Discord](https://discord.com/invite/wildhaven). No question is too small, and
 new contributors are always welcome.
 
 ## License
@@ -397,10 +397,10 @@ project.
 
 The MIT License means what it says: anyone may use, modify, and redistribute the
 code, commercially or not. Our
-[Terms of Service](https://worldofclaudecraft.com/terms) govern the hosted game
-we operate at worldofclaudecraft.com (accounts, conduct, virtual items) and do
+[Terms of Service](https://wildhaven.example/terms) govern the hosted game
+we operate at wildhaven.example (accounts, conduct, virtual items) and do
 not restrict the rights the MIT License gives you or anyone else in this code.
-The "World of ClaudeCraft" and "Levy Street" names and branding are not covered
+The "Wildhaven" and "Levy Street" names and branding are not covered
 by the MIT License.
 
 Original creative assets (sound recordings, music, art, and similar authored
@@ -412,7 +412,7 @@ may instead keep copyright and contribute it under a license of your choice
   the license table in [CREDITS.md](CREDITS.md) as part of the same pull
   request, and
 - it includes at minimum a perpetual, royalty-free grant to Levy Street to use
-  the assets commercially in World of ClaudeCraft, including official releases
+  the assets commercially in Wildhaven, including official releases
   and the in-game store.
 
 For assets listed in the CREDITS.md table, that recorded license controls over
@@ -433,5 +433,5 @@ because they may not.
 
 ---
 
-Thank you for contributing to World of ClaudeCraft. We can't wait to see what you
+Thank you for contributing to Wildhaven. We can't wait to see what you
 build with us.

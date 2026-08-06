@@ -12,7 +12,7 @@
 import type { AdminTranslations } from '../i18n.en';
 
 export const pl_PL: AdminTranslations = {
-  "app.title": "World of ClaudeCraft - Panel administratora",
+  "app.title": "Wildhaven - Panel administratora",
   "app.shortTitle": "Administrator WOC",
   "auth.username": "Nazwa użytkownika",
   "auth.password": "Hasło",

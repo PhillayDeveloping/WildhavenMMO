@@ -28,7 +28,7 @@ The rest of this document is retained as the historical design record. Mentions 
 
 ## 1. Context and motivation
 
-World of ClaudeCraft is six days old. Content is being added daily: new zones, dungeons, abilities, items, talents, and the player-visible strings that come with them. Every one of those strings is a `t()` key, and the i18n system is on the critical path of both the bundle and the contributor workflow.
+Wildhaven is six days old. Content is being added daily: new zones, dungeons, abilities, items, talents, and the player-visible strings that come with them. Every one of those strings is a `t()` key, and the i18n system is on the critical path of both the bundle and the contributor workflow.
 
 Two pressures are converging.
 

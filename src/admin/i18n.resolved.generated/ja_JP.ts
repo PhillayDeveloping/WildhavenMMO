@@ -12,7 +12,7 @@
 import type { AdminTranslations } from '../i18n.en';
 
 export const ja_JP: AdminTranslations = {
-  "app.title": "World of ClaudeCraft - 管理",
+  "app.title": "Wildhaven - 管理",
   "app.shortTitle": "WoC管理者",
   "auth.username": "ユーザー名",
   "auth.password": "パスワード",

@@ -452,7 +452,7 @@ applyNativeDeviceLanguage({
 // boot's profile is already resolved, and a missing bridge no-ops.
 void primeNativeDeviceMemoryHint();
 
-const SITE_URL = 'https://worldofclaudecraft.com/';
+const SITE_URL = 'https://wildhaven.example/';
 
 const RESOURCE_KEYS = {
   mana: 'classDetails.resources.mana',
@@ -5196,7 +5196,7 @@ async function completeDesktopBrowserLogin(): Promise<boolean> {
   try {
     const { code } = await api.createDesktopLoginCode();
     if (!code) throw new Error('missing desktop login code');
-    location.href = `worldofclaudecraft://desktop-login?code=${encodeURIComponent(code)}`;
+    location.href = `wildhaven://desktop-login?code=${encodeURIComponent(code)}`;
   } catch (err) {
     loginError(userFacingApiError(err));
     show('#login-panel');
@@ -6402,12 +6402,12 @@ function updateSeoMetadata(lang: SupportedLanguage): void {
   const jsonLd = document.getElementById('structured-data') as HTMLScriptElement | null;
   if (jsonLd) {
     const sameAs = [
-      'https://github.com/levy-street/world-of-claudecraft',
-      'https://discord.com/invite/worldofclaudecraft',
+      'https://github.com/levy-street/wildhaven',
+      'https://discord.com/invite/wildhaven',
       'https://www.youtube.com/@WoClaudeCraft',
       'https://x.com/WoClaudecraft',
-      'https://www.instagram.com/worldofclaudecraft/',
-      'https://www.tiktok.com/@worldofclaudecraft',
+      'https://www.instagram.com/wildhaven/',
+      'https://www.tiktok.com/@wildhaven',
       'https://www.reddit.com/r/WorldofClaudecraft/',
     ];
     jsonLd.textContent = JSON.stringify(
@@ -6416,39 +6416,39 @@ function updateSeoMetadata(lang: SupportedLanguage): void {
         '@graph': [
           {
             '@type': 'WebSite',
-            '@id': 'https://worldofclaudecraft.com/#website',
-            name: 'World of ClaudeCraft',
-            alternateName: 'World of Claudecraft',
+            '@id': 'https://wildhaven.example/#website',
+            name: 'Wildhaven',
+            alternateName: 'Wildhaven',
             url: canonicalHref,
             inLanguage: languageTag(lang),
             description: t('seo.description'),
             publisher: {
-              '@id': 'https://worldofclaudecraft.com/#organization',
+              '@id': 'https://wildhaven.example/#organization',
             },
           },
           {
             '@type': 'Organization',
-            '@id': 'https://worldofclaudecraft.com/#organization',
-            name: 'World of ClaudeCraft',
-            url: 'https://worldofclaudecraft.com/',
-            logo: 'https://worldofclaudecraft.com/woc_logo_square.webp',
+            '@id': 'https://wildhaven.example/#organization',
+            name: 'Wildhaven',
+            url: 'https://wildhaven.example/',
+            logo: 'https://wildhaven.example/woc_logo_square.webp',
             sameAs,
           },
           {
             '@type': 'VideoGame',
-            '@id': 'https://worldofclaudecraft.com/#game',
-            name: 'World of ClaudeCraft',
-            alternateName: 'World of Claudecraft',
+            '@id': 'https://wildhaven.example/#game',
+            name: 'Wildhaven',
+            alternateName: 'Wildhaven',
             genre: t('seo.genre'),
             playMode: t('seo.playMode'),
             applicationCategory: t('seo.applicationCategory'),
             operatingSystem: t('seo.operatingSystem'),
             url: canonicalHref,
-            image: 'https://worldofclaudecraft.com/woc_logo_square.webp',
+            image: 'https://wildhaven.example/woc_logo_square.webp',
             description: t('seo.description'),
             inLanguage: languageTag(lang),
             publisher: {
-              '@id': 'https://worldofclaudecraft.com/#organization',
+              '@id': 'https://wildhaven.example/#organization',
             },
             sameAs,
           },
@@ -6722,7 +6722,7 @@ const DISCORD_BUILD_ENABLED = String(import.meta.env.VITE_DISCORD_DISABLED ?? ''
 // falls back to DEFAULT_DISCORD_INVITE_URL (discord_status.ts) when the
 // server-fed value is not known yet (logged out, offline), so every caller
 // gets the fail-open behavior for free.
-const DONATE_URL = 'https://ko-fi.com/worldofclaudecraft';
+const DONATE_URL = 'https://ko-fi.com/wildhaven';
 const DISCORD_ONBOARD_KEY = 'woc_discord_onboard';
 let discordPopup: Window | null = null;
 
@@ -6760,7 +6760,7 @@ function startDiscordOAuth(mode: 'login' | 'link'): void {
     // openDesktopLogin, via shell.openExternal), never inside Electron itself, so
     // NATIVE_APP/DESKTOP_APP are both false here: the signal that this is a desktop
     // handoff is the page we are ON, not the runtime. Pass it through so the callback
-    // bounces back to /desktop-login (which mints the worldofclaudecraft:// deep-link
+    // bounces back to /desktop-login (which mints the wildhaven:// deep-link
     // code, see completeDesktopBrowserLogin) instead of the plain web '/'.
     void api
       .discordStart('login', false, '', undefined, isDesktopLoginPage())
@@ -7586,7 +7586,7 @@ function wireStartScreens(): void {
     // in place (doAuth -> api.login) without ever leaving the app. Only "Continue with
     // Discord" bounces to the external browser (wired below), because its OAuth redirect
     // would be blocked by the shell's in-app navigation guard; it returns a one-time code
-    // via the worldofclaudecraft://desktop-login deep link (onLoginCode ->
+    // via the wildhaven://desktop-login deep link (onLoginCode ->
     // completeDesktopAppLogin).
     show('#login-panel');
   };

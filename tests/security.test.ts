@@ -96,9 +96,9 @@ describe('websocket authentication', () => {
   });
 
   it('keeps bearer tokens out of the websocket URL', () => {
-    const url = buildWebSocketUrl('https:', 'worldofclaudecraft.com');
+    const url = buildWebSocketUrl('https:', 'wildhaven.example');
 
-    expect(url).toBe('wss://worldofclaudecraft.com/ws');
+    expect(url).toBe('wss://wildhaven.example/ws');
     expect(url).not.toContain('token');
   });
 
@@ -125,7 +125,7 @@ describe('websocket authentication', () => {
 
 describe('desktop app request origins', () => {
   it('allows the Electron app protocol through the web-client login guard', () => {
-    const req = fakeReq({ origin: 'app://worldofclaudecraft' }, '127.0.0.1');
+    const req = fakeReq({ origin: 'app://wildhaven' }, '127.0.0.1');
 
     expect(isWebClientRequest(req)).toBe(true);
   });
@@ -867,7 +867,7 @@ describe('Turnstile gate policy (passesTurnstile)', () => {
   it('bypasses verification for every desktop app origin even with a secret set', async () => {
     const fetchSpy = vi.fn();
     for (const origin of [
-      'app://worldofclaudecraft',
+      'app://wildhaven',
       'http://127.0.0.1:5173',
       'http://localhost:5173',
     ]) {
@@ -879,7 +879,7 @@ describe('Turnstile gate policy (passesTurnstile)', () => {
 
   it('still fails closed for plain web origins with a secret set and no token', async () => {
     const fetchSpy = vi.fn();
-    const req = fakeReq({ origin: 'https://worldofclaudecraft.com' }, '203.0.113.55');
+    const req = fakeReq({ origin: 'https://wildhaven.example' }, '203.0.113.55');
     await expect(passesTurnstile(req, {}, testSecret, fetchSpy as any)).resolves.toBe(false);
     expect(fetchSpy).not.toHaveBeenCalled();
   });
@@ -890,7 +890,7 @@ describe('Turnstile gate policy (passesTurnstile)', () => {
   });
 
   it('verifies a supplied web token against siteverify', async () => {
-    const req = fakeReq({ origin: 'https://worldofclaudecraft.com' }, '203.0.113.55');
+    const req = fakeReq({ origin: 'https://wildhaven.example' }, '203.0.113.55');
     const fetchOk = vi.fn(
       async () => new Response(JSON.stringify({ success: true }), { status: 200 }),
     );
@@ -901,7 +901,7 @@ describe('Turnstile gate policy (passesTurnstile)', () => {
   });
 
   it('lets requests through when no secret is configured', async () => {
-    const req = fakeReq({ origin: 'https://worldofclaudecraft.com' }, '203.0.113.55');
+    const req = fakeReq({ origin: 'https://wildhaven.example' }, '203.0.113.55');
     await expect(passesTurnstile(req, {}, '')).resolves.toBe(true);
   });
 
@@ -914,7 +914,7 @@ describe('Turnstile gate policy (passesTurnstile)', () => {
       const native = fakeReq({ origin: 'capacitor://localhost' }, '203.0.113.55');
       await expect(passesTurnstile(native, {}, '')).resolves.toBe(false);
       // and the desktop bypass still admits its own origins under the same env
-      const desktop = fakeReq({ origin: 'app://worldofclaudecraft' }, '203.0.113.55');
+      const desktop = fakeReq({ origin: 'app://wildhaven' }, '203.0.113.55');
       await expect(passesTurnstile(desktop, {}, testSecret)).resolves.toBe(true);
     } finally {
       delete process.env.NATIVE_ATTESTATION_REQUIRED;

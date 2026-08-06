@@ -7,17 +7,17 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-        <string>World of ClaudeCraft</string>
+        <string>Wildhaven</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.worldofclaudecraft.oauth</string>
+			<string>com.wildhaven.oauth</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>worldofclaudecraft</string>
+				<string>wildhaven</string>
 			</array>
 		</dict>
 	</array>

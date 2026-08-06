@@ -13,7 +13,7 @@ effort. This packet is small; no phase is batch-heavy, so no ultracode Workflow 
 
 ## Team workflow (every phase)
 1. **Pre-flight**: `git status` clean in THIS worktree
-   (`world-of-claudecraft-guild-social`); scan Claude Code memory (`MEMORY.md` index) for
+   (`wildhaven-guild-social`); scan Claude Code memory (`MEMORY.md` index) for
    guild-domain entries.
 2. **Load context**: spawn one Explore agent to read `state.md`, `progress.md`, this file's
    phase section, and the phase's listed source files; it returns a focused summary. Do not
@@ -52,7 +52,7 @@ Spawn ONLY agents whose row matches the diff:
 This is Phase 1 of the Guild Social v1 feature: billboard on login.
 
 Model: newest available Claude coding model, xhigh effort. Harness: Claude Code.
-Worktree: /Users/seanghods/repos/world-of-claudecraft-guild-social (feature/guild-social-v1).
+Worktree: /Users/seanghods/repos/wildhaven-guild-social (feature/guild-social-v1).
 
 Goal: show the guild billboard (MOTD) as a localized chat-log line at login and whenever
 its text changes mid-session, with zero server changes.
@@ -122,7 +122,7 @@ field; that contradicts the locked design.
 This is Phase 1 QA of the Guild Social v1 feature.
 
 Model: newest available Claude coding model, xhigh effort. Harness: Claude Code.
-Worktree: /Users/seanghods/repos/world-of-claudecraft-guild-social.
+Worktree: /Users/seanghods/repos/wildhaven-guild-social.
 
 Goal: audit Phase 1 for correctness, missing tests, dead code, and i18n completeness.
 
@@ -149,7 +149,7 @@ STEP 6: end with QA verdict, counts, deferred items, one-line handoff to Phase 2
 This is Phase 2 of the Guild Social v1 feature: tenure badges + guild-name screening.
 
 Model: newest available Claude coding model, xhigh effort. Harness: Claude Code.
-Worktree: /Users/seanghods/repos/world-of-claudecraft-guild-social.
+Worktree: /Users/seanghods/repos/wildhaven-guild-social.
 
 Goal: put joinedAt on the guild member wire row and render New / Veteran roster badges from
 it, and refuse offensive guild names at creation.
@@ -227,7 +227,7 @@ change (the pin in tests/world_api_parity.test.ts should not move for a row-type
 This is Phase 2 QA of the Guild Social v1 feature (final phase).
 
 Model: newest available Claude coding model, xhigh effort. Harness: Claude Code.
-Worktree: /Users/seanghods/repos/world-of-claudecraft-guild-social.
+Worktree: /Users/seanghods/repos/wildhaven-guild-social.
 
 Goal: audit Phase 2, then close the packet.
 

@@ -36,7 +36,7 @@ describe('prepare_ai_review: command parsing', () => {
 });
 
 describe('prepare_ai_review: event and prompt validation', () => {
-  const repository = 'levy-street/world-of-claudecraft';
+  const repository = 'levy-street/wildhaven';
   const baseSha = 'a'.repeat(40);
   const headSha = 'b'.repeat(40);
 

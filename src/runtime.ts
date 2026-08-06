@@ -1,4 +1,4 @@
-const DEFAULT_DESKTOP_API_ORIGIN = 'https://worldofclaudecraft.com';
+const DEFAULT_DESKTOP_API_ORIGIN = 'https://wildhaven.example';
 
 export function normalizeOrigin(raw: string): string {
   const trimmed = raw.trim().replace(/\/+$/, '');

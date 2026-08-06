@@ -1,7 +1,7 @@
 # From a reference image to a performant game GLB
 
 This is the living runbook for turning object references into stylized, game-ready
-Three.js GLBs for World of ClaudeCraft. It was written during the banker chest trial and
+Three.js GLBs for Wildhaven. It was written during the banker chest trial and
 then proven at scale by the Eastbrook Grand Armoury, the nine-building Eastbrook town kit,
 the Ravenpost mailbox, and the noticeboard. The single-asset chapters below keep the
 banker chest as the worked example; the wave-scale lessons live in "Scaling to an asset

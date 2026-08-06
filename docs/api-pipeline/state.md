@@ -566,7 +566,7 @@ gating (contrast ratelimit.ts TRUSTED_PROXY_IPS); spoofing it only fails toward 
 on a bearer-only surface (the spoofer could simply omit Origin), but the audit should
 consider gating that comparison behind the trusted-proxy check before enforcing.
 Phase 21 QA confirmed (privacy-security-review): an API_ORIGIN_CHECK_ENFORCE=1 flip
-today would NOT break the Electron desktop (app://worldofclaudecraft) or Capacitor
+today would NOT break the Electron desktop (app://wildhaven) or Capacitor
 (capacitor://localhost) clients; both ride the shared allowedCorsOrigin set, and the
 absent-Origin allowance covers any client that sends no Origin at all. Phase 23
 handoff (security review): the two mismatch sinks are un-throttled console.warn lines

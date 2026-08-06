@@ -12,7 +12,7 @@ import { BROWSER_PATH } from './browser_path.mjs';
 import { enterOfflineGame } from './enter_offline_game.mjs';
 
 const TARGETS = [
-  { label: 'pbe2', url: 'https://pbe2.worldofclaudecraft.com' },
+  { label: 'pbe2', url: 'https://pbe2.wildhaven.example' },
   { label: 'local', url: 'http://localhost:5173' },
 ].filter((t) => !process.env.AB_TARGETS || process.env.AB_TARGETS.split(',').includes(t.label));
 

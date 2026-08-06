@@ -1,4 +1,4 @@
-// Mobile HUD overlap audit for World of ClaudeCraft.
+// Mobile HUD overlap audit for Wildhaven.
 //
 // PURPOSE
 //   Sibling gate to mobile_cluster_layout_check.mjs. The cluster check gates the

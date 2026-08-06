@@ -1,6 +1,6 @@
 # HUD Visual, UX, and Accessibility Research Brief
 
-World of ClaudeCraft. Synthesis of six research briefs reconciled against three
+Wildhaven. Synthesis of six research briefs reconciled against three
 independent verification verdicts. Where a verdict corrected a research claim,
 the corrected form is used and flagged inline. All external claims are cited with
 a source URL; primary sources (w3.org, MDN, vendor docs) are preferred.

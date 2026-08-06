@@ -12,7 +12,7 @@ import { BROWSER_PATH as EDGE } from './browser_path.mjs';
 const URL = process.env.GAME_URL ?? 'http://localhost:5174';
 const OUT =
   process.env.OUT_DIR ??
-  '/tmp/claude-1000/-home-jegoh-Documents-repo-world-of-claudecraft/0174d831-2820-40d0-a54b-72b455bbc917/scratchpad/ore_shots';
+  '/tmp/claude-1000/-home-jegoh-Documents-repo-wildhaven/0174d831-2820-40d0-a54b-72b455bbc917/scratchpad/ore_shots';
 fs.mkdirSync(OUT, { recursive: true });
 
 const browser = await puppeteer.launch({

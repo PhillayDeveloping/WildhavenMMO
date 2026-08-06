@@ -1,6 +1,6 @@
 ---
 name: image-to-glb
-description: Turn a reference image into a shipping World of ClaudeCraft GLB using the img2threejs intake gates and this repo's deterministic export, optimize, fingerprint, and test pipeline. Use when asked to create, replace, or rebuild a world asset (prop, furniture, building, landmark, stall, service object) from a concept or reference image, to add a procedural GLB under public/models, or to re-export or re-pin an existing eastbrook-style asset.
+description: Turn a reference image into a shipping Wildhaven GLB using the img2threejs intake gates and this repo's deterministic export, optimize, fingerprint, and test pipeline. Use when asked to create, replace, or rebuild a world asset (prop, furniture, building, landmark, stall, service object) from a concept or reference image, to add a procedural GLB under public/models, or to re-export or re-pin an existing eastbrook-style asset.
 user-invocable: true
 ---
 

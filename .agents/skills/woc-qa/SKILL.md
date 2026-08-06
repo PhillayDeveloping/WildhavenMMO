@@ -1,9 +1,9 @@
 ---
 name: woc-qa
-description: "Run end-of-contribution QA for World of ClaudeCraft, including readiness checks, scoped regression testing, and conditional specialist review. Use when asked to QA changes, make work ready, verify a branch or worktree, or assess whether a contribution is complete."
+description: "Run end-of-contribution QA for Wildhaven, including readiness checks, scoped regression testing, and conditional specialist review. Use when asked to QA changes, make work ready, verify a branch or worktree, or assess whether a contribution is complete."
 ---
 
-# World of ClaudeCraft QA
+# Wildhaven QA
 
 Coordinate one evidence-backed QA pass for the requested change.
 

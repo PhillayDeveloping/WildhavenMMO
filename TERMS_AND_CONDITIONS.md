@@ -1,12 +1,12 @@
 # Terms and Conditions
 
-**World of ClaudeCraft**
+**Wildhaven**
 
 Last updated: 22 July 2026
 
 ## 1. Who we are and what these terms cover
 
-These Terms and Conditions (the "Terms") are a legal agreement between you and Dream Home AI Limited, trading as Levy Street, New Zealand company number 8703066 ("we," "us," "our"). They govern your use of World of ClaudeCraft (the "Game"), worldofclaudecraft.com (the "Site"), and our mobile application (the "App"), together the "Service."
+These Terms and Conditions (the "Terms") are a legal agreement between you and Dream Home AI Limited, trading as Levy Street, New Zealand company number 8703066 ("we," "us," "our"). They govern your use of Wildhaven (the "Game"), wildhaven.example (the "Site"), and our mobile application (the "App"), together the "Service."
 
 By using the Service you agree to these Terms and to our Privacy Policy. If you do not agree, do not use the Service.
 
@@ -26,7 +26,7 @@ The Game's source code is published in a public repository and is licensed to yo
 
 The MIT Licence covers source code only. Art, audio, fonts, and other media assets in the repository are not covered by it. Each of those assets is governed by the licence recorded against it in `CREDITS.md`, and that recorded licence controls over the MIT Licence. Some of them may not be redistributed at all, and some may be redistributed only on non-commercial terms. A media asset that is not recorded in `CREDITS.md` is not licensed to you either, because that register is still being completed. Read `CREDITS.md` before you redistribute the repository or use any asset from it, and ask us if something is not listed.
 
-The "World of ClaudeCraft" and "Levy Street" names, logos, and branding are not licensed by the MIT Licence or by these Terms.
+The "Wildhaven" and "Levy Street" names, logos, and branding are not licensed by the MIT Licence or by these Terms.
 
 ## 5. Accounts
 
@@ -82,7 +82,7 @@ The Service links to and relies on third-party services, including GitHub, Ko-fi
 
 ## 13. Intellectual property and no affiliation
 
-World of ClaudeCraft is an independent, community project. It is not affiliated with, endorsed by, sponsored by, or associated with any third-party company, game, product, or brand. All third-party names, marks, and trademarks are the property of their respective owners. Any such names that appear are used only descriptively and do not imply any association.
+Wildhaven is an independent, community project. It is not affiliated with, endorsed by, sponsored by, or associated with any third-party company, game, product, or brand. All third-party names, marks, and trademarks are the property of their respective owners. Any such names that appear are used only descriptively and do not imply any association.
 
 Except for your User Content, the Service, including its original content, features, design, media assets, and branding, is owned by us or our licensors and is protected by intellectual property laws. You may not copy, distribute, or create derivative works from the Service, from the media assets described in Section 4, or from our names, logos, and branding, except as these Terms or the licence recorded in `CREDITS.md` expressly allows, or with our prior written permission. Your rights in the source code are governed by the MIT Licence as described in Section 4, and this Section does not restrict them.
 

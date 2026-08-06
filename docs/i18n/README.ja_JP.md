@@ -1,12 +1,12 @@
 <div align="center">
 
-# World of ClaudeCraft
+# Wildhaven
 
 **手作りの世界でクエストを進め、パーティを組み、レイドに挑もう。ブラウザで無料、オープンソース、web3対応、そして今すぐオンラインでプレイできます。**
 
-**公式サイト: https://worldofclaudecraft.com/**
+**公式サイト: https://wildhaven.example/**
 
-[![CI](https://github.com/levy-street/world-of-claudecraft/actions/workflows/ci.yml/badge.svg)](https://github.com/levy-street/world-of-claudecraft/actions/workflows/ci.yml)
+[![CI](https://github.com/levy-street/wildhaven/actions/workflows/ci.yml/badge.svg)](https://github.com/levy-street/wildhaven/actions/workflows/ci.yml)
 [![TypeScript](https://img.shields.io/badge/TypeScript-7.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Three.js](https://img.shields.io/badge/Three.js-r165-000000?logo=threedotjs&logoColor=white)](https://threejs.org/)
 [![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
@@ -16,23 +16,23 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](../../LICENSE)
 [![Version](https://img.shields.io/badge/version-0.34.0-blue)](../../package.json)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.ja_JP.md)
-[![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.com/invite/worldofclaudecraft)
+[![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.com/invite/wildhaven)
 
 [English](../../README.md) · [Español](README.es.md) · [Español (España)](README.es_ES.md) · [Français](README.fr_FR.md) · [Français (Canada)](README.fr_CA.md) · [Italiano](README.it_IT.md) · [Deutsch](README.de_DE.md) · [简体中文](README.zh_CN.md) · [繁體中文](README.zh_TW.md) · [한국어](README.ko_KR.md) · **日本語** · [Português (Brasil)](README.pt_BR.md) · [Русский](README.ru_RU.md) · [Čeština](README.cs_CZ.md) · [Nederlands](README.nl_NL.md) · [Polski](README.pl_PL.md) · [Bahasa Indonesia](README.id_ID.md) · [Türkçe](README.tr_TR.md) · [Svenska](README.sv_SE.md) · [Tiếng Việt](README.vi_VN.md) · [Dansk](README.da_DK.md)
 
-[今すぐプレイ](https://worldofclaudecraft.com/) · [自分の世界をホストする](#host-your-own-world-one-command) · [エージェントを訓練する](#train-an-agent-headless-rl) · [Web3](#web3) · [コントリビュート](CONTRIBUTING.ja_JP.md) · [Discord](https://discord.com/invite/worldofclaudecraft)
+[今すぐプレイ](https://wildhaven.example/) · [自分の世界をホストする](#host-your-own-world-one-command) · [エージェントを訓練する](#train-an-agent-headless-rl) · [Web3](#web3) · [コントリビュート](CONTRIBUTING.ja_JP.md) · [Discord](https://discord.com/invite/wildhaven)
 
-![World of ClaudeCraft タイトル画面](../../docs/screenshots/title-screen.jpg)
+![Wildhaven タイトル画面](../../docs/screenshots/title-screen.jpg)
 
 </div>
 
 ## これは何か
 
-World of ClaudeCraft は、今すぐブラウザでプレイでき、コマンド一つで自分でホストでき、さらにはAIエージェントにプレイを学習させることもできる、完全なクラシック時代のMMOです。無料でオープンソース、[worldofclaudecraft.com](https://worldofclaudecraft.com/) で稼働中です。
+Wildhaven は、今すぐブラウザでプレイでき、コマンド一つで自分でホストでき、さらにはAIエージェントにプレイを学習させることもできる、完全なクラシック時代のMMOです。無料でオープンソース、[wildhaven.example](https://wildhaven.example/) で稼働中です。
 
 一つの共有された世界が、同じゲームコアから三つの場所で動きます。
 
-- **権威ある（オーソリタティブな）マルチプレイヤーサーバー**。worldofclaudecraft.com で実際に遊べるライブな世界で、Postgres を背後に持つアカウントが一つの永続的なレルムを共有します。
+- **権威ある（オーソリタティブな）マルチプレイヤーサーバー**。wildhaven.example で実際に遊べるライブな世界で、Postgres を背後に持つアカウントが一つの永続的なレルムを共有します。
 - **オフラインのブラウザ世界**。開発サーバーから入れるローカルのシングルプレイヤー `Sim` で、開発にも、ゲームコアを端から端まで読むのにも役立ちます。
 - **ヘッドレスのRL環境**。Python が Gym インターフェース越しに本物のゲームを動かします。
 
@@ -77,7 +77,7 @@ World of ClaudeCraft は、今すぐブラウザでプレイでき、コマン�
 
 ## プレイする
 
-[worldofclaudecraft.com](https://worldofclaudecraft.com/) のブラウザで遊ぶか、Windows、Linux、macOS、iOS、Android 向けのネイティブアプリをインストールしてください。どのクライアントも同じオンライン世界に接続します。
+[wildhaven.example](https://wildhaven.example/) のブラウザで遊ぶか、Windows、Linux、macOS、iOS、Android 向けのネイティブアプリをインストールしてください。どのクライアントも同じオンライン世界に接続します。
 
 ### オンライン、他のプレイヤーと
 
@@ -96,9 +96,9 @@ npm run dev        # then open http://localhost:5173 and choose Play Offline
 
 ### Windows、Linux、macOS 向けデスクトップアプリ
 
-World of ClaudeCraft は、主要な3つのデスクトッププラットフォームすべてに向けた完全なデスクトップアプリとして出荷されます。署名済みの Windows インストーラー、Linux の AppImage と deb パッケージ、そして署名と公証を済ませた macOS のユニバーサルビルドです。ブラウザと同じゲームクライアントとオンライン世界を、ネイティブのパッケージングと自動更新つきで使えます。
+Wildhaven は、主要な3つのデスクトッププラットフォームすべてに向けた完全なデスクトップアプリとして出荷されます。署名済みの Windows インストーラー、Linux の AppImage と deb パッケージ、そして署名と公証を済ませた macOS のユニバーサルビルドです。ブラウザと同じゲームクライアントとオンライン世界を、ネイティブのパッケージングと自動更新つきで使えます。
 
-オンラインのサインインは Discord とメールのみで、まさにウェブと同じ流れです。メールとパスワードはアプリ内でログインし、「Continue with Discord」は既定のブラウザで `/desktop-login` ページを開きます。このページがワンタイムコードを `worldofclaudecraft://` のディープリンク経由でアプリに返し、アプリはそれを通常の World of ClaudeCraft のセッショントークンと交換します。
+オンラインのサインインは Discord とメールのみで、まさにウェブと同じ流れです。メールとパスワードはアプリ内でログインし、「Continue with Discord」は既定のブラウザで `/desktop-login` ページを開きます。このページがワンタイムコードを `wildhaven://` のディープリンク経由でアプリに返し、アプリはそれを通常の Wildhaven のセッショントークンと交換します。
 
 ```bash
 npm run electron:dev          # Vite + Electron dev shell
@@ -113,7 +113,7 @@ npm run electron:build:steam  # SteamPipe depot layouts (in-app updater off)
 VITE_DESKTOP_API_ORIGIN=http://127.0.0.1:8787 npm run electron:dev
 ```
 
-ステージングビルドで本番のAPIオリジンを上書きするには `VITE_DESKTOP_API_ORIGIN=https://dev.worldofclaudecraft.com` を使います（これはビルド時の値です。バンドルに焼き込まれてパッケージ済みアプリに刻まれるので、インストール済みビルドは実行時の環境変数としては無視します）。Steam は配布チャネルであり（同じ Electron バンドルを SteamPipe 経由でアップロードします）、デスクトッププレイヤーは Steam アカウントをリンクして、獲得した deed を Steam 実績にミラーリングできます。サインイン自体はメールと Discord のままです。リリースの完全な手順書（署名、公証、自動更新の公開、SteamPipe の depot、サーバーのデプロイ）は `docs/desktop-release.md` にあります。iOS と Android は Capacitor 経由で出荷され、専用の手順書が `docs/mobile-store-release.md` にあります。
+ステージングビルドで本番のAPIオリジンを上書きするには `VITE_DESKTOP_API_ORIGIN=https://dev.wildhaven.example` を使います（これはビルド時の値です。バンドルに焼き込まれてパッケージ済みアプリに刻まれるので、インストール済みビルドは実行時の環境変数としては無視します）。Steam は配布チャネルであり（同じ Electron バンドルを SteamPipe 経由でアップロードします）、デスクトッププレイヤーは Steam アカウントをリンクして、獲得した deed を Steam 実績にミラーリングできます。サインイン自体はメールと Discord のままです。リリースの完全な手順書（署名、公証、自動更新の公開、SteamPipe の depot、サーバーのデプロイ）は `docs/desktop-release.md` にあります。iOS と Android は Capacitor 経由で出荷され、専用の手順書が `docs/mobile-store-release.md` にあります。
 
 <a id="host-your-own-world-one-command"></a>
 
@@ -184,7 +184,7 @@ env.close()
 
 ## Web3
 
-World of ClaudeCraft は、Solana 上のコミュニティトークン **$WOC** を中心とした web3 ネイティブです。Solana ウォレットを接続し、署名一つでアカウントにリンクすると（ノンカストディアル、承認すべきトランザクションなし）、読み取り専用の $WOC 残高がコスメティックなホルダーティアバッジとともにHUDに表示されます。
+Wildhaven は、Solana 上のコミュニティトークン **$WOC** を中心とした web3 ネイティブです。Solana ウォレットを接続し、署名一つでアカウントにリンクすると（ノンカストディアル、承認すべきトランザクションなし）、読み取り専用の $WOC 残高がコスメティックなホルダーティアバッジとともにHUDに表示されます。
 
 $WOC はライブなゲーム内でも任意のユーティリティを持ちます。
 
@@ -200,7 +200,7 @@ $WOC はライブなゲーム内でも任意のユーティリティを持ちま
 3WjLscH2JsXLEFJZRA9z8ti8yRGxWGKbqymPd7UicRth
 ```
 
-トークンの詳細は [worldofclaudecraft.com](https://worldofclaudecraft.com/) で。
+トークンの詳細は [wildhaven.example](https://wildhaven.example/) で。
 
 ## 世界をめぐる
 
@@ -368,7 +368,7 @@ node scripts/crypt_raid.mjs     # five bots clear the Hollow Crypt (ALLOW_DEV_CO
 
 ## コントリビュート
 
-あらゆる種類の貢献を歓迎します。コード、翻訳、バグ報告、ドキュメント。まずはセットアップについて [CONTRIBUTING.ja_JP.md](CONTRIBUTING.ja_JP.md) から始め、[行動規範](../../CODE_OF_CONDUCT.md) を読み、脆弱性を報告する前に [SECURITY.md](../../SECURITY.md) を確認してください。初めてですか? [`good first issue`](https://github.com/levy-street/world-of-claudecraft/labels/good%20first%20issue) のラベルが付いた issue を探すか、[issue](https://github.com/levy-street/world-of-claudecraft/issues/new/choose) を立てるか、[Discord](https://discord.com/invite/worldofclaudecraft) で挨拶してください。
+あらゆる種類の貢献を歓迎します。コード、翻訳、バグ報告、ドキュメント。まずはセットアップについて [CONTRIBUTING.ja_JP.md](CONTRIBUTING.ja_JP.md) から始め、[行動規範](../../CODE_OF_CONDUCT.md) を読み、脆弱性を報告する前に [SECURITY.md](../../SECURITY.md) を確認してください。初めてですか? [`good first issue`](https://github.com/levy-street/wildhaven/labels/good%20first%20issue) のラベルが付いた issue を探すか、[issue](https://github.com/levy-street/wildhaven/issues/new/choose) を立てるか、[Discord](https://discord.com/invite/wildhaven) で挨拶してください。
 
 活発な開発は最新の `release/vX.Y.Z` ブランチで進みます。決め打ちにせず自分で確認したうえで、そのブランチから分岐し、プルリクエストもそこに向けてください。`main` から分岐したり `main` を対象にしたりは決してしないでください。`main` はそのバージョンが出荷されたときにリリースブランチを受け取るだけです。現在のブランチを見つける一行のコマンドは [CONTRIBUTING.md](CONTRIBUTING.ja_JP.md) にあります。
 
@@ -382,7 +382,7 @@ node scripts/crypt_raid.mjs     # five bots clear the Hollow Crypt (ALLOW_DEV_CO
 |---|---|---|
 | **ソースコード**。つまり、下で切り出されるメディアアセット以外のすべて | [MIT](../../LICENSE) | できます。商用でも。 |
 | **メディアアセット**: モデル、テクスチャ、HDRI、アイコン、サウンド、フォント（主に `public/` 配下） | アセットごとに [CREDITS.md](../../CREDITS.md) に記録 | 多くはできます（ほとんどがCC0）。できないものもあります、下記参照。 |
-| **名称とブランディング**: 「World of ClaudeCraft」、「Levy Street」、ロゴ | ライセンスされていません | できません。 |
+| **名称とブランディング**: 「Wildhaven」、「Levy Street」、ロゴ | ライセンスされていません | できません。 |
 
 **フォークして自分の世界をホストしてください。それは動きますし、アセットが邪魔をすることもありません。** 目に見えるもののほとんどはCC0のパブリックドメイン（KayKit、Quaternius、Kenney、ambientCG、Poly Haven）で、私たち自身が生成した小物、クリーチャー、背景、インターフェースのサウンドはプロジェクトに同梱されるので、フォークしてもそのまま動きます。ただし、それらを抜き出して単独のアートとして売ることはできません。
 
@@ -396,4 +396,4 @@ node scripts/crypt_raid.mjs     # five bots clear the Hollow Crypt (ALLOW_DEV_CO
 
 [CREDITS.md](../../CREDITS.md) が正式な一覧で、アセットごとに再配布の列があります。あるアセットがそこに載っている場合、そのライセンスがプロジェクトのMITライセンスに優先します。この登録簿はまだ整備中なので、そこに見当たらないメディアアセットは自由なのではなく未記録なのです。頼りにする前に確認してください。ソースコードは逆で、切り出されていないものはすべてMITです。
 
-私たちの [利用規約](https://worldofclaudecraft.com/terms) は、worldofclaudecraft.com で私たちが運営するホスト版のゲーム（アカウント、行為、仮想アイテム）を対象とします。このソースコードにおいてMITライセンスがあなたに与える権利を制限するものではありません。
+私たちの [利用規約](https://wildhaven.example/terms) は、wildhaven.example で私たちが運営するホスト版のゲーム（アカウント、行為、仮想アイテム）を対象とします。このソースコードにおいてMITライセンスがあなたに与える権利を制限するものではありません。

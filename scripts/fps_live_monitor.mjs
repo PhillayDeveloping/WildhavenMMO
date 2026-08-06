@@ -156,7 +156,7 @@ for (const t of TARGETS) {
   const ws = fs.readFileSync(`tmp/fps-live-${t}.ws`, 'utf8').trim();
   const browser = await puppeteer.connect({ browserWSEndpoint: ws, defaultViewport: null });
   const all = await browser.pages();
-  pages[t] = all.find((p) => /worldofclaudecraft|localhost/.test(p.url())) ?? all[all.length - 1];
+  pages[t] = all.find((p) => /wildhaven|localhost/.test(p.url())) ?? all[all.length - 1];
   console.log(`${t}: connected (${pages[t].url()})`);
 }
 console.log('waiting for both worlds (log in + enter world in each window)...');

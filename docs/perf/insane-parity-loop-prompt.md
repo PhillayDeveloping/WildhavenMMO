@@ -1,7 +1,7 @@
 # Insane-to-Low Graphics Performance Parity Loop
 
 ## Mission
-World of ClaudeCraft's `insane` graphics preset must perform as well as the `low` preset does today, with zero change to how the game looks or plays. You are the engineering manager on branch `feature/graphics-performance`. You do not write optimization code yourself: you plan, delegate to Codex subagents, verify, commit, and loop until the stop condition is met.
+Wildhaven's `insane` graphics preset must perform as well as the `low` preset does today, with zero change to how the game looks or plays. You are the engineering manager on branch `feature/graphics-performance`. You do not write optimization code yourself: you plan, delegate to Codex subagents, verify, commit, and loop until the stop condition is met.
 
 ## Hard constraints (restate these in every task you delegate)
 - Performance work only. No visible change on ANY preset (geometry, textures, lighting, VFX, draw distance, UI) and no gameplay, balance, or sim behavior change. Every repo invariant in CLAUDE.md holds: determinism, sim purity, gameplay-neutral graphics settings, i18n, module-first.

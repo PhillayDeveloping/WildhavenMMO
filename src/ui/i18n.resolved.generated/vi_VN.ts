@@ -808,8 +808,8 @@ export const vi_VN: EnTranslations = {
     },
     "nativeUpdate": {
       "title": "Có Bản Cập Nhật",
-      "body": "Đã có phiên bản mới của World of ClaudeCraft. Cập nhật ngay để nhận các bản sửa lỗi và cải tiến mới nhất.",
-      "bodyWithVersion": "Đã có phiên bản {version} của World of ClaudeCraft. Cập nhật ngay để nhận các bản sửa lỗi và cải tiến mới nhất.",
+      "body": "Đã có phiên bản mới của Wildhaven. Cập nhật ngay để nhận các bản sửa lỗi và cải tiến mới nhất.",
+      "bodyWithVersion": "Đã có phiên bản {version} của Wildhaven. Cập nhật ngay để nhận các bản sửa lỗi và cải tiến mới nhất.",
       "notNow": "Không phải bây giờ",
       "update": "Cập Nhật"
     },
@@ -1961,7 +1961,7 @@ export const vi_VN: EnTranslations = {
     },
     "discord": {
       "title": "Discord",
-      "panelTitle": "World of ClaudeCraft",
+      "panelTitle": "Wildhaven",
       "open": "Discord",
       "close": "Đóng",
       "keybind": "Bảng Discord",
@@ -3108,7 +3108,7 @@ export const vi_VN: EnTranslations = {
     }
   },
   "guide": {
-    "brand": "World of ClaudeCraft",
+    "brand": "Wildhaven",
     "brandShort": "ClaudeCraft",
     "tagline": "Một MMO phong cách cổ điển bạn chơi miễn phí ngay trên trình duyệt.",
     "skipToContent": "Chuyển đến nội dung chính",
@@ -3174,7 +3174,7 @@ export const vi_VN: EnTranslations = {
       "github": "Mã nguồn trên GitHub",
       "discord": "Tham gia Discord",
       "communityWiki": "Wiki Cộng Đồng",
-      "rights": "World of ClaudeCraft",
+      "rights": "Wildhaven",
       "linksLabel": "Liên kết chơi và cộng đồng"
     },
     "language": {
@@ -3197,7 +3197,7 @@ export const vi_VN: EnTranslations = {
     },
     "home": {
       "eyebrow": "MMO cổ điển trên trình duyệt",
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "subtitle": "Làm nhiệm vụ, hợp sức và khám phá một thế giới được dựng thủ công, miễn phí ngay trong trình duyệt của bạn.",
       "ctaPlay": "Chơi Ngay",
       "ctaLearn": "Cách Chơi",
@@ -3712,7 +3712,7 @@ export const vi_VN: EnTranslations = {
     },
     "worldPage": {
       "heading": "Thế giới",
-      "intro": "World of ClaudeCraft là một vùng đất liền mạch mà bạn băng qua bằng đôi chân, ba khu vực trải dài từ nam tới bắc. Không có di chuyển nhanh, nên hành trình là một phần của cuộc phiêu lưu.",
+      "intro": "Wildhaven là một vùng đất liền mạch mà bạn băng qua bằng đôi chân, ba khu vực trải dài từ nam tới bắc. Không có di chuyển nhanh, nên hành trình là một phần của cuộc phiêu lưu.",
       "hub": "Căn cứ nhà",
       "mapHeading": "Con đường lên phương bắc",
       "mapSub": "Ba khu vực, từ nam tới bắc, mỗi nơi cao hơn một bậc về cấp độ. Hãy theo dấu vết nhiệm vụ và vùng đất sẽ đưa bạn từ thung lũng tới những đỉnh cao.",
@@ -4539,7 +4539,7 @@ export const vi_VN: EnTranslations = {
   },
   "editor": {
     "appTitle": "Trình Chỉnh Sửa Bản Đồ",
-    "docTitle": "Trình Chỉnh Sửa Bản Đồ - World of ClaudeCraft",
+    "docTitle": "Trình Chỉnh Sửa Bản Đồ - Wildhaven",
     "untitledMap": "Bản Đồ Chưa Đặt Tên",
     "playtestPlayerName": "Người Tạo Bản Đồ",
     "topbar": {
@@ -5015,8 +5015,8 @@ export const vi_VN: EnTranslations = {
     "realmName": "Tên Thế Giới"
   },
   "footer": {
-    "copyright": "2026 World of ClaudeCraft",
-    "githubLink": "https://github.com/levy-street/world-of-claudecraft",
+    "copyright": "2026 Wildhaven",
+    "githubLink": "https://github.com/levy-street/wildhaven",
     "githubLabel": "Dự Án Mã Nguồn Mở",
     "whitepaper": "Sách trắng",
     "terms": "Điều Khoản Dịch Vụ",
@@ -5073,7 +5073,7 @@ export const vi_VN: EnTranslations = {
     "serverOnline": "Trực Tuyến",
     "serverOffline": "Ngoại Tuyến",
     "play": "Chơi",
-    "playAria": "Chơi World of ClaudeCraft",
+    "playAria": "Chơi Wildhaven",
     "serverLabel": "Chọn thế giới của bạn",
     "serverAria": "Chọn thế giới: Trực Tuyến hoặc Ngoại Tuyến",
     "serverOfflineSub": "Thế giới cục bộ tức thì"
@@ -5140,15 +5140,15 @@ export const vi_VN: EnTranslations = {
     "levelClass": "Cấp {level} - {className}",
     "topPercent": "TOP {percent}%",
     "realmSubtitle": "Thế Giới {realm}",
-    "defaultRealm": "World of ClaudeCraft",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "defaultRealm": "Wildhaven",
+    "brandWordmark": "WILDHAVEN",
     "recruited": "{count} người được chiêu mộ",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",
     "footerCta": "Rèn nên huyền thoại của bạn: {siteUrl}",
     "arenaStat": "Đấu Trường",
-    "shareText": "Tôi đang rèn nên huyền thoại của mình trong World of ClaudeCraft: {className} cấp {level}{tierBit}. Hãy tham gia thế giới của tôi:",
-    "nativeShareTitle": "World of ClaudeCraft",
+    "shareText": "Tôi đang rèn nên huyền thoại của mình trong Wildhaven: {className} cấp {level}{tierBit}. Hãy tham gia thế giới của tôi:",
+    "nativeShareTitle": "Wildhaven",
     "fileNameFallback": "nguoichoi",
     "actionShareX": "Chia Sẻ Lên X",
     "actionCopyReferral": "Sao Chép Liên Kết Giới Thiệu",
@@ -5848,14 +5848,14 @@ export const vi_VN: EnTranslations = {
     }
   },
   "seo": {
-    "title": "World of ClaudeCraft: MMO Web Phong Cách Cổ Điển",
-    "description": "Bắt đầu cuộc phiêu lưu hoành tráng trong World of ClaudeCraft, một micro-MMO phong cách cổ điển chơi trực tiếp trên trình duyệt của bạn. Tham gia một thế giới chung bền vững, lên cấp các lớp nhân vật và đánh bại kẻ thù!",
+    "title": "Wildhaven: MMO Web Phong Cách Cổ Điển",
+    "description": "Bắt đầu cuộc phiêu lưu hoành tráng trong Wildhaven, một micro-MMO phong cách cổ điển chơi trực tiếp trên trình duyệt của bạn. Tham gia một thế giới chung bền vững, lên cấp các lớp nhân vật và đánh bại kẻ thù!",
     "genre": "MMORPG",
     "playMode": "Nhiều người chơi",
     "applicationCategory": "Trò chơi",
     "operatingSystem": "Trình duyệt web",
-    "officialLabel": "Trang web World of ClaudeCraft chính thức",
-    "officialBody": "worldofclaudecraft.com là trang MMO trên trình duyệt miễn phí chính thức cho thế giới Claudemoon. Chơi trực tuyến với một nhân vật bền vững, khám phá đơn lẻ ngoại tuyến, đọc wiki và theo dõi các liên kết cộng đồng đã được xác minh từ trang này."
+    "officialLabel": "Trang web Wildhaven chính thức",
+    "officialBody": "wildhaven.example là trang MMO trên trình duyệt miễn phí chính thức cho thế giới Claudemoon. Chơi trực tuyến với một nhân vật bền vững, khám phá đơn lẻ ngoại tuyến, đọc wiki và theo dõi các liên kết cộng đồng đã được xác minh từ trang này."
   },
   "a11y": {
     "goHome": "Về trang chủ",
@@ -5863,9 +5863,9 @@ export const vi_VN: EnTranslations = {
     "mainNavigation": "Điều hướng chính",
     "languageSelection": "Chọn ngôn ngữ",
     "characterActions": "Hành động nhân vật",
-    "githubProject": "Mở dự án GitHub của World of ClaudeCraft",
-    "discordCommunity": "Tham gia cộng đồng Discord của World of ClaudeCraft",
-    "donateProject": "Quyên góp ủng hộ World of ClaudeCraft"
+    "githubProject": "Mở dự án GitHub của Wildhaven",
+    "discordCommunity": "Tham gia cộng đồng Discord của Wildhaven",
+    "donateProject": "Quyên góp ủng hộ Wildhaven"
   },
   "entryGuard": {
     "title": "Đã hạ đồ họa",
@@ -5952,11 +5952,11 @@ export const vi_VN: EnTranslations = {
       "dismiss": "Bỏ Qua"
     },
     "crash": {
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "body": "Khung trò chơi đã ngừng hoạt động. Tải lại chứ?",
       "reload": "Tải lại",
       "quit": "Thoát",
-      "fatalBody": "World of ClaudeCraft gặp lỗi không mong muốn và cần đóng lại."
+      "fatalBody": "Wildhaven gặp lỗi không mong muốn và cần đóng lại."
     }
   },
   "gpuNotice": {
@@ -6095,17 +6095,17 @@ export const vi_VN: EnTranslations = {
     "iosStandaloneDetail": "Bạn đang ở chế độ toàn màn hình từ màn hình chính. Hãy giữ thiết bị ở chế độ ngang.",
     "iosInstallDetail": "Để chơi toàn màn hình thực sự trên iPhone hoặc iPad, hãy cài đặt trang này vào Màn hình chính trước.",
     "iosShareStep": "Trong Safari, chạm vào Chia sẻ, rồi chọn Thêm vào Màn hình chính.",
-    "iosOpenStep": "Mở World of ClaudeCraft từ biểu tượng mới trên Màn hình chính.",
+    "iosOpenStep": "Mở Wildhaven từ biểu tượng mới trên Màn hình chính.",
     "androidStandaloneDetail": "Bạn đang ở chế độ ứng dụng toàn màn hình. Hãy giữ thiết bị ở chế độ ngang.",
     "androidInstallDetail": "Để chơi toàn màn hình trên Android, hãy cài đặt trang này hoặc thêm vào Màn hình chính trước.",
     "androidInstallStep": "Trong Chrome, chạm vào menu, rồi chọn Cài đặt ứng dụng hoặc Thêm vào Màn hình chính.",
-    "androidOpenStep": "Mở World of ClaudeCraft từ biểu tượng mới.",
+    "androidOpenStep": "Mở Wildhaven từ biểu tượng mới.",
     "otherStandaloneDetail": "Hãy giữ thiết bị ở chế độ ngang toàn màn hình.",
     "otherInstallDetail": "Hãy cài đặt hoặc thêm trang này vào Màn hình chính để có trải nghiệm toàn màn hình tốt nhất trên di động."
   },
   "serverUnavailable": {
-    "title": "World of ClaudeCraft - Thế Giới Không Khả Dụng",
-    "logoAlt": "World of ClaudeCraft",
+    "title": "Wildhaven - Thế Giới Không Khả Dụng",
+    "logoAlt": "Wildhaven",
     "eyebrow": "Bảo trì thế giới",
     "heading": "Thế giới tạm thời không khả dụng.",
     "body": "Chúng tôi đang khởi động lại dịch vụ trò chơi và dự kiến Claudemoon sẽ trở lại trong giây lát. Trang này sẽ tự động tiếp tục kiểm tra.",

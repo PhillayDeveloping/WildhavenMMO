@@ -1,6 +1,6 @@
 ---
 name: woc-release-merge-audit
-description: "Audit a release merge into a long-lived World of ClaudeCraft branch for semantic conflict damage, legacy drift, missed inventory updates, and invalidated planning assumptions. Use after merging a release branch, when reviewing a release merge commit, or before resuming feature work after upstream integration."
+description: "Audit a release merge into a long-lived Wildhaven branch for semantic conflict damage, legacy drift, missed inventory updates, and invalidated planning assumptions. Use after merging a release branch, when reviewing a release merge commit, or before resuming feature work after upstream integration."
 ---
 
 # Release Merge Audit

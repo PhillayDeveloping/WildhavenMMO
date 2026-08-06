@@ -1,6 +1,6 @@
 # NPC Voice Prompts
 
-Voice-direction reference for every named NPC in World of ClaudeCraft.
+Voice-direction reference for every named NPC in Wildhaven.
 
 The NPCs have **no unique portrait/image assets** — they are rendered
 procedurally from a small set of shared GLB player models (knight, mage,

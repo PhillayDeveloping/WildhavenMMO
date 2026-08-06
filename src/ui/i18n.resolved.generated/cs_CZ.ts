@@ -808,8 +808,8 @@ export const cs_CZ: EnTranslations = {
     },
     "nativeUpdate": {
       "title": "Aktualizace dostupná",
-      "body": "Je dostupná nová verze World of ClaudeCraft. Aktualizuj teď pro nejnovější opravy a vylepšení.",
-      "bodyWithVersion": "Je dostupná verze {version} World of ClaudeCraft. Aktualizuj teď pro nejnovější opravy a vylepšení.",
+      "body": "Je dostupná nová verze Wildhaven. Aktualizuj teď pro nejnovější opravy a vylepšení.",
+      "bodyWithVersion": "Je dostupná verze {version} Wildhaven. Aktualizuj teď pro nejnovější opravy a vylepšení.",
       "notNow": "Teď ne",
       "update": "Aktualizovat"
     },
@@ -1961,7 +1961,7 @@ export const cs_CZ: EnTranslations = {
     },
     "discord": {
       "title": "Discord",
-      "panelTitle": "World of ClaudeCraft",
+      "panelTitle": "Wildhaven",
       "open": "Discord",
       "close": "Zavřít",
       "keybind": "Panel Discordu",
@@ -3108,7 +3108,7 @@ export const cs_CZ: EnTranslations = {
     }
   },
   "guide": {
-    "brand": "World of ClaudeCraft",
+    "brand": "Wildhaven",
     "brandShort": "ClaudeCraft",
     "tagline": "MMO v klasickém stylu, které hraješ zdarma v prohlížeči.",
     "skipToContent": "Přejít na hlavní obsah",
@@ -3174,7 +3174,7 @@ export const cs_CZ: EnTranslations = {
       "github": "Zdrojový kód na GitHubu",
       "discord": "Připojit se na Discord",
       "communityWiki": "Komunitní wiki",
-      "rights": "World of ClaudeCraft",
+      "rights": "Wildhaven",
       "linksLabel": "Odkazy na hru a komunitu"
     },
     "language": {
@@ -3197,7 +3197,7 @@ export const cs_CZ: EnTranslations = {
     },
     "home": {
       "eyebrow": "Prohlížečové MMO v klasickém stylu",
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "subtitle": "Plň úkoly, hraj ve skupině a objevuj ručně vystavěný svět zdarma v prohlížeči.",
       "ctaPlay": "Hrát teď",
       "ctaLearn": "Jak hrát",
@@ -3712,7 +3712,7 @@ export const cs_CZ: EnTranslations = {
     },
     "worldPage": {
       "heading": "Svět",
-      "intro": "World of ClaudeCraft je jedna souvislá země, kterou přecházíš pěšky, tři zóny položené od jihu k severu. Není tu rychlé cestování, takže cesta je součástí dobrodružství.",
+      "intro": "Wildhaven je jedna souvislá země, kterou přecházíš pěšky, tři zóny položené od jihu k severu. Není tu rychlé cestování, takže cesta je součástí dobrodružství.",
       "hub": "Domovská základna",
       "mapHeading": "Cesta na sever",
       "mapSub": "Tři zóny od jihu k severu, každá o krok výš v úrovních. Sleduj stopu úkolů a země tě ponese z údolí až na štíty.",
@@ -4539,7 +4539,7 @@ export const cs_CZ: EnTranslations = {
   },
   "editor": {
     "appTitle": "Editor map",
-    "docTitle": "Editor map - World of ClaudeCraft",
+    "docTitle": "Editor map - Wildhaven",
     "untitledMap": "Nepojmenovaná mapa",
     "playtestPlayerName": "Tvůrce map",
     "topbar": {
@@ -5015,8 +5015,8 @@ export const cs_CZ: EnTranslations = {
     "realmName": "Název světa"
   },
   "footer": {
-    "copyright": "2026 World of ClaudeCraft",
-    "githubLink": "https://github.com/levy-street/world-of-claudecraft",
+    "copyright": "2026 Wildhaven",
+    "githubLink": "https://github.com/levy-street/wildhaven",
     "githubLabel": "Open-source projekt",
     "whitepaper": "Whitepaper",
     "terms": "Podmínky služby",
@@ -5073,7 +5073,7 @@ export const cs_CZ: EnTranslations = {
     "serverOnline": "Online",
     "serverOffline": "Offline",
     "play": "Hrát",
-    "playAria": "Hrát World of ClaudeCraft",
+    "playAria": "Hrát Wildhaven",
     "serverLabel": "Vyber si svět",
     "serverAria": "Vybrat svět: online nebo offline",
     "serverOfflineSub": "Okamžitý lokální svět"
@@ -5140,15 +5140,15 @@ export const cs_CZ: EnTranslations = {
     "levelClass": "Úroveň {level} - {className}",
     "topPercent": "TOP {percent} %",
     "realmSubtitle": "Svět {realm}",
-    "defaultRealm": "World of ClaudeCraft",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "defaultRealm": "Wildhaven",
+    "brandWordmark": "WILDHAVEN",
     "recruited": "přivedeno {count}",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",
     "footerCta": "Kuj svou legendu: {siteUrl}",
     "arenaStat": "Aréna",
-    "shareText": "Kuji svou legendu ve World of ClaudeCraft: úroveň {level} {className}{tierBit}. Přidej se do mého světa:",
-    "nativeShareTitle": "World of ClaudeCraft",
+    "shareText": "Kuji svou legendu ve Wildhaven: úroveň {level} {className}{tierBit}. Přidej se do mého světa:",
+    "nativeShareTitle": "Wildhaven",
     "fileNameFallback": "hrac",
     "actionShareX": "Sdílet na X",
     "actionCopyReferral": "Kopírovat doporučovací odkaz",
@@ -5848,14 +5848,14 @@ export const cs_CZ: EnTranslations = {
     }
   },
   "seo": {
-    "title": "World of ClaudeCraft: webové MMO v klasickém stylu",
-    "description": "Vydej se na epické dobrodružství ve World of ClaudeCraft, klasicky laděném micro-MMO hratelném přímo v prohlížeči. Připoj se k trvalému sdílenému světu, zvyšuj úrovně tříd a porážej nepřátele!",
+    "title": "Wildhaven: webové MMO v klasickém stylu",
+    "description": "Vydej se na epické dobrodružství ve Wildhaven, klasicky laděném micro-MMO hratelném přímo v prohlížeči. Připoj se k trvalému sdílenému světu, zvyšuj úrovně tříd a porážej nepřátele!",
     "genre": "MMORPG",
     "playMode": "Multiplayer",
     "applicationCategory": "Hra",
     "operatingSystem": "Webový prohlížeč",
-    "officialLabel": "Oficiální web World of ClaudeCraft",
-    "officialBody": "worldofclaudecraft.com je oficiální bezplatné prohlížečové MMO pro svět Claudemoon. Hraj online s trvalou postavou, prozkoumávej sólo offline, čti wiki a používej ověřené komunitní odkazy z tohoto webu."
+    "officialLabel": "Oficiální web Wildhaven",
+    "officialBody": "wildhaven.example je oficiální bezplatné prohlížečové MMO pro svět Claudemoon. Hraj online s trvalou postavou, prozkoumávej sólo offline, čti wiki a používej ověřené komunitní odkazy z tohoto webu."
   },
   "a11y": {
     "goHome": "Přejít na domovskou stránku",
@@ -5863,9 +5863,9 @@ export const cs_CZ: EnTranslations = {
     "mainNavigation": "Hlavní navigace",
     "languageSelection": "Výběr jazyka",
     "characterActions": "Akce postavy",
-    "githubProject": "Otevřít projekt World of ClaudeCraft na GitHubu",
-    "discordCommunity": "Připojit se ke komunitě World of ClaudeCraft na Discordu",
-    "donateProject": "Přispět na podporu World of ClaudeCraft"
+    "githubProject": "Otevřít projekt Wildhaven na GitHubu",
+    "discordCommunity": "Připojit se ke komunitě Wildhaven na Discordu",
+    "donateProject": "Přispět na podporu Wildhaven"
   },
   "entryGuard": {
     "title": "Grafika snížena",
@@ -5952,11 +5952,11 @@ export const cs_CZ: EnTranslations = {
       "dismiss": "Zavřít"
     },
     "crash": {
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "body": "Herní zobrazení přestalo fungovat. Načíst ho znovu?",
       "reload": "Načíst znovu",
       "quit": "Ukončit",
-      "fatalBody": "World of ClaudeCraft narazil na neočekávanou chybu a musí se zavřít."
+      "fatalBody": "Wildhaven narazil na neočekávanou chybu a musí se zavřít."
     }
   },
   "gpuNotice": {
@@ -6095,17 +6095,17 @@ export const cs_CZ: EnTranslations = {
     "iosStandaloneDetail": "Jsi v režimu celé obrazovky z plochy. Drž zařízení na šířku.",
     "iosInstallDetail": "Pro skutečnou celou obrazovku na iPhonu nebo iPadu si tuto stránku nejdřív přidej na plochu.",
     "iosShareStep": "V Safari klepni na Sdílet a potom na Přidat na plochu.",
-    "iosOpenStep": "Otevři World of ClaudeCraft z nové ikony na ploše.",
+    "iosOpenStep": "Otevři Wildhaven z nové ikony na ploše.",
     "androidStandaloneDetail": "Jsi v režimu aplikace na celou obrazovku. Drž zařízení na šířku.",
     "androidInstallDetail": "Pro celou obrazovku na Androidu si tuto stránku nejdřív nainstaluj nebo přidej na plochu.",
     "androidInstallStep": "V Chromu klepni na menu a potom na Instalovat aplikaci nebo Přidat na plochu.",
-    "androidOpenStep": "Otevři World of ClaudeCraft z nové ikony.",
+    "androidOpenStep": "Otevři Wildhaven z nové ikony.",
     "otherStandaloneDetail": "Drž zařízení na šířku a na celou obrazovku.",
     "otherInstallDetail": "Pro nejlepší mobilní zážitek na celou obrazovku si tuto stránku nainstaluj nebo přidej na plochu."
   },
   "serverUnavailable": {
-    "title": "World of ClaudeCraft - Svět nedostupný",
-    "logoAlt": "World of ClaudeCraft",
+    "title": "Wildhaven - Svět nedostupný",
+    "logoAlt": "Wildhaven",
     "eyebrow": "Údržba světa",
     "heading": "Svět je dočasně nedostupný.",
     "body": "Restartujeme herní službu a očekáváme, že se Claudemoon brzy vrátí. Tato stránka bude stav automaticky kontrolovat.",

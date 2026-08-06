@@ -15,39 +15,39 @@ import {
 
 describe('PRODUCTION_API_ORIGIN', () => {
   it('is the production site', () => {
-    expect(PRODUCTION_API_ORIGIN).toBe('https://worldofclaudecraft.com');
+    expect(PRODUCTION_API_ORIGIN).toBe('https://wildhaven.example');
   });
 });
 
 describe('apiOriginKey', () => {
   it('normalizes equivalent spellings to one origin', () => {
-    expect(apiOriginKey('https://worldofclaudecraft.com')).toBe('https://worldofclaudecraft.com');
-    expect(apiOriginKey('https://worldofclaudecraft.com/')).toBe('https://worldofclaudecraft.com');
-    expect(apiOriginKey('HTTPS://WorldOfClaudeCraft.COM')).toBe('https://worldofclaudecraft.com');
+    expect(apiOriginKey('https://wildhaven.example')).toBe('https://wildhaven.example');
+    expect(apiOriginKey('https://wildhaven.example/')).toBe('https://wildhaven.example');
+    expect(apiOriginKey('HTTPS://WorldOfClaudeCraft.COM')).toBe('https://wildhaven.example');
     expect(apiOriginKey('http://localhost:8787')).toBe('http://localhost:8787');
   });
 
   it('returns null for garbage, empty, non-string, and non-http values', () => {
     expect(apiOriginKey('')).toBeNull();
-    expect(apiOriginKey('worldofclaudecraft.com')).toBeNull();
+    expect(apiOriginKey('wildhaven.example')).toBeNull();
     expect(apiOriginKey('not a url')).toBeNull();
     expect(apiOriginKey(42)).toBeNull();
     expect(apiOriginKey(undefined)).toBeNull();
-    expect(apiOriginKey('ftp://worldofclaudecraft.com')).toBeNull();
+    expect(apiOriginKey('ftp://wildhaven.example')).toBeNull();
   });
 });
 
 describe('isProductionApiOrigin', () => {
   it('accepts only the production origin (slash and case tolerant)', () => {
-    expect(isProductionApiOrigin('https://worldofclaudecraft.com')).toBe(true);
-    expect(isProductionApiOrigin('https://worldofclaudecraft.com/')).toBe(true);
+    expect(isProductionApiOrigin('https://wildhaven.example')).toBe(true);
+    expect(isProductionApiOrigin('https://wildhaven.example/')).toBe(true);
   });
 
   it('rejects dev, staging, localhost, http, subdomains, and garbage', () => {
-    expect(isProductionApiOrigin('https://dev.worldofclaudecraft.com')).toBe(false);
-    expect(isProductionApiOrigin('http://worldofclaudecraft.com')).toBe(false);
+    expect(isProductionApiOrigin('https://dev.wildhaven.example')).toBe(false);
+    expect(isProductionApiOrigin('http://wildhaven.example')).toBe(false);
     expect(isProductionApiOrigin('http://localhost:8787')).toBe(false);
-    expect(isProductionApiOrigin('https://worldofclaudecraft.com.evil.example')).toBe(false);
+    expect(isProductionApiOrigin('https://wildhaven.example.evil.example')).toBe(false);
     expect(isProductionApiOrigin('')).toBe(false);
     expect(isProductionApiOrigin(undefined)).toBe(false);
   });
@@ -55,12 +55,12 @@ describe('isProductionApiOrigin', () => {
 
 describe('updateChannelForOrigin (the track split)', () => {
   it('production origin publishes and reads the latest channel', () => {
-    expect(updateChannelForOrigin('https://worldofclaudecraft.com')).toBe('latest');
-    expect(updateChannelForOrigin('https://worldofclaudecraft.com/')).toBe('latest');
+    expect(updateChannelForOrigin('https://wildhaven.example')).toBe('latest');
+    expect(updateChannelForOrigin('https://wildhaven.example/')).toBe('latest');
   });
 
   it('every non-production origin fails safe onto the dev channel', () => {
-    expect(updateChannelForOrigin('https://dev.worldofclaudecraft.com')).toBe('dev');
+    expect(updateChannelForOrigin('https://dev.wildhaven.example')).toBe('dev');
     expect(updateChannelForOrigin('http://localhost:8787')).toBe('dev');
     expect(updateChannelForOrigin('')).toBe('dev');
     expect(updateChannelForOrigin('garbage')).toBe('dev');
@@ -69,7 +69,7 @@ describe('updateChannelForOrigin (the track split)', () => {
 });
 
 describe('evaluateUpdateOffer (the runtime cross-track refusal)', () => {
-  const own = 'https://worldofclaudecraft.com';
+  const own = 'https://wildhaven.example';
 
   it('accepts an offer stamped with the same origin, slash tolerant', () => {
     expect(
@@ -78,7 +78,7 @@ describe('evaluateUpdateOffer (the runtime cross-track refusal)', () => {
     expect(
       evaluateUpdateOffer({
         apiOrigin: own,
-        info: { wocApiOrigin: 'https://worldofclaudecraft.com/' },
+        info: { wocApiOrigin: 'https://wildhaven.example/' },
       }),
     ).toEqual({ ok: true, stamped: true });
   });
@@ -103,10 +103,10 @@ describe('evaluateUpdateOffer (the runtime cross-track refusal)', () => {
   it('refuses an offer baked for another backend (the issue 1537 flip)', () => {
     const verdict = evaluateUpdateOffer({
       apiOrigin: own,
-      info: { version: '0.23.0', wocApiOrigin: 'https://dev.worldofclaudecraft.com' },
+      info: { version: '0.23.0', wocApiOrigin: 'https://dev.wildhaven.example' },
     });
     expect(verdict.ok).toBe(false);
-    expect(verdict.offeredOrigin).toBe('https://dev.worldofclaudecraft.com');
+    expect(verdict.offeredOrigin).toBe('https://dev.wildhaven.example');
     expect(verdict.expectedOrigin).toBe(own);
   });
 
@@ -133,8 +133,8 @@ describe('evaluateUpdateOffer (the runtime cross-track refusal)', () => {
   it('a dev install accepts its own dev-track artifact', () => {
     expect(
       evaluateUpdateOffer({
-        apiOrigin: 'https://dev.worldofclaudecraft.com',
-        info: { wocApiOrigin: 'https://dev.worldofclaudecraft.com' },
+        apiOrigin: 'https://dev.wildhaven.example',
+        info: { wocApiOrigin: 'https://dev.wildhaven.example' },
       }),
     ).toEqual({ ok: true, stamped: true });
   });

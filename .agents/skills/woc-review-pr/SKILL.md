@@ -1,6 +1,6 @@
 ---
 name: woc-review-pr
-description: "Review a World of ClaudeCraft pull request against its actual diff, canonical architecture, tests, and domain risks. Use when asked to inspect, review, assess, or prepare feedback for a pull request. Reading and drafting are allowed by default, but posting GitHub feedback requires explicit authorization."
+description: "Review a Wildhaven pull request against its actual diff, canonical architecture, tests, and domain risks. Use when asked to inspect, review, assess, or prepare feedback for a pull request. Reading and drafting are allowed by default, but posting GitHub feedback requires explicit authorization."
 ---
 
 # Review Pull Request

@@ -223,7 +223,7 @@ export const pl_PL: Record<string, string> = {
   'usage.metric.githubLinkFailure': 'Nieudane połączenia z GitHub',
   'usage.metric.githubLinkRateLimited': 'Ograniczone żądania połączenia z GitHub',
   'usage.metric.githubLinkRequest': 'Żądania połączenia z GitHub',
-  'app.title': 'World of ClaudeCraft - Panel administratora',
+  'app.title': 'Wildhaven - Panel administratora',
   'app.shortTitle': 'Administrator WOC',
   'auth.username': 'Nazwa użytkownika',
   'auth.password': 'Hasło',

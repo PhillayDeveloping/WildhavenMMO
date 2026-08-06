@@ -1,4 +1,4 @@
-# World of ClaudeCraft - v0.8 Release Notes
+# Wildhaven - v0.8 Release Notes
 
 **Release:** v0.8
 **Date:** 2026-06-17

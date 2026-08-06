@@ -10,7 +10,7 @@
 // red-fails a missing or renamed key - the same completeness safety net the game client has.
 
 export const en = {
-  'app.title': 'World of ClaudeCraft - Admin',
+  'app.title': 'Wildhaven - Admin',
   'app.shortTitle': 'WoC Admin',
   'auth.username': 'Username',
   'auth.password': 'Password',

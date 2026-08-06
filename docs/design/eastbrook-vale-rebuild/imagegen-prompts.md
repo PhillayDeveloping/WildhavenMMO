@@ -67,7 +67,7 @@ const result = await tools.image_gen__imagegen({
     "tmp/eastbrook_rebuild/baseline/town-planning/current-player-scale-desktop-ultra.png",
     "docs/screenshots/banker-chest/after-desktop-ultra.png"
   ],
-  prompt: `Create one original World of ClaudeCraft master-concept image for rebuilding Eastbrook Vale, using ONLY the attached original in-game captures as visual style, scale, terrain, player-rig, banker-chest, and Grand Armoury references. This is a reconstruction-ready, stylized Three.js game-environment concept, not photorealistic fantasy art and not an imitation of any existing commercial game.
+  prompt: `Create one original Wildhaven master-concept image for rebuilding Eastbrook Vale, using ONLY the attached original in-game captures as visual style, scale, terrain, player-rig, banker-chest, and Grand Armoury references. This is a reconstruction-ready, stylized Three.js game-environment concept, not photorealistic fantasy art and not an imitation of any existing commercial game.
 
 VIEW AND SITE
 - Wide 16:9 elevated three-quarter planning view, high enough to show the complete town and all circulation, but close enough to read doors, yards, stalls, and the 2.6-yard player scale.
@@ -136,7 +136,7 @@ const result = await tools.image_gen__imagegen({
     "tmp/eastbrook_rebuild/baseline/town-planning/current-armoury-facade-desktop-ultra.png",
     "tmp/eastbrook_rebuild/baseline/town-planning/current-player-scale-desktop-ultra.png"
   ],
-  prompt: `Create one original World of ClaudeCraft master-concept image for rebuilding Eastbrook Vale, using ONLY the attached original in-game captures as visual style, scale, terrain, player-rig, banker-chest, and Grand Armoury references. This is a reconstruction-ready, stylized Three.js game-environment concept, not photorealistic fantasy art and not an imitation of any existing commercial game.
+  prompt: `Create one original Wildhaven master-concept image for rebuilding Eastbrook Vale, using ONLY the attached original in-game captures as visual style, scale, terrain, player-rig, banker-chest, and Grand Armoury references. This is a reconstruction-ready, stylized Three.js game-environment concept, not photorealistic fantasy art and not an imitation of any existing commercial game.
 
 VIEW AND SITE
 - Wide 16:9 elevated three-quarter planning view, high enough to show the complete town and all circulation, but close enough to read doors, yards, stalls, and the 2.6-yard player scale.
@@ -215,7 +215,7 @@ Make these precise corrections:
 4. Keep exactly six road-aligned gate openings, each broad and unobstructed. Keep all gate-to-center and center-to-door lanes clearly at least three player-widths clear. No fence may cross a path.
 5. Keep the civic well/beacon below four yards and visually secondary to every major building.
 6. Use fewer incidental characters. Include only a few 2.6-yard stylized player/NPC figures for scale and service association.
-7. Maintain complete 3D side/rear depth, large value groups, zero-texture procedural feasibility, and the stylized World of ClaudeCraft in-game renderer look.
+7. Maintain complete 3D side/rear depth, large value groups, zero-texture procedural feasibility, and the stylized Wildhaven in-game renderer look.
 8. No text, pseudo-text, logos, watermarks, proprietary motifs, photorealism, copied commercial-game geography, or unrelated scenery.
 
 The result must read as a measured build plan: one preserved landmark, exactly six subordinate buildings, three stalls, a modest central feature, six gates, and safe obvious circulation.`
@@ -281,7 +281,7 @@ const refs = [
   "tmp/eastbrook_rebuild/baseline/town-planning/current-armoury-facade-desktop-ultra.png",
   "tmp/eastbrook_rebuild/baseline/town-planning/current-player-scale-desktop-ultra.png"
 ];
-const common = `Use only the attached original World of ClaudeCraft captures and accepted Eastbrook master concept for style and scale. Create an isolated reconstruction turnaround sheet on a plain light neutral-gray studio background. Show exactly seven consistent views of the SAME complete building with identical proportions and details: orthographic front, right, rear, left, front three-quarter, rear three-quarter, and one low grazing player-eye three-quarter view with a single plain 2.6-yard World of ClaudeCraft humanoid scale mannequin. Arrange the seven views as a clean contact sheet without labels. The building floor is seated at Y=0; show roof overhangs, foundation, recessed doors/windows, thresholds, all sides and rear, and no cutaway. Stylized low-poly deterministic Three.js feasibility, strong large color/value groups, zero-texture vertex-color look. No scenery, terrain, other buildings, decorative frame, readable text, pseudo-text, logos, symbols from other games, watermarks, extra characters, photorealism, or cast-shadow background clutter. Deep Eastbrook-blue pitched roof, gray stone lower floor/foundation, warm dark timber framing, restrained cobalt-and-gold accents, warm amber windows.`;
+const common = `Use only the attached original Wildhaven captures and accepted Eastbrook master concept for style and scale. Create an isolated reconstruction turnaround sheet on a plain light neutral-gray studio background. Show exactly seven consistent views of the SAME complete building with identical proportions and details: orthographic front, right, rear, left, front three-quarter, rear three-quarter, and one low grazing player-eye three-quarter view with a single plain 2.6-yard Wildhaven humanoid scale mannequin. Arrange the seven views as a clean contact sheet without labels. The building floor is seated at Y=0; show roof overhangs, foundation, recessed doors/windows, thresholds, all sides and rear, and no cutaway. Stylized low-poly deterministic Three.js feasibility, strong large color/value groups, zero-texture vertex-color look. No scenery, terrain, other buildings, decorative frame, readable text, pseudo-text, logos, symbols from other games, watermarks, extra characters, photorealism, or cast-shadow background clutter. Deep Eastbrook-blue pitched roof, gray stone lower floor/foundation, warm dark timber framing, restrained cobalt-and-gold accents, warm amber windows.`;
 const specs = [
   {
     name:"bank",
@@ -323,7 +323,7 @@ const refs = [
   "tmp/eastbrook_rebuild/baseline/town-planning/current-armoury-facade-desktop-ultra.png",
   "tmp/eastbrook_rebuild/baseline/town-planning/current-player-scale-desktop-ultra.png"
 ];
-const common = `Use only the attached original World of ClaudeCraft captures and accepted Eastbrook master concept for style and scale. Create an isolated reconstruction turnaround sheet on a plain light neutral-gray studio background. Show exactly seven consistent views of the SAME complete building with identical proportions and details: orthographic front, right, rear, left, front three-quarter, rear three-quarter, and one low grazing player-eye three-quarter view with a single plain 2.6-yard World of ClaudeCraft humanoid scale mannequin. Arrange the seven views as a clean contact sheet without labels. The building floor is seated at Y=0; show roof overhangs, foundation, recessed doors/windows, thresholds, all sides and rear, and no cutaway. Stylized low-poly deterministic Three.js feasibility, large color/value groups, zero-texture vertex-color look, appropriate for about 2,000-3,500 triangles. No scenery, terrain, other buildings, decorative frame, readable text, pseudo-text, logos, symbols from other games, watermarks, extra characters, photorealism, or cast-shadow background clutter. Deep Eastbrook-blue roof, gray stone foundation/lower walls, warm dark timber framing, restrained cobalt-and-gold accents, warm amber windows.`;
+const common = `Use only the attached original Wildhaven captures and accepted Eastbrook master concept for style and scale. Create an isolated reconstruction turnaround sheet on a plain light neutral-gray studio background. Show exactly seven consistent views of the SAME complete building with identical proportions and details: orthographic front, right, rear, left, front three-quarter, rear three-quarter, and one low grazing player-eye three-quarter view with a single plain 2.6-yard Wildhaven humanoid scale mannequin. Arrange the seven views as a clean contact sheet without labels. The building floor is seated at Y=0; show roof overhangs, foundation, recessed doors/windows, thresholds, all sides and rear, and no cutaway. Stylized low-poly deterministic Three.js feasibility, large color/value groups, zero-texture vertex-color look, appropriate for about 2,000-3,500 triangles. No scenery, terrain, other buildings, decorative frame, readable text, pseudo-text, logos, symbols from other games, watermarks, extra characters, photorealism, or cast-shadow background clutter. Deep Eastbrook-blue roof, gray stone foundation/lower walls, warm dark timber framing, restrained cobalt-and-gold accents, warm amber windows.`;
 const specs = [
   {
     name:"chapel",
@@ -363,7 +363,7 @@ const refs = [
   "tmp/eastbrook_rebuild/baseline/town-planning/current-planning-top-down-desktop-ultra.png",
   "tmp/eastbrook_rebuild/baseline/town-planning/current-player-scale-desktop-ultra.png"
 ];
-const common = `Use only the attached original World of ClaudeCraft captures and accepted Eastbrook master concept for style and scale. Create a clean isolated reconstruction reference on a plain light neutral-gray studio background, stylized low-poly deterministic Three.js geometry with large vertex-color groups and zero textures. No terrain, unrelated scenery, readable text, pseudo-text, logos, proprietary symbols, watermarks, photorealism, or tiny ornament. Deep Eastbrook blue, gray stone, warm dark timber, restrained worn gold, warm amber and cyan-blue emissive accents.`;
+const common = `Use only the attached original Wildhaven captures and accepted Eastbrook master concept for style and scale. Create a clean isolated reconstruction reference on a plain light neutral-gray studio background, stylized low-poly deterministic Three.js geometry with large vertex-color groups and zero textures. No terrain, unrelated scenery, readable text, pseudo-text, logos, proprietary symbols, watermarks, photorealism, or tiny ornament. Deep Eastbrook blue, gray stone, warm dark timber, restrained worn gold, warm amber and cyan-blue emissive accents.`;
 const specs = [
   {
     name:"civic_feature",
@@ -487,7 +487,7 @@ const result = await tools.image_gen__imagegen({
     "docs/screenshots/eastbrook-grand-armoury/after-close-desktop-ultra.png",
     "docs/screenshots/banker-chest/after-desktop-ultra.png"
   ],
-  prompt: `Create an ORIGINAL World of ClaudeCraft production material-atlas reference for a high-performance stylized MMORPG town. Use the first image as the desired material richness and palette; use the second and third only to understand the currently flat Grand Armoury and banker chest surfaces that need richer material breakup.
+  prompt: `Create an ORIGINAL Wildhaven production material-atlas reference for a high-performance stylized MMORPG town. Use the first image as the desired material richness and palette; use the second and third only to understand the currently flat Grand Armoury and banker chest surfaces that need richer material breakup.
 
 OUTPUT: one perfectly square, straight-on, orthographic 4-by-4 grid of sixteen SQUARE seamless/tileable material swatches. The grid must fill the canvas exactly. Every cell is a flat texture sample viewed at 90 degrees: no perspective, no objects, no lighting direction, no cast shadows, no bevelled display tiles, no gutters, no frames, no labels, no text, no logos, no watermarks. Keep boundaries aligned to the exact quarter divisions of the canvas.
 
@@ -509,7 +509,7 @@ CELL ORDER, left-to-right then top-to-bottom:
 15 neutral desaturated micro-surface breakup suitable for tinting;
 16 a second neutral fine-grain roughness/value variation suitable for tinting.
 
-STYLE: stylized hand-painted low-poly MMORPG material detail, matching the chunky readable World of ClaudeCraft concept, not photorealistic. Preserve broad value groups and add only game-readable medium-frequency texture. No tiny noise, no high-frequency photo grain, no baked directional illumination, no ambient-occlusion shadows, no proprietary game motifs. Each cell must tile cleanly on all four edges. Keep most RGB values near midrange so vertex colors can remain the palette authority.`
+STYLE: stylized hand-painted low-poly MMORPG material detail, matching the chunky readable Wildhaven concept, not photorealistic. Preserve broad value groups and add only game-readable medium-frequency texture. No tiny noise, no high-frequency photo grain, no baked directional illumination, no ambient-occlusion shadows, no proprietary game motifs. Each cell must tile cleanly on all four edges. Keep most RGB values near midrange so vertex colors can remain the palette authority.`
 });
 for (const c of (result?.content ?? [])) {
   if (c.type === "image") image(c);
@@ -553,7 +553,7 @@ used.
 - Call ID: not exposed by the imagegen tool response
 
 ```text
-Create one ORIGINAL turnaround/reference sheet for a compact stylized MMORPG prop: the Eastbrook Vale Ravenpost mailbox. Match the attached World of ClaudeCraft visual language and renderer: deep cobalt-blue pitched rain hood, warm dark timber post and box, gray hand-cut stone foot, restrained gold metal mail slot and fittings, subtle abstract raven-wing silhouette or feather motif that is wholly original, recessed functional opening, chunky readable construction, beveled edges, visible wood grain and stone mottling represented as bold game-readable color/value groups rather than photoreal texture. Player scale: about 2.9 world yards tall, 1.4 wide, 1.05 deep beside a 2.6-yard humanoid scale silhouette. Efficient procedural Three.js geometry, zero alpha cards, zero tiny details, no lettering. Show seven matched views with stable identical proportions: front, right, rear, left, front three-quarter, rear three-quarter, and low grazing/player-eye. Neutral warm-gray studio background, soft contact shadows, isolated object only. No people except one plain unbranded scale silhouette in a separate scale panel; no scenery, readable text, logos, proprietary symbols, watermark, or photorealism.
+Create one ORIGINAL turnaround/reference sheet for a compact stylized MMORPG prop: the Eastbrook Vale Ravenpost mailbox. Match the attached Wildhaven visual language and renderer: deep cobalt-blue pitched rain hood, warm dark timber post and box, gray hand-cut stone foot, restrained gold metal mail slot and fittings, subtle abstract raven-wing silhouette or feather motif that is wholly original, recessed functional opening, chunky readable construction, beveled edges, visible wood grain and stone mottling represented as bold game-readable color/value groups rather than photoreal texture. Player scale: about 2.9 world yards tall, 1.4 wide, 1.05 deep beside a 2.6-yard humanoid scale silhouette. Efficient procedural Three.js geometry, zero alpha cards, zero tiny details, no lettering. Show seven matched views with stable identical proportions: front, right, rear, left, front three-quarter, rear three-quarter, and low grazing/player-eye. Neutral warm-gray studio background, soft contact shadows, isolated object only. No people except one plain unbranded scale silhouette in a separate scale panel; no scenery, readable text, logos, proprietary symbols, watermark, or photorealism.
 ```
 
 ## Record 13: Eastbrook noticeboard turnaround

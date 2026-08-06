@@ -1,15 +1,14 @@
 {
-  "name": "world-of-claudecraft",
+  "name": "wildhaven",
   "version": "0.34.0",
   "private": true,
   "license": "MIT",
   "author": {
-    "name": "Levy Street",
-    "email": "woc@levystreet.com"
+    "name": "PhillayDeveloping"
   },
   "type": "module",
   "main": "electron/main.cjs",
-  "description": "World of Claudecraft: a classic-style micro-MMO + headless RL training environment",
+  "description": "Wildhaven: a classic-style micro-MMO + headless RL training environment",
   "scripts": {
     "dev": "vite",
     "release:check": "node scripts/release_version.mjs check",
@@ -21,7 +20,7 @@
     "wiki:content": "node scripts/wiki/build_content.mjs",
     "wiki:stills": "node scripts/wiki/render_model_stills.mjs",
     "sitemap:build": "node scripts/build_sitemap.mjs",
-    "build:native": "VITE_NATIVE_APP=1 VITE_API_ORIGIN=${VITE_API_ORIGIN:-https://worldofclaudecraft.com} npm run build && node scripts/build_media_manifest.mjs prune",
+    "build:native": "VITE_NATIVE_APP=1 VITE_API_ORIGIN=${VITE_API_ORIGIN:-https://wildhaven.example} npm run build && node scripts/build_media_manifest.mjs prune",
     "native:sync": "npm run build:native && npx cap sync",
     "ota:publish": "node scripts/ota/publish_bundle.mjs",
     "native:open:ios": "npm run native:sync && npx cap open ios",
@@ -164,8 +163,8 @@
     "steamworks.js": "^0.4.0"
   },
   "build": {
-    "appId": "com.worldofclaudecraft.desktop",
-    "productName": "World of ClaudeCraft",
+    "appId": "com.wildhaven.desktop",
+    "productName": "Wildhaven",
     "icon": "build/icon.png",
     "files": [
       "dist/**",
@@ -201,9 +200,9 @@
     },
     "protocols": [
       {
-        "name": "World of ClaudeCraft Login",
+        "name": "Wildhaven Login",
         "schemes": [
-          "worldofclaudecraft"
+          "wildhaven"
         ]
       }
     ],
@@ -275,7 +274,7 @@
     "artifactName": "${name}-${version}-${os}-${arch}.${ext}",
     "publish": {
       "provider": "generic",
-      "url": "https://updates.worldofclaudecraft.com/desktop"
+      "url": "https://updates.wildhaven.example/desktop"
     }
   },
   "allowScripts": {

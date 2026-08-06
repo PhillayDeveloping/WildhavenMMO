@@ -1,5 +1,5 @@
 {
-  "body": "{\"error\":\"access_denied\",\"error_description\":\"log in to your World of ClaudeCraft account first\"}",
+  "body": "{\"error\":\"access_denied\",\"error_description\":\"log in to your Wildhaven account first\"}",
   "headers": {
     "cache-control": "no-store",
     "content-length": 97,

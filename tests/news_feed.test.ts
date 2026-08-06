@@ -234,7 +234,7 @@ describe('NEW-badge marker logic', () => {
 
 describe('stripReleaseNotesPreamble', () => {
   const v26 = [
-    '# World of ClaudeCraft v0.26.0 Release Notes',
+    '# Wildhaven v0.26.0 Release Notes',
     '',
     '**Release:** v0.26.0',
     '**Date:** 2026-07-15',
@@ -248,12 +248,12 @@ describe('stripReleaseNotesPreamble', () => {
   });
 
   it('strips the shape with no Date row (the v0.24.2 variant)', () => {
-    const md = '# World of ClaudeCraft v0.24.2 Release Notes\n\n**Release:** v0.24.2\n\nBody.';
+    const md = '# Wildhaven v0.24.2 Release Notes\n\n**Release:** v0.24.2\n\nBody.';
     expect(stripReleaseNotesPreamble(md)).toBe('Body.');
   });
 
   it('strips the hyphenated h1 variant', () => {
-    const md = '# World of ClaudeCraft - v0.24.0 Release Notes\n\nBody.';
+    const md = '# Wildhaven - v0.24.0 Release Notes\n\nBody.';
     expect(stripReleaseNotesPreamble(md)).toBe('Body.');
   });
 
@@ -275,13 +275,13 @@ describe('stripReleaseNotesPreamble', () => {
 describe('compact news strips the redundant preamble at render time', () => {
   it('renders neither the Release Notes h1 nor the metadata rows', () => {
     const body =
-      '# World of ClaudeCraft v0.26.0 Release Notes\n\n**Release:** v0.26.0\n\nThe real intro.';
+      '# Wildhaven v0.26.0 Release Notes\n\n**Release:** v0.26.0\n\nThe real intro.';
     const html = renderCompactNews(
       [
         {
           id: 1,
           tag: 'v0.26.0',
-          name: 'World of ClaudeCraft v0.26.0',
+          name: 'Wildhaven v0.26.0',
           publishedAt: '2026-07-15T00:00:00Z',
           url: 'https://example.com/releases/v0.26.0',
           prerelease: false,

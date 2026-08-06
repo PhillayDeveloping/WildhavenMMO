@@ -257,7 +257,7 @@ export const zh_CN: Record<string, string> = {
   'usage.metric.githubLinkFailure': 'GitHub 关联失败次数',
   'usage.metric.githubLinkRateLimited': 'GitHub 关联限流请求次数',
   'usage.metric.githubLinkRequest': 'GitHub 关联请求次数',
-  'app.title': 'World of ClaudeCraft - 管理后台',
+  'app.title': 'Wildhaven - 管理后台',
   'app.shortTitle': '沃克管理员',
   'auth.username': '用户名',
   'auth.password': '密码',

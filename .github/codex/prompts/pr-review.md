@@ -1,4 +1,4 @@
-You are performing a static, read-only pull request review for World of ClaudeCraft.
+You are performing a static, read-only pull request review for Wildhaven.
 
 TRUST BOUNDARY
 

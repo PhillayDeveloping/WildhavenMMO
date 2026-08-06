@@ -45,7 +45,7 @@ Confirm the exact CURRENT line numbers / matches with ONE Explore agent in THIS 
 
 ## Out of scope
 - Any gameplay, sim state, save format, wire protocol, or RL action space — untouched.
-- The brand name "World of ClaudeCraft" — DEFERRED (operator + counsel decision, the lawyer's P0, a separate business track). Do NOT rename it here.
+- The brand name "Wildhaven" — DEFERRED (operator + counsel decision, the lawyer's P0, a separate business track). Do NOT rename it here.
 - Any code `id`, including `RealmType`, `server/realm.ts` internals, and the `npm run realms` script name.
 - Ability / talent / creature / item / mob-mechanic display NAMES — owned by V1, V2, C1, C2, W1, W2. T1 only touches comments, docs, and the optional realm COPY.
 - The 20 locale overlays and the release-tier re-fill (Z1 / maintainer).

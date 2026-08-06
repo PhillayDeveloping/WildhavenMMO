@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.worldofclaudecraft',
-  appName: 'World of ClaudeCraft',
+  appId: 'com.wildhaven',
+  appName: 'Wildhaven',
   webDir: 'dist',
   server: {
     androidScheme: 'http',
@@ -18,7 +18,7 @@ const config: CapacitorConfig = {
     // via notifyAppReady, or the plugin reverts it on the next launch.
     CapacitorUpdater: {
       autoUpdate: true,
-      updateUrl: 'https://worldofclaudecraft.com/api/ota/updates',
+      updateUrl: 'https://wildhaven.example/api/ota/updates',
       statsUrl: '',
     },
   },

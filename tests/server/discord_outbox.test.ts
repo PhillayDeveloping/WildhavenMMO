@@ -158,7 +158,7 @@ function relayItem(accountId: number): QueuedRelay {
     realm: 'Claudemoon',
     zone: 'Blackrock Deeps, the Detention Block',
     message: `Need two more for a full clear, summons up at the meeting stone, whisper me. ${'x'.repeat(120)}`,
-    profileUrl: `https://worldofclaudecraft.com/c/claudemoon/adventurer${accountId}`,
+    profileUrl: `https://wildhaven.example/c/claudemoon/adventurer${accountId}`,
   };
 }
 
@@ -173,7 +173,7 @@ function activityItem(index: number, accountIds: number[]): QueuedActivity {
     accountIds,
     names: accountIds.map((id) => `Adventurer${id}`),
     realm: 'Claudemoon',
-    profileUrl: `https://worldofclaudecraft.com/c/claudemoon/adventurer${accountIds[0]}`,
+    profileUrl: `https://wildhaven.example/c/claudemoon/adventurer${accountIds[0]}`,
     itemName: `Moonlit Koi of the Verdant Vale ${index}`,
     deedId: `chr_willowfen_first_cast_${index}`,
     deedName: `First Cast of the Willowfen Reaches ${index}`,

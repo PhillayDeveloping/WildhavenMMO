@@ -728,7 +728,7 @@
     "The unshown rear engine deck and underside use a restrained functional approximation consistent with the admitted profile and front views.",
     "The source crest, source name, lettering, and exact heraldry are excluded. Shipped armor uses original plain panels and abstract color blocking.",
     "Terrain-conforming tread deformation is out of renderer scope. Baked wheel rotation, tread-loop motion, suspension bounce, and hull motion provide the gameplay movement read.",
-    "The shipped World of ClaudeCraft asset uses geometry, vertex colors, and independent scalar material response with zero embedded textures. Source-pixel PBR extraction is intentionally not implementation authority because the reference is a lit illustration, not a material scan."
+    "The shipped Wildhaven asset uses geometry, vertex colors, and independent scalar material response with zero embedded textures. Source-pixel PBR extraction is intentionally not implementation authority because the reference is a lit illustration, not a material scan."
   ],
   "coordinateFrame": {
     "front": "+Z points toward the cannon muzzle and vehicle front",

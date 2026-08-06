@@ -1,4 +1,4 @@
-// Capture matched banker-chest evidence from a running World of ClaudeCraft client.
+// Capture matched banker-chest evidence from a running Wildhaven client.
 //
 // Required environment variables:
 //   GAME_URL     Base URL of the running worktree, such as http://127.0.0.1:5183

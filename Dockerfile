@@ -1,4 +1,4 @@
-# World of Claudecraft game server: serves the built client, REST API and WebSocket
+# Wildhaven game server: serves the built client, REST API and WebSocket
 # world on one port. Pair with a postgres service (see docker-compose.yml).
 
 FROM node:26-slim AS build

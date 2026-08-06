@@ -38,13 +38,13 @@ const server = http.createServer((req, res) => {
 
 const PORT = 8799;
 const EXPECTED_LINKS = [
-  'https://worldofclaudecraft.com/',
+  'https://wildhaven.example/',
   'https://x.com/WoClaudecraft',
-  'https://www.instagram.com/worldofclaudecraft/',
-  'https://www.tiktok.com/@worldofclaudecraft',
+  'https://www.instagram.com/wildhaven/',
+  'https://www.tiktok.com/@wildhaven',
   'https://www.youtube.com/@WoClaudeCraft',
   'https://www.reddit.com/r/WorldofClaudecraft/',
-  'https://github.com/levy-street/world-of-claudecraft',
+  'https://github.com/levy-street/wildhaven',
 ];
 
 const problems = [];
@@ -74,7 +74,7 @@ async function main() {
     ok(errors.length === 0, `no page/console errors (got: ${JSON.stringify(errors)})`);
 
     const title = await page.title();
-    ok(title === 'World of ClaudeCraft - Official Links', `document.title is localized ("${title}")`);
+    ok(title === 'Wildhaven - Official Links', `document.title is localized ("${title}")`);
 
     const htmlLang = await page.evaluate(() => document.documentElement.lang);
     ok(htmlLang === 'en', `html lang = en (got "${htmlLang}")`);
@@ -141,7 +141,7 @@ async function main() {
     });
     ok(ld && ld !== 'INVALID', `JSON-LD present and valid`);
     const sameAs = ld && ld !== 'INVALID' ? (ld.about?.sameAs ?? []) : [];
-    ok(EXPECTED_LINKS.filter((u) => u !== 'https://worldofclaudecraft.com/').every((u) => sameAs.includes(u)),
+    ok(EXPECTED_LINKS.filter((u) => u !== 'https://wildhaven.example/').every((u) => sameAs.includes(u)),
       `JSON-LD sameAs lists all 6 social profiles (${sameAs.length})`);
 
     // Verified wax seals must render as red discs (literal hex, not unresolved var()).

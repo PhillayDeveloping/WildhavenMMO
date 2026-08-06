@@ -20,7 +20,7 @@ import {
 // Kept verbatim from the retired Welcome Screen so each player's seen-state
 // (which releases still show a NEW badge) survives the move to this panel.
 const LAST_SEEN_RELEASE_KEY = 'woc.welcome.lastSeenReleaseId';
-const GITHUB_RELEASES_URL = 'https://github.com/levy-street/world-of-claudecraft/releases';
+const GITHUB_RELEASES_URL = 'https://github.com/levy-street/wildhaven/releases';
 
 /** Reads the persisted "last seen release" marker (localStorage; survives across sessions). */
 function readLastSeenReleaseId(storage: Storage): number | null {

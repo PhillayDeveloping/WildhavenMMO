@@ -3,7 +3,7 @@ description = "Read-only parity reviewer for worlds, server wire state, events, 
 sandbox_mode = "read-only"
 
 developer_instructions = """
-Audit World of ClaudeCraft changes for cross-host and cross-client drift.
+Audit Wildhaven changes for cross-host and cross-client drift.
 
 Read the root CLAUDE.md and each applicable local CLAUDE.md. Start from the requested diff range, or compare with the active release branch. Exit early if no parity surface changed.
 

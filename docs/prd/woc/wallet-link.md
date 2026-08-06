@@ -39,7 +39,7 @@ Foundational rather than a flywheel itself: every other $WOC mechanic needs a ve
   reference. The game server resolves the exact economy-service transaction it
   authorized for that account and linked wallet before the browser signs it. The
   browser returns only the result to the desktop app through the registered
-  `worldofclaudecraft://wallet-handoff` URL.
+  `wildhaven://wallet-handoff` URL.
 - Desktop browser handoff secrets contain 256 bits of entropy, expire after five
   minutes, authorize one completion, are bound to the authenticated account, operation,
   expected wallet, and source IP, and travel in the URL fragment so web-server

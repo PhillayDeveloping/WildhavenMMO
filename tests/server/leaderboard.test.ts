@@ -137,9 +137,9 @@ function fakeRuntime(overrides: Partial<LeaderboardRuntime> = {}): LeaderboardRu
     getAccountsCreatedCount: async () => 0,
     getCharactersCreatedCount: async () => 0,
     getReleases: async () => [],
-    githubRepo: 'levy-street/world-of-claudecraft',
+    githubRepo: 'levy-street/wildhaven',
     releasesMaxLimit: 20,
-    publicOrigin: () => 'https://worldofclaudecraft.com',
+    publicOrigin: () => 'https://wildhaven.example',
     toSheetRank: (rank) => (rank ? { scope: 'realm', rank: rank.rank, total: rank.total } : null),
     ...overrides,
   };
@@ -399,7 +399,7 @@ describe('readProjectStats', () => {
 describe('readPublicSheet (FakeCharactersDb, resolved by name)', () => {
   const sheetDeps = {
     realm: REALM_NAME,
-    origin: 'https://worldofclaudecraft.com',
+    origin: 'https://wildhaven.example',
     toSheetRank: (rank: { rank: number; total: number } | null): SheetRank | null =>
       rank ? { scope: 'realm', rank: rank.rank, total: rank.total } : null,
   };

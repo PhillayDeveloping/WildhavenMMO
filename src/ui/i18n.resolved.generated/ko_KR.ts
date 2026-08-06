@@ -808,8 +808,8 @@ export const ko_KR: EnTranslations = {
     },
     "nativeUpdate": {
       "title": "업데이트 사용 가능",
-      "body": "World of ClaudeCraft의 새 버전을 사용할 수 있습니다. 지금 업데이트하여 최신 수정 사항과 개선 사항을 받으세요.",
-      "bodyWithVersion": "World of ClaudeCraft 버전 {version}을(를) 사용할 수 있습니다. 지금 업데이트하여 최신 수정 사항과 개선 사항을 받으세요.",
+      "body": "Wildhaven의 새 버전을 사용할 수 있습니다. 지금 업데이트하여 최신 수정 사항과 개선 사항을 받으세요.",
+      "bodyWithVersion": "Wildhaven 버전 {version}을(를) 사용할 수 있습니다. 지금 업데이트하여 최신 수정 사항과 개선 사항을 받으세요.",
       "notNow": "나중에",
       "update": "업데이트"
     },
@@ -1961,7 +1961,7 @@ export const ko_KR: EnTranslations = {
     },
     "discord": {
       "title": "Discord",
-      "panelTitle": "World of ClaudeCraft",
+      "panelTitle": "Wildhaven",
       "open": "Discord",
       "close": "닫기",
       "keybind": "Discord 패널",
@@ -3108,7 +3108,7 @@ export const ko_KR: EnTranslations = {
     }
   },
   "guide": {
-    "brand": "World of ClaudeCraft",
+    "brand": "Wildhaven",
     "brandShort": "ClaudeCraft",
     "tagline": "브라우저에서 무료로 즐기는 클래식 스타일 MMO입니다.",
     "skipToContent": "본문으로 건너뛰기",
@@ -3174,7 +3174,7 @@ export const ko_KR: EnTranslations = {
       "github": "GitHub 소스 코드",
       "discord": "Discord 참여하기",
       "communityWiki": "커뮤니티 위키",
-      "rights": "World of ClaudeCraft",
+      "rights": "Wildhaven",
       "linksLabel": "플레이 및 커뮤니티 링크"
     },
     "language": {
@@ -3197,7 +3197,7 @@ export const ko_KR: EnTranslations = {
     },
     "home": {
       "eyebrow": "클래식 스타일 브라우저 MMO",
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "subtitle": "퀘스트를 수행하고, 파티를 맺고, 손수 빚은 세계를 브라우저에서 무료로 탐험하세요.",
       "ctaPlay": "지금 플레이",
       "ctaLearn": "플레이 방법",
@@ -3712,7 +3712,7 @@ export const ko_KR: EnTranslations = {
     },
     "worldPage": {
       "heading": "세계",
-      "intro": "World of ClaudeCraft는 두 발로 가로지르는 하나로 이어진 대지이며, 남에서 북으로 펼쳐진 세 개의 지역으로 이루어져 있습니다. 빠른 이동이 없으니, 여정 자체가 모험의 일부입니다.",
+      "intro": "Wildhaven는 두 발로 가로지르는 하나로 이어진 대지이며, 남에서 북으로 펼쳐진 세 개의 지역으로 이루어져 있습니다. 빠른 이동이 없으니, 여정 자체가 모험의 일부입니다.",
       "hub": "본거지",
       "mapHeading": "북쪽으로 가는 길",
       "mapSub": "남쪽에서 북쪽으로 이어지는 세 지역은 각각 레벨이 한 단계씩 높아집니다. 퀘스트 길을 따라가면 땅이 당신을 골짜기에서 봉우리까지 이끌어 줍니다.",
@@ -4539,7 +4539,7 @@ export const ko_KR: EnTranslations = {
   },
   "editor": {
     "appTitle": "맵 편집기",
-    "docTitle": "맵 편집기 - World of ClaudeCraft",
+    "docTitle": "맵 편집기 - Wildhaven",
     "untitledMap": "제목 없는 맵",
     "playtestPlayerName": "지도제작자",
     "topbar": {
@@ -5015,8 +5015,8 @@ export const ko_KR: EnTranslations = {
     "realmName": "월드 이름"
   },
   "footer": {
-    "copyright": "2026 World of ClaudeCraft",
-    "githubLink": "https://github.com/levy-street/world-of-claudecraft",
+    "copyright": "2026 Wildhaven",
+    "githubLink": "https://github.com/levy-street/wildhaven",
     "githubLabel": "오픈 소스 프로젝트",
     "whitepaper": "백서",
     "terms": "서비스 이용약관",
@@ -5073,7 +5073,7 @@ export const ko_KR: EnTranslations = {
     "serverOnline": "온라인",
     "serverOffline": "오프라인",
     "play": "플레이",
-    "playAria": "World of ClaudeCraft 플레이",
+    "playAria": "Wildhaven 플레이",
     "serverLabel": "월드를 선택하세요",
     "serverAria": "월드 선택: 온라인 또는 오프라인",
     "serverOfflineSub": "즉시 시작하는 로컬 세상"
@@ -5141,13 +5141,13 @@ export const ko_KR: EnTranslations = {
     "topPercent": "상위 {percent}%",
     "realmSubtitle": "{realm} 월드",
     "defaultRealm": "ClaudeCraft의 세계",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "brandWordmark": "WILDHAVEN",
     "recruited": "{count}명 모집",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",
     "footerCta": "당신의 전설을 벼리세요: {siteUrl}",
     "arenaStat": "투기장",
-    "shareText": "World of ClaudeCraft에서 제 전설을 벼리고 있습니다: {level}레벨 {className}{tierBit}. 제 월드에 합류하세요:",
+    "shareText": "Wildhaven에서 제 전설을 벼리고 있습니다: {level}레벨 {className}{tierBit}. 제 월드에 합류하세요:",
     "nativeShareTitle": "ClaudeCraft의 세계",
     "fileNameFallback": "플레이어",
     "actionShareX": "X에 공유",
@@ -5848,14 +5848,14 @@ export const ko_KR: EnTranslations = {
     }
   },
   "seo": {
-    "title": "World of ClaudeCraft: 클래식 스타일 웹 MMO",
-    "description": "브라우저에서 바로 즐기는 클래식 스타일 마이크로 MMO, World of ClaudeCraft에서 장대한 모험을 시작하세요. 지속되는 공유 월드에 접속해 직업을 성장시키고 적을 물리치세요.",
+    "title": "Wildhaven: 클래식 스타일 웹 MMO",
+    "description": "브라우저에서 바로 즐기는 클래식 스타일 마이크로 MMO, Wildhaven에서 장대한 모험을 시작하세요. 지속되는 공유 월드에 접속해 직업을 성장시키고 적을 물리치세요.",
     "genre": "MMORPG",
     "playMode": "멀티플레이어",
     "applicationCategory": "게임",
     "operatingSystem": "웹 브라우저",
-    "officialLabel": "World of ClaudeCraft 공식 웹사이트",
-    "officialBody": "worldofclaudecraft.com은 Claudemoon 월드의 공식 무료 브라우저 MMO입니다. 지속 캐릭터로 온라인 플레이를 하거나, 오프라인에서 혼자 탐험하고, 위키를 읽고, 이 사이트에서 검증된 커뮤니티 링크를 확인하세요."
+    "officialLabel": "Wildhaven 공식 웹사이트",
+    "officialBody": "wildhaven.example은 Claudemoon 월드의 공식 무료 브라우저 MMO입니다. 지속 캐릭터로 온라인 플레이를 하거나, 오프라인에서 혼자 탐험하고, 위키를 읽고, 이 사이트에서 검증된 커뮤니티 링크를 확인하세요."
   },
   "a11y": {
     "goHome": "홈으로 이동",
@@ -5863,9 +5863,9 @@ export const ko_KR: EnTranslations = {
     "mainNavigation": "기본 탐색",
     "languageSelection": "언어 선택",
     "characterActions": "캐릭터 작업",
-    "githubProject": "GitHub에서 World of ClaudeCraft 프로젝트 열기",
-    "discordCommunity": "World of ClaudeCraft Discord 커뮤니티 참여",
-    "donateProject": "World of ClaudeCraft 후원하기"
+    "githubProject": "GitHub에서 Wildhaven 프로젝트 열기",
+    "discordCommunity": "Wildhaven Discord 커뮤니티 참여",
+    "donateProject": "Wildhaven 후원하기"
   },
   "entryGuard": {
     "title": "그래픽 낮춤",
@@ -5952,11 +5952,11 @@ export const ko_KR: EnTranslations = {
       "dismiss": "닫기"
     },
     "crash": {
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "body": "게임 화면이 응답하지 않습니다. 다시 불러올까요?",
       "reload": "다시 불러오기",
       "quit": "종료",
-      "fatalBody": "World of ClaudeCraft에 예기치 않은 오류가 발생하여 종료해야 합니다."
+      "fatalBody": "Wildhaven에 예기치 않은 오류가 발생하여 종료해야 합니다."
     }
   },
   "gpuNotice": {
@@ -6095,17 +6095,17 @@ export const ko_KR: EnTranslations = {
     "iosStandaloneDetail": "홈 화면 전체 화면 모드입니다. 기기를 가로로 유지하세요.",
     "iosInstallDetail": "iPhone 또는 iPad에서 진짜 전체 화면을 사용하려면 먼저 이 페이지를 홈 화면에 추가하세요.",
     "iosShareStep": "Safari에서 공유를 누른 뒤 홈 화면에 추가를 선택하세요.",
-    "iosOpenStep": "새 홈 화면 아이콘에서 World of ClaudeCraft를 여세요.",
+    "iosOpenStep": "새 홈 화면 아이콘에서 Wildhaven를 여세요.",
     "androidStandaloneDetail": "전체 화면 앱 모드입니다. 기기를 가로로 유지하세요.",
     "androidInstallDetail": "Android에서 전체 화면을 사용하려면 이 페이지를 설치하거나 홈 화면에 추가하세요.",
     "androidInstallStep": "Chrome에서 메뉴를 누른 뒤 앱 설치 또는 홈 화면에 추가를 선택하세요.",
-    "androidOpenStep": "새 아이콘에서 World of ClaudeCraft를 여세요.",
+    "androidOpenStep": "새 아이콘에서 Wildhaven를 여세요.",
     "otherStandaloneDetail": "기기를 가로 전체 화면으로 유지하세요.",
     "otherInstallDetail": "최상의 모바일 전체 화면 경험을 위해 이 페이지를 설치하거나 홈 화면에 추가하세요."
   },
   "serverUnavailable": {
-    "title": "World of ClaudeCraft - 월드 이용 불가",
-    "logoAlt": "World of ClaudeCraft",
+    "title": "Wildhaven - 월드 이용 불가",
+    "logoAlt": "Wildhaven",
     "eyebrow": "월드 점검",
     "heading": "월드를 일시적으로 이용할 수 없습니다.",
     "body": "게임 서비스를 재시작하고 있으며 Claudemoon은 곧 돌아올 예정입니다. 이 페이지는 자동으로 계속 확인합니다.",

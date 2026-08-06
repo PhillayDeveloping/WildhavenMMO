@@ -1,4 +1,4 @@
-package com.worldofclaudecraft;
+package com.wildhaven;
 
 public final class MainActivity extends BaseMainActivity {
     @Override

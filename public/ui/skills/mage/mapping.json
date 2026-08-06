@@ -406,8 +406,8 @@
       "sourceFile": "tmp/imagegen/missing-painted-icons/accepted/abilities/mage/arcane_power.png",
       "output": "arcane_power.webp",
       "source": "OpenAI built-in image generation",
-      "owner": "World of ClaudeCraft",
-      "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+      "owner": "Wildhaven",
+      "license": "Wildhaven project-generated art, project asset, rights reserved",
       "intendedVisualSubject": "A mage silhouette inside two concentric arcane rings, one expanding power and one accelerating runes.",
       "references": [
         {
@@ -431,8 +431,8 @@
       "sourceFile": "tmp/imagegen/missing-painted-icons/accepted/abilities/mage/cone_of_cold.png",
       "output": "cone_of_cold.webp",
       "source": "OpenAI built-in image generation",
-      "owner": "World of ClaudeCraft",
-      "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+      "owner": "Wildhaven",
+      "license": "Wildhaven project-generated art, project asset, rights reserved",
       "intendedVisualSubject": "A circular sweep of ice shards radiating around the mage's boots.",
       "references": [
         {
@@ -456,8 +456,8 @@
       "sourceFile": "tmp/imagegen/missing-painted-icons/accepted/abilities/mage/deep_freeze.png",
       "output": "deep_freeze.webp",
       "source": "OpenAI built-in image generation",
-      "owner": "World of ClaudeCraft",
-      "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+      "owner": "Wildhaven",
+      "license": "Wildhaven project-generated art, project asset, rights reserved",
       "intendedVisualSubject": "An enemy encased in cracked blue ice, with a sharp stun star at the fracture.",
       "references": [
         {
@@ -481,14 +481,14 @@
       "sourceFile": "tmp/imagegen/missing-painted-icons/accepted/abilities/mage/spellsteal.png",
       "output": "spellsteal.webp",
       "source": "OpenAI built-in image generation",
-      "owner": "World of ClaudeCraft",
-      "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+      "owner": "Wildhaven",
+      "license": "Wildhaven project-generated art, project asset, rights reserved",
       "intendedVisualSubject": "A glowing buff rune being pulled from an enemy into an open mage hand.",
       "references": [
         {
           "path": "public/ui/skills/mage/counterspell.webp",
           "role": "subject reference",
-          "provenance": "World of ClaudeCraft project-generated art",
+          "provenance": "Wildhaven project-generated art",
           "license": "Project asset, rights reserved"
         },
         {

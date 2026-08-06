@@ -9,7 +9,7 @@ const read = (path: string) => readFileSync(new URL(path, root), 'utf8').replace
 // that only overrides plugin registration. The immersive-mode code this suite guards lives
 // in the base, so that is what it reads; the old single-activity path stopped existing and
 // took this file's whole collection down with it.
-const ACTIVITY_DIR = 'android/app/src/main/java/com/worldofclaudecraft';
+const ACTIVITY_DIR = 'android/app/src/main/java/com/wildhaven';
 
 /** Every flavor that ships its own MainActivity, discovered rather than listed. */
 function flavorActivities(): { flavor: string; source: string }[] {
@@ -18,7 +18,7 @@ function flavorActivities(): { flavor: string; source: string }[] {
     .filter((entry) => entry.isDirectory() && entry.name !== 'main')
     .map((entry) => ({
       flavor: entry.name,
-      path: `android/app/src/${entry.name}/java/com/worldofclaudecraft/MainActivity.java`,
+      path: `android/app/src/${entry.name}/java/com/wildhaven/MainActivity.java`,
     }))
     .filter(({ path }) => {
       try {

@@ -5,7 +5,7 @@
 This is Phase 2 of the Guild Bank feature: ops and wire.
 
 Model: newest available Claude coding model, xhigh effort. Harness: Claude Code.
-Worktree: /Users/seanghods/repos/world-of-claudecraft-guild-bank.
+Worktree: /Users/seanghods/repos/wildhaven-guild-bank.
 
 Goal: implement the five guild bank operations in the sim with full gating, and wire them
 end to end (client stub, allowlist, shape-check dispatch, proximity + rank gated

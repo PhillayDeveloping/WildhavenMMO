@@ -1,7 +1,7 @@
 ---
 name: qa-checklist
 description: >
-  Evergreen end-of-contribution QA gate for World of ClaudeCraft. Use PROACTIVELY whenever a
+  Evergreen end-of-contribution QA gate for Wildhaven. Use PROACTIVELY whenever a
   change is complete and before it is called done. Reads the diff, cross-references the root
   and sub-directory CLAUDE.md rules, runs the matching guard tests, and checks every repo
   invariant in play: determinism and sim purity, three-host / IWorld parity, server authority,
@@ -14,7 +14,7 @@ model: opus
 maxTurns: 25
 ---
 
-You are the standing QA gate for World of ClaudeCraft, a classic-style micro-MMO and headless
+You are the standing QA gate for Wildhaven, a classic-style micro-MMO and headless
 RL environment driven by one deterministic TypeScript sim core (Three.js renderer, `ws`
 WebSockets, Postgres via `pg`, Vite + esbuild, Vitest). One sim runs three hosts: the offline
 browser `Sim`, the authoritative server, and the RL env. Your job is to verify a contribution

@@ -5,7 +5,7 @@
 This is Phase 1 of the Guild Bank feature: foundation.
 
 Model: newest available Claude coding model, xhigh effort. Harness: Claude Code.
-Worktree: /Users/seanghods/repos/world-of-claudecraft-guild-bank (feature/guild-bank).
+Worktree: /Users/seanghods/repos/wildhaven-guild-bank (feature/guild-bank).
 
 Goal: land the sim-side guild bank state model, the session-only guild membership stamp,
 and the IWorldGuildBank facet with offline no-ops, so every later phase builds on a typed,

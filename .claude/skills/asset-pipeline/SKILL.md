@@ -1,6 +1,6 @@
 ---
 name: asset-pipeline
-description: Generate game-ready 3D assets for World of ClaudeCraft with the AI asset pipeline (Tripo API + optional gpt-image-2). Use when asked to create or generate game assets, a new weapon model, a prop, a creature or mob model, a player-class skin, or any 3D model or texture for the game. Drives scripts/asset_pipeline/pipeline.mjs through the full loop: generate, review the rendered previews, fix orientation, apply the registry wiring, run the guard tests, and finish the manual follow-ups the pipeline cannot judge.
+description: Generate game-ready 3D assets for Wildhaven with the AI asset pipeline (Tripo API + optional gpt-image-2). Use when asked to create or generate game assets, a new weapon model, a prop, a creature or mob model, a player-class skin, or any 3D model or texture for the game. Drives scripts/asset_pipeline/pipeline.mjs through the full loop: generate, review the rendered previews, fix orientation, apply the registry wiring, run the guard tests, and finish the manual follow-ups the pipeline cannot judge.
 user-invocable: true
 ---
 

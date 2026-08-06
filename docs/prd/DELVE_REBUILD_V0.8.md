@@ -9,7 +9,7 @@ Last updated: **2026-06-17**
 
 ## 0. The one thing to read before you start
 
-**Delves are your own feature.** Upstream `origin` (`levy-street/world-of-claudecraft`)
+**Delves are your own feature.** Upstream `origin` (`levy-street/wildhaven`)
 has **zero** delve code, all the way through its latest release **v0.8.0** and
 `origin/main`. So this is not "merge upstream's new delve system" — it is
 "re-apply *your* delve feature on top of a codebase that moved 108 commits."

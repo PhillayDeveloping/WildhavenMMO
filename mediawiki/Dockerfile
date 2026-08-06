@@ -7,7 +7,7 @@ COPY mediawiki/seed/pages.xml /opt/woc/seed/pages.xml
 COPY mediawiki/theme/Common.css /var/www/html/resources/assets/woc-mediawiki.css
 COPY public/loading-screen.jpg /var/www/html/resources/assets/woc-loading-screen.jpg
 COPY public/woc_logo_square.webp /var/www/html/resources/assets/woc-logo-square.webp
-COPY public/worldofclaudecraft-logo.png /var/www/html/resources/assets/worldofclaudecraft-logo.png
+COPY public/wildhaven-logo.png /var/www/html/resources/assets/wildhaven-logo.png
 
 RUN chmod +x /usr/local/bin/woc-mediawiki-entrypoint
 

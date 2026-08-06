@@ -4,9 +4,9 @@
 
 </div>
 
-# Mitwirken an World of ClaudeCraft
+# Mitwirken an Wildhaven
 
-Zuallererst: Danke, dass du hier bist. World of ClaudeCraft wird von einer
+Zuallererst: Danke, dass du hier bist. Wildhaven wird von einer
 Gemeinschaft von Menschen gebaut, die klassische MMOs lieben, und jeder Beitrag,
 ob groß oder klein, macht das Spiel besser. Einen Tippfehler beheben, das Spiel
 übersetzen, einen Fehler melden, einen ganz neuen Dungeon bauen: Alles zählt, und
@@ -14,7 +14,7 @@ du bist hier herzlich willkommen.
 
 Dieser Leitfaden hilft dir bei der Einrichtung und macht deinen ersten Beitrag
 ganz unkompliziert. Du musst kein Profi sein. Falls etwas unklar ist, frag einfach
-auf [Discord](https://discord.com/invite/worldofclaudecraft) nach, und jemand hilft dir gerne weiter.
+auf [Discord](https://discord.com/invite/wildhaven) nach, und jemand hilft dir gerne weiter.
 
 Mit deiner Teilnahme erklärst du dich damit einverstanden, unseren
 [Verhaltenskodex](../../CODE_OF_CONDUCT.md) einzuhalten.
@@ -25,15 +25,15 @@ Hier ist für jeden ein Platz:
 
 - **Code.** Behebe einen Fehler, füge eine Funktion hinzu oder verbessere die
   Performance. Issues mit den Labels
-  [`good first issue`](https://github.com/levy-street/world-of-claudecraft/labels/good%20first%20issue)
-  und [`help wanted`](https://github.com/levy-street/world-of-claudecraft/labels/help%20wanted)
+  [`good first issue`](https://github.com/levy-street/wildhaven/labels/good%20first%20issue)
+  und [`help wanted`](https://github.com/levy-street/wildhaven/labels/help%20wanted)
   sind ein guter Einstieg.
 - **Übersetzungen.** Hilf Spielerinnen und Spielern auf der ganzen Welt, indem du
   eine Sprache verbesserst oder vervollständigst. Siehe weiter unten
   [Das Spiel übersetzen](#translating-the-game). Das ist einer der einfachsten und
   wirkungsvollsten Wege, um anzufangen.
 - **Fehlermeldungen und Ideen für Funktionen.** Eröffne ein
-  [Issue](https://github.com/levy-street/world-of-claudecraft/issues/new/choose).
+  [Issue](https://github.com/levy-street/wildhaven/issues/new/choose).
   Eine klare Fehlermeldung ist ein echter Beitrag.
 - **Dokumentation.** Leitfäden wie dieser, die README und die Design-Dokumente in
   `docs/` lassen sich immer verbessern.
@@ -48,8 +48,8 @@ Du brauchst [Node.js 26](https://nodejs.org/) und **pnpm 10.34.x** (exakter Pin 
 
 ```bash
 # 1. Fork the repo on GitHub, then clone your fork
-git clone https://github.com/<your-username>/world-of-claudecraft.git
-cd world-of-claudecraft
+git clone https://github.com/<your-username>/wildhaven.git
+cd wildhaven
 
 # 2. Install pnpm once (same command on macOS, Linux, Windows)
 #    Match the packageManager pin in package.json (today: 10.34.5).
@@ -256,7 +256,7 @@ bitten dich um dasselbe.
 
 ## Lokalisierung
 
-World of ClaudeCraft erscheint in vielen Sprachen. Jede spielersichtbare
+Wildhaven erscheint in vielen Sprachen. Jede spielersichtbare
 Zeichenkette muss ein Übersetzungs-Key sein, während Mitwirkende an Funktionen
 normalerweise nur die englische Quelle hinzufügen.
 
@@ -309,7 +309,7 @@ bringen? Dafür musst du keinen Spielcode schreiben:
    denn die Overlays sind bewusst lückenhaft.
 
 Um eine ganz neue Sprache vorzuschlagen oder über Tonfall und Terminologie zu
-sprechen, starte einen Thread auf [Discord](https://discord.com/invite/worldofclaudecraft), und wir
+sprechen, starte einen Thread auf [Discord](https://discord.com/invite/wildhaven), und wir
 helfen dir bei der Einrichtung. Muttersprachlerinnen und fließend sprechende
 Personen sind besonders willkommen. Gute Übersetzungen lassen das Spiel sich für
 Spieler überall wie zu Hause anfühlen.
@@ -317,10 +317,10 @@ Spieler überall wie zu Hause anfühlen.
 ## Fehler melden und Funktionen vorschlagen
 
 Bitte verwende die
-[Issue-Vorlagen](https://github.com/levy-street/world-of-claudecraft/issues/new/choose):
+[Issue-Vorlagen](https://github.com/levy-street/wildhaven/issues/new/choose):
 
 - **Fehlermeldung.** Durchsuche zuerst die
-  [vorhandenen Issues](https://github.com/levy-street/world-of-claudecraft/issues),
+  [vorhandenen Issues](https://github.com/levy-street/wildhaven/issues),
   um Duplikate zu vermeiden, und gib dann die Schritte zur Reproduktion an, was du
   erwartet hast, was passiert ist und deine Umgebung (offline oder online,
   Browser, Desktop oder Handy).
@@ -333,7 +333,7 @@ Bitte verwende die
 ## Hilfe bekommen
 
 Steckst du fest oder möchtest einfach Hallo sagen? Komm in den
-[Community-Discord](https://discord.com/invite/worldofclaudecraft). Keine Frage ist zu klein, und
+[Community-Discord](https://discord.com/invite/wildhaven). Keine Frage ist zu klein, und
 neue Mitwirkende sind immer willkommen.
 
 ## Lizenz
@@ -344,10 +344,10 @@ Lizenz, die auch das Projekt abdeckt.
 
 Die MIT License meint genau das, was sie sagt: Jede und jeder darf den Code
 verwenden, verändern und weiterverbreiten, kommerziell oder nicht. Unsere
-[Nutzungsbedingungen](https://worldofclaudecraft.com/terms) regeln das von uns
-betriebene gehostete Spiel auf worldofclaudecraft.com (Accounts, Verhalten,
+[Nutzungsbedingungen](https://wildhaven.example/terms) regeln das von uns
+betriebene gehostete Spiel auf wildhaven.example (Accounts, Verhalten,
 virtuelle Gegenstände) und schränken die Rechte nicht ein, die die MIT License dir
-oder anderen an diesem Code gibt. Die Namen und das Branding "World of ClaudeCraft"
+oder anderen an diesem Code gibt. Die Namen und das Branding "Wildhaven"
 und "Levy Street" sind nicht von der MIT License abgedeckt.
 
 Originale kreative Assets (Tonaufnahmen, Musik, Grafik und ähnliche geschaffene
@@ -359,7 +359,7 @@ Lizenz deiner Wahl beisteuern (zum Beispiel CC BY-NC 4.0), vorausgesetzt:
   Rahmen desselben Pull Requests in der Lizenztabelle in
   [CREDITS.md](../../CREDITS.md) festgehalten, und
 - sie enthält mindestens eine dauerhafte, lizenzgebührenfreie Erlaubnis für Levy
-  Street, die Assets kommerziell in World of ClaudeCraft zu verwenden,
+  Street, die Assets kommerziell in Wildhaven zu verwenden,
   einschließlich offizieller Releases und des In-Game-Shops.
 
 Für Assets, die in der Tabelle in CREDITS.md aufgeführt sind, hat die dort
@@ -381,5 +381,5 @@ deshalb mit "No, permission required" markiert, weil das nicht erlaubt ist.
 
 ---
 
-Danke, dass du an World of ClaudeCraft mitwirkst. Wir können es kaum erwarten, zu
+Danke, dass du an Wildhaven mitwirkst. Wir können es kaum erwarten, zu
 sehen, was du gemeinsam mit uns baust.

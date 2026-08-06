@@ -126,7 +126,7 @@ describe('loadConfig defaults', () => {
     setRequired();
     const cfg = loadConfig();
     expect(cfg.gameServerUrl).toBe('http://127.0.0.1:8787');
-    expect(cfg.gameUrl).toBe('https://worldofclaudecraft.com');
+    expect(cfg.gameUrl).toBe('https://wildhaven.example');
   });
 
   it('lets an env value override each default', () => {
@@ -146,7 +146,7 @@ describe('loadConfig defaults', () => {
     process.env.PUBLIC_GAME_URL = '';
     const cfg = loadConfig();
     expect(cfg.gameServerUrl).toBe('http://127.0.0.1:8787');
-    expect(cfg.gameUrl).toBe('https://worldofclaudecraft.com');
+    expect(cfg.gameUrl).toBe('https://wildhaven.example');
   });
 
   it('defaults every optional channel id to the empty string', () => {

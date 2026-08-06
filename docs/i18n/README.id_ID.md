@@ -1,12 +1,12 @@
 <div align="center">
 
-# World of ClaudeCraft
+# Wildhaven
 
 **Jalankan quest, bentuk grup, dan serbu dunia buatan tangan, gratis di browser Anda. Open source, web3, dan online sekarang juga.**
 
-**Situs resmi: https://worldofclaudecraft.com/**
+**Situs resmi: https://wildhaven.example/**
 
-[![CI](https://github.com/levy-street/world-of-claudecraft/actions/workflows/ci.yml/badge.svg)](https://github.com/levy-street/world-of-claudecraft/actions/workflows/ci.yml)
+[![CI](https://github.com/levy-street/wildhaven/actions/workflows/ci.yml/badge.svg)](https://github.com/levy-street/wildhaven/actions/workflows/ci.yml)
 [![TypeScript](https://img.shields.io/badge/TypeScript-7.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Three.js](https://img.shields.io/badge/Three.js-r165-000000?logo=threedotjs&logoColor=white)](https://threejs.org/)
 [![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
@@ -16,23 +16,23 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](../../LICENSE)
 [![Version](https://img.shields.io/badge/version-0.34.0-blue)](../../package.json)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.id_ID.md)
-[![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.com/invite/worldofclaudecraft)
+[![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.com/invite/wildhaven)
 
 [English](../../README.md) · [Español](README.es.md) · [Español (España)](README.es_ES.md) · [Français](README.fr_FR.md) · [Français (Canada)](README.fr_CA.md) · [Italiano](README.it_IT.md) · [Deutsch](README.de_DE.md) · [简体中文](README.zh_CN.md) · [繁體中文](README.zh_TW.md) · [한국어](README.ko_KR.md) · [日本語](README.ja_JP.md) · [Português (Brasil)](README.pt_BR.md) · [Русский](README.ru_RU.md) · [Čeština](README.cs_CZ.md) · [Nederlands](README.nl_NL.md) · [Polski](README.pl_PL.md) · **Bahasa Indonesia** · [Türkçe](README.tr_TR.md) · [Svenska](README.sv_SE.md) · [Tiếng Việt](README.vi_VN.md) · [Dansk](README.da_DK.md)
 
-[Main sekarang](https://worldofclaudecraft.com/) · [Hosting dunia Anda sendiri](#host-your-own-world-one-command) · [Latih sebuah agen](#train-an-agent-headless-rl) · [Web3](#web3) · [Berkontribusi](CONTRIBUTING.id_ID.md) · [Discord](https://discord.com/invite/worldofclaudecraft)
+[Main sekarang](https://wildhaven.example/) · [Hosting dunia Anda sendiri](#host-your-own-world-one-command) · [Latih sebuah agen](#train-an-agent-headless-rl) · [Web3](#web3) · [Berkontribusi](CONTRIBUTING.id_ID.md) · [Discord](https://discord.com/invite/wildhaven)
 
-![Layar judul World of ClaudeCraft](../../docs/screenshots/title-screen.jpg)
+![Layar judul Wildhaven](../../docs/screenshots/title-screen.jpg)
 
 </div>
 
 ## Apa ini
 
-World of ClaudeCraft adalah MMO era klasik yang lengkap dan bisa Anda mainkan sekarang juga di browser, Anda hosting sendiri dengan satu perintah, dan bahkan bisa melatih agen AI untuk memainkannya. Ini gratis, open source, dan live di [worldofclaudecraft.com](https://worldofclaudecraft.com/).
+Wildhaven adalah MMO era klasik yang lengkap dan bisa Anda mainkan sekarang juga di browser, Anda hosting sendiri dengan satu perintah, dan bahkan bisa melatih agen AI untuk memainkannya. Ini gratis, open source, dan live di [wildhaven.example](https://wildhaven.example/).
 
 Satu dunia bersama berjalan di tiga tempat, semuanya dari inti game yang sama:
 
-- **server multiplayer otoritatif**, dunia hidup yang Anda mainkan di worldofclaudecraft.com, tempat akun yang didukung Postgres berbagi satu realm persisten,
+- **server multiplayer otoritatif**, dunia hidup yang Anda mainkan di wildhaven.example, tempat akun yang didukung Postgres berbagi satu realm persisten,
 - **dunia browser offline**, sebuah Sim single-player lokal yang Anda dapatkan dari server dev, berguna untuk pengembangan dan untuk membaca inti game dari ujung ke ujung,
 - **env RL headless**, di mana Python menggerakkan game sungguhan melalui antarmuka Gym.
 
@@ -77,7 +77,7 @@ Cuaca didorong oleh bioma dan hanya render, jadi tidak pernah menyentuh sim dete
 
 ## Mainkan
 
-Mainkan di browser Anda di [worldofclaudecraft.com](https://worldofclaudecraft.com/), atau pasang aplikasi native untuk Windows, Linux, macOS, iOS, atau Android. Setiap client terhubung ke dunia online yang sama.
+Mainkan di browser Anda di [wildhaven.example](https://wildhaven.example/), atau pasang aplikasi native untuk Windows, Linux, macOS, iOS, atau Android. Setiap client terhubung ke dunia online yang sama.
 
 ### Online, dengan pemain lain
 
@@ -96,9 +96,9 @@ Beri nama karakter Anda, pilih salah satu dari sembilan class, dan Anda mulai di
 
 ### Aplikasi desktop untuk Windows, Linux, dan macOS
 
-World of ClaudeCraft dikirim sebagai aplikasi desktop penuh untuk ketiga platform desktop utama: installer Windows bertanda tangan, paket AppImage dan deb untuk Linux, serta build macOS universal yang ditandatangani dan dinotarisasi. Semuanya memakai client game dan dunia online yang sama dengan browser, dengan pengemasan native dan pembaruan otomatis.
+Wildhaven dikirim sebagai aplikasi desktop penuh untuk ketiga platform desktop utama: installer Windows bertanda tangan, paket AppImage dan deb untuk Linux, serta build macOS universal yang ditandatangani dan dinotarisasi. Semuanya memakai client game dan dunia online yang sama dengan browser, dengan pengemasan native dan pembaruan otomatis.
 
-Masuk online hanya lewat Discord dan email, persis seperti alur web: email/password login di dalam aplikasi, dan "Continue with Discord" membuka browser default Anda pada halaman `/desktop-login`, yang mengembalikan kode sekali pakai ke aplikasi melalui deep link `worldofclaudecraft://` yang lalu ditukar aplikasi menjadi token sesi World of ClaudeCraft biasa.
+Masuk online hanya lewat Discord dan email, persis seperti alur web: email/password login di dalam aplikasi, dan "Continue with Discord" membuka browser default Anda pada halaman `/desktop-login`, yang mengembalikan kode sekali pakai ke aplikasi melalui deep link `wildhaven://` yang lalu ditukar aplikasi menjadi token sesi Wildhaven biasa.
 
 ```bash
 npm run electron:dev          # Vite + Electron dev shell
@@ -113,7 +113,7 @@ Arahkan shell ke API lain dengan `VITE_DESKTOP_API_ORIGIN`, misalnya server loka
 VITE_DESKTOP_API_ORIGIN=http://127.0.0.1:8787 npm run electron:dev
 ```
 
-Timpa origin API produksi untuk build staging dengan `VITE_DESKTOP_API_ORIGIN=https://dev.worldofclaudecraft.com` (sebuah nilai BUILD-time: nilai itu dipanggang ke dalam bundel dan dicap ke aplikasi yang dikemas, dan build yang sudah terpasang mengabaikannya sebagai env var runtime). Steam adalah kanal distribusi (bundel Electron yang sama, diunggah lewat SteamPipe), dan pemain desktop dapat menautkan akun Steam untuk mencerminkan deed yang mereka raih menjadi achievement Steam; proses masuk sendiri tetap email dan Discord. Runbook rilis lengkap (penandatanganan, notarisasi, publikasi pembaruan otomatis, depot SteamPipe, deploy server) ada di `docs/desktop-release.md`. iOS dan Android dikirim melalui Capacitor, dengan runbook-nya sendiri di `docs/mobile-store-release.md`.
+Timpa origin API produksi untuk build staging dengan `VITE_DESKTOP_API_ORIGIN=https://dev.wildhaven.example` (sebuah nilai BUILD-time: nilai itu dipanggang ke dalam bundel dan dicap ke aplikasi yang dikemas, dan build yang sudah terpasang mengabaikannya sebagai env var runtime). Steam adalah kanal distribusi (bundel Electron yang sama, diunggah lewat SteamPipe), dan pemain desktop dapat menautkan akun Steam untuk mencerminkan deed yang mereka raih menjadi achievement Steam; proses masuk sendiri tetap email dan Discord. Runbook rilis lengkap (penandatanganan, notarisasi, publikasi pembaruan otomatis, depot SteamPipe, deploy server) ada di `docs/desktop-release.md`. iOS dan Android dikirim melalui Capacitor, dengan runbook-nya sendiri di `docs/mobile-store-release.md`.
 
 <a id="host-your-own-world-one-command"></a>
 
@@ -184,7 +184,7 @@ Protokol dan binding didokumentasikan di `headless/CLAUDE.md` dan `python/CLAUDE
 
 ## Web3
 
-World of ClaudeCraft adalah web3-native di sekitar **$WOC**, token komunitas kami di Solana. Hubungkan dompet Solana, tautkan ke akun Anda dengan satu tanda tangan (non-custodial, tanpa transaksi untuk disetujui), dan saldo $WOC read-only Anda muncul di HUD bersama lencana tier holder kosmetik.
+Wildhaven adalah web3-native di sekitar **$WOC**, token komunitas kami di Solana. Hubungkan dompet Solana, tautkan ke akun Anda dengan satu tanda tangan (non-custodial, tanpa transaksi untuk disetujui), dan saldo $WOC read-only Anda muncul di HUD bersama lencana tier holder kosmetik.
 
 $WOC juga punya utilitas opsional di dalam game yang hidup:
 
@@ -200,7 +200,7 @@ Tidak satu pun dari ini diperlukan untuk bermain. Menautkan dompet bersifat opsi
 3WjLscH2JsXLEFJZRA9z8ti8yRGxWGKbqymPd7UicRth
 ```
 
-Selengkapnya tentang token di [worldofclaudecraft.com](https://worldofclaudecraft.com/).
+Selengkapnya tentang token di [wildhaven.example](https://wildhaven.example/).
 
 ## Tur keliling dunia
 
@@ -392,7 +392,7 @@ Setiap string yang terlihat pemain diselesaikan melalui `t()`, dan game ini diki
 
 ## Berkontribusi
 
-Kontribusi dalam segala bentuk disambut: kode, terjemahan, laporan bug, dan dokumentasi. Mulai dengan [CONTRIBUTING.id_ID.md](CONTRIBUTING.id_ID.md) untuk penyiapan, baca [Kode Etik](../../CODE_OF_CONDUCT.md), dan periksa [SECURITY.md](../../SECURITY.md) sebelum melaporkan kerentanan. Baru di sini? Cari issue berlabel [`good first issue`](https://github.com/levy-street/world-of-claudecraft/labels/good%20first%20issue), buka sebuah [issue](https://github.com/levy-street/world-of-claudecraft/issues/new/choose), atau sapa kami di [Discord](https://discord.com/invite/worldofclaudecraft).
+Kontribusi dalam segala bentuk disambut: kode, terjemahan, laporan bug, dan dokumentasi. Mulai dengan [CONTRIBUTING.id_ID.md](CONTRIBUTING.id_ID.md) untuk penyiapan, baca [Kode Etik](../../CODE_OF_CONDUCT.md), dan periksa [SECURITY.md](../../SECURITY.md) sebelum melaporkan kerentanan. Baru di sini? Cari issue berlabel [`good first issue`](https://github.com/levy-street/wildhaven/labels/good%20first%20issue), buka sebuah [issue](https://github.com/levy-street/wildhaven/issues/new/choose), atau sapa kami di [Discord](https://discord.com/invite/wildhaven).
 
 Pengembangan aktif berjalan di branch `release/vX.Y.Z` terbaru. Cari tahu branch itu alih-alih menebaknya, lalu buat branch darinya dan targetkan branch itu dengan pull request Anda. Jangan pernah membuat branch dari atau menargetkan `main`, yang hanya menerima sebuah branch rilis ketika versi tersebut dikirim. [CONTRIBUTING.md](CONTRIBUTING.id_ID.md) memuat perintah satu baris yang menemukan branch rilis saat ini.
 
@@ -406,7 +406,7 @@ Tiga hal dilisensikan secara terpisah, jadi tiga puluh detik untuk tahu mana yan
 |---|---|---|
 | **Kode sumber**, artinya semuanya kecuali aset media yang dikecualikan di bawah | [MIT](../../LICENSE) | Ya. Termasuk secara komersial. |
 | **Aset media**: model, tekstur, HDRI, ikon, suara, font (sebagian besar di bawah `public/`) | Per aset, dicatat di [CREDITS.md](../../CREDITS.md) | Sebagian besar ya (kebanyakan CC0). Sebagian tidak, lihat di bawah. |
-| **Nama dan branding**: "World of ClaudeCraft", "Levy Street", logo-logonya | Tidak dilisensikan | Tidak. |
+| **Nama dan branding**: "Wildhaven", "Levy Street", logo-logonya | Tidak dilisensikan | Tidak. |
 
 **Fork dan hosting dunia Anda sendiri. Itu berhasil, dan asetnya tidak menghalangi Anda.** Sebagian besar yang Anda lihat adalah CC0 domain publik (KayKit, Quaternius, Kenney, ambientCG, Poly Haven), dan prop, makhluk, latar, serta suara antarmuka hasil generasi kami sendiri dikirim bersama proyek sehingga sebuah fork langsung berjalan tanpa persiapan tambahan. Anda hanya tidak boleh mengangkatnya keluar dan menjualnya sebagai karya seni mandiri.
 
@@ -420,4 +420,4 @@ Yang perlu Anda hapus atau ganti sebelum mendistribusikan ulang:
 
 [CREDITS.md](../../CREDITS.md) adalah daftar yang otoritatif, dengan kolom distribusi ulang per aset. Di mana sebuah aset terdaftar di sana, lisensi itulah yang berlaku di atas lisensi MIT proyek ini. Register tersebut masih dilengkapi, jadi aset media yang belum ada di sana berarti belum tercatat, bukan bebas: tanyakan dulu sebelum mengandalkannya. Kode sumber berlaku sebaliknya, dan semua yang tidak dikecualikan adalah MIT.
 
-[Ketentuan Layanan](https://worldofclaudecraft.com/terms) kami mencakup game terhosting yang kami jalankan di worldofclaudecraft.com: akun, perilaku, item virtual. Ketentuan itu tidak membatasi hak yang diberikan Lisensi MIT kepada Anda atas kode sumber ini.
+[Ketentuan Layanan](https://wildhaven.example/terms) kami mencakup game terhosting yang kami jalankan di wildhaven.example: akun, perilaku, item virtual. Ketentuan itu tidak membatasi hak yang diberikan Lisensi MIT kepada Anda atas kode sumber ini.

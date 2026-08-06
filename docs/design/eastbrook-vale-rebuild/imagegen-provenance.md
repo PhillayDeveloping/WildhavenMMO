@@ -11,8 +11,8 @@ accepted source is recorded separately below.
 |---|---|
 | Tool | OpenAI imagegen |
 | Generation date | 2026-07-23 |
-| Output status | Original AI-generated World of ClaudeCraft first-party design material |
-| Upstream rights status | World of ClaudeCraft first-party captures and prior original AI-generated iterations only |
+| Output status | Original AI-generated Wildhaven first-party design material |
+| Upstream rights status | Wildhaven first-party captures and prior original AI-generated iterations only |
 | Third-party references | None |
 | RuneScape imagery | None used |
 | Redistribution status | Project inclusion only; the full-color concept, turnarounds, atlas source, and comparison evidence are project assets with rights reserved and require permission to redistribute |
@@ -35,7 +35,7 @@ The accepted master lineage used these exact first-party captures at generation 
 The same captures have durable evidence copies below
 `docs/screenshots/eastbrook-vale-rebuild/before/`. The accepted master correction also referenced
 the rejected master iterations listed below. Those iterations contain only original generated or
-World of ClaudeCraft-derived imagery.
+Wildhaven-derived imagery.
 
 Every accepted bank, smithy, inn, chapel, weaving workshop, and toolworks turnaround used exactly
 these inputs:
@@ -66,7 +66,7 @@ This summary is not prompt text and must not be used as a substitute for the sou
 - **Master concept intent:** show a compact fortified Eastbrook around the preserved Grand
   Armoury, one civic well, six subordinate service buildings including a distinct inn, three
   market stalls, and six road-aligned open wall passages. Retain the established stylized
-  low-poly World of ClaudeCraft palette and player-readable spacing.
+  low-poly Wildhaven palette and player-readable spacing.
 - **Turnaround intent:** isolate one target on a neutral background, show front, rear, both sides,
   several three-quarter views, preserve cobalt roof, stone, plaster, dark timber, warm windows,
   gold trim, and restrained cyan accents, and include a player proxy where scale matters.

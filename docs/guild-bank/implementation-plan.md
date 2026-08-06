@@ -18,7 +18,7 @@ workflow and review dispatch matrix they reference.
 
 ## Team workflow (every phase)
 1. **Pre-flight**: `git status` clean in THIS worktree
-   (`world-of-claudecraft-guild-bank`); memory scan (`MEMORY.md` index, guild + bank
+   (`wildhaven-guild-bank`); memory scan (`MEMORY.md` index, guild + bank
    entries).
 2. **Load context**: one Explore agent reads `state.md`, `progress.md`, the phase file,
    and the phase's listed sources; returns a focused summary. Never read `src/sim/sim.ts`,

@@ -5,7 +5,7 @@
 This is Phase 4 QA of the Guild Bank feature (final phase).
 
 Model: newest available Claude coding model, xhigh effort. Harness: Claude Code.
-Worktree: /Users/seanghods/repos/world-of-claudecraft-guild-bank.
+Worktree: /Users/seanghods/repos/wildhaven-guild-bank.
 
 Goal: audit Phase 4, run the whole-feature QA matrix, and close the packet.
 

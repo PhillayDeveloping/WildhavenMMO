@@ -228,7 +228,7 @@ export const es: Record<string, string> = {
   'usage.metric.githubLinkFailure': 'Fallos de vinculación de GitHub',
   'usage.metric.githubLinkRateLimited': 'Solicitudes de vinculación de GitHub limitadas',
   'usage.metric.githubLinkRequest': 'Solicitudes de vinculación de GitHub',
-  'app.title': 'World of ClaudeCraft - Administración',
+  'app.title': 'Wildhaven - Administración',
   'app.shortTitle': 'Administrador de WoC',
   'auth.username': 'Usuario',
   'auth.password': 'Contraseña',

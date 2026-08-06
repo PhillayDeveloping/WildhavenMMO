@@ -1123,7 +1123,7 @@ Notes:
   ABSENT Origin ALWAYS allowed (bearer-only, no cookies; beacons and native clients must keep
   working); allowed = same-origin host (the Host/X-Forwarded-Host comparison mirroring
   isWebClientRequest) OR allowedCorsOrigin (ONE allowlist shared with CORS: realm vhosts +
-  capacitor://localhost family + app://worldofclaudecraft family); the literal 'null' and any
+  capacitor://localhost family + app://wildhaven family); the literal 'null' and any
   unparseable Origin count as cross-site; Sec-Fetch-Site is recorded as audit context, never
   gated on (an allowlisted realm origin is cross-site by its definition). Enforce throws
   HttpError(403, 'origin.cross_site'). ENFORCE-AUDIT NOTE: the WEB_ORIGINS env allowlist and

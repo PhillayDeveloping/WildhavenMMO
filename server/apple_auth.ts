@@ -34,7 +34,7 @@ import {
 
 const APPLE_ISSUER = 'https://appleid.apple.com';
 const APPLE_KEYS_URL = `${APPLE_ISSUER}/auth/keys`;
-const APPLE_CLIENT_ID = process.env.APPLE_CLIENT_ID?.trim() || 'com.worldofclaudecraft';
+const APPLE_CLIENT_ID = process.env.APPLE_CLIENT_ID?.trim() || 'com.wildhaven';
 const APPLE_PENDING_LOGIN_TTL_MINUTES = 15;
 let cachedKeys: { expiresAt: number; keys: JsonWebKey[] } | null = null;
 

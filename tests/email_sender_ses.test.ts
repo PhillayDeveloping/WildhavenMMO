@@ -28,7 +28,7 @@ describe('selectSender with EMAIL_PROVIDER=ses', () => {
     const sender = selectSender({
       EMAIL_PROVIDER: 'ses',
       AWS_REGION: 'us-east-1',
-      EMAIL_FROM: 'noreply@worldofclaudecraft.com',
+      EMAIL_FROM: 'noreply@wildhaven.example',
     } as NodeJS.ProcessEnv);
     expect(sender).toBeInstanceOf(SesSender);
     expect(sender.name).toBe('ses');
@@ -39,7 +39,7 @@ describe('selectSender with EMAIL_PROVIDER=ses', () => {
       EMAIL_PROVIDER: 'ses',
       AWS_REGION: 'us-east-1',
       EMAIL_SES_REGION: 'eu-west-1',
-      EMAIL_FROM: 'noreply@worldofclaudecraft.com',
+      EMAIL_FROM: 'noreply@wildhaven.example',
     } as NodeJS.ProcessEnv);
     expect(sender).toBeInstanceOf(SesSender);
     expect((sender as SesSender).region).toBe('eu-west-1');
@@ -48,7 +48,7 @@ describe('selectSender with EMAIL_PROVIDER=ses', () => {
   it('falls back to console when the region is missing', () => {
     const sender = selectSender({
       EMAIL_PROVIDER: 'ses',
-      EMAIL_FROM: 'noreply@worldofclaudecraft.com',
+      EMAIL_FROM: 'noreply@wildhaven.example',
     } as NodeJS.ProcessEnv);
     expect(sender).toBeInstanceOf(ConsoleSender);
   });
@@ -65,7 +65,7 @@ describe('selectSender with EMAIL_PROVIDER=ses', () => {
     const sender = selectSender({
       EMAIL_PROVIDER: 'ses',
       AWS_REGION: 'us-east-1',
-      EMAIL_FROM: 'noreply@worldofclaudecraft.com',
+      EMAIL_FROM: 'noreply@wildhaven.example',
       EMAIL_API_URL: 'https://api.example.com/emails',
       EMAIL_API_KEY: 'key',
     } as NodeJS.ProcessEnv);
@@ -76,7 +76,7 @@ describe('selectSender with EMAIL_PROVIDER=ses', () => {
     const sender = selectSender({
       EMAIL_API_URL: 'https://api.example.com/emails',
       EMAIL_API_KEY: 'key',
-      EMAIL_FROM: 'noreply@worldofclaudecraft.com',
+      EMAIL_FROM: 'noreply@wildhaven.example',
     } as NodeJS.ProcessEnv);
     expect(sender).toBeInstanceOf(HttpSender);
     expect(sender.name).toBe('http');
@@ -92,13 +92,13 @@ describe('SesSender.send', () => {
   it('maps the outbound email onto a SendEmail input', async () => {
     const { client, inputs } = fakeClient();
     const sender = new SesSender(
-      { region: 'us-east-1', from: 'noreply@worldofclaudecraft.com' },
+      { region: 'us-east-1', from: 'noreply@wildhaven.example' },
       client,
     );
     await sender.send(MSG);
     expect(inputs).toHaveLength(1);
     const input = inputs[0];
-    expect(input.FromEmailAddress).toBe('noreply@worldofclaudecraft.com');
+    expect(input.FromEmailAddress).toBe('noreply@wildhaven.example');
     expect(input.Destination?.ToAddresses).toEqual(['player@example.com']);
     expect(input.Content?.Simple?.Subject?.Data).toBe('Verify your email');
     expect(input.Content?.Simple?.Body?.Html?.Data).toBe('<p>Hello</p>');
@@ -107,7 +107,7 @@ describe('SesSender.send', () => {
 
   it('rejects with the SES error when delivery fails', async () => {
     const sender = new SesSender(
-      { region: 'us-east-1', from: 'noreply@worldofclaudecraft.com' },
+      { region: 'us-east-1', from: 'noreply@wildhaven.example' },
       {
         async sendEmail() {
           throw new Error('MessageRejected: Email address is not verified.');

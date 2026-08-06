@@ -79,7 +79,7 @@ import {
 } from './totp';
 
 // Issuer label shown in the user's authenticator app next to the 6-digit code.
-const TOTP_ISSUER = 'World of ClaudeCraft';
+const TOTP_ISSUER = 'Wildhaven';
 
 // How long an email-change verification link stays valid.
 export const EMAIL_CHANGE_TTL_HOURS = 24;

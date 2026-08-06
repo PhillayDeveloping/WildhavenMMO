@@ -1,10 +1,10 @@
 ---
 name: review-pr
-description: Review a GitHub pull request for World of ClaudeCraft the way the maintainer does. Use when asked to review a PR, look at a PR, or check a PR (a github.com/.../pull/<n> link or a PR number). Fetches the PR, classifies the change by domain (sim, wire/parity, render, ui, server, i18n), verifies the repo's invariants against the real code (not the PR description), checks the merge-conflict scope, independently confirms any consequential finding, then posts a short, plain, friendly GitHub review with severity-tagged findings. Not for reviewing the local working tree (that is /code-review).
+description: Review a GitHub pull request for Wildhaven the way the maintainer does. Use when asked to review a PR, look at a PR, or check a PR (a github.com/.../pull/<n> link or a PR number). Fetches the PR, classifies the change by domain (sim, wire/parity, render, ui, server, i18n), verifies the repo's invariants against the real code (not the PR description), checks the merge-conflict scope, independently confirms any consequential finding, then posts a short, plain, friendly GitHub review with severity-tagged findings. Not for reviewing the local working tree (that is /code-review).
 user-invocable: true
 ---
 
-# Review a PR (World of ClaudeCraft house style)
+# Review a PR (Wildhaven house style)
 
 This repo takes many small AI-authored contributions, so review is the gate that keeps
 the invariants intact. A good review here is not a vibe check of the diff: it verifies

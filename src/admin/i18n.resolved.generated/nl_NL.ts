@@ -12,7 +12,7 @@
 import type { AdminTranslations } from '../i18n.en';
 
 export const nl_NL: AdminTranslations = {
-  "app.title": "World of ClaudeCraft - Beheer",
+  "app.title": "Wildhaven - Beheer",
   "app.shortTitle": "WoC-beheerder",
   "auth.username": "Gebruikersnaam",
   "auth.password": "Wachtwoord",

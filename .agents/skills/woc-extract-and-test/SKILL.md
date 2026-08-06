@@ -1,6 +1,6 @@
 ---
 name: woc-extract-and-test
-description: "Implement World of ClaudeCraft features, bug fixes, and focused refactors using module-first design and behavior-driven tests. Use when adding behavior, fixing a defect, extracting logic from a large file, or moving code behind an existing architectural seam."
+description: "Implement Wildhaven features, bug fixes, and focused refactors using module-first design and behavior-driven tests. Use when adding behavior, fixing a defect, extracting logic from a large file, or moving code behind an existing architectural seam."
 ---
 
 # Extract and Test

@@ -34,16 +34,16 @@ interface SeekerArtifactPayload {
 }
 
 const seekerArtifactEnv = {
-  SEEKER_SOLANA_INTEGRITY_PACKAGE_NAME: 'com.worldofclaudecraft',
+  SEEKER_SOLANA_INTEGRITY_PACKAGE_NAME: 'com.wildhaven',
   SEEKER_SOLANA_INTEGRITY_CERT_DIGESTS: 'solana-release-cert',
 };
 
 const enforcedAndroidAuthEnv = {
   NODE_ENV: 'production',
   NATIVE_ATTESTATION_REQUIRED: '1',
-  GOOGLE_PLAY_INTEGRITY_PACKAGE_NAME: 'com.worldofclaudecraft',
+  GOOGLE_PLAY_INTEGRITY_PACKAGE_NAME: 'com.wildhaven',
   GOOGLE_PLAY_INTEGRITY_CERT_DIGESTS: 'google-play-signing-cert',
-  SEEKER_SOLANA_INTEGRITY_PACKAGE_NAME: 'com.worldofclaudecraft',
+  SEEKER_SOLANA_INTEGRITY_PACKAGE_NAME: 'com.wildhaven',
   SEEKER_SOLANA_INTEGRITY_CERT_DIGESTS: 'solana-release-cert',
 };
 
@@ -51,10 +51,10 @@ function validSeekerArtifactPayload(nonce: string): SeekerArtifactPayload {
   return {
     requestDetails: {
       nonce,
-      requestPackageName: 'com.worldofclaudecraft',
+      requestPackageName: 'com.wildhaven',
     },
     appIntegrity: {
-      packageName: 'com.worldofclaudecraft',
+      packageName: 'com.wildhaven',
       appRecognitionVerdict: 'UNRECOGNIZED_VERSION',
       certificateSha256Digest: ['solana-release-cert'],
     },
@@ -94,7 +94,7 @@ describe('native attestation', () => {
   it('does not allow non-native origins through the native path', async () => {
     process.env.NATIVE_ATTESTATION_REQUIRED = '0';
     await expect(
-      verifyNativeAttestation(req({ origin: 'https://worldofclaudecraft.com' }), undefined),
+      verifyNativeAttestation(req({ origin: 'https://wildhaven.example' }), undefined),
     ).resolves.toBe(false);
   });
 
@@ -255,17 +255,17 @@ describe('native attestation', () => {
   it('accepts only the configured Solana artifact, Android platform, nonce, and action', async () => {
     const request = req({ origin: 'capacitor://localhost' });
     const env = {
-      SEEKER_SOLANA_INTEGRITY_PACKAGE_NAME: 'com.worldofclaudecraft',
+      SEEKER_SOLANA_INTEGRITY_PACKAGE_NAME: 'com.wildhaven',
       SEEKER_SOLANA_INTEGRITY_CERT_DIGESTS: 'solana-release-cert',
     };
     const challenge = createNativeAttestationChallenge(request, 'seeker-claim');
     const decodeIntegrityToken = async () => ({
       requestDetails: {
         nonce: challenge.nonce,
-        requestPackageName: 'com.worldofclaudecraft',
+        requestPackageName: 'com.wildhaven',
       },
       appIntegrity: {
-        packageName: 'com.worldofclaudecraft',
+        packageName: 'com.wildhaven',
         appRecognitionVerdict: 'UNRECOGNIZED_VERSION',
         certificateSha256Digest: ['solana-release-cert'],
       },
@@ -392,10 +392,10 @@ describe('native attestation', () => {
     const decodeIntegrityToken = async () => ({
       requestDetails: {
         nonce: challenge.nonce,
-        requestPackageName: 'com.worldofclaudecraft',
+        requestPackageName: 'com.wildhaven',
       },
       appIntegrity: {
-        packageName: 'com.worldofclaudecraft',
+        packageName: 'com.wildhaven',
         appRecognitionVerdict: 'PLAY_RECOGNIZED',
         certificateSha256Digest: ['google-play-signing-cert'],
       },
@@ -408,7 +408,7 @@ describe('native attestation', () => {
       verifySeekerSolanaArtifactAttestation(request, proof, 'seeker-spin', {
         decodeIntegrityToken,
         env: {
-          SEEKER_SOLANA_INTEGRITY_PACKAGE_NAME: 'com.worldofclaudecraft',
+          SEEKER_SOLANA_INTEGRITY_PACKAGE_NAME: 'com.wildhaven',
         },
       }),
     ).resolves.toBeNull();
@@ -424,11 +424,11 @@ describe('native attestation', () => {
             ...(await decodeIntegrityToken()),
             requestDetails: {
               nonce: playChallenge.nonce,
-              requestPackageName: 'com.worldofclaudecraft',
+              requestPackageName: 'com.wildhaven',
             },
           }),
           env: {
-            SEEKER_SOLANA_INTEGRITY_PACKAGE_NAME: 'com.worldofclaudecraft',
+            SEEKER_SOLANA_INTEGRITY_PACKAGE_NAME: 'com.wildhaven',
             SEEKER_SOLANA_INTEGRITY_CERT_DIGESTS: 'solana-release-cert',
           },
         },

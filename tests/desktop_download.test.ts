@@ -46,19 +46,19 @@ describe('detectDesktopPlatform', () => {
 describe('desktopDownloadUrl', () => {
   it('builds the mac universal dmg URL', () => {
     expect(desktopDownloadUrl('mac')).toBe(
-      `https://updates.worldofclaudecraft.com/desktop/world-of-claudecraft-${DESKTOP_VERSION}-mac-universal.dmg`,
+      `https://updates.wildhaven.example/desktop/wildhaven-${DESKTOP_VERSION}-mac-universal.dmg`,
     );
   });
 
   it('builds the Linux x86_64 AppImage URL (electron-builder x64 arch token)', () => {
     expect(desktopDownloadUrl('linux')).toBe(
-      `https://updates.worldofclaudecraft.com/desktop/world-of-claudecraft-${DESKTOP_VERSION}-linux-x86_64.AppImage`,
+      `https://updates.wildhaven.example/desktop/wildhaven-${DESKTOP_VERSION}-linux-x86_64.AppImage`,
     );
   });
 
   it('builds the x64 Windows NSIS installer URL (issue 2013: per-arch installers)', () => {
     expect(desktopDownloadUrl('win')).toBe(
-      `https://updates.worldofclaudecraft.com/desktop/world-of-claudecraft-${DESKTOP_VERSION}-win-x64.exe`,
+      `https://updates.wildhaven.example/desktop/wildhaven-${DESKTOP_VERSION}-win-x64.exe`,
     );
   });
 

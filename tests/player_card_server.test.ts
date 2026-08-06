@@ -815,13 +815,13 @@ describe('GET /p/<slug>', () => {
       const html = String(res.body);
       expect(res.statusCode).toBe(200);
       expect(html).toContain(
-        '<link rel="canonical" href="https://worldofclaudecraft.com/p/sir-test">',
+        '<link rel="canonical" href="https://wildhaven.example/p/sir-test">',
       );
       expect(html).toContain(
-        'property="og:url" content="https://worldofclaudecraft.com/p/sir-test"',
+        'property="og:url" content="https://wildhaven.example/p/sir-test"',
       );
       expect(html).toContain(
-        'property="og:image" content="https://worldofclaudecraft.com/p/sir-test/card.png"',
+        'property="og:image" content="https://wildhaven.example/p/sir-test/card.png"',
       );
       expect(html).toContain('src="/p/sir-test/card.png"');
       expect(html).toContain('href="/?ref=sir-test"');
@@ -838,20 +838,20 @@ describe('GET /p/<slug>', () => {
       const res = makeRes();
       await routes(
         makeGetReq('/p/sir-test', {
-          headers: { host: 'dev.worldofclaudecraft.com', 'x-forwarded-proto': 'https' },
+          headers: { host: 'dev.wildhaven.example', 'x-forwarded-proto': 'https' },
         }),
         res,
       );
       const html = String(res.body);
       expect(res.statusCode).toBe(200);
       expect(html).toContain(
-        '<link rel="canonical" href="https://dev.worldofclaudecraft.com/p/sir-test">',
+        '<link rel="canonical" href="https://dev.wildhaven.example/p/sir-test">',
       );
       expect(html).toContain(
-        'property="og:url" content="https://dev.worldofclaudecraft.com/p/sir-test"',
+        'property="og:url" content="https://dev.wildhaven.example/p/sir-test"',
       );
       expect(html).toContain(
-        'property="og:image" content="https://dev.worldofclaudecraft.com/p/sir-test/card.png"',
+        'property="og:image" content="https://dev.wildhaven.example/p/sir-test/card.png"',
       );
       expect(html).toContain('src="/p/sir-test/card.png"');
       expect(html).toContain('href="/?ref=sir-test"');

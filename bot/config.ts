@@ -139,7 +139,7 @@ export function loadConfig(): BotConfig {
       process.env.DISCORD_TEST_CHANNEL_ID ||
       '',
     dailyRewardsChannelId: process.env.DISCORD_DAILY_REWARDS_CHANNEL_ID || '',
-    gameUrl: process.env.PUBLIC_GAME_URL || 'https://worldofclaudecraft.com',
+    gameUrl: process.env.PUBLIC_GAME_URL || 'https://wildhaven.example',
     syncNicknames: process.env.DISCORD_SYNC_NICKNAMES !== '0',
     maxRps: positiveNumberFromEnv(process.env.DISCORD_MAX_RPS, DEFAULT_MAX_RPS),
     banPauseMs: positiveNumberFromEnv(process.env.DISCORD_BAN_PAUSE_MS, DEFAULT_BAN_PAUSE_MS),

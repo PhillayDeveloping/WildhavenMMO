@@ -1,4 +1,4 @@
-; installer.nsh - electron-builder (NSIS) customization for World of ClaudeCraft.
+; installer.nsh - electron-builder (NSIS) customization for Wildhaven.
 ;
 ; app-builder-lib auto-includes this file when it sits at build/installer.nsh
 ; (the directories.buildResources dir), and package.json's "nsis": { "include" }

@@ -157,7 +157,7 @@ describe('withOriginCheck: pass-through carve-outs (never gated, both modes)', (
     });
 
     it(`allows the Electron desktop app:// origin via the REAL default allowOrigin in ${label} mode`, async () => {
-      const ctx = makeCtx({ origin: 'app://worldofclaudecraft' });
+      const ctx = makeCtx({ origin: 'app://wildhaven' });
       const { records, ran } = await runDirect({ route: makeRoute(), ctx, env });
       expect(ran).toBe(true);
       expect(records).toEqual([]);

@@ -1,4 +1,4 @@
-package com.worldofclaudecraft;
+package com.wildhaven;
 
 import static org.junit.Assert.*;
 

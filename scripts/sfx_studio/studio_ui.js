@@ -1708,7 +1708,7 @@ async function publishPlayback() {
 function downloadFilename(response) {
   const disposition = response.headers.get('content-disposition') ?? '';
   const match = disposition.match(/filename="([a-z0-9_-]+\.zip)"/i);
-  return match?.[1] ?? 'world-of-claudecraft-sfx.zip';
+  return match?.[1] ?? 'wildhaven-sfx.zip';
 }
 
 async function exportAll() {

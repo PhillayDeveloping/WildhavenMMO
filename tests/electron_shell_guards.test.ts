@@ -13,13 +13,13 @@ import {
   withCspHeader,
 } from '../electron/shell_guards.cjs';
 
-const APP = 'app://worldofclaudecraft';
+const APP = 'app://wildhaven';
 const DEV = 'http://127.0.0.1:5173';
 
 describe('deriveOrigin (app:// origin-"null" trap)', () => {
   it('derives protocol//host for the app scheme instead of collapsing to "null"', () => {
-    expect(deriveOrigin('app://worldofclaudecraft/index.html')).toBe('app://worldofclaudecraft');
-    expect(deriveOrigin('app://worldofclaudecraft')).toBe('app://worldofclaudecraft');
+    expect(deriveOrigin('app://wildhaven/index.html')).toBe('app://wildhaven');
+    expect(deriveOrigin('app://wildhaven')).toBe('app://wildhaven');
     // Every app:// host shares the SAME opaque URL.origin ("null"); protocol//host keeps them apart.
     expect(deriveOrigin('app://otherhost/x')).toBe('app://otherhost');
   });
@@ -39,8 +39,8 @@ describe('deriveOrigin (app:// origin-"null" trap)', () => {
 describe('originAllowed', () => {
   const allowed = new Set([APP, DEV]);
   it('allows the app origin regardless of path', () => {
-    expect(originAllowed('app://worldofclaudecraft/index.html', allowed)).toBe(true);
-    expect(originAllowed('app://worldofclaudecraft/assets/main-abc.js', allowed)).toBe(true);
+    expect(originAllowed('app://wildhaven/index.html', allowed)).toBe(true);
+    expect(originAllowed('app://wildhaven/assets/main-abc.js', allowed)).toBe(true);
   });
   it('denies a different app host, foreign https, and malformed URLs', () => {
     expect(originAllowed('app://otherhost/', allowed)).toBe(false);
@@ -65,7 +65,7 @@ describe('appNavigationOrigins', () => {
 describe('navigationAllowed', () => {
   const main = new Set([APP, DEV]);
   it('allows main-frame navigation within the app and dev origins', () => {
-    expect(navigationAllowed('app://worldofclaudecraft/play', true, main)).toBe(true);
+    expect(navigationAllowed('app://wildhaven/play', true, main)).toBe(true);
     expect(navigationAllowed('http://127.0.0.1:5173/x', true, main)).toBe(true);
   });
   it('blocks main-frame navigation to a foreign origin', () => {
@@ -149,7 +149,7 @@ describe('ALLOWED_PERMISSIONS (deny-by-default allow-list)', () => {
 
 describe('buildContentSecurityPolicy', () => {
   const csp = buildContentSecurityPolicy({
-    apiOrigin: 'https://worldofclaudecraft.com',
+    apiOrigin: 'https://wildhaven.example',
     scriptHashes: ['sha256-abc123'],
   });
   const directive = (name: string) => csp.split('; ').find((d) => d.startsWith(`${name} `));
@@ -169,7 +169,7 @@ describe('buildContentSecurityPolicy', () => {
   });
 
   it('lists the HTTPS API origin, wss:, and blob: explicitly in connect-src', () => {
-    expect(directive('connect-src')).toContain('https://worldofclaudecraft.com');
+    expect(directive('connect-src')).toContain('https://wildhaven.example');
     expect(directive('connect-src')).toContain('wss:');
     // blob: is required: GLTFLoader fetch()es a model's embedded textures as blob: URLs.
     expect(directive('connect-src')).toContain('blob:');
@@ -305,12 +305,12 @@ describe('isTrustedSender', () => {
     expect(isTrustedSender(undefined, allowed)).toBe(false);
   });
   it('accepts the app frame and the dev-server frame', () => {
-    const appFrame = { origin: APP, url: 'app://worldofclaudecraft/index.html' };
+    const appFrame = { origin: APP, url: 'app://wildhaven/index.html' };
     expect(isTrustedSender(appFrame, allowed)).toBe(true);
     expect(isTrustedSender({ origin: DEV, url: `${DEV}/` }, allowed)).toBe(true);
   });
   it('falls back to frame.url when frame.origin is the opaque "null" string', () => {
-    expect(isTrustedSender({ origin: 'null', url: 'app://worldofclaudecraft/x' }, allowed)).toBe(
+    expect(isTrustedSender({ origin: 'null', url: 'app://wildhaven/x' }, allowed)).toBe(
       true,
     );
   });

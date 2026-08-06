@@ -1,6 +1,6 @@
 # The QA gate
 
-World of ClaudeCraft uses multiple coding-agent runtimes, but one repository QA
+Wildhaven uses multiple coding-agent runtimes, but one repository QA
 contract. Every layer does one job at the cheapest useful boundary. Claude Code and
 Codex have different entry points and share the same deterministic scripts and commands.
 

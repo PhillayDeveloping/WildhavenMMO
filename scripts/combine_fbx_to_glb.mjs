@@ -37,7 +37,7 @@
 //   --webp-size <px>    resize textures to px square when converting (implies --webp)
 //   -h, --help          show this help
 //
-// World of ClaudeCraft assets were built with: --strip-root --rest-clip Idle
+// Wildhaven assets were built with: --strip-root --rest-clip Idle
 //   --rest-t 1 --height <n> --meshopt --webp-size 1024  (game uses meshopt + webp).
 
 import { execSync } from 'node:child_process';

@@ -12,7 +12,7 @@
 import type { AdminTranslations } from '../i18n.en';
 
 export const vi_VN: AdminTranslations = {
-  "app.title": "World of ClaudeCraft - Quản trị",
+  "app.title": "Wildhaven - Quản trị",
   "app.shortTitle": "Quản trị viên WoC",
   "auth.username": "Tên đăng nhập",
   "auth.password": "Mật khẩu",

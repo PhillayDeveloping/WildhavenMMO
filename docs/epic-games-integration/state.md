@@ -4,7 +4,7 @@ Status: **code complete, dark by default.** Packet implementation and close QA
 are done; the dark surface ships via PR 2709. Live portal, BPT, Dev smoke,
 and production lighting are ops:
 
-- https://github.com/levy-street/world-of-claudecraft/issues/2708
+- https://github.com/levy-street/wildhaven/issues/2708
 
 Locked decisions below override ad-hoc invention. Companion runbooks:
 `portal-checklist.md`, `bpt-upload.md`, `docs/desktop-release.md`, `DEPLOY.md`.

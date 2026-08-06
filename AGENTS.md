@@ -1,6 +1,6 @@
 # Codex entry point
 
-This file owns Codex runtime behavior for World of ClaudeCraft. The root and
+This file owns Codex runtime behavior for Wildhaven. The root and
 directory-local `CLAUDE.md` files remain canonical for repository facts, architecture,
 hard invariants, conventions, commands, the default task workflow and deliverable
 contract, and the QA contract. Claude-specific model,

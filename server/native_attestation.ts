@@ -5,8 +5,8 @@ import { isNativeAppRequest } from './web_login_guard';
 
 const CHALLENGE_TTL_MS = 5 * 60 * 1000;
 const GOOGLE_SCOPE = 'https://www.googleapis.com/auth/playintegrity';
-const DEFAULT_PACKAGE_NAME = 'com.worldofclaudecraft';
-const DEFAULT_BUNDLE_ID = 'com.worldofclaudecraft';
+const DEFAULT_PACKAGE_NAME = 'com.wildhaven';
+const DEFAULT_BUNDLE_ID = 'com.wildhaven';
 
 interface NativeChallenge {
   nonce: string;

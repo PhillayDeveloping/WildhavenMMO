@@ -344,8 +344,8 @@
       "sourceFile": "tmp/imagegen/missing-painted-icons/accepted/abilities/warrior/cleaving_blows.png",
       "output": "cleaving_blows.webp",
       "source": "OpenAI built-in image generation",
-      "owner": "World of ClaudeCraft",
-      "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+      "owner": "Wildhaven",
+      "license": "Wildhaven project-generated art, project asset, rights reserved",
       "intendedVisualSubject": "A broad axe sweep striking two targets while a spent charge rune reignites.",
       "references": [
         {
@@ -369,14 +369,14 @@
       "sourceFile": "tmp/imagegen/missing-painted-icons/accepted/abilities/warrior/deep_wounds.png",
       "output": "deep_wounds.webp",
       "source": "OpenAI built-in image generation",
-      "owner": "World of ClaudeCraft",
-      "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+      "owner": "Wildhaven",
+      "license": "Wildhaven project-generated art, project asset, rights reserved",
       "intendedVisualSubject": "A deep sword gouge across armor opening into two heavy blood pulses.",
       "references": [
         {
           "path": "public/ui/skills/warrior/execute.webp",
           "role": "composition reference",
-          "provenance": "World of ClaudeCraft project-generated art",
+          "provenance": "Wildhaven project-generated art",
           "license": "Project asset, rights reserved"
         },
         {
@@ -394,8 +394,8 @@
       "sourceFile": "tmp/imagegen/missing-painted-icons/accepted/abilities/warrior/diabolical_twinstrike.png",
       "output": "diabolical_twinstrike.webp",
       "source": "OpenAI built-in image generation",
-      "owner": "World of ClaudeCraft",
-      "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+      "owner": "Wildhaven",
+      "license": "Wildhaven project-generated art, project asset, rights reserved",
       "intendedVisualSubject": "Two mirrored blades crossing through a demonic red Enrage flame.",
       "references": [
         {
@@ -407,7 +407,7 @@
         {
           "path": "public/ui/skills/warrior/execute.webp",
           "role": "composition reference",
-          "provenance": "World of ClaudeCraft project-generated art",
+          "provenance": "Wildhaven project-generated art",
           "license": "Project asset, rights reserved"
         }
       ],
@@ -419,8 +419,8 @@
       "sourceFile": "tmp/imagegen/missing-painted-icons/accepted/abilities/warrior/enrage_passive.png",
       "output": "enrage_passive.webp",
       "source": "OpenAI built-in image generation",
-      "owner": "World of ClaudeCraft",
-      "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+      "owner": "Wildhaven",
+      "license": "Wildhaven project-generated art, project asset, rights reserved",
       "intendedVisualSubject": "Twin axes inside a crimson frenzy halo, with three motion bands representing damage, haste, and movement.",
       "references": [
         {
@@ -444,8 +444,8 @@
       "sourceFile": "tmp/imagegen/missing-painted-icons/accepted/abilities/warrior/measured_fury.png",
       "output": "measured_fury.webp",
       "source": "OpenAI built-in image generation",
-      "owner": "World of ClaudeCraft",
-      "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+      "owner": "Wildhaven",
+      "license": "Wildhaven project-generated art, project asset, rights reserved",
       "intendedVisualSubject": "Calm scarred helm above a Rage gauge being precisely shaved by one notch.",
       "references": [
         {
@@ -469,8 +469,8 @@
       "sourceFile": "tmp/imagegen/missing-painted-icons/accepted/abilities/warrior/seasoned_soldier.png",
       "output": "seasoned_soldier.webp",
       "source": "OpenAI built-in image generation",
-      "owner": "World of ClaudeCraft",
-      "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+      "owner": "Wildhaven",
+      "license": "Wildhaven project-generated art, project asset, rights reserved",
       "intendedVisualSubject": "Veteran helm struck by a critical star, feeding a glowing Rage droplet.",
       "references": [
         {
@@ -482,7 +482,7 @@
         {
           "path": "public/ui/skills/warrior/execute.webp",
           "role": "composition reference",
-          "provenance": "World of ClaudeCraft project-generated art",
+          "provenance": "Wildhaven project-generated art",
           "license": "Project asset, rights reserved"
         }
       ],
@@ -494,26 +494,26 @@
       "sourceFile": "tmp/imagegen/missing-painted-icons/accepted/abilities/warrior/sport_boot.png",
       "output": "sport_boot.webp",
       "source": "OpenAI built-in image generation",
-      "owner": "World of ClaudeCraft",
-      "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+      "owner": "Wildhaven",
+      "license": "Wildhaven project-generated art, project asset, rights reserved",
       "intendedVisualSubject": "An armored boot launching the Vale Cup ball on a long medium-high arc.",
       "references": [
         {
           "path": "public/ui/deeds/pvp_vcup_first_goal.webp",
           "role": "style reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         },
         {
           "path": "public/ui/deeds/pvp_vcup_first_save.webp",
           "role": "subject reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         },
         {
           "path": "public/ui/deeds/pvp_vcup_clean_sheet.webp",
           "role": "composition reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         }
       ],
@@ -525,26 +525,26 @@
       "sourceFile": "tmp/imagegen/missing-painted-icons/accepted/abilities/warrior/sport_dive.png",
       "output": "sport_dive.webp",
       "source": "OpenAI built-in image generation",
-      "owner": "World of ClaudeCraft",
-      "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+      "owner": "Wildhaven",
+      "license": "Wildhaven project-generated art, project asset, rights reserved",
       "intendedVisualSubject": "A fully extended gloved keeper diving into a Vale Cup ball's catch halo.",
       "references": [
         {
           "path": "public/ui/deeds/pvp_vcup_first_goal.webp",
           "role": "style reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         },
         {
           "path": "public/ui/deeds/pvp_vcup_first_save.webp",
           "role": "subject reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         },
         {
           "path": "public/ui/deeds/pvp_vcup_clean_sheet.webp",
           "role": "composition reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         }
       ],
@@ -556,26 +556,26 @@
       "sourceFile": "tmp/imagegen/missing-painted-icons/accepted/abilities/warrior/sport_feint.png",
       "output": "sport_feint.webp",
       "source": "OpenAI built-in image generation",
-      "owner": "World of ClaudeCraft",
-      "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+      "owner": "Wildhaven",
+      "license": "Wildhaven project-generated art, project asset, rights reserved",
       "intendedVisualSubject": "Two crossed boot afterimages zigzagging around a stationary Vale Cup ball.",
       "references": [
         {
           "path": "public/ui/deeds/pvp_vcup_first_goal.webp",
           "role": "style reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         },
         {
           "path": "public/ui/deeds/pvp_vcup_first_save.webp",
           "role": "subject reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         },
         {
           "path": "public/ui/deeds/pvp_vcup_clean_sheet.webp",
           "role": "composition reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         }
       ],
@@ -587,26 +587,26 @@
       "sourceFile": "tmp/imagegen/missing-painted-icons/accepted/abilities/warrior/sport_hoof.png",
       "output": "sport_hoof.webp",
       "source": "OpenAI built-in image generation",
-      "owner": "World of ClaudeCraft",
-      "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+      "owner": "Wildhaven",
+      "license": "Wildhaven project-generated art, project asset, rights reserved",
       "intendedVisualSubject": "A heavy boot hammering the Vale Cup ball horizontally with compressed speed streaks.",
       "references": [
         {
           "path": "public/ui/deeds/pvp_vcup_first_goal.webp",
           "role": "style reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         },
         {
           "path": "public/ui/deeds/pvp_vcup_first_save.webp",
           "role": "subject reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         },
         {
           "path": "public/ui/deeds/pvp_vcup_clean_sheet.webp",
           "role": "composition reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         }
       ],
@@ -618,26 +618,26 @@
       "sourceFile": "tmp/imagegen/missing-painted-icons/accepted/abilities/warrior/sport_kick.png",
       "output": "sport_kick.webp",
       "source": "OpenAI built-in image generation",
-      "owner": "World of ClaudeCraft",
-      "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+      "owner": "Wildhaven",
+      "license": "Wildhaven project-generated art, project asset, rights reserved",
       "intendedVisualSubject": "An armored boot tapping the Vale Cup ball along a low ground trajectory.",
       "references": [
         {
           "path": "public/ui/deeds/pvp_vcup_first_goal.webp",
           "role": "style reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         },
         {
           "path": "public/ui/deeds/pvp_vcup_first_save.webp",
           "role": "subject reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         },
         {
           "path": "public/ui/deeds/pvp_vcup_clean_sheet.webp",
           "role": "composition reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         }
       ],
@@ -649,26 +649,26 @@
       "sourceFile": "tmp/imagegen/missing-painted-icons/accepted/abilities/warrior/sport_pass.png",
       "output": "sport_pass.webp",
       "source": "OpenAI built-in image generation",
-      "owner": "World of ClaudeCraft",
-      "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+      "owner": "Wildhaven",
+      "license": "Wildhaven project-generated art, project asset, rights reserved",
       "intendedVisualSubject": "Two teammates linked by a ground-hugging Vale Cup ball arrow aimed ahead of the receiver.",
       "references": [
         {
           "path": "public/ui/deeds/pvp_vcup_first_goal.webp",
           "role": "style reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         },
         {
           "path": "public/ui/deeds/pvp_vcup_first_save.webp",
           "role": "subject reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         },
         {
           "path": "public/ui/deeds/pvp_vcup_clean_sheet.webp",
           "role": "composition reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         }
       ],
@@ -680,26 +680,26 @@
       "sourceFile": "tmp/imagegen/missing-painted-icons/accepted/abilities/warrior/sport_punt.png",
       "output": "sport_punt.webp",
       "source": "OpenAI built-in image generation",
-      "owner": "World of ClaudeCraft",
-      "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+      "owner": "Wildhaven",
+      "license": "Wildhaven project-generated art, project asset, rights reserved",
       "intendedVisualSubject": "A keeper's boot under an airborne Vale Cup ball tracing the tallest kick arc.",
       "references": [
         {
           "path": "public/ui/deeds/pvp_vcup_first_goal.webp",
           "role": "style reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         },
         {
           "path": "public/ui/deeds/pvp_vcup_first_save.webp",
           "role": "subject reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         },
         {
           "path": "public/ui/deeds/pvp_vcup_clean_sheet.webp",
           "role": "composition reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         }
       ],
@@ -711,26 +711,26 @@
       "sourceFile": "tmp/imagegen/missing-painted-icons/accepted/abilities/warrior/sport_second_wind.png",
       "output": "sport_second_wind.webp",
       "source": "OpenAI built-in image generation",
-      "owner": "World of ClaudeCraft",
-      "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+      "owner": "Wildhaven",
+      "license": "Wildhaven project-generated art, project asset, rights reserved",
       "intendedVisualSubject": "Running greaves wrapped in fresh green wind ribbons beside the Vale Cup ball.",
       "references": [
         {
           "path": "public/ui/deeds/pvp_vcup_first_goal.webp",
           "role": "style reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         },
         {
           "path": "public/ui/deeds/pvp_vcup_first_save.webp",
           "role": "subject reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         },
         {
           "path": "public/ui/deeds/pvp_vcup_clean_sheet.webp",
           "role": "composition reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         }
       ],
@@ -742,26 +742,26 @@
       "sourceFile": "tmp/imagegen/missing-painted-icons/accepted/abilities/warrior/sport_shoot.png",
       "output": "sport_shoot.webp",
       "source": "OpenAI built-in image generation",
-      "owner": "World of ClaudeCraft",
-      "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+      "owner": "Wildhaven",
+      "license": "Wildhaven project-generated art, project asset, rights reserved",
       "intendedVisualSubject": "A charged boot, goal mouth, and rising Vale Cup ball crossing a visible power ring.",
       "references": [
         {
           "path": "public/ui/deeds/pvp_vcup_first_goal.webp",
           "role": "style reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         },
         {
           "path": "public/ui/deeds/pvp_vcup_first_save.webp",
           "role": "subject reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         },
         {
           "path": "public/ui/deeds/pvp_vcup_clean_sheet.webp",
           "role": "composition reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         }
       ],
@@ -773,26 +773,26 @@
       "sourceFile": "tmp/imagegen/missing-painted-icons/accepted/abilities/warrior/sport_shoulder.png",
       "output": "sport_shoulder.webp",
       "source": "OpenAI built-in image generation",
-      "owner": "World of ClaudeCraft",
-      "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+      "owner": "Wildhaven",
+      "license": "Wildhaven project-generated art, project asset, rights reserved",
       "intendedVisualSubject": "An armored shoulder colliding with a ball carrier while the Vale Cup ball pops loose.",
       "references": [
         {
           "path": "public/ui/deeds/pvp_vcup_first_goal.webp",
           "role": "style reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         },
         {
           "path": "public/ui/deeds/pvp_vcup_first_save.webp",
           "role": "subject reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         },
         {
           "path": "public/ui/deeds/pvp_vcup_clean_sheet.webp",
           "role": "composition reference",
-          "provenance": "World of ClaudeCraft maintainer-commissioned bespoke art",
+          "provenance": "Wildhaven maintainer-commissioned bespoke art",
           "license": "Project asset, rights reserved"
         }
       ],
@@ -804,14 +804,14 @@
       "sourceFile": "tmp/imagegen/missing-painted-icons/accepted/abilities/warrior/sudden_death.png",
       "output": "sudden_death.webp",
       "source": "OpenAI built-in image generation",
-      "owner": "World of ClaudeCraft",
-      "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+      "owner": "Wildhaven",
+      "license": "Wildhaven project-generated art, project asset, rights reserved",
       "intendedVisualSubject": "A skull over a broken health ring, bisected by an execution slash and zero-cost spark.",
       "references": [
         {
           "path": "public/ui/skills/warrior/execute.webp",
           "role": "subject reference",
-          "provenance": "World of ClaudeCraft project-generated art",
+          "provenance": "Wildhaven project-generated art",
           "license": "Project asset, rights reserved"
         },
         {

@@ -1,9 +1,9 @@
 ---
 name: woc-image-to-glb
-description: "Turn a reference image into a shipping World of ClaudeCraft GLB through the img2threejs intake gates and the repo's deterministic export, optimize, fingerprint, and test pipeline. Use when asked to create, replace, rebuild, re-export, or re-pin a world asset (prop, furniture, building, landmark, stall, service object) from a concept or reference image."
+description: "Turn a reference image into a shipping Wildhaven GLB through the img2threejs intake gates and the repo's deterministic export, optimize, fingerprint, and test pipeline. Use when asked to create, replace, rebuild, re-export, or re-pin a world asset (prop, furniture, building, landmark, stall, service object) from a concept or reference image."
 ---
 
-# World of ClaudeCraft image-to-GLB
+# Wildhaven image-to-GLB
 
 This is the Codex-side pointer for the shared asset pipeline. The canonical operating
 procedure is the Claude skill at `.claude/skills/image-to-glb/SKILL.md`; the deep runbook

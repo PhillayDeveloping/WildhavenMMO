@@ -94,8 +94,8 @@ function languageTag(locale) {
 
 function siteUrlForLocale(locale) {
   return locale === 'en'
-    ? 'https://worldofclaudecraft.com/'
-    : `https://worldofclaudecraft.com/?lang=${locale}`;
+    ? 'https://wildhaven.example/'
+    : `https://wildhaven.example/?lang=${locale}`;
 }
 
 function localUrlForLocale(locale) {

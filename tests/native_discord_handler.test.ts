@@ -22,7 +22,7 @@ vi.mock('@capacitor/browser', () => ({
 
 import { installNativeDiscordUrlHandler } from '../src/net/native_discord';
 
-const CALLBACK = 'worldofclaudecraft://discord-auth?ok=1&mode=login&code=handoff';
+const CALLBACK = 'wildhaven://discord-auth?ok=1&mode=login&code=handoff';
 
 beforeEach(() => {
   nativeMocks.addListener.mockReset();

@@ -9,13 +9,13 @@ body:
         That helps us design the right thing, not just the first thing.
 
         > You're welcome to write in your own language. The contributing guide is
-        > available in [many languages](https://github.com/levy-street/world-of-claudecraft/blob/main/CONTRIBUTING.md),
-        > and you can chat with us on [Discord](https://discord.com/invite/worldofclaudecraft).
+        > available in [many languages](https://github.com/levy-street/wildhaven/blob/main/CONTRIBUTING.md),
+        > and you can chat with us on [Discord](https://discord.com/invite/wildhaven).
   - type: checkboxes
     attributes:
       label: Before you start
       options:
-        - label: I searched [existing issues](https://github.com/levy-street/world-of-claudecraft/issues) and didn't find a duplicate.
+        - label: I searched [existing issues](https://github.com/levy-street/wildhaven/issues) and didn't find a duplicate.
           required: true
   - type: textarea
     id: problem

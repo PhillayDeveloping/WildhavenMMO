@@ -1,6 +1,6 @@
 ---
 name: woc-codex-audit
-description: "Audit World of ClaudeCraft Codex support for current conventions, model neutrality, instruction quality, agent safety, skill design, hooks, CI integration, and documentation drift. Use when reviewing or modernizing AGENTS.md, .codex, .agents, Codex workflows, Codex-facing scripts, or the repository AI architecture."
+description: "Audit Wildhaven Codex support for current conventions, model neutrality, instruction quality, agent safety, skill design, hooks, CI integration, and documentation drift. Use when reviewing or modernizing AGENTS.md, .codex, .agents, Codex workflows, Codex-facing scripts, or the repository AI architecture."
 ---
 
 # Codex Architecture Audit

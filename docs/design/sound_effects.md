@@ -1,6 +1,6 @@
 # Sound Effects: design, catalog and integration
 
-Sampled sound effects for World of ClaudeCraft, played through a lightweight Web
+Sampled sound effects for Wildhaven, played through a lightweight Web
 Audio engine. Natural world and character cues can be produced with the
 **ElevenLabs Sound Effects API** (`POST /v1/sound-generation`); UI/event cues use
 deterministic local FFmpeg synthesis. This document is the human-readable

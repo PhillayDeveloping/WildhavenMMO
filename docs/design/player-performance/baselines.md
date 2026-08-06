@@ -183,7 +183,7 @@ the values here.
 Commands:
 
 1. **Live-site town session.** On the owner Mac, open
-   `https://worldofclaudecraft.com/?perf`, enter the world, and stand in the town plaza
+   `https://wildhaven.example/?perf`, enter the world, and stand in the town plaza
    at evening population. Copy the ?perf overlay JSON into a dated block here. Then open
    DevTools, Performance panel, record about 10 seconds while holding an arrow-key turn
    in the plaza, and save the trace (`.json.gz`) beside this doc or into the tracker

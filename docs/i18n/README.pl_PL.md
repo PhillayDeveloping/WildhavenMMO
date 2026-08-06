@@ -1,12 +1,12 @@
 <div align="center">
 
-# World of ClaudeCraft
+# Wildhaven
 
 **Wykonuj questy, twórz drużyny i raiduj ręcznie zbudowany świat, za darmo w przeglądarce. Open source, web3 i online już teraz.**
 
-**Oficjalna strona: https://worldofclaudecraft.com/**
+**Oficjalna strona: https://wildhaven.example/**
 
-[![CI](https://github.com/levy-street/world-of-claudecraft/actions/workflows/ci.yml/badge.svg)](https://github.com/levy-street/world-of-claudecraft/actions/workflows/ci.yml)
+[![CI](https://github.com/levy-street/wildhaven/actions/workflows/ci.yml/badge.svg)](https://github.com/levy-street/wildhaven/actions/workflows/ci.yml)
 [![TypeScript](https://img.shields.io/badge/TypeScript-7.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Three.js](https://img.shields.io/badge/Three.js-r165-000000?logo=threedotjs&logoColor=white)](https://threejs.org/)
 [![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
@@ -16,23 +16,23 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](../../LICENSE)
 [![Version](https://img.shields.io/badge/version-0.34.0-blue)](../../package.json)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.pl_PL.md)
-[![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.com/invite/worldofclaudecraft)
+[![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.com/invite/wildhaven)
 
 [English](../../README.md) · [Español](README.es.md) · [Español (España)](README.es_ES.md) · [Français](README.fr_FR.md) · [Français (Canada)](README.fr_CA.md) · [Italiano](README.it_IT.md) · [Deutsch](README.de_DE.md) · [简体中文](README.zh_CN.md) · [繁體中文](README.zh_TW.md) · [한국어](README.ko_KR.md) · [日本語](README.ja_JP.md) · [Português (Brasil)](README.pt_BR.md) · [Русский](README.ru_RU.md) · [Čeština](README.cs_CZ.md) · [Nederlands](README.nl_NL.md) · **Polski** · [Bahasa Indonesia](README.id_ID.md) · [Türkçe](README.tr_TR.md) · [Svenska](README.sv_SE.md) · [Tiếng Việt](README.vi_VN.md) · [Dansk](README.da_DK.md)
 
-[Zagraj teraz](https://worldofclaudecraft.com/) · [Postaw własny świat](#host-your-own-world-one-command) · [Wytrenuj agenta](#train-an-agent-headless-rl) · [Web3](#web3) · [Współtworzenie](CONTRIBUTING.pl_PL.md) · [Discord](https://discord.com/invite/worldofclaudecraft)
+[Zagraj teraz](https://wildhaven.example/) · [Postaw własny świat](#host-your-own-world-one-command) · [Wytrenuj agenta](#train-an-agent-headless-rl) · [Web3](#web3) · [Współtworzenie](CONTRIBUTING.pl_PL.md) · [Discord](https://discord.com/invite/wildhaven)
 
-![Ekran tytułowy World of ClaudeCraft](../../docs/screenshots/title-screen.jpg)
+![Ekran tytułowy Wildhaven](../../docs/screenshots/title-screen.jpg)
 
 </div>
 
 ## Czym to jest
 
-World of ClaudeCraft to kompletne MMO w stylu klasycznej ery, w które możesz zagrać już teraz w przeglądarce, postawić je samodzielnie jedną komendą, a nawet wytrenować agentów AI, by w nie grali. Jest darmowe, open source i dostępne na żywo pod adresem [worldofclaudecraft.com](https://worldofclaudecraft.com/).
+Wildhaven to kompletne MMO w stylu klasycznej ery, w które możesz zagrać już teraz w przeglądarce, postawić je samodzielnie jedną komendą, a nawet wytrenować agentów AI, by w nie grali. Jest darmowe, open source i dostępne na żywo pod adresem [wildhaven.example](https://wildhaven.example/).
 
 Jeden wspólny świat działa w trzech miejscach, wszystkie z tego samego rdzenia gry:
 
-- **autorytatywny serwer wieloosobowy**, żywy świat, w który grasz na worldofclaudecraft.com, gdzie konta oparte na Postgres współdzielą jedno trwałe królestwo,
+- **autorytatywny serwer wieloosobowy**, żywy świat, w który grasz na wildhaven.example, gdzie konta oparte na Postgres współdzielą jedno trwałe królestwo,
 - **świat offline w przeglądarce**, lokalny jednoosobowy `Sim` dostarczany przez serwer deweloperski, przydatny przy pracy nad projektem i do przeczytania rdzenia gry od początku do końca,
 - **bezgłowe środowisko RL**, gdzie Python steruje prawdziwą grą przez interfejs Gym.
 
@@ -77,7 +77,7 @@ Pogoda jest sterowana biomami i istnieje tylko w warstwie renderowania, więc ni
 
 ## Zagraj
 
-Graj w przeglądarce na [worldofclaudecraft.com](https://worldofclaudecraft.com/) albo zainstaluj natywną aplikację na Windows, Linux, macOS, iOS lub Android. Każdy klient łączy się z tym samym światem online.
+Graj w przeglądarce na [wildhaven.example](https://wildhaven.example/) albo zainstaluj natywną aplikację na Windows, Linux, macOS, iOS lub Android. Każdy klient łączy się z tym samym światem online.
 
 ### Online, z innymi graczami
 
@@ -96,9 +96,9 @@ Nazwij swoją postać, wybierz jedną z dziewięciu klas i zaczynasz w **Eastbro
 
 ### Aplikacje desktopowe na Windows, Linux i macOS
 
-World of ClaudeCraft jest dostarczany jako pełne aplikacje desktopowe na wszystkie trzy główne platformy: podpisane instalatory Windows, pakiety Linux AppImage i deb oraz podpisane i notaryzowane uniwersalne buildy macOS. Używają tego samego klienta gry i tego samego świata online co przeglądarka, z natywnym pakowaniem i automatycznymi aktualizacjami.
+Wildhaven jest dostarczany jako pełne aplikacje desktopowe na wszystkie trzy główne platformy: podpisane instalatory Windows, pakiety Linux AppImage i deb oraz podpisane i notaryzowane uniwersalne buildy macOS. Używają tego samego klienta gry i tego samego świata online co przeglądarka, z natywnym pakowaniem i automatycznymi aktualizacjami.
 
-Logowanie online odbywa się wyłącznie przez Discord i e-mail, dokładnie tak jak w wersji webowej: e-mail i hasło logują wewnątrz aplikacji, a „Continue with Discord” otwiera domyślną przeglądarkę na stronie `/desktop-login`, która przekazuje aplikacji jednorazowy kod przez głęboki link `worldofclaudecraft://`, wymieniany następnie na zwykły token sesji World of ClaudeCraft.
+Logowanie online odbywa się wyłącznie przez Discord i e-mail, dokładnie tak jak w wersji webowej: e-mail i hasło logują wewnątrz aplikacji, a „Continue with Discord” otwiera domyślną przeglądarkę na stronie `/desktop-login`, która przekazuje aplikacji jednorazowy kod przez głęboki link `wildhaven://`, wymieniany następnie na zwykły token sesji Wildhaven.
 
 ```bash
 npm run electron:dev          # Vite + Electron dev shell
@@ -113,7 +113,7 @@ Skieruj powłokę na inne API przez `VITE_DESKTOP_API_ORIGIN`, na przykład na l
 VITE_DESKTOP_API_ORIGIN=http://127.0.0.1:8787 npm run electron:dev
 ```
 
-Produkcyjne origin API dla buildów stagingowych nadpiszesz przez `VITE_DESKTOP_API_ORIGIN=https://dev.worldofclaudecraft.com` (to wartość z czasu BUDOWANIA: jest wbudowywana w bundle i stemplowana w spakowanej aplikacji, a zainstalowane buildy ignorują ją jako zmienną środowiskową w czasie działania). Steam jest kanałem dystrybucji (ten sam bundle Electron, wysyłany przez SteamPipe), a gracze na desktopie mogą powiązać konto Steam, by odzwierciedlać zdobyte deeds w osiągnięciach Steam; samo logowanie pozostaje przy e-mailu i Discordzie. Pełny runbook wydawniczy (podpisywanie, notaryzacja, publikowanie automatycznej aktualizacji, depoty SteamPipe, wdrożenie serwera) to `docs/desktop-release.md`. iOS i Android są dostarczane przez Capacitor, z własnym runbookiem w `docs/mobile-store-release.md`.
+Produkcyjne origin API dla buildów stagingowych nadpiszesz przez `VITE_DESKTOP_API_ORIGIN=https://dev.wildhaven.example` (to wartość z czasu BUDOWANIA: jest wbudowywana w bundle i stemplowana w spakowanej aplikacji, a zainstalowane buildy ignorują ją jako zmienną środowiskową w czasie działania). Steam jest kanałem dystrybucji (ten sam bundle Electron, wysyłany przez SteamPipe), a gracze na desktopie mogą powiązać konto Steam, by odzwierciedlać zdobyte deeds w osiągnięciach Steam; samo logowanie pozostaje przy e-mailu i Discordzie. Pełny runbook wydawniczy (podpisywanie, notaryzacja, publikowanie automatycznej aktualizacji, depoty SteamPipe, wdrożenie serwera) to `docs/desktop-release.md`. iOS i Android są dostarczane przez Capacitor, z własnym runbookiem w `docs/mobile-store-release.md`.
 
 <a id="host-your-own-world-one-command"></a>
 
@@ -184,7 +184,7 @@ Protokół i powiązania są udokumentowane w `headless/CLAUDE.md` i `python/CLA
 
 ## Web3
 
-World of ClaudeCraft jest natywnie web3 wokół **$WOC**, naszego społecznościowego tokena na Solana. Połącz portfel Solana, powiąż go z kontem jednym podpisem (niepowiernicze, brak transakcji do zatwierdzenia), a twoje tylko do odczytu saldo $WOC pojawi się w HUD obok kosmetycznej odznaki poziomu posiadacza.
+Wildhaven jest natywnie web3 wokół **$WOC**, naszego społecznościowego tokena na Solana. Połącz portfel Solana, powiąż go z kontem jednym podpisem (niepowiernicze, brak transakcji do zatwierdzenia), a twoje tylko do odczytu saldo $WOC pojawi się w HUD obok kosmetycznej odznaki poziomu posiadacza.
 
 $WOC ma też opcjonalną użyteczność w żywej grze:
 
@@ -200,7 +200,7 @@ Nic z tego nie jest potrzebne do gry. Powiązanie portfela jest opcjonalne i nie
 3WjLscH2JsXLEFJZRA9z8ti8yRGxWGKbqymPd7UicRth
 ```
 
-Więcej o tokenie na [worldofclaudecraft.com](https://worldofclaudecraft.com/).
+Więcej o tokenie na [wildhaven.example](https://wildhaven.example/).
 
 ## Wycieczka po świecie
 
@@ -393,7 +393,7 @@ Każdy widoczny dla gracza ciąg jest rozstrzygany przez `t()`, a gra jest dosta
 
 ## Współtworzenie
 
-Mile widziane są wszelkiego rodzaju wkłady: kod, tłumaczenia, zgłoszenia błędów i dokumentacja. Zacznij od [CONTRIBUTING.pl_PL.md](CONTRIBUTING.pl_PL.md) po konfigurację, przeczytaj [Kodeks postępowania](../../CODE_OF_CONDUCT.md) i sprawdź [SECURITY.md](../../SECURITY.md) przed zgłoszeniem podatności. Nowy tutaj? Poszukaj zgłoszeń oznaczonych [`good first issue`](https://github.com/levy-street/world-of-claudecraft/labels/good%20first%20issue), otwórz [zgłoszenie](https://github.com/levy-street/world-of-claudecraft/issues/new/choose) lub przywitaj się na [Discordzie](https://discord.com/invite/worldofclaudecraft).
+Mile widziane są wszelkiego rodzaju wkłady: kod, tłumaczenia, zgłoszenia błędów i dokumentacja. Zacznij od [CONTRIBUTING.pl_PL.md](CONTRIBUTING.pl_PL.md) po konfigurację, przeczytaj [Kodeks postępowania](../../CODE_OF_CONDUCT.md) i sprawdź [SECURITY.md](../../SECURITY.md) przed zgłoszeniem podatności. Nowy tutaj? Poszukaj zgłoszeń oznaczonych [`good first issue`](https://github.com/levy-street/wildhaven/labels/good%20first%20issue), otwórz [zgłoszenie](https://github.com/levy-street/wildhaven/issues/new/choose) lub przywitaj się na [Discordzie](https://discord.com/invite/wildhaven).
 
 Aktywny rozwój toczy się na najnowszej gałęzi `release/vX.Y.Z`. Sprawdź, która to jest, zamiast zgadywać, a potem odbij od niej gałąź i to ją wskazuj jako cel pull requesta. Nigdy nie odbijaj od `main` ani nie celuj w `main`, który dostaje gałąź wydania dopiero wtedy, gdy dana wersja wychodzi. [CONTRIBUTING.md](CONTRIBUTING.pl_PL.md) zawiera jednolinijkowe polecenie, które znajduje bieżącą gałąź.
 
@@ -407,7 +407,7 @@ Trzy rzeczy są licencjonowane osobno, więc warto poświęcić trzydzieści sek
 |---|---|---|
 | **Kod źródłowy**, czyli całość poza wydzielonymi niżej zasobami medialnymi | [MIT](../../LICENSE) | Tak. Komercyjnie też. |
 | **Zasoby medialne**: modele, tekstury, HDRI, ikony, dźwięki, fonty (głównie pod `public/`) | Per zasób, zapisane w [CREDITS.md](../../CREDITS.md) | Przeważnie tak (większość to CC0). Niektóre nie, patrz niżej. |
-| **Nazwa i marka**: „World of ClaudeCraft”, „Levy Street”, logotypy | Nielicencjonowane | Nie. |
+| **Nazwa i marka**: „Wildhaven”, „Levy Street”, logotypy | Nielicencjonowane | Nie. |
 
 **Forkuj i postaw własny świat. To działa, a zasoby ci nie przeszkadzają.** Większość tego, co widzisz, to CC0 domena publiczna (KayKit, Quaternius, Kenney, ambientCG, Poly Haven), a nasze własne generowane propy, stworzenia, tła i dźwięki interfejsu są dostarczane z projektem, więc fork działa od razu. Nie możesz tylko wyjąć ich i sprzedawać jako samodzielną grafikę.
 
@@ -421,4 +421,4 @@ Co trzeba by usunąć albo zastąpić przed redystrybucją:
 
 [CREDITS.md](../../CREDITS.md) jest listą rozstrzygającą, z kolumną redystrybucji przy każdym zasobie. Tam, gdzie zasób jest na niej wymieniony, ta licencja ma pierwszeństwo przed licencją MIT projektu. Ten rejestr wciąż jest uzupełniany, więc zasób medialny, którego w nim brakuje, jest niezapisany, a nie wolny: zapytaj, zanim na nim polegniesz. Z kodem źródłowym jest odwrotnie i wszystko, co nie zostało wydzielone, jest na MIT.
 
-Nasze [Warunki korzystania](https://worldofclaudecraft.com/terms) obejmują hostowaną grę, którą prowadzimy na worldofclaudecraft.com: konta, zachowanie, przedmioty wirtualne. Nie ograniczają praw, które daje ci licencja MIT do tego kodu źródłowego.
+Nasze [Warunki korzystania](https://wildhaven.example/terms) obejmują hostowaną grę, którą prowadzimy na wildhaven.example: konta, zachowanie, przedmioty wirtualne. Nie ograniczają praw, które daje ci licencja MIT do tego kodu źródłowego.

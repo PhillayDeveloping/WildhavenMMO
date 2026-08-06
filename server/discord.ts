@@ -110,12 +110,12 @@ const STATE_TTL_MINUTES = 10;
 // (the player may also type a password / 2FA code on the link path), a bit longer
 // than the OAuth state TTL since a human decision sits in the middle.
 const PENDING_LOGIN_TTL_MINUTES = 15;
-const DEFAULT_INVITE = 'https://discord.com/invite/worldofclaudecraft';
-const NATIVE_DISCORD_REDIRECT = 'worldofclaudecraft://discord-auth';
+const DEFAULT_INVITE = 'https://discord.com/invite/wildhaven';
+const NATIVE_DISCORD_REDIRECT = 'wildhaven://discord-auth';
 const NATIVE_REDIRECT_STATE_PREFIX = `${NATIVE_DISCORD_REDIRECT}?challenge=`;
 // Marks a login start that ran in the desktop app's SYSTEM BROWSER (Electron/Steam,
 // via shell.openExternal), not the native mobile app: the callback must bounce back
-// to /desktop-login (which mints the worldofclaudecraft:// deep-link code the shell
+// to /desktop-login (which mints the wildhaven:// deep-link code the shell
 // is waiting for) instead of the plain web '/'. Distinct from the `native` PKCE
 // handoff above, which is mobile-only and never runs a browser redirect at all.
 const DESKTOP_REDIRECT_MARKER = 'desktop-login';
@@ -1248,7 +1248,7 @@ function bouncePage(
     .replace(/>/g, '\\u003e')
     .replace(/\u2028/g, '\\u2028')
     .replace(/\u2029/g, '\\u2029');
-  const html = `<!doctype html><html><head><meta charset="utf-8"><title>World of ClaudeCraft</title>
+  const html = `<!doctype html><html><head><meta charset="utf-8"><title>Wildhaven</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>body{background:#14100a;color:#fff6df;font-family:system-ui,sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0}main{text-align:center;padding:24px}</style>
 </head><body><main><p id="m">Connecting Discord...</p></main><script>

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# QA stop-gate for World of ClaudeCraft.
+# QA stop-gate for Wildhaven.
 #
 # Runs at the end of EVERY Claude Code turn (the Stop hook). It deliberately does only
 # instant, near-zero-cost checks on the working tree's added lines (the unstaged tracked

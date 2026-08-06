@@ -1,7 +1,7 @@
-# World of ClaudeCraft — Project Notes
+# Wildhaven — Project Notes
 
-Source repo: https://github.com/levy-street/world-of-claudecraft
-Official site: https://worldofclaudecraft.com/
+Source repo: https://github.com/levy-street/wildhaven
+Official site: https://wildhaven.example/
 
 ## What it is
 
@@ -24,7 +24,7 @@ runtime rather than shipped as assets.
   for any original code I keep.
 - **Bundled art assets are CC0** (public domain), except the water normal
   maps which are MIT. Also free to use and modify.
-- **Not covered by MIT:** the "World of ClaudeCraft" name and logos — that's
+- **Not covered by MIT:** the "Wildhaven" name and logos — that's
   branding, not code. If I release a public or commercial version, rename
   and rebrand it to avoid trademark confusion (especially since "Claude"
   is in the name).

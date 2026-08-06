@@ -1,12 +1,12 @@
 <div align="center">
 
-# World of ClaudeCraft
+# Wildhaven
 
 **在瀏覽器中免費探索一個純手工打造的世界：接任務、組隊、打團。開放原始碼、web3，現在就能上線遊玩。**
 
-**官方網站：https://worldofclaudecraft.com/**
+**官方網站：https://wildhaven.example/**
 
-[![CI](https://github.com/levy-street/world-of-claudecraft/actions/workflows/ci.yml/badge.svg)](https://github.com/levy-street/world-of-claudecraft/actions/workflows/ci.yml)
+[![CI](https://github.com/levy-street/wildhaven/actions/workflows/ci.yml/badge.svg)](https://github.com/levy-street/wildhaven/actions/workflows/ci.yml)
 [![TypeScript](https://img.shields.io/badge/TypeScript-7.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Three.js](https://img.shields.io/badge/Three.js-r165-000000?logo=threedotjs&logoColor=white)](https://threejs.org/)
 [![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
@@ -16,23 +16,23 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](../../LICENSE)
 [![Version](https://img.shields.io/badge/version-0.34.0-blue)](../../package.json)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.zh_TW.md)
-[![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.com/invite/worldofclaudecraft)
+[![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.com/invite/wildhaven)
 
 [English](../../README.md) · [Español](README.es.md) · [Español (España)](README.es_ES.md) · [Français](README.fr_FR.md) · [Français (Canada)](README.fr_CA.md) · [Italiano](README.it_IT.md) · [Deutsch](README.de_DE.md) · [简体中文](README.zh_CN.md) · **繁體中文** · [한국어](README.ko_KR.md) · [日本語](README.ja_JP.md) · [Português (Brasil)](README.pt_BR.md) · [Русский](README.ru_RU.md) · [Čeština](README.cs_CZ.md) · [Nederlands](README.nl_NL.md) · [Polski](README.pl_PL.md) · [Bahasa Indonesia](README.id_ID.md) · [Türkçe](README.tr_TR.md) · [Svenska](README.sv_SE.md) · [Tiếng Việt](README.vi_VN.md) · [Dansk](README.da_DK.md)
 
-[立即遊玩](https://worldofclaudecraft.com/) · [架設你自己的世界](#host-your-own-world-one-command) · [訓練一個代理](#train-an-agent-headless-rl) · [Web3](#web3) · [參與貢獻](CONTRIBUTING.zh_TW.md) · [Discord](https://discord.com/invite/worldofclaudecraft)
+[立即遊玩](https://wildhaven.example/) · [架設你自己的世界](#host-your-own-world-one-command) · [訓練一個代理](#train-an-agent-headless-rl) · [Web3](#web3) · [參與貢獻](CONTRIBUTING.zh_TW.md) · [Discord](https://discord.com/invite/wildhaven)
 
-![World of ClaudeCraft 標題畫面](../../docs/screenshots/title-screen.jpg)
+![Wildhaven 標題畫面](../../docs/screenshots/title-screen.jpg)
 
 </div>
 
 ## 這是什麼
 
-World of ClaudeCraft 是一款完整的經典時代 MMO，你現在就能直接在瀏覽器裡遊玩，用一行指令自行架設，甚至還能訓練 AI 代理來遊玩。它免費、開放原始碼，並在 [worldofclaudecraft.com](https://worldofclaudecraft.com/) 上線運作中。
+Wildhaven 是一款完整的經典時代 MMO，你現在就能直接在瀏覽器裡遊玩，用一行指令自行架設，甚至還能訓練 AI 代理來遊玩。它免費、開放原始碼，並在 [wildhaven.example](https://wildhaven.example/) 上線運作中。
 
 同一個共用世界在三個地方運行，全都來自同一套遊戲核心：
 
-- **權威多人伺服器**，也就是你在 worldofclaudecraft.com 上遊玩的即時世界，由 Postgres 支撐的帳號共享同一個持久化的國度，
+- **權威多人伺服器**，也就是你在 wildhaven.example 上遊玩的即時世界，由 Postgres 支撐的帳號共享同一個持久化的國度，
 - **離線瀏覽器世界**，一個由開發伺服器提供的本地單人 Sim，適合開發，也適合從頭到尾閱讀遊戲核心，
 - **無頭 RL 環境**，Python 透過 Gym 介面驅動真正的遊戲。
 
@@ -77,7 +77,7 @@ World of ClaudeCraft 是一款完整的經典時代 MMO，你現在就能直接�
 
 ## 開始遊玩
 
-在 [worldofclaudecraft.com](https://worldofclaudecraft.com/) 用瀏覽器遊玩，或安裝 Windows、Linux、macOS、iOS 或 Android 的原生應用程式。每一個客戶端都連到同一個線上世界。
+在 [wildhaven.example](https://wildhaven.example/) 用瀏覽器遊玩，或安裝 Windows、Linux、macOS、iOS 或 Android 的原生應用程式。每一個客戶端都連到同一個線上世界。
 
 ### 連線，與其他玩家一起
 
@@ -96,9 +96,9 @@ npm run dev        # then open http://localhost:5173 and choose Play Offline
 
 ### Windows、Linux 與 macOS 的桌面應用程式
 
-World of ClaudeCraft 以完整的桌面應用程式形式發布，涵蓋三大桌面平台：簽章的 Windows 安裝程式、Linux AppImage 與 deb 套件，以及已簽章並公證的 macOS 通用版本。它們使用與瀏覽器相同的遊戲客戶端與線上世界，並帶有原生打包與自動更新。
+Wildhaven 以完整的桌面應用程式形式發布，涵蓋三大桌面平台：簽章的 Windows 安裝程式、Linux AppImage 與 deb 套件，以及已簽章並公證的 macOS 通用版本。它們使用與瀏覽器相同的遊戲客戶端與線上世界，並帶有原生打包與自動更新。
 
-線上登入僅有 Discord 與電子郵件兩種，與網頁流程完全相同：電子郵件加密碼在應用程式內登入，而「Continue with Discord」會在你的預設瀏覽器中開啟 `/desktop-login` 頁面，該頁面透過 `worldofclaudecraft://` 深層連結把一組一次性代碼交回應用程式，應用程式再用它換取一個一般的 World of ClaudeCraft 工作階段權杖。
+線上登入僅有 Discord 與電子郵件兩種，與網頁流程完全相同：電子郵件加密碼在應用程式內登入，而「Continue with Discord」會在你的預設瀏覽器中開啟 `/desktop-login` 頁面，該頁面透過 `wildhaven://` 深層連結把一組一次性代碼交回應用程式，應用程式再用它換取一個一般的 Wildhaven 工作階段權杖。
 
 ```bash
 npm run electron:dev          # Vite + Electron dev shell
@@ -113,7 +113,7 @@ npm run electron:build:steam  # SteamPipe depot layouts (in-app updater off)
 VITE_DESKTOP_API_ORIGIN=http://127.0.0.1:8787 npm run electron:dev
 ```
 
-以 `VITE_DESKTOP_API_ORIGIN=https://dev.worldofclaudecraft.com` 覆寫預備版本的生產 API 來源（這是一個建置期的值：它會被烘焙進套件並蓋印到打包後的應用程式中，已安裝的版本會忽略它作為執行期環境變數）。Steam 是一個發行通道（同一個 Electron 套件，透過 SteamPipe 上傳），桌面玩家可以連結一個 Steam 帳號，把他們獲得的 deeds 同步成 Steam 成就；登入本身仍維持電子郵件與 Discord。完整的發布流程手冊（簽章、公證、發布自動更新、SteamPipe depot、伺服器部署）位於 `docs/desktop-release.md`。iOS 與 Android 透過 Capacitor 發布，並有自己的流程手冊 `docs/mobile-store-release.md`。
+以 `VITE_DESKTOP_API_ORIGIN=https://dev.wildhaven.example` 覆寫預備版本的生產 API 來源（這是一個建置期的值：它會被烘焙進套件並蓋印到打包後的應用程式中，已安裝的版本會忽略它作為執行期環境變數）。Steam 是一個發行通道（同一個 Electron 套件，透過 SteamPipe 上傳），桌面玩家可以連結一個 Steam 帳號，把他們獲得的 deeds 同步成 Steam 成就；登入本身仍維持電子郵件與 Discord。完整的發布流程手冊（簽章、公證、發布自動更新、SteamPipe depot、伺服器部署）位於 `docs/desktop-release.md`。iOS 與 Android 透過 Capacitor 發布，並有自己的流程手冊 `docs/mobile-store-release.md`。
 
 <a id="host-your-own-world-one-command"></a>
 
@@ -184,7 +184,7 @@ env.close()
 
 ## Web3
 
-World of ClaudeCraft 圍繞 **$WOC**（我們在 Solana 上的社群代幣）打造原生 web3 體驗。連結一個 Solana 錢包，用一次簽署把它連結到你的帳號（非託管，無需核准任何交易），你那唯讀的 $WOC 餘額就會顯示在 HUD 上，旁邊還有一枚裝飾性的持有者等級徽章。
+Wildhaven 圍繞 **$WOC**（我們在 Solana 上的社群代幣）打造原生 web3 體驗。連結一個 Solana 錢包，用一次簽署把它連結到你的帳號（非託管，無需核准任何交易），你那唯讀的 $WOC 餘額就會顯示在 HUD 上，旁邊還有一枚裝飾性的持有者等級徽章。
 
 $WOC 在即時遊戲中也具備可選的效用：
 
@@ -200,7 +200,7 @@ $WOC 在即時遊戲中也具備可選的效用：
 3WjLscH2JsXLEFJZRA9z8ti8yRGxWGKbqymPd7UicRth
 ```
 
-關於代幣的更多資訊請見 [worldofclaudecraft.com](https://worldofclaudecraft.com/)。
+關於代幣的更多資訊請見 [wildhaven.example](https://wildhaven.example/)。
 
 ## 世界巡禮
 
@@ -386,7 +386,7 @@ node scripts/crypt_raid.mjs     # five bots clear the Hollow Crypt (ALLOW_DEV_CO
 
 ## 參與貢獻
 
-歡迎各式各樣的貢獻：程式碼、翻譯、錯誤回報與文件。先從 [CONTRIBUTING.zh_TW.md](CONTRIBUTING.zh_TW.md) 開始進行設定，閱讀[行為準則](../../CODE_OF_CONDUCT.md)，並在回報漏洞前查看 [SECURITY.md](../../SECURITY.md)。新來的嗎？找找標記為 [`good first issue`](https://github.com/levy-street/world-of-claudecraft/labels/good%20first%20issue) 的議題，開一個[議題](https://github.com/levy-street/world-of-claudecraft/issues/new/choose)，或在 [Discord](https://discord.com/invite/worldofclaudecraft) 上打聲招呼。
+歡迎各式各樣的貢獻：程式碼、翻譯、錯誤回報與文件。先從 [CONTRIBUTING.zh_TW.md](CONTRIBUTING.zh_TW.md) 開始進行設定，閱讀[行為準則](../../CODE_OF_CONDUCT.md)，並在回報漏洞前查看 [SECURITY.md](../../SECURITY.md)。新來的嗎？找找標記為 [`good first issue`](https://github.com/levy-street/wildhaven/labels/good%20first%20issue) 的議題，開一個[議題](https://github.com/levy-street/wildhaven/issues/new/choose)，或在 [Discord](https://discord.com/invite/wildhaven) 上打聲招呼。
 
 活躍開發在最新的 `release/vX.Y.Z` 分支上進行。請自行查出那一條，不要憑臆測，然後從它開出你的分支，並讓你的拉取請求以它為目標。切勿從 `main` 開分支或以它為目標，`main` 只會在某個版本正式發布時才接收該發布分支。[CONTRIBUTING.md](CONTRIBUTING.zh_TW.md) 附有一行指令，可以找出目前最新的那一條。
 
@@ -400,7 +400,7 @@ node scripts/crypt_raid.mjs     # five bots clear the Hollow Crypt (ALLOW_DEV_CO
 |---|---|---|
 | **原始碼**，意指除了下方劃分出來的媒體素材以外的全部內容 | [MIT](../../LICENSE) | 可以。商業用途也可以。 |
 | **媒體素材**：模型、貼圖、HDRI、圖示、音效、字型（大多位於 `public/` 之下） | 逐一素材而定，記載於 [CREDITS.md](../../CREDITS.md) | 大多可以（大部分是 CC0）。有些不行，見下方。 |
-| **名稱與品牌**：「World of ClaudeCraft」、「Levy Street」、標誌 | 未授權 | 不行。 |
+| **名稱與品牌**：「Wildhaven」、「Levy Street」、標誌 | 未授權 | 不行。 |
 
 **去 fork 它，架設你自己的世界。那是行得通的，素材也不會擋你的路。** 你看到的東西大多是 CC0 公有領域（KayKit、Quaternius、Kenney、ambientCG、Poly Haven），而我們自己生成的道具、生物、背景與介面音效都隨專案一起發布，因此 fork 之後開箱即可運行。你只是不能把那些東西抽出來，當成獨立的美術作品販售。
 
@@ -414,4 +414,4 @@ node scripts/crypt_raid.mjs     # five bots clear the Hollow Crypt (ALLOW_DEV_CO
 
 [CREDITS.md](../../CREDITS.md) 是權威清單，並為每一件素材列出再散布欄位。凡是列在那裡的素材，其授權優先於本專案的 MIT 授權。那份登錄表仍在補齊中，所以一件未列於其中的媒體素材是尚未記錄，而非可自由使用：在依賴它之前請先詢問。原始碼則相反，凡是未被劃分出去的內容都是 MIT。
 
-我們的[服務條款](https://worldofclaudecraft.com/terms)涵蓋我們在 worldofclaudecraft.com 上運營的託管遊戲：帳號、行為規範、虛擬物品。它們不會限制 MIT 授權在這份原始碼上賦予你的權利。
+我們的[服務條款](https://wildhaven.example/terms)涵蓋我們在 wildhaven.example 上運營的託管遊戲：帳號、行為規範、虛擬物品。它們不會限制 MIT 授權在這份原始碼上賦予你的權利。

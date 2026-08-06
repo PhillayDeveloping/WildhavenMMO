@@ -1,12 +1,12 @@
 <div align="center">
 
-# World of ClaudeCraft
+# Wildhaven
 
 **Elle örülmüş bir dünyada görev yap, grup kur ve raid yap, üstelik tarayıcında ücretsiz. Açık kaynak, web3 ve şu anda çevrimiçi.**
 
-**Resmi web sitesi: https://worldofclaudecraft.com/**
+**Resmi web sitesi: https://wildhaven.example/**
 
-[![CI](https://github.com/levy-street/world-of-claudecraft/actions/workflows/ci.yml/badge.svg)](https://github.com/levy-street/world-of-claudecraft/actions/workflows/ci.yml)
+[![CI](https://github.com/levy-street/wildhaven/actions/workflows/ci.yml/badge.svg)](https://github.com/levy-street/wildhaven/actions/workflows/ci.yml)
 [![TypeScript](https://img.shields.io/badge/TypeScript-7.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Three.js](https://img.shields.io/badge/Three.js-r165-000000?logo=threedotjs&logoColor=white)](https://threejs.org/)
 [![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
@@ -16,23 +16,23 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](../../LICENSE)
 [![Version](https://img.shields.io/badge/version-0.34.0-blue)](../../package.json)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.tr_TR.md)
-[![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.com/invite/worldofclaudecraft)
+[![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.com/invite/wildhaven)
 
 [English](../../README.md) · [Español](README.es.md) · [Español (España)](README.es_ES.md) · [Français](README.fr_FR.md) · [Français (Canada)](README.fr_CA.md) · [Italiano](README.it_IT.md) · [Deutsch](README.de_DE.md) · [简体中文](README.zh_CN.md) · [繁體中文](README.zh_TW.md) · [한국어](README.ko_KR.md) · [日本語](README.ja_JP.md) · [Português (Brasil)](README.pt_BR.md) · [Русский](README.ru_RU.md) · [Čeština](README.cs_CZ.md) · [Nederlands](README.nl_NL.md) · [Polski](README.pl_PL.md) · [Bahasa Indonesia](README.id_ID.md) · **Türkçe** · [Svenska](README.sv_SE.md) · [Tiếng Việt](README.vi_VN.md) · [Dansk](README.da_DK.md)
 
-[Hemen oyna](https://worldofclaudecraft.com/) · [Kendi dünyanı barındır](#host-your-own-world-one-command) · [Bir ajan eğit](#train-an-agent-headless-rl) · [Web3](#web3) · [Katkıda bulun](CONTRIBUTING.tr_TR.md) · [Discord](https://discord.com/invite/worldofclaudecraft)
+[Hemen oyna](https://wildhaven.example/) · [Kendi dünyanı barındır](#host-your-own-world-one-command) · [Bir ajan eğit](#train-an-agent-headless-rl) · [Web3](#web3) · [Katkıda bulun](CONTRIBUTING.tr_TR.md) · [Discord](https://discord.com/invite/wildhaven)
 
-![World of ClaudeCraft başlık ekranı](../../docs/screenshots/title-screen.jpg)
+![Wildhaven başlık ekranı](../../docs/screenshots/title-screen.jpg)
 
 </div>
 
 ## Bu nedir
 
-World of ClaudeCraft, şu anda tarayıcında oynayabileceğin, tek bir komutla kendin barındırabileceğin ve hatta oynaması için yapay zeka ajanları eğitebileceğin eksiksiz, klasik dönem tarzı bir MMO oyunudur. Ücretsiz, açık kaynaklı ve [worldofclaudecraft.com](https://worldofclaudecraft.com/) adresinde canlı.
+Wildhaven, şu anda tarayıcında oynayabileceğin, tek bir komutla kendin barındırabileceğin ve hatta oynaması için yapay zeka ajanları eğitebileceğin eksiksiz, klasik dönem tarzı bir MMO oyunudur. Ücretsiz, açık kaynaklı ve [wildhaven.example](https://wildhaven.example/) adresinde canlı.
 
 Tek bir paylaşılan dünya, hepsi aynı oyun çekirdeğinden gelen üç farklı yerde çalışır:
 
-- **yetkili çok oyunculu sunucu**, worldofclaudecraft.com adresinde oynadığın canlı dünya, Postgres destekli hesapların tek bir kalıcı diyarı paylaştığı yer,
+- **yetkili çok oyunculu sunucu**, wildhaven.example adresinde oynadığın canlı dünya, Postgres destekli hesapların tek bir kalıcı diyarı paylaştığı yer,
 - **çevrimdışı tarayıcı dünyası**, geliştirme sunucusundan aldığın yerel tek oyunculu bir Sim, geliştirme için ve oyun çekirdeğini baştan sona okumak için kullanışlı,
 - **başsız RL ortamı**, Python'un gerçek oyunu bir Gym arabirimi üzerinden sürdüğü yer.
 
@@ -77,7 +77,7 @@ Hava, biyom güdümlüdür ve yalnızca görüntülemeyle ilgilidir, bu yüzden 
 
 ## Oyna
 
-Tarayıcında [worldofclaudecraft.com](https://worldofclaudecraft.com/) adresinde oyna veya Windows, Linux, macOS, iOS ya da Android için yerel uygulamayı kur. Her istemci aynı çevrimiçi dünyaya bağlanır.
+Tarayıcında [wildhaven.example](https://wildhaven.example/) adresinde oyna veya Windows, Linux, macOS, iOS ya da Android için yerel uygulamayı kur. Her istemci aynı çevrimiçi dünyaya bağlanır.
 
 ### Çevrimiçi, diğer oyuncularla
 
@@ -96,9 +96,9 @@ Karakterine isim ver, dokuz sınıftan herhangi birini seç ve merkezlerle çevr
 
 ### Windows, Linux ve macOS için masaüstü uygulamaları
 
-World of ClaudeCraft, üç büyük masaüstü platformunun hepsi için eksiksiz masaüstü uygulamaları olarak gönderilir: imzalı Windows yükleyicileri, Linux AppImage ve deb paketleri, ayrıca imzalı ve noter onaylı evrensel macOS yapıları. Tarayıcıyla aynı oyun istemcisini ve aynı çevrimiçi dünyayı kullanırlar, üstüne yerel paketleme ve otomatik güncellemeler gelir.
+Wildhaven, üç büyük masaüstü platformunun hepsi için eksiksiz masaüstü uygulamaları olarak gönderilir: imzalı Windows yükleyicileri, Linux AppImage ve deb paketleri, ayrıca imzalı ve noter onaylı evrensel macOS yapıları. Tarayıcıyla aynı oyun istemcisini ve aynı çevrimiçi dünyayı kullanırlar, üstüne yerel paketleme ve otomatik güncellemeler gelir.
 
-Çevrimiçi oturum açma yalnızca Discord ve e-postadır, tam olarak web akışının aynısı: e-posta/parola uygulamanın içinde giriş yapar ve "Continue with Discord" varsayılan tarayıcını `/desktop-login` sayfasında açar; bu sayfa tek kullanımlık bir kodu `worldofclaudecraft://` derin bağlantısı üzerinden uygulamaya geri verir ve uygulama da onu normal bir World of ClaudeCraft oturum belirteciyle takas eder.
+Çevrimiçi oturum açma yalnızca Discord ve e-postadır, tam olarak web akışının aynısı: e-posta/parola uygulamanın içinde giriş yapar ve "Continue with Discord" varsayılan tarayıcını `/desktop-login` sayfasında açar; bu sayfa tek kullanımlık bir kodu `wildhaven://` derin bağlantısı üzerinden uygulamaya geri verir ve uygulama da onu normal bir Wildhaven oturum belirteciyle takas eder.
 
 ```bash
 npm run electron:dev          # Vite + Electron dev shell
@@ -113,7 +113,7 @@ Kabuğu `VITE_DESKTOP_API_ORIGIN` ile farklı bir API'ye yönelt, örneğin yere
 VITE_DESKTOP_API_ORIGIN=http://127.0.0.1:8787 npm run electron:dev
 ```
 
-Hazırlık yapıları için üretim API kaynağını `VITE_DESKTOP_API_ORIGIN=https://dev.worldofclaudecraft.com` ile geçersiz kıl (bu bir DERLEME zamanı değeridir: pakete gömülür ve paketlenmiş uygulamaya damgalanır, kurulu yapılar ise onu çalışma zamanı ortam değişkeni olarak yok sayar). Steam bir dağıtım kanalıdır (aynı Electron paketi, SteamPipe ile yüklenir) ve masaüstü oyuncuları kazandıkları deed'leri Steam başarımlarına yansıtmak için bir Steam hesabı bağlayabilir; oturum açmanın kendisi e-posta ve Discord olarak kalır. Tam sürüm kılavuzu (imzalama, noter onayı, otomatik güncelleme yayımlama, SteamPipe depoları, sunucu dağıtımı) `docs/desktop-release.md` içindedir. iOS ve Android, kendi kılavuzu `docs/mobile-store-release.md` içinde olan Capacitor üzerinden gönderilir.
+Hazırlık yapıları için üretim API kaynağını `VITE_DESKTOP_API_ORIGIN=https://dev.wildhaven.example` ile geçersiz kıl (bu bir DERLEME zamanı değeridir: pakete gömülür ve paketlenmiş uygulamaya damgalanır, kurulu yapılar ise onu çalışma zamanı ortam değişkeni olarak yok sayar). Steam bir dağıtım kanalıdır (aynı Electron paketi, SteamPipe ile yüklenir) ve masaüstü oyuncuları kazandıkları deed'leri Steam başarımlarına yansıtmak için bir Steam hesabı bağlayabilir; oturum açmanın kendisi e-posta ve Discord olarak kalır. Tam sürüm kılavuzu (imzalama, noter onayı, otomatik güncelleme yayımlama, SteamPipe depoları, sunucu dağıtımı) `docs/desktop-release.md` içindedir. iOS ve Android, kendi kılavuzu `docs/mobile-store-release.md` içinde olan Capacitor üzerinden gönderilir.
 
 <a id="host-your-own-world-one-command"></a>
 
@@ -184,7 +184,7 @@ Protokol ve bağlamalar `headless/CLAUDE.md` ve `python/CLAUDE.md` içinde belge
 
 ## Web3
 
-World of ClaudeCraft, Solana üzerindeki topluluk jetonumuz **$WOC** etrafında web3 yerlisidir. Bir Solana cüzdanı bağla, tek bir imzayla hesabına ilişkilendir (emanetsiz, onaylanacak işlem yok) ve salt okunur $WOC bakiyen, kozmetik bir sahiplik kademesi rozetinin yanında HUD'da görünür.
+Wildhaven, Solana üzerindeki topluluk jetonumuz **$WOC** etrafında web3 yerlisidir. Bir Solana cüzdanı bağla, tek bir imzayla hesabına ilişkilendir (emanetsiz, onaylanacak işlem yok) ve salt okunur $WOC bakiyen, kozmetik bir sahiplik kademesi rozetinin yanında HUD'da görünür.
 
 $WOC'un canlı oyunda isteğe bağlı bir yardımcı işlevi de vardır:
 
@@ -200,7 +200,7 @@ Bunların hiçbiri oynamak için gerekli değildir. Cüzdan ilişkilendirme iste
 3WjLscH2JsXLEFJZRA9z8ti8yRGxWGKbqymPd7UicRth
 ```
 
-Jeton hakkında daha fazla bilgi: [worldofclaudecraft.com](https://worldofclaudecraft.com/).
+Jeton hakkında daha fazla bilgi: [wildhaven.example](https://wildhaven.example/).
 
 ## Dünyada bir tur
 
@@ -391,7 +391,7 @@ Her oyuncuya görünür dize `t()` üzerinden çözülür ve oyun **22 yerel aya
 
 ## Katkıda bulunma
 
-Her türlü katkı memnuniyetle karşılanır: kod, çeviriler, hata raporları ve belgeler. Kurulum için [CONTRIBUTING.md](CONTRIBUTING.tr_TR.md) ile başla, [Davranış Kuralları](../../CODE_OF_CONDUCT.md)'nı oku ve bir güvenlik açığı bildirmeden önce [SECURITY.md](../../SECURITY.md)'yi kontrol et. Burada yeni misin? [`good first issue`](https://github.com/levy-street/world-of-claudecraft/labels/good%20first%20issue) etiketli sorunlara bak, bir [sorun](https://github.com/levy-street/world-of-claudecraft/issues/new/choose) aç veya [Discord](https://discord.com/invite/worldofclaudecraft)'da merhaba de.
+Her türlü katkı memnuniyetle karşılanır: kod, çeviriler, hata raporları ve belgeler. Kurulum için [CONTRIBUTING.md](CONTRIBUTING.tr_TR.md) ile başla, [Davranış Kuralları](../../CODE_OF_CONDUCT.md)'nı oku ve bir güvenlik açığı bildirmeden önce [SECURITY.md](../../SECURITY.md)'yi kontrol et. Burada yeni misin? [`good first issue`](https://github.com/levy-street/wildhaven/labels/good%20first%20issue) etiketli sorunlara bak, bir [sorun](https://github.com/levy-street/wildhaven/issues/new/choose) aç veya [Discord](https://discord.com/invite/wildhaven)'da merhaba de.
 
 Aktif geliştirme en yeni `release/vX.Y.Z` dalında yürüyor. Varsaymak yerine hangisi olduğuna bak, sonra ondan dallan ve pull request'ini oraya yönelt. Asla `main` dalından dallanma veya onu hedefleme; `main` yalnızca o sürüm yayımlandığında bir sürüm dalı alır. [CONTRIBUTING.md](CONTRIBUTING.tr_TR.md), güncel olanı bulan tek satırlık komutu içerir.
 
@@ -405,7 +405,7 @@ Aktif geliştirme en yeni `release/vX.Y.Z` dalında yürüyor. Varsaymak yerine 
 |---|---|---|
 | **Kaynak kodu**, yani aşağıda ayrılan medya varlıkları dışındaki her şey | [MIT](../../LICENSE) | Evet. Ticari olarak da. |
 | **Medya varlıkları**: modeller, dokular, HDRI'lar, simgeler, sesler, yazı tipleri (çoğunlukla `public/` altında) | Varlık başına, [CREDITS.md](../../CREDITS.md) içinde kayıtlı | Çoğunlukla evet (çoğu CC0). Bazıları değil, aşağıya bak. |
-| **İsim ve marka**: "World of ClaudeCraft", "Levy Street", logolar | Lisanslanmamış | Hayır. |
+| **İsim ve marka**: "Wildhaven", "Levy Street", logolar | Lisanslanmamış | Hayır. |
 
 **Çatalla ve kendi dünyanı barındır. Bu işe yarar ve varlıklar önünde engel değil.** Gördüklerinin çoğu CC0 kamu malıdır (KayKit, Quaternius, Kenney, ambientCG, Poly Haven) ve kendi ürettiğimiz aksesuarlar, yaratıklar, arka planlar ve arabirim sesleri projeyle birlikte gönderilir, böylece bir çatal kutudan çıkar çıkmaz çalışır. Sadece onları söküp bağımsız sanat olarak satamazsın.
 
@@ -419,4 +419,4 @@ Yeniden dağıtmadan önce kaldırman veya değiştirmen gerekenler:
 
 [CREDITS.md](../../CREDITS.md) yetkili listedir ve varlık başına bir yeniden dağıtım sütunu içerir. Bir varlık orada listelenmişse, o lisans projenin MIT lisansının önüne geçer. O kayıt hâlâ tamamlanıyor, bu yüzden orada eksik olan bir medya varlığı serbest değil, kaydedilmemiş demektir: ona güvenmeden önce sor. Kaynak kodu için durum tersidir ve ayrılmayan her şey MIT'dir.
 
-[Hizmet Şartlarımız](https://worldofclaudecraft.com/terms), worldofclaudecraft.com adresinde işlettiğimiz barındırılan oyunu kapsar: hesaplar, davranış kuralları, sanal eşyalar. MIT Lisansı'nın bu kaynak kodunda sana verdiği hakları kısıtlamazlar.
+[Hizmet Şartlarımız](https://wildhaven.example/terms), wildhaven.example adresinde işlettiğimiz barındırılan oyunu kapsar: hesaplar, davranış kuralları, sanal eşyalar. MIT Lisansı'nın bu kaynak kodunda sana verdiği hakları kısıtlamazlar.

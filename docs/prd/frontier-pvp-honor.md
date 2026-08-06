@@ -362,7 +362,7 @@ The free Frontier above is a complete feature and ships on its own merits. This
 section is what turns the same loop risk-native. Design reference: the
 degen-gaming thesis (deposit to play, no skillshots, incomplete information,
 continuous risk/reward, adversarial robustness) and Cambria's season cadence.
-The pitch in one line: **make money by being good at World of ClaudeCraft.**
+The pitch in one line: **make money by being good at Wildhaven.**
 
 ### 12.1 Two loops, one design
 - **Free loop** (sections 5 to 9): always on, every realm, play stakes. It is the
