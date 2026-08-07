@@ -19,6 +19,7 @@
 // whatever admin_roles says); clear both to keep the row tidy:
 //   ... -c "UPDATE accounts SET is_admin = FALSE, admin_roles = '{}' WHERE username = 'name';"
 import pg from 'pg';
+import { pgConnectionConfig } from './lib/db_ssl.mjs';
 
 try {
   process.loadEnvFile?.();
@@ -70,7 +71,10 @@ if (!connectionString) {
   console.error('DATABASE_URL is required. For local dev, copy .env.example to .env first.');
   process.exit(1);
 }
-const pool = new pg.Pool({ connectionString });
+// Through the shared resolver, not a bare connection string: a hosted database
+// behind a private root CA (Supabase) needs DATABASE_CA_CERT applied here too,
+// or this script fails TLS verification where the server itself connects fine.
+const pool = new pg.Pool(pgConnectionConfig(connectionString));
 
 try {
   const client = await pool.connect();

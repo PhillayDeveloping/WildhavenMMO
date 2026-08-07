@@ -1,7 +1,6 @@
 import { randomUUID } from 'node:crypto';
-import { readFileSync } from 'node:fs';
 import { Pool, type QueryResult } from 'pg';
-import { resolveDatabaseSsl } from '../scripts/lib/db_ssl.mjs';
+import { databaseConnectionOptions } from '../scripts/lib/db_ssl.mjs';
 import {
   type AccountFlair,
   EMPTY_ACCOUNT_FLAIR,
@@ -199,7 +198,7 @@ export const DB_QUERY_TIMEOUT_MS = DB_HEAVY_STATEMENT_TIMEOUT_MS + 5000;
 // Resolved ONCE at import so a missing or malformed certificate fails the boot
 // here, with the path in the message, instead of as a repeating connect error.
 // The one shared implementation is what keeps `npm run db:check` honest.
-const DB_CONNECTION = resolveDatabaseSsl(DATABASE_URL, process.env, (p) => readFileSync(p, 'utf8'));
+const DB_CONNECTION = databaseConnectionOptions(DATABASE_URL);
 if (DB_CONNECTION.ignoredReason) {
   console.warn(`db tls: ${DB_CONNECTION.ignoredReason}`);
 } else if (DB_CONNECTION.caPath) {

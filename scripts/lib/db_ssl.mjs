@@ -25,6 +25,8 @@
 // rejectUnauthorized to true, and pg sets `servername` so the hostname is
 // checked) against a root we name explicitly.
 
+import { readFileSync } from 'node:fs';
+
 /** Env key holding a filesystem path to the PEM-encoded root certificate. */
 export const DATABASE_CA_CERT_ENV = 'DATABASE_CA_CERT';
 
@@ -68,6 +70,34 @@ export function resolveDatabaseSsl(databaseUrl, env, readFile) {
   const connectionString =
     sslMode !== null && VERIFYING_SSL_MODES.has(sslMode) ? stripSslMode(databaseUrl) : databaseUrl;
   return { connectionString, ssl: { ca }, caPath };
+}
+
+/**
+ * resolveDatabaseSsl bound to the real filesystem. The reader stays injectable
+ * on the function above so the rules are unit-tested without touching disk;
+ * this is what every caller actually uses.
+ *
+ * @param {string} databaseUrl
+ * @param {Record<string, string | undefined>} [env]
+ */
+export function databaseConnectionOptions(databaseUrl, env = process.env) {
+  return resolveDatabaseSsl(databaseUrl, env, (p) => readFileSync(p, 'utf8'));
+}
+
+/**
+ * Just the pair a pg Pool or Client constructor takes, for the operator scripts
+ * that build their own connection. Without this each one silently reverts to
+ * the system trust store and fails against a hosted database behind a private
+ * root, which is exactly the trap this module exists to close.
+ *
+ * @param {string} databaseUrl
+ * @param {Record<string, string | undefined>} [env]
+ */
+export function pgConnectionConfig(databaseUrl, env = process.env) {
+  const resolved = databaseConnectionOptions(databaseUrl, env);
+  return resolved.ssl
+    ? { connectionString: resolved.connectionString, ssl: resolved.ssl }
+    : { connectionString: resolved.connectionString };
 }
 
 function readCaFile(caPath, readFile) {

@@ -25,3 +25,15 @@ export function resolveDatabaseSsl(
   env: Record<string, string | undefined>,
   readFile: (path: string) => string,
 ): DatabaseConnectionOptions;
+
+/** resolveDatabaseSsl bound to the real filesystem. What callers actually use. */
+export function databaseConnectionOptions(
+  databaseUrl: string,
+  env?: Record<string, string | undefined>,
+): DatabaseConnectionOptions;
+
+/** Just the pair a pg Pool/Client constructor takes. */
+export function pgConnectionConfig(
+  databaseUrl: string,
+  env?: Record<string, string | undefined>,
+): { connectionString: string; ssl?: { ca: string } };

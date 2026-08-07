@@ -14,6 +14,7 @@
 //     "INSERT INTO characters (account_id, name, class, level, is_gm)
 //      SELECT id, 'GM01', 'paladin', 20, TRUE FROM accounts WHERE username = 'name';"
 import pg from 'pg';
+import { pgConnectionConfig } from './lib/db_ssl.mjs';
 
 try {
   process.loadEnvFile?.();
@@ -24,7 +25,17 @@ try {
 const username = process.argv[2];
 const clsIdx = process.argv.indexOf('--class');
 const cls = clsIdx > 0 ? process.argv[clsIdx + 1] : 'paladin';
-const VALID = ['warrior', 'paladin', 'hunter', 'rogue', 'priest', 'shaman', 'mage', 'warlock', 'druid'];
+const VALID = [
+  'warrior',
+  'paladin',
+  'hunter',
+  'rogue',
+  'priest',
+  'shaman',
+  'mage',
+  'warlock',
+  'druid',
+];
 
 if (!username || username.startsWith('--') || !VALID.includes(cls)) {
   console.error('usage: node scripts/create_gm.mjs <username> [--class <class>]');
@@ -37,7 +48,10 @@ if (!connectionString) {
   process.exit(1);
 }
 
-const pool = new pg.Pool({ connectionString });
+// Through the shared resolver, not a bare connection string: a hosted database
+// behind a private root CA (Supabase) needs DATABASE_CA_CERT applied here too,
+// or this script fails TLS verification where the server itself connects fine.
+const pool = new pg.Pool(pgConnectionConfig(connectionString));
 
 try {
   const acct = await pool.query('SELECT id FROM accounts WHERE username = $1', [username]);
@@ -53,7 +67,9 @@ try {
     'INSERT INTO characters (account_id, name, class, level, is_gm) VALUES ($1, $2, $3, 20, TRUE) RETURNING id',
     [acct.rows[0].id, name, cls],
   );
-  console.log(`created ${name} (${cls}, level 20, invulnerable) — character id ${res.rows[0].id} on account '${username}'`);
+  console.log(
+    `created ${name} (${cls}, level 20, invulnerable) — character id ${res.rows[0].id} on account '${username}'`,
+  );
 } finally {
   await pool.end();
 }

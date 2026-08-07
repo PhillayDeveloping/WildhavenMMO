@@ -15,7 +15,6 @@
 // The decisions live in scripts/lib/db_check_core.mjs so they are unit-tested
 // without a database (tests/db_check_core.test.ts); this file is only the IO.
 
-import { readFileSync } from 'node:fs';
 import pg from 'pg';
 import {
   diagnose,
@@ -24,7 +23,7 @@ import {
   judgeHeadroom,
   safeUrl,
 } from './lib/db_check_core.mjs';
-import { resolveDatabaseSsl } from './lib/db_ssl.mjs';
+import { databaseConnectionOptions } from './lib/db_ssl.mjs';
 
 const { Client } = pg;
 
@@ -68,7 +67,7 @@ async function main() {
   // certificate is reported by name here rather than as a connect failure.
   let connection;
   try {
-    connection = resolveDatabaseSsl(DATABASE_URL, process.env, (p) => readFileSync(p, 'utf8'));
+    connection = databaseConnectionOptions(DATABASE_URL);
   } catch (err) {
     fail(err.message);
     process.exit(1);
