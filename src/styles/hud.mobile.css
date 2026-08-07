@@ -1431,10 +1431,6 @@
     display: none !important;
   }
 
- .mobile-label) {
-    display: none !important;
-  }
-
   /* Idle-fade (mobile_chrome_fade.ts arms .mobile-chrome-idle on body after a
      stretch of no touch): recedes the low-frequency chrome (the top-left
      Chat/Social/More trio and the daily-chest rail), instantly restored on
@@ -2870,7 +2866,6 @@
     height: 70px;
   }
 
-
   body.mobile-touch #claudium-window .cl-rail {
     min-height: 44px;
     padding: 7px 8px;
@@ -2934,8 +2929,6 @@
     min-height: 40px;
   }
   @media (orientation: landscape) {
-
-
   }
   /* The Market carries a tab strip plus the filter selects, which stack to a tall
      single column on mobile; a shorter clamp (like the vendor window's own,

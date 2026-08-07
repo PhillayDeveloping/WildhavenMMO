@@ -570,6 +570,7 @@
   .wallet-mini[hidden] {
     display: none;
   }
+
   @media (max-width: 720px) {
     .cs-wallet {
       align-items: flex-start;
@@ -2280,6 +2281,15 @@
     align-items: center;
     gap: var(--spacing-sm);
   }
+
+
+
+
+
+
+
+
+
   /* Copied state, swap clipboard glyph for a check{
     border-color: var(--color-text-success);
   }
@@ -2912,7 +2922,7 @@
        action row sits under it, and the helper caption anchors the foot,
        instead of a label floating beside a button row with its caption
        dangling underneath. Overrides the base .cs-wallet row layout (label
-       beside actions, separator border-top), .cs-github-group, .cs-steam-group, .cs-epic-group) {
+       beside actions, separator border-top){
       flex-direction: column;
       align-items: stretch;
       justify-content: flex-start;
@@ -6084,7 +6094,7 @@
       align-items: center;
       gap: 8px;
     }
-    body.mobile-touch #charselect-panel .cs-wallet{
+    body.mobile-touch #charselect-panel .cs-wallet {
       display: none;
     }
     /* Seeker wallet strip: pair the service name and verified helper as one
@@ -6099,12 +6109,8 @@
 
 
 
- .wallet-mini) {
-      min-width: 40px;
-      min-height: 40px;
-      padding: 5px 8px;
-      font-size: 11px;
-    }
+
+
     body.mobile-touch #charselect-panel .cs-controls {
       gap: 6px;
     }

@@ -2856,8 +2856,6 @@
     margin-top: 10px;
   }
 
-
-
   .dr-section h3 {
     margin: 0 0 6px;
     color: var(--gold);
@@ -3352,7 +3350,7 @@
     object-fit: contain;
     filter: drop-shadow(0 0 18px rgb(35 179 229 / 28%));
   }
-  .cl-balance-main{
+  .cl-balance-main {
     display: grid;
     gap: 2px;
   }
@@ -3369,10 +3367,6 @@
     font-size: 28px;
     font-weight: 700;
   }
-
-
-
-
 
   .cl-notice {
     margin: 10px 0 0;
