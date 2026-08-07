@@ -77,10 +77,13 @@ describe('navigationAllowed', () => {
     expect(navigationAllowed(turnstile, true, main)).toBe(false);
     expect(navigationAllowed(turnstile, false, main)).toBe(true);
   });
-  it('allows WalletConnect verification only as an embedded subframe', () => {
+  it('refuses WalletConnect verification in both frames now that web3 is gone', () => {
+    // Was allowed as an embedded subframe for the wallet modal. With no wallet
+    // in the shell there is nothing legitimate on that origin, so the narrowed
+    // allowlist refuses it outright. Pinned so re-widening is deliberate.
     const verify = 'https://verify.walletconnect.com/session';
     expect(navigationAllowed(verify, true, main)).toBe(false);
-    expect(navigationAllowed(verify, false, main)).toBe(true);
+    expect(navigationAllowed(verify, false, main)).toBe(false);
   });
   it('denies a malformed navigation URL', () => {
     expect(navigationAllowed('::: not a url', true, main)).toBe(false);
@@ -190,13 +193,14 @@ describe('buildContentSecurityPolicy', () => {
     expect(csp).toContain('frame-src https://challenges.cloudflare.com');
   });
 
-  it('allows only the WalletConnect transport, modal images, fonts, and verification frames', () => {
-    expect(directive('connect-src')).toContain('https://*.walletconnect.com');
-    expect(directive('connect-src')).toContain('wss://*.walletconnect.com');
-    expect(directive('connect-src')).toContain('https://api.web3modal.org');
-    expect(directive('img-src')).toContain('https://secure.walletconnect.com');
-    expect(directive('font-src')).toContain('https://fonts.reown.com');
-    expect(directive('frame-src')).toContain('https://verify.walletconnect.com');
+  it('grants no wallet origin anywhere in the policy', () => {
+    // The CSP once carried six wallet allowances (transport, modal images,
+    // fonts, verification frames). All are gone with web3, and their absence is
+    // pinned rather than the test deleted: an origin reappearing here would
+    // mean a wallet dependency crept back into the desktop shell.
+    for (const d of ['connect-src', 'img-src', 'font-src', 'frame-src']) {
+      expect(directive(d), d).not.toMatch(/walletconnect|web3modal|reown/);
+    }
   });
 });
 

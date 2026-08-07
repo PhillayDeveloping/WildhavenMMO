@@ -192,10 +192,6 @@ describe('every mutating / owner-action route funnels through bearerActiveAccoun
     "if (req.method === 'POST' && url === '/api/account/password') {",
     "if (req.method === 'POST' && url === '/api/account/email') {",
     "if (req.method === 'POST' && url === '/api/account/deactivate') {",
-    "if (req.method === 'POST' && url === '/api/wallet/link/challenge') {",
-    "if (req.method === 'POST' && url === '/api/wallet/link') {",
-    "if (req.method === 'DELETE' && url === '/api/wallet/link') {",
-    "if (req.method === 'GET' && url === '/api/wallet') {",
     "if (req.method === 'POST' && url === '/api/card') {",
     "if (req.method === 'GET' && url === '/api/referrals') {",
   ];

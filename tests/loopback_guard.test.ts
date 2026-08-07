@@ -4,7 +4,7 @@
 // DATABASE arm must agree with what node-postgres actually resolves,
 // including the ?host= query override a WHATWG-hostname check misses.
 import { readdirSync, readFileSync } from 'node:fs';
-import { join, relative } from 'node:path';
+import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { assertLoopbackDatabaseUrl, assertLoopbackUrl } from '../scripts/lib/loopback_guard.mjs';
@@ -171,7 +171,13 @@ function scriptSources(dir: string): string[] {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
     const path = join(dir, entry.name);
     if (entry.isDirectory()) found.push(...scriptSources(path));
-    else if (entry.isFile() && entry.name.endsWith('.mjs')) found.push(relative(ROOT, path));
+    // Posix-normalized: `relative` yields backslashes on Windows, and both
+    // assertions below compare against forward-slash literals, so without this
+    // every path mismatches and the guard reports nonsense rather than failing
+    // on anything real.
+    else if (entry.isFile() && entry.name.endsWith('.mjs')) {
+      found.push(relative(ROOT, path).split(sep).join('/'));
+    }
   }
   return found;
 }
@@ -207,6 +213,14 @@ describe('loopback guard call sites', () => {
       'scripts/armory_visual_e2e.mjs',
       'scripts/bank_audit.mjs',
       'scripts/chat_log_persistence.mjs',
+      // db_check is exempt for a DIFFERENT reason than the rest of this list,
+      // and permanently rather than pending a follow-up: it exists to validate a
+      // REMOTE DATABASE_URL before the server is pointed at it (a hosted
+      // Postgres, see docs/supabase-database.md). A loopback guard would refuse
+      // the only target it is for. It is safe to leave unguarded because it
+      // mints nothing: its sole write is a temporary table inside a transaction
+      // that is always rolled back.
+      'scripts/db_check.mjs',
       'scripts/create_gm.mjs',
       'scripts/grant_admin.mjs',
     ] as const;

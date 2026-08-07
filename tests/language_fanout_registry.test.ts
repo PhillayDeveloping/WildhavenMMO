@@ -354,16 +354,10 @@ const NOT_A_LANGUAGE_GATE: ReadonlyArray<{
   readonly reason: string;
 }> = [
   {
-    file: 'claudium_window.ts',
-    memos: ['paintedWalletMarkup'],
-    reason:
-      'paintedWalletMarkup retains the RESOLVED wallet markup and is compared against a freshly built walletConnectionHtml(), so a locale change moves both sides of the comparison and the repaint happens by itself. It is a write-elision memo, not a data signature.',
-  },
-  {
     file: 'daily_rewards_window.ts',
     memos: ['paintedStoreBody', 'paintedStoreMarkup'],
     reason:
-      'paintedStoreBody / paintedStoreMarkup retain the RESOLVED store markup and the element it was written into, compared against freshly built markup in replaceStoreBody, so a locale change produces different markup and repaints. Same write-elision shape as claudium_window.',
+      'paintedStoreBody / paintedStoreMarkup retain the RESOLVED store markup and the element it was written into, compared against freshly built markup in replaceStoreBody, so a locale change produces different markup and repaints. It is a write-elision memo, not a data signature. (claudium_window.ts held the same shape via paintedWalletMarkup until the wallet connection panel went with web3; it now carries no compared memo at all, so it has no row here.)',
   },
   {
     file: 'guild_bank_log_window.ts',
@@ -571,10 +565,15 @@ describe('language fan-out: half 2, every signature-gated src/ui surface is clas
     expect(
       NOT_A_LANGUAGE_GATE.length,
       'the exemption list grew. Every entry is a memo this repo has decided cannot hold player text; adding one should be argued in review, not absorbed by a floor.',
-      // 5 as of the guild bank activity log: its `lastAnnounced` memo gates an
-      // assistive-tech RE-ANNOUNCEMENT and nothing that is drawn (argued in the
+      // Was 5 as of the guild bank activity log, whose `lastAnnounced` memo gates
+      // an assistive-tech RE-ANNOUNCEMENT and nothing that is drawn (argued in the
       // frontend-seam review of that slice; the row states the reasoning).
-    ).toBe(5);
+      // 4 since the web3 removal: claudium_window.ts held a row for
+      // `paintedWalletMarkup`, and the wallet connection panel that memo elided
+      // no longer exists, so the module carries no compared memo at all. The
+      // count going DOWN because a module lost its memo is the healthy
+      // direction; this number exists to make growth deliberate.
+    ).toBe(4);
   });
 
   it('gives every relocalize() in src/ui a caller in the fan-out', () => {

@@ -321,13 +321,12 @@ describe('async balance reads repaint the FOOTER, not the whole window', () => {
   // with a moving purse hit it roughly twice a minute). Pinned per SITE, because a
   // whole-file assertion would be satisfied by either one alone.
 
-  it('the wallet UI change listener repaints only the money row', () => {
-    expect(hud).toMatch(/onWalletUiChange\(\(\) => \{[^}]*this\.bagsWindow\.refreshMoneyRow\(\);/);
-    // ONLY. A toMatch on the new call says nothing about the old one: re-adding
-    // `this.renderBags();` on the next line satisfies every affirmative pin here
-    // while restoring the exact teardown this block is named after. Scoped to the
-    // block, not the file, because ~7 other sites call renderBags() legitimately.
-    expect(hud).not.toMatch(/onWalletUiChange\(\(\) => \{[^}]*this\.renderBags\(\);/);
+  it('no longer wires a wallet UI change listener at all', () => {
+    // This block used to pin that the wallet listener repainted only the money
+    // row rather than tearing the whole window down. The listener went with
+    // web3, so the surviving assertion is its absence: it reappearing would mean
+    // wallet wiring crept back into the HUD.
+    expect(hud).not.toMatch(/onWalletUiChange/);
   });
 
   // The Claudium balance itself no longer lives here to be pattern-matched. Its
@@ -396,16 +395,19 @@ describe('async balance reads repaint the FOOTER, not the whole window', () => {
     );
   });
 
-  it('neither async path is left on the cold-load-unsafe raw display compare', () => {
+  it('the surviving async path is not left on the cold-load-unsafe raw display compare', () => {
     // `!== 'none'` reads a never-opened window as shown (#1538), so the old form
     // would paint a window the player has never opened on every balance read.
+    // ONE site now, not two: the wallet UI change listener was the other, and it
+    // went with web3. Still counted rather than merely matched, because the
+    // regression shape is a NEW async path wired around the guarded form.
     const sites = hud.match(/this\.bagsWindow\.refreshMoneyRow\(\);/g) ?? [];
-    expect(sites).toHaveLength(2);
+    expect(sites).toHaveLength(1);
     const guarded =
       hud.match(
         /if \(bagsWindowShown\(\$\('#bags'\)\.style\.display\)\) this\.bagsWindow\.refreshMoneyRow\(\);/g,
       ) ?? [];
-    expect(guarded).toHaveLength(2);
+    expect(guarded).toHaveLength(1);
   });
 });
 
