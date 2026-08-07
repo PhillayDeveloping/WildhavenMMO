@@ -39,9 +39,7 @@ describe('dev command capability advert (client)', () => {
   it('reads dev_commands false off /api/status', async () => {
     vi.stubGlobal(
       'fetch',
-      vi
-        .fn()
-        .mockResolvedValue(jsonResponse({ ok: true, realm: 'Wildmoon', dev_commands: false })),
+      vi.fn().mockResolvedValue(jsonResponse({ ok: true, realm: 'Wildmoon', dev_commands: false })),
     );
     await expect(new Api().devCommandsAdvert()).resolves.toBe(false);
   });

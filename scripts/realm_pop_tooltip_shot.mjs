@@ -4,11 +4,17 @@
 // Native `title` tooltips don't appear in screenshots, so we draw the tooltip
 // bubble (its text is the exact realm.popTip* string) to show what a hovering
 // user reads. Output: docs/realm_pop_before.png, docs/realm_pop_after.png
+
+import { mkdirSync, readFileSync } from 'node:fs';
 import puppeteer from 'puppeteer-core';
-import { readFileSync, mkdirSync } from 'node:fs';
 
 const BROWSER = ['/usr/bin/chromium', '/usr/bin/google-chrome-stable'].find((p) => {
-  try { readFileSync(p); return true; } catch { return false; }
+  try {
+    readFileSync(p);
+    return true;
+  } catch {
+    return false;
+  }
 });
 
 // the exact strings added to src/ui/i18n.catalog/shell.ts (en)
@@ -20,18 +26,48 @@ const TIP = {
 };
 
 const rows = [
-  { name: 'Wildmoon', sub: '8 online now', type: 'Normal', cls: 'low', label: 'Low', tip: TIP.low, rec: true },
-  { name: 'Ashen Reach', sub: '27 online now', type: 'PvP', cls: 'med', label: 'Medium', tip: TIP.med },
-  { name: 'Stormhollow', sub: '54 online now', type: 'RP', cls: 'high', label: 'High', tip: TIP.high },
-  { name: 'Ironwatch', sub: '92 online now', type: 'RP-PvP', cls: 'full', label: 'Full', tip: TIP.full },
+  {
+    name: 'Wildmoon',
+    sub: '8 online now',
+    type: 'Normal',
+    cls: 'low',
+    label: 'Low',
+    tip: TIP.low,
+    rec: true,
+  },
+  {
+    name: 'Ashen Reach',
+    sub: '27 online now',
+    type: 'PvP',
+    cls: 'med',
+    label: 'Medium',
+    tip: TIP.med,
+  },
+  {
+    name: 'Stormhollow',
+    sub: '54 online now',
+    type: 'RP',
+    cls: 'high',
+    label: 'High',
+    tip: TIP.high,
+  },
+  {
+    name: 'Ironwatch',
+    sub: '92 online now',
+    type: 'RP-PvP',
+    cls: 'full',
+    label: 'Full',
+    tip: TIP.full,
+  },
 ];
 
 function rowHtml(r, showTip) {
   const rec = r.rec ? `<span class="rn-rec">Recommended</span>` : '';
   // only the hovered ("Low") badge shows its bubble, as a real hover would
-  const tip = showTip && r.cls === 'low'
-    ? `<div class="tip-bubble"><div class="tip-arrow"></div>${r.tip}</div>`
-    : '';
+  const tip =
+    showTip && r.cls === 'low'
+      ? `<div class="tip-bubble"><div class="tip-arrow"></div>${r.tip}</div>`
+      : '';
   return `<div class="realm-row">
     <div><div class="realm-name">${r.name}<span class="rn-chars">2 characters</span>${rec}</div>
       <div class="realm-sub">${r.sub}</div></div>
@@ -77,7 +113,10 @@ function page(showTip) {
 const out = 'docs';
 mkdirSync(out, { recursive: true });
 const browser = await puppeteer.launch({ executablePath: BROWSER, args: ['--no-sandbox'] });
-for (const [name, showTip] of [['before', false], ['after', true]]) {
+for (const [name, showTip] of [
+  ['before', false],
+  ['after', true],
+]) {
   const p = await browser.newPage();
   await p.setViewport({ width: 520, height: 360, deviceScaleFactor: 2 });
   await p.setContent(page(showTip), { waitUntil: 'load' });
