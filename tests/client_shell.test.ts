@@ -71,10 +71,7 @@ const supportHtml = readFileSync(
   new URL('../public/support.html', import.meta.url),
   'utf8',
 ).replace(/\r\n/g, '\n');
-const whitepaperUrl = new URL(
-  '../public/World-of-ClaudeCraft-Whitepaper-v1.0.pdf',
-  import.meta.url,
-);
+const whitepaperUrl = new URL('../public/Wildhaven-Whitepaper-v1.0.pdf', import.meta.url);
 const viteConfig = readFileSync(new URL('../vite.config.ts', import.meta.url), 'utf8').replace(
   /\r\n/g,
   '\n',
@@ -794,9 +791,14 @@ describe('client HTML shell', () => {
     expect(html).toContain('<link rel="canonical" href="https://wildhaven.example/" />');
     expect(html).toContain('<meta property="og:site_name" content="Wildhaven" />');
     expect(html).toContain('"alternateName": "Wildhaven"');
-    expect(html).toContain('"https://github.com/levy-street/wildhaven"');
     expect(mainTs).toContain("alternateName: 'Wildhaven'");
-    expect(mainTs).toContain("'https://github.com/levy-street/wildhaven'");
+    // No `sameAs`: it asserts to search engines that a list of profiles IS this
+    // entity, and this fork owns none of the upstream project's channels. Pinned
+    // as an absence so restoring it is a deliberate act, once real accounts exist.
+    // Asserted on the emitted JSON key and on the upstream org, not on the bare
+    // word, which also appears in the comment explaining the omission.
+    expect(html).not.toContain('"sameAs"');
+    expect(mainTs).not.toContain('levy-street');
     expect(robotsTxt.trim()).toBe(
       'User-agent: *\nAllow: /\n\nSitemap: https://wildhaven.example/sitemap.xml\nSitemap: https://wildhaven.example/sitemap-characters.xml',
     );
@@ -829,19 +831,19 @@ describe('client HTML shell', () => {
       '<link rel="canonical" href="https://wildhaven.example/data-deletion" />',
     );
     expect(dataDeletionHtml).toContain('<h1>Data Deletion</h1>');
-    expect(dataDeletionHtml).toContain('href="mailto:woc@levystreet.com"');
-    expect(dataDeletionHtml).toContain('href="https://discord.com/invite/wildhaven"');
+    expect(dataDeletionHtml).toContain('href="mailto:contact@wildhaven.example"');
+    expect(dataDeletionHtml).toContain('href="https://wildhaven.example"');
     expect(dataDeletionHtml).toContain('href="/support">Support</a>');
     expect(supportHtml).toContain(
       '<link rel="canonical" href="https://wildhaven.example/support" />',
     );
     expect(supportHtml).toContain('<h1>Support</h1>');
-    expect(supportHtml).toContain('href="mailto:woc@levystreet.com"');
-    expect(supportHtml).toContain('href="https://discord.com/invite/wildhaven"');
+    expect(supportHtml).toContain('href="mailto:contact@wildhaven.example"');
+    expect(supportHtml).toContain('href="https://wildhaven.example"');
     expect(supportHtml).toContain('href="/data-deletion">Data Deletion page</a>');
     expect(supportHtml).toContain('"@type": "ContactPage"');
     expect(html).toContain(
-      'href="/World-of-ClaudeCraft-Whitepaper-v1.0.pdf" class="footer-link" data-i18n="footer.whitepaper"',
+      'href="/Wildhaven-Whitepaper-v1.0.pdf" class="footer-link" data-i18n="footer.whitepaper"',
     );
     expect(html.indexOf('data-i18n="footer.whitepaper"')).toBeLessThan(
       html.indexOf('data-i18n="footer.terms"'),
@@ -883,27 +885,20 @@ describe('client HTML shell', () => {
     expect(mainTs).toContain("'DiscordClick'");
   });
 
-  it('excludes wallet surfaces from unverified native and Steam builds while allowing Seeker', () => {
+  it('hides store-inappropriate surfaces in native and desktop builds', () => {
+    // What survives of the old wallet-gating case: the native and desktop shells
+    // still hide surfaces the app stores object to (a download button inside an
+    // installed app, the desktop performance tip). Everything this block used to
+    // assert about wallet linking, the Seeker gate, and the contract-address
+    // widget went with web3, so it is gone rather than adapted.
     expect(hudCss).toContain('body.native-app #nav-btn-download,');
-    expect(hudCss).toContain(
-      'body.native-app:not(.seeker-wallet-enabled) .cs-wallet,\n  body.native-app:not(.seeker-wallet-enabled) .cs-wallet-hidden-note,\n  body.native-app:not(.seeker-wallet-enabled) .account-wallet-card',
-    );
-    expect(hudCss).not.toContain('body.native-app .cs-wallet,');
     expect(hudCss).toContain('body.native-app #performance-tip,');
-    expect(hudCss).toContain('body.desktop-app #token-ca,\n  body.desktop-app .official-site-copy');
-    expect(hudCss).not.toContain('body.desktop-app .cs-wallet');
-    expect(html).toContain('<section class="account-card account-wallet-card">');
     expect(mainTs).toContain("document.body.classList.toggle('desktop-app', DESKTOP_APP);");
-    expect(mainTs).toContain('const walletCapabilityReady = resolveWalletCapability({');
-    expect(mainTs).toContain('nativeApp: NATIVE_APP,');
-    expect(mainTs).toContain('desktopApp: DESKTOP_APP,');
-    expect(mainTs).toContain('bridge: DESKTOP_APP ? desktopBridge() : null,');
-    expect(mainTs).toContain("document.querySelector('.cs-wallet')?.remove();");
-    expect(mainTs).toContain("document.querySelector('.account-wallet-card')?.remove();");
-    expect(mainTs).toContain("disconnectBtn.className = 'wallet-mini wallet-picker-disconnect';");
-    expect(mainTs).toContain("closeWalletPicker({ action: 'disconnect' });");
-    expect(mainTs).toContain('await openDesktopWalletManager();');
-    expect(shellCss).toContain('.wallet-picker-disconnect {');
+    // The account portal ships no wallet card, and nothing removes one at runtime.
+    expect(html).not.toContain('account-wallet-card');
+    expect(mainTs).not.toContain('resolveWalletCapability');
+    expect(mainTs).not.toContain('openDesktopWalletManager');
+    expect(shellCss).not.toContain('.wallet-picker-disconnect');
   });
 
   it('skips the web mobile preflight in native builds and hard-gates portrait gameplay', () => {

@@ -6,7 +6,7 @@ Last updated: 22 July 2026
 
 ## 1. Who we are and what these terms cover
 
-These Terms and Conditions (the "Terms") are a legal agreement between you and Dream Home AI Limited, trading as Levy Street, New Zealand company number 8703066 ("we," "us," "our"). They govern your use of Wildhaven (the "Game"), wildhaven.example (the "Site"), and our mobile application (the "App"), together the "Service."
+These Terms and Conditions (the "Terms") are a legal agreement between you and [OPERATOR: legal entity not yet set] ("we," "us," "our"). They govern your use of Wildhaven (the "Game"), wildhaven.example (the "Site"), and our mobile application (the "App"), together the "Service."
 
 By using the Service you agree to these Terms and to our Privacy Policy. If you do not agree, do not use the Service.
 
@@ -130,6 +130,6 @@ These terms apply if you obtain the App from Google Play. Your use of the App mu
 
 ## 21. Contact us
 
-Email: tony@levystreet.com
+Email: contact@wildhaven.example
 
-Postal: Dream Home AI Limited, 262 Thorndon Quay, Wellington 6011, New Zealand
+Postal: [OPERATOR: postal address not yet set]

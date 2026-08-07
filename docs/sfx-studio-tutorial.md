@@ -1,7 +1,7 @@
 # SFX Studio tutorial
 
 SFX Studio is the local authoring and production export tool for World of
-ClaudeCraft sound effects. Use it to edit published SFX masters, audition them
+Wildhaven sound effects. Use it to edit published SFX masters, audition them
 against representative game context, tune reversible runtime gain and playback
 rate, and export a complete production bundle.
 

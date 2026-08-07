@@ -11,7 +11,7 @@ export const DEFAULT_THEME_MODE: ThemeMode = 'dark';
 
 // Exported so admin.html's inline pre-paint script (see its header comment) and
 // tests can be pinned against the same literal instead of drifting apart.
-export const THEME_STORAGE_KEY = 'claudecraft_admin_theme';
+export const THEME_STORAGE_KEY = 'wildhaven_admin_theme';
 
 export function isThemeMode(value: unknown): value is ThemeMode {
   return value === 'dark' || value === 'light';

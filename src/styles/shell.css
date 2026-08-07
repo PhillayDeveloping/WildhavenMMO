@@ -570,124 +570,6 @@
   .wallet-mini[hidden] {
     display: none;
   }
-  .cs-wallet-hidden-note {
-    margin-top: 12px;
-    min-height: 34px;
-    box-sizing: border-box;
-    padding: 8px 10px;
-    border-radius: var(--radius-sm);
-    border: 1px solid rgba(199, 148, 26, 0.28);
-    background: rgba(18, 14, 8, 0.64);
-    color: var(--gold-dim);
-    font-size: 12px;
-    line-height: 1.35;
-    text-align: right;
-  }
-  .cs-wallet-hidden-note[hidden] {
-    display: none;
-  }
-
-  .wallet-picker-backdrop {
-    z-index: 340;
-  }
-  .wallet-picker-modal {
-    width: min(420px, 100%);
-    max-height: calc(100vh - 48px);
-    box-sizing: border-box;
-    padding: 18px;
-    overflow: auto;
-  }
-  .wallet-picker-help,
-  .wallet-picker-empty {
-    margin: 8px 0 12px;
-    color: var(--color-text-muted);
-    font-size: 12.5px;
-    line-height: 1.45;
-  }
-  .wallet-picker-list {
-    display: grid;
-    gap: 8px;
-  }
-  .wallet-picker-option {
-    display: grid;
-    grid-template-columns: 34px minmax(0, 1fr) auto;
-    align-items: center;
-    gap: 10px;
-    min-height: 52px;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 8px 10px;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--color-border-default);
-    background: rgba(11, 11, 18, 0.72);
-    color: var(--color-text-light);
-    font-family: var(--font-sans);
-    font-size: 14px;
-    text-align: left;
-    cursor: pointer;
-    transition:
-      border-color var(--transition-speed) var(--transition-ease),
-      box-shadow var(--transition-speed) var(--transition-ease),
-      background var(--transition-speed) var(--transition-ease);
-  }
-  .wallet-picker-option:hover,
-  .wallet-picker-option:focus-visible {
-    border-color: var(--gold);
-    background: rgba(29, 24, 14, 0.86);
-    box-shadow: 0 0 12px rgba(199, 148, 26, 0.28);
-    outline: none;
-  }
-  .wallet-picker-option.selected {
-    border-color: var(--color-text-success);
-    box-shadow: inset 0 0 0 1px rgba(92, 214, 126, 0.2);
-  }
-  .wallet-picker-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    object-fit: contain;
-    background: rgba(255, 255, 255, 0.08);
-  }
-  .wallet-picker-name {
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .wallet-picker-badge {
-    color: var(--color-text-success);
-    font-size: 11px;
-    white-space: nowrap;
-  }
-  .wallet-picker-disconnect {
-    justify-content: center;
-    width: 100%;
-    margin-top: 12px;
-  }
-  .wallet-picker-disconnect:hover,
-  .wallet-picker-disconnect:focus-visible {
-    color: var(--color-text-error);
-    border-color: var(--color-text-error);
-  }
-  .wallet-app-launch-button {
-    display: flex;
-    justify-content: center;
-    min-height: 48px;
-    font-weight: 700;
-    text-align: center;
-  }
-  .wallet-app-launch-actions {
-    display: grid;
-    gap: 8px;
-  }
-  .wallet-app-launch-status {
-    min-height: 18px;
-    margin-top: 8px;
-    color: var(--color-text-muted);
-    font-size: 12px;
-    text-align: center;
-  }
-
   @media (max-width: 720px) {
     .cs-wallet {
       align-items: flex-start;
@@ -702,9 +584,6 @@
     }
     .cs-wallet-help {
       max-width: 100%;
-      text-align: left;
-    }
-    .cs-wallet-hidden-note {
       text-align: left;
     }
   }
@@ -2390,8 +2269,7 @@
     letter-spacing: 0.8px;
     margin-right: var(--spacing-xs);
   }
-  /* $WOC contract address, click-to-copy pill, sits under the performance tip. */
-  #token-ca {
+  /* $WOC contract address, click-to-copy pill{
     margin: var(--spacing-lg) auto 0;
     padding-top: var(--spacing-md);
     border-top: 1px solid rgba(255, 209, 0, 0.14);
@@ -2402,114 +2280,14 @@
     align-items: center;
     gap: var(--spacing-sm);
   }
-  .token-ca-label {
-    font-family: var(--font-heading);
-    color: var(--color-primary);
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    font-size: 12px;
-    text-shadow:
-      0 0 8px var(--color-primary-glow),
-      1px 1px 2px #000;
-  }
-  .token-ca-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-    max-width: 100%;
-    margin: 0;
-    padding: 9px var(--spacing-md);
-    background: rgba(11, 11, 18, 0.6);
-    border: 1px solid rgba(199, 148, 26, 0.45);
-    border-radius: var(--radius-md);
-    color: var(--color-text-light);
-    cursor: var(--cursor-point);
-    font: inherit;
-    text-align: left;
-    transition:
-      border-color var(--transition-speed) var(--transition-ease),
-      box-shadow var(--transition-speed) var(--transition-ease),
-      background var(--transition-speed) var(--transition-ease);
-  }
-  .token-ca-pill:hover,
-  .token-ca-pill:focus-visible {
-    border-color: var(--color-primary);
-    background: rgba(11, 11, 18, 0.85);
-    box-shadow: 0 0 12px var(--color-primary-glow);
-    outline: none;
-  }
-  .token-ca-addr {
-    font-family: "SFMono-Regular", ui-monospace, "Cascadia Code", "Courier New", monospace;
-    font-size: 13px;
-    letter-spacing: 0.4px;
-    color: var(--color-text-light);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    text-shadow: 1px 1px 2px #000;
-  }
-  .token-ca-copy {
-    flex: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 18px;
-    height: 18px;
-    color: var(--color-primary-dim);
-    transition: color var(--transition-speed) var(--transition-ease);
-  }
-  .token-ca-pill:hover .token-ca-copy {
-    color: var(--color-primary);
-  }
-  .token-ca-copy svg {
-    width: 16px;
-    height: 16px;
-    display: block;
-  }
-  .token-ca-copy .icon-check {
-    display: none;
-  }
-  .token-ca-feedback {
-    display: none;
-    font-family: var(--font-sans);
-    font-size: 12px;
-    color: var(--color-text-success);
-  }
-  /* Small print under the pill: token disclaimer + community call-to-action. */
-  .token-ca-note {
-    margin: 0;
-    max-width: 520px;
-    font-family: var(--font-sans);
-    font-size: 12px;
-    line-height: 1.55;
-    color: var(--color-text-muted);
-    text-align: center;
-    text-shadow: 1px 1px 2px #000;
-  }
-  /* Copied state, swap clipboard glyph for a check, reveal the confirmation. */
-  #token-ca.is-copied .token-ca-pill {
+  /* Copied state, swap clipboard glyph for a check{
     border-color: var(--color-text-success);
   }
-  #token-ca.is-copied .token-ca-copy {
-    color: var(--color-text-success);
-  }
-  #token-ca.is-copied .token-ca-copy .icon-clipboard {
-    display: none;
-  }
-  #token-ca.is-copied .token-ca-copy .icon-check {
-    display: block;
-  }
-  #token-ca.is-copied .token-ca-feedback {
-    display: block;
-  }
+
+
+
   @media (max-width: 520px) {
-    .token-ca-addr {
-      font-size: 11px;
-      letter-spacing: 0.2px;
-    }
-    .token-ca-pill {
-      padding: 8px var(--spacing-sm);
-    }
+
   }
   .auth-panel {
     width: 100%;
@@ -3134,11 +2912,7 @@
        action row sits under it, and the helper caption anchors the foot,
        instead of a label floating beside a button row with its caption
        dangling underneath. Overrides the base .cs-wallet row layout (label
-       beside actions, separator border-top), which the card/mobile layouts
-       keep. Each card still starts hidden until its own advert / link state
-       lights it. */
-    body:not(.mobile-touch) #charselect-panel.cs-wow
-      :is(.cs-wallet-group, .cs-github-group, .cs-steam-group, .cs-epic-group) {
+       beside actions, separator border-top), .cs-github-group, .cs-steam-group, .cs-epic-group) {
       flex-direction: column;
       align-items: stretch;
       justify-content: flex-start;
@@ -6310,13 +6084,11 @@
       align-items: center;
       gap: 8px;
     }
-    body.mobile-touch:not(.seeker-wallet-enabled) #charselect-panel .cs-wallet,
-    body.mobile-touch:not(.seeker-wallet-enabled) #charselect-panel .cs-wallet-hidden-note {
+    body.mobile-touch #charselect-panel .cs-wallet{
       display: none;
     }
     /* Seeker wallet strip: pair the service name and verified helper as one
-       header row, then keep every connection action on the row below. */
-    body.mobile-touch.seeker-wallet-enabled #charselect-panel .cs-wallet-group {
+       header row{
       display: grid;
       grid-template-columns: auto minmax(0, 1fr);
       grid-template-rows: auto auto;
@@ -6324,53 +6096,14 @@
       row-gap: 7px;
       align-items: center;
     }
-    body.mobile-touch.seeker-wallet-enabled #charselect-panel .cs-wallet-main {
-      display: contents;
-    }
-    body.mobile-touch.seeker-wallet-enabled #charselect-panel .cs-wallet-group > .cs-wallet-label {
-      grid-column: 1;
-      grid-row: 1;
-      align-self: center;
-      width: auto;
-      margin: 0;
-      padding: 0;
-      font-size: 12px;
-      line-height: 1.35;
-      white-space: nowrap;
-    }
-    body.mobile-touch.seeker-wallet-enabled #charselect-panel .cs-wallet-help {
-      grid-column: 2;
-      grid-row: 1;
-      align-self: center;
-      justify-self: start;
-      width: auto;
-      max-width: none;
-      margin: 0;
-      padding: 0;
-      text-align: left;
-      line-height: 1.35;
-    }
-    body.mobile-touch.seeker-wallet-enabled #charselect-panel .cs-wallet-actions {
-      grid-column: 1 / -1;
-      grid-row: 2;
-      width: 100%;
-      justify-content: flex-start;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-    body.mobile-touch.seeker-wallet-enabled #charselect-panel :is(.wallet-cta, .wallet-mini) {
+
+
+
+ .wallet-mini) {
       min-width: 40px;
       min-height: 40px;
       padding: 5px 8px;
       font-size: 11px;
-    }
-    body.mobile-touch.seeker-wallet-enabled #charselect-panel .wallet-status {
-      min-height: 36px;
-      max-width: 290px;
-      padding: 5px 8px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
     }
     body.mobile-touch #charselect-panel .cs-controls {
       gap: 6px;

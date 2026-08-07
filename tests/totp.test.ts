@@ -90,12 +90,24 @@ describe('secret + uri generation', () => {
     expect(s).toHaveLength(32);
     expect(base32Decode(s)).toHaveLength(20);
   });
-  it('builds an otpauth URI that encodes brand spaces and carries the secret', () => {
+  it('builds an otpauth URI carrying the real issuer and the secret', () => {
+    // The issuer is what an authenticator app shows next to the code, so it is
+    // player-visible: pin the value the server actually passes (TOTP_ISSUER in
+    // server/account.ts), not a stand-in.
     const uri = otpauthUri('GEZDGNBV', 'Aria', 'Wildhaven');
     expect(uri.startsWith('otpauth://totp/')).toBe(true);
     expect(uri).toContain('secret=GEZDGNBV');
-    expect(uri).toContain('issuer=World+of+ClaudeCraft');
-    expect(uri).toContain('World%20of%20ClaudeCraft%3AAria');
+    expect(uri).toContain('issuer=Wildhaven');
+    expect(uri).toContain('Wildhaven%3AAria');
+  });
+
+  it('encodes spaces differently in the label and the query, as the spec requires', () => {
+    // Kept as its own case now that the real issuer has no space in it: the label
+    // is path-encoded (%20) and the issuer parameter is query-encoded (+), and a
+    // single encoder used for both would silently break one of them.
+    const uri = otpauthUri('GEZDGNBV', 'Aria', 'Two Words');
+    expect(uri).toContain('Two%20Words%3AAria');
+    expect(uri).toContain('issuer=Two+Words');
   });
 });
 

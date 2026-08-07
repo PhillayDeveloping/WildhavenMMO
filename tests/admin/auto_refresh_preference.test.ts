@@ -4,7 +4,7 @@ import {
   writeAutoRefreshPreference,
 } from '../../src/admin/auto_refresh_preference';
 
-const KEY = 'claudecraft_admin_test_auto_refresh';
+const KEY = 'wildhaven_admin_test_auto_refresh';
 
 function stubStorage(store: Partial<Storage>): void {
   vi.stubGlobal('localStorage', store as Storage);

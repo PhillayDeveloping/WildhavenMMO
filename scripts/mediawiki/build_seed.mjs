@@ -173,12 +173,15 @@ add('Sources Used', section('Local sources', bullets([
   'GitHub CLI exports of 45 issues and 141 pull requests.',
   'Discord export of 3,205 messages from the Wildhaven community general channel.',
 ])) + section('External sources', bullets([
-  '[https://github.com/levy-street/wildhaven GitHub repository]',
-  '[https://www.reddit.com/r/artificial/comments/1u4h7k1/world_of_claudecraft_the_first_opensource_mmorpg/ r/artificial launch thread]',
-  '[https://www.reddit.com/r/ClaudeAI/comments/1u3m6a8/i_vibe_coded_the_first_mmorpg_with_fable_5/ r/ClaudeAI Fable 5 thread]',
-  '[https://www.reddit.com/r/vibecoding/comments/1u47wo5/world_of_claudecraft_first_mmorpg_vibecoded_with/ r/vibecoding launch thread]',
-  '[https://www.reddit.com/r/AI_Agents/comments/1u4hstu/agents_have_entered_the_world_of_claudecraft_open/ r/AI_Agents thread]',
-  '[https://x.com/i/communities/2030944892999135272 World Of Claudecraft X community]',
+  // These belong to world-of-claudecraft, the upstream project Wildhaven forked
+  // from. They stay because they really were sources for this wiki, but they are
+  // labelled: unlabelled, a reader takes them for Wildhaven's own channels.
+  "Launch and discussion threads for '''world-of-claudecraft''', the upstream project this game was forked from. They are not Wildhaven channels.",
+  '[https://www.reddit.com/r/artificial/comments/1u4h7k1/world_of_claudecraft_the_first_opensource_mmorpg/ r/artificial launch thread (upstream)]',
+  '[https://www.reddit.com/r/ClaudeAI/comments/1u3m6a8/i_vibe_coded_the_first_mmorpg_with_fable_5/ r/ClaudeAI Fable 5 thread (upstream)]',
+  '[https://www.reddit.com/r/vibecoding/comments/1u47wo5/world_of_claudecraft_first_mmorpg_vibecoded_with/ r/vibecoding launch thread (upstream)]',
+  '[https://www.reddit.com/r/AI_Agents/comments/1u4hstu/agents_have_entered_the_world_of_claudecraft_open/ r/AI_Agents thread (upstream)]',
+  '[https://x.com/i/communities/2030944892999135272 X community (upstream)]',
 ])), ['Sources']);
 
 const systemRows = [

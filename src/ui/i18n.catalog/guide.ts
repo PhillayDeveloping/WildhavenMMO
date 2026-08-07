@@ -12,7 +12,7 @@
 export const guideStrings = {
   // Brand + shared chrome.
   brand: 'Wildhaven',
-  brandShort: 'ClaudeCraft',
+  brandShort: 'Wildhaven',
   tagline: 'A classic-style MMO you play free in your browser.',
   skipToContent: 'Skip to main content',
   loading: 'Loading...',

@@ -3108,7 +3108,7 @@ export const cs_CZ: EnTranslations = {
   },
   "guide": {
     "brand": "Wildhaven",
-    "brandShort": "ClaudeCraft",
+    "brandShort": "Wildhaven",
     "tagline": "MMO v klasickém stylu, které hraješ zdarma v prohlížeči.",
     "skipToContent": "Přejít na hlavní obsah",
     "loading": "Načítá se...",
@@ -5015,7 +5015,7 @@ export const cs_CZ: EnTranslations = {
   },
   "footer": {
     "copyright": "2026 Wildhaven",
-    "githubLink": "https://github.com/levy-street/wildhaven",
+    "githubLink": "https://wildhaven.example",
     "githubLabel": "Open-source projekt",
     "whitepaper": "Whitepaper",
     "terms": "Podmínky služby",

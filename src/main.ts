@@ -6377,17 +6377,11 @@ function updateSeoMetadata(lang: SupportedLanguage): void {
   const ogUrl = document.querySelector<HTMLMetaElement>('meta[property="og:url"]');
   if (ogUrl) ogUrl.content = canonicalHref;
 
+  // No `sameAs`: it asserts to search engines that those profiles ARE this
+  // entity, so a wrong entry is worse than an absent one. This fork owns none of
+  // the upstream project's channels. Restore the array once real accounts exist.
   const jsonLd = document.getElementById('structured-data') as HTMLScriptElement | null;
   if (jsonLd) {
-    const sameAs = [
-      'https://github.com/levy-street/wildhaven',
-      'https://discord.com/invite/wildhaven',
-      'https://www.youtube.com/@WoClaudeCraft',
-      'https://x.com/WoClaudecraft',
-      'https://www.instagram.com/wildhaven/',
-      'https://www.tiktok.com/@wildhaven',
-      'https://www.reddit.com/r/WorldofClaudecraft/',
-    ];
     jsonLd.textContent = JSON.stringify(
       {
         '@context': 'https://schema.org',
@@ -6409,8 +6403,7 @@ function updateSeoMetadata(lang: SupportedLanguage): void {
             '@id': 'https://wildhaven.example/#organization',
             name: 'Wildhaven',
             url: 'https://wildhaven.example/',
-            logo: 'https://wildhaven.example/woc_logo_square.webp',
-            sameAs,
+            logo: 'https://wildhaven.example/wildhaven-logo-square.webp',
           },
           {
             '@type': 'VideoGame',
@@ -6422,13 +6415,12 @@ function updateSeoMetadata(lang: SupportedLanguage): void {
             applicationCategory: t('seo.applicationCategory'),
             operatingSystem: t('seo.operatingSystem'),
             url: canonicalHref,
-            image: 'https://wildhaven.example/woc_logo_square.webp',
+            image: 'https://wildhaven.example/wildhaven-logo-square.webp',
             description: t('seo.description'),
             inLanguage: languageTag(lang),
             publisher: {
               '@id': 'https://wildhaven.example/#organization',
             },
-            sameAs,
           },
         ],
       },

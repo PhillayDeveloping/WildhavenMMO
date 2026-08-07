@@ -1,5 +1,5 @@
 // Capture matched Fenbridge rebuild evidence from a running World of
-// ClaudeCraft client. This is intentionally a thin browser orchestrator; the
+// Wildhaven client. This is intentionally a thin browser orchestrator; the
 // immutable contract and its integrity checks live in capture_contract.mjs.
 //
 // Required:

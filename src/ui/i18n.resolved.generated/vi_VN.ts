@@ -3108,7 +3108,7 @@ export const vi_VN: EnTranslations = {
   },
   "guide": {
     "brand": "Wildhaven",
-    "brandShort": "ClaudeCraft",
+    "brandShort": "Wildhaven",
     "tagline": "Một MMO phong cách cổ điển bạn chơi miễn phí ngay trên trình duyệt.",
     "skipToContent": "Chuyển đến nội dung chính",
     "loading": "Đang tải...",
@@ -5015,7 +5015,7 @@ export const vi_VN: EnTranslations = {
   },
   "footer": {
     "copyright": "2026 Wildhaven",
-    "githubLink": "https://github.com/levy-street/wildhaven",
+    "githubLink": "https://wildhaven.example",
     "githubLabel": "Dự Án Mã Nguồn Mở",
     "whitepaper": "Sách trắng",
     "terms": "Điều Khoản Dịch Vụ",

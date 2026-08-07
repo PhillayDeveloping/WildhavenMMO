@@ -251,7 +251,8 @@ function audit() {
   const ogDesc = html.includes('property="og:description"');
   const ogType = html.includes('property="og:type"');
   const ogUrl = html.includes('property="og:url"');
-  const ogImage = html.includes('property="og:image"') && html.includes('woc_logo_square.webp');
+  const ogImage =
+    html.includes('property="og:image"') && html.includes('wildhaven-logo-square.webp');
   const hasAllOg = ogTitle && ogDesc && ogType && ogUrl && ogImage;
   checks.push({
     category: 'SEO',

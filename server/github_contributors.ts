@@ -24,7 +24,7 @@ import { LEADERBOARD_MAX } from '../src/sim/leaderboard_page';
 import type { DevLeaderboardEntry } from '../src/world_api';
 import { recordUsageCacheEvent, recordUsageMetric, setUsageCacheSize } from './provider_usage';
 
-const DEFAULT_GITHUB_REPO = 'levy-street/wildhaven';
+const DEFAULT_GITHUB_REPO = 'PhillayDeveloping/wildhaven';
 const GITHUB_API_HOST = 'api.github.com';
 
 // The repo slug + optional token, INJECTED at boot (server/main.ts wires these from

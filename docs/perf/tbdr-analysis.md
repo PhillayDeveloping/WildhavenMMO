@@ -88,7 +88,7 @@ Native Metal can mark one-pass attachments as
 [memoryless](https://developer.apple.com/documentation/metal/mtlstoragemode/memoryless),
 so they exist only in tile memory and cannot be loaded or stored. WebGL2 does
 not expose Metal storage modes, imageblocks, tile shaders, programmable
-blending, or explicit load/store actions. ClaudeCraft can only present patterns
+blending, or explicit load/store actions. Wildhaven can only present patterns
 that ANGLE can translate efficiently.
 
 ANGLE does use memoryless storage internally for supported implicit
@@ -219,7 +219,7 @@ falling from 98 percent to 87 to 95 percent also leaves room for CPU and
 submission improvements to affect frame rate.
 
 **Front-to-back opaque ordering.** This does not refute Apple's order-independent
-HSR claim because ClaudeCraft's former "opaque" list also contained alpha-tested
+HSR claim because Wildhaven's former "opaque" list also contained alpha-tested
 foliage. The current sorter explicitly places true opaque draws before
 alpha-tested draws and sorts within each class. Solid buildings can now settle
 visibility before foliage feedback, and nearer alpha-tested surfaces can reject

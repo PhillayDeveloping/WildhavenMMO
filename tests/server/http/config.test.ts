@@ -33,7 +33,7 @@ describe('loadConfig', () => {
     expect(cfg.turnstileSecret).toBe('');
     expect(cfg.maxWsPerIpHard).toBe(20);
     expect(cfg.maxPlayersPerRealm).toBe(5000);
-    expect(cfg.githubRepo).toBe('levy-street/wildhaven');
+    expect(cfg.githubRepo).toBe('PhillayDeveloping/wildhaven');
     expect(cfg.githubToken).toBe('');
     expect(cfg.chatLogRetentionDays).toBe(90);
     expect(cfg.perfReportRetentionDays).toBe(14);

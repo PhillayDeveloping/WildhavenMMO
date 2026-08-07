@@ -34,11 +34,15 @@ command -v git >/dev/null 2>&1 || exit 0
 command -v perl >/dev/null 2>&1 || exit 0
 git rev-parse --is-inside-work-tree >/dev/null 2>&1 || exit 0
 
-# Added lines in this working tree, across source and docs, excluding locale overlays
-# (native punctuation such as a real em dash is legitimate there) and generated bundles.
+# Added lines in this working tree, across source and docs, excluding BOTH locale
+# overlay trees (native punctuation such as a real em dash is legitimate there: Russian
+# and French prose use it correctly) and the generated bundles. The admin overlays were
+# missing from this list while their generated twin was excluded, so editing an admin
+# translation could block on punctuation the rule was never meant to cover.
 pathspec=(
   .
   ':(exclude)src/ui/i18n.locales'
+  ':(exclude)src/admin/i18n.locales'
   ':(exclude)src/ui/i18n.resolved.generated'
   ':(exclude)src/admin/i18n.resolved.generated'
   ':(exclude)*.lock'

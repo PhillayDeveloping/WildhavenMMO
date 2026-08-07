@@ -1,9 +1,9 @@
 # Claudium visual identity (pin before generating; reference on every asset)
 
 Claudium is the in-game SOFT currency (1 Claudium = 0.01 USD, one-way, cosmetics only).
-It must read as premium + trustworthy (real money buys it) AND belong to the World of
-ClaudeCraft fantasy world. It is DISTINCT from $WOC (the tradable gold token): Claudium
-is platinum/arcane, not gold.
+It must read as premium + trustworthy (real money buys it) AND belong to the Wildhaven
+fantasy world. Platinum and arcane, deliberately not gold: gold is the world's ordinary
+coin, and Claudium has to read as something else at a glance.
 
 ## The mark
 A round coin/token with a hexagonal inset bezel and a luminous gem CORE. The face carries

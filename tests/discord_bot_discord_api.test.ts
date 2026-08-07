@@ -180,7 +180,7 @@ describe('DiscordApi request envelope', () => {
       // `Bot ` prefix, not `Bearer`: a bot token is rejected as a bearer token.
       Authorization: 'Bot tok',
       'Content-Type': 'application/json',
-      'User-Agent': 'WorldOfClaudeCraftBot (https://wildhaven.example, 1.0)',
+      'User-Agent': 'WildhavenBot (https://wildhaven.example, 1.0)',
     });
     // No body key value on a GET.
     expect(calls[0].init.body).toBe(undefined);
@@ -952,7 +952,7 @@ describe('DiscordApi production defaults', () => {
     expect(seen[0].init?.headers).toEqual({
       Authorization: 'Bot tok',
       'Content-Type': 'application/json',
-      'User-Agent': 'WorldOfClaudeCraftBot (https://wildhaven.example, 1.0)',
+      'User-Agent': 'WildhavenBot (https://wildhaven.example, 1.0)',
       'X-Audit-Log-Reason': AUDIT_LOG_REASON,
     });
     expect(seen[0].init?.body).toBe('{"nick":"Aran (12)"}');

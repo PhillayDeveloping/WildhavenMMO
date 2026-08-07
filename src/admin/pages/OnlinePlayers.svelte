@@ -23,7 +23,7 @@
   // Dedicated live roster, moved off the Overview dashboard: same columns, plus
   // search, sortable headers and paging. Auto-refresh is on by default and the
   // operator can switch it off (the preference sticks) and refresh by hand.
-  const AUTO_REFRESH_STORAGE_KEY = 'claudecraft_admin_online_players_auto_refresh';
+  const AUTO_REFRESH_STORAGE_KEY = 'wildhaven_admin_online_players_auto_refresh';
 
   let players = $state<LivePlayer[]>([]);
   let loaded = $state(false);

@@ -3108,7 +3108,7 @@ export const en_XA: EnTranslations = {
   },
   "guide": {
     "brand": "[Ŵíļðĥáʋéñ]",
-    "brandShort": "[ÇļáúðéÇŕáƒţ]",
+    "brandShort": "[Ŵíļðĥáʋéñ]",
     "tagline": "[Á çļáššíç-šţýļé ⱮⱮÓ ýóú þļáý ƒŕéé íñ ýóúŕ ƀŕóŵšéŕ.]",
     "skipToContent": "[Šķíþ ţó ɱáíñ çóñţéñţ]",
     "loading": "[Ļóáðíñĝ...]",
@@ -5015,7 +5015,7 @@ export const en_XA: EnTranslations = {
   },
   "footer": {
     "copyright": "[2026 Ŵíļðĥáʋéñ]",
-    "githubLink": "[ĥţţþš://ĝíţĥúƀ.çóɱ/ļéʋý-šţŕééţ/ŵíļðĥáʋéñ]",
+    "githubLink": "[ĥţţþš://ŵíļðĥáʋéñ.éẋáɱþļé]",
     "githubLabel": "[Óþéñ Šóúŕçé Þŕóĵéçţ]",
     "whitepaper": "[Ŵĥíţéþáþéŕ]",
     "terms": "[Ţéŕɱš óƒ Šéŕʋíçé]",

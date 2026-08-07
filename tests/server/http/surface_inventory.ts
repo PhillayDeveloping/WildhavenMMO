@@ -1,5 +1,5 @@
 // Surface inventory: the data ledger of every (method, path) the World of
-// ClaudeCraft server dispatches today.
+// Wildhaven server dispatches today.
 //
 // This is a CHARACTERIZATION artifact. It records what exists across the four
 // HTTP dispatchers (main handleApi, admin, oauth, internal) plus the

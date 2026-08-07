@@ -6,7 +6,7 @@ Last updated: 21 June 2026
 
 This Privacy Policy explains what personal information we collect, why we collect it, how we use and share it, and the choices you have. It applies when you play Wildhaven (the "Game"), visit wildhaven.example (the "Site"), or use our mobile application (the "App"). The Game, Site, and App together are the "Service."
 
-**Who we are.** The Service is operated by Dream Home AI Limited, trading as Levy Street, New Zealand company number 8703066 ("we," "us," "our"), based in Wellington, New Zealand. We are the data controller for personal information processed through the Service.
+**Who we are.** The Service is operated by [OPERATOR: legal entity not yet set] ("we," "us," "our"). We are the data controller for personal information processed through the Service.
 
 By using the Service you agree to this Policy. If you do not agree, do not use the Service.
 
@@ -151,9 +151,9 @@ The Service links to and integrates third-party services, including GitHub, Ko-f
 
 For privacy questions or to exercise your rights:
 
-Email: tony@levystreet.com
+Email: contact@wildhaven.example
 
-Postal: Dream Home AI Limited, 262 Thorndon Quay, Wellington 6011, New Zealand
+Postal: [OPERATOR: postal address not yet set]
 
 New Zealand users may also contact the Office of the Privacy Commissioner at privacy.org.nz.
 

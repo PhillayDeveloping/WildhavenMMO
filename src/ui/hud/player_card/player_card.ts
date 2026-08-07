@@ -183,7 +183,7 @@ const HEADER_RIGHT_EDGE = 1018;
 // served from /public. Same-origin, so drawing it does not taint the canvas.
 // Loaded best-effort: if it's missing the footer falls back to a text wordmark
 // rather than failing the whole card.
-const LOGO_URL = '/woc-logo-hero.webp';
+const LOGO_URL = '/wildhaven-logo-hero.webp';
 
 /** Where the title line sits on the header, or null when nothing may draw.
  *  Pure (no canvas): the caller passes the measured realm-line width so the

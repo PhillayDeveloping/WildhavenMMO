@@ -23,7 +23,7 @@ describe('apiOriginKey', () => {
   it('normalizes equivalent spellings to one origin', () => {
     expect(apiOriginKey('https://wildhaven.example')).toBe('https://wildhaven.example');
     expect(apiOriginKey('https://wildhaven.example/')).toBe('https://wildhaven.example');
-    expect(apiOriginKey('HTTPS://WorldOfClaudeCraft.COM')).toBe('https://wildhaven.example');
+    expect(apiOriginKey('HTTPS://Wildhaven.EXAMPLE')).toBe('https://wildhaven.example');
     expect(apiOriginKey('http://localhost:8787')).toBe('http://localhost:8787');
   });
 

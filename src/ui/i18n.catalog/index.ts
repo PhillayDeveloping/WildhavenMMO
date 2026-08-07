@@ -282,7 +282,7 @@ export const en = {
   },
   footer: {
     copyright: '2026 Wildhaven',
-    githubLink: 'https://github.com/levy-street/wildhaven',
+    githubLink: 'https://wildhaven.example',
     githubLabel: 'Open Source Project',
     whitepaper: 'Whitepaper',
     terms: 'Terms of Service',

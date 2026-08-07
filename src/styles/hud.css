@@ -4083,16 +4083,14 @@
   body.native-app .community-link.donate,
   body.native-app .social-link.donate,
   body.native-app #mobile-donate,
-  body.native-app #token-ca,
-  body.native-app #nav-btn-download,
-  body.native-app:not(.seeker-wallet-enabled) .cs-wallet,
-  body.native-app:not(.seeker-wallet-enabled) .cs-wallet-hidden-note,
-  body.native-app:not(.seeker-wallet-enabled) .account-wallet-card,
+  body.native-app #nav-btn-download, so the old :not() arm always matched. .cs-wallet is
+     still live (it styles the GitHub/Steam/Epic link rows), so this keeps hiding
+     them in native builds rather than quietly turning them back on. */
+  body.native-app .cs-wallet,
   body.native-app #performance-tip,
   body.native-app .official-site-copy {
     display: none !important;
   }
-  body.desktop-app #token-ca,
   body.desktop-app .official-site-copy {
     display: none !important;
   }

@@ -11,7 +11,7 @@ players and people running their own servers at risk.
 
 Instead, report privately using one of these channels:
 
-- **Email (preferred).** Write to tony@levystreet.com with "Security" in the
+- **Email (preferred).** Write to security@wildhaven.example with "Security" in the
   subject. This reaches the maintainers directly.
 - **Discord.** Send a private message to a member of the **Levy St**, **Admin**,
   or **Devs** group on the

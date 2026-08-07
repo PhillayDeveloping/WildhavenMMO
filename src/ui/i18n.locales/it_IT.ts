@@ -2925,7 +2925,7 @@ export const it_IT: Partial<Record<TranslationKey, string>> = {
   'stats.playersOnline': 'Giocatori online',
   'stats.realmName': 'Nome del mondo',
   'footer.copyright': '2026 Wildhaven',
-  'footer.githubLink': 'https://github.com/levy-street/wildhaven',
+  'footer.githubLink': 'https://wildhaven.example',
   'footer.githubLabel': 'Progetto open source',
   'footer.whitepaper': 'Libro bianco',
   'footer.terms': 'Termini di servizio',
@@ -2993,7 +2993,7 @@ export const it_IT: Partial<Record<TranslationKey, string>> = {
   'playerCard.levelClass': 'Livello {level} - {className}',
   'playerCard.topPercent': 'TOP {percent}%',
   'playerCard.realmSubtitle': 'Mondo {realm}',
-  'playerCard.defaultRealm': 'Mondo di ClaudeCraft',
+  'playerCard.defaultRealm': 'Wildhaven',
   'playerCard.brandWordmark': 'WILDHAVEN',
   'playerCard.recruited': '{count} reclutati',
   'playerCard.footerHandle': '@{handle}',
@@ -3002,7 +3002,7 @@ export const it_IT: Partial<Record<TranslationKey, string>> = {
   'playerCard.arenaStat': 'Arena',
   'playerCard.shareText':
     'Sto forgiando la mia leggenda in Wildhaven: livello {level} {className}{tierBit}. Unisciti al mio mondo:',
-  'playerCard.nativeShareTitle': 'Mondo di ClaudeCraft',
+  'playerCard.nativeShareTitle': 'Wildhaven',
   'playerCard.fileNameFallback': 'giocatore',
   'playerCard.actionShareX': 'Condividi su X',
   'playerCard.actionCopyReferral': 'Copia link di invito',
@@ -6181,7 +6181,7 @@ export const it_IT: Partial<Record<TranslationKey, string>> = {
   'guide.bestiary.levelsSame': 'Livello {min}',
   'guide.bestiary.rare': 'Raro',
   'guide.brand': 'Wildhaven',
-  'guide.brandShort': 'ClaudeCraft',
+  'guide.brandShort': 'Wildhaven',
   'guide.classHook.druid':
     'Un mutaforma che fa da tank come orso, dilania i nemici come felino o cura nel pieno della mischia.',
   'guide.classHook.hunter':

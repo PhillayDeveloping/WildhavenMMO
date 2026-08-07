@@ -53,15 +53,7 @@ const server = http.createServer((req, res) => {
 });
 
 const PORT = 8799;
-const EXPECTED_LINKS = [
-  'https://wildhaven.example/',
-  'https://x.com/WoClaudecraft',
-  'https://www.instagram.com/wildhaven/',
-  'https://www.tiktok.com/@wildhaven',
-  'https://www.youtube.com/@WoClaudeCraft',
-  'https://www.reddit.com/r/WorldofClaudecraft/',
-  'https://github.com/levy-street/wildhaven',
-];
+const EXPECTED_LINKS = ['https://wildhaven.example/', 'https://wildhaven.example'];
 
 const problems = [];
 const ok = (cond, msg) => {

@@ -3108,7 +3108,7 @@ export const sv_SE: EnTranslations = {
   },
   "guide": {
     "brand": "Wildhaven",
-    "brandShort": "ClaudeCraft",
+    "brandShort": "Wildhaven",
     "tagline": "En klassisk MMO du spelar gratis i din webbläsare.",
     "skipToContent": "Hoppa till huvudinnehållet",
     "loading": "Laddar...",
@@ -5015,7 +5015,7 @@ export const sv_SE: EnTranslations = {
   },
   "footer": {
     "copyright": "2026 Wildhaven",
-    "githubLink": "https://github.com/levy-street/wildhaven",
+    "githubLink": "https://wildhaven.example",
     "githubLabel": "Projekt med öppen källkod",
     "whitepaper": "Whitepaper",
     "terms": "Användarvillkor",

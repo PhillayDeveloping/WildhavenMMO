@@ -4,7 +4,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 $wgSitename = 'Wildhaven Wiki';
-$wgMetaNamespace = 'World_of_Claudecraft';
+$wgMetaNamespace = 'Wildhaven';
 $wgScriptPath = '/wiki';
 $wgServer = getenv( 'MEDIAWIKI_SERVER' ) ?: 'http://localhost:8080';
 $wgArticlePath = "$wgScriptPath/index.php/$1";
@@ -12,8 +12,8 @@ $wgUsePathInfo = true;
 $wgResourceBasePath = $wgScriptPath;
 
 $wgLogos = [
-	'1x' => "$wgScriptPath/resources/assets/woc-logo-square.webp",
-	'icon' => "$wgScriptPath/resources/assets/woc-logo-square.webp",
+	'1x' => "$wgScriptPath/resources/assets/wildhaven-logo-square.webp",
+	'icon' => "$wgScriptPath/resources/assets/wildhaven-logo-square.webp",
 ];
 
 $wgEnableEmail = false;

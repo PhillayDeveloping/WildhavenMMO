@@ -57,7 +57,7 @@ public spaces.
 ## Reporting and enforcement
 
 If you experience or witness unacceptable behavior, please report it privately to
-the maintainers by email at tony@levystreet.com. If you prefer, you can instead
+the maintainers by email at contact@wildhaven.example. If you prefer, you can instead
 send a direct message to a member of the **Levy St**, **Admin**, or **Devs** group
 on the [community Discord](https://discord.com/invite/wildhaven) and ask
 for a private channel to share the details. In game, "Report Player" on a

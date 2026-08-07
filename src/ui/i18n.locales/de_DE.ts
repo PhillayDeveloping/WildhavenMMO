@@ -2952,7 +2952,7 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'stats.playersOnline': 'Spieler online',
   'stats.realmName': 'Weltname',
   'footer.copyright': '2026 Wildhaven',
-  'footer.githubLink': 'https://github.com/levy-street/wildhaven',
+  'footer.githubLink': 'https://wildhaven.example',
   'footer.githubLabel': 'Open-Source-Projekt',
   'footer.whitepaper': 'Whitepaper',
   'footer.terms': 'Nutzungsbedingungen',
@@ -3019,7 +3019,7 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'playerCard.levelClass': 'Stufe {level} - {className}',
   'playerCard.topPercent': 'TOP {percent} %',
   'playerCard.realmSubtitle': 'Welt {realm}',
-  'playerCard.defaultRealm': 'Welt von ClaudeCraft',
+  'playerCard.defaultRealm': 'Wildhaven',
   'playerCard.brandWordmark': 'WILDHAVEN',
   'playerCard.recruited': '{count} rekrutiert',
   'playerCard.footerHandle': '@{handle}',
@@ -3028,7 +3028,7 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'playerCard.arenaStat': 'Arena',
   'playerCard.shareText':
     'Ich schmiede meine Legende in Wildhaven: Stufe {level} {className}{tierBit}. Tritt meiner Welt bei:',
-  'playerCard.nativeShareTitle': 'Welt von ClaudeCraft',
+  'playerCard.nativeShareTitle': 'Wildhaven',
   'playerCard.fileNameFallback': 'spieler',
   'playerCard.actionShareX': 'Auf X teilen',
   'playerCard.actionCopyReferral': 'Empfehlungslink kopieren',
@@ -6118,7 +6118,7 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'guide.bestiary.levelsSame': 'Stufe {min}',
   'guide.bestiary.rare': 'Selten',
   'guide.brand': 'Wildhaven',
-  'guide.brandShort': 'ClaudeCraft',
+  'guide.brandShort': 'Wildhaven',
   'guide.classHook.druid':
     'Ein Gestaltwandler, der als Bär tankt, Gegner als Katze zerfleischt oder mitten im Getümmel heilt.',
   'guide.classHook.hunter':

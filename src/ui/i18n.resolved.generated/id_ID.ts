@@ -3108,7 +3108,7 @@ export const id_ID: EnTranslations = {
   },
   "guide": {
     "brand": "Wildhaven",
-    "brandShort": "ClaudeCraft",
+    "brandShort": "Wildhaven",
     "tagline": "MMO bergaya klasik yang bisa kamu mainkan gratis di peramban.",
     "skipToContent": "Lewati ke konten utama",
     "loading": "Memuat...",
@@ -5015,7 +5015,7 @@ export const id_ID: EnTranslations = {
   },
   "footer": {
     "copyright": "2026 Wildhaven",
-    "githubLink": "https://github.com/levy-street/wildhaven",
+    "githubLink": "https://wildhaven.example",
     "githubLabel": "Proyek Sumber Terbuka",
     "whitepaper": "Whitepaper",
     "terms": "Ketentuan Layanan",

@@ -18,7 +18,7 @@
   type SortColumn = 'observed' | 'score' | 'evidence';
   type SortDirection = 'asc' | 'desc';
 
-  const AUTO_REFRESH_STORAGE_KEY = 'claudecraft_admin_suspicious_auto_refresh';
+  const AUTO_REFRESH_STORAGE_KEY = 'wildhaven_admin_suspicious_auto_refresh';
   const AUTO_REFRESH_MS = 30_000;
 
   let data = $state<SuspiciousPlayersData | null>(null);

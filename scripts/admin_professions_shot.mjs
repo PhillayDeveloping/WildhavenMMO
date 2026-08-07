@@ -149,8 +149,8 @@ const browser = await puppeteer.launch({
 const page = await browser.newPage();
 await page.setViewport({ width: 1440, height: 900 });
 await page.evaluateOnNewDocument(
-  `localStorage.setItem('claudecraft_admin_token', ${JSON.stringify(adminToken)});
-   localStorage.setItem('claudecraft_admin_name', ${JSON.stringify(adminUser)});`,
+  `localStorage.setItem('wildhaven_admin_token', ${JSON.stringify(adminToken)});
+   localStorage.setItem('wildhaven_admin_name', ${JSON.stringify(adminUser)});`,
 );
 await page.goto(`${GAME_URL}/admin.html?page=characters`, { waitUntil: 'networkidle2' });
 await page.waitForSelector('#character-search', { visible: true, timeout: 30000 });

@@ -157,7 +157,9 @@ describe('i18n whole-catalog completeness', () => {
       'fiesta.bracket', // "Fiesta" event brand
       'serverUnavailable.logoAlt', // "Wildhaven" logo alt text - brand
       'guide.brand', // "Wildhaven" - brand (Guide)
-      'guide.brandShort', // "ClaudeCraft" - brand (Guide)
+      'guide.brandShort', // "Wildhaven" - brand (Guide)
+      'playerCard.defaultRealm', // "Wildhaven" - brand (shared player card)
+      'playerCard.nativeShareTitle', // "Wildhaven" - brand (native share sheet)
       'guide.home.title', // "Wildhaven" - brand (Guide hero)
       'guide.footer.rights', // "Wildhaven" - brand (Guide footer)
       'hudChrome.discord.title', // "Discord" - brand
