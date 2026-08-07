@@ -2078,7 +2078,7 @@ export const tr_TR: EnTranslations = {
         "titleDiscordian": "Unvan: Discordlu",
         "titleSquire": "Unvan: Diyarın Silahtarı",
         "chromaBlurple": "Blurple Mech Renk Kaplaması",
-        "titleChampion": "Unvan: Claudemoon Şampiyonu",
+        "titleChampion": "Unvan: Wildmoon Şampiyonu",
         "swagStickers": "Çıkartma Paketi (kargoyla)",
         "swagTee": "Tişört (kargoyla)"
       },
@@ -5854,7 +5854,7 @@ export const tr_TR: EnTranslations = {
     "applicationCategory": "Oyun",
     "operatingSystem": "Web tarayıcısı",
     "officialLabel": "Resmi Wildhaven web sitesi",
-    "officialBody": "wildhaven.example, Claudemoon dünyasının resmi ücretsiz tarayıcı MMO'sudur. Kalıcı bir karakterle çevrimiçi oyna, çevrimdışı tek başına keşfet, wiki'yi oku ve bu siteden doğrulanmış topluluk bağlantılarını takip et."
+    "officialBody": "wildhaven.example, Wildmoon dünyasının resmi ücretsiz tarayıcı MMO'sudur. Kalıcı bir karakterle çevrimiçi oyna, çevrimdışı tek başına keşfet, wiki'yi oku ve bu siteden doğrulanmış topluluk bağlantılarını takip et."
   },
   "a11y": {
     "goHome": "Ana sayfaya git",
@@ -6107,7 +6107,7 @@ export const tr_TR: EnTranslations = {
     "logoAlt": "Wildhaven",
     "eyebrow": "Dünya bakımı",
     "heading": "Dünya geçici olarak kullanılamıyor.",
-    "body": "Oyun hizmetini yeniden başlatıyoruz ve Claudemoon'un kısa süre içinde geri döneceğini umuyoruz. Bu sayfa otomatik olarak denetlemeye devam edecek.",
+    "body": "Oyun hizmetini yeniden başlatıyoruz ve Wildmoon'un kısa süre içinde geri döneceğini umuyoruz. Bu sayfa otomatik olarak denetlemeye devam edecek.",
     "status": "Birazdan döneriz"
   },
   "hud": {

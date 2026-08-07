@@ -435,7 +435,7 @@ describe('relay (in-game "!" community posts)', () => {
     characterName: 'Aldric',
     level: 12,
     className: 'Hunter',
-    realm: 'Claudemoon',
+    realm: 'Wildmoon',
     zone: 'Eastbrook Vale',
     message: 'need a healer for Cragmaw Crypt',
     profileUrl: 'https://woc.test/c/Aldric',
@@ -478,7 +478,7 @@ describe('relay (in-game "!" community posts)', () => {
     expect(embed.description).toBe('need a healer for Cragmaw Crypt');
     expect(embed.fields).toEqual([
       { name: 'Character', value: 'Aldric - Level 12 Hunter', inline: true },
-      { name: 'Location', value: 'Eastbrook Vale (Claudemoon)', inline: true },
+      { name: 'Location', value: 'Eastbrook Vale (Wildmoon)', inline: true },
     ]);
     const button = msg.components[0].components[0];
     expect(button.style).toBe(5); // link button
@@ -509,7 +509,7 @@ describe('significant-activity cards', () => {
   it('level-20 card pings the subject and shows the cap', () => {
     const msg = buildActivityMessage({
       kind: 'levelup',
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
       profileUrl: 'https://woc.test/c/Aldric',
       level: 20,
       participants: [linked('Aldric', '111')],
@@ -528,7 +528,7 @@ describe('significant-activity cards', () => {
   it('rare-loot card uses the quality color and names the item', () => {
     const msg = buildActivityMessage({
       kind: 'rareloot',
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
       profileUrl: null,
       itemName: 'Ember Greatsword',
       quality: 'legendary',
@@ -542,7 +542,7 @@ describe('significant-activity cards', () => {
   it('duel card mentions both linked players and names the winner', () => {
     const msg = buildActivityMessage({
       kind: 'duel',
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
       profileUrl: null,
       winnerName: 'Aldric',
       loserName: 'Mira',
@@ -561,7 +561,7 @@ describe('significant-activity cards', () => {
   it('arena card shows the signed rating delta', () => {
     const msg = buildActivityMessage({
       kind: 'arena',
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
       profileUrl: null,
       ratingDelta: 24,
       participants: [linked('Aldric', '111')],
@@ -572,7 +572,7 @@ describe('significant-activity cards', () => {
   it('renders a plain name (no ping) for an unlinked participant', () => {
     const msg = buildActivityMessage({
       kind: 'duel',
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
       profileUrl: null,
       winnerName: 'Aldric',
       loserName: 'Ghost',
@@ -588,7 +588,7 @@ describe('significant-activity cards', () => {
   it('vale-cup card names the winning nation, bracket, and score, tagging the side', () => {
     const msg = buildActivityMessage({
       kind: 'vale_cup',
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
       profileUrl: null,
       bracket: 3,
       scoreA: 2,
@@ -613,7 +613,7 @@ describe('significant-activity cards', () => {
   it('vale-cup card falls back to the raw nation id when the label map misses', () => {
     const msg = buildActivityMessage({
       kind: 'vale_cup',
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
       profileUrl: null,
       bracket: 1,
       scoreA: 3,
@@ -640,7 +640,7 @@ describe('significant-activity cards', () => {
   it('masterwork card names the crafted item and pings the crafter', () => {
     const msg = buildActivityMessage({
       kind: 'masterwork',
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
       profileUrl: 'https://woc.test/c/Aldric',
       itemName: 'Osmium Breastplate',
       participants: [linked('Aldric', '111')],
@@ -658,7 +658,7 @@ describe('significant-activity cards', () => {
   it('deed-title card names the deed and the earned title', () => {
     const msg = buildActivityMessage({
       kind: 'deed',
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
       profileUrl: null,
       deedId: 'prog_masterwright',
       deedName: 'Masterwright',
@@ -674,7 +674,7 @@ describe('significant-activity cards', () => {
   it('first-koi card reads as a catch, not a generic deed', () => {
     const msg = buildActivityMessage({
       kind: 'deed',
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
       profileUrl: null,
       deedId: 'col_glimmerfin',
       deedName: 'Glimmer of Hope',
@@ -693,7 +693,7 @@ describe('significant-activity cards', () => {
   it('degrades an empty item or deed name to the generic title', () => {
     const titleOf = (item: ActivityItem): string =>
       (buildActivityMessage(item) as { embeds: Array<{ title: string }> }).embeds[0].title;
-    const base = { realm: 'Claudemoon', profileUrl: null, participants: [linked('Aldric', '111')] };
+    const base = { realm: 'Wildmoon', profileUrl: null, participants: [linked('Aldric', '111')] };
     expect(titleOf({ ...base, kind: 'rareloot', itemName: '' })).toBe('A rare item');
     expect(titleOf({ ...base, kind: 'masterwork', itemName: '' })).toBe('A masterwork piece');
     expect(titleOf({ ...base, kind: 'deed', deedId: 'col_glimmerfin', deedName: '' })).toBe(
@@ -709,7 +709,7 @@ describe('significant-activity cards', () => {
   it('returns null for an unknown activity kind', () => {
     const msg = buildActivityMessage({
       kind: 'parade' as never,
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
       profileUrl: null,
       participants: [linked('Aldric', '111')],
     });
@@ -745,7 +745,7 @@ describe('significant-activity cards', () => {
     for (const kind of SERVER_KINDS) {
       const msg = buildActivityMessage({
         kind,
-        realm: 'Claudemoon',
+        realm: 'Wildmoon',
         profileUrl: null,
         level: 20,
         participants: [linked('Aldric', '111')],
@@ -781,7 +781,7 @@ describe('significant-activity cards', () => {
     // Known kinds keep building full payloads.
     const known = (kind: ActivityItem['kind']): ActivityItem => ({
       kind,
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
       profileUrl: null,
       level: 20,
       participants: [linked('Aldric', '111')],
@@ -802,7 +802,7 @@ describe('daily rewards winner cards', () => {
       day: '2026-06-30',
       taskName: 'Complete quests',
       nextTaskName: 'Win an arena match',
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
       // 250g pool, split 20% / 15% down the ranks (DAILY_REWARD_SPLITS).
       prizePoolCopper: 2_500_000,
       finalizedAt: '2026-07-01T00:00:00.000Z',
@@ -844,7 +844,7 @@ describe('daily rewards winner cards', () => {
     expect(msg.embeds[0].description).toContain('**#1** titoisking - 12,345 pts - 50g (20%)');
     expect(msg.embeds[0].description).toContain('**#2** alice - 1,000 pts - 37g 50s (15%)');
     expect(msg.embeds[0].fields).toEqual([
-      { name: 'Realm', value: 'Claudemoon', inline: true },
+      { name: 'Realm', value: 'Wildmoon', inline: true },
       { name: 'Prize Pool', value: '250g', inline: true },
       { name: 'Next task', value: 'Win an arena match', inline: false },
     ]);

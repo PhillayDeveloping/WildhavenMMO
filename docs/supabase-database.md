@@ -48,25 +48,45 @@ covers all three at once.
    unknown, which Node reports with wording that reads like a broken certificate.
 
    Download it from the dashboard (Project Settings > Database > SSL Configuration >
-   Download certificate) and point `NODE_EXTRA_CA_CERTS` at the file.
+   Download certificate), then point `DATABASE_CA_CERT` at the file in `.env`:
+
+   ```
+   DATABASE_CA_CERT=/path/to/prod-ca-2021.crt
+   ```
+
+   That is the whole step. The server hands the certificate to `pg` directly
+   (`scripts/lib/db_ssl.mjs`, shared with `db:check` so the two can never
+   disagree), and verification stays FULL: chain and hostname are both still
+   checked, the root is simply named rather than looked up in a trust store. The
+   trust is also scoped to this one database, unlike the machine-wide alternative
+   below.
+
+   One implementation detail is load-bearing and easy to trip over if you wire
+   this by hand. `pg` builds its config as
+   `Object.assign({}, config, parse(config.connectionString))`, so the parsed
+   connection string OVERRIDES your options: while `?sslmode=require` is present,
+   `pg-connection-string` returns `ssl: {}` and an explicit `ssl: { ca }` is
+   silently discarded, leaving you back at the system trust store with no error
+   to explain it. The resolver drops `sslmode` for exactly this reason, and
+   `tests/db_ssl.test.ts` pins the override against the installed `pg` so a
+   future version that stops doing it is noticed rather than assumed.
+
+   **The machine-wide alternative.** `NODE_EXTRA_CA_CERTS` extends the trust
+   store for every Node process on the box, which is convenient if several
+   projects hit the same database:
 
    ```bash
    setx NODE_EXTRA_CA_CERTS "C:\path\to\prod-ca-2021.crt"
    ```
 
-   **It has to be in the environment before `node` starts, so `.env` cannot carry
-   it.** Node reads this variable at startup, and neither mechanism this repo uses
-   runs early enough: not `--env-file` (which `db:check` passes), and not
-   `process.loadEnvFile()` in `server/env.ts` (which the server calls at runtime).
-   Both were measured, not assumed. `setx` also only affects NEW processes, so
-   restart any shell that is already open.
-
-   Worth knowing what this buys and costs: a user-level variable extends the trust
-   store for every Node process you run, not just Wildhaven, so Supabase becomes a
-   CA those processes trust for any domain. On a machine where Node effectively
-   only runs this project that is a reasonable trade. To scope it tighter, set the
-   variable per command instead, or pass `ssl: { ca }` at the three connection
-   sites (which costs the "connection string only" property above).
+   **It cannot live in `.env`.** Node reads that variable at startup, and neither
+   mechanism this repo uses runs early enough: not `--env-file` (which `db:check`
+   passes), and not `process.loadEnvFile()` in `server/env.ts` (which the server
+   calls at runtime). Both were measured, not assumed. `setx` also only affects
+   NEW processes, so restart any shell that is already open. The cost is reach:
+   Supabase's root becomes a CA every Node process trusts for any domain, and the
+   setting lives outside the repo, so a new machine or a fresh worktree loses it
+   silently. Prefer `DATABASE_CA_CERT` unless you specifically want it system-wide.
 
 5. **Check the string before you start the server.**
 
@@ -74,8 +94,8 @@ covers all three at once.
    npm run db:check
    ```
 
-   This connects exactly the way `server/db.ts` does (connection string only, no
-   `ssl` option), then proves the three things that actually decide whether the
+   This connects exactly the way `server/db.ts` does, through the same shared
+   resolver, then proves the three things that actually decide whether the
    boot will succeed: TLS negotiated, the role may `CREATE TABLE`, and
    `max_connections` can seat a realm. It never prints your password, and its only
    write is a temporary table inside a rolled-back transaction. A failure names the

@@ -51,7 +51,7 @@ describe('topLifetimeXp reads and normalizes the selected title (both arms)', ()
       name: 'Hilda',
       class: 'warrior',
       level: 20,
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
       lifetime_xp: '1000',
       prestige_rank: 0,
       active_title: null,

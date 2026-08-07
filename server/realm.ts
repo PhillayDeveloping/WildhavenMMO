@@ -8,7 +8,7 @@ import { DEFAULT_RAID_RESET_TIME_ZONE, isSupportedTimeZone } from './raid_reset'
 // value, so two processes with different REALM_NAME share a DB yet form fully
 // isolated worlds. Defaults to a single realm for local dev / single-shard prod.
 
-export const DEFAULT_REALM_NAME = 'Claudemoon';
+export const DEFAULT_REALM_NAME = 'Wildmoon';
 
 export function resolveRealm(rawName: string | undefined): string {
   const raw = (rawName ?? '').trim();
@@ -83,7 +83,7 @@ export interface RealmEntry {
 // The realm directory drives the client's classic-MMO-style realm-list screen.
 // Configure it with REALMS as a comma-separated list of `Name=https://host=Type`
 // entries (Type optional, defaults Normal), e.g.
-//   REALMS="Claudemoon=https://claudemoon.example.com=Normal,Highwatch=https://highwatch.example.com=PvP"
+//   REALMS="Wildmoon=https://wildmoon.example.com=Normal,Highwatch=https://highwatch.example.com=PvP"
 // Every realm process shares the same DATABASE_URL and serves the same
 // directory, so a client on any of them can discover and switch to the others.
 // Unset → a single same-origin realm (this process), i.e. no cross-realm UI.

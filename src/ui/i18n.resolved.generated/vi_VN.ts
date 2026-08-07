@@ -2078,7 +2078,7 @@ export const vi_VN: EnTranslations = {
         "titleDiscordian": "Danh Hiệu: Discordian",
         "titleSquire": "Danh Hiệu: Cận Vệ Vương Quốc",
         "chromaBlurple": "Sắc Màu Mech Blurple",
-        "titleChampion": "Danh Hiệu: Nhà Vô Địch Claudemoon",
+        "titleChampion": "Danh Hiệu: Nhà Vô Địch Wildmoon",
         "swagStickers": "Bộ Sticker (giao tận nơi)",
         "swagTee": "Áo Thun (giao tận nơi)"
       },
@@ -5854,7 +5854,7 @@ export const vi_VN: EnTranslations = {
     "applicationCategory": "Trò chơi",
     "operatingSystem": "Trình duyệt web",
     "officialLabel": "Trang web Wildhaven chính thức",
-    "officialBody": "wildhaven.example là trang MMO trên trình duyệt miễn phí chính thức cho thế giới Claudemoon. Chơi trực tuyến với một nhân vật bền vững, khám phá đơn lẻ ngoại tuyến, đọc wiki và theo dõi các liên kết cộng đồng đã được xác minh từ trang này."
+    "officialBody": "wildhaven.example là trang MMO trên trình duyệt miễn phí chính thức cho thế giới Wildmoon. Chơi trực tuyến với một nhân vật bền vững, khám phá đơn lẻ ngoại tuyến, đọc wiki và theo dõi các liên kết cộng đồng đã được xác minh từ trang này."
   },
   "a11y": {
     "goHome": "Về trang chủ",
@@ -6107,7 +6107,7 @@ export const vi_VN: EnTranslations = {
     "logoAlt": "Wildhaven",
     "eyebrow": "Bảo trì thế giới",
     "heading": "Thế giới tạm thời không khả dụng.",
-    "body": "Chúng tôi đang khởi động lại dịch vụ trò chơi và dự kiến Claudemoon sẽ trở lại trong giây lát. Trang này sẽ tự động tiếp tục kiểm tra.",
+    "body": "Chúng tôi đang khởi động lại dịch vụ trò chơi và dự kiến Wildmoon sẽ trở lại trong giây lát. Trang này sẽ tự động tiếp tục kiểm tra.",
     "status": "Sớm trở lại"
   },
   "hud": {

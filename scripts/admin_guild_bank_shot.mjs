@@ -39,7 +39,7 @@ import { assertLoopbackDatabaseUrl, assertLoopbackUrl } from './lib/loopback_gua
 const SEED_ONLY = process.argv.includes('--seed');
 const GAME_URL = process.env.GAME_URL ?? 'http://localhost:5195';
 const SERVER_URL = process.env.SERVER_URL ?? 'http://127.0.0.1:8791';
-const REALM = process.env.REALM_NAME ?? 'Claudemoon';
+const REALM = process.env.REALM_NAME ?? 'Wildmoon';
 const OUT = process.env.SHOTS_DIR ?? 'docs/screenshots/admin-guild-bank-panel';
 const STATE_FILE = 'tmp/admin-guild-bank-shot.json';
 

@@ -50,6 +50,7 @@
 
 import { pathToFileURL } from 'node:url';
 import { Pool } from 'pg';
+import { pgConnectionConfig } from './lib/db_ssl.mjs';
 
 // The guild slot ladder's valid purchased_slots_after values, mirrored from
 // GUILD_BANK_RUNG_SLOTS / GUILD_BANK_LADDER_POSITIONS in src/sim/guild_bank.ts
@@ -842,8 +843,11 @@ async function main() {
   // operator tool pointed at a quiesced realm; failing loudly beats camping a
   // connection). Pagination is a recorded deferral: revisit with a keyset
   // cursor once bank_ledger reaches millions of rows.
+  // Through the shared resolver, not a bare connection string: a hosted database
+  // behind a private root CA (Supabase) needs DATABASE_CA_CERT applied here too,
+  // or this tool fails TLS verification where the server itself connects fine.
   const pool = new Pool({
-    connectionString: databaseUrl,
+    ...pgConnectionConfig(databaseUrl),
     max: 2,
     options: '-c statement_timeout=300000',
   });

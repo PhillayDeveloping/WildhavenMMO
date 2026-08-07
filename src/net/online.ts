@@ -899,6 +899,21 @@ export class Api {
     return doc;
   }
 
+  // Whether this server has Discord OAuth configured. The AUTH screen needs an
+  // UNAUTHENTICATED answer (GET /api/discord takes a bearer token, and the login
+  // screen is exactly where none exists yet), so it rides the public status
+  // document like the steam and epic adverts. Fails closed: an unreachable or
+  // older server renders no Discord sign-in button rather than one that can only
+  // answer 503 discord.not_configured.
+  async discordAdvert(): Promise<boolean> {
+    try {
+      const data = await this.statusDoc();
+      return (data.discord as { enabled?: boolean } | undefined)?.enabled === true;
+    } catch {
+      return false;
+    }
+  }
+
   // ── Steam link (deed achievement mirror) ───────────────────────────────────
   // The public capability advert: whether this server has the Steam surface
   // lit. Read BEFORE any authed steam call so a dark server renders no link UI.

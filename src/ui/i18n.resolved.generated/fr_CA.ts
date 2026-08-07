@@ -2078,7 +2078,7 @@ export const fr_CA: EnTranslations = {
         "titleDiscordian": "Titre: Discordien",
         "titleSquire": "Titre: Écuyer du Royaume",
         "chromaBlurple": "Chroma Mech Blurple",
-        "titleChampion": "Titre: Champion de Claudemoon",
+        "titleChampion": "Titre: Champion de Wildmoon",
         "swagStickers": "Pack d'autocollants (expédié)",
         "swagTee": "T-shirt (expédié)"
       },
@@ -5854,7 +5854,7 @@ export const fr_CA: EnTranslations = {
     "applicationCategory": "Jeu",
     "operatingSystem": "Navigateur Web",
     "officialLabel": "Site officiel de Wildhaven",
-    "officialBody": "wildhaven.example est le MMO gratuit officiel sur navigateur du monde Claudemoon. Jouez en ligne avec un personnage persistant, explorez en solo hors ligne, lisez le wiki et suivez les liens communautaires vérifiés depuis ce site."
+    "officialBody": "wildhaven.example est le MMO gratuit officiel sur navigateur du monde Wildmoon. Jouez en ligne avec un personnage persistant, explorez en solo hors ligne, lisez le wiki et suivez les liens communautaires vérifiés depuis ce site."
   },
   "a11y": {
     "goHome": "Aller à l'accueil",
@@ -6107,7 +6107,7 @@ export const fr_CA: EnTranslations = {
     "logoAlt": "Wildhaven",
     "eyebrow": "Maintenance du monde",
     "heading": "Le monde est temporairement indisponible.",
-    "body": "Nous redémarrons le service de jeu et Claudemoon devrait revenir sous peu. Cette page continuera de vérifier automatiquement.",
+    "body": "Nous redémarrons le service de jeu et Wildmoon devrait revenir sous peu. Cette page continuera de vérifier automatiquement.",
     "status": "De retour bientôt"
   },
   "hud": {

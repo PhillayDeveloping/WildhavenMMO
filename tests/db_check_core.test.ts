@@ -112,21 +112,24 @@ describe('diagnose', () => {
     expect(out).toContain('proxy');
     // The general branch still has to point at the private-root case, which is
     // the likeliest cause and the only one with an exact fix.
-    expect(out).toContain('NODE_EXTRA_CA_CERTS');
+    expect(out).toContain('DATABASE_CA_CERT');
     // The escape hatch must be offered as a diagnostic only.
     expect(out).toContain('never to run');
   });
 
-  it('names the private root and the env-only fix when the code says the root is unknown', () => {
+  it('names the private root and the in-repo fix when the code says the root is unknown', () => {
     // What connecting to a Supabase Session Pooler over sslmode=require actually
     // returns. The chain is well-formed; the root is simply not publicly trusted,
     // so the generic "certificate" wording sends the operator hunting the wrong bug.
     const out = diagnose({ code: 'SELF_SIGNED_CERT_IN_CHAIN' });
     expect(out).toContain('Supabase Root 2021 CA');
+    // The remedy .env CAN carry, offered first because it is the one that
+    // travels with the repo (scripts/lib/db_ssl.mjs hands the CA to pg itself).
+    expect(out).toContain('DATABASE_CA_CERT');
+    // The machine-wide alternative still has to be named, together with the
+    // reason .env cannot carry THAT one: a reader who knows only
+    // NODE_EXTRA_CA_CERTS otherwise puts it in .env and watches it do nothing.
     expect(out).toContain('NODE_EXTRA_CA_CERTS');
-    // The load-bearing half: .env cannot carry it, and saying so is the whole
-    // point of this arm. Both mechanisms are named because a reader who knows
-    // one of them still gets it wrong.
     expect(out).toContain('--env-file');
     expect(out).toContain('process.loadEnvFile()');
     expect(out).toContain('never to run');

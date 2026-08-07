@@ -124,6 +124,8 @@ docker compose up -d --build     # postgres and the game server, fully built
 # open http://localhost:8787 for accounts, characters, and the whole world
 ```
 
+For **playing with friends off your own machine**, without a VPS or a domain purchase, see [docs/host-for-friends.md](docs/host-for-friends.md): the server answers the client, the API, and the WebSocket on one port, so there is exactly one thing to expose. Pair it with [docs/supabase-database.md](docs/supabase-database.md) to keep the database off your machine.
+
 For **remote hosting**, put the compose stack on any VPS, set a real `POSTGRES_PASSWORD` in the environment, and front port 8787 with a TLS reverse proxy. Caddy makes this a handful of lines; WebSockets are proxied automatically and the client auto-selects `wss://` on https pages. Auth endpoints are rate-limited, passwords are scrypt-hashed, and login sessions expire. Never set `ALLOW_DEV_COMMANDS=1` in production, since it enables the full `/dev` cheat set: the level and teleport cheats the test bots use, plus item grants, mob spawns, instance teleports, and the in-game dev command GUI. [DEPLOY.md](DEPLOY.md) is the full production guide, including the reverse-proxy configuration that keeps the health and metrics endpoints off the public edge.
 
 ### Develop online with hot reload

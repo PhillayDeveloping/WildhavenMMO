@@ -68,7 +68,7 @@
 //   RUN_ID               run tag, LETTERS ONLY (digits are stripped, so run1 and run2
 //                        collide; default 5 random letters). Must be fresh per run: the
 //                        harness refuses to append to an existing results file
-//   REALM_NAME           realm the bot characters join (default Claudemoon)
+//   REALM_NAME           realm the bot characters join (default Wildmoon)
 //   CONNECT_CONCURRENCY  parallel connects (default 10, 1 to 50)
 //
 // Results file: JSONL under tmp/ (gitignored), one file per run:
@@ -129,7 +129,7 @@ const { Pool } = pg;
 const SERVER_URL = (process.env.SERVER_URL ?? 'http://localhost:8787').replace(/\/+$/, '');
 const WS_URL = `${SERVER_URL.replace(/^http/, 'ws')}/ws`;
 const DATABASE_URL = process.env.DATABASE_URL;
-const REALM = process.env.REALM_NAME ?? 'Claudemoon';
+const REALM = process.env.REALM_NAME ?? 'Wildmoon';
 const SCENARIO = process.env.SCENARIO ?? '';
 const BOT_COUNT = boundedInt(process.env.BOT_COUNT, 20, 1, 100);
 const MEASURE_MS = boundedInt(process.env.MEASURE_MS, 60_000, 5_000, 600_000);

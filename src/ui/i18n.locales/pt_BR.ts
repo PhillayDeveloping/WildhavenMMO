@@ -2532,7 +2532,7 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.unitFrame.targetLabel': 'Seu alvo',
   'seo.officialLabel': 'Site oficial de Wildhaven',
   'seo.officialBody':
-    'wildhaven.example é o MMO de navegador gratuito oficial do mundo Claudemoon. Jogue online com um personagem persistente, explore solo offline, leia a wiki e siga os links verificados da comunidade a partir deste site.',
+    'wildhaven.example é o MMO de navegador gratuito oficial do mundo Wildmoon. Jogue online com um personagem persistente, explore solo offline, leia a wiki e siga os links verificados da comunidade a partir deste site.',
   'hudChrome.questShare.notShareable': 'Esta missão não pode ser compartilhada.',
   'hudChrome.questShare.notInSharerParty':
     'Você precisa estar no grupo de {name} para aceitar essa missão.',
@@ -3193,7 +3193,7 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'serverUnavailable.eyebrow': 'Manutenção do mundo',
   'serverUnavailable.heading': 'O mundo está temporariamente indisponível.',
   'serverUnavailable.body':
-    'Estamos reiniciando o serviço do jogo e esperamos que Claudemoon volte em breve. Esta página continuará verificando automaticamente.',
+    'Estamos reiniciando o serviço do jogo e esperamos que Wildmoon volte em breve. Esta página continuará verificando automaticamente.',
   'serverUnavailable.status': 'Voltamos em breve',
   'hud.core.elite': 'ELITE',
   'hud.core.boss': 'CHEFE',
@@ -7815,7 +7815,7 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.discord.swag.titleDiscordian': 'Título: Discordiano',
   'hudChrome.discord.swag.titleSquire': 'Título: Escudeiro do Reino',
   'hudChrome.discord.swag.chromaBlurple': 'Croma Mech Blurple',
-  'hudChrome.discord.swag.titleChampion': 'Título: Campeão de Claudemoon',
+  'hudChrome.discord.swag.titleChampion': 'Título: Campeão de Wildmoon',
   'hudChrome.discord.swag.swagStickers': 'Pacote de Adesivos (enviado)',
   'hudChrome.discord.swag.swagTee': 'Camiseta (enviada)',
   'hudChrome.discord.relay.tooFast':

@@ -29,7 +29,7 @@ class FakeDb implements SocialDb {
   private members = new Map<number, { guildId: number; rank: GuildRank }>();
   private nextGuildId = 1;
 
-  addChar(id: number, name: string, cls = 'warrior', level = 10, realm = 'Claudemoon'): void {
+  addChar(id: number, name: string, cls = 'warrior', level = 10, realm = 'Wildmoon'): void {
     this.chars.set(id, { id, name, cls, level, realm, activeTitle: null });
   }
 
@@ -387,7 +387,7 @@ function setup(cfg: { isNameOffensive?: (name: string) => boolean } = {}) {
       name,
       cls: opts.cls ?? 'warrior',
       level: opts.level ?? 10,
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
     });
     actors.set(id, { characterId: id, name });
   };
@@ -406,16 +406,16 @@ function setup(cfg: { isNameOffensive?: (name: string) => boolean } = {}) {
 
 describe('resolveRealm', () => {
   it('accepts realm-style display names', () => {
-    expect(resolveRealm('Claudemoon')).toBe('Claudemoon');
+    expect(resolveRealm('Wildmoon')).toBe('Wildmoon');
     expect(resolveRealm('Area 52')).toBe('Area 52');
     expect(resolveRealm("Mal'Ganis")).toBe("Mal'Ganis");
     expect(resolveRealm('  Ironforge  ')).toBe('Ironforge');
   });
   it('falls back to the default for empty or invalid names', () => {
-    expect(resolveRealm(undefined)).toBe('Claudemoon');
-    expect(resolveRealm('')).toBe('Claudemoon');
-    expect(resolveRealm('x'.repeat(25))).toBe('Claudemoon');
-    expect(resolveRealm('drop;table')).toBe('Claudemoon');
+    expect(resolveRealm(undefined)).toBe('Wildmoon');
+    expect(resolveRealm('')).toBe('Wildmoon');
+    expect(resolveRealm('x'.repeat(25))).toBe('Wildmoon');
+    expect(resolveRealm('drop;table')).toBe('Wildmoon');
   });
 });
 

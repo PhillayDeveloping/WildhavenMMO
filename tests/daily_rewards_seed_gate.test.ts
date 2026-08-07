@@ -35,32 +35,32 @@ describe('daily rewards seed gate', () => {
 
   describe('key composition', () => {
     it('is stable for the same day, realm, and config', () => {
-      expect(buildSeedKey('2026-07-01', 'Claudemoon', CONFIG)).toBe(
-        buildSeedKey('2026-07-01', 'Claudemoon', CONFIG),
+      expect(buildSeedKey('2026-07-01', 'Wildmoon', CONFIG)).toBe(
+        buildSeedKey('2026-07-01', 'Wildmoon', CONFIG),
       );
     });
 
     it('changes when ONLY the day changes', () => {
-      expect(buildSeedKey('2026-07-01', 'Claudemoon', CONFIG)).not.toBe(
-        buildSeedKey('2026-07-02', 'Claudemoon', CONFIG),
+      expect(buildSeedKey('2026-07-01', 'Wildmoon', CONFIG)).not.toBe(
+        buildSeedKey('2026-07-02', 'Wildmoon', CONFIG),
       );
     });
 
     it('changes when ONLY the realm changes', () => {
-      expect(buildSeedKey('2026-07-01', 'Claudemoon', CONFIG)).not.toBe(
+      expect(buildSeedKey('2026-07-01', 'Wildmoon', CONFIG)).not.toBe(
         buildSeedKey('2026-07-01', 'Emberfall', CONFIG),
       );
     });
 
     it('changes when ONLY prizePoolCopper changes', () => {
-      expect(buildSeedKey('2026-07-01', 'Claudemoon', CONFIG)).not.toBe(
-        buildSeedKey('2026-07-01', 'Claudemoon', { ...CONFIG, prizePoolCopper: 200 }),
+      expect(buildSeedKey('2026-07-01', 'Wildmoon', CONFIG)).not.toBe(
+        buildSeedKey('2026-07-01', 'Wildmoon', { ...CONFIG, prizePoolCopper: 200 }),
       );
     });
 
     it('changes when ONLY the tasks array changes', () => {
-      expect(buildSeedKey('2026-07-01', 'Claudemoon', CONFIG)).not.toBe(
-        buildSeedKey('2026-07-01', 'Claudemoon', {
+      expect(buildSeedKey('2026-07-01', 'Wildmoon', CONFIG)).not.toBe(
+        buildSeedKey('2026-07-01', 'Wildmoon', {
           ...CONFIG,
           tasks: [task({ points: 25 })],
         }),
@@ -74,11 +74,11 @@ describe('daily rewards seed gate', () => {
       // Crucially this is the UNSAFE direction if it were wrong: two configs that
       // WOULD write different rows must never share a key, so a defaulted field
       // must equal its explicit form, not diverge from it.
-      const defaulted = buildSeedKey('2026-07-01', 'Claudemoon', {
+      const defaulted = buildSeedKey('2026-07-01', 'Wildmoon', {
         ...CONFIG,
         tasks: [task({ points: 20 })],
       });
-      const explicit = buildSeedKey('2026-07-01', 'Claudemoon', {
+      const explicit = buildSeedKey('2026-07-01', 'Wildmoon', {
         ...CONFIG,
         tasks: [task({ points: 20, basePoints: 20, active: true, config: {} })],
       });
@@ -113,16 +113,16 @@ describe('daily rewards seed gate', () => {
   });
 
   it('gates two realms for the same day independently', async () => {
-    const calls: Record<string, number> = { Claudemoon: 0, Emberfall: 0 };
-    const seedFor = (realm: 'Claudemoon' | 'Emberfall') => () => {
+    const calls: Record<string, number> = { Wildmoon: 0, Emberfall: 0 };
+    const seedFor = (realm: 'Wildmoon' | 'Emberfall') => () => {
       calls[realm]++;
       return Promise.resolve();
     };
-    await runSeedOnce(buildSeedKey('2026-07-01', 'Claudemoon', CONFIG), seedFor('Claudemoon'));
+    await runSeedOnce(buildSeedKey('2026-07-01', 'Wildmoon', CONFIG), seedFor('Wildmoon'));
     await runSeedOnce(buildSeedKey('2026-07-01', 'Emberfall', CONFIG), seedFor('Emberfall'));
-    await runSeedOnce(buildSeedKey('2026-07-01', 'Claudemoon', CONFIG), seedFor('Claudemoon'));
+    await runSeedOnce(buildSeedKey('2026-07-01', 'Wildmoon', CONFIG), seedFor('Wildmoon'));
     await runSeedOnce(buildSeedKey('2026-07-01', 'Emberfall', CONFIG), seedFor('Emberfall'));
-    expect(calls).toEqual({ Claudemoon: 1, Emberfall: 1 });
+    expect(calls).toEqual({ Wildmoon: 1, Emberfall: 1 });
     expect(dailyRewardSeedGateSizeForTests()).toBe(2);
   });
 

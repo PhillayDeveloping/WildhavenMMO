@@ -134,7 +134,7 @@ export const DISCORD_SWAG: readonly SwagItem[] = [
     kind: 'title',
     cost: 2_500,
     minTier: 5,
-    grantId: 'champion_of_claudemoon',
+    grantId: 'champion_of_wildmoon',
   },
 ] as const;
 

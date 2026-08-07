@@ -13,11 +13,11 @@ import {
 import { GUILD_BANK_LADDER_POSITIONS, GUILD_BANK_RUNG_SLOTS } from '../src/sim/guild_bank';
 
 // Fill a bank_ledger row's defaults (snake_case, as Postgres returns it); pass only
-// the fields a case cares about. Every row is 'personal' with realm Claudemoon.
+// the fields a case cares about. Every row is 'personal' with realm Wildmoon.
 function L(o: Partial<BankLedgerAuditRow>): BankLedgerAuditRow {
   return {
     id: 0,
-    realm: 'Claudemoon',
+    realm: 'Wildmoon',
     character_id: 1,
     op: 'deposit',
     item_id: null,
@@ -46,7 +46,7 @@ describe('auditBank', () => {
       characters: [
         {
           id: 1,
-          realm: 'Claudemoon',
+          realm: 'Wildmoon',
           state: { bank: { inventory: [{ itemId: 'wolf_fang', count: 4 }], purchasedSlots: 6 } },
         },
       ],
@@ -85,13 +85,13 @@ describe('auditBank', () => {
         // character 20's bank matches its ledger net, isolating the regression.
         {
           id: 20,
-          realm: 'Claudemoon',
+          realm: 'Wildmoon',
           state: { bank: { inventory: [{ itemId: 'wolf_fang', count: 2 }], purchasedSlots: 0 } },
         },
         // character 40 holds an item its (empty) ledger never recorded.
         {
           id: 40,
-          realm: 'Claudemoon',
+          realm: 'Wildmoon',
           state: { bank: { inventory: [{ itemId: 'iron_ore', count: 3 }], purchasedSlots: 0 } },
         },
       ],
@@ -107,7 +107,7 @@ describe('auditBank', () => {
     // The finding shape carries container / realm / characterId / kind / detail.
     expect(findings.find((f) => f.characterId === 40)).toMatchObject({
       container: 'personal',
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
       characterId: 40,
       kind: 'ledger_state_mismatch',
     });
@@ -126,9 +126,9 @@ describe('auditBank', () => {
         { id: 3, character_id: 51, op: 'deposit', item_id: 'iron_ore', count: 2 },
       ].map(L),
       characters: [
-        { id: 50, realm: 'Claudemoon', state: null }, // NULL state, ledger activity
-        { id: 51, realm: 'Claudemoon', state: { pos: { x: 0, z: 0 } } }, // state without bank
-        { id: 52, realm: 'Claudemoon', state: null }, // pre-bank, no activity: skipped
+        { id: 50, realm: 'Wildmoon', state: null }, // NULL state, ledger activity
+        { id: 51, realm: 'Wildmoon', state: { pos: { x: 0, z: 0 } } }, // state without bank
+        { id: 52, realm: 'Wildmoon', state: null }, // pre-bank, no activity: skipped
       ],
     });
     expect(findingKindsFor(findings, 50)).toEqual(['ledger_state_mismatch', 'purchased_mismatch']);
@@ -142,7 +142,7 @@ describe('auditBank', () => {
       characters: [
         {
           id: 5,
-          realm: 'Claudemoon',
+          realm: 'Wildmoon',
           state: { bank: { inventory: [{ itemId: 'wolf_fang', count: -2 }], purchasedSlots: 0 } },
         },
       ],
@@ -195,7 +195,7 @@ describe('formatReport', () => {
   it('renders one FINDING line per anomaly plus the per-container summary', () => {
     const finding: BankAuditFinding = {
       container: 'personal',
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
       characterId: 9,
       kind: 'negative_net',
       detail: 'net -3 of wolf_fang',
@@ -203,7 +203,7 @@ describe('formatReport', () => {
     const report = formatReport(rows, [finding]);
     expect(report).toContain('container personal: ledger rows 1: findings 1');
     expect(report).toContain(
-      'FINDING: container personal: realm Claudemoon: character 9: negative_net: net -3 of wolf_fang',
+      'FINDING: container personal: realm Wildmoon: character 9: negative_net: net -3 of wolf_fang',
     );
     expect(report).not.toContain('OK:');
   });
@@ -315,7 +315,7 @@ const BALANCED_SESSION: BankLedgerAuditRow[] = [
 const BALANCED_BOOK = [
   {
     guild_id: 913,
-    realm: 'Claudemoon',
+    realm: 'Wildmoon',
     data: { treasury: 25_000, inventory: [{ itemId: 'wolf_fang', count: 2 }], purchasedSlots: 30 },
   },
 ];
@@ -437,7 +437,7 @@ describe('auditBank (the counterparty balance)', () => {
         characters: [
           {
             id: 1,
-            realm: 'Claudemoon',
+            realm: 'Wildmoon',
             state: { bank: { inventory: [{ itemId: 'wolf_fang', count: 2 }], purchasedSlots: 0 } },
           },
         ],
@@ -573,7 +573,7 @@ describe('auditBank (guild container)', () => {
       guildBanks: [
         {
           guild_id: 913,
-          realm: 'Claudemoon',
+          realm: 'Wildmoon',
           data: {
             treasury: 45000,
             inventory: [{ itemId: 'wolf_fang', count: 3 }],
@@ -644,7 +644,7 @@ describe('auditBank (guild container)', () => {
       guildBanks: [
         {
           guild_id: 913,
-          realm: 'Claudemoon',
+          realm: 'Wildmoon',
           data: { treasury: 100, inventory: [], purchasedSlots: 24 },
         },
       ],
@@ -698,7 +698,7 @@ describe('auditBank (guild container)', () => {
       characters: [
         {
           id: 9,
-          realm: 'Claudemoon',
+          realm: 'Wildmoon',
           state: { bank: { inventory: [], purchasedSlots: 6 } },
         },
       ],
@@ -718,7 +718,7 @@ describe('auditBank (guild container)', () => {
       guildBanks: [
         {
           guild_id: 913,
-          realm: 'Claudemoon',
+          realm: 'Wildmoon',
           data: {
             treasury: 999, // ledger says 500
             inventory: [{ itemId: 'wolf_fang', count: 4 }], // ledger says 1
@@ -741,7 +741,7 @@ describe('auditBank (guild container)', () => {
       guildBanks: [
         {
           guild_id: 44,
-          realm: 'Claudemoon',
+          realm: 'Wildmoon',
           data: { treasury: 7, inventory: [{ itemId: 'iron_ore', count: 2 }], purchasedSlots: 0 },
         },
       ],
@@ -920,7 +920,7 @@ describe('auditBank (guild container, admin_purge)', () => {
       guildBanks: [
         {
           guild_id: 913,
-          realm: 'Claudemoon',
+          realm: 'Wildmoon',
           data: {
             treasury: 0,
             inventory: [{ itemId: 'wolf_fang', count: 3 }],
@@ -950,7 +950,7 @@ describe('auditBank (guild container, admin_purge)', () => {
       guildBanks: [
         {
           guild_id: 913,
-          realm: 'Claudemoon',
+          realm: 'Wildmoon',
           data: {
             treasury: 0,
             inventory: [{ itemId: 'wolf_fang', count: 3 }],
@@ -986,7 +986,7 @@ describe('auditBank (guild container, admin_purge)', () => {
       guildBanks: [
         {
           guild_id: 913,
-          realm: 'Claudemoon',
+          realm: 'Wildmoon',
           data: { treasury: 0, inventory: [], purchasedSlots: 24 },
         },
       ],
@@ -1022,7 +1022,7 @@ describe('formatReport (guild rows)', () => {
     const rows = [G({ id: 1, character_id: 1, op: 'deposit', item_id: 'wolf_fang', count: 2 })];
     const finding: BankAuditFinding = {
       container: 'guild',
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
       characterId: null,
       guildId: 913,
       kind: 'negative_treasury',
@@ -1031,7 +1031,7 @@ describe('formatReport (guild rows)', () => {
     const report = formatReport(rows, [finding]);
     expect(report).toContain('container guild: ledger rows 1: findings 1');
     expect(report).toContain(
-      'FINDING: container guild: realm Claudemoon: guild 913: negative_treasury: treasury fell to -1 at row 9',
+      'FINDING: container guild: realm Wildmoon: guild 913: negative_treasury: treasury fell to -1 at row 9',
     );
   });
 });
@@ -1062,7 +1062,7 @@ describe('the escrow-rollback anomaly row', () => {
       guildBanks: [
         {
           guild_id: 913,
-          realm: 'Claudemoon',
+          realm: 'Wildmoon',
           data: { treasury: 5_000, inventory: [], purchasedSlots: 24 },
         },
       ],
@@ -1080,7 +1080,7 @@ describe('the escrow-rollback anomaly row', () => {
         guildRow({ id: 3, op: 'escrow_deficit', item_id: 'wolf_fang', count: 4 }),
       ],
       characters: [],
-      guildBanks: [{ guild_id: 913, realm: 'Claudemoon', data: { treasury: 0, inventory: [] } }],
+      guildBanks: [{ guild_id: 913, realm: 'Wildmoon', data: { treasury: 0, inventory: [] } }],
     });
     expect(findings.map((f) => f.kind)).toEqual(['escrow_deficit']);
     expect(findings[0].detail).toContain('4 x wolf_fang');

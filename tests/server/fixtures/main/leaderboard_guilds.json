@@ -1,7 +1,7 @@
 {
-  "body": "{\"board\":\"guilds\",\"leaders\":[],\"metric\":\"guildLifetimeXp\",\"page\":0,\"pageCount\":1,\"pageSize\":50,\"realm\":\"Claudemoon\",\"scope\":\"realm\",\"total\":0}",
+  "body": "{\"board\":\"guilds\",\"leaders\":[],\"metric\":\"guildLifetimeXp\",\"page\":0,\"pageCount\":1,\"pageSize\":50,\"realm\":\"Wildmoon\",\"scope\":\"realm\",\"total\":0}",
   "headers": {
-    "content-length": 142,
+    "content-length": 140,
     "content-type": "application/json",
     "cross-origin-opener-policy": "same-origin",
     "cross-origin-resource-policy": "same-origin",

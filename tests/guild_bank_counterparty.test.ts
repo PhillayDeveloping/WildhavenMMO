@@ -336,7 +336,7 @@ function audit(server: GameServer) {
     ledgerRows: ledgerRows(),
     characters: [],
     guildBanks: [
-      { guild_id: GUILD_ID, realm: 'Claudemoon', data: server.sim.serializeGuildBank(GUILD_ID) },
+      { guild_id: GUILD_ID, realm: 'Wildmoon', data: server.sim.serializeGuildBank(GUILD_ID) },
     ],
   });
 }
@@ -470,7 +470,7 @@ describe('the counterparty side, end to end through the dispatch observer', () =
         guildBanks: [
           {
             guild_id: GUILD_ID,
-            realm: 'Claudemoon',
+            realm: 'Wildmoon',
             data: server.sim.serializeGuildBank(GUILD_ID),
           },
         ],
@@ -514,7 +514,7 @@ describe('the counterparty side, end to end through the dispatch observer', () =
       })),
       characters: [],
       guildBanks: [
-        { guild_id: GUILD_ID, realm: 'Claudemoon', data: server.sim.serializeGuildBank(GUILD_ID) },
+        { guild_id: GUILD_ID, realm: 'Wildmoon', data: server.sim.serializeGuildBank(GUILD_ID) },
       ],
     });
     expect(stripped.map((f) => f.kind)).not.toContain('counterparty_copper_imbalance');

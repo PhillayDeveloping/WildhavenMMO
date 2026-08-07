@@ -96,7 +96,7 @@ function deedsRow(rank: number): DeedsLeaderboardEntry {
   return {
     rank,
     name: `Chronicler${rank}`,
-    realm: 'Claudemoon',
+    realm: 'Wildmoon',
     cls: 'warrior' as DeedsLeaderboardEntry['cls'],
     level: 20,
     renown: 500 - rank,
@@ -121,12 +121,13 @@ function characterRow(id: number, name: string): CharacterRow {
   };
 }
 
-const REALM_NAME = 'Claudemoon';
+const REALM_NAME = 'Wildmoon';
 
 function fakeRuntime(overrides: Partial<LeaderboardRuntime> = {}): LeaderboardRuntime {
   return {
     playersOnline: () => 0,
     playersCap: () => 250,
+    discordEnabled: () => false,
     perfProfile: () => ({ ticks: 0 }),
     getLeaderboard: async () => [],
     getGuildLeaderboard: async () => [],
@@ -557,6 +558,8 @@ describe('status handler (name-list trim deviation)', () => {
       players_cap: 250,
       steam: { enabled: false },
       epic: { enabled: false },
+      // Whether the auth screen may offer "Continue with Discord" at all.
+      discord: { enabled: false },
       // The /dev GUI capability advert. False here because the suite runs without
       // ALLOW_DEV_COMMANDS, which is also the production posture.
       dev_commands: false,
@@ -634,6 +637,20 @@ describe('status handler (name-list trim deviation)', () => {
     } finally {
       if (saved === undefined) delete process.env.STEAM_ENABLED;
       else process.env.STEAM_ENABLED = saved;
+    }
+  });
+
+  it('adverts discord.enabled from the runtime, so the auth screen can gate its button', async () => {
+    // The auth screen has no bearer token, so GET /api/discord cannot answer it.
+    // Both arms have to be exercised: a realm with no OAuth app must advertise
+    // false, or the client shows a button whose only outcome is 503.
+    for (const enabled of [true, false]) {
+      configureLeaderboardRuntime(fakeRuntime({ discordEnabled: () => enabled }));
+      const ctx = fakeCtx({ method: 'GET', url: '/api/status' });
+      await handlerFor('/api/status')(ctx);
+      const { status, body } = captured(ctx.res);
+      expect(status).toBe(200);
+      expect((body as { discord: { enabled: boolean } }).discord).toEqual({ enabled });
     }
   });
 

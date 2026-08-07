@@ -133,7 +133,7 @@ knobs are stamped into each artifact (`warmupMs`, `connectConcurrency`,
 `tourSec`, `nodesPerBot`, `stepMs`, `botLevel`, `observersRequested`);
 `reportMs` alone is stamped by the CURRENT rig only, and the four artifacts
 committed here predate that one field. `REALM_NAME`
-defaults to `Claudemoon` and must match the realm the server runs, so a
+defaults to `Wildmoon` and must match the realm the server runs, so a
 locally renamed realm has to be passed to the rig as well.
 
 Capture protocol, learned the hard way:

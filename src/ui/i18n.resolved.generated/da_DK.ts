@@ -2078,7 +2078,7 @@ export const da_DK: EnTranslations = {
         "titleDiscordian": "Titel: Discordianer",
         "titleSquire": "Titel: Væbner af Riget",
         "chromaBlurple": "Blurple Mech-kromfarve",
-        "titleChampion": "Titel: Champion af Claudemoon",
+        "titleChampion": "Titel: Champion af Wildmoon",
         "swagStickers": "Klistermærkepakke (sendes)",
         "swagTee": "T-shirt (sendes)"
       },
@@ -5854,7 +5854,7 @@ export const da_DK: EnTranslations = {
     "applicationCategory": "Spil",
     "operatingSystem": "Webbrowser",
     "officialLabel": "Officiel Wildhaven-hjemmeside",
-    "officialBody": "wildhaven.example er den officielle gratis browser-MMO for Claudemoon-verdenen. Spil online med en vedvarende karakter, udforsk solo offline, læs wikien, og følg verificerede fællesskabslinks fra denne side."
+    "officialBody": "wildhaven.example er den officielle gratis browser-MMO for Wildmoon-verdenen. Spil online med en vedvarende karakter, udforsk solo offline, læs wikien, og følg verificerede fællesskabslinks fra denne side."
   },
   "a11y": {
     "goHome": "Gå til forsiden",
@@ -6107,7 +6107,7 @@ export const da_DK: EnTranslations = {
     "logoAlt": "Wildhaven",
     "eyebrow": "Verdens-vedligeholdelse",
     "heading": "Verdenen er midlertidigt utilgængelig.",
-    "body": "Vi genstarter spiltjenesten og forventer, at Claudemoon vender tilbage om kort tid. Denne side bliver ved med at tjekke automatisk.",
+    "body": "Vi genstarter spiltjenesten og forventer, at Wildmoon vender tilbage om kort tid. Denne side bliver ved med at tjekke automatisk.",
     "status": "Tilbage snart"
   },
   "hud": {

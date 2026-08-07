@@ -46,6 +46,30 @@ describe('web login guard (anti-bot)', () => {
     ).toBe(true);
   });
 
+  it('rejects a tunnelled login when the proxy rewrote Host, until WEB_ORIGINS names the public origin', () => {
+    // The failure mode for a realm exposed through a tunnel or reverse proxy.
+    // Enforcement is on in production, and the guard matches the browser's Origin
+    // against the request's OWN Host: a proxy configured to rewrite Host to its
+    // upstream leaves nothing to match, so every login and registration 403s
+    // while the site itself loads fine. It reads like broken credentials.
+    const tunnelled = req({ origin: 'https://play.example.com', host: 'localhost:8787' });
+    expect(isWebClientRequest(tunnelled, {} as any)).toBe(false);
+    expect(isWebClientRequest(tunnelled, { WEB_ORIGINS: 'https://play.example.com' } as any)).toBe(
+      true,
+    );
+    // A proxy that forwards the original host instead needs no configuration.
+    expect(
+      isWebClientRequest(
+        req({
+          origin: 'https://play.example.com',
+          host: 'localhost:8787',
+          'x-forwarded-host': 'play.example.com',
+        }),
+        {} as any,
+      ),
+    ).toBe(true);
+  });
+
   it('accepts Capacitor native app origins', () => {
     expect(
       isWebClientRequest(req({ origin: 'capacitor://localhost', host: 'wildhaven.example' })),

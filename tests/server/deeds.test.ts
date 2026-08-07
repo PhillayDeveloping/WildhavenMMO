@@ -291,7 +291,7 @@ function buildSheet(
   return characterSheet({
     row: sheetRow(state),
     visibility: extras.visibility ?? 'public',
-    realm: 'Claudemoon',
+    realm: 'Wildmoon',
     origin: 'https://wildhaven.example',
     guild: null,
     rank: null,

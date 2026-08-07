@@ -210,7 +210,7 @@ describe('withOriginCheck: injected allowOrigin (realm origin)', () => {
     // REALM_ORIGINS is env-derived (empty under test), so inject a stub to keep the
     // realm-origin case deterministic; assert the stub actually decided the request.
     const seen: string[] = [];
-    const ctx = makeCtx({ origin: 'https://claudemoon.example.com' });
+    const ctx = makeCtx({ origin: 'https://wildmoon.example.com' });
     const { records, ran } = await runDirect({
       route: makeRoute(),
       ctx,
@@ -222,7 +222,7 @@ describe('withOriginCheck: injected allowOrigin (realm origin)', () => {
     });
     expect(ran).toBe(true);
     expect(records).toEqual([]);
-    expect(seen).toEqual(['https://claudemoon.example.com']);
+    expect(seen).toEqual(['https://wildmoon.example.com']);
   });
 });
 
