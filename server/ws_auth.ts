@@ -138,13 +138,19 @@ export interface WsAuthDeps {
     nonce: string,
   ) => Promise<boolean>;
   releaseCharacterLease: (characterId: number, nonce?: string) => Promise<void>;
-  // Recomputes the account's bank bonus slots from live facts (email/Discord/wallet/
+  // Recomputes the account's bank bonus slots from live facts (email/Discord/
   // referrals) so a fresh join stamps the current entitlement into the character state.
   // Called on the FRESH-JOIN arm only, never on a resume (no mid-session recompute); a
   // rejection fails the handshake exactly like a getCharacter failure.
   bankBonusForAccount: (
     accountId: number,
   ) => Promise<{ bonusSlots: number; sources: BankBonusSource[] }>;
+  // Posts any daily-standings prizes this account is owed into the joining
+  // player's mailbox (server/daily_rewards_delivery.ts). Called fire-and-forget
+  // AFTER the session exists, never awaited: the prize is a reward, not a
+  // precondition, so a slow or failing read must not delay or refuse a join. A
+  // row that fails to deliver stays owed and lands at the next join.
+  deliverDailyRewardPrizes?: (accountId: number, pid: number) => void;
 }
 
 export interface WsAuthHandlers {
@@ -173,6 +179,7 @@ export function createWsAuth(deps: WsAuthDeps): WsAuthHandlers {
     acquireCharacterLease,
     releaseCharacterLease,
     bankBonusForAccount,
+    deliverDailyRewardPrizes,
   } = deps;
 
   // Character ids whose lease-acquire-through-join section is in flight in THIS
@@ -443,6 +450,10 @@ export function createWsAuth(deps: WsAuthDeps): WsAuthHandlers {
       }
       const session = result;
       console.log(`+ ${character.name} (${character.class}) joined, ${game.clients.size} online`);
+      // Deliver any owed daily-standings prizes. Deliberately not awaited (see the
+      // dep's contract): the session is already live and the letters land a tick
+      // or two later, which is invisible next to the raven's own delivery delay.
+      deliverDailyRewardPrizes?.(accountId, session.pid);
       ws.on('message', (data) => {
         game.handleMessage(session, String(data));
       });

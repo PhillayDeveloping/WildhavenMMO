@@ -400,7 +400,7 @@ export const ja_JP: EnTranslations = {
       "error": "デイリー報酬を読み込めませんでした。",
       "disabled": "デイリー報酬は現在無効です。この機能に関する更新は Discord チャンネルでお知らせします。",
       "intro": "認証済みウォレットに十分なWOCを保有すると、デイリー報酬が解放されます。1日1回のスピンとローテーションするタスクでポイントを獲得し、デイリーランキングを駆け上がって賞金プールの分け前を狙いましょう。",
-      "disclaimer": "WOC価格は大きく変動する場合があります。通常の価格変動で報酬がロックされないよう、$20 USDの最低額より多めに保有することをおすすめします。これは金融助言ではありません。",
+      "disclaimer": "タスクとリーダーボードは一日に一度リセットされます。上位十名が賞金を分け合い、あなたの取り分は次回ログイン時に大鴉が届けます。",
       "prize": "賞金プール",
       "reset": "リセット",
       "endsIn": "終了まで{time}",
@@ -409,9 +409,6 @@ export const ja_JP: EnTranslations = {
       "remainingHoursMinutes": "{hours}時間{minutes}分",
       "remainingDaysHours": "{days}日{hours}時間",
       "score": "スコア",
-      "walletValue": "ウォレット価値 (WOC)",
-      "usd": "{amount} USD",
-      "sol": "{amount} SOL",
       "unknown": "不明",
       "spinTitle": "デイリースピン",
       "spinDialogTitle": "デイリー報酬スピン",
@@ -436,17 +433,8 @@ export const ja_JP: EnTranslations = {
       "history": "過去の当選者",
       "noLeaders": "まだポイントがありません。",
       "noHistory": "まだ支払いがありません。",
-      "walletConnectTitle": "ウォレットを認証",
-      "walletConnectBody": "WOCを保有するSolanaウォレットを認証して、デイリー報酬を解放しましょう。",
-      "walletConnectButton": "ウォレットを認証",
-      "walletHoldTitle": "WOCを保有",
-      "walletHoldBody": "デイリー報酬を解放するには、少なくとも {amount} USD 相当のWOCを保有してください。",
-      "walletPriceBody": "現在WOCの価格を取得できません。しばらくしてから再度ご確認ください。",
       "reason": {
         "eligible": "報酬が解放されました。",
-        "no_wallet": "$20 USD 相当以上のWOCを保有するウォレットを接続してください。",
-        "under_minimum": "ウォレットが最低額の $20 USD 相当のWOCを下回っています。",
-        "price_unavailable": "WOCの価格を取得できないため、報酬は一時的にロックされています。",
         "banned": "デイリー報酬への参加が禁止されています。理由: {reason}",
         "bannedUntil": "デイリー報酬への参加はあと{remaining}禁止されています。解除日時: {until}。理由: {reason}"
       }
@@ -472,18 +460,6 @@ export const ja_JP: EnTranslations = {
       "armoryEyebrow": "シーズン1",
       "armoryTitle": "武器庫",
       "armoryBody": "シーズン1武器庫の限定武器スキン。アカウント共有の純粋な装飾で、周囲のプレイヤー全員に表示されます。",
-      "wallet": {
-        "title": "Solanaウォレット",
-        "unlinked": "ウォレットアプリを接続し、一度署名して公開アドレスをWoCアカウントにリンクしてください。リカバリーフレーズや秘密鍵を受け取ることはありません。",
-        "connectedUnlinked": "ウォレットアプリはこのブラウザに接続されていますが、公開アドレスはまだWoCアカウントにリンクされていません。",
-        "linkedDisconnected": "公開アドレスはリンク済みです。SOLまたはWOCで支払うときに、そのウォレットアプリを再接続してください。",
-        "linkedConnected": "リンク済みのウォレットアプリが接続され、SOLまたはWOCで購入できます。",
-        "mismatched": "別のウォレットが接続されています。認証してリンク済みアドレスを置き換えるか、リンク済みウォレットを再接続してください。",
-        "connect": "ウォレットを接続",
-        "verify": "認証してリンク",
-        "reconnect": "ウォレットを再接続",
-        "manage": "ウォレットを管理"
-      },
       "collectionLine": "{collection}コレクション",
       "collections": {
         "guildmark": "ギルドマーク",
@@ -685,20 +661,11 @@ export const ja_JP: EnTranslations = {
       "loading": "Claudiumを読み込み中…",
       "balanceLabel": "残高",
       "balanceUnit": "{amount} Claudium",
-      "solBalance": "SOL：{amount}",
-      "usdcBalance": "USDC：{amount}",
-      "wocBalance": "WOC：{amount}",
       "unavailable": "Claudiumストアは現在利用できません。残高と購入内容に影響はありません。しばらくしてからお試しください。",
       "disclosure": "Claudiumは一方向のゲーム内通貨です。現金で購入して外見アイテムに使用でき、換金、譲渡、払い戻しはできません。",
       "buyTitle": "Claudiumを購入",
       "railLabel": "支払い方法",
       "railStripe": "カード",
-      "railSol": "SOL",
-      "railUsdc": "USDC",
-      "railWoc": "WOC",
-      "railWocDiscount": "{percent}%オフ",
-      "railWocUnavailable": "WOC価格は現在利用できません。",
-      "railNativeUnavailable": "SOL/WOCは利用不可",
       "amountLabel": "数量",
       "showAmounts": "すべてのClaudium数量を表示",
       "hideAmounts": "追加のClaudium数量を隠す",
@@ -718,10 +685,7 @@ export const ja_JP: EnTranslations = {
       "checkoutPending": "取引を処理中です。ウォレットで確認し、このパネルを開いたままにしてください。",
       "checkoutPendingButton": "処理中",
       "checkoutFailed": "決済を読み込めませんでした。もう一度お試しください。",
-      "checkoutUnavailable": "そのClaudium購入は現在利用できません。",
-      "checkoutWalletRequired": "暗号資産でClaudiumを購入する前にSolanaウォレットを接続してください。",
-      "checkoutWalletUnsupported": "このウォレットではSolana取引の署名と送信ができません。",
-      "checkoutNotSettled": "取引は送信されましたが、Claudiumはまだ反映されていません。しばらくしてからお試しください。"
+      "checkoutUnavailable": "そのClaudium購入は現在利用できません。"
     },
     "theme": {
       "preset": "UIテーマ",
@@ -843,8 +807,8 @@ export const ja_JP: EnTranslations = {
     },
     "nativeUpdate": {
       "title": "アップデートがあります",
-      "body": "World of ClaudeCraft の新しいバージョンが利用可能です。今すぐアップデートして最新の修正と改善を入手しましょう。",
-      "bodyWithVersion": "World of ClaudeCraft のバージョン {version} が利用可能です。今すぐアップデートして最新の修正と改善を入手しましょう。",
+      "body": "Wildhaven の新しいバージョンが利用可能です。今すぐアップデートして最新の修正と改善を入手しましょう。",
+      "bodyWithVersion": "Wildhaven のバージョン {version} が利用可能です。今すぐアップデートして最新の修正と改善を入手しましょう。",
       "notNow": "後で",
       "update": "更新"
     },
@@ -1196,8 +1160,6 @@ export const ja_JP: EnTranslations = {
       "clickFeedback": "クリックマーカー",
       "lockCursorOnRotate": "回転中はカーソルを固定",
       "keybindHelpLockCursorOnRotate": "ドラッグでカメラを回転させている間、マウスカーソルをウィンドウ内に固定し、画面の端や別のモニターに移動しないようにします。自由なカーソルを好む場合はオフにしてください。",
-      "showWalletOnCharacterScreen": "キャラクター画面にウォレットを表示",
-      "showWalletOnPlayerCard": "プレイヤーカードにウォレットを表示",
       "showDevBadges": "開発者バッジを表示",
       "showOwnNameplate": "自分のネームプレートを表示",
       "showPlayerNameplates": "プレイヤーのネームプレートを表示",
@@ -1373,9 +1335,7 @@ export const ja_JP: EnTranslations = {
         "aetherRush": "エーテルラッシュ"
       }
     },
-    "playerCard": {
-      "showWalletBadge": "ウォレットバッジを表示"
-    },
+    "playerCard": {},
     "landing": {
       "highContrast": "高コントラスト",
       "highContrastAria": "高コントラスト背景を切り替えます。動画トレーラーを無効にして、スタート画面のテキストを読みやすくします",
@@ -1564,7 +1524,6 @@ export const ja_JP: EnTranslations = {
       "loggedOutPrompt": "アカウントを管理するにはログインしてください。",
       "memberSince": "登録日：{date}",
       "sectionSettings": "アカウント設定",
-      "sectionWallet": "$WOC ウォレット",
       "sectionCharacters": "キャラクター",
       "sectionDanger": "危険な操作",
       "changePassword": "パスワードの変更",
@@ -1591,8 +1550,6 @@ export const ja_JP: EnTranslations = {
       "charactersSummary": "キャラクターを管理してワールドに入りましょう。",
       "charactersCount": "キャラクター：{count}",
       "goToCharacters": "キャラクターを表示",
-      "walletSummary": "Solana ウォレットを認証してプレイヤーカードに保有者バッジを表示します。",
-      "manageWallet": "ウォレットを管理",
       "deactivate": "アカウントを無効化",
       "deactivateWarning": "無効化するとアカウントがロックされ、すべてのデバイスからログアウトされます。復元するには管理者に連絡してください。ユーザー名とパスワードを再入力して確認してください。",
       "confirmUsername": "確認のためユーザー名を入力",
@@ -2003,7 +1960,7 @@ export const ja_JP: EnTranslations = {
     },
     "discord": {
       "title": "Discord",
-      "panelTitle": "World of ClaudeCraft",
+      "panelTitle": "Wildhaven",
       "open": "Discord",
       "close": "閉じる",
       "keybind": "Discordパネル",
@@ -2293,11 +2250,9 @@ export const ja_JP: EnTranslations = {
       "bonusStatusEarned": "+{count}",
       "bonusSourceEmail": "メール認証済み",
       "bonusSourceDiscord": "Discord連携済み",
-      "bonusSourceWallet": "ウォレット連携済み",
       "bonusSourceReferral": "招待した友達",
       "bonusAdvertEmail": "メールを認証すると2スロット獲得できます。",
       "bonusAdvertDiscord": "Discordを連携すると2スロット獲得できます。",
-      "bonusAdvertWallet": "ウォレットを連携すると2スロット獲得できます。",
       "bonusReferralProgress": "{count}/{cap}",
       "bonusReferralExplainer": "友達を招待しましょう：友達がレベル10に達すると、お互いに2スロット獲得できます。友達は最大5人までです。",
       "bonusSectionAria": "ボーナス銀行スロットと獲得方法",
@@ -3147,26 +3102,13 @@ export const ja_JP: EnTranslations = {
       "account_taken": "そのEpicアカウントは既に別のアカウントに連携されています。",
       "upstream": "Epicから応答がありません。しばらくしてからもう一度お試しください。"
     },
-    "wallet": {
-      "handoff_invalid": "ウォレット認証の有効期限が切れたか、確認できませんでした。もう一度お試しください。"
-    },
     "ota_updates": {
       "invalid_input": "入力が無効です。"
-    },
-    "seeker": {
-      "native_only": "Seeker資格はネイティブアプリでのみ利用できます。",
-      "attestation_failed": "端末の検証に失敗しました。もう一度お試しください。",
-      "solana_artifact_required": "Solana Store版アプリを使用して続行してください。",
-      "wallet_required": "先にウォレットを連携して検証してください。",
-      "genesis_token_required": "検証済みのSeeker Genesis Tokenが必要です。",
-      "genesis_token_claimed": "そのSeeker Genesis Tokenはすでに取得されています。",
-      "entitlement_required": "検証済みのSeeker資格が必要です。",
-      "current_ownership_required": "現在Seeker Genesis Tokenを所有している必要があります。"
     }
   },
   "guide": {
-    "brand": "World of ClaudeCraft",
-    "brandShort": "ClaudeCraft",
+    "brand": "Wildhaven",
+    "brandShort": "Wildhaven",
     "tagline": "ブラウザで無料で遊べる、クラシックスタイルのMMO。",
     "skipToContent": "メインコンテンツへスキップ",
     "loading": "読み込み中...",
@@ -3231,7 +3173,7 @@ export const ja_JP: EnTranslations = {
       "github": "GitHubのソース",
       "discord": "Discordに参加",
       "communityWiki": "コミュニティWiki",
-      "rights": "World of ClaudeCraft",
+      "rights": "Wildhaven",
       "linksLabel": "プレイとコミュニティのリンク"
     },
     "language": {
@@ -3254,7 +3196,7 @@ export const ja_JP: EnTranslations = {
     },
     "home": {
       "eyebrow": "クラシックスタイルのブラウザMMO",
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "subtitle": "クエストをこなし、仲間と組み、手作りのワールドを冒険しよう。ブラウザで無料。",
       "ctaPlay": "今すぐプレイ",
       "ctaLearn": "遊び方",
@@ -3769,7 +3711,7 @@ export const ja_JP: EnTranslations = {
     },
     "worldPage": {
       "heading": "世界",
-      "intro": "World of ClaudeCraftは、自らの足で歩いて渡る一続きの大地です。南から北へと3つのゾーンが連なっています。ファストトラベルはなく、その旅路こそが冒険の一部です。",
+      "intro": "Wildhavenは、自らの足で歩いて渡る一続きの大地です。南から北へと3つのゾーンが連なっています。ファストトラベルはなく、その旅路こそが冒険の一部です。",
       "hub": "拠点",
       "mapHeading": "北への道",
       "mapSub": "南から北へ三つのゾーンが並び、それぞれレベルが一段ずつ上がります。クエストの道筋をたどれば、土地が谷から峰々へとあなたを運んでいきます。",
@@ -4596,7 +4538,7 @@ export const ja_JP: EnTranslations = {
   },
   "editor": {
     "appTitle": "マップエディター",
-    "docTitle": "マップエディター - World of ClaudeCraft",
+    "docTitle": "マップエディター - Wildhaven",
     "untitledMap": "無題のマップ",
     "playtestPlayerName": "マップ職人",
     "topbar": {
@@ -5072,8 +5014,8 @@ export const ja_JP: EnTranslations = {
     "realmName": "ワールド名"
   },
   "footer": {
-    "copyright": "2026 World of ClaudeCraft",
-    "githubLink": "https://github.com/levy-street/world-of-claudecraft",
+    "copyright": "2026 Wildhaven",
+    "githubLink": "https://wildhaven.example",
     "githubLabel": "オープンソースプロジェクト",
     "whitepaper": "ホワイトペーパー",
     "terms": "利用規約",
@@ -5130,13 +5072,10 @@ export const ja_JP: EnTranslations = {
     "serverOnline": "オンライン",
     "serverOffline": "オフライン",
     "play": "プレイ",
-    "playAria": "World of ClaudeCraftをプレイ",
+    "playAria": "Wildhavenをプレイ",
     "serverLabel": "ワールドを選択",
     "serverAria": "ワールドを選択：オンラインまたはオフライン",
-    "serverOfflineSub": "即座にローカルの世界へ",
-    "caLabel": "$WOC コントラクトアドレス",
-    "caCopyAria": "コントラクトアドレスをコピー",
-    "caNote": "WOCはコミュニティトークンです。プレイには必要ありません。Discordに参加して、WOCのユーティリティとフライホイールについて語り合いましょう。"
+    "serverOfflineSub": "即座にローカルの世界へ"
   },
   "auth": {
     "enterRealm": "ワールドに入る",
@@ -5184,171 +5123,6 @@ export const ja_JP: EnTranslations = {
       "failed": "メールアドレスを保存できませんでした。もう一度お試しください。"
     }
   },
-  "wallet": {
-    "label": "$WOC ウォレット",
-    "connect": "ウォレット認証",
-    "connectTitle": "Solanaウォレットを認証",
-    "connectAria": "Solanaウォレットを認証",
-    "verify": "ウォレット認証",
-    "verifyNew": "新しいウォレットを認証",
-    "verifyTitle": "ウォレットを選択し、一度署名して所有権を認証します。",
-    "verifyAria": "ウォレットを選択し、一度署名して所有権を認証",
-    "verifyAddressAria": "アカウントのウォレット {address} を認証するために署名",
-    "appConnected": "アプリ接続済み",
-    "connectApp": "アプリを接続",
-    "connectAppTitle": "このブラウザでウォレットアプリを接続",
-    "connectAppAria": "このブラウザでウォレットアプリを接続",
-    "verifying": "認証中...",
-    "verifyingTitle": "ウォレット認証を実行中です。",
-    "switch": "切替",
-    "switchTitle": "別のウォレットを認証",
-    "switchAria": "別のウォレットを認証",
-    "unlink": "連携解除",
-    "unlinkTitle": "このアカウントからウォレット認証を削除",
-    "unlinkAria": "このアカウントからウォレット認証を削除",
-    "signOut": "接続解除",
-    "signOutTitle": "このブラウザでウォレットアプリの接続を解除",
-    "signOutAria": "このブラウザでウォレットアプリの接続を解除",
-    "hide": "非表示",
-    "hideTitle": "この画面でウォレット行を非表示にする",
-    "hideAria": "この画面でウォレット行を非表示にする",
-    "hiddenNotice": "ウォレット行を非表示にしました。ゲーム内のオプション > インターフェイスから再度有効にできます。",
-    "linkedTitle": "ウォレットはアカウントで認証済みです。クリックしてウォレットアプリを管理します。",
-    "linkedDisconnectedTitle": "ウォレットはアカウントで認証されたままです。ウォレットアプリを管理するには再接続してください。",
-    "linkedDisconnectedAria": "ウォレットはアカウントで認証されたままです。ウォレットアプリを管理するには再接続してください。",
-    "linkTitle": "クリックして署名し、このウォレットをアカウントに連携します。",
-    "connectedTitle": "接続済みです。ログインすると、このウォレットをアカウントに連携できます。",
-    "balanceTitle": "認証済みSolanaウォレットの$WOC残高",
-    "balanceAria": "認証済みSolanaウォレット残高: {balance}",
-    "balancePreviewTitle": "接続中ウォレットの$WOC残高プレビュー",
-    "balancePreviewAria": "接続中ウォレット残高プレビュー: {balance}。ウォレットを連携するとホルダー表示を認証できます。",
-    "balanceAmount": "{amount} $WOC",
-    "bagConnect": "ウォレットをリンク",
-    "bagLink": "ウォレットを認証",
-    "bagReconnect": "ウォレットを再接続",
-    "connected": "接続済み: {address}",
-    "connectedWithBalance": "接続済み: {balance} - {address}",
-    "connectedLinked": "認証済み: {address}",
-    "connectedLinkedWithBalance": "認証済み: {balance} - {address}",
-    "helpDisconnected": "Solanaウォレットを認証して、ホルダー表示とプレイヤーカードのバッジを有効にします。トランザクションや SOL は不要です。",
-    "helpLoginToLink": "{address} に接続済みです。ログインするとアカウントに連携できます。",
-    "helpLoginToLinkWithBalance": "{address} に接続済み、残高は {balance} です。ログインするとアカウントに連携できます。",
-    "helpReadyToLink": "選択中のウォレット: {address}。一度署名すると、ホルダー表示とプレイヤーカードを認証できます。",
-    "helpReadyToLinkWithBalance": "選択中のウォレット: {address}、残高は {balance} です。一度署名すると、ホルダー表示とプレイヤーカードを認証できます。",
-    "helpLinked": "ホルダー特典が有効です。このブラウザでウォレットアプリが接続されています。",
-    "helpLinkedWithBalance": "ホルダー特典が有効です。このブラウザでウォレットアプリが接続されています。",
-    "helpLinkedDisconnected": "ホルダー特典が有効です。署名や支払いが必要なときはアプリを接続してください。",
-    "helpLinkedDisconnectedWithBalance": "ホルダー特典が有効です。署名や支払いが必要なときはアプリを接続してください。",
-    "extensionHelp": "ここにウォレットを表示するには、Solflare Wallet などのブラウザ用ウォレット拡張機能を有効にしておいてください。",
-    "mobileAppHelp": "Phantom または Solflare を選択してください。ウォレットアプリで承認を求められます。ゲームを開いたままにし、完了後に戻ってください。",
-    "seekerAppHelp": "Seed Vault Walletで続行します。Seed Vaultで接続と認証のリクエストを確認し、完了したらゲームに戻ってください。",
-    "standaloneAppHelp": "ホーム画面アプリでは、まだウォレットに接続できません。Phantom または Solflare を使用するには、Safari か Chrome で World of ClaudeCraft を開いてください。",
-    "openAppTitle": "{wallet} で続行",
-    "openAppHelp": "{wallet} を開いてこのリクエストを確認してください。ウォレットアプリの使用中も、このゲームタブを開いたままにしてください。",
-    "openAppButton": "{wallet} を開く",
-    "manualReturnBrowserHelp": "承認後、このゲームタブに戻ってください。iOS で別のブラウザが開いた場合は閉じ、元のブラウザに手動で戻ってください。",
-    "manualReturnStandaloneHelp": "承認後、ホーム画面から World of ClaudeCraft に戻ってください。iOS でブラウザが開いた場合は閉じ、ホーム画面のアプリをもう一度開いてください。",
-    "preparingAppButton": "{wallet} を準備中...",
-    "walletAppUnavailable": "{wallet} を準備できませんでした。このウィンドウを閉じて、もう一度お試しください。",
-    "flowConnect": "ウォレットを選択してください。認証は自動的に続行されます。",
-    "flowSign": "ウォレットアプリで認証メッセージに署名してください。トランザクションや SOL は不要です。",
-    "flowVerify": "ウォレット所有権を認証中...",
-    "linkFailed": "ウォレット認証に失敗しました。",
-    "verifyFailed": "ウォレット認証に失敗しました。",
-    "unlinkFailed": "ウォレット連携を解除できませんでした。",
-    "browser": {
-      "eyebrow": "デスクトップウォレット認証",
-      "title": "Solanaウォレットを接続",
-      "linkBody": "このブラウザでウォレット拡張機能を選択してください。確認メッセージに署名した後、デスクトップアプリに戻ります。",
-      "paymentBody": "アカウントにリンクされたウォレットを選択し、このブラウザで取引を承認してください。",
-      "extensionHelp": "対応するウォレット拡張機能が見つかりません。Phantom、Solflare、または別のSolanaブラウザウォレットをインストールまたはロック解除して、再試行してください。",
-      "safety": "World of ClaudeCraftがリカバリーフレーズや秘密鍵を求めることはありません。",
-      "continueWith": "{wallet}で続行",
-      "reviewTitle": "ウォレットで確認",
-      "reviewBody": "{wallet}の指示に従ってください。このブラウザページは開いたままにしてください。",
-      "completeTitle": "ウォレット認証が完了しました",
-      "completeBody": "World of ClaudeCraftデスクトップアプリに戻れます。",
-      "returnButton": "デスクトップアプリに戻る",
-      "failed": "ウォレット認証に失敗したか期限切れです。デスクトップアプリに戻って再試行してください。",
-      "retry": "再試行"
-    },
-    "holder": "$WOCホルダー",
-    "holderTierTitle": "{tier} $WOCホルダー",
-    "holderTiers": {
-      "ember": {
-        "name": "残り火",
-        "flavor": "火花が灯りました。"
-      },
-      "coinbearer": {
-        "name": "コインベアラー",
-        "flavor": "軍資金庫に最初の一枚。"
-      },
-      "coppercrest": {
-        "name": "銅の紋章",
-        "flavor": "銅貨は積み上がり、あなたの名が語られます。"
-      },
-      "silverbound": {
-        "name": "銀の誓約",
-        "flavor": "銀に結ばれ、資産を築いています。"
-      },
-      "gilded": {
-        "name": "黄金",
-        "flavor": "黄金に輝き、笑みを浮かべています。"
-      },
-      "vaultwarden": {
-        "name": "宝物庫の番人",
-        "flavor": "今や本物の金庫を守っています: $WOC 全体の 0.01%。"
-      },
-      "whale": {
-        "name": "クジラ",
-        "flavor": "泳げば深みが割れます: 供給量の 0.1%。"
-      },
-      "leviathan": {
-        "name": "リヴァイアサン",
-        "flavor": "あなたが動けば市場が感じ取ります: 供給量の 1%。"
-      },
-      "tidelord": {
-        "name": "潮の君主",
-        "flavor": "潮があなたの呼び声に応えます: 供給量の 2%。"
-      },
-      "stormcaller": {
-        "name": "嵐呼び",
-        "flavor": "あなたの名に嵐が集います: 供給量の 3%。"
-      },
-      "krakencrown": {
-        "name": "クラーケンの冠",
-        "flavor": "深海に冠を授けられています: 供給量の 4%。"
-      },
-      "titanforged": {
-        "name": "タイタン鍛造",
-        "flavor": "タイタンたちの間で鍛えられました: 供給量の 5%。"
-      },
-      "starhoard": {
-        "name": "星の秘蔵",
-        "flavor": "星光を曲げるほどの宝庫です: 供給量の 6%。"
-      },
-      "voidwarden": {
-        "name": "虚空の番人",
-        "flavor": "虚空の縁を守っています: 供給量の 7%。"
-      },
-      "realmshaper": {
-        "name": "領域形成者",
-        "flavor": "あなたは領域を作り変えます: 供給量の 8%。"
-      },
-      "worldforger": {
-        "name": "世界鍛造者",
-        "flavor": "自分だけの世界を鍛えています: 供給量の 9%。"
-      },
-      "worldbearer": {
-        "name": "世界を担う者",
-        "flavor": "あなたは世界の一片を背負っています: 供給量の 10%。"
-      },
-      "sovereign": {
-        "name": "君主",
-        "flavor": "レルムが膝をつきます: 供給量のすべて。"
-      }
-    }
-  },
   "playerCard": {
     "shareButton": "プレイヤーカードを共有",
     "title": "プレイヤーカード",
@@ -5365,16 +5139,15 @@ export const ja_JP: EnTranslations = {
     "levelClass": "レベル{level} - {className}",
     "topPercent": "上位 {percent}%",
     "realmSubtitle": "{realm} ワールド",
-    "defaultRealm": "ClaudeCraftの世界",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "defaultRealm": "Wildhaven",
+    "brandWordmark": "WILDHAVEN",
     "recruited": "招待 {count}人",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",
     "footerCta": "あなたの伝説を鍛えよう: {siteUrl}",
     "arenaStat": "アリーナ",
-    "shareTierBit": ", {tier}ランクの$WOCホルダー",
-    "shareText": "World of ClaudeCraftで伝説を鍛えています: レベル{level} {className}{tierBit}。私のワールドに参加してください:",
-    "nativeShareTitle": "ClaudeCraftの世界",
+    "shareText": "Wildhavenで伝説を鍛えています: レベル{level} {className}{tierBit}。私のワールドに参加してください:",
+    "nativeShareTitle": "Wildhaven",
     "fileNameFallback": "プレイヤー",
     "actionShareX": "Xで共有",
     "actionCopyReferral": "紹介リンクをコピー",
@@ -6074,14 +5847,14 @@ export const ja_JP: EnTranslations = {
     }
   },
   "seo": {
-    "title": "World of ClaudeCraft: クラシック風Web MMO",
-    "description": "ブラウザで直接遊べるクラシック風マイクロMMO、World of ClaudeCraft で壮大な冒険に出ましょう。永続的な共有ワールドに参加し、クラスを育て、敵を倒してください。",
+    "title": "Wildhaven: クラシック風Web MMO",
+    "description": "ブラウザで直接遊べるクラシック風マイクロMMO、Wildhaven で壮大な冒険に出ましょう。永続的な共有ワールドに参加し、クラスを育て、敵を倒してください。",
     "genre": "MMORPG",
     "playMode": "マルチプレイヤー",
     "applicationCategory": "ゲーム",
     "operatingSystem": "Webブラウザ",
-    "officialLabel": "World of ClaudeCraft 公式サイト",
-    "officialBody": "worldofclaudecraft.com は Claudemoon ワールドの公式無料ブラウザMMOです。永続キャラクターでオンラインプレイし、オフラインでソロ探索し、wikiを読み、このサイトから確認済みのコミュニティリンクをたどれます。"
+    "officialLabel": "Wildhaven 公式サイト",
+    "officialBody": "wildhaven.example は Claudemoon ワールドの公式無料ブラウザMMOです。永続キャラクターでオンラインプレイし、オフラインでソロ探索し、wikiを読み、このサイトから確認済みのコミュニティリンクをたどれます。"
   },
   "a11y": {
     "goHome": "ホームへ移動",
@@ -6089,9 +5862,9 @@ export const ja_JP: EnTranslations = {
     "mainNavigation": "メインナビゲーション",
     "languageSelection": "言語選択",
     "characterActions": "キャラクター操作",
-    "githubProject": "GitHubでWorld of ClaudeCraftプロジェクトを開く",
-    "discordCommunity": "World of ClaudeCraftのDiscordコミュニティに参加",
-    "donateProject": "World of ClaudeCraftを支援するために寄付"
+    "githubProject": "GitHubでWildhavenプロジェクトを開く",
+    "discordCommunity": "WildhavenのDiscordコミュニティに参加",
+    "donateProject": "Wildhavenを支援するために寄付"
   },
   "entryGuard": {
     "title": "グラフィックを下げました",
@@ -6178,11 +5951,11 @@ export const ja_JP: EnTranslations = {
       "dismiss": "閉じる"
     },
     "crash": {
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "body": "ゲーム画面が停止しました。再読み込みしますか？",
       "reload": "再読み込み",
       "quit": "終了",
-      "fatalBody": "World of ClaudeCraft で予期しないエラーが発生したため、終了します。"
+      "fatalBody": "Wildhaven で予期しないエラーが発生したため、終了します。"
     }
   },
   "gpuNotice": {
@@ -6321,17 +6094,17 @@ export const ja_JP: EnTranslations = {
     "iosStandaloneDetail": "ホーム画面からの全画面モードです。端末を横向きに保ってください。",
     "iosInstallDetail": "iPhoneまたはiPadで本当の全画面を使うには、先にこのページをホーム画面に追加してください。",
     "iosShareStep": "Safariで共有をタップし、ホーム画面に追加を選びます。",
-    "iosOpenStep": "新しいホーム画面アイコンからWorld of ClaudeCraftを開きます。",
+    "iosOpenStep": "新しいホーム画面アイコンからWildhavenを開きます。",
     "androidStandaloneDetail": "全画面アプリモードです。端末を横向きに保ってください。",
     "androidInstallDetail": "Androidで全画面にするには、このページをインストールするかホーム画面に追加してください。",
     "androidInstallStep": "Chromeでメニューを開き、アプリをインストールまたはホーム画面に追加を選びます。",
-    "androidOpenStep": "新しいアイコンからWorld of ClaudeCraftを開きます。",
+    "androidOpenStep": "新しいアイコンからWildhavenを開きます。",
     "otherStandaloneDetail": "端末を横向き全画面に保ってください。",
     "otherInstallDetail": "最高のモバイル全画面体験のため、このページをインストールするかホーム画面に追加してください。"
   },
   "serverUnavailable": {
-    "title": "World of ClaudeCraft - ワールド利用不可",
-    "logoAlt": "World of ClaudeCraft",
+    "title": "Wildhaven - ワールド利用不可",
+    "logoAlt": "Wildhaven",
     "eyebrow": "ワールドメンテナンス",
     "heading": "ワールドは一時的に利用できません。",
     "body": "ゲームサービスを再起動しています。Claudemoonはまもなく戻る予定です。このページは自動的に確認を続けます。",
@@ -14590,6 +14363,11 @@ export const ja_JP: EnTranslations = {
         "sender": "英雄級補給官",
         "subject": "あなたの英雄の印",
         "body": "あなたが後方で、あるいは倒れて戦っている間に、あなたの部隊が英雄級の試練を突破しました。ロックアウトは同じように科されたので、あなたの分の英雄の印は失われることなく、ここへ飛んできました。大切に使ってください。\n\n- 英雄級補給官"
+      },
+      "daily_reward_prize": {
+        "sender": "谷の執政官",
+        "subject": "日々の賞金のあなたの取り分",
+        "body": "谷は誰が最も励んだかを数えており、昨日あなたの名は上位十名に並びました。執政官たちはあなたの取り分を量り、大鴉に託して送りました。\n\n明日も来て、できるなら首位を取りなさい。\n\n- 谷の執政官"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "製作ギルド",

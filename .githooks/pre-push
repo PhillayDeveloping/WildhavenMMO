@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# World of ClaudeCraft pre-push QA floor.
+# Wildhaven pre-push QA floor.
 #
 # Push is the boundary where code leaves your machine, and it happens far less often than a
 # turn or a commit, so this is where the heavier deterministic checks belong: they catch real

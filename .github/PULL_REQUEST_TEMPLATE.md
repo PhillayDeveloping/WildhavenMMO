@@ -1,8 +1,8 @@
 <!--
-Thanks for contributing to World of ClaudeCraft!
+Thanks for contributing to Wildhaven!
 
 New here? The contributing guide is available in your language:
-https://github.com/levy-street/world-of-claudecraft/blob/main/CONTRIBUTING.md
+https://github.com/levy-street/wildhaven/blob/main/CONTRIBUTING.md
 
 Filling this out helps reviewers understand and merge your work faster. Anything
 that doesn't apply to your change, feel free to delete or mark as N/A.
@@ -92,5 +92,5 @@ or strike them through (`~like this~`) when they don't.
 A complete checklist and a green CI run (tests, typecheck, and builds) are what
 we look for before merging. Smaller, focused PRs land faster than large ones, and
 reviewers may suggest changes, which is a normal and friendly part of the
-process. Thank you for helping build World of ClaudeCraft. Questions? Join us on
-[Discord](https://discord.com/invite/worldofclaudecraft).
+process. Thank you for helping build Wildhaven. Questions? Join us on
+[Discord](https://discord.com/invite/wildhaven).

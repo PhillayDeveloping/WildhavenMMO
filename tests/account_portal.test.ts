@@ -25,7 +25,7 @@ describe('accountPortalModel', () => {
   it('exposes all sections in order when logged in', () => {
     const m = accountPortalModel(base);
     expect(m.loggedIn).toBe(true);
-    expect(m.sections).toEqual(['settings', 'wallet', 'characters', 'companion', 'logout']);
+    expect(m.sections).toEqual(['settings', 'characters', 'companion', 'logout']);
     expect(m.header.username).toBe('Aelwyn');
   });
 

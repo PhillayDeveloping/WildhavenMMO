@@ -15,8 +15,8 @@ Postgres and serves the built client from `dist/`.
   host-agnostic module a Vitest imports directly (exemplars: `linkdead.ts` `planJoin`,
   `moderation_commands.ts`); anything needing IO goes behind an injected deps bag or a narrow
   host interface so it tests without a DB or HTTP server (exemplars: `ws_auth.ts`
-  `createWsAuth`, `moderation_service.ts`). `wallet_link.ts` (pure, IO-free) versus
-  `wallet.ts` (DB+HTTP shell) is the same split for REST domains.
+  `createWsAuth`, `moderation_service.ts`). `deeds_board.ts` (pure, IO-free scoring core)
+  versus `deeds.ts` (the `RouteDef` DB+HTTP surface) is the same split for REST domains.
 - **A new domain's tables** go in an exported `<DOMAIN>_SCHEMA` DDL constant in its
   `<domain>_db.ts`, applied by `ensureSchema` (`db.ts`) under the advisory lock (exemplars:
   `SOCIAL_SCHEMA`, `MAPS_SCHEMA`); only core character/account/token/world-state DDL lives
@@ -51,14 +51,13 @@ logic module pairs with a `<domain>_db.ts` that owns its SQL).
 | `realm.ts` | `REALM`, `REALM_DIRECTORY`, `REALM_ORIGINS` from `REALM_NAME`/`REALMS` env |
 | `ratelimit.ts` | per-IP sliding-window limiter + `X-Forwarded-For` resolution |
 | `internal.ts` | secret-gated `/internal/*` ops endpoints (e.g. restart-countdown trigger) |
-| `woc_balance.ts` | the sole Solana RPC reader: holder-tier flair and connected-wallet balance, cached |
 | `player_card.ts` | shareable player-card PNGs, Open Graph unfurl, referral capture |
 | `bank_ledger.ts` | append-only `bank_ledger` observer: diffs `Sim.bankInfoFor` around each bank dispatch and writes the moved delta via a fire-and-forget FIFO (audited offline by `scripts/bank_audit.mjs`) |
-| `bank_entitlements.ts` | pure bonus-slot source registry + `computeBankBonus` (email verified / Discord / wallet / qualified referrals); stamped at the fresh-join handshake via the injected `WsAuthDeps.bankBonusForAccount`, never client-supplied |
+| `bank_entitlements.ts` | pure bonus-slot source registry + `computeBankBonus` (email verified / Discord / qualified referrals); stamped at the fresh-join handshake via the injected `WsAuthDeps.bankBonusForAccount`, never client-supplied |
 | `deeds_db.ts` / `deeds_records.ts` | deeds SQL boundary (`character_deeds` upserts, rarity counts, recent earns, broadcast opt-out; the board roll-up is `deedsBoardRanked` in `db.ts`, aggregated SQL-side with Renown passed as parameters) / the `deedUnlocked` observer: fire-and-forget FIFO upserts, the `isMarqueeDeed` predicate, and the env-gated Steam mirror hook (the marquee guild/friend broadcast fan-out itself lives in `game.ts`); the sim decides unlocks, this only records them |
 | `deeds_board.ts` / `deeds.ts` | the Renown leaderboard's pure scoring core (account-level dedupe, entry floor, score-then-earliest tie-break; Renown values come from the content table, never SQL) / the `RouteDef` API surface (public rarity read, broadcast toggle), TTL-cached in `main.ts` |
 | `steam/` | the env-gated (`STEAM_ENABLED`, off by default) Steam achievements mirror: link-not-login ticket handshake, `achievement_map.ts` (deed id to `ACH_*`, hard cap 100), publisher Web API push + reconcile-on-link |
-| `daily_rewards.ts`/`daily_rewards_db.ts` | wallet-gated daily reward tasks + Discord winner announcements; participation bans are WRITTEN in `moderation_db.ts` (`setDailyRewardsBan`, permanent or timed via `durationHours`, recorded in the moderation audit; `tests/moderation_db.test.ts`), this pair owns only the eligibility read (`banForAccount`, `tests/daily_rewards_ban_db.test.ts`) |
+| `daily_rewards.ts`/`daily_rewards_db.ts`/`daily_rewards_delivery.ts` | daily reward tasks + Discord winner announcements. Participation is open to EVERY account; the only lock is a moderation ban, WRITTEN in `moderation_db.ts` (`setDailyRewardsBan`, permanent or timed via `durationHours`, recorded in the moderation audit; `tests/moderation_db.test.ts`), with this family owning only the eligibility read (`banForAccount`, `tests/daily_rewards_ban_db.test.ts`). The purse is IN-GAME COIN (`prize_copper`, the sim's base unit) split down the ten ranks at day rollover and delivered by Ravenpost letter at the winner's next join: `claimOwedPrizes` claims and marks paid in ONE statement so a reconnect cannot collect twice, and `daily_rewards_delivery.ts` is the pure plan + fire-and-forget shell the join path calls (never awaited, never able to fail a handshake) |
 | `discord.ts` (+ `discord_oauth`/`discord_db`/`discord_relay`/`discord_activity`/`discord_link_changes`/`discord_status_cache`/`discord_bot_counters`/`http/discord_bot_metrics`) | Discord integration: link/unlink OAuth shell + rewards, in-game `!` community-command relay, activity feed the bot drains, the bounded linked-member change feed the outbox carries, the keyed `/api/discord` status cache busted on every write, and the bot's governor counters exposed as prometheus series |
 | `github.ts` (+ `github_oauth`/`github_db`/`github_contributors`) | GitHub contributor linking for the developer badge + merged-PR tally |
 | `oauth.ts`/`oauth_db.ts`, `character_sheet.ts`, `profile_page.ts`, `avatar.ts` | read-only companion API: OAuth code+PKCE and device grants (scope `character:read`), pure sheet normalizer, public SEO profile pages + generated avatars |

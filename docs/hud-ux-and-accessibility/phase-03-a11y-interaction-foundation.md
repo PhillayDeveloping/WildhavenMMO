@@ -46,11 +46,11 @@ STEP 0 - PRE-FLIGHT (do all of this before writing any code)
     present; cannot hang a11y primitives off a seam that does not exist`. Do not
     invent the seam, do not stub HudContext yourself, do not proceed.
 
-0c. MEMORY SCAN. Read `~/.claude/projects/-Users-fernando-Documents-world-of-claudecraft/memory/MEMORY.md`
+0c. MEMORY SCAN. Read `~/.claude/projects/-Users-fernando-Documents-wildhaven/memory/MEMORY.md`
     and the linked notes relevant here: hud, i18n, shared-worktree (stage only
     your files), never-push-to-fork (push branches/PRs to origin levy-street,
     never the FernandoX7 fork), no-em-dashes-or-emojis, live-site-and-test-creds
-    (worldofclaudecraft.com, fernando/turbo564, window.__game debug hook for live
+    (wildhaven.example, fernando/turbo564, window.__game debug hook for live
     driving). Obey all of them for the whole phase.
 
 0d. BRANCH. Create the phase branch off the current up-to-date base:

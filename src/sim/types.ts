@@ -3884,13 +3884,6 @@ export interface Entity extends ClientMirroredEntityFields {
   // reads the SOURCE (PlayerMeta.equipmentInstance) for the actual stat bonus,
   // never this mirror.
   equippedInstances: Partial<Record<EquipSlot, ItemInstancePayload>>;
-  // $WOC holder-tier flair (cosmetic): 0/undefined = none, 1-10 = Ember…Sovereign.
-  // Set server-side from the player's connected-wallet balance and synced in
-  // identity fields like skin. The sim never reads it (no gameplay effect).
-  holderTier?: number;
-  // Exact $WOC balance backing the tier, for the inspect-profile readout. Rides
-  // alongside holderTier in identity fields; like it, the sim never reads it.
-  holderBalance?: number;
   // Linked-Discord flair (cosmetic, server-set from the account's Discord link;
   // the sim never reads any of it): status tier, profile-picture URL, handle/
   // nickname, server-join epoch ms (for "member since"), and top staff/special

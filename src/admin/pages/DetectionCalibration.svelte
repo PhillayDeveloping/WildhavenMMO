@@ -15,7 +15,7 @@
   import { LIVE_REFRESH_MS } from '../state/poll';
   import type { CalibrationHistogram, DetectionCalibrationData } from '../types';
 
-  const AUTO_REFRESH_STORAGE_KEY = 'claudecraft_admin_calibration_auto_refresh';
+  const AUTO_REFRESH_STORAGE_KEY = 'wildhaven_admin_calibration_auto_refresh';
 
   let data = $state<DetectionCalibrationData | null>(null);
   let failed = $state(false);

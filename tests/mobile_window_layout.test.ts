@@ -85,23 +85,13 @@ describe('mobile window layout CSS', () => {
     expect(block).not.toContain('100dvh');
   });
 
-  it('places the Claudium wallet card beside the balance in mobile landscape', () => {
-    expect(mobileCss).toContain(`@media (orientation: landscape) {
-    body.mobile-touch #claudium-window .cl-body:has(> .cl-wallet-connect) {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      align-items: stretch;
-      gap: 10px;
-    }`);
-    expect(mobileCss).toContain(`body.mobile-touch
-      #claudium-window
-      .cl-body:has(> .cl-wallet-connect)
-      > :not(.cl-balance, .cl-wallet-connect) {
-      grid-column: 1 / -1;
-    }`);
-    expect(mobileCss).toContain(`body.mobile-touch #claudium-window .cl-wallet-connect {
-      margin-top: 0;
-    }`);
+  it('ships no landscape layout for the retired Claudium wallet card', () => {
+    // The wallet-connect card went with web3, so `.cl-wallet-connect` is rendered
+    // by nothing (the window builds .cl-balance, .cl-rails, .cl-sku-* and friends).
+    // Its landscape two-column rules were dead styling in the shipped bundle.
+    // Kept as an absence rather than deleted outright: a rule reappearing here
+    // would mean the element came back without anyone noticing.
+    expect(mobileCss).not.toContain('cl-wallet-connect');
   });
 
   it('reduces the shared market control grid to one column on mobile touch', () => {

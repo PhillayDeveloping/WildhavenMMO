@@ -119,7 +119,7 @@ try {
     bytes: statSync(join(downloadRoot, downloaded[0])).size,
     status: await page.$eval('#status', (element) => element.textContent),
   };
-  if (!/^world-of-claudecraft-sfx-[a-f0-9]{16}\.zip$/.test(exported.filename)) {
+  if (!/^wildhaven-sfx-[a-f0-9]{16}\.zip$/.test(exported.filename)) {
     throw new Error(`unexpected export filename: ${exported.filename}`);
   }
   if (

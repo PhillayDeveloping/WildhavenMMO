@@ -1,7 +1,7 @@
 name: Desktop publish
 
 # Builds and publishes the website-channel desktop artifacts to the update
-# host (Cloudflare R2 behind https://updates.worldofclaudecraft.com/desktop/):
+# host (Cloudflare R2 behind https://updates.wildhaven.example/desktop/):
 #   - Linux: AppImage + deb (x64 + arm64), SHA256SUMS-linux, and the two
 #     per-arch electron-updater feed files. No signing required.
 #   - macOS: signed + notarized universal dmg + zip + blockmap, SHA256SUMS-mac,
@@ -144,10 +144,10 @@ jobs:
         run: |
           VERSION="$(node -p "require('./package.json').version")"
           FILES=(
-            "world-of-claudecraft-${VERSION}-linux-x86_64.AppImage"
-            "world-of-claudecraft-${VERSION}-linux-arm64.AppImage"
-            "world-of-claudecraft-${VERSION}-linux-amd64.deb"
-            "world-of-claudecraft-${VERSION}-linux-arm64.deb"
+            "wildhaven-${VERSION}-linux-x86_64.AppImage"
+            "wildhaven-${VERSION}-linux-arm64.AppImage"
+            "wildhaven-${VERSION}-linux-amd64.deb"
+            "wildhaven-${VERSION}-linux-arm64.deb"
             "SHA256SUMS-linux"
             "latest-linux.yml"
             "latest-linux-arm64.yml"
@@ -199,14 +199,14 @@ jobs:
             aws s3 cp "release/$1" "s3://${R2_BUCKET}/desktop/$1" \
               --endpoint-url "$ENDPOINT" --content-type "$2" --cache-control "$3"
           }
-          put "world-of-claudecraft-${VERSION}-linux-x86_64.AppImage" application/octet-stream "public,max-age=31536000,immutable"
-          put "world-of-claudecraft-${VERSION}-linux-arm64.AppImage" application/octet-stream "public,max-age=31536000,immutable"
-          put "world-of-claudecraft-${VERSION}-linux-amd64.deb" application/vnd.debian.binary-package "public,max-age=31536000,immutable"
-          put "world-of-claudecraft-${VERSION}-linux-arm64.deb" application/vnd.debian.binary-package "public,max-age=31536000,immutable"
+          put "wildhaven-${VERSION}-linux-x86_64.AppImage" application/octet-stream "public,max-age=31536000,immutable"
+          put "wildhaven-${VERSION}-linux-arm64.AppImage" application/octet-stream "public,max-age=31536000,immutable"
+          put "wildhaven-${VERSION}-linux-amd64.deb" application/vnd.debian.binary-package "public,max-age=31536000,immutable"
+          put "wildhaven-${VERSION}-linux-arm64.deb" application/vnd.debian.binary-package "public,max-age=31536000,immutable"
           put "SHA256SUMS-linux" text/plain "no-cache,max-age=60"
           put "latest-linux.yml" text/yaml "no-cache,max-age=60"
           put "latest-linux-arm64.yml" text/yaml "no-cache,max-age=60"
-          echo "Published Linux ${VERSION} to https://updates.worldofclaudecraft.com/desktop/"
+          echo "Published Linux ${VERSION} to https://updates.wildhaven.example/desktop/"
 
   mac:
     name: Build and publish macOS artifacts
@@ -274,8 +274,8 @@ jobs:
       # that skipped notarization must fail here, never publish.
       - name: Verify code signature and notarization
         run: |
-          codesign --verify --deep --strict "release/mac-universal/World of ClaudeCraft.app"
-          spctl -a -t exec -vv "release/mac-universal/World of ClaudeCraft.app"
+          codesign --verify --deep --strict "release/mac-universal/Wildhaven.app"
+          spctl -a -t exec -vv "release/mac-universal/Wildhaven.app"
 
       - name: Generate SHA256SUMS-mac
         run: |
@@ -288,9 +288,9 @@ jobs:
         run: |
           VERSION="$(node -p "require('./package.json').version")"
           FILES=(
-            "world-of-claudecraft-${VERSION}-mac-universal.dmg"
-            "world-of-claudecraft-${VERSION}-mac-universal.zip"
-            "world-of-claudecraft-${VERSION}-mac-universal.zip.blockmap"
+            "wildhaven-${VERSION}-mac-universal.dmg"
+            "wildhaven-${VERSION}-mac-universal.zip"
+            "wildhaven-${VERSION}-mac-universal.zip.blockmap"
             "SHA256SUMS-mac"
             "latest-mac.yml"
           )
@@ -340,12 +340,12 @@ jobs:
             aws s3 cp "release/$1" "s3://${R2_BUCKET}/desktop/$1" \
               --endpoint-url "$ENDPOINT" --content-type "$2" --cache-control "$3"
           }
-          put "world-of-claudecraft-${VERSION}-mac-universal.dmg" application/x-apple-diskimage "public,max-age=31536000,immutable"
-          put "world-of-claudecraft-${VERSION}-mac-universal.zip" application/zip "public,max-age=31536000,immutable"
-          put "world-of-claudecraft-${VERSION}-mac-universal.zip.blockmap" application/octet-stream "public,max-age=31536000,immutable"
+          put "wildhaven-${VERSION}-mac-universal.dmg" application/x-apple-diskimage "public,max-age=31536000,immutable"
+          put "wildhaven-${VERSION}-mac-universal.zip" application/zip "public,max-age=31536000,immutable"
+          put "wildhaven-${VERSION}-mac-universal.zip.blockmap" application/octet-stream "public,max-age=31536000,immutable"
           put "SHA256SUMS-mac" text/plain "no-cache,max-age=60"
           put "latest-mac.yml" text/yaml "no-cache,max-age=60"
-          echo "Published macOS ${VERSION} to https://updates.worldofclaudecraft.com/desktop/"
+          echo "Published macOS ${VERSION} to https://updates.wildhaven.example/desktop/"
 
   windows:
     name: Build and publish Windows artifacts
@@ -562,7 +562,7 @@ jobs:
             aws s3 cp "release/$1" "s3://${R2_BUCKET}/desktop/$1" \
               --endpoint-url "$ENDPOINT" --content-type "$2" --cache-control "$3"
           }
-          for file in release/world-of-claudecraft-"${VERSION}"-win-*.zip; do
+          for file in release/wildhaven-"${VERSION}"-win-*.zip; do
             put "$(basename "$file")" application/zip "public,max-age=31536000,immutable"
           done
           FEED_FILES="$(node -e '
@@ -580,4 +580,4 @@ jobs:
           done <<< "$FEED_FILES"
           put "SHA256SUMS-windows" text/plain "no-cache,max-age=60"
           put "latest.yml" text/yaml "no-cache,max-age=60"
-          echo "Published Windows ${VERSION} to https://updates.worldofclaudecraft.com/desktop/"
+          echo "Published Windows ${VERSION} to https://updates.wildhaven.example/desktop/"

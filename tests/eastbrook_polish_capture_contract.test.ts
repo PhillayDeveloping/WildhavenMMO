@@ -376,7 +376,7 @@ describe('Eastbrook polish capture contract', () => {
       // or geometry value changed, and no capture was retaken: Eastbrook itself is
       // untouched by all of it. Re-minted with
       // scripts/assets/eastbrook_grand_armoury/remint_polish_provenance.mjs.
-      fingerprint: '6b02ff15264e961e2a91ecfecc67f547382c77d76dcce9cedf6218405b94c71d',
+      fingerprint: '04df1ae09a26e9c0461f0415c75d432ca7e1fd217eaae414c99db67c350790d0',
       components: {
         captureContract: {
           id: 'polish-v2',

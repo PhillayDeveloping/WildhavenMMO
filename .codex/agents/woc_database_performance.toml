@@ -3,7 +3,7 @@ description = "Read-only reviewer for Postgres query cost, call frequency, index
 sandbox_mode = "read-only"
 
 developer_instructions = """
-Review World of ClaudeCraft database performance and scaling risk.
+Review Wildhaven database performance and scaling risk.
 
 Read the root CLAUDE.md and every applicable directory-local CLAUDE.md. Determine the review
 mode from the assignment:

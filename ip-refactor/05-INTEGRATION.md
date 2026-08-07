@@ -8,7 +8,7 @@ the regen sequence). This file does not re-derive those; it only says how to fol
 
 ## The one rule: a SINGLE integrator, one branch at a time
 `feature/ip-pivot` is checked out in exactly one worktree (the base checkout,
-`world-of-claudecraft/world-of-claudecraft`; worktrees shift between sessions, so confirm with
+`wildhaven/wildhaven`; worktrees shift between sessions, so confirm with
 `git worktree list`). Merging a track into it touches that one checkout, so **two merges at
 once race and corrupt the index/refs, AND both regenerate the same i18n / guide artifacts.**
 Therefore:
@@ -23,7 +23,7 @@ Therefore:
 ## Procedure (run in the feature/ip-pivot checkout)
 For EACH ready branch, one at a time:
 ```bash
-REPO=world-of-claudecraft/world-of-claudecraft
+REPO=wildhaven/wildhaven
 cd "$REPO"
 git worktree list                # confirm THIS path holds feature/ip-pivot (worktrees shift)
 git branch --show-current        # must be feature/ip-pivot
@@ -135,7 +135,7 @@ feature/ip-pivot, ONE AT A TIME (never concurrently — feature/ip-pivot is a si
 checkout and every merge regenerates the same i18n/guide artifacts). Read
 woc-refactor/ip-refactor/README.md and
 00-SHARED-CONVENTIONS.md and the LOCKED NAME-MAP.md first.
-Working directory: world-of-claudecraft/world-of-claudecraft
+Working directory: wildhaven/wildhaven
 Confirm `git worktree list` shows this path on feature/ip-pivot, `git branch --show-current`
 = feature/ip-pivot, and `git status` is clean.
 

@@ -8,7 +8,7 @@
 // to: SHA-1, 6 digits, a 30-second period. verifyTotp returns the matched
 // counter (not a bare boolean) so the login path can reject a code that has
 // already been spent inside its own window (replay guard).
-import { createHmac, randomBytes, createHash, timingSafeEqual } from 'node:crypto';
+import { createHash, createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
 
 export const TOTP_DIGITS = 6;
 export const TOTP_PERIOD_SEC = 30;

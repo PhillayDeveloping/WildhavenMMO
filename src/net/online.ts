@@ -322,11 +322,6 @@ export class ApiError extends Error {
   }
 }
 
-export interface SeekerEntitlementStatus {
-  entitled: boolean;
-  mint: string | null;
-}
-
 // Builds the ApiError for a non-ok JSON response, capturing the stable `code` and
 // the body params when the server sent them (both problem+json and the migrated
 // legacy `{ error, code, ... }` bodies carry a top-level `code`).
@@ -543,71 +538,6 @@ export class Api {
     const data = await this.post('/api/desktop-login/exchange', { code });
     this.token = data.token;
     this.username = data.username;
-  }
-
-  async createDesktopWalletHandoff(
-    action: { kind: 'link' } | { kind: 'transaction'; reference: string; expectedAddress: string },
-  ): Promise<{ code: string; expiresInMs: number }> {
-    const data = await this.post(
-      '/api/desktop-wallet/create',
-      action,
-      DESKTOP_API_ORIGIN || this.base,
-    );
-    return {
-      code: typeof data.code === 'string' ? data.code : '',
-      expiresInMs: typeof data.expiresInMs === 'number' ? data.expiresInMs : 0,
-    };
-  }
-
-  async desktopWalletHandoffResult(code: string): Promise<
-    | { status: 'missing' | 'pending' }
-    | {
-        status: 'complete';
-        result:
-          | { kind: 'link'; address: string; nonce: string; signature: string }
-          | { kind: 'transaction'; address: string; signature: string };
-      }
-  > {
-    const data = await this.post(
-      '/api/desktop-wallet/result',
-      { code },
-      DESKTOP_API_ORIGIN || this.base,
-    );
-    if (data.status !== 'complete' || !data.result || typeof data.result !== 'object') {
-      return { status: data.status === 'pending' ? 'pending' : 'missing' };
-    }
-    const result = data.result as Record<string, unknown>;
-    if (
-      result.kind === 'link' &&
-      typeof result.address === 'string' &&
-      typeof result.nonce === 'string' &&
-      typeof result.signature === 'string'
-    ) {
-      return {
-        status: 'complete',
-        result: {
-          kind: 'link',
-          address: result.address,
-          nonce: result.nonce,
-          signature: result.signature,
-        },
-      };
-    }
-    if (
-      result.kind === 'transaction' &&
-      typeof result.address === 'string' &&
-      typeof result.signature === 'string'
-    ) {
-      return {
-        status: 'complete',
-        result: {
-          kind: 'transaction',
-          address: result.address,
-          signature: result.signature,
-        },
-      };
-    }
-    return { status: 'missing' };
   }
 
   // ── Persistent session (home-page account portal) ──────────────────────────
@@ -852,43 +782,6 @@ export class Api {
     } catch {
       return [];
     }
-  }
-
-  // ── Non-custodial Solana wallet linking ───────────────────────────────────
-  // Step 1: ask the server for the exact message to sign for this address.
-  async walletLinkChallenge(address: string): Promise<{ nonce: string; message: string }> {
-    return this.post('/api/wallet/link/challenge', { address });
-  }
-
-  // Step 2: submit the wallet's signature; server verifies + persists the link.
-  async linkWallet(address: string, signature: string, nonce: string): Promise<{ pubkey: string }> {
-    return this.post('/api/wallet/link', { address, signature, nonce });
-  }
-
-  // Current account's linked wallet (null when none).
-  async linkedWallet(): Promise<{ pubkey: string; linkedAt: string } | null> {
-    const data = await this.get('/api/wallet');
-    return data.wallet ?? null;
-  }
-
-  async unlinkWallet(): Promise<void> {
-    await this.delete('/api/wallet/link', {});
-  }
-
-  async seekerEntitlement(): Promise<SeekerEntitlementStatus> {
-    const data = await this.get('/api/seeker/entitlement');
-    return {
-      entitled: data.entitled === true,
-      mint: typeof data.mint === 'string' ? data.mint : null,
-    };
-  }
-
-  async claimSeekerEntitlement(nativeAttestation: unknown): Promise<SeekerEntitlementStatus> {
-    const data = await this.post('/api/seeker/entitlement', { nativeAttestation });
-    return {
-      entitled: data.entitled === true,
-      mint: typeof data.mint === 'string' ? data.mint : null,
-    };
   }
 
   // ── Discord link/login + status ────────────────────────────────────────────
@@ -2713,8 +2606,6 @@ export class ClientWorld implements IWorld {
           ),
         );
         e.skinCatalog = w.cat === 'mech' ? 'mech' : 'class';
-        e.holderTier = w.ht ?? 0; // $WOC holder-tier flair (cosmetic, server-set)
-        e.holderBalance = typeof w.hb === 'number' ? w.hb : undefined; // exact $WOC, for inspect
         e.discordTier = w.dt ?? 0; // Discord status-tier flair (cosmetic, server-set)
         e.discordAvatar = typeof w.dav === 'string' ? w.dav : undefined; // Discord PFP (linked)
         e.discordName = typeof w.dnm === 'string' ? w.dnm : undefined; // Discord handle/nickname
@@ -4478,7 +4369,7 @@ export class ClientWorld implements IWorld {
   }
   // Reads the EXISTING public character sheet, the same one behind the
   // unauthenticated /c/:name page, so a chat-name lookup exposes nothing that
-  // was not already crawlable. The richer in-view inspect card (wallet balance,
+  // was not already crawlable. The richer in-view inspect card (
   // Discord/GitHub flair, gear) stays on the proximity-gated entity wire.
   async characterProfile(name: string): Promise<CharacterProfile | null> {
     const wanted = name.trim();
@@ -5158,16 +5049,13 @@ export class ClientWorld implements IWorld {
   }
 
   async spinDailyReward(): Promise<DailyRewardSpinResult> {
-    const nativeAttestation = NATIVE_APP
-      ? await createNativeAttestationProof(this.base, 'seeker-spin')
-      : undefined;
     const res = await fetch(apiUrl('/api/daily-rewards/spin', this.base), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${this.token}`,
       },
-      body: JSON.stringify({ nativeAttestation }),
+      body: JSON.stringify({}),
     });
     const data = await res.json().catch(() => ({}));
     if (!res.ok) throw new Error(data.error ?? 'daily spin unavailable');

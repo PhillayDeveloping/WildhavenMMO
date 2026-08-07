@@ -4,16 +4,16 @@
 
 </div>
 
-# Współtworzenie World of ClaudeCraft
+# Współtworzenie Wildhaven
 
-Na początek dziękujemy, że tu jesteś. World of ClaudeCraft tworzy społeczność
+Na początek dziękujemy, że tu jesteś. Wildhaven tworzy społeczność
 ludzi, którzy kochają klasyczne gry MMO, i każdy wkład, duży czy mały, sprawia, że
 gra staje się lepsza. Poprawienie literówki, przetłumaczenie gry, zgłoszenie błędu,
 zbudowanie zupełnie nowego lochu: wszystko się liczy, a Ty jesteś tu mile widziany.
 
 Ten przewodnik pomoże Ci się przygotować i sprawić, by Twój pierwszy wkład przebiegł
 gładko. Nie musisz być ekspertem. Jeśli coś jest niejasne, zapytaj na
-[Discordzie](https://discord.com/invite/worldofclaudecraft), a ktoś chętnie pomoże.
+[Discordzie](https://discord.com/invite/wildhaven), a ktoś chętnie pomoże.
 
 Biorąc udział, zgadzasz się przestrzegać naszego [Kodeksu postępowania](../../CODE_OF_CONDUCT.md).
 
@@ -22,13 +22,13 @@ Biorąc udział, zgadzasz się przestrzegać naszego [Kodeksu postępowania](../
 Tu jest miejsce dla każdego:
 
 - **Kod.** Popraw błąd, dodaj funkcję lub zwiększ wydajność. Zgłoszenia oznaczone
-  etykietami [`good first issue`](https://github.com/levy-street/world-of-claudecraft/labels/good%20first%20issue)
-  i [`help wanted`](https://github.com/levy-street/world-of-claudecraft/labels/help%20wanted)
+  etykietami [`good first issue`](https://github.com/levy-street/wildhaven/labels/good%20first%20issue)
+  i [`help wanted`](https://github.com/levy-street/wildhaven/labels/help%20wanted)
   to dobre miejsce na start.
 - **Tłumaczenia.** Pomóż graczom na całym świecie, ulepszając lub uzupełniając
   język. Zobacz [Tłumaczenie gry](#translating-the-game) poniżej. To jeden
   z najłatwiejszych i najbardziej znaczących sposobów na rozpoczęcie.
-- **Zgłoszenia błędów i pomysły na funkcje.** Otwórz [zgłoszenie](https://github.com/levy-street/world-of-claudecraft/issues/new/choose).
+- **Zgłoszenia błędów i pomysły na funkcje.** Otwórz [zgłoszenie](https://github.com/levy-street/wildhaven/issues/new/choose).
   Czytelne zgłoszenie błędu to prawdziwy wkład.
 - **Dokumentacja.** Przewodniki takie jak ten, plik README oraz dokumenty
   projektowe w katalogu `docs/` zawsze można ulepszyć.
@@ -43,8 +43,8 @@ Będziesz potrzebować [Node.js 26](https://nodejs.org/) oraz **pnpm 10.34.x** (
 
 ```bash
 # 1. Fork the repo on GitHub, then clone your fork
-git clone https://github.com/<your-username>/world-of-claudecraft.git
-cd world-of-claudecraft
+git clone https://github.com/<your-username>/wildhaven.git
+cd wildhaven
 
 # 2. Install pnpm once (same command on macOS, Linux, Windows)
 #    Match the packageManager pin in package.json (today: 10.34.5).
@@ -240,7 +240,7 @@ w recenzjach i prosimy Cię o to samo.
 
 ## Lokalizacja
 
-World of ClaudeCraft jest wydawana w wielu językach. Każdy ciąg znaków widoczny dla
+Wildhaven jest wydawana w wielu językach. Każdy ciąg znaków widoczny dla
 gracza musi być kluczem tłumaczenia, przy czym osoby dodające funkcje zwykle dodają
 tylko angielskie źródło.
 
@@ -292,16 +292,16 @@ kodu gry, by to zrobić:
    nakładki są celowo niepełne.
 
 Aby zaproponować zupełnie nową wersję językową lub przedyskutować ton i
-terminologię, rozpocznij wątek na [Discordzie](https://discord.com/invite/worldofclaudecraft), a
+terminologię, rozpocznij wątek na [Discordzie](https://discord.com/invite/wildhaven), a
 pomożemy Ci wszystko poskładać. Szczególnie mile widziani są rodzimi i biegli
 użytkownicy języka. Dobre tłumaczenia sprawiają, że gra staje się dla graczy
 wszędzie jak dom.
 
 ## Zgłaszanie błędów i propozycje funkcji
 
-Prosimy korzystać z [szablonów zgłoszeń](https://github.com/levy-street/world-of-claudecraft/issues/new/choose):
+Prosimy korzystać z [szablonów zgłoszeń](https://github.com/levy-street/wildhaven/issues/new/choose):
 
-- **Zgłoszenie błędu.** Najpierw przeszukaj [istniejące zgłoszenia](https://github.com/levy-street/world-of-claudecraft/issues),
+- **Zgłoszenie błędu.** Najpierw przeszukaj [istniejące zgłoszenia](https://github.com/levy-street/wildhaven/issues),
   aby uniknąć duplikatów, a następnie dołącz kroki do odtworzenia, czego się
   spodziewałeś, co się stało, oraz swoje środowisko (offline lub online,
   przeglądarka, komputer lub urządzenie mobilne).
@@ -314,7 +314,7 @@ Prosimy korzystać z [szablonów zgłoszeń](https://github.com/levy-street/worl
 ## Uzyskiwanie pomocy
 
 Utknąłeś albo chcesz się po prostu przywitać? Dołącz do
-[społecznościowego Discorda](https://discord.com/invite/worldofclaudecraft). Żadne pytanie nie jest
+[społecznościowego Discorda](https://discord.com/invite/wildhaven). Żadne pytanie nie jest
 zbyt małe, a nowi współtwórcy są zawsze mile widziani.
 
 ## Licencja
@@ -324,10 +324,10 @@ Współtworząc kod, zgadzasz się, że Twój wkład w kod będzie objęty
 
 Licencja MIT znaczy dokładnie to, co mówi: każdy może używać, modyfikować i
 rozpowszechniać kod, komercyjnie lub nie. Nasz
-[Regulamin](https://worldofclaudecraft.com/terms) reguluje hostowaną grę, którą
-prowadzimy pod adresem worldofclaudecraft.com (konta, zachowanie, przedmioty
+[Regulamin](https://wildhaven.example/terms) reguluje hostowaną grę, którą
+prowadzimy pod adresem wildhaven.example (konta, zachowanie, przedmioty
 wirtualne) i nie ogranicza praw, które Licencja MIT daje Tobie ani komukolwiek
-innemu w tym kodzie. Nazwy i znaki „World of ClaudeCraft” oraz „Levy Street” nie są
+innemu w tym kodzie. Nazwy i znaki „Wildhaven” oraz „Levy Street” nie są
 objęte Licencją MIT.
 
 Wyjątkiem są oryginalne zasoby twórcze (nagrania dźwiękowe, muzyka, grafika i
@@ -339,7 +339,7 @@ wybranej przez siebie licencji (na przykład CC BY-NC 4.0), pod warunkiem że:
   zostaną zapisane w tabeli licencji w pliku [CREDITS.md](../../CREDITS.md) w
   ramach tego samego pull requesta, oraz
 - obejmuje ona co najmniej bezterminowe, wolne od opłat prawo Levy Street do
-  komercyjnego wykorzystania zasobów w World of ClaudeCraft, w tym w oficjalnych
+  komercyjnego wykorzystania zasobów w Wildhaven, w tym w oficjalnych
   wydaniach i w sklepie w grze.
 
 Dla zasobów wymienionych w tabeli w CREDITS.md zapisana tam licencja ma pierwszeństwo
@@ -360,5 +360,5 @@ dlatego, że nie może.
 
 ---
 
-Dziękujemy za współtworzenie World of ClaudeCraft. Nie możemy się doczekać, by
+Dziękujemy za współtworzenie Wildhaven. Nie możemy się doczekać, by
 zobaczyć, co zbudujesz razem z nami.

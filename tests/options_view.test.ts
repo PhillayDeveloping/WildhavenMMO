@@ -394,8 +394,6 @@ const GENERAL_KEYS = [
   'invertLookY',
   'landingHighContrast',
   'showDevBadges',
-  'showWalletOnCharacterScreen',
-  'showWalletOnPlayerCard',
   'showDailyRewardsChest',
   'showItemLevel',
   'showOwnNameplate',

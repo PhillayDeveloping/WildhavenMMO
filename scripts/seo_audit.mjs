@@ -7,33 +7,33 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const indexPath = path.resolve(__dirname, '../index.html');
 const expectedAlternates = [
-  { hreflang: 'en', href: 'https://worldofclaudecraft.com/' },
-  { hreflang: 'es', href: 'https://worldofclaudecraft.com/?lang=es' },
-  { hreflang: 'es-ES', href: 'https://worldofclaudecraft.com/?lang=es_ES' },
-  { hreflang: 'fr-FR', href: 'https://worldofclaudecraft.com/?lang=fr_FR' },
-  { hreflang: 'fr-CA', href: 'https://worldofclaudecraft.com/?lang=fr_CA' },
-  { hreflang: 'en-CA', href: 'https://worldofclaudecraft.com/?lang=en_CA' },
-  { hreflang: 'it-IT', href: 'https://worldofclaudecraft.com/?lang=it_IT' },
-  { hreflang: 'de-DE', href: 'https://worldofclaudecraft.com/?lang=de_DE' },
-  { hreflang: 'zh-CN', href: 'https://worldofclaudecraft.com/?lang=zh_CN' },
-  { hreflang: 'zh-TW', href: 'https://worldofclaudecraft.com/?lang=zh_TW' },
-  { hreflang: 'ko-KR', href: 'https://worldofclaudecraft.com/?lang=ko_KR' },
-  { hreflang: 'ja-JP', href: 'https://worldofclaudecraft.com/?lang=ja_JP' },
-  { hreflang: 'pt-BR', href: 'https://worldofclaudecraft.com/?lang=pt_BR' },
-  { hreflang: 'ru-RU', href: 'https://worldofclaudecraft.com/?lang=ru_RU' },
-  { hreflang: 'cs-CZ', href: 'https://worldofclaudecraft.com/?lang=cs_CZ' },
-  { hreflang: 'nl-NL', href: 'https://worldofclaudecraft.com/?lang=nl_NL' },
-  { hreflang: 'pl-PL', href: 'https://worldofclaudecraft.com/?lang=pl_PL' },
-  { hreflang: 'id-ID', href: 'https://worldofclaudecraft.com/?lang=id_ID' },
-  { hreflang: 'tr-TR', href: 'https://worldofclaudecraft.com/?lang=tr_TR' },
-  { hreflang: 'sv-SE', href: 'https://worldofclaudecraft.com/?lang=sv_SE' },
-  { hreflang: 'vi-VN', href: 'https://worldofclaudecraft.com/?lang=vi_VN' },
-  { hreflang: 'da-DK', href: 'https://worldofclaudecraft.com/?lang=da_DK' },
-  { hreflang: 'x-default', href: 'https://worldofclaudecraft.com/' },
+  { hreflang: 'en', href: 'https://wildhaven.example/' },
+  { hreflang: 'es', href: 'https://wildhaven.example/?lang=es' },
+  { hreflang: 'es-ES', href: 'https://wildhaven.example/?lang=es_ES' },
+  { hreflang: 'fr-FR', href: 'https://wildhaven.example/?lang=fr_FR' },
+  { hreflang: 'fr-CA', href: 'https://wildhaven.example/?lang=fr_CA' },
+  { hreflang: 'en-CA', href: 'https://wildhaven.example/?lang=en_CA' },
+  { hreflang: 'it-IT', href: 'https://wildhaven.example/?lang=it_IT' },
+  { hreflang: 'de-DE', href: 'https://wildhaven.example/?lang=de_DE' },
+  { hreflang: 'zh-CN', href: 'https://wildhaven.example/?lang=zh_CN' },
+  { hreflang: 'zh-TW', href: 'https://wildhaven.example/?lang=zh_TW' },
+  { hreflang: 'ko-KR', href: 'https://wildhaven.example/?lang=ko_KR' },
+  { hreflang: 'ja-JP', href: 'https://wildhaven.example/?lang=ja_JP' },
+  { hreflang: 'pt-BR', href: 'https://wildhaven.example/?lang=pt_BR' },
+  { hreflang: 'ru-RU', href: 'https://wildhaven.example/?lang=ru_RU' },
+  { hreflang: 'cs-CZ', href: 'https://wildhaven.example/?lang=cs_CZ' },
+  { hreflang: 'nl-NL', href: 'https://wildhaven.example/?lang=nl_NL' },
+  { hreflang: 'pl-PL', href: 'https://wildhaven.example/?lang=pl_PL' },
+  { hreflang: 'id-ID', href: 'https://wildhaven.example/?lang=id_ID' },
+  { hreflang: 'tr-TR', href: 'https://wildhaven.example/?lang=tr_TR' },
+  { hreflang: 'sv-SE', href: 'https://wildhaven.example/?lang=sv_SE' },
+  { hreflang: 'vi-VN', href: 'https://wildhaven.example/?lang=vi_VN' },
+  { hreflang: 'da-DK', href: 'https://wildhaven.example/?lang=da_DK' },
+  { hreflang: 'x-default', href: 'https://wildhaven.example/' },
 ];
 
 function audit() {
-  console.log('--- World of ClaudeCraft: Local SEO & A11y Audit ---');
+  console.log('--- Wildhaven: Local SEO & A11y Audit ---');
   if (!fs.existsSync(indexPath)) {
     console.error(`Error: index.html not found at ${indexPath}`);
     process.exit(1);
@@ -211,7 +211,7 @@ function audit() {
 
   // 8. Canonical Link Check
   const hasCanonical =
-    html.includes('rel="canonical"') && html.includes('href="https://worldofclaudecraft.com/"');
+    html.includes('rel="canonical"') && html.includes('href="https://wildhaven.example/"');
   checks.push({
     category: 'SEO',
     name: 'Canonical link tag is present and correct',
@@ -219,7 +219,7 @@ function audit() {
     score: hasCanonical ? 10 : 0,
     maxScore: 10,
     details: hasCanonical
-      ? 'Found rel="canonical" pointing to worldofclaudecraft.com.'
+      ? 'Found rel="canonical" pointing to wildhaven.example.'
       : 'Missing rel="canonical" link tag.',
   });
 
@@ -251,7 +251,8 @@ function audit() {
   const ogDesc = html.includes('property="og:description"');
   const ogType = html.includes('property="og:type"');
   const ogUrl = html.includes('property="og:url"');
-  const ogImage = html.includes('property="og:image"') && html.includes('woc_logo_square.webp');
+  const ogImage =
+    html.includes('property="og:image"') && html.includes('wildhaven-logo-square.webp');
   const hasAllOg = ogTitle && ogDesc && ogType && ogUrl && ogImage;
   checks.push({
     category: 'SEO',

@@ -3,7 +3,7 @@
 ## Our pledge
 
 We as members, contributors, and maintainers pledge to make participation in the
-World of ClaudeCraft community a welcoming and harassment-free experience for
+Wildhaven community a welcoming and harassment-free experience for
 everyone, regardless of age, body size, visible or invisible disability,
 ethnicity, gender identity and expression, level of experience, education,
 socioeconomic status, nationality, personal appearance, race, religion, or sexual
@@ -57,9 +57,9 @@ public spaces.
 ## Reporting and enforcement
 
 If you experience or witness unacceptable behavior, please report it privately to
-the maintainers by email at tony@levystreet.com. If you prefer, you can instead
+the maintainers by email at contact@wildhaven.example. If you prefer, you can instead
 send a direct message to a member of the **Levy St**, **Admin**, or **Devs** group
-on the [community Discord](https://discord.com/invite/worldofclaudecraft) and ask
+on the [community Discord](https://discord.com/invite/wildhaven) and ask
 for a private channel to share the details. In game, "Report Player" on a
 character's right-click menu reaches the same moderators.
 

@@ -1,15 +1,15 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import {
-  base32Encode,
   base32Decode,
+  base32Encode,
+  generateRecoveryCodes,
   generateSecret,
   generateTotp,
-  verifyTotp,
-  totpCounter,
-  otpauthUri,
-  generateRecoveryCodes,
-  normalizeRecoveryCode,
   hashRecoveryCode,
+  normalizeRecoveryCode,
+  otpauthUri,
+  totpCounter,
+  verifyTotp,
 } from '../server/totp';
 
 // RFC 6238 Appendix B reference seed: the ASCII string "12345678901234567890"
@@ -72,7 +72,9 @@ describe('verifyTotp behaviour', () => {
   it('returns a strictly increasing counter across periods (enables replay guard)', () => {
     const t0 = 1_700_000_000_000;
     const c0 = verifyTotp(RFC_SECRET, generateTotp(RFC_SECRET, t0), t0, { window: 0 });
-    const c1 = verifyTotp(RFC_SECRET, generateTotp(RFC_SECRET, t0 + 30_000), t0 + 30_000, { window: 0 });
+    const c1 = verifyTotp(RFC_SECRET, generateTotp(RFC_SECRET, t0 + 30_000), t0 + 30_000, {
+      window: 0,
+    });
     expect(c0).not.toBeNull();
     expect(c1).not.toBeNull();
     expect(c1!).toBe(c0! + 1);
@@ -88,12 +90,24 @@ describe('secret + uri generation', () => {
     expect(s).toHaveLength(32);
     expect(base32Decode(s)).toHaveLength(20);
   });
-  it('builds an otpauth URI that encodes brand spaces and carries the secret', () => {
-    const uri = otpauthUri('GEZDGNBV', 'Aria', 'World of ClaudeCraft');
+  it('builds an otpauth URI carrying the real issuer and the secret', () => {
+    // The issuer is what an authenticator app shows next to the code, so it is
+    // player-visible: pin the value the server actually passes (TOTP_ISSUER in
+    // server/account.ts), not a stand-in.
+    const uri = otpauthUri('GEZDGNBV', 'Aria', 'Wildhaven');
     expect(uri.startsWith('otpauth://totp/')).toBe(true);
     expect(uri).toContain('secret=GEZDGNBV');
-    expect(uri).toContain('issuer=World+of+ClaudeCraft');
-    expect(uri).toContain('World%20of%20ClaudeCraft%3AAria');
+    expect(uri).toContain('issuer=Wildhaven');
+    expect(uri).toContain('Wildhaven%3AAria');
+  });
+
+  it('encodes spaces differently in the label and the query, as the spec requires', () => {
+    // Kept as its own case now that the real issuer has no space in it: the label
+    // is path-encoded (%20) and the issuer parameter is query-encoded (+), and a
+    // single encoder used for both would silently break one of them.
+    const uri = otpauthUri('GEZDGNBV', 'Aria', 'Two Words');
+    expect(uri).toContain('Two%20Words%3AAria');
+    expect(uri).toContain('issuer=Two+Words');
   });
 });
 

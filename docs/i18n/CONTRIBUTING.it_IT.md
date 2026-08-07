@@ -4,16 +4,16 @@
 
 </div>
 
-# Contribuire a World of ClaudeCraft
+# Contribuire a Wildhaven
 
-Prima di tutto, grazie di essere qui. World of ClaudeCraft è costruito da una
+Prima di tutto, grazie di essere qui. Wildhaven è costruito da una
 comunità di persone che amano gli MMO classici, e ogni contributo, grande o
 piccolo, lo rende migliore. Correggere un refuso, tradurre il gioco, segnalare un
 bug, creare un dungeon completamente nuovo: tutto conta, e qui sei il benvenuto.
 
 Questa guida ti aiuterà a configurare l'ambiente e a rendere semplice il tuo primo
 contributo. Non devi essere un esperto. Se qualcosa non è chiaro, chiedi su
-[Discord](https://discord.com/invite/worldofclaudecraft) e qualcuno sarà felice di darti una mano.
+[Discord](https://discord.com/invite/wildhaven) e qualcuno sarà felice di darti una mano.
 
 Partecipando, accetti di seguire il nostro [Codice di Condotta](../../CODE_OF_CONDUCT.md).
 
@@ -23,14 +23,14 @@ C'è posto per tutti, qui:
 
 - **Codice.** Correggi un bug, aggiungi una funzionalità o migliora le prestazioni.
   Le issue etichettate
-  [`good first issue`](https://github.com/levy-street/world-of-claudecraft/labels/good%20first%20issue)
-  e [`help wanted`](https://github.com/levy-street/world-of-claudecraft/labels/help%20wanted)
+  [`good first issue`](https://github.com/levy-street/wildhaven/labels/good%20first%20issue)
+  e [`help wanted`](https://github.com/levy-street/wildhaven/labels/help%20wanted)
   sono buoni punti di partenza.
 - **Traduzioni.** Aiuta i giocatori di tutto il mondo migliorando o completando una
   lingua. Vedi [Tradurre il gioco](#translating-the-game) più avanti. È uno dei
   modi più semplici e di maggiore impatto per iniziare.
 - **Segnalazioni di bug e idee per nuove funzionalità.** Apri una
-  [issue](https://github.com/levy-street/world-of-claudecraft/issues/new/choose).
+  [issue](https://github.com/levy-street/wildhaven/issues/new/choose).
   Una segnalazione di bug chiara è un vero contributo.
 - **Documentazione.** Guide come questa, il README e i documenti di design in
   `docs/` possono sempre essere migliorati.
@@ -45,8 +45,8 @@ Ti serviranno [Node.js 26](https://nodejs.org/) e **pnpm 10.34.x** (pin esatto i
 
 ```bash
 # 1. Fork the repo on GitHub, then clone your fork
-git clone https://github.com/<your-username>/world-of-claudecraft.git
-cd world-of-claudecraft
+git clone https://github.com/<your-username>/wildhaven.git
+cd wildhaven
 
 # 2. Install pnpm once (same command on macOS, Linux, Windows)
 #    Match the packageManager pin in package.json (today: 10.34.5).
@@ -242,7 +242,7 @@ e chiediamo lo stesso a te.
 
 ## Localizzazione
 
-World of ClaudeCraft è distribuito in molte lingue. Ogni stringa visibile ai
+Wildhaven è distribuito in molte lingue. Ogni stringa visibile ai
 giocatori deve essere una chiave di traduzione, mentre chi contribuisce una
 funzionalità di norma aggiunge solo il testo sorgente in inglese.
 
@@ -294,17 +294,17 @@ scrivere alcun codice di gioco per farlo:
    che gli overlay sono volutamente sparsi.
 
 Per proporre una lingua completamente nuova, o per discutere di tono e
-terminologia, avvia una discussione su [Discord](https://discord.com/invite/worldofclaudecraft) e ti
+terminologia, avvia una discussione su [Discord](https://discord.com/invite/wildhaven) e ti
 aiuteremo a impostarla. I madrelingua e chi parla fluentemente sono particolarmente
 benvenuti. Buone traduzioni fanno sentire il gioco come a casa per i giocatori di
 ogni parte del mondo.
 
 ## Segnalare bug e richiedere funzionalità
 
-Per favore usa i [modelli di issue](https://github.com/levy-street/world-of-claudecraft/issues/new/choose):
+Per favore usa i [modelli di issue](https://github.com/levy-street/wildhaven/issues/new/choose):
 
 - **Segnalazione di bug.** Cerca prima tra le
-  [issue esistenti](https://github.com/levy-street/world-of-claudecraft/issues) per
+  [issue esistenti](https://github.com/levy-street/wildhaven/issues) per
   evitare duplicati, poi includi i passi per riprodurre il problema, cosa ti
   aspettavi, cosa è successo e il tuo ambiente (offline o online, browser, desktop o
   mobile).
@@ -318,7 +318,7 @@ Per favore usa i [modelli di issue](https://github.com/levy-street/world-of-clau
 ## Ottenere aiuto
 
 Bloccato, o hai solo voglia di salutare? Unisciti al
-[Discord della comunità](https://discord.com/invite/worldofclaudecraft). Nessuna domanda è troppo
+[Discord della comunità](https://discord.com/invite/wildhaven). Nessuna domanda è troppo
 piccola, e i nuovi contributori sono sempre benvenuti.
 
 ## Licenza
@@ -329,10 +329,10 @@ copre il progetto.
 
 La Licenza MIT dice quello che intende: chiunque può usare, modificare e
 ridistribuire il codice, a fini commerciali o meno. I nostri
-[Termini di Servizio](https://worldofclaudecraft.com/terms) regolano il gioco
-ospitato che gestiamo su worldofclaudecraft.com (account, condotta, oggetti
+[Termini di Servizio](https://wildhaven.example/terms) regolano il gioco
+ospitato che gestiamo su wildhaven.example (account, condotta, oggetti
 virtuali) e non limitano i diritti che la Licenza MIT concede a te o a chiunque
-altro su questo codice. I nomi e il marchio "World of ClaudeCraft" e "Levy Street"
+altro su questo codice. I nomi e il marchio "Wildhaven" e "Levy Street"
 non sono coperti dalla Licenza MIT.
 
 Gli asset creativi originali (registrazioni sonore, musica, arte e opere d'autore
@@ -344,7 +344,7 @@ esempio CC BY-NC 4.0), a condizione che:
   registrati nella tabella delle licenze in [CREDITS.md](../../CREDITS.md)
   nell'ambito della stessa pull request, e
 - includa come minimo una concessione perpetua e senza royalty a Levy Street per
-  usare gli asset commercialmente in World of ClaudeCraft, incluse le release
+  usare gli asset commercialmente in Wildhaven, incluse le release
   ufficiali e il negozio in gioco.
 
 Per gli asset elencati nella tabella di CREDITS.md, quella licenza registrata
@@ -366,5 +366,5 @@ se può ridistribuire il tuo asset, e alcune righe sono contrassegnate
 
 ---
 
-Grazie per aver contribuito a World of ClaudeCraft. Non vediamo l'ora di scoprire
+Grazie per aver contribuito a Wildhaven. Non vediamo l'ora di scoprire
 cosa costruirai insieme a noi.

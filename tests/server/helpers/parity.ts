@@ -19,8 +19,6 @@ import {
   resetRateLimitClock,
   resetRateLimits,
   resetReportsCreateRateLimits,
-  resetWalletLinkRateLimits,
-  resetWocBalanceRateLimits,
 } from '../../../server/ratelimit';
 import { captureResponse, type Dispatch } from './golden';
 import { type CapturedResponse, normalizeResponse, stableStringify } from './normalizer';
@@ -64,9 +62,7 @@ export interface RunParityOpts {
 async function isolatePass(extraReset?: () => Promise<void> | void): Promise<void> {
   resetRateLimits();
   resetCardUploadRateLimits();
-  resetWalletLinkRateLimits();
   resetDiscordRateLimits();
-  resetWocBalanceRateLimits();
   resetPublicReadRateLimits();
   // The per-account character-mutation limiters are separate buckets, so a
   // create/rename/delete/takeover 429 on one pass must not bleed into the next.

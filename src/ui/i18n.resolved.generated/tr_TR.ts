@@ -400,7 +400,7 @@ export const tr_TR: EnTranslations = {
       "error": "Günlük ödüller yüklenemedi.",
       "disabled": "Günlük Ödüller şu anda devre dışı. Bu özellikle ilgili güncellemeleri Discord kanalında duyuracağız.",
       "intro": "Günlük ödüllerin kilidini açmak için doğrulanmış cüzdanında yeterince WOC bulundur. Bir günlük çevirme ve dönüşümlü görevlerle puan kazan, ardından ödül havuzundan pay almak için günlük lider tablosunda yüksel.",
-      "disclaimer": "WOC fiyatı hızla değişebilir. Olağan fiyat dalgalanmalarının seni dışarıda bırakmaması için 20 USD asgarisinden fazlasını tutmanı öneririz. Bu bir yatırım tavsiyesi değildir.",
+      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
       "prize": "Ödül Havuzu",
       "reset": "Sıfırla",
       "endsIn": "Bitmesine {time}",
@@ -409,9 +409,6 @@ export const tr_TR: EnTranslations = {
       "remainingHoursMinutes": "{hours}sa {minutes}dk",
       "remainingDaysHours": "{days} gün {hours} saat",
       "score": "Skor",
-      "walletValue": "Cüzdan Değeri (WOC)",
-      "usd": "{amount} USD",
-      "sol": "{amount} SOL",
       "unknown": "Bilinmiyor",
       "spinTitle": "Günlük Çevirme",
       "spinDialogTitle": "Günlük Ödül Çevirmesi",
@@ -436,17 +433,8 @@ export const tr_TR: EnTranslations = {
       "history": "Geçmiş Kazananlar",
       "noLeaders": "Henüz puan yok.",
       "noHistory": "Henüz ödeme yok.",
-      "walletConnectTitle": "Cüzdanı Doğrula",
-      "walletConnectBody": "Günlük ödüllerin kilidini açmak için WOC bulunan bir Solana cüzdanını doğrula.",
-      "walletConnectButton": "Cüzdanı Doğrula",
-      "walletHoldTitle": "WOC Bulundur",
-      "walletHoldBody": "Günlük ödüllerin kilidini açmak için en az {amount} USD değerinde WOC bulundur.",
-      "walletPriceBody": "WOC fiyatı şu anda alınamıyor. Kısa süre sonra tekrar bak.",
       "reason": {
         "eligible": "Ödüllerin kilidi açıldı.",
-        "no_wallet": "En az 20 USD değerinde WOC bulunan bir cüzdan bağla.",
-        "under_minimum": "Cüzdan, 20 USD değerindeki WOC alt sınırının altında.",
-        "price_unavailable": "WOC fiyatı alınamıyor, ödüller geçici olarak kilitli.",
         "banned": "Günlük Ödüllerden yasaklandın. Gerekçe: {reason}",
         "bannedUntil": "Günlük Ödüller'e erişim yasağın {remaining} daha sürecek. Erişim {until} tarihinde geri açılır. Gerekçe: {reason}"
       }
@@ -472,18 +460,6 @@ export const tr_TR: EnTranslations = {
       "armoryEyebrow": "1. Sezon",
       "armoryTitle": "Cephanelik",
       "armoryBody": "1. Sezon Cephaneliğinden sınırlı silah görünümleri. Hesap çapında, tamamen kozmetik ve etrafınızdaki herkese gösterilir.",
-      "wallet": {
-        "title": "Solana cüzdanı",
-        "unlinked": "Bir cüzdan uygulaması bağla, ardından açık adresini WoC hesabına bağlamak için bir kez imzala. Kurtarma ifadeni veya özel anahtarını hiçbir zaman almıyoruz.",
-        "connectedUnlinked": "Cüzdan uygulaması bu tarayıcıya bağlı, ancak açık adresi henüz WoC hesabına bağlanmamış.",
-        "linkedDisconnected": "Açık adresin bağlı. SOL veya WOC ile ödeme yapmak istediğinde o cüzdan uygulamasını yeniden bağla.",
-        "linkedConnected": "Bağlı cüzdan uygulan bağlı ve SOL veya WOC alımlarına hazır.",
-        "mismatched": "Farklı bir cüzdan bağlı. Bağlı adresi değiştirmek için doğrula ya da bağlı cüzdanı yeniden bağla.",
-        "connect": "Cüzdan bağla",
-        "verify": "Doğrula ve bağla",
-        "reconnect": "Cüzdanı yeniden bağla",
-        "manage": "Cüzdanı yönet"
-      },
       "collectionLine": "{collection} Koleksiyon",
       "collections": {
         "guildmark": "Lonca İşareti",
@@ -685,20 +661,11 @@ export const tr_TR: EnTranslations = {
       "loading": "Claudium yükleniyor...",
       "balanceLabel": "Bakiye",
       "balanceUnit": "{amount} Claudium",
-      "solBalance": "SOL: {amount}",
-      "usdcBalance": "USDC: {amount}",
-      "wocBalance": "WOC: {amount}",
       "unavailable": "Claudium mağazası şu anda kullanılamıyor. Bakiyeniz ve satın alımlarınız etkilenmez; lütfen kısa süre sonra tekrar kontrol edin.",
       "disclosure": "Claudium tek yönlü yumuşak bir para birimidir: Parayla satın alın ve kozmetik ürünlerine harcayın. Kullanılamaz, devredilemez veya nakde çevrilemez.",
       "buyTitle": "Claudium'u satın al",
       "railLabel": "Ödeme yöntemi",
       "railStripe": "Kart",
-      "railSol": "SOL",
-      "railUsdc": "USDC",
-      "railWoc": "WOC",
-      "railWocDiscount": "%{percent} indirim",
-      "railWocUnavailable": "WOC fiyatlandırması şu anda mevcut değil.",
-      "railNativeUnavailable": "SOL/WOC şu anda kullanılamıyor.",
       "amountLabel": "Miktar",
       "showAmounts": "Tüm Claudium miktarlarını göster",
       "hideAmounts": "Ekstra Claudium miktarlarını gizle",
@@ -718,10 +685,7 @@ export const tr_TR: EnTranslations = {
       "checkoutPending": "İşlem devam ediyor. Cüzdanınızda onaylayın ve bu paneli açık tutun.",
       "checkoutPendingButton": "İşleme",
       "checkoutFailed": "Ödeme yüklenemedi. Lütfen tekrar deneyin.",
-      "checkoutUnavailable": "Bu Claudium satın alımı şu anda mevcut değil.",
-      "checkoutWalletRequired": "Claudium'u kriptoyla satın almadan önce bir Solana cüzdanı bağlayın.",
-      "checkoutWalletUnsupported": "Bu cüzdan Solana işlemlerini imzalayamaz ve gönderemez.",
-      "checkoutNotSettled": "İşlem gönderildi ancak Claudium'a henüz para yatırılmadı. Lütfen kısa süre sonra tekrar deneyin."
+      "checkoutUnavailable": "Bu Claudium satın alımı şu anda mevcut değil."
     },
     "theme": {
       "preset": "Arayüz Teması",
@@ -843,8 +807,8 @@ export const tr_TR: EnTranslations = {
     },
     "nativeUpdate": {
       "title": "Güncelleme Mevcut",
-      "body": "World of ClaudeCraft'ın yeni bir sürümü mevcut. En son düzeltmeler ve iyileştirmeler için şimdi güncelle.",
-      "bodyWithVersion": "World of ClaudeCraft'ın {version} sürümü mevcut. En son düzeltmeler ve iyileştirmeler için şimdi güncelle.",
+      "body": "Wildhaven'ın yeni bir sürümü mevcut. En son düzeltmeler ve iyileştirmeler için şimdi güncelle.",
+      "bodyWithVersion": "Wildhaven'ın {version} sürümü mevcut. En son düzeltmeler ve iyileştirmeler için şimdi güncelle.",
       "notNow": "Şimdi Değil",
       "update": "Güncelle"
     },
@@ -1196,8 +1160,6 @@ export const tr_TR: EnTranslations = {
       "clickFeedback": "Tıklama İşareti",
       "lockCursorOnRotate": "Döndürürken İmleci Kilitle",
       "keybindHelpLockCursorOnRotate": "Kamerayı döndürmek için sürüklerken fare imlecini pencerenin içinde tutar, böylece ekran kenarına ulaşamaz veya başka bir monitöre geçemez. Serbest imleç tercih ediyorsanız kapatın.",
-      "showWalletOnCharacterScreen": "Cüzdanı Karakter Ekranında Göster",
-      "showWalletOnPlayerCard": "Cüzdanı Oyuncu Kartında Göster",
       "showDevBadges": "Geliştirici Rozetlerini Göster",
       "showOwnNameplate": "Kendi İsim Etiketimi Göster",
       "showPlayerNameplates": "Oyuncu İsim Etiketlerini Göster",
@@ -1373,9 +1335,7 @@ export const tr_TR: EnTranslations = {
         "aetherRush": "Aether Akını"
       }
     },
-    "playerCard": {
-      "showWalletBadge": "Cüzdan rozetini göster"
-    },
+    "playerCard": {},
     "landing": {
       "highContrast": "Yüksek Kontrast",
       "highContrastAria": "Yüksek kontrastlı arka planı aç/kapat: hareketli tanıtımı devre dışı bırakır, böylece başlangıç ekranı metni okunaklı kalır",
@@ -1564,7 +1524,6 @@ export const tr_TR: EnTranslations = {
       "loggedOutPrompt": "Hesabınızı yönetmek için giriş yapın.",
       "memberSince": "Üyelik tarihi: {date}",
       "sectionSettings": "Hesap Ayarları",
-      "sectionWallet": "$WOC Cüzdanı",
       "sectionCharacters": "Karakterler",
       "sectionDanger": "Tehlikeli Bölge",
       "changePassword": "Parolayı Değiştir",
@@ -1591,8 +1550,6 @@ export const tr_TR: EnTranslations = {
       "charactersSummary": "Karakterlerinizi yönetin ve dünyaya girin.",
       "charactersCount": "Karakterler: {count}",
       "goToCharacters": "Karakterleri Görüntüle",
-      "walletSummary": "Oyuncu kartınızda sahip rozetini göstermek için bir Solana cüzdanını doğrulayın.",
-      "manageWallet": "Cüzdanı Yönet",
       "deactivate": "Hesabı Devre Dışı Bırak",
       "deactivateWarning": "Devre dışı bırakma hesabınızı kilitler ve sizi her yerden çıkış yaptırır. Geri yüklemek için bir yöneticiyle iletişime geçin. Kullanıcı adınızı ve parolanızı yeniden girerek onaylayın.",
       "confirmUsername": "Onaylamak için kullanıcı adınızı yazın",
@@ -2003,7 +1960,7 @@ export const tr_TR: EnTranslations = {
     },
     "discord": {
       "title": "Discord",
-      "panelTitle": "World of ClaudeCraft",
+      "panelTitle": "Wildhaven",
       "open": "Discord",
       "close": "Kapat",
       "keybind": "Discord Paneli",
@@ -2293,11 +2250,9 @@ export const tr_TR: EnTranslations = {
       "bonusStatusEarned": "+{count}",
       "bonusSourceEmail": "Doğrulanmış e-posta",
       "bonusSourceDiscord": "Discord bağlandı",
-      "bonusSourceWallet": "Cüzdan bağlandı",
       "bonusSourceReferral": "Davet edilen arkadaşlar",
       "bonusAdvertEmail": "2 yuva kazanmak için e-postanı doğrula.",
       "bonusAdvertDiscord": "2 yuva kazanmak için Discord hesabını bağla.",
-      "bonusAdvertWallet": "2 yuva kazanmak için bir cüzdan bağla.",
       "bonusReferralProgress": "{count}/{cap}",
       "bonusReferralExplainer": "Bir arkadaşını davet et: arkadaşın 10. seviyeye ulaştığında ikiniz de 2 yuva kazanırsınız (en fazla 5 arkadaş).",
       "bonusSectionAria": "Bonus banka yuvaları ve daha fazlasını kazanmanın yolları",
@@ -3147,26 +3102,13 @@ export const tr_TR: EnTranslations = {
       "account_taken": "Bu Epic hesabı zaten başka bir hesaba bağlı.",
       "upstream": "Epic yanıt vermedi. Birazdan tekrar deneyin."
     },
-    "wallet": {
-      "handoff_invalid": "Cüzdan yetkilendirmesi süresi dolmuş veya doğrulanamadı. Tekrar dene."
-    },
     "ota_updates": {
       "invalid_input": "Geçersiz girdi."
-    },
-    "seeker": {
-      "native_only": "Seeker hakkı yalnızca yerel uygulamada kullanılabilir.",
-      "attestation_failed": "Cihaz doğrulaması başarısız oldu. Lütfen tekrar deneyin.",
-      "solana_artifact_required": "Devam etmek için Solana Store uygulamasını kullanın.",
-      "wallet_required": "Önce bir cüzdan bağlayıp doğrulayın.",
-      "genesis_token_required": "Doğrulanmış bir Seeker Genesis Token gerekir.",
-      "genesis_token_claimed": "Bu Seeker Genesis Token zaten talep edilmiş.",
-      "entitlement_required": "Doğrulanmış bir Seeker hakkı gerekir.",
-      "current_ownership_required": "Seeker Genesis Token'a şu anda sahip olmanız gerekir."
     }
   },
   "guide": {
-    "brand": "World of ClaudeCraft",
-    "brandShort": "ClaudeCraft",
+    "brand": "Wildhaven",
+    "brandShort": "Wildhaven",
     "tagline": "Tarayıcınızda ücretsiz oynayabileceğiniz klasik tarzda bir MMO.",
     "skipToContent": "Ana içeriğe geç",
     "loading": "Yükleniyor...",
@@ -3231,7 +3173,7 @@ export const tr_TR: EnTranslations = {
       "github": "GitHub'daki Kaynak",
       "discord": "Discord'a Katıl",
       "communityWiki": "Topluluk Wiki'si",
-      "rights": "World of ClaudeCraft",
+      "rights": "Wildhaven",
       "linksLabel": "Oyun ve topluluk bağlantıları"
     },
     "language": {
@@ -3254,7 +3196,7 @@ export const tr_TR: EnTranslations = {
     },
     "home": {
       "eyebrow": "Klasik tarz tarayıcı MMO'su",
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "subtitle": "Görev yap, grup kur ve elle kurulmuş bir dünyayı keşfet; tarayıcında ücretsiz.",
       "ctaPlay": "Şimdi Oyna",
       "ctaLearn": "Nasıl Oynanır",
@@ -3769,7 +3711,7 @@ export const tr_TR: EnTranslations = {
     },
     "worldPage": {
       "heading": "Dünya",
-      "intro": "World of ClaudeCraft, yürüyerek aştığınız tek ve kesintisiz bir diyardır; güneyden kuzeye dizilmiş üç bölge. Hızlı seyahat yoktur, bu yüzden yolculuğun kendisi maceranın bir parçasıdır.",
+      "intro": "Wildhaven, yürüyerek aştığınız tek ve kesintisiz bir diyardır; güneyden kuzeye dizilmiş üç bölge. Hızlı seyahat yoktur, bu yüzden yolculuğun kendisi maceranın bir parçasıdır.",
       "hub": "Ana üs",
       "mapHeading": "Kuzeye giden yol",
       "mapSub": "Güneyden kuzeye üç bölge, her biri seviye olarak bir basamak daha yüksek. Görev izini takip edin, diyar sizi vadiden zirvelere taşır.",
@@ -4596,7 +4538,7 @@ export const tr_TR: EnTranslations = {
   },
   "editor": {
     "appTitle": "Harita Editörü",
-    "docTitle": "Harita Editörü - World of ClaudeCraft",
+    "docTitle": "Harita Editörü - Wildhaven",
     "untitledMap": "Adsız Harita",
     "playtestPlayerName": "Haritacı",
     "topbar": {
@@ -5072,8 +5014,8 @@ export const tr_TR: EnTranslations = {
     "realmName": "Dünya Adı"
   },
   "footer": {
-    "copyright": "2026 World of ClaudeCraft",
-    "githubLink": "https://github.com/levy-street/world-of-claudecraft",
+    "copyright": "2026 Wildhaven",
+    "githubLink": "https://wildhaven.example",
     "githubLabel": "Açık Kaynak Proje",
     "whitepaper": "Teknik Doküman",
     "terms": "Hizmet Koşulları",
@@ -5130,13 +5072,10 @@ export const tr_TR: EnTranslations = {
     "serverOnline": "Çevrimiçi",
     "serverOffline": "Çevrimdışı",
     "play": "Oyna",
-    "playAria": "World of ClaudeCraft oyna",
+    "playAria": "Wildhaven oyna",
     "serverLabel": "Dünyanı seç",
     "serverAria": "Dünya seç: Çevrimiçi veya Çevrimdışı",
-    "serverOfflineSub": "Anında yerel dünya",
-    "caLabel": "$WOC Sözleşme Adresi",
-    "caCopyAria": "Sözleşme adresini kopyala",
-    "caNote": "WOC topluluk jetonumuzdur. Oynamak için gerekli değildir. WOC'un faydasını ve döngüsünü tartışmak için Discord'a katılın."
+    "serverOfflineSub": "Anında yerel dünya"
   },
   "auth": {
     "enterRealm": "Dünyaya Gir",
@@ -5184,171 +5123,6 @@ export const tr_TR: EnTranslations = {
       "failed": "E-postan kaydedilemedi. Lütfen tekrar dene."
     }
   },
-  "wallet": {
-    "label": "$WOC Cüzdanı",
-    "connect": "Cüzdanı Doğrula",
-    "connectTitle": "Solana cüzdanınızı doğrulayın",
-    "connectAria": "Solana cüzdanınızı doğrulayın",
-    "verify": "Cüzdanı Doğrula",
-    "verifyNew": "Yeni Cüzdan Doğrula",
-    "verifyTitle": "Bir cüzdan seçin ve sahipliği doğrulamak için bir kez imzalayın.",
-    "verifyAria": "Bir cüzdan seçin ve sahipliği doğrulamak için bir kez imzalayın",
-    "verifyAddressAria": "Hesabınız için {address} cüzdanını doğrulamak üzere imzalayın",
-    "appConnected": "Uygulama Bağlandı",
-    "connectApp": "Uygulamayı Bağla",
-    "connectAppTitle": "Bu tarayıcıda cüzdan uygulamasını bağlayın",
-    "connectAppAria": "Bu tarayıcıda cüzdan uygulamasını bağlayın",
-    "verifying": "Doğrulanıyor...",
-    "verifyingTitle": "Cüzdan doğrulaması sürüyor.",
-    "switch": "Değiştir",
-    "switchTitle": "Farklı bir cüzdan doğrula",
-    "switchAria": "Farklı bir cüzdan doğrula",
-    "unlink": "Bağlantıyı Kaldır",
-    "unlinkTitle": "Bu hesaptan cüzdan doğrulamasını kaldır",
-    "unlinkAria": "Bu hesaptan cüzdan doğrulamasını kaldır",
-    "signOut": "Bağlantıyı Kes",
-    "signOutTitle": "Bu tarayıcıdaki cüzdan uygulamasının bağlantısını kes",
-    "signOutAria": "Bu tarayıcıdaki cüzdan uygulamasının bağlantısını kes",
-    "hide": "Gizle",
-    "hideTitle": "Bu ekranda cüzdan satırını gizle",
-    "hideAria": "Bu ekranda cüzdan satırını gizle",
-    "hiddenNotice": "Cüzdan satırı gizlendi. Oyun içinde Seçenekler > Arayüz menüsünden yeniden etkinleştirin.",
-    "linkedTitle": "Cüzdan hesabınız için doğrulandı. Cüzdan uygulamasını yönetmek için tıklayın.",
-    "linkedDisconnectedTitle": "Cüzdan hesabınız için doğrulanmış kalır. Cüzdan uygulamasını yönetmek için yeniden bağlanın.",
-    "linkedDisconnectedAria": "Cüzdan hesabınız için doğrulanmış kalır. Cüzdan uygulamasını yönetmek için yeniden bağlanın.",
-    "linkTitle": "Bu cüzdanı imzalayıp hesabınıza bağlamak için tıklayın.",
-    "connectedTitle": "Bağlandı. Bu cüzdanı hesabınıza bağlamak için giriş yapın.",
-    "balanceTitle": "Doğrulanmış Solana cüzdanı $WOC bakiyesi",
-    "balanceAria": "Doğrulanmış Solana cüzdanı bakiyesi: {balance}",
-    "balancePreviewTitle": "Bağlı cüzdan $WOC bakiyesi önizlemesi",
-    "balancePreviewAria": "Bağlı cüzdan bakiyesi önizlemesi: {balance}. Sahip rozetini doğrulamak için cüzdanı bağlayın.",
-    "balanceAmount": "{amount} $WOC",
-    "bagConnect": "Cüzdanı bağla",
-    "bagLink": "Cüzdanı doğrula",
-    "bagReconnect": "Cüzdanı yeniden bağla",
-    "connected": "Bağlandı: {address}",
-    "connectedWithBalance": "Bağlandı: {balance} - {address}",
-    "connectedLinked": "Doğrulandı: {address}",
-    "connectedLinkedWithBalance": "Doğrulandı: {balance} - {address}",
-    "helpDisconnected": "Sahip rozetini ve oyuncu kartı nişanlarını etkinleştirmek için bir Solana cüzdanı doğrulayın. İşlem veya SOL gerekmez.",
-    "helpLoginToLink": "{address} bağlandı. Hesabınıza bağlamak için giriş yapın.",
-    "helpLoginToLinkWithBalance": "{address} adresi {balance} ile bağlandı. Hesabınıza bağlamak için giriş yapın.",
-    "helpReadyToLink": "Cüzdan seçildi: {address}. Sahip rozetini ve oyuncu kartlarını doğrulamak için bir kez imzalayın.",
-    "helpReadyToLinkWithBalance": "Cüzdan seçildi: {address}, bakiye {balance}. Sahip rozetini ve oyuncu kartlarını doğrulamak için bir kez imzalayın.",
-    "helpLinked": "Sahip ayrıcalıkları etkin. Cüzdan uygulaması bu tarayıcıda bağlı.",
-    "helpLinkedWithBalance": "Sahip ayrıcalıkları etkin. Cüzdan uygulaması bu tarayıcıda bağlı.",
-    "helpLinkedDisconnected": "Sahip ayrıcalıkları etkin. İmzalamanız veya harcamanız gerektiğinde uygulamayı bağlayın.",
-    "helpLinkedDisconnectedWithBalance": "Sahip ayrıcalıkları etkin. İmzalamanız veya harcamanız gerektiğinde uygulamayı bağlayın.",
-    "extensionHelp": "Burada bir cüzdan görmek için Solflare Wallet gibi bir tarayıcı cüzdan uzantısını etkin tutun.",
-    "mobileAppHelp": "Phantom veya Solflare'i seç. Cüzdan uygulan onay isteyecek. Bu oyunu açık bırak ve bittiğinde geri dön.",
-    "seekerAppHelp": "Seed Vault Wallet ile devam et. Bağlantı ve doğrulama isteklerini Seed Vault'ta incele, sonra oyuna dön.",
-    "standaloneAppHelp": "Ana Ekran uygulamasında cüzdan bağlantıları henüz mevcut değil. Phantom veya Solflare kullanmak için World of ClaudeCraft'ı Safari veya Chrome'da aç.",
-    "openAppTitle": "{wallet}'da devam et",
-    "openAppHelp": "Bu isteği incelemek için {wallet}'u aç. Cüzdan uygulaması etkinken bu oyun sekmesini açık bırak.",
-    "openAppButton": "{wallet}'u aç",
-    "manualReturnBrowserHelp": "Onayladıktan sonra bu oyun sekmesine dön. iOS başka bir tarayıcı açarsa, kapat ve orijinal tarayıcıya manuel olarak dön.",
-    "manualReturnStandaloneHelp": "Onayladıktan sonra Ana Ekranından World of ClaudeCraft'a dön. iOS bir tarayıcı açarsa, kapat ve Ana Ekran uygulamasını manuel olarak yeniden aç.",
-    "preparingAppButton": "{wallet} hazırlanıyor...",
-    "walletAppUnavailable": "{wallet} hazırlanamadı. Bu pencereyi kapat ve tekrar dene.",
-    "flowConnect": "Bir cüzdan seçin. Doğrulama otomatik olarak devam eder.",
-    "flowSign": "Cüzdan uygulamanızda doğrulama mesajını imzalayın. İşlem veya SOL gerekmez.",
-    "flowVerify": "Cüzdan sahipliği doğrulanıyor...",
-    "linkFailed": "Cüzdan doğrulaması başarısız oldu.",
-    "verifyFailed": "Cüzdan doğrulaması başarısız oldu.",
-    "unlinkFailed": "Cüzdan bağlantısı kaldırılamadı.",
-    "browser": {
-      "eyebrow": "Masaüstü cüzdan yetkilendirmesi",
-      "title": "Solana Cüzdanı Bağla",
-      "linkBody": "Bu tarayıcıda bir cüzdan uzantısı seç. Bir doğrulama mesajı imzalayacak, ardından masaüstü uygulamasına döneceksin.",
-      "paymentBody": "Hesabına bağlı cüzdanı seç ve bu tarayıcıda işlemi onayla.",
-      "extensionHelp": "Uyumlu cüzdan uzantısı bulunamadı. Phantom, Solflare veya başka bir Solana tarayıcı cüzdanını yükle ya da kilidini aç, ardından tekrar dene.",
-      "safety": "World of ClaudeCraft hiçbir zaman kurtarma ifadeni veya özel anahtarını istemez.",
-      "continueWith": "{wallet} ile devam et",
-      "reviewTitle": "Cüzdanında incele",
-      "reviewBody": "{wallet}'dan gelen istemi takip et. Bu tarayıcı sayfasını açık bırak.",
-      "completeTitle": "Cüzdan yetkilendirmesi tamamlandı",
-      "completeBody": "World of ClaudeCraft masaüstü uygulamasına dönebilirsin.",
-      "returnButton": "Masaüstü uygulamasına dön",
-      "failed": "Cüzdan yetkilendirmesi başarısız oldu veya süresi doldu. Masaüstü uygulamasına dön ve tekrar dene.",
-      "retry": "Tekrar dene"
-    },
-    "holder": "$WOC sahibi",
-    "holderTierTitle": "{tier} $WOC sahibi",
-    "holderTiers": {
-      "ember": {
-        "name": "Köz",
-        "flavor": "Kıvılcım tutuştu."
-      },
-      "coinbearer": {
-        "name": "Sikke Taşıyıcı",
-        "flavor": "Savaş hazinesindeki ilk sikke."
-      },
-      "coppercrest": {
-        "name": "Bakır Arması",
-        "flavor": "Bakırlar yığıldı, adın anıldı."
-      },
-      "silverbound": {
-        "name": "Gümüş Bağlı",
-        "flavor": "Gümüşe bağlı, kese büyüyor."
-      },
-      "gilded": {
-        "name": "Yaldızlı",
-        "flavor": "Yaldızlanmış ve sırıtan."
-      },
-      "vaultwarden": {
-        "name": "Kasa Muhafızı",
-        "flavor": "Artık gerçek bir kasayı koruyorsun: tüm $WOC'nin %0,01'i."
-      },
-      "whale": {
-        "name": "Balina",
-        "flavor": "Yüzdüğünde derinlik ikiye ayrılır: arzın %0,1'i."
-      },
-      "leviathan": {
-        "name": "Leviathan",
-        "flavor": "Piyasalar hareketini hisseder: arzın %1'i."
-      },
-      "tidelord": {
-        "name": "Gelgit Efendisi",
-        "flavor": "Gelgit çağrına yanıt verir: arzın %2'si."
-      },
-      "stormcaller": {
-        "name": "Fırtına Çağıran",
-        "flavor": "Adının anılmasıyla fırtınalar toplanır: arzın %3'ü."
-      },
-      "krakencrown": {
-        "name": "Kraken Tacı",
-        "flavor": "Derinliklerin tacı: arzın %4'ü."
-      },
-      "titanforged": {
-        "name": "Titan Dövmesi",
-        "flavor": "Titanlar arasında dövülmüş: arzın %5'i."
-      },
-      "starhoard": {
-        "name": "Yıldız Hazinesi",
-        "flavor": "Yıldız ışığını büken bir hazine: arzın %6'sı."
-      },
-      "voidwarden": {
-        "name": "Boşluk Muhafızı",
-        "flavor": "Boşluğun kıyısındaki bekçi: arzın %7'si."
-      },
-      "realmshaper": {
-        "name": "Diyar Şekillendiren",
-        "flavor": "Diyarı yeniden şekillendirirsin: arzın %8'i."
-      },
-      "worldforger": {
-        "name": "Dünya Döven",
-        "flavor": "Kendine ait bir dünya döversin: arzın %9'u."
-      },
-      "worldbearer": {
-        "name": "Dünya Taşıyıcı",
-        "flavor": "Dünyanın bir parçasını taşırsın: arzın %10'u."
-      },
-      "sovereign": {
-        "name": "Hükümdar",
-        "flavor": "Diyar diz çöker: arzın tamamı."
-      }
-    }
-  },
   "playerCard": {
     "shareButton": "Oyuncu Kartını Paylaş",
     "title": "Oyuncu Kartı",
@@ -5365,16 +5139,15 @@ export const tr_TR: EnTranslations = {
     "levelClass": "Seviye {level} - {className}",
     "topPercent": "İLK %{percent}",
     "realmSubtitle": "{realm} Dünyası",
-    "defaultRealm": "World of ClaudeCraft",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "defaultRealm": "Wildhaven",
+    "brandWordmark": "WILDHAVEN",
     "recruited": "{count} davet edildi",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",
     "footerCta": "Efsaneni yarat: {siteUrl}",
     "arenaStat": "Arena",
-    "shareTierBit": ", {tier}-derece $WOC sahibi",
-    "shareText": "World of ClaudeCraft'ta efsanemi yaratıyorum: Seviye {level} {className}{tierBit}. Dünyama katıl:",
-    "nativeShareTitle": "World of ClaudeCraft",
+    "shareText": "Wildhaven'ta efsanemi yaratıyorum: Seviye {level} {className}{tierBit}. Dünyama katıl:",
+    "nativeShareTitle": "Wildhaven",
     "fileNameFallback": "oyuncu",
     "actionShareX": "X'te Paylaş",
     "actionCopyReferral": "Davet Bağlantısını Kopyala",
@@ -6074,14 +5847,14 @@ export const tr_TR: EnTranslations = {
     }
   },
   "seo": {
-    "title": "World of ClaudeCraft: Klasik Tarzı Web MMO'su",
-    "description": "Doğrudan tarayıcında oynanabilen klasik tarzı bir mikro MMO olan World of ClaudeCraft'ta destansı bir maceraya atıl. Kalıcı bir ortak dünyaya katıl, sınıfları geliştir ve düşmanları alt et!",
+    "title": "Wildhaven: Klasik Tarzı Web MMO'su",
+    "description": "Doğrudan tarayıcında oynanabilen klasik tarzı bir mikro MMO olan Wildhaven'ta destansı bir maceraya atıl. Kalıcı bir ortak dünyaya katıl, sınıfları geliştir ve düşmanları alt et!",
     "genre": "MMORPG",
     "playMode": "Çok Oyunculu",
     "applicationCategory": "Oyun",
     "operatingSystem": "Web tarayıcısı",
-    "officialLabel": "Resmi World of ClaudeCraft web sitesi",
-    "officialBody": "worldofclaudecraft.com, Claudemoon dünyasının resmi ücretsiz tarayıcı MMO'sudur. Kalıcı bir karakterle çevrimiçi oyna, çevrimdışı tek başına keşfet, wiki'yi oku ve bu siteden doğrulanmış topluluk bağlantılarını takip et."
+    "officialLabel": "Resmi Wildhaven web sitesi",
+    "officialBody": "wildhaven.example, Claudemoon dünyasının resmi ücretsiz tarayıcı MMO'sudur. Kalıcı bir karakterle çevrimiçi oyna, çevrimdışı tek başına keşfet, wiki'yi oku ve bu siteden doğrulanmış topluluk bağlantılarını takip et."
   },
   "a11y": {
     "goHome": "Ana sayfaya git",
@@ -6089,9 +5862,9 @@ export const tr_TR: EnTranslations = {
     "mainNavigation": "Ana gezinme",
     "languageSelection": "Dil seçimi",
     "characterActions": "Karakter eylemleri",
-    "githubProject": "World of ClaudeCraft GitHub projesini aç",
-    "discordCommunity": "World of ClaudeCraft Discord topluluğuna katıl",
-    "donateProject": "World of ClaudeCraft'a destek olmak için bağış yap"
+    "githubProject": "Wildhaven GitHub projesini aç",
+    "discordCommunity": "Wildhaven Discord topluluğuna katıl",
+    "donateProject": "Wildhaven'a destek olmak için bağış yap"
   },
   "entryGuard": {
     "title": "Grafikler düşürüldü",
@@ -6178,11 +5951,11 @@ export const tr_TR: EnTranslations = {
       "dismiss": "Kapat"
     },
     "crash": {
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "body": "Oyun görünümü çalışmayı durdurdu. Yeniden yüklensin mi?",
       "reload": "Yeniden Yükle",
       "quit": "Çık",
-      "fatalBody": "World of ClaudeCraft beklenmeyen bir hatayla karşılaştı ve kapatılması gerekiyor."
+      "fatalBody": "Wildhaven beklenmeyen bir hatayla karşılaştı ve kapatılması gerekiyor."
     }
   },
   "gpuNotice": {
@@ -6321,17 +6094,17 @@ export const tr_TR: EnTranslations = {
     "iosStandaloneDetail": "Ana ekran tam ekran modundasınız. Cihazı yatay konumda tutun.",
     "iosInstallDetail": "iPhone veya iPad'de gerçek tam ekran için önce bu sayfayı Ana Ekranınıza yükleyin.",
     "iosShareStep": "Safari'de Paylaş'a, ardından Ana Ekrana Ekle'ye dokunun.",
-    "iosOpenStep": "World of ClaudeCraft'ı yeni Ana Ekran simgesinden açın.",
+    "iosOpenStep": "Wildhaven'ı yeni Ana Ekran simgesinden açın.",
     "androidStandaloneDetail": "Tam ekran uygulama modundasınız. Cihazı yatay konumda tutun.",
     "androidInstallDetail": "Android'de tam ekran için önce bu sayfayı yükleyin veya Ana ekranınıza ekleyin.",
     "androidInstallStep": "Chrome'da menüye dokunun, ardından Uygulamayı yükle veya Ana ekrana ekle seçeneğini seçin.",
-    "androidOpenStep": "World of ClaudeCraft'ı yeni simgeden açın.",
+    "androidOpenStep": "Wildhaven'ı yeni simgeden açın.",
     "otherStandaloneDetail": "Cihazınızı yatay tam ekran konumunda tutun.",
     "otherInstallDetail": "En iyi tam ekran mobil deneyim için bu sayfayı yükleyin veya Ana ekranınıza ekleyin."
   },
   "serverUnavailable": {
-    "title": "World of ClaudeCraft - Dünya Kullanılamıyor",
-    "logoAlt": "World of ClaudeCraft",
+    "title": "Wildhaven - Dünya Kullanılamıyor",
+    "logoAlt": "Wildhaven",
     "eyebrow": "Dünya bakımı",
     "heading": "Dünya geçici olarak kullanılamıyor.",
     "body": "Oyun hizmetini yeniden başlatıyoruz ve Claudemoon'un kısa süre içinde geri döneceğini umuyoruz. Bu sayfa otomatik olarak denetlemeye devam edecek.",
@@ -14590,6 +14363,11 @@ export const tr_TR: EnTranslations = {
         "sender": "Kahraman levazım subayı",
         "subject": "Kahramanlık Nişanların",
         "body": "Birliğin kahramanlık sınavını temizlerken sen arka saflarda savaşıyor ya da yerde yatıyordun. Kilidin yine de kaydedildi, bu yüzden Kahramanlık Nişanlarından payın kaybolmak yerine buraya gönderildi. Onları iyi kullan.\n\n- Kahraman levazım subayı"
+      },
+      "daily_reward_prize": {
+        "sender": "The Vale Steward",
+        "subject": "Your share of the daily purse",
+        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "Üretim Loncası",

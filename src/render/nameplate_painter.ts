@@ -16,7 +16,6 @@ import { deedTitleText } from '../ui/deed_i18n';
 import { devTierBadgeDataUrl, devTierByIndex, devTierNameOutlineColor } from '../ui/dev_tier';
 import { discordRoleTagLabel } from '../ui/discord_role_tag';
 import { tEntity } from '../ui/entity_i18n';
-import { holderTierBadgeDataUrl, holderTierByIndex } from '../ui/holder_tier';
 import { formatNumber, getI18nRevision, t } from '../ui/i18n';
 import { raidMarkerDataUrl } from '../ui/icons';
 import { type IWorld, OVERHEAD_EMOTES } from '../world_api';
@@ -40,20 +39,9 @@ import { FRIENDLY, isFriendlyPet, mobNameColor } from './reaction';
 import type { EntityView } from './renderer';
 
 const NAMEPLATE_LEVEL_NUMBER_OPTIONS = { maximumFractionDigits: 0 } as const;
-const HOLDER_BADGE_URLS = new Map<number, string>();
 const DEV_BADGE_URLS = new Map<number, string>();
 
 const emoteIconUrl = (id: string): string => `/ui/emotes/emote-${id}.png`;
-
-function holderBadgeUrl(index: number): string {
-  const cached = HOLDER_BADGE_URLS.get(index);
-  if (cached) return cached;
-  const tier = holderTierByIndex(index);
-  if (!tier) return '';
-  const url = holderTierBadgeDataUrl(tier, 32);
-  HOLDER_BADGE_URLS.set(index, url);
-  return url;
-}
 
 function devBadgeUrl(index: number): string {
   const cached = DEV_BADGE_URLS.get(index);
@@ -360,18 +348,6 @@ export class NameplatePainter {
         }
       }
 
-      const holder = holderTierByIndex(entity.holderTier ?? 0);
-      if (holder) {
-        badgeCount = setBadge(
-          state.badges,
-          badgeCount,
-          holderBadgeUrl(holder.index),
-          15,
-          false,
-          undefined,
-          holder.glow,
-        );
-      }
       const developer = showDevBadges ? devTierByIndex(entity.devTier ?? 0) : undefined;
       if (developer) {
         badgeCount = setBadge(

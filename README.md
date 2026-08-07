@@ -1,12 +1,9 @@
 <div align="center">
 
-# World of ClaudeCraft
+# Wildhaven
 
-**Quest, group up, and raid a hand-built world, free in your browser. Open source, web3, and online right now.**
+**Quest, group up, and raid a hand-built world, free in your browser. Open source and online right now.**
 
-**Official website: https://worldofclaudecraft.com/**
-
-[![CI](https://github.com/levy-street/world-of-claudecraft/actions/workflows/ci.yml/badge.svg)](https://github.com/levy-street/world-of-claudecraft/actions/workflows/ci.yml)
 [![TypeScript](https://img.shields.io/badge/TypeScript-7.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Three.js](https://img.shields.io/badge/Three.js-r165-000000?logo=threedotjs&logoColor=white)](https://threejs.org/)
 [![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
@@ -16,23 +13,25 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-0.34.0-blue)](package.json)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
-[![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.com/invite/worldofclaudecraft)
+[![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.com/invite/wildhaven)
 
 **English** · [Español](docs/i18n/README.es.md) · [Español (España)](docs/i18n/README.es_ES.md) · [Français](docs/i18n/README.fr_FR.md) · [Français (Canada)](docs/i18n/README.fr_CA.md) · [Italiano](docs/i18n/README.it_IT.md) · [Deutsch](docs/i18n/README.de_DE.md) · [简体中文](docs/i18n/README.zh_CN.md) · [繁體中文](docs/i18n/README.zh_TW.md) · [한국어](docs/i18n/README.ko_KR.md) · [日本語](docs/i18n/README.ja_JP.md) · [Português (Brasil)](docs/i18n/README.pt_BR.md) · [Русский](docs/i18n/README.ru_RU.md) · [Čeština](docs/i18n/README.cs_CZ.md) · [Nederlands](docs/i18n/README.nl_NL.md) · [Polski](docs/i18n/README.pl_PL.md) · [Bahasa Indonesia](docs/i18n/README.id_ID.md) · [Türkçe](docs/i18n/README.tr_TR.md) · [Svenska](docs/i18n/README.sv_SE.md) · [Tiếng Việt](docs/i18n/README.vi_VN.md) · [Dansk](docs/i18n/README.da_DK.md)
 
-[Play now](https://worldofclaudecraft.com/) · [Host your own world](#host-your-own-world-one-command) · [Train an agent](#train-an-agent-headless-rl) · [Web3](#web3) · [Contributing](CONTRIBUTING.md) · [Discord](https://discord.com/invite/worldofclaudecraft)
+[Host your own world](#host-your-own-world-one-command) · [Train an agent](#train-an-agent-headless-rl) · [Contributing](CONTRIBUTING.md)
 
-![World of ClaudeCraft title screen](docs/screenshots/title-screen.jpg)
+![Wildhaven title screen](docs/screenshots/title-screen.jpg)
 
 </div>
 
 ## What this is
 
-World of ClaudeCraft is a complete classic-era MMO you can play right now in your browser, host yourself with one command, and even train AI agents to play. It is free, open source, and live at [worldofclaudecraft.com](https://worldofclaudecraft.com/).
+Wildhaven is a complete classic-era MMO you run in your browser, host yourself with one command, and can even train AI agents to play. It is free and open source.
+
+It is a rebranded, web3-free fork of [world-of-claudecraft](https://github.com/levy-street/world-of-claudecraft) (MIT) taken at v0.34.0. The entire Solana integration that shipped upstream, wallet linking, holder tiers, the Seeker entitlements, and the on-chain purchase rails, has been removed rather than merely disabled.
 
 One shared world runs in three places, all from the same game core:
 
-- the **authoritative multiplayer server**, the live world you play at worldofclaudecraft.com, where Postgres-backed accounts share one persistent realm,
+- the **authoritative multiplayer server**, where Postgres-backed accounts share one persistent realm,
 - the **offline browser world**, a local single-player Sim you get from the dev server, useful for development and for reading the game core end to end,
 - the **headless RL env**, where Python drives the real game through a Gym interface.
 
@@ -55,8 +54,7 @@ Same seed, same world, everywhere. Much of what you see is still drawn from code
 - **Native apps on every platform**: signed desktop installers for Windows, Linux, and macOS with automatic updates and optional Steam achievement mirroring, plus iOS and Android builds, all sharing the browser client and the same online world.
 - **Scales to the machine you have**: graphics presets and an automatic frame-rate governor trade visual richness for smoothness, and are held to a fairness rule that keeps them from ever hiding something a player reacts to.
 - **Headless RL environment** with Gymnasium bindings, reward shaping, and a benchmark mode.
-- **$WOC utility, fully optional**: link a Solana wallet for holder flair, Daily Rewards, and a discounted payment option in the cosmetic store. The game remains free to play and non-custodial.
-- **Season 1 Armory**: collect cosmetic weapon skins through the WOC Store, using Claudium purchased with fiat, SOL, USDC, or $WOC. Cosmetics never provide combat power.
+- **Season 1 Armory**: collect cosmetic weapon skins from the store, bought with Claudium. Cosmetics never provide combat power.
 
 ## Screenshots
 
@@ -77,7 +75,7 @@ Weather is biome-driven and render-only, so it never touches the deterministic s
 
 ## Play it
 
-Play in your browser at [worldofclaudecraft.com](https://worldofclaudecraft.com/), or install the native app for Windows, Linux, macOS, iOS, or Android. Every client connects to the same online world.
+Run the dev server and play in your browser, or build the native app for Windows, Linux, macOS, iOS, or Android. Every client connects to the same world your server hosts.
 
 ### Online, with other players
 
@@ -98,9 +96,9 @@ Name your character, pick any of the nine classes, and you start in **Eastbrook 
 
 ### Desktop apps for Windows, Linux, and macOS
 
-World of ClaudeCraft ships as full desktop apps for all three major desktop platforms: signed Windows installers, Linux AppImage and deb packages, and signed and notarized universal macOS builds. They use the same game client and online world as the browser, with native packaging and automatic updates.
+Wildhaven ships as full desktop apps for all three major desktop platforms: signed Windows installers, Linux AppImage and deb packages, and signed and notarized universal macOS builds. They use the same game client and online world as the browser, with native packaging and automatic updates.
 
-Online sign-in is Discord and email only, exactly the web flow: email/password logs in inside the app, and "Continue with Discord" opens your default browser on the `/desktop-login` page, which hands a one-time code back to the app over a `worldofclaudecraft://` deep link that the app exchanges for a normal World of ClaudeCraft session token.
+Online sign-in is Discord and email only, exactly the web flow: email/password logs in inside the app, and "Continue with Discord" opens your default browser on the `/desktop-login` page, which hands a one-time code back to the app over a `wildhaven://` deep link that the app exchanges for a normal Wildhaven session token.
 
 ```bash
 npm run electron:dev          # Vite + Electron dev shell
@@ -115,7 +113,7 @@ Point the shell at a different API with `VITE_DESKTOP_API_ORIGIN`, for example a
 VITE_DESKTOP_API_ORIGIN=http://127.0.0.1:8787 npm run electron:dev
 ```
 
-Override the production API origin for staging builds with `VITE_DESKTOP_API_ORIGIN=https://dev.worldofclaudecraft.com` (a BUILD-time value: it is baked into the bundle and stamped into the packaged app, and installed builds ignore it as a runtime env var). Steam is a distribution channel (the same Electron bundle, uploaded via SteamPipe), and desktop players can link a Steam account to mirror the deeds they earn into Steam achievements; sign-in itself stays email and Discord. The full release runbook (signing, notarization, publishing an auto-update, SteamPipe depots, the server deploy) is `docs/desktop-release.md`. iOS and Android ship through Capacitor, with their own runbook in `docs/mobile-store-release.md`.
+Override the production API origin for staging builds with `VITE_DESKTOP_API_ORIGIN=https://dev.wildhaven.example` (a BUILD-time value: it is baked into the bundle and stamped into the packaged app, and installed builds ignore it as a runtime env var). Steam is a distribution channel (the same Electron bundle, uploaded via SteamPipe), and desktop players can link a Steam account to mirror the deeds they earn into Steam achievements; sign-in itself stays email and Discord. The full release runbook (signing, notarization, publishing an auto-update, SteamPipe depots, the server deploy) is `docs/desktop-release.md`. iOS and Android ship through Capacitor, with their own runbook in `docs/mobile-store-release.md`.
 
 ## Host your own world (one command)
 
@@ -177,26 +175,6 @@ env.close()
 
 The protocol and bindings are documented in `headless/CLAUDE.md` and `python/CLAUDE.md`.
 
-## Web3
-
-World of ClaudeCraft is web3-native around **$WOC**, our community token on Solana. Connect a Solana wallet, link it to your account with one signature (non-custodial, no transaction to approve), and your read-only $WOC balance shows up in the HUD alongside a cosmetic holder-tier badge.
-
-$WOC also has optional utility in the live game:
-
-- **WOC Store**: buy Claudium, the one-way cosmetic currency, with fiat, SOL, USDC, or $WOC. The $WOC payment rail is discounted against the others.
-- **Season 1 Armory**: spend Claudium on cosmetic weapon-skin collections. Store purchases do not add stats or combat power.
-- **Daily Rewards**: eligible verified holders can earn points through a daily spin and rotating tasks, then compete for a share of the daily prize pool.
-
-None of this is needed to play. Wallet linking is optional and non-custodial, there is no pay-to-win, and the whole game plays fine without ever connecting a wallet.
-
-**$WOC contract address (Solana):**
-
-```
-3WjLscH2JsXLEFJZRA9z8ti8yRGxWGKbqymPd7UicRth
-```
-
-More on the token at [worldofclaudecraft.com](https://worldofclaudecraft.com/).
-
 ## A tour of the world
 
 ### The nine classes
@@ -257,8 +235,8 @@ Ranked wins and Fiesta takedowns pay **Honor**, which the quartermaster in town 
 - **Guilds**: charters, rosters, ranks, and guild chat.
 - **The Guide**: a searchable in-site wiki at `/wiki` covering classes, creatures, zones, and deeds, generated straight from live game content so it cannot drift from the world it documents.
 - **The Vale Cup and Card Duel**: boarball at the Sowfield stadium south of Eastbrook, in formats from 1v1 to 5v5, and a quick head-to-head card game hosted by the Card Master in town.
-- **Daily Rewards**: verified $WOC holders can earn leaderboard points from a daily spin and rotating tasks, with automatic payouts from the daily prize pool.
-- **WOC Store and Season 1 Armory**: buy Claudium with fiat, SOL, USDC, or $WOC, then spend it on purely cosmetic weapon skins.
+- **Daily Rewards**: earn leaderboard points from a daily spin and rotating tasks, and compete for a share of the daily prize pool.
+- **The store and Season 1 Armory**: buy Claudium by card, then spend it on purely cosmetic weapon skins.
 - **Eating and drinking**: sit to restore, broken by damage or standing, and yes, you can eat and drink at once.
 - **Vendors** that buy food and water and sell honest white gear, with coin shown in gold, silver, and copper.
 - **A personal bank** (the Gilded Strongbox): bursars in each hub town keep a vault per character, from 24 slots up to 96 with coin-bought expansions, plus bonus slots earned online for a verified email, linked accounts, and referrals.
@@ -385,13 +363,13 @@ Every player-visible string resolves through `t()`, and the game ships in **22 l
 
 ## Contributing
 
-Contributions of every kind are welcome: code, translations, bug reports, and documentation. Start with [CONTRIBUTING.md](CONTRIBUTING.md) for setup, read the [Code of Conduct](CODE_OF_CONDUCT.md), and check [SECURITY.md](SECURITY.md) before reporting a vulnerability. New here? Look for issues labeled [`good first issue`](https://github.com/levy-street/world-of-claudecraft/labels/good%20first%20issue), open an [issue](https://github.com/levy-street/world-of-claudecraft/issues/new/choose), or say hello on [Discord](https://discord.com/invite/worldofclaudecraft).
+Contributions of every kind are welcome: code, translations, bug reports, and documentation. Start with [CONTRIBUTING.md](CONTRIBUTING.md) for setup, read the [Code of Conduct](CODE_OF_CONDUCT.md), and check [SECURITY.md](SECURITY.md) before reporting a vulnerability. This is a private fork, so the upstream contribution channels do not apply to it.
 
 Active development runs on the newest `release/vX.Y.Z` branch. Look it up rather than assuming, then branch from it and target it with your pull request. Never branch from or target `main`, which only receives a release branch once that version ships. [CONTRIBUTING.md](CONTRIBUTING.md) has the one-line command that finds the current one.
 
 ## License
 
-**The code is [MIT licensed](LICENSE), so fork it, remix it, and host your own world.** That is the whole point, and nothing else on this page or on our website takes it back.
+**The code is [MIT licensed](LICENSE), so fork it, remix it, and host your own world.** The upstream copyright notice is retained in [LICENSE](LICENSE) as the license requires.
 
 Three things are licensed separately, so it is worth thirty seconds to know which is which:
 
@@ -399,7 +377,7 @@ Three things are licensed separately, so it is worth thirty seconds to know whic
 |---|---|---|
 | **Source code**, meaning all of it except the media assets carved out below | [MIT](LICENSE) | Yes. Commercially too. |
 | **Media assets**: models, textures, HDRIs, icons, sounds, fonts (mostly under `public/`) | Per asset, recorded in [CREDITS.md](CREDITS.md) | Mostly yes (most are CC0). Some are not, see below. |
-| **Name and branding**: "World of ClaudeCraft", "Levy Street", the logos | Not licensed | No. |
+| **Name and branding**: "Wildhaven", "Levy Street", the logos | Not licensed | No. |
 
 **Fork it and host your own world. That works, and the assets are not in your way.** Most of what you see is CC0 public domain (KayKit, Quaternius, Kenney, ambientCG, Poly Haven), and our own generated props, creatures, backdrops and interface sounds ship with the project so a fork runs out of the box. You just can't lift those out and sell them as standalone art.
 
@@ -408,9 +386,9 @@ What you would need to remove or replace before redistributing:
 - the **CraftPix class ability icons** under `public/ui/skills/` were purchased by Levy Street and **may not be redistributed**, so buy your own licence if you want to ship them;
 - the **@jamiecypher sound effects** are CC BY-NC 4.0, so share them non-commercially with credit, but the commercial grant runs to this project only;
 - the **store and prestige art** (Season 1 Armory, the Claudium set, the professions art set, Book of Deeds icons, the elite dragon emblem) is commissioned commercial art and **rights are reserved**;
-- the **third-party brand marks** (Twitch, X, Kick, YouTube, Discord, Solana, USDC) are trademarks of their owners and are not ours to license on;
+- the **third-party brand marks** (Twitch, X, Kick, YouTube, Discord) are trademarks of their owners and are not ours to license on;
 - a handful of **icons and recordings used with permission** need permission to pass on.
 
 [CREDITS.md](CREDITS.md) is the authoritative list, with a redistribution column per asset. Where an asset is listed there, that license controls over the project's MIT license. That register is still being completed, so a media asset missing from it is unrecorded rather than free: ask before relying on it. Source code is the other way around, and everything not carved out is MIT.
 
-Our [Terms of Service](https://worldofclaudecraft.com/terms) cover the hosted game that we run at worldofclaudecraft.com: accounts, conduct, virtual items. They do not restrict the rights the MIT License gives you in this source code.
+The bundled Terms of Service and Privacy Policy describe a hosted service; adapt them before running one. They do not restrict the rights the MIT License gives you in this source code.

@@ -10,13 +10,13 @@ body:
 
         > Not a native English speaker? Write in whatever language you're
         > comfortable with and we'll manage. The contributing guide is available in
-        > [many languages](https://github.com/levy-street/world-of-claudecraft/blob/main/CONTRIBUTING.md),
-        > and you can always ask on [Discord](https://discord.com/invite/worldofclaudecraft).
+        > [many languages](https://github.com/levy-street/wildhaven/blob/main/CONTRIBUTING.md),
+        > and you can always ask on [Discord](https://discord.com/invite/wildhaven).
   - type: checkboxes
     attributes:
       label: Before you start
       options:
-        - label: I searched [existing issues](https://github.com/levy-street/world-of-claudecraft/issues) and didn't find a duplicate.
+        - label: I searched [existing issues](https://github.com/levy-street/wildhaven/issues) and didn't find a duplicate.
           required: true
   - type: textarea
     id: what-happened

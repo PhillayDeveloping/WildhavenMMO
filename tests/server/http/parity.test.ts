@@ -44,8 +44,6 @@ import {
   resetRateLimitClock,
   resetRateLimits,
   resetReportsCreateRateLimits,
-  resetWalletLinkRateLimits,
-  resetWocBalanceRateLimits,
 } from '../../../server/ratelimit';
 import { NATIVE_APP_ORIGINS } from '../../../server/web_login_guard';
 import {
@@ -212,7 +210,6 @@ const API_REQUEST_CORPUS: readonly ApiRequestSpec[] = [
   { name: 'me_characters_get_noauth_401', method: 'GET', url: '/api/me/characters' },
   { name: 'account_get_noauth_401', method: 'GET', url: '/api/account' },
   { name: 'account_logout_post_noauth_401', method: 'POST', url: '/api/account/logout', body: {} },
-  { name: 'wallet_get_noauth_401', method: 'GET', url: '/api/wallet' },
   { name: 'referrals_get_noauth_401', method: 'GET', url: '/api/referrals' },
   { name: 'reports_post_noauth_401', method: 'POST', url: '/api/reports', body: {} },
   // The public-reads authz-gap-close: /api/search is now anonymous-friendly, so a no-token
@@ -288,9 +285,7 @@ function isKnownDeviationPath(path: string): boolean {
 function isolate(): void {
   resetRateLimits();
   resetCardUploadRateLimits();
-  resetWalletLinkRateLimits();
   resetDiscordRateLimits();
-  resetWocBalanceRateLimits();
   resetPublicReadRateLimits();
   // Keep in lockstep with isolatePass: the per-account character-mutation
   // buckets are separate, so a create/rename/delete/takeover 429 on one pass must not
@@ -1300,7 +1295,7 @@ describe('/internal dispatch parity (legacy flag vs new flag)', () => {
 // gotcha). All cases are db-free: the no-auth 401s reject a missing bearer
 // before any resolver, the github callback answers its unconfigured 503 before
 // any state read, the exchange 401 is an in-process Map miss, and the ops
-// mark-payout 400 validates before its first query.
+// void-payout 400 validates before its first query.
 // -----------------------------------------------------------------------------
 
 describe('/api + /internal late-arrival dispatch parity (legacy flag vs new flag)', () => {
@@ -1549,15 +1544,15 @@ describe('/api + /internal late-arrival dispatch parity (legacy flag vs new flag
     expect(stableStringify(newCap)).toBe(stableStringify(oldCap));
   });
 
-  it('POST /internal/daily-rewards/mark-payout with the correct secret and an empty body is a db-free 400 through the migrated chain, identical old-vs-new', async () => {
-    // A REAL gate-pass + handler run on both flags: markPayout validates the
-    // payout target before its first query, so the 400 'invalid payout target'
+  it('POST /internal/daily-rewards/void-payout with the correct secret and an empty body is a db-free 400 through the migrated chain, identical old-vs-new', async () => {
+    // A REAL gate-pass + handler run on both flags: voidPayout validates the
+    // moderation target before its first query, so the 400 'invalid payout target'
     // admin-envelope body is db-free and proves the registered route serves the
     // same core as the composite arm.
     const { oldCap, newCap } = await captureWithEnv({ [DAILY_ENV]: PARITY_SECRET }, () =>
       makeReq({
         method: 'POST',
-        url: '/internal/daily-rewards/mark-payout',
+        url: '/internal/daily-rewards/void-payout',
         headers: { [DAILY_HEADER]: PARITY_SECRET },
         body: {},
       }),
@@ -1622,6 +1617,6 @@ describe('/api + /internal late-arrival dispatch parity (legacy flag vs new flag
 //     ops pending-payouts/payout-history 200s): all resolve a bearer or read payouts
 //     against the pool-less db. The db-free contract points ARE replayed old-vs-new
 //     in the late-arrival block above (incl. one real ops gate-pass through the
-//     migrated chain: the mark-payout 400); the success bodies are pinned with fakes
+//     migrated chain: the void-payout 400); the success bodies are pinned with fakes
 //     in tests/server/{github,desktop_login,daily_rewards_routes}.test.ts.
 // -----------------------------------------------------------------------------

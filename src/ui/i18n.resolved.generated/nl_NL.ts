@@ -400,7 +400,7 @@ export const nl_NL: EnTranslations = {
       "error": "Kon de dagelijkse beloningen niet laden.",
       "disabled": "Dagelijkse beloningen zijn momenteel uitgeschakeld. We kondigen updates voor deze functie aan in het Discord-kanaal.",
       "intro": "Houd genoeg WOC in je geverifieerde portemonnee om dagelijkse beloningen te ontgrendelen. Verdien punten met één dagelijkse draai en wisselende taken, en klim daarna op in de dagelijkse ranglijst voor een deel van de prijzenpot.",
-      "disclaimer": "De WOC-prijs kan snel bewegen. We raden aan meer aan te houden dan het minimum van $20 USD, zodat normale koersschommelingen je niet buitensluiten. Dit is geen financieel advies.",
+      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
       "prize": "Prijzenpot",
       "reset": "Reset",
       "endsIn": "Eindigt over {time}",
@@ -409,9 +409,6 @@ export const nl_NL: EnTranslations = {
       "remainingHoursMinutes": "{hours} u {minutes} min",
       "remainingDaysHours": "{days} d {hours} u",
       "score": "Score",
-      "walletValue": "Portemonneewaarde (WOC)",
-      "usd": "{amount} USD",
-      "sol": "{amount} SOL",
       "unknown": "Onbekend",
       "spinTitle": "Dagelijkse draai",
       "spinDialogTitle": "Dagelijkse beloningsdraai",
@@ -436,17 +433,8 @@ export const nl_NL: EnTranslations = {
       "history": "Eerdere winnaars",
       "noLeaders": "Nog geen punten.",
       "noHistory": "Nog geen uitbetalingen.",
-      "walletConnectTitle": "Portemonnee verifiëren",
-      "walletConnectBody": "Verifieer een Solana-portemonnee met WOC om dagelijkse beloningen te ontgrendelen.",
-      "walletConnectButton": "Portemonnee verifiëren",
-      "walletHoldTitle": "WOC aanhouden",
-      "walletHoldBody": "Houd minstens {amount} USD aan WOC om dagelijkse beloningen te ontgrendelen.",
-      "walletPriceBody": "WOC-prijzen zijn momenteel niet beschikbaar. Kom binnenkort terug.",
       "reason": {
         "eligible": "Beloningen ontgrendeld.",
-        "no_wallet": "Verbind een portemonnee met minstens $20 USD aan WOC.",
-        "under_minimum": "Portemonnee ligt onder het WOC-minimum van $20 USD.",
-        "price_unavailable": "WOC-prijs is niet beschikbaar, beloningen zijn tijdelijk vergrendeld.",
         "banned": "Je bent uitgesloten van dagelijkse beloningen. Reden: {reason}",
         "bannedUntil": "Je bent nog {remaining} uitgesloten van dagelijkse beloningen. De toegang wordt hersteld op {until}. Reden: {reason}"
       }
@@ -472,18 +460,6 @@ export const nl_NL: EnTranslations = {
       "armoryEyebrow": "Seizoen 1",
       "armoryTitle": "Het Arsenaal",
       "armoryBody": "Gelimiteerde wapenskins uit de Wapenkamer van seizoen 1. Ze gelden voor je hele account, zijn puur cosmetisch en zijn zichtbaar voor iedereen om je heen.",
-      "wallet": {
-        "title": "Solana-portemonnee",
-        "unlinked": "Verbind een portemonnee-app en teken eenmaal om het openbare adres aan je WoC-account te koppelen. We ontvangen nooit je herstelzin of privésleutel.",
-        "connectedUnlinked": "De portemonnee-app is verbonden met deze browser, maar het openbare adres is nog niet gekoppeld aan je WoC-account.",
-        "linkedDisconnected": "Je openbare adres is gekoppeld. Verbind die portemonnee-app opnieuw wanneer je met SOL of WOC wilt betalen.",
-        "linkedConnected": "Je gekoppelde portemonnee-app is verbonden en klaar voor SOL- of WOC-aankopen.",
-        "mismatched": "Er is een andere portemonnee verbonden. Verifieer hem om het gekoppelde adres te vervangen, of verbind de gekoppelde portemonnee opnieuw.",
-        "connect": "Portemonnee koppelen",
-        "verify": "Verifiëren en koppelen",
-        "reconnect": "Portemonnee opnieuw verbinden",
-        "manage": "Portemonnee beheren"
-      },
       "collectionLine": "{collection}-collectie",
       "collections": {
         "guildmark": "Gildemerk",
@@ -685,20 +661,11 @@ export const nl_NL: EnTranslations = {
       "loading": "Claudium laden...",
       "balanceLabel": "Saldo",
       "balanceUnit": "{amount} Claudium",
-      "solBalance": "SOL: {amount}",
-      "usdcBalance": "USDC: {amount}",
-      "wocBalance": "WOC: {amount}",
       "unavailable": "De Claudium-winkel is momenteel niet beschikbaar. Je saldo en aankopen zijn niet aangetast. Probeer het binnenkort opnieuw.",
       "disclosure": "Claudium is een virtuele valuta die maar één kant op gaat: koop het met geld en besteed het aan cosmetica. Het kan niet worden ingewisseld, overgedragen of uitbetaald.",
       "buyTitle": "Claudium kopen",
       "railLabel": "Betaalmethode",
       "railStripe": "Kaart",
-      "railSol": "SOL",
-      "railUsdc": "USDC",
-      "railWoc": "WOC",
-      "railWocDiscount": "{percent}% korting",
-      "railWocUnavailable": "WOC-prijzen zijn momenteel niet beschikbaar.",
-      "railNativeUnavailable": "SOL/WOC staat uit.",
       "amountLabel": "Hoeveelheid",
       "showAmounts": "Toon alle Claudium-bedragen",
       "hideAmounts": "Verberg extra Claudium-bedragen",
@@ -718,10 +685,7 @@ export const nl_NL: EnTranslations = {
       "checkoutPending": "Transactie in behandeling. Bevestig deze in je wallet en houd dit paneel open.",
       "checkoutPendingButton": "Bezig",
       "checkoutFailed": "Afrekenen kon niet worden geladen. Probeer het opnieuw.",
-      "checkoutUnavailable": "Die aankoop van Claudium is momenteel niet beschikbaar.",
-      "checkoutWalletRequired": "Koppel een Solana-wallet voordat je Claudium met cryptovaluta koopt.",
-      "checkoutWalletUnsupported": "Deze wallet kan geen Solana-transacties ondertekenen en verzenden.",
-      "checkoutNotSettled": "De transactie is verzonden, maar Claudium is nog niet gecrediteerd. Probeer het binnenkort opnieuw."
+      "checkoutUnavailable": "Die aankoop van Claudium is momenteel niet beschikbaar."
     },
     "theme": {
       "preset": "UI-thema",
@@ -843,8 +807,8 @@ export const nl_NL: EnTranslations = {
     },
     "nativeUpdate": {
       "title": "Update beschikbaar",
-      "body": "Er is een nieuwe versie van World of ClaudeCraft beschikbaar. Werk nu bij voor de nieuwste oplossingen en verbeteringen.",
-      "bodyWithVersion": "Versie {version} van World of ClaudeCraft is beschikbaar. Werk nu bij voor de nieuwste oplossingen en verbeteringen.",
+      "body": "Er is een nieuwe versie van Wildhaven beschikbaar. Werk nu bij voor de nieuwste oplossingen en verbeteringen.",
+      "bodyWithVersion": "Versie {version} van Wildhaven is beschikbaar. Werk nu bij voor de nieuwste oplossingen en verbeteringen.",
       "notNow": "Niet nu",
       "update": "Bijwerken"
     },
@@ -1196,8 +1160,6 @@ export const nl_NL: EnTranslations = {
       "clickFeedback": "Klikmarkering",
       "lockCursorOnRotate": "Aanwijzer vergrendelen tijdens draaien",
       "keybindHelpLockCursorOnRotate": "Houdt de muisaanwijzer binnen het venster terwijl je sleept om de camera te draaien, zodat deze de schermrand niet kan bereiken of naar een ander beeldscherm kan gaan. Schakel uit als je liever een vrije aanwijzer hebt.",
-      "showWalletOnCharacterScreen": "Portemonnee tonen op personagescherm",
-      "showWalletOnPlayerCard": "Portemonnee tonen op spelerskaart",
       "showDevBadges": "Ontwikkelaarsinsignes tonen",
       "showOwnNameplate": "Mijn naambordje tonen",
       "showPlayerNameplates": "Spelersnamen Tonen",
@@ -1373,9 +1335,7 @@ export const nl_NL: EnTranslations = {
         "aetherRush": "Aetherstormloop"
       }
     },
-    "playerCard": {
-      "showWalletBadge": "Geldbeursbadge tonen"
-    },
+    "playerCard": {},
     "landing": {
       "highContrast": "Hoog contrast",
       "highContrastAria": "Hoog-contrastachtergrond aan/uit: schakelt de bewegende trailer uit zodat de tekst op het startscherm leesbaar blijft",
@@ -1564,7 +1524,6 @@ export const nl_NL: EnTranslations = {
       "loggedOutPrompt": "Log in om je account te beheren.",
       "memberSince": "Lid sinds {date}",
       "sectionSettings": "Accountinstellingen",
-      "sectionWallet": "$WOC Wallet",
       "sectionCharacters": "Personages",
       "sectionDanger": "Gevarenzone",
       "changePassword": "Wachtwoord Wijzigen",
@@ -1591,8 +1550,6 @@ export const nl_NL: EnTranslations = {
       "charactersSummary": "Beheer je personages en betreed de wereld.",
       "charactersCount": "Personages: {count}",
       "goToCharacters": "Personages Bekijken",
-      "walletSummary": "Verifieer een Solana-wallet om houdersflair op je spelerskaart te tonen.",
-      "manageWallet": "Wallet Beheren",
       "deactivate": "Account Deactiveren",
       "deactivateWarning": "Deactivering vergrendelt je account en logt je overal uit. Neem contact op met een beheerder om het te herstellen. Bevestig door je gebruikersnaam en wachtwoord opnieuw in te voeren.",
       "confirmUsername": "Typ je gebruikersnaam ter bevestiging",
@@ -2003,7 +1960,7 @@ export const nl_NL: EnTranslations = {
     },
     "discord": {
       "title": "Discord",
-      "panelTitle": "World of ClaudeCraft",
+      "panelTitle": "Wildhaven",
       "open": "Discord",
       "close": "Sluiten",
       "keybind": "Discord-paneel",
@@ -2293,11 +2250,9 @@ export const nl_NL: EnTranslations = {
       "bonusStatusEarned": "+{count}",
       "bonusSourceEmail": "E-mailadres geverifieerd",
       "bonusSourceDiscord": "Discord gekoppeld",
-      "bonusSourceWallet": "Portemonnee gekoppeld",
       "bonusSourceReferral": "Aangebrachte vrienden",
       "bonusAdvertEmail": "Verifieer je e-mailadres om 2 vakken te verdienen.",
       "bonusAdvertDiscord": "Koppel je Discord om 2 vakken te verdienen.",
-      "bonusAdvertWallet": "Koppel een portemonnee om 2 vakken te verdienen.",
       "bonusReferralProgress": "{count}/{cap}",
       "bonusReferralExplainer": "Nodig een vriend uit: wanneer die niveau 10 bereikt, verdienen jullie allebei 2 vakken, tot 5 vrienden.",
       "bonusSectionAria": "Bonusbankvakken en hoe je er meer verdient",
@@ -3147,26 +3102,13 @@ export const nl_NL: EnTranslations = {
       "account_taken": "Dat Epic-account is al gekoppeld aan een ander account.",
       "upstream": "Epic reageerde niet. Probeer het zo meteen opnieuw."
     },
-    "wallet": {
-      "handoff_invalid": "Die portemonnee-autorisatie is verlopen of kon niet worden geverifieerd. Probeer het opnieuw."
-    },
     "ota_updates": {
       "invalid_input": "Ongeldige invoer."
-    },
-    "seeker": {
-      "native_only": "Seeker-rechten zijn alleen beschikbaar in de native app.",
-      "attestation_failed": "Apparaatverificatie mislukt. Probeer het opnieuw.",
-      "solana_artifact_required": "Gebruik de Solana Store-app om verder te gaan.",
-      "wallet_required": "Koppel en verifieer eerst een portemonnee.",
-      "genesis_token_required": "Een geverifieerd Seeker Genesis Token is vereist.",
-      "genesis_token_claimed": "Dat Seeker Genesis Token is al geclaimd.",
-      "entitlement_required": "Geverifieerde Seeker-rechten zijn vereist.",
-      "current_ownership_required": "Actueel bezit van het Seeker Genesis Token is vereist."
     }
   },
   "guide": {
-    "brand": "World of ClaudeCraft",
-    "brandShort": "ClaudeCraft",
+    "brand": "Wildhaven",
+    "brandShort": "Wildhaven",
     "tagline": "Een MMO in klassieke stijl die je gratis in je browser speelt.",
     "skipToContent": "Ga naar hoofdinhoud",
     "loading": "Laden...",
@@ -3231,7 +3173,7 @@ export const nl_NL: EnTranslations = {
       "github": "Broncode op GitHub",
       "discord": "Word lid van de Discord",
       "communityWiki": "Community-wiki",
-      "rights": "World of ClaudeCraft",
+      "rights": "Wildhaven",
       "linksLabel": "Speel- en communitylinks"
     },
     "language": {
@@ -3254,7 +3196,7 @@ export const nl_NL: EnTranslations = {
     },
     "home": {
       "eyebrow": "Klassieke MMO in je browser",
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "subtitle": "Quest, sluit je aaneen en verken een handgebouwde wereld, gratis in je browser.",
       "ctaPlay": "Speel nu",
       "ctaLearn": "Hoe te spelen",
@@ -3769,7 +3711,7 @@ export const nl_NL: EnTranslations = {
     },
     "worldPage": {
       "heading": "De wereld",
-      "intro": "World of ClaudeCraft is één aaneengesloten land dat je te voet doorkruist, drie zones van zuid naar noord. Er is geen snelreizen, dus de reis is onderdeel van het avontuur.",
+      "intro": "Wildhaven is één aaneengesloten land dat je te voet doorkruist, drie zones van zuid naar noord. Er is geen snelreizen, dus de reis is onderdeel van het avontuur.",
       "hub": "Thuisbasis",
       "mapHeading": "De weg naar het noorden",
       "mapSub": "Drie zones, van zuid naar noord, elk een stap hoger in niveau. Volg het questspoor en het land draagt je van het dal naar de toppen.",
@@ -4596,7 +4538,7 @@ export const nl_NL: EnTranslations = {
   },
   "editor": {
     "appTitle": "Kaarteditor",
-    "docTitle": "Kaarteditor - World of ClaudeCraft",
+    "docTitle": "Kaarteditor - Wildhaven",
     "untitledMap": "Naamloze kaart",
     "playtestPlayerName": "Kaartenmaker",
     "topbar": {
@@ -5072,8 +5014,8 @@ export const nl_NL: EnTranslations = {
     "realmName": "Wereldnaam"
   },
   "footer": {
-    "copyright": "2026 World of ClaudeCraft",
-    "githubLink": "https://github.com/levy-street/world-of-claudecraft",
+    "copyright": "2026 Wildhaven",
+    "githubLink": "https://wildhaven.example",
     "githubLabel": "Opensourceproject",
     "whitepaper": "Whitepaper",
     "terms": "Servicevoorwaarden",
@@ -5130,13 +5072,10 @@ export const nl_NL: EnTranslations = {
     "serverOnline": "Online",
     "serverOffline": "Offline",
     "play": "Spelen",
-    "playAria": "Speel World of ClaudeCraft",
+    "playAria": "Speel Wildhaven",
     "serverLabel": "Kies je wereld",
     "serverAria": "Kies wereld: Online of Offline",
-    "serverOfflineSub": "Directe lokale wereld",
-    "caLabel": "$WOC Contractadres",
-    "caCopyAria": "Contractadres kopiëren",
-    "caNote": "WOC is onze communitytoken. Het is niet nodig om te spelen. Word lid van Discord om de WOC-toepassing en het vliegwiel te bespreken."
+    "serverOfflineSub": "Directe lokale wereld"
   },
   "auth": {
     "enterRealm": "Betreed de wereld",
@@ -5184,171 +5123,6 @@ export const nl_NL: EnTranslations = {
       "failed": "Kon je e-mailadres niet opslaan. Probeer het opnieuw."
     }
   },
-  "wallet": {
-    "label": "$WOC-portemonnee",
-    "connect": "Portemonnee verifiëren",
-    "connectTitle": "Verifieer je Solana-portemonnee",
-    "connectAria": "Verifieer je Solana-portemonnee",
-    "verify": "Portemonnee verifiëren",
-    "verifyNew": "Nieuwe portemonnee verifiëren",
-    "verifyTitle": "Kies een portemonnee en onderteken één keer om eigendom te verifiëren.",
-    "verifyAria": "Kies een portemonnee en onderteken één keer om eigendom te verifiëren",
-    "verifyAddressAria": "Onderteken om portemonnee {address} voor je account te verifiëren",
-    "appConnected": "App verbonden",
-    "connectApp": "App verbinden",
-    "connectAppTitle": "Verbind de portemonnee-app in deze browser",
-    "connectAppAria": "Verbind de portemonnee-app in deze browser",
-    "verifying": "Verifiëren...",
-    "verifyingTitle": "Portemonneeverificatie is bezig.",
-    "switch": "Wisselen",
-    "switchTitle": "Verifieer een andere portemonnee",
-    "switchAria": "Verifieer een andere portemonnee",
-    "unlink": "Ontkoppelen",
-    "unlinkTitle": "Verwijder portemonneeverificatie van dit account",
-    "unlinkAria": "Verwijder portemonneeverificatie van dit account",
-    "signOut": "Verbinding verbreken",
-    "signOutTitle": "Verbreek de verbinding met de portemonnee-app in deze browser",
-    "signOutAria": "Verbreek de verbinding met de portemonnee-app in deze browser",
-    "hide": "Verbergen",
-    "hideTitle": "Verberg de portemonneerij op dit scherm",
-    "hideAria": "Verberg de portemonneerij op dit scherm",
-    "hiddenNotice": "Portemonneerij verborgen. Schakel deze in het spel weer in via Opties > Interface.",
-    "linkedTitle": "Portemonnee geverifieerd voor je account. Klik om de portemonnee-app te beheren.",
-    "linkedDisconnectedTitle": "De portemonnee blijft geverifieerd voor je account. Verbind opnieuw om de portemonnee-app te beheren.",
-    "linkedDisconnectedAria": "De portemonnee blijft geverifieerd voor je account. Verbind opnieuw om de portemonnee-app te beheren.",
-    "linkTitle": "Klik om te ondertekenen en deze portemonnee aan je account te koppelen.",
-    "connectedTitle": "Verbonden. Log in om deze portemonnee aan je account te koppelen.",
-    "balanceTitle": "Geverifieerd $WOC-saldo van Solana-portemonnee",
-    "balanceAria": "Geverifieerd Solana-portemonneesaldo: {balance}",
-    "balancePreviewTitle": "Voorbeeld van $WOC-saldo van verbonden portemonnee",
-    "balancePreviewAria": "Voorbeeld van saldo van verbonden portemonnee: {balance}. Koppel de portemonnee om houderkenmerk te verifiëren.",
-    "balanceAmount": "{amount} $WOC",
-    "bagConnect": "Portemonnee koppelen",
-    "bagLink": "Portemonnee verifiëren",
-    "bagReconnect": "Portemonnee opnieuw verbinden",
-    "connected": "Verbonden: {address}",
-    "connectedWithBalance": "Verbonden: {balance} - {address}",
-    "connectedLinked": "Geverifieerd: {address}",
-    "connectedLinkedWithBalance": "Geverifieerd: {balance} - {address}",
-    "helpDisconnected": "Verifieer een Solana-portemonnee om houderkenmerk en spelerkaartinsignes in te schakelen. Geen transactie of SOL vereist.",
-    "helpLoginToLink": "{address} verbonden. Log in om deze aan je account te koppelen.",
-    "helpLoginToLinkWithBalance": "{address} verbonden met {balance}. Log in om deze aan je account te koppelen.",
-    "helpReadyToLink": "Portemonnee geselecteerd: {address}. Onderteken één keer om houderkenmerk en spelerkaarten te verifiëren.",
-    "helpReadyToLinkWithBalance": "Portemonnee geselecteerd: {address} met {balance}. Onderteken één keer om houderkenmerk en spelerkaarten te verifiëren.",
-    "helpLinked": "Houdervoordelen zijn actief. Portemonnee-app verbonden in deze browser.",
-    "helpLinkedWithBalance": "Houdervoordelen zijn actief. Portemonnee-app verbonden in deze browser.",
-    "helpLinkedDisconnected": "Houdervoordelen zijn actief. Verbind de app wanneer je moet ondertekenen of uitgeven.",
-    "helpLinkedDisconnectedWithBalance": "Houdervoordelen zijn actief. Verbind de app wanneer je moet ondertekenen of uitgeven.",
-    "extensionHelp": "Om hier een portemonnee te zien, houd je een browserextensie voor portemonnees zoals Solflare Wallet actief.",
-    "mobileAppHelp": "Kies Phantom of Solflare. Je portemonnee-app vraagt om goedkeuring. Houd dit spel open en keer ernaar terug wanneer je klaar bent.",
-    "seekerAppHelp": "Ga verder met Seed Vault Wallet. Bekijk de verbindings- en verificatieverzoeken in Seed Vault en keer daarna terug naar het spel.",
-    "standaloneAppHelp": "Portemonneeverbindingen zijn nog niet beschikbaar in de beginscherm-app. Open World of ClaudeCraft in Safari of Chrome om Phantom of Solflare te gebruiken.",
-    "openAppTitle": "Doorgaan in {wallet}",
-    "openAppHelp": "Open {wallet} om dit verzoek te bekijken. Houd dit speltabblad open terwijl de portemonnee-app actief is.",
-    "openAppButton": "Open {wallet}",
-    "manualReturnBrowserHelp": "Keer na goedkeuring terug naar dit speltabblad. Als iOS een andere browser opent, sluit die dan en keer handmatig terug naar de oorspronkelijke browser.",
-    "manualReturnStandaloneHelp": "Keer na goedkeuring terug naar World of ClaudeCraft via je beginscherm. Als iOS een browser opent, sluit die dan en open de beginscherm-app handmatig opnieuw.",
-    "preparingAppButton": "{wallet} voorbereiden...",
-    "walletAppUnavailable": "{wallet} kon niet worden voorbereid. Sluit dit venster en probeer het opnieuw.",
-    "flowConnect": "Kies een portemonnee. De verificatie gaat automatisch verder.",
-    "flowSign": "Onderteken het verificatiebericht in je portemonnee-app. Geen transactie of SOL vereist.",
-    "flowVerify": "Eigendom van portemonnee verifiëren...",
-    "linkFailed": "Portemonneeverificatie mislukt.",
-    "verifyFailed": "Portemonneeverificatie mislukt.",
-    "unlinkFailed": "Kon portemonnee niet ontkoppelen.",
-    "browser": {
-      "eyebrow": "Desktop-portemonnee-autorisatie",
-      "title": "Een Solana-portemonnee verbinden",
-      "linkBody": "Kies een portemonnee-extensie in deze browser. Je tekent een verificatiebericht en keert dan terug naar de desktop-app.",
-      "paymentBody": "Kies de aan je account gekoppelde portemonnee en keur de transactie goed in deze browser.",
-      "extensionHelp": "Geen compatibele portemonnee-extensie gevonden. Installeer of ontgrendel Phantom, Solflare of een andere Solana-browserportemonnee en probeer het opnieuw.",
-      "safety": "World of ClaudeCraft vraagt nooit naar je herstelzin of privésleutel.",
-      "continueWith": "Doorgaan met {wallet}",
-      "reviewTitle": "Bekijken in je portemonnee",
-      "reviewBody": "Volg de aanwijzing van {wallet}. Houd deze browserpagina open.",
-      "completeTitle": "Portemonnee-autorisatie voltooid",
-      "completeBody": "Je kunt terugkeren naar de World of ClaudeCraft desktop-app.",
-      "returnButton": "Terug naar desktop-app",
-      "failed": "Portemonnee-autorisatie mislukt of verlopen. Keer terug naar de desktop-app en probeer het opnieuw.",
-      "retry": "Opnieuw proberen"
-    },
-    "holder": "$WOC-houder",
-    "holderTierTitle": "{tier} $WOC-houder",
-    "holderTiers": {
-      "ember": {
-        "name": "Sintel",
-        "flavor": "De vonk is ontstoken."
-      },
-      "coinbearer": {
-        "name": "Muntdrager",
-        "flavor": "De eerste munt in de oorlogskist."
-      },
-      "coppercrest": {
-        "name": "Koperkam",
-        "flavor": "Koper opgestapeld, je naam wordt genoemd."
-      },
-      "silverbound": {
-        "name": "Zilvergebonden",
-        "flavor": "Gebonden in zilver, de buidel opbouwend."
-      },
-      "gilded": {
-        "name": "Verguld",
-        "flavor": "Verguld en grijnzend."
-      },
-      "vaultwarden": {
-        "name": "Kluiswachter",
-        "flavor": "Bewaakt nu een echte kluis: 0,01% van alle $WOC."
-      },
-      "whale": {
-        "name": "Walvis",
-        "flavor": "De diepte splijt wanneer je zwemt: 0,1% van de voorraad."
-      },
-      "leviathan": {
-        "name": "Leviathan",
-        "flavor": "De markten voelen je bewegen: 1% van de voorraad."
-      },
-      "tidelord": {
-        "name": "Getijdenheer",
-        "flavor": "Het tij geeft gehoor aan je roep: 2% van de voorraad."
-      },
-      "stormcaller": {
-        "name": "Stormroeper",
-        "flavor": "Stormen verzamelen zich bij je naam: 3% van de voorraad."
-      },
-      "krakencrown": {
-        "name": "Krakenkroon",
-        "flavor": "Gekroond door de diepte: 4% van de voorraad."
-      },
-      "titanforged": {
-        "name": "Titaangesmeed",
-        "flavor": "Gesmeed onder titanen: 5% van de voorraad."
-      },
-      "starhoard": {
-        "name": "Sterrenschat",
-        "flavor": "Een schat die sterrenlicht buigt: 6% van de voorraad."
-      },
-      "voidwarden": {
-        "name": "Leegtewachter",
-        "flavor": "Hoeder aan de rand van de leegte: 7% van de voorraad."
-      },
-      "realmshaper": {
-        "name": "Rijkvormer",
-        "flavor": "Jij hervormt het rijk: 8% van de voorraad."
-      },
-      "worldforger": {
-        "name": "Wereldsmid",
-        "flavor": "Een eigen wereld smedend: 9% van de voorraad."
-      },
-      "worldbearer": {
-        "name": "Werelddrager",
-        "flavor": "Je draagt een stuk van de wereld: 10% van de voorraad."
-      },
-      "sovereign": {
-        "name": "Soeverein",
-        "flavor": "Het rijk buigt de knie: de gehele voorraad."
-      }
-    }
-  },
   "playerCard": {
     "shareButton": "Spelerskaart Delen",
     "title": "Spelerskaart",
@@ -5365,16 +5139,15 @@ export const nl_NL: EnTranslations = {
     "levelClass": "Niveau {level} - {className}",
     "topPercent": "TOP {percent}%",
     "realmSubtitle": "Wereld {realm}",
-    "defaultRealm": "World of ClaudeCraft",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "defaultRealm": "Wildhaven",
+    "brandWordmark": "WILDHAVEN",
     "recruited": "{count} geworven",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",
     "footerCta": "Smeed je legende: {siteUrl}",
     "arenaStat": "Arena",
-    "shareTierBit": ", {tier}-rang $WOC-houder",
-    "shareText": "Ik smeed mijn legende in World of ClaudeCraft: Niveau {level} {className}{tierBit}. Sluit je aan bij mijn wereld:",
-    "nativeShareTitle": "World of ClaudeCraft",
+    "shareText": "Ik smeed mijn legende in Wildhaven: Niveau {level} {className}{tierBit}. Sluit je aan bij mijn wereld:",
+    "nativeShareTitle": "Wildhaven",
     "fileNameFallback": "speler",
     "actionShareX": "Delen op X",
     "actionCopyReferral": "Verwijzingslink Kopiëren",
@@ -6074,14 +5847,14 @@ export const nl_NL: EnTranslations = {
     }
   },
   "seo": {
-    "title": "World of ClaudeCraft: Web-MMO in Klassieke Stijl",
-    "description": "Begin aan een episch avontuur in World of ClaudeCraft, een micro-MMO in klassieke stijl die je rechtstreeks in je browser kunt spelen. Sluit je aan bij een blijvende gedeelde wereld, level je klassen op en versla vijanden!",
+    "title": "Wildhaven: Web-MMO in Klassieke Stijl",
+    "description": "Begin aan een episch avontuur in Wildhaven, een micro-MMO in klassieke stijl die je rechtstreeks in je browser kunt spelen. Sluit je aan bij een blijvende gedeelde wereld, level je klassen op en versla vijanden!",
     "genre": "MMORPG",
     "playMode": "Multiplayer",
     "applicationCategory": "Spel",
     "operatingSystem": "Webbrowser",
-    "officialLabel": "Officiële website van World of ClaudeCraft",
-    "officialBody": "worldofclaudecraft.com is de officiële gratis browser-MMO voor de Claudemoon-wereld. Speel online met een blijvend personage, verken solo offline, lees de wiki en volg geverifieerde communitylinks vanaf deze site."
+    "officialLabel": "Officiële website van Wildhaven",
+    "officialBody": "wildhaven.example is de officiële gratis browser-MMO voor de Claudemoon-wereld. Speel online met een blijvend personage, verken solo offline, lees de wiki en volg geverifieerde communitylinks vanaf deze site."
   },
   "a11y": {
     "goHome": "Ga naar de startpagina",
@@ -6089,9 +5862,9 @@ export const nl_NL: EnTranslations = {
     "mainNavigation": "Hoofdnavigatie",
     "languageSelection": "Taalkeuze",
     "characterActions": "Personageacties",
-    "githubProject": "Open het World of ClaudeCraft GitHub-project",
-    "discordCommunity": "Word lid van de World of ClaudeCraft Discord-community",
-    "donateProject": "Doneer om World of ClaudeCraft te steunen"
+    "githubProject": "Open het Wildhaven GitHub-project",
+    "discordCommunity": "Word lid van de Wildhaven Discord-community",
+    "donateProject": "Doneer om Wildhaven te steunen"
   },
   "entryGuard": {
     "title": "Grafische kwaliteit verlaagd",
@@ -6178,11 +5951,11 @@ export const nl_NL: EnTranslations = {
       "dismiss": "Sluiten"
     },
     "crash": {
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "body": "De spelweergave werkt niet meer. Opnieuw laden?",
       "reload": "Opnieuw laden",
       "quit": "Afsluiten",
-      "fatalBody": "World of ClaudeCraft is op een onverwachte fout gestuit en moet worden afgesloten."
+      "fatalBody": "Wildhaven is op een onverwachte fout gestuit en moet worden afgesloten."
     }
   },
   "gpuNotice": {
@@ -6321,17 +6094,17 @@ export const nl_NL: EnTranslations = {
     "iosStandaloneDetail": "Je bent in de volledig-scherm-modus vanaf het beginscherm. Houd het apparaat in liggende stand.",
     "iosInstallDetail": "Voor echt volledig scherm op iPhone of iPad moet je deze pagina eerst aan je beginscherm toevoegen.",
     "iosShareStep": "Tik in Safari op Deel en daarna op Zet op beginscherm.",
-    "iosOpenStep": "Open World of ClaudeCraft vanaf het nieuwe pictogram op het beginscherm.",
+    "iosOpenStep": "Open Wildhaven vanaf het nieuwe pictogram op het beginscherm.",
     "androidStandaloneDetail": "Je bent in de volledig-scherm-appmodus. Houd het apparaat in liggende stand.",
     "androidInstallDetail": "Voor volledig scherm op Android moet je deze pagina eerst installeren of aan je beginscherm toevoegen.",
     "androidInstallStep": "Tik in Chrome op het menu en daarna op App installeren of Toevoegen aan beginscherm.",
-    "androidOpenStep": "Open World of ClaudeCraft vanaf het nieuwe pictogram.",
+    "androidOpenStep": "Open Wildhaven vanaf het nieuwe pictogram.",
     "otherStandaloneDetail": "Houd je apparaat in liggend volledig scherm.",
     "otherInstallDetail": "Installeer of voeg deze pagina toe aan je beginscherm voor de beste mobiele ervaring met volledig scherm."
   },
   "serverUnavailable": {
-    "title": "World of ClaudeCraft - Wereld niet beschikbaar",
-    "logoAlt": "World of ClaudeCraft",
+    "title": "Wildhaven - Wereld niet beschikbaar",
+    "logoAlt": "Wildhaven",
     "eyebrow": "Wereldonderhoud",
     "heading": "De wereld is tijdelijk niet beschikbaar.",
     "body": "We herstarten de gameservice en verwachten dat Claudemoon binnenkort weer terug is. Deze pagina blijft automatisch controleren.",
@@ -14590,6 +14363,11 @@ export const nl_NL: EnTranslations = {
         "sender": "Heroïsche kwartiermeester",
         "subject": "Je heroïsche marken",
         "body": "Je groep heeft de heroïsche beproeving doorstaan terwijl jij in de achterhoede vocht of verslagen op de grond lag. Ook jouw binding is vastgelegd, dus je aandeel heroïsche marken is hierheen gestuurd in plaats van verloren te gaan. Gebruik ze goed.\n\n- Heroïsche kwartiermeester"
+      },
+      "daily_reward_prize": {
+        "sender": "The Vale Steward",
+        "subject": "Your share of the daily purse",
+        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "Het Ambachtsgilde",

@@ -4,9 +4,9 @@
 
 </div>
 
-# World of ClaudeCraft'a Katkıda Bulunma
+# Wildhaven'a Katkıda Bulunma
 
-Öncelikle, burada olduğunuz için teşekkür ederiz. World of ClaudeCraft, klasik
+Öncelikle, burada olduğunuz için teşekkür ederiz. Wildhaven, klasik
 MMO'ları seven insanlardan oluşan bir topluluk tarafından geliştiriliyor ve
 büyük olsun küçük olsun her katkı onu daha iyi hale getiriyor. Bir yazım
 hatasını düzeltmek, oyunu çevirmek, bir hata bildirmek, baştan sona yepyeni bir
@@ -14,7 +14,7 @@ zindan inşa etmek: hepsinin değeri var ve burada hoş geldiniz.
 
 Bu rehber, kurulumu yapmanıza ve ilk katkınızı sorunsuz bir şekilde
 gerçekleştirmenize yardımcı olacak. Uzman olmanıza gerek yok. Bir şey belirsizse
-[Discord](https://discord.com/invite/worldofclaudecraft) üzerinden sorun, biri size memnuniyetle
+[Discord](https://discord.com/invite/wildhaven) üzerinden sorun, biri size memnuniyetle
 yardımcı olacaktır.
 
 Katılarak, [Davranış Kuralları](../../CODE_OF_CONDUCT.md) belgemize uymayı kabul
@@ -25,13 +25,13 @@ etmiş olursunuz.
 Burada herkes için bir yer var:
 
 - **Kod.** Bir hatayı düzeltin, bir özellik ekleyin veya performansı iyileştirin.
-  [`good first issue`](https://github.com/levy-street/world-of-claudecraft/labels/good%20first%20issue)
-  ve [`help wanted`](https://github.com/levy-street/world-of-claudecraft/labels/help%20wanted)
+  [`good first issue`](https://github.com/levy-street/wildhaven/labels/good%20first%20issue)
+  ve [`help wanted`](https://github.com/levy-street/wildhaven/labels/help%20wanted)
   etiketli sorunlar başlamak için iyi yerlerdir.
 - **Çeviriler.** Bir dili iyileştirerek veya tamamlayarak dünyanın dört bir
   yanındaki oyunculara yardım edin. Aşağıdaki [Oyunu çevirme](#translating-the-game)
   bölümüne bakın. Bu, başlamanın en kolay ve en etkili yollarından biridir.
-- **Hata bildirimleri ve özellik fikirleri.** Bir [sorun](https://github.com/levy-street/world-of-claudecraft/issues/new/choose)
+- **Hata bildirimleri ve özellik fikirleri.** Bir [sorun](https://github.com/levy-street/wildhaven/issues/new/choose)
   açın. Net bir hata bildirimi gerçek bir katkıdır.
 - **Belgeler.** Bunun gibi rehberler, README ve `docs/` içindeki tasarım belgeleri
   her zaman iyileştirilebilir.
@@ -46,8 +46,8 @@ Burada herkes için bir yer var:
 
 ```bash
 # 1. Fork the repo on GitHub, then clone your fork
-git clone https://github.com/<your-username>/world-of-claudecraft.git
-cd world-of-claudecraft
+git clone https://github.com/<your-username>/wildhaven.git
+cd wildhaven
 
 # 2. Install pnpm once (same command on macOS, Linux, Windows)
 #    Match the packageManager pin in package.json (today: 10.34.5).
@@ -245,7 +245,7 @@ yapıcı olmayı amaçlıyoruz ve aynısını sizden de rica ediyoruz.
 
 ## Yerelleştirme
 
-World of ClaudeCraft birçok dilde sunuluyor. Oyuncuya görünen her dizge bir çeviri
+Wildhaven birçok dilde sunuluyor. Oyuncuya görünen her dizge bir çeviri
 anahtarı olmalıdır; özellik geliştiren katkıcılar ise normalde yalnızca İngilizce
 kaynağı ekler.
 
@@ -296,16 +296,16 @@ istiyorsunuz? Bunu yapmak için herhangi bir oyun kodu yazmanıza gerek yok:
    başına bir tip denetimi bir anahtarın eksik olup olmadığını size söylemez.
 
 Yepyeni bir yerel ayar önermek veya üslup ve terminolojiyi tartışmak için
-[Discord](https://discord.com/invite/worldofclaudecraft) üzerinde bir konu başlatın, onu bağlamanıza
+[Discord](https://discord.com/invite/wildhaven) üzerinde bir konu başlatın, onu bağlamanıza
 yardımcı olacağız. Anadili olan ve akıcı konuşanlar özellikle hoş karşılanır. İyi
 çeviriler, oyunu her yerdeki oyuncular için ev gibi hissettirir.
 
 ## Hata bildirme ve özellik isteme
 
-Lütfen [sorun şablonlarını](https://github.com/levy-street/world-of-claudecraft/issues/new/choose)
+Lütfen [sorun şablonlarını](https://github.com/levy-street/wildhaven/issues/new/choose)
 kullanın:
 
-- **Hata bildirimi.** Yinelenmeleri önlemek için önce [mevcut sorunları](https://github.com/levy-street/world-of-claudecraft/issues)
+- **Hata bildirimi.** Yinelenmeleri önlemek için önce [mevcut sorunları](https://github.com/levy-street/wildhaven/issues)
   arayın, ardından yeniden oluşturma adımlarını, ne beklediğinizi, ne olduğunu ve
   ortamınızı (çevrimdışı veya çevrimiçi, tarayıcı, masaüstü veya mobil) ekleyin.
 - **Özellik isteği.** Yalnızca çözümü değil, çözmeye çalıştığınız sorunu açıklayın.
@@ -316,7 +316,7 @@ kullanın:
 
 ## Yardım alma
 
-Takıldınız mı, yoksa sadece merhaba mı demek istiyorsunuz? [Topluluk Discord'una](https://discord.com/invite/worldofclaudecraft)
+Takıldınız mı, yoksa sadece merhaba mı demek istiyorsunuz? [Topluluk Discord'una](https://discord.com/invite/wildhaven)
 katılın. Hiçbir soru çok küçük değildir ve yeni katkıda bulunanlar her zaman hoş
 karşılanır.
 
@@ -328,10 +328,10 @@ edersiniz.
 
 MIT Lisansı ne diyorsa odur: herkes kodu ticari olsun olmasın kullanabilir,
 değiştirebilir ve yeniden dağıtabilir.
-[Hizmet Şartlarımız](https://worldofclaudecraft.com/terms),
-worldofclaudecraft.com adresinde işlettiğimiz barındırılan oyunu (hesaplar,
+[Hizmet Şartlarımız](https://wildhaven.example/terms),
+wildhaven.example adresinde işlettiğimiz barındırılan oyunu (hesaplar,
 davranış, sanal eşyalar) düzenler ve MIT Lisansı'nın bu kod üzerinde size veya
-başkasına verdiği hakları kısıtlamaz. "World of ClaudeCraft" ve "Levy Street"
+başkasına verdiği hakları kısıtlamaz. "Wildhaven" ve "Levy Street"
 adları ile markaları MIT Lisansı kapsamında değildir.
 
 Özgün yaratıcı varlıklar (ses kayıtları, müzik, sanat ve benzeri eser
@@ -342,7 +342,7 @@ bir lisansla (örneğin CC BY-NC 4.0) katkı olarak verebilirsiniz; şu koşulla
 - lisans, kapsadığı varlık yolları ve atfınız, aynı pull request'in parçası
   olarak [CREDITS.md](../../CREDITS.md) içindeki lisans tablosuna kaydedilir ve
 - en azından, resmi sürümler ve oyun içi mağaza dahil olmak üzere varlıkları
-  World of ClaudeCraft içinde ticari olarak kullanması için Levy Street'e
+  Wildhaven içinde ticari olarak kullanması için Levy Street'e
   süresiz ve telifsiz bir hak tanır.
 
 CREDITS.md tablosunda listelenen varlıklar için, kaydedilen o lisans projenin
@@ -363,5 +363,5 @@ devredilemeyecekleri için "No, permission required" olarak işaretlenmiştir.
 
 ---
 
-World of ClaudeCraft'a katkıda bulunduğunuz için teşekkür ederiz. Bizimle birlikte
+Wildhaven'a katkıda bulunduğunuz için teşekkür ederiz. Bizimle birlikte
 ne inşa edeceğinizi görmek için sabırsızlanıyoruz.

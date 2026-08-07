@@ -803,7 +803,8 @@ describe('daily rewards winner cards', () => {
       taskName: 'Complete quests',
       nextTaskName: 'Win an arena match',
       realm: 'Claudemoon',
-      prizePoolUsd: 150,
+      // 250g pool, split 20% / 15% down the ranks (DAILY_REWARD_SPLITS).
+      prizePoolCopper: 2_500_000,
       finalizedAt: '2026-07-01T00:00:00.000Z',
       payouts: [
         {
@@ -812,9 +813,8 @@ describe('daily rewards winner cards', () => {
           username: 'titoisking',
           points: 12345,
           prizePercent: 0.2,
-          prizeUsd: 30,
+          prizeCopper: 500_000,
           status: 'pending',
-          txSignature: null,
         },
         {
           day: '2026-06-30',
@@ -822,9 +822,10 @@ describe('daily rewards winner cards', () => {
           username: 'alice',
           points: 1000,
           prizePercent: 0.15,
-          prizeUsd: 22.5,
+          // 15% of the pool lands on a half-gold, proving the silver place value
+          // survives the copper split rather than being rounded to whole gold.
+          prizeCopper: 375_000,
           status: 'pending',
-          txSignature: null,
         },
       ],
     }) as {
@@ -840,11 +841,11 @@ describe('daily rewards winner cards', () => {
     expect(msg.allowed_mentions).toEqual({ parse: [] });
     expect(msg.embeds[0].author).toEqual({ name: 'Task: Complete quests' });
     expect(msg.embeds[0].title).toBe('Top 2 Winners - 2026-06-30');
-    expect(msg.embeds[0].description).toContain('**#1** titoisking - 12,345 pts - $30.00 (20%)');
-    expect(msg.embeds[0].description).toContain('**#2** alice - 1,000 pts - $22.50 (15%)');
+    expect(msg.embeds[0].description).toContain('**#1** titoisking - 12,345 pts - 50g (20%)');
+    expect(msg.embeds[0].description).toContain('**#2** alice - 1,000 pts - 37g 50s (15%)');
     expect(msg.embeds[0].fields).toEqual([
       { name: 'Realm', value: 'Claudemoon', inline: true },
-      { name: 'Prize Pool', value: '$150.00', inline: true },
+      { name: 'Prize Pool', value: '250g', inline: true },
       { name: 'Next task', value: 'Win an arena match', inline: false },
     ]);
   });

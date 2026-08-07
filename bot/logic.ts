@@ -1,8 +1,8 @@
-// Pure (IO-free) logic for the World of ClaudeCraft Discord bot: Gateway intents,
+// Pure (IO-free) logic for the Wildhaven Discord bot: Gateway intents,
 // slash-command definitions + routing, role-sync diffing, embed/message building,
 // and voice-presence shaping. Kept separate from the ws/fetch IO (gateway.ts,
 // discord_api.ts, server_client.ts) so it is unit-tested without a network. This
-// is the same pure/IO split the server uses (wallet_link.ts vs wallet.ts).
+// is the same pure/IO split the server uses (deeds_board.ts vs deeds.ts).
 import { specialRoleByKey, specialRoleByName } from '../src/sim/discord_roles';
 import { DISCORD_STATUS_DEFS, discordStatusByIndex } from '../src/sim/discord_tier';
 import type { VcNationId } from '../src/sim/types';
@@ -98,8 +98,8 @@ export function isFatalCloseCode(code: number): boolean {
 
 // ── Slash commands ───────────────────────────────────────────────────────────
 export const SLASH_COMMANDS = [
-  { name: 'whoami', description: 'Show your World of ClaudeCraft link status and reward points' },
-  { name: 'link', description: 'Get the link to connect your Discord to World of ClaudeCraft' },
+  { name: 'whoami', description: 'Show your Wildhaven link status and reward points' },
+  { name: 'link', description: 'Get the link to connect your Discord to Wildhaven' },
 ] as const;
 
 export type SlashCommandName = (typeof SLASH_COMMANDS)[number]['name'];
@@ -410,7 +410,7 @@ export function buildWhoamiContent(roles: {
   lifetimePoints: number;
 }): string {
   if (!roles.linked) {
-    return 'Your Discord is not linked to a World of ClaudeCraft account yet. Use /link to connect it and start earning rewards.';
+    return 'Your Discord is not linked to a Wildhaven account yet. Use /link to connect it and start earning rewards.';
   }
   const rank = tierRoleName(roles.statusTier)?.replace('WoC ', '') ?? 'Unranked';
   return `Linked. Rank: **${rank}** · ${roles.points} reward points (lifetime ${roles.lifetimePoints}). Use /flex to show off your top character.`;
@@ -418,12 +418,12 @@ export function buildWhoamiContent(roles: {
 
 /** /link reply pointing at the in-game link flow. */
 export function buildLinkContent(gameUrl: string): string {
-  return `Connect your Discord to World of ClaudeCraft to earn rewards and flex your characters: open ${gameUrl}, log in, and press the Discord button in the game HUD (or "Continue with Discord" on the login screen).`;
+  return `Connect your Discord to Wildhaven to earn rewards and flex your characters: open ${gameUrl}, log in, and press the Discord button in the game HUD (or "Continue with Discord" on the login screen).`;
 }
 
 /** Welcome message for a new guild member. */
 export function buildWelcomeMessage(opts: { userMention: string; gameUrl: string }): string {
-  return `Welcome to World of ClaudeCraft, ${opts.userMention}! Play at ${opts.gameUrl} and link your Discord in the game HUD to earn rewards, claim swag, and rank up here in the server.`;
+  return `Welcome to Wildhaven, ${opts.userMention}! Play at ${opts.gameUrl} and link your Discord in the game HUD to earn rewards, claim swag, and rank up here in the server.`;
 }
 
 // ── Voice presence ───────────────────────────────────────────────────────────
@@ -511,7 +511,7 @@ export function buildRelayMessage(item: RelayItem, gameUrl: string): Record<stri
       },
       { name: 'Location', value: `${item.zone} (${item.realm})`, inline: true },
     ],
-    footer: { text: 'World of ClaudeCraft' },
+    footer: { text: 'Wildhaven' },
   };
   if (item.profileUrl) embed.url = item.profileUrl;
   if (avatarUrl) embed.thumbnail = { url: avatarUrl };
@@ -724,7 +724,7 @@ export function buildActivityMessage(item: ActivityItem): Record<string, unknown
     author: subjectAvatar ? { name: author, icon_url: subjectAvatar } : { name: author },
     title,
     description,
-    footer: { text: 'World of ClaudeCraft' },
+    footer: { text: 'Wildhaven' },
   };
   if (item.profileUrl) embed.url = item.profileUrl;
   if (subjectAvatar) embed.thumbnail = { url: subjectAvatar };
@@ -746,9 +746,8 @@ export interface DailyRewardWinner {
   username: string;
   points: number;
   prizePercent: number;
-  prizeUsd: number;
+  prizeCopper: number;
   status: string;
-  txSignature: string | null;
 }
 
 export interface DailyRewardWinnersDay {
@@ -756,16 +755,29 @@ export interface DailyRewardWinnersDay {
   taskName: string;
   nextTaskName: string;
   realm: string;
-  prizePoolUsd: number;
+  prizePoolCopper: number;
   finalizedAt: string | null;
   payouts: DailyRewardWinner[];
 }
 
-function usd(value: number): string {
-  return `$${value.toLocaleString('en-US', {
-    maximumFractionDigits: 2,
-    minimumFractionDigits: 2,
-  })}`;
+// The sim's coin denominations: 100 copper to the silver, 100 silver to the gold.
+// Deliberately re-derived here rather than imported: bot/ ships as a standalone
+// zero-dependency bundle and never imports from src/, the same rule the Vale Cup
+// nation names follow (their copy is pinned to the catalog by a test instead).
+const COPPER_PER_SILVER = 100;
+const COPPER_PER_GOLD = 10000;
+
+/** Format copper the way the game does: "12g 50s", trailing zero units dropped. */
+function coin(copper: number): string {
+  const safe = Number.isFinite(copper) ? Math.max(0, Math.floor(copper)) : 0;
+  const gold = Math.floor(safe / COPPER_PER_GOLD);
+  const silver = Math.floor((safe % COPPER_PER_GOLD) / COPPER_PER_SILVER);
+  const rest = safe % COPPER_PER_SILVER;
+  const parts: string[] = [];
+  if (gold > 0) parts.push(`${gold.toLocaleString('en-US')}g`);
+  if (silver > 0) parts.push(`${silver}s`);
+  if (rest > 0 || parts.length === 0) parts.push(`${rest}c`);
+  return parts.join(' ');
 }
 
 function percent(value: number): string {
@@ -781,7 +793,7 @@ export function buildDailyRewardWinnersMessage(
     .slice(0, 10)
     .map(
       (row) =>
-        `**#${row.rank}** ${row.username} - ${row.points.toLocaleString('en-US')} pts - ${usd(row.prizeUsd)} (${percent(row.prizePercent)})`,
+        `**#${row.rank}** ${row.username} - ${row.points.toLocaleString('en-US')} pts - ${coin(row.prizeCopper)} (${percent(row.prizePercent)})`,
     );
   const description =
     rows.length > 0 ? rows.join('\n') : 'No daily reward winners were recorded for this day.';
@@ -794,10 +806,10 @@ export function buildDailyRewardWinnersMessage(
         description,
         fields: [
           { name: 'Realm', value: day.realm, inline: true },
-          { name: 'Prize Pool', value: usd(day.prizePoolUsd), inline: true },
+          { name: 'Prize Pool', value: coin(day.prizePoolCopper), inline: true },
           { name: 'Next task', value: day.nextTaskName, inline: false },
         ],
-        footer: { text: 'World of ClaudeCraft' },
+        footer: { text: 'Wildhaven' },
       },
     ],
     allowed_mentions: { parse: [] },

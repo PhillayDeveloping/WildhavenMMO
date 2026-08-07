@@ -33,9 +33,6 @@ describe('electron IPC channel contract (preload <-> main)', () => {
         'desktop-steam-link-settled',
         'desktop-steam-link-ticket',
         'desktop-update-install',
-        'desktop-wallet-capability',
-        'desktop-wallet-open-browser',
-        'desktop-wallet-take-code',
       ]),
     );
     for (const channel of invoked) {
@@ -55,11 +52,7 @@ describe('electron IPC channel contract (preload <-> main)', () => {
   it('every preload subscription has a main-side webContents.send', () => {
     const subscribed = matches(preload, /ipcRenderer\.on\('([^']+)'/g);
     const pushed = matches(mainSide, /webContents\.send\('([^']+)'/g);
-    expect([...subscribed].sort()).toEqual([
-      'desktop-login-code',
-      'desktop-update-event',
-      'desktop-wallet-handoff-code',
-    ]);
+    expect([...subscribed].sort()).toEqual(['desktop-login-code', 'desktop-update-event']);
     for (const channel of subscribed) {
       expect(pushed, `nothing pushes subscribed channel ${channel}`).toContain(channel);
     }
@@ -103,22 +96,6 @@ describe('electron IPC channel contract (preload <-> main)', () => {
     expect(body).toContain('epicShell.cancelLinkProof()');
   });
 
-  it('reports whether the external wallet authorization page actually opened', () => {
-    const main = read('electron/main.cjs');
-    const start = main.indexOf("ipcMain.handle('desktop-wallet-open-browser'");
-    expect(start).toBeGreaterThan(-1);
-    const body = main.slice(start, main.indexOf('});', start));
-    expect(body).toContain('await openDesktopWalletHandoff(code)');
-  });
-
-  it('activates the macOS app when the browser returns a wallet handoff', () => {
-    const main = read('electron/main.cjs');
-    const start = main.indexOf('function deliverWalletHandoffCode');
-    expect(start).toBeGreaterThan(-1);
-    const body = main.slice(start, main.indexOf('\n}', start));
-    expect(body).toContain('app.focus({ steal: true })');
-  });
-
   it('the bridge methods the client feature-checks exist in the preload', () => {
     for (const method of [
       'openBrowserLogin',
@@ -134,10 +111,6 @@ describe('electron IPC channel contract (preload <-> main)', () => {
       'epicLinkProof',
       'epicLinkSupported',
       'epicLinkSettled',
-      'walletConnectionSupported',
-      'openWalletBrowser',
-      'takeWalletHandoffCode',
-      'onWalletHandoffCode',
     ]) {
       expect(preload, `preload is missing bridge method ${method}`).toContain(`${method}:`);
     }

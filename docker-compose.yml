@@ -27,8 +27,6 @@ services:
       args:
         # Build-time public client config inlined into the bundle (see .env.example).
         VITE_TURNSTILE_SITEKEY: ${VITE_TURNSTILE_SITEKEY:-}
-        VITE_REOWN_PROJECT_ID: ${VITE_REOWN_PROJECT_ID:-}
-        VITE_WALLET_DISABLED: ${VITE_WALLET_DISABLED:-}
     container_name: eastbrook-game
     restart: unless-stopped
     depends_on:
@@ -79,16 +77,11 @@ services:
       NATIVE_ATTESTATION_REQUIRED: ${NATIVE_ATTESTATION_REQUIRED:-}
       GOOGLE_PLAY_INTEGRITY_SERVICE_ACCOUNT_JSON: ${GOOGLE_PLAY_INTEGRITY_SERVICE_ACCOUNT_JSON:-}
       GOOGLE_PLAY_INTEGRITY_SIGNING_PEM: ${GOOGLE_PLAY_INTEGRITY_SIGNING_PEM:-}
-      GOOGLE_PLAY_INTEGRITY_PACKAGE_NAME: ${GOOGLE_PLAY_INTEGRITY_PACKAGE_NAME:-com.worldofclaudecraft}
+      GOOGLE_PLAY_INTEGRITY_PACKAGE_NAME: ${GOOGLE_PLAY_INTEGRITY_PACKAGE_NAME:-com.wildhaven}
       GOOGLE_PLAY_INTEGRITY_CERT_DIGESTS: ${GOOGLE_PLAY_INTEGRITY_CERT_DIGESTS:-}
       GOOGLE_PLAY_INTEGRITY_DEVICE_VERDICT: ${GOOGLE_PLAY_INTEGRITY_DEVICE_VERDICT:-MEETS_DEVICE_INTEGRITY}
-      # Solana Store (Seeker) artifact allowlist: fail-closed while unset, so the
-      # Solana native-auth arm and Seeker claim/spin stay off until configured.
-      SEEKER_SOLANA_INTEGRITY_PACKAGE_NAME: ${SEEKER_SOLANA_INTEGRITY_PACKAGE_NAME:-}
-      SEEKER_SOLANA_INTEGRITY_CERT_DIGESTS: ${SEEKER_SOLANA_INTEGRITY_CERT_DIGESTS:-}
-      SEEKER_SOLANA_INTEGRITY_DEVICE_VERDICT: ${SEEKER_SOLANA_INTEGRITY_DEVICE_VERDICT:-MEETS_DEVICE_INTEGRITY}
       APPLE_TEAM_ID: ${APPLE_TEAM_ID:-}
-      APPLE_BUNDLE_ID: ${APPLE_BUNDLE_ID:-com.worldofclaudecraft}
+      APPLE_BUNDLE_ID: ${APPLE_BUNDLE_ID:-com.wildhaven}
       APPLE_DEVICECHECK_KEY_ID: ${APPLE_DEVICECHECK_KEY_ID:-}
       APPLE_DEVICECHECK_SIGNING_PEM: ${APPLE_DEVICECHECK_SIGNING_PEM:-}
       APPLE_DEVICECHECK_ENV: ${APPLE_DEVICECHECK_ENV:-production}
@@ -126,7 +119,7 @@ services:
       # Runtime: GitHub OAuth for the in-game developer badge. Both id+secret must be
       # set to enable "Link GitHub"; empty hides it exactly like Discord. GITHUB_REPO
       # selects which repo's contributor stats back the badge (code default:
-      # levy-street/world-of-claudecraft); GITHUB_TOKEN lifts the GitHub API rate limit
+      # levy-street/wildhaven); GITHUB_TOKEN lifts the GitHub API rate limit
       # for the contributor + News/Releases fetches. See .env.example.
       GITHUB_OAUTH_CLIENT_ID: ${GITHUB_OAUTH_CLIENT_ID:-}
       GITHUB_OAUTH_CLIENT_SECRET: ${GITHUB_OAUTH_CLIENT_SECRET:-}
@@ -137,7 +130,6 @@ services:
       WOC_DAILY_REWARD_CONFIG_TTL_MS: ${WOC_DAILY_REWARD_CONFIG_TTL_MS:-}
       WOC_ECONOMY_SERVICE_URL: ${WOC_ECONOMY_SERVICE_URL:-}
       WOC_ECONOMY_INTERNAL_SECRET: ${WOC_ECONOMY_INTERNAL_SECRET:-}
-      SOLANA_RPC_URL: ${SOLANA_RPC_URL:-}
       WOC_MINT: ${WOC_MINT:-}
       META_CAPI_PIXEL_ID: ${META_CAPI_PIXEL_ID:-}
       META_CAPI_ACCESS_TOKEN: ${META_CAPI_ACCESS_TOKEN:-}
@@ -361,7 +353,7 @@ services:
       MEDIAWIKI_DB_PASSWORD: ${MEDIAWIKI_DB_PASSWORD:-mediawiki-change-me}
       MEDIAWIKI_ADMIN_USER: ${MEDIAWIKI_ADMIN_USER:-WikiAdmin}
       MEDIAWIKI_ADMIN_PASS: ${MEDIAWIKI_ADMIN_PASS:-change-me-admin-password}
-      MEDIAWIKI_SECRET_KEY: ${MEDIAWIKI_SECRET_KEY:-local-dev-change-me-world-of-claudecraft}
+      MEDIAWIKI_SECRET_KEY: ${MEDIAWIKI_SECRET_KEY:-local-dev-change-me-wildhaven}
       MEDIAWIKI_UPGRADE_KEY: ${MEDIAWIKI_UPGRADE_KEY:-local-dev-upgrade-key}
       MEDIAWIKI_SERVER: ${MEDIAWIKI_SERVER:-http://localhost:8080}
     ports:

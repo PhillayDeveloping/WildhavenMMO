@@ -100,7 +100,7 @@ Explore agent per slice** to fetch the exact current lines / ids / call sites fo
   nine-class set as a residual "copied compilation" argument; the operator accepts that residual
   risk for now. Class DISPLAY names are OUT of scope this pass. Do not touch class ids or class
   `.name`.
-- **The product name "World of ClaudeCraft" stays.** The brand rename (the lawyer's P0) is a
+- **The product name "Wildhaven" stays.** The brand rename (the lawyer's P0) is a
   separate business track, deferred by operator + counsel decision (easy to pivot later, and
   cleared with the lawyer). It is NOT in this refactor.
 - **Ids frozen EXCEPT the coined-id sweep** (murloc/kobold `MobFamily` + warlock demon-pet ids;

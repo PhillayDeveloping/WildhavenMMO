@@ -138,7 +138,7 @@ describe('winning Warrior authored talent icons', () => {
         'woc_openai_missing_painted_icons_2026_08_01',
       );
       expect(entry?.source, `${id} generator`).toBe('OpenAI built-in image generation');
-      expect(entry?.owner, `${id} owner`).toBe('World of ClaudeCraft');
+      expect(entry?.owner, `${id} owner`).toBe('Wildhaven');
       expect(entry?.license, `${id} license`).toContain('project asset');
       const bytes = readFileSync(resolve('public/ui/skills/warrior', `${id}.webp`));
       const hash = createHash('sha256').update(bytes).digest('hex');

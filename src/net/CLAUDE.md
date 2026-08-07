@@ -4,8 +4,8 @@
 
 # src/net/ : online client (`ClientWorld` + REST `Api`)
 
-`online.ts` is the core: a REST `Api` (auth, characters, realms, leaderboard, wallet
-linking) and `ClientWorld implements IWorld`, which mirrors authoritative server
+`online.ts` is the core: a REST `Api` (auth, characters, realms, leaderboard,
+daily rewards) and `ClientWorld implements IWorld`, which mirrors authoritative server
 snapshots and sends commands over one WebSocket. **PRESENTATION ONLY**, it never
 computes outcomes (combat, loot, quest credit, talents), only reflects server state.
 The client even runs `abilitiesKnownAt` / `computeQuestState` locally, but purely to
@@ -29,8 +29,6 @@ tested sibling module here, never as more methods on `online.ts`. Exemplars
   cap; `tests/realm_population.test.ts`).
 - `native_*.ts`: the Capacitor native-app seam (Apple/Discord sign-in, device
   attestation, update check), gated on `NATIVE_APP`; each has a `tests/native_*.test.ts`.
-- `wallet.ts`: Wallet-Standard Solana connect in the browser, no `sim/` dependency
-  (the account-to-wallet link is verified server-side).
 - `resume_play.ts`: the mobile WebView resume marker (`RESUME_KEY`), stamped while
   in-world and consumed by `src/main.ts` on boot so an OS-evicted WebView reload
   re-enters the world instead of landing on home; freshness-bounded

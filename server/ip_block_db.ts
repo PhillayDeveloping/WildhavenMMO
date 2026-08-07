@@ -1,5 +1,5 @@
 import { pool } from './db';
-import { cleanIp, parseBlockExpiry, type IpBlockEntry } from './ip_block';
+import { cleanIp, type IpBlockEntry, parseBlockExpiry } from './ip_block';
 
 export { cleanIp } from './ip_block';
 
@@ -107,6 +107,8 @@ export async function removeBlockedIp(ipInput: unknown, adminAccountId: number):
 }
 
 export async function pruneExpiredBlockedIps(): Promise<number> {
-  const res = await pool.query(`DELETE FROM blocked_ips WHERE expires_at IS NOT NULL AND expires_at <= now()`);
+  const res = await pool.query(
+    `DELETE FROM blocked_ips WHERE expires_at IS NOT NULL AND expires_at <= now()`,
+  );
   return res.rowCount ?? 0;
 }

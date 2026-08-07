@@ -1,7 +1,7 @@
 {
-  "name": "World of ClaudeCraft",
-  "short_name": "ClaudeCraft",
-  "description": "World of ClaudeCraft mobile realm",
+  "name": "Wildhaven",
+  "short_name": "Wildhaven",
+  "description": "Wildhaven mobile realm",
   "start_url": "/",
   "scope": "/",
   "display": "fullscreen",

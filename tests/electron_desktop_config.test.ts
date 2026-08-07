@@ -5,7 +5,6 @@ import {
   resolveDesktopOrigins,
   resolveDistribution,
   updaterAllowed,
-  walletConnectionSupported,
 } from '../electron/desktop_config.cjs';
 
 const steamStamp = { wocDesktop: { distribution: 'steam' } };
@@ -125,15 +124,6 @@ describe('updaterAllowed (the store / dev double gate)', () => {
   });
 });
 
-describe('walletConnectionSupported', () => {
-  it('allows the website shell and keeps Steam and Epic fail-closed', () => {
-    expect(walletConnectionSupported({ distribution: 'website' })).toBe(true);
-    expect(walletConnectionSupported({ distribution: 'steam' })).toBe(false);
-    expect(walletConnectionSupported({ distribution: 'epic' })).toBe(false);
-    expect(walletConnectionSupported({ distribution: 'unknown' })).toBe(false);
-  });
-});
-
 describe('resolveCrashSubmitUrl', () => {
   it('accepts only https URLs, from env first then the stamp (unpackaged)', () => {
     expect(
@@ -224,12 +214,12 @@ describe('resolveDesktopOrigins (the packaged-build VITE_DESKTOP_* hatch closure
 
   it('falls back to the production origin, and login falls back to the api origin', () => {
     expect(resolveDesktopOrigins({})).toEqual({
-      apiOrigin: 'https://worldofclaudecraft.com',
-      loginOrigin: 'https://worldofclaudecraft.com',
+      apiOrigin: 'https://wildhaven.example',
+      loginOrigin: 'https://wildhaven.example',
     });
     expect(resolveDesktopOrigins()).toEqual({
-      apiOrigin: 'https://worldofclaudecraft.com',
-      loginOrigin: 'https://worldofclaudecraft.com',
+      apiOrigin: 'https://wildhaven.example',
+      loginOrigin: 'https://wildhaven.example',
     });
     expect(
       resolveDesktopOrigins({
@@ -241,8 +231,8 @@ describe('resolveDesktopOrigins (the packaged-build VITE_DESKTOP_* hatch closure
 });
 
 const defaultOrigins = {
-  apiOrigin: 'https://worldofclaudecraft.com',
-  loginOrigin: 'https://worldofclaudecraft.com',
+  apiOrigin: 'https://wildhaven.example',
+  loginOrigin: 'https://wildhaven.example',
 };
 
 describe('resolveDesktopConfig', () => {
@@ -293,7 +283,7 @@ describe('resolveDesktopConfig', () => {
   it('derives the update channel from the baked origin: non-production reads the dev feed', () => {
     const dev = resolveDesktopConfig({
       packagedMetadata: {
-        wocDesktop: { distribution: 'website', apiOrigin: 'https://dev.worldofclaudecraft.com' },
+        wocDesktop: { distribution: 'website', apiOrigin: 'https://dev.wildhaven.example' },
       },
       isPackaged: true,
     });
@@ -309,9 +299,9 @@ describe('resolveDesktopConfig', () => {
     // No env hatch: a packaged build's channel follows its baked origin only.
     const forced = resolveDesktopConfig({
       packagedMetadata: {
-        wocDesktop: { distribution: 'website', apiOrigin: 'https://dev.worldofclaudecraft.com' },
+        wocDesktop: { distribution: 'website', apiOrigin: 'https://dev.wildhaven.example' },
       },
-      env: { VITE_DESKTOP_API_ORIGIN: 'https://worldofclaudecraft.com' },
+      env: { VITE_DESKTOP_API_ORIGIN: 'https://wildhaven.example' },
       isPackaged: true,
     });
     expect(forced.updateChannel).toBe('dev');

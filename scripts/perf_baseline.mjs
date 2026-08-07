@@ -197,9 +197,9 @@ async function preflight() {
   } catch (e) {
     die(`dev server not reachable at ${GAME_URL}; start it with 'npm run dev' (${e.message})`);
   }
-  if (!/claudecraft/i.test(text)) {
+  if (!/wildhaven/i.test(text)) {
     die(
-      `the server at ${GAME_URL} does not look like World of ClaudeCraft (another app on this port?); set GAME_URL to the right origin`,
+      `the server at ${GAME_URL} does not look like Wildhaven (another app on this port?); set GAME_URL to the right origin`,
     );
   }
 }

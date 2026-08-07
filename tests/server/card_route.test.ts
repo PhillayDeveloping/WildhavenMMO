@@ -1,4 +1,4 @@
-// Unit coverage for the binary player-card upload route (server/wallet.ts).
+// Unit coverage for the binary player-card upload route (server/card_routes.ts).
 //
 // POST /api/card carries a THREE-middleware chain that must run in a load-bearing
 // order: [cardContentLengthGuard, activeGuard, rateLimit(CARD_UPLOAD_POLICY)]. This
@@ -15,13 +15,20 @@
 //
 // server/db.ts builds a pg Pool at module load and throws if DATABASE_URL is unset;
 // wallet.ts imports it, so set a dummy URL. The pool never connects: the guard's db
-// reads are a fake supplied via setWalletDbForTests, and the card level lookup is a
-// fake injected via configureWalletRuntime.
+// reads are a fake supplied via setCardDbForTests, and the card level lookup is a
+// fake injected via configureCardRuntime.
 process.env.DATABASE_URL ||= 'postgres://test:test@127.0.0.1:5433/wocc_phase14_card_units';
 
 import { readFileSync } from 'node:fs';
 import type * as http from 'node:http';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import {
+  configureCardRuntime,
+  resetCardDbForTests,
+  resetCardRuntimeForTests,
+  routes,
+  setCardDbForTests,
+} from '../../server/card_routes';
 import type { AccountModerationStatus } from '../../server/db';
 import { compose } from '../../server/http/compose';
 import { withSecurityHeaders } from '../../server/http/middleware/security_headers';
@@ -34,13 +41,6 @@ import {
   resetRateLimitClock,
   setRateLimitClock,
 } from '../../server/ratelimit';
-import {
-  configureWalletRuntime,
-  resetWalletDbForTests,
-  resetWalletRuntimeForTests,
-  routes,
-  setWalletDbForTests,
-} from '../../server/wallet';
 import { type FakeRes, fakeCtx } from './helpers';
 
 // Wrap handleCardUpload in a mock whose DEFAULT delegates to the real implementation (so the
@@ -157,9 +157,9 @@ async function runCard(opts: { headers?: Record<string, string>; url?: string } 
 beforeEach(() => {
   // The card level lookup the handler needs (the 400 'character id required' path returns
   // before it is touched, but install it anyway so no test can leak an unconfigured runtime).
-  configureWalletRuntime({ liveLevelForCharacter: () => null });
+  configureCardRuntime({ liveLevelForCharacter: () => null });
   // The activeGuard db reads: a full-session token for account 7, not moderation-locked.
-  setWalletDbForTests({
+  setCardDbForTests({
     accountAndScopeForToken: scopeOf('full'),
     moderationStatusForAccount: async () => modStatus(),
   });
@@ -169,8 +169,8 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  resetWalletDbForTests();
-  resetWalletRuntimeForTests();
+  resetCardDbForTests();
+  resetCardRuntimeForTests();
   resetCardUploadRateLimits();
   resetRateLimitClock();
 });

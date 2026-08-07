@@ -98,12 +98,12 @@ describe('normalizeConsoleMessage (Electron 43 details form + legacy positional 
       level: 'warning',
       message: 'deprecated API',
       lineNumber: 12,
-      sourceId: 'app://worldofclaudecraft/assets/main.js',
+      sourceId: 'app://wildhaven/assets/main.js',
     });
     expect(entry).toEqual({
       level: 'warning',
       message: 'deprecated API',
-      source: 'app://worldofclaudecraft/assets/main.js:12',
+      source: 'app://wildhaven/assets/main.js:12',
     });
   });
 

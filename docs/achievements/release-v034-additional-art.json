@@ -5,8 +5,8 @@
     "acceptedDate": "2026-08-02",
     "baseRelease": "release/v0.34.0",
     "rasterGenerator": "OpenAI built-in image generation",
-    "owner": "World of ClaudeCraft",
-    "license": "World of ClaudeCraft project-generated art, project asset, rights reserved"
+    "owner": "Wildhaven",
+    "license": "Wildhaven project-generated art, project asset, rights reserved"
   },
   "scope": {
     "targetRows": 9,
@@ -120,8 +120,8 @@
       "intendedVisualSubject": "A lithe pine marten twisting through a near-miss in an S-curve of green-gold nature motion, depicting agility and dodge rather than stealth.",
       "generation": {
         "source": "OpenAI built-in image generation",
-        "owner": "World of ClaudeCraft",
-        "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+        "owner": "Wildhaven",
+        "license": "Wildhaven project-generated art, project asset, rights reserved",
         "prompt": "Create one fresh distinct premium hand-painted dark-fantasy MMORPG Hunter ability icon for Marten's Guise (runtime id aspect_of_the_monkey). Image 1 is the Hunter class brushwork/style reference, Image 2 is the green-gold class palette and creature-composition reference, and Image 3 is a readable creature-action reference. Do not copy any animal, face, sun, ring, or layout from them. Canonical mechanic: a level-5 Nature aspect granting the Hunter 8% dodge for 30 minutes. Paint one anatomically coherent lithe pine marten in a full-body twisting leap, its long flexible torso forming a strong diagonal S-curve as a blurred claw strike or arrow passes just behind it, a clear near-miss that reads as supernatural agility and dodge, not stealth or aggression. Warm chestnut and cream fur, alert dark eyes, restrained green-gold leaf-stream motion, opaque deep forest atmospheric background. One dominant action; focal subject fills 78-86% with equivalent 8-14px safe margin at 128px; perfectly centered visual mass; crisp marten head, forepaws, and tail silhouette at 32px and 48px; deep values and controlled highlights. Must be visually unrelated to the existing golden-eyes Prowl icon. No text, letters, numbers, border, frame, badge, rarity chrome, watermark, modern graphic design, flat glyph, duplicated anatomy, extra animals, human figure, excessive bloom, or crop.",
         "references": [
           {
@@ -133,14 +133,14 @@
           {
             "path": "public/ui/skills/hunter/aspect_of_the_wild.webp",
             "role": "class palette/composition reference",
-            "provenance": "World of ClaudeCraft project-generated OpenAI ability art",
-            "license": "World of ClaudeCraft project asset, rights reserved"
+            "provenance": "Wildhaven project-generated OpenAI ability art",
+            "license": "Wildhaven project asset, rights reserved"
           },
           {
             "path": "public/ui/skills/hunter/bestial_wrath.webp",
             "role": "creature-feature action reference",
-            "provenance": "World of ClaudeCraft project-generated OpenAI ability art",
-            "license": "World of ClaudeCraft project asset, rights reserved"
+            "provenance": "Wildhaven project-generated OpenAI ability art",
+            "license": "Wildhaven project asset, rights reserved"
           }
         ]
       },
@@ -193,9 +193,9 @@
       "intendedVisualSubject": "One worn antique-gold garrison signet ring with a crenellated keep-gate seal face, candle amber and cold Drakelands patina.",
       "generation": {
         "source": "OpenAI built-in image generation",
-        "owner": "World of ClaudeCraft",
-        "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
-        "prompt": "Create one fresh high-resolution square master for the World of ClaudeCraft inventory item Signet of the Last Keep. Image 1 is a ring composition reference, Image 2 is a dark-fantasy value/style reference, and Image 3 is a metalwork/detail reference; do not copy their gems, emblems, shapes, or aura layouts. Paint one tangible old garrison signet ring, centered in three-quarter view: a weighty worn antique-gold band with dark iron patina, a broad slightly irregular shield-shaped seal face engraved with an abstract crenellated gate and one closed portcullis, no letters or readable heraldry. Add a tiny ember-red wax trace caught in one groove, warm candle-amber key light from upper left, and a restrained cold blue-grey rim suggesting the silent Drakelands hall. It is a poignant floor-found keepsake, not royal treasure: no giant gemstone, spikes, skull, magical aura, or excessive ornament. Opaque charcoal/blue-black atmospheric vignette, strong silhouette at 28px, centered within 2px, 12-16px safe margin at 128px. No UI border, rarity frame, circular quality halo, text, watermark, hand, character, scene, crop, or transparent background.",
+        "owner": "Wildhaven",
+        "license": "Wildhaven project-generated art, project asset, rights reserved",
+        "prompt": "Create one fresh high-resolution square master for the Wildhaven inventory item Signet of the Last Keep. Image 1 is a ring composition reference, Image 2 is a dark-fantasy value/style reference, and Image 3 is a metalwork/detail reference; do not copy their gems, emblems, shapes, or aura layouts. Paint one tangible old garrison signet ring, centered in three-quarter view: a weighty worn antique-gold band with dark iron patina, a broad slightly irregular shield-shaped seal face engraved with an abstract crenellated gate and one closed portcullis, no letters or readable heraldry. Add a tiny ember-red wax trace caught in one groove, warm candle-amber key light from upper left, and a restrained cold blue-grey rim suggesting the silent Drakelands hall. It is a poignant floor-found keepsake, not royal treasure: no giant gemstone, spikes, skull, magical aura, or excessive ornament. Opaque charcoal/blue-black atmospheric vignette, strong silhouette at 28px, centered within 2px, 12-16px safe margin at 128px. No UI border, rarity frame, circular quality halo, text, watermark, hand, character, scene, crop, or transparent background.",
         "references": [
           {
             "path": "public/ui/items/kings_signet.webp",
@@ -206,14 +206,14 @@
           {
             "path": "public/ui/items/last_step_signet.webp",
             "role": "dark-fantasy style reference",
-            "provenance": "World of ClaudeCraft project-generated OpenAI item art",
-            "license": "World of ClaudeCraft project asset, rights reserved"
+            "provenance": "Wildhaven project-generated OpenAI item art",
+            "license": "Wildhaven project asset, rights reserved"
           },
           {
             "path": "public/ui/items/seal_of_the_nine_oaths.webp",
             "role": "metalwork/detail reference",
-            "provenance": "World of ClaudeCraft project-generated OpenAI item art",
-            "license": "World of ClaudeCraft project asset, rights reserved"
+            "provenance": "Wildhaven project-generated OpenAI item art",
+            "license": "Wildhaven project asset, rights reserved"
           }
         ]
       },
@@ -267,33 +267,33 @@
       "intendedVisualSubject": "One compact crescent-mouthed field satchel of charcoal-violet spider silk with goldleaf embroidery and pale thread bindings, physically distinct from every existing bag.",
       "generation": {
         "source": "OpenAI built-in image generation",
-        "owner": "World of ClaudeCraft",
-        "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
-        "prompt": "Create one fresh high-resolution square master for the World of ClaudeCraft inventory item Silkspun Satchel. Image 1 is a style/material reference for rich project bag rendering, Image 2 is a composition and safe-margin reference only, Image 3 is the spider-silk material reference, and Image 4 is the Goldleaf accent reference. Paint one tangible compact 10-slot tailoring satchel, centered in three-quarter view: a low crescent-mouthed soft field bag with folded charcoal-violet iridescent spider-silk panels, pale hand-bound thread seams, a sturdy asymmetrical flap, a small brass toggle, and restrained round-leaf gold embroidery worked into the fabric. Make its construction and silhouette entirely distinct from both referenced bags and from the current rectangular linen-pouch recolor; no sun emblem, bottles, dangling clutter, or copied strap layout. Opaque blue-black atmospheric vignette, top-left key light, restrained cool rim, strong silhouette at 28px, visual mass centered within 2px, 12-16px safe margin at 128px. No UI border, rarity frame, circular halo, text, watermark, mannequin, character, scenery, crop, excessive aura, or transparent background. Rarity comes from workmanship only.",
+        "owner": "Wildhaven",
+        "license": "Wildhaven project-generated art, project asset, rights reserved",
+        "prompt": "Create one fresh high-resolution square master for the Wildhaven inventory item Silkspun Satchel. Image 1 is a style/material reference for rich project bag rendering, Image 2 is a composition and safe-margin reference only, Image 3 is the spider-silk material reference, and Image 4 is the Goldleaf accent reference. Paint one tangible compact 10-slot tailoring satchel, centered in three-quarter view: a low crescent-mouthed soft field bag with folded charcoal-violet iridescent spider-silk panels, pale hand-bound thread seams, a sturdy asymmetrical flap, a small brass toggle, and restrained round-leaf gold embroidery worked into the fabric. Make its construction and silhouette entirely distinct from both referenced bags and from the current rectangular linen-pouch recolor; no sun emblem, bottles, dangling clutter, or copied strap layout. Opaque blue-black atmospheric vignette, top-left key light, restrained cool rim, strong silhouette at 28px, visual mass centered within 2px, 12-16px safe margin at 128px. No UI border, rarity frame, circular halo, text, watermark, mannequin, character, scenery, crop, excessive aura, or transparent background. Rarity comes from workmanship only.",
         "references": [
           {
             "path": "public/ui/items/gravewoven_bag.webp",
             "role": "style/material reference",
-            "provenance": "World of ClaudeCraft original bag art",
-            "license": "World of ClaudeCraft project-owned original art"
+            "provenance": "Wildhaven original bag art",
+            "license": "Wildhaven project-owned original art"
           },
           {
             "path": "public/ui/items/wolfhide_satchel.webp",
             "role": "composition/safe-margin reference",
-            "provenance": "World of ClaudeCraft original bag art",
-            "license": "World of ClaudeCraft project-owned original art"
+            "provenance": "Wildhaven original bag art",
+            "license": "Wildhaven project-owned original art"
           },
           {
             "path": "public/ui/items/spider_silk.webp",
             "role": "material reference",
-            "provenance": "World of ClaudeCraft original professions art",
-            "license": "World of ClaudeCraft project-owned original art"
+            "provenance": "Wildhaven original professions art",
+            "license": "Wildhaven project-owned original art"
           },
           {
             "path": "public/ui/items/goldleaf_herb.webp",
             "role": "material/accent reference",
-            "provenance": "World of ClaudeCraft original professions art",
-            "license": "World of ClaudeCraft project-owned original art"
+            "provenance": "Wildhaven original professions art",
+            "license": "Wildhaven project-owned original art"
           }
         ]
       },
@@ -354,21 +354,21 @@
       "intendedVisualSubject": "One koi-bright Sunglint Koi arcing over mere water while exactly two white gulls wheel above.",
       "generation": {
         "source": "OpenAI built-in image generation",
-        "owner": "World of ClaudeCraft",
-        "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
-        "prompt": "Create one fresh, separately composed square master for the World of ClaudeCraft deed What the Gulls Know. Image 1 is the frame/style reference, Image 2 is a first-cast mood/composition reference, and Image 3 is the fish subject reference. Paint a complete centered classic dark-fantasy MMORPG medallion with salt-blackened bronze body, antique-gold double rim, exactly four small cardinal kite points at north/east/south/west, and a deep plum-blue enamel inset. Center one dynamic Sunglint Koi, orange-white and jewel-bright, arcing left-to-right over a dark mere-water splash; above it place exactly two small white gulls wheeling in opposite directions, simple enough to read as birds at 24px. Keep the koi dominant and anatomically coherent, with no second fish, hook, boat, or full seaside scene. Fresh composition. Badge about 78 percent of square, perfectly centered for final alpha near x/y 56-455 at 512. Exterior is perfectly flat uniform #FF00FF with no shadow, glow, reflection, gradient, texture, or stray paint. No text, ribbon, extra frame, diagonal points, crop, watermark, or pseudo-symbols. Readable at 40px and 24px. LOCKED FAMILY GEOMETRY: use four genuinely tiny shallow cardinal kite points, each extending no more than about 2 percent of canvas height beyond the circular body. Total silhouette about 78 percent and circular body about 74 to 75 percent, designed to yield roughly 40 to 43 percent visible alpha coverage after centering into a 512 square with bounds near x/y 56-455. Preserve hand-painted brushwork, clear 24px value grouping, and a uniform removable #FF00FF exterior.",
+        "owner": "Wildhaven",
+        "license": "Wildhaven project-generated art, project asset, rights reserved",
+        "prompt": "Create one fresh, separately composed square master for the Wildhaven deed What the Gulls Know. Image 1 is the frame/style reference, Image 2 is a first-cast mood/composition reference, and Image 3 is the fish subject reference. Paint a complete centered classic dark-fantasy MMORPG medallion with salt-blackened bronze body, antique-gold double rim, exactly four small cardinal kite points at north/east/south/west, and a deep plum-blue enamel inset. Center one dynamic Sunglint Koi, orange-white and jewel-bright, arcing left-to-right over a dark mere-water splash; above it place exactly two small white gulls wheeling in opposite directions, simple enough to read as birds at 24px. Keep the koi dominant and anatomically coherent, with no second fish, hook, boat, or full seaside scene. Fresh composition. Badge about 78 percent of square, perfectly centered for final alpha near x/y 56-455 at 512. Exterior is perfectly flat uniform #FF00FF with no shadow, glow, reflection, gradient, texture, or stray paint. No text, ribbon, extra frame, diagonal points, crop, watermark, or pseudo-symbols. Readable at 40px and 24px. LOCKED FAMILY GEOMETRY: use four genuinely tiny shallow cardinal kite points, each extending no more than about 2 percent of canvas height beyond the circular body. Total silhouette about 78 percent and circular body about 74 to 75 percent, designed to yield roughly 40 to 43 percent visible alpha coverage after centering into a 512 square with bounds near x/y 56-455. Preserve hand-painted brushwork, clear 24px value grouping, and a uniform removable #FF00FF exterior.",
         "references": [
           {
             "path": "public/ui/deeds/chr_vale_first_cast.webp",
             "role": "frame/style reference",
-            "provenance": "World of ClaudeCraft maintainer-commissioned bespoke deed art",
-            "license": "World of ClaudeCraft project asset, rights reserved"
+            "provenance": "Wildhaven maintainer-commissioned bespoke deed art",
+            "license": "Wildhaven project asset, rights reserved"
           },
           {
             "path": "public/ui/deeds/chr_marsh_first_cast.webp",
             "role": "composition/mood reference",
-            "provenance": "World of ClaudeCraft maintainer-commissioned bespoke deed art",
-            "license": "World of ClaudeCraft project asset, rights reserved"
+            "provenance": "Wildhaven maintainer-commissioned bespoke deed art",
+            "license": "Wildhaven project asset, rights reserved"
           },
           {
             "path": "public/ui/items/glimmerfin_koi.webp",
@@ -444,33 +444,33 @@
       "intendedVisualSubject": "Grey iron ore, an ash-pale log, and one gold-leaf sprig arranged against salt-washed strand sand and causeway stones.",
       "generation": {
         "source": "OpenAI built-in image generation",
-        "owner": "World of ClaudeCraft",
-        "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
-        "prompt": "Create one fresh, separately composed square master for the World of ClaudeCraft deed Island Provisions. Image 1 is the frame/style reference; use only its medallion language and four-point geometry. Images 2, 3, and 4 are subject references. Paint a complete centered classic dark-fantasy MMORPG medallion with salt-darkened bronze body, antique-gold double rim, exactly four small cardinal kite points at north/east/south/west, and a deep sea-grey enamel inset. Inside, make a rugged low cairn-like arrangement that stays equally readable: a heavy grey iron-ore chunk at lower left, one ash-pale driftwood-like cut log angled up at right, and one delicate round-leaf golden herb sprig arcing above them. Add only a narrow band of pale strand sand, two wet causeway stones, and restrained salt-blue rim light. Fresh physical design and composition, not a hue shift or copy. Badge about 78 percent of square, perfectly centered for final alpha near x/y 56-455 at 512. Exterior is perfectly flat uniform #FF00FF with no shadow, glow, reflection, gradient, texture, or stray paint. No text, ribbon, extra frame, diagonal points, crop, watermark, or pseudo-symbols. Readable at 40px and 24px. LOCKED FAMILY GEOMETRY: use four genuinely tiny shallow cardinal kite points, each extending no more than about 2 percent of canvas height beyond the circular body. Total silhouette about 78 percent and circular body about 74 to 75 percent, designed to yield roughly 40 to 43 percent visible alpha coverage after centering into a 512 square with bounds near x/y 56-455. Preserve hand-painted brushwork, clear 24px value grouping, and a uniform removable #FF00FF exterior.",
+        "owner": "Wildhaven",
+        "license": "Wildhaven project-generated art, project asset, rights reserved",
+        "prompt": "Create one fresh, separately composed square master for the Wildhaven deed Island Provisions. Image 1 is the frame/style reference; use only its medallion language and four-point geometry. Images 2, 3, and 4 are subject references. Paint a complete centered classic dark-fantasy MMORPG medallion with salt-darkened bronze body, antique-gold double rim, exactly four small cardinal kite points at north/east/south/west, and a deep sea-grey enamel inset. Inside, make a rugged low cairn-like arrangement that stays equally readable: a heavy grey iron-ore chunk at lower left, one ash-pale driftwood-like cut log angled up at right, and one delicate round-leaf golden herb sprig arcing above them. Add only a narrow band of pale strand sand, two wet causeway stones, and restrained salt-blue rim light. Fresh physical design and composition, not a hue shift or copy. Badge about 78 percent of square, perfectly centered for final alpha near x/y 56-455 at 512. Exterior is perfectly flat uniform #FF00FF with no shadow, glow, reflection, gradient, texture, or stray paint. No text, ribbon, extra frame, diagonal points, crop, watermark, or pseudo-symbols. Readable at 40px and 24px. LOCKED FAMILY GEOMETRY: use four genuinely tiny shallow cardinal kite points, each extending no more than about 2 percent of canvas height beyond the circular body. Total silhouette about 78 percent and circular body about 74 to 75 percent, designed to yield roughly 40 to 43 percent visible alpha coverage after centering into a 512 square with bounds near x/y 56-455. Preserve hand-painted brushwork, clear 24px value grouping, and a uniform removable #FF00FF exterior.",
         "references": [
           {
             "path": "public/ui/deeds/chr_vale_gatherer.webp",
             "role": "frame/style reference",
-            "provenance": "World of ClaudeCraft maintainer-commissioned bespoke deed art",
-            "license": "World of ClaudeCraft project asset, rights reserved"
+            "provenance": "Wildhaven maintainer-commissioned bespoke deed art",
+            "license": "Wildhaven project asset, rights reserved"
           },
           {
             "path": "public/ui/items/iron_ore.webp",
             "role": "subject reference",
-            "provenance": "World of ClaudeCraft original professions art",
-            "license": "World of ClaudeCraft project-owned original art"
+            "provenance": "Wildhaven original professions art",
+            "license": "Wildhaven project-owned original art"
           },
           {
             "path": "public/ui/items/ashwood_log.webp",
             "role": "subject reference",
-            "provenance": "World of ClaudeCraft original professions art",
-            "license": "World of ClaudeCraft project-owned original art"
+            "provenance": "Wildhaven original professions art",
+            "license": "Wildhaven project-owned original art"
           },
           {
             "path": "public/ui/items/goldleaf_herb.webp",
             "role": "subject reference",
-            "provenance": "World of ClaudeCraft original professions art",
-            "license": "World of ClaudeCraft project-owned original art"
+            "provenance": "Wildhaven original professions art",
+            "license": "Wildhaven project-owned original art"
           }
         ]
       },
@@ -540,21 +540,21 @@
       "intendedVisualSubject": "A taut fishing line striking a mirror-still tarn circle with a River Perch just below the surface under a grey downs sky.",
       "generation": {
         "source": "OpenAI built-in image generation",
-        "owner": "World of ClaudeCraft",
-        "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
-        "prompt": "Create one fresh, separately composed square master for the World of ClaudeCraft deed A Line in the Mirror Tarn. Image 1 is the frame/style reference, Image 2 is a first-cast composition/readability reference, and Image 3 is the River Perch subject reference. Paint a complete centered classic dark-fantasy MMORPG medallion with blackened-steel circular body, antique-gold double rim, exactly four small cardinal kite points at north/east/south/west, and a slate storm-blue enamel inset. One taut fishing line descends from the upper-left and pierces one mirror-still silver tarn circle; just below that surface, one golden River Perch turns toward the hook, clear and anatomically coherent. Reflect a narrow grey downs sky and a whisper of wind-bent grass only at the edge. Do not make a giant standalone hook, duplicate fish, or scenic landscape. Fresh composition. Badge about 78 percent of square, perfectly centered for final alpha near x/y 56-455 at 512. Exterior is perfectly flat uniform #FF00FF with no shadow, glow, reflection, gradient, texture, or stray paint. No text, ribbon, extra frame, diagonal points, crop, watermark, or pseudo-symbols. Readable at 40px and 24px. LOCKED FAMILY GEOMETRY: use four genuinely tiny shallow cardinal kite points, each extending no more than about 2 percent of canvas height beyond the circular body. Total silhouette about 78 percent and circular body about 74 to 75 percent, designed to yield roughly 40 to 43 percent visible alpha coverage after centering into a 512 square with bounds near x/y 56-455. Preserve hand-painted brushwork, clear 24px value grouping, and a uniform removable #FF00FF exterior.",
+        "owner": "Wildhaven",
+        "license": "Wildhaven project-generated art, project asset, rights reserved",
+        "prompt": "Create one fresh, separately composed square master for the Wildhaven deed A Line in the Mirror Tarn. Image 1 is the frame/style reference, Image 2 is a first-cast composition/readability reference, and Image 3 is the River Perch subject reference. Paint a complete centered classic dark-fantasy MMORPG medallion with blackened-steel circular body, antique-gold double rim, exactly four small cardinal kite points at north/east/south/west, and a slate storm-blue enamel inset. One taut fishing line descends from the upper-left and pierces one mirror-still silver tarn circle; just below that surface, one golden River Perch turns toward the hook, clear and anatomically coherent. Reflect a narrow grey downs sky and a whisper of wind-bent grass only at the edge. Do not make a giant standalone hook, duplicate fish, or scenic landscape. Fresh composition. Badge about 78 percent of square, perfectly centered for final alpha near x/y 56-455 at 512. Exterior is perfectly flat uniform #FF00FF with no shadow, glow, reflection, gradient, texture, or stray paint. No text, ribbon, extra frame, diagonal points, crop, watermark, or pseudo-symbols. Readable at 40px and 24px. LOCKED FAMILY GEOMETRY: use four genuinely tiny shallow cardinal kite points, each extending no more than about 2 percent of canvas height beyond the circular body. Total silhouette about 78 percent and circular body about 74 to 75 percent, designed to yield roughly 40 to 43 percent visible alpha coverage after centering into a 512 square with bounds near x/y 56-455. Preserve hand-painted brushwork, clear 24px value grouping, and a uniform removable #FF00FF exterior.",
         "references": [
           {
             "path": "public/ui/deeds/chr_peaks_glimmer_cast.webp",
             "role": "frame/style reference",
-            "provenance": "World of ClaudeCraft maintainer-commissioned bespoke deed art",
-            "license": "World of ClaudeCraft project asset, rights reserved"
+            "provenance": "Wildhaven maintainer-commissioned bespoke deed art",
+            "license": "Wildhaven project asset, rights reserved"
           },
           {
             "path": "public/ui/deeds/chr_vale_first_cast.webp",
             "role": "composition reference",
-            "provenance": "World of ClaudeCraft maintainer-commissioned bespoke deed art",
-            "license": "World of ClaudeCraft project asset, rights reserved"
+            "provenance": "Wildhaven maintainer-commissioned bespoke deed art",
+            "license": "Wildhaven project asset, rights reserved"
           },
           {
             "path": "public/ui/items/raw_river_perch.webp",
@@ -630,33 +630,33 @@
       "intendedVisualSubject": "A windswept resource triad on grey-green headland grass with a low dry-stone wall hint.",
       "generation": {
         "source": "OpenAI built-in image generation",
-        "owner": "World of ClaudeCraft",
-        "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
-        "prompt": "Create one fresh, separately composed square master for the World of ClaudeCraft deed Harvest on the Headland. Image 1 is the frame/style reference; use only its medallion language and four-point geometry. Images 2, 3, and 4 are subject references for the ore, log, and flower. Paint a centered classic dark-fantasy MMORPG medallion with blackened-steel body, antique-gold double rim, exactly four small cardinal kite points at north/east/south/west, and a storm-grey enamel inset. Inside, stage the three resources in a windswept diagonal rather than a neat triangle: violet-banded dark ore high at windward left, a pale weathered log crossing low through the center, and one golden five-petal Sunpetal leaning sharply to the right. Add grey-green headland grass, a tiny low dry-stone-wall hint, and one controlled storm-blue edge light. Keep all three resources equally readable and physically distinct. Fresh composition, not a copy or recolor. Badge about 78 percent of square, perfectly centered for final alpha near x/y 56-455 at 512. Exterior is perfectly flat uniform #FF00FF with no shadow, glow, reflection, gradient, texture, or stray paint. No text, ribbon, extra frame, diagonal points, crop, watermark, or pseudo-symbols. Readable at 40px and 24px. LOCKED FAMILY GEOMETRY: use four genuinely tiny shallow cardinal kite points, each extending no more than about 2 percent of canvas height beyond the circular body. Total silhouette about 78 percent and circular body about 74 to 75 percent, designed to yield roughly 40 to 43 percent visible alpha coverage after centering into a 512 square with bounds near x/y 56-455. Preserve hand-painted brushwork, clear 24px value grouping, and a uniform removable #FF00FF exterior.",
+        "owner": "Wildhaven",
+        "license": "Wildhaven project-generated art, project asset, rights reserved",
+        "prompt": "Create one fresh, separately composed square master for the Wildhaven deed Harvest on the Headland. Image 1 is the frame/style reference; use only its medallion language and four-point geometry. Images 2, 3, and 4 are subject references for the ore, log, and flower. Paint a centered classic dark-fantasy MMORPG medallion with blackened-steel body, antique-gold double rim, exactly four small cardinal kite points at north/east/south/west, and a storm-grey enamel inset. Inside, stage the three resources in a windswept diagonal rather than a neat triangle: violet-banded dark ore high at windward left, a pale weathered log crossing low through the center, and one golden five-petal Sunpetal leaning sharply to the right. Add grey-green headland grass, a tiny low dry-stone-wall hint, and one controlled storm-blue edge light. Keep all three resources equally readable and physically distinct. Fresh composition, not a copy or recolor. Badge about 78 percent of square, perfectly centered for final alpha near x/y 56-455 at 512. Exterior is perfectly flat uniform #FF00FF with no shadow, glow, reflection, gradient, texture, or stray paint. No text, ribbon, extra frame, diagonal points, crop, watermark, or pseudo-symbols. Readable at 40px and 24px. LOCKED FAMILY GEOMETRY: use four genuinely tiny shallow cardinal kite points, each extending no more than about 2 percent of canvas height beyond the circular body. Total silhouette about 78 percent and circular body about 74 to 75 percent, designed to yield roughly 40 to 43 percent visible alpha coverage after centering into a 512 square with bounds near x/y 56-455. Preserve hand-painted brushwork, clear 24px value grouping, and a uniform removable #FF00FF exterior.",
         "references": [
           {
             "path": "public/ui/deeds/chr_peaks_gatherer.webp",
             "role": "frame/style reference",
-            "provenance": "World of ClaudeCraft project-generated OpenAI deed art",
-            "license": "World of ClaudeCraft project asset, rights reserved"
+            "provenance": "Wildhaven project-generated OpenAI deed art",
+            "license": "Wildhaven project asset, rights reserved"
           },
           {
             "path": "public/ui/items/thorium_ore.webp",
             "role": "subject reference",
-            "provenance": "World of ClaudeCraft original professions art",
-            "license": "World of ClaudeCraft project-owned original art"
+            "provenance": "Wildhaven original professions art",
+            "license": "Wildhaven project-owned original art"
           },
           {
             "path": "public/ui/items/elderwood_log.webp",
             "role": "subject reference",
-            "provenance": "World of ClaudeCraft original professions art",
-            "license": "World of ClaudeCraft project-owned original art"
+            "provenance": "Wildhaven original professions art",
+            "license": "Wildhaven project-owned original art"
           },
           {
             "path": "public/ui/items/sunpetal_herb.webp",
             "role": "subject reference",
-            "provenance": "World of ClaudeCraft original professions art",
-            "license": "World of ClaudeCraft project-owned original art"
+            "provenance": "Wildhaven original professions art",
+            "license": "Wildhaven project-owned original art"
           }
         ]
       },
@@ -726,21 +726,21 @@
       "intendedVisualSubject": "One silver Mirror Trout rising through a lily-pad ring under warm lantern light and restrained fen mist.",
       "generation": {
         "source": "OpenAI built-in image generation",
-        "owner": "World of ClaudeCraft",
-        "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
-        "prompt": "Create one fresh, separately composed square master for the World of ClaudeCraft deed Ripples in the Lilymoors. Image 1 is the frame/style reference, Image 2 is a composition/readability reference for a first-cast crest, and Image 3 is the fish subject reference; do not reproduce their exact layouts. Paint a complete centered classic dark-fantasy MMORPG medallion with a blackened-bronze circular body, antique-gold double rim, exactly four small cardinal kite points at north/east/south/west, and a dark teal enamel inset. Center one coherent action: a graceful silver Mirror Trout rising diagonally through a circular opening in broad lily pads, its blue markings catching one restrained warm lantern highlight from the upper left, with small ripples and thin fen mist. Keep the fish unmistakable and anatomically coherent; no extra fish, hook, human hand, or scenic diorama. Badge occupies about 78 percent of the square and stays perfectly centered for a final alpha target near x/y 56-455 at 512. Exterior must be one perfectly uniform #FF00FF chroma field with no shadow, reflection, glow, gradient, texture, or stray paint. No text, letters, ribbon, extra frame, diagonal points, crop, watermark, pseudo-symbols, or exterior lighting. Readable at 40px and 24px. GEOMETRY CORRECTION FOR THIS ACCEPTANCE ATTEMPT: make the four cardinal kite points genuinely tiny and shallow, each extending no more than about 2 percent of canvas height beyond the circular body. The total silhouette should occupy about 78 percent of the canvas, while the circular medal body itself occupies about 74 to 75 percent, yielding roughly 42 percent visible alpha coverage after centering into a 512 square with total bounds near x/y 56-455. Do not create long compass spikes. Preserve painterly brushwork rather than glossy photoreal rendering. The exterior should be a sampleable uniform RGB #FF00FF field.",
+        "owner": "Wildhaven",
+        "license": "Wildhaven project-generated art, project asset, rights reserved",
+        "prompt": "Create one fresh, separately composed square master for the Wildhaven deed Ripples in the Lilymoors. Image 1 is the frame/style reference, Image 2 is a composition/readability reference for a first-cast crest, and Image 3 is the fish subject reference; do not reproduce their exact layouts. Paint a complete centered classic dark-fantasy MMORPG medallion with a blackened-bronze circular body, antique-gold double rim, exactly four small cardinal kite points at north/east/south/west, and a dark teal enamel inset. Center one coherent action: a graceful silver Mirror Trout rising diagonally through a circular opening in broad lily pads, its blue markings catching one restrained warm lantern highlight from the upper left, with small ripples and thin fen mist. Keep the fish unmistakable and anatomically coherent; no extra fish, hook, human hand, or scenic diorama. Badge occupies about 78 percent of the square and stays perfectly centered for a final alpha target near x/y 56-455 at 512. Exterior must be one perfectly uniform #FF00FF chroma field with no shadow, reflection, glow, gradient, texture, or stray paint. No text, letters, ribbon, extra frame, diagonal points, crop, watermark, pseudo-symbols, or exterior lighting. Readable at 40px and 24px. GEOMETRY CORRECTION FOR THIS ACCEPTANCE ATTEMPT: make the four cardinal kite points genuinely tiny and shallow, each extending no more than about 2 percent of canvas height beyond the circular body. The total silhouette should occupy about 78 percent of the canvas, while the circular medal body itself occupies about 74 to 75 percent, yielding roughly 42 percent visible alpha coverage after centering into a 512 square with total bounds near x/y 56-455. Do not create long compass spikes. Preserve painterly brushwork rather than glossy photoreal rendering. The exterior should be a sampleable uniform RGB #FF00FF field.",
         "references": [
           {
             "path": "public/ui/deeds/chr_marsh_first_cast.webp",
             "role": "frame/style reference",
-            "provenance": "World of ClaudeCraft maintainer-commissioned bespoke deed art",
-            "license": "World of ClaudeCraft project asset, rights reserved"
+            "provenance": "Wildhaven maintainer-commissioned bespoke deed art",
+            "license": "Wildhaven project asset, rights reserved"
           },
           {
             "path": "public/ui/deeds/chr_vale_first_cast.webp",
             "role": "composition reference",
-            "provenance": "World of ClaudeCraft maintainer-commissioned bespoke deed art",
-            "license": "World of ClaudeCraft project asset, rights reserved"
+            "provenance": "Wildhaven maintainer-commissioned bespoke deed art",
+            "license": "Wildhaven project asset, rights reserved"
           },
           {
             "path": "public/ui/items/raw_mirror_trout.webp",
@@ -816,33 +816,33 @@
       "intendedVisualSubject": "An equally readable triad of violet-banded ore, a pale willow log, and one five-petal Sunpetal bloom above dark fen water and reed silhouettes.",
       "generation": {
         "source": "OpenAI built-in image generation",
-        "owner": "World of ClaudeCraft",
-        "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
-        "prompt": "Create one fresh, separately composed square master for the World of ClaudeCraft deed Fenland Bounty. Image 1 is the frame/style reference; use only its painted medallion language and four-point geometry, not its internal composition. Images 2, 3, and 4 are subject references for the ore, log, and flower. Paint a complete centered classic dark-fantasy MMORPG medallion with a blackened-bronze circular body, antique-gold double rim, exactly four small cardinal kite points at north/east/south/west, and a dark blue-green enamel inset. Inside, arrange an equally readable triangular triad: one jagged charcoal ore piece with restrained violet mineral bands at left, one pale freshly cut willow log sweeping across the lower right, and one distinct five-petal golden Sunpetal bloom rising at top center. Add only sparse willowfen reeds and a sliver of dark reflective fen water behind them. Fresh physical arrangement and silhouette, not a copy or recolor of any reference. Badge occupies about 78 percent of the square and stays perfectly centered for a final alpha target near x/y 56-455 at 512. Exterior must be one perfectly uniform #FF00FF chroma field with no shadow, reflection, glow, gradient, texture, or stray paint. No text, letters, ribbon, extra frame, diagonal points, crop, watermark, pseudo-symbols, or exterior lighting. Readable at 40px and 24px. ACCEPTANCE CORRECTIONS: the Sunpetal must have exactly FIVE and only five broad countable petals in a simple radial blossom; no hidden, split, overlapping, or sixth petal. Make the four cardinal kite points genuinely tiny and shallow, each extending no more than about 2 percent of canvas height beyond the circular body. Total silhouette about 78 percent, circular body about 74 to 75 percent, roughly 42 percent final alpha coverage. Preserve hand-painted brushwork. Uniform removable #FF00FF exterior.",
+        "owner": "Wildhaven",
+        "license": "Wildhaven project-generated art, project asset, rights reserved",
+        "prompt": "Create one fresh, separately composed square master for the Wildhaven deed Fenland Bounty. Image 1 is the frame/style reference; use only its painted medallion language and four-point geometry, not its internal composition. Images 2, 3, and 4 are subject references for the ore, log, and flower. Paint a complete centered classic dark-fantasy MMORPG medallion with a blackened-bronze circular body, antique-gold double rim, exactly four small cardinal kite points at north/east/south/west, and a dark blue-green enamel inset. Inside, arrange an equally readable triangular triad: one jagged charcoal ore piece with restrained violet mineral bands at left, one pale freshly cut willow log sweeping across the lower right, and one distinct five-petal golden Sunpetal bloom rising at top center. Add only sparse willowfen reeds and a sliver of dark reflective fen water behind them. Fresh physical arrangement and silhouette, not a copy or recolor of any reference. Badge occupies about 78 percent of the square and stays perfectly centered for a final alpha target near x/y 56-455 at 512. Exterior must be one perfectly uniform #FF00FF chroma field with no shadow, reflection, glow, gradient, texture, or stray paint. No text, letters, ribbon, extra frame, diagonal points, crop, watermark, pseudo-symbols, or exterior lighting. Readable at 40px and 24px. ACCEPTANCE CORRECTIONS: the Sunpetal must have exactly FIVE and only five broad countable petals in a simple radial blossom; no hidden, split, overlapping, or sixth petal. Make the four cardinal kite points genuinely tiny and shallow, each extending no more than about 2 percent of canvas height beyond the circular body. Total silhouette about 78 percent, circular body about 74 to 75 percent, roughly 42 percent final alpha coverage. Preserve hand-painted brushwork. Uniform removable #FF00FF exterior.",
         "references": [
           {
             "path": "public/ui/deeds/chr_marsh_gatherer.webp",
             "role": "frame/style reference",
-            "provenance": "World of ClaudeCraft maintainer-commissioned bespoke deed art",
-            "license": "World of ClaudeCraft project asset, rights reserved"
+            "provenance": "Wildhaven maintainer-commissioned bespoke deed art",
+            "license": "Wildhaven project asset, rights reserved"
           },
           {
             "path": "public/ui/items/thorium_ore.webp",
             "role": "subject reference",
-            "provenance": "World of ClaudeCraft original professions art",
-            "license": "World of ClaudeCraft project-owned original art"
+            "provenance": "Wildhaven original professions art",
+            "license": "Wildhaven project-owned original art"
           },
           {
             "path": "public/ui/items/elderwood_log.webp",
             "role": "subject reference",
-            "provenance": "World of ClaudeCraft original professions art",
-            "license": "World of ClaudeCraft project-owned original art"
+            "provenance": "Wildhaven original professions art",
+            "license": "Wildhaven project-owned original art"
           },
           {
             "path": "public/ui/items/sunpetal_herb.webp",
             "role": "subject reference",
-            "provenance": "World of ClaudeCraft original professions art",
-            "license": "World of ClaudeCraft project-owned original art"
+            "provenance": "Wildhaven original professions art",
+            "license": "Wildhaven project-owned original art"
           }
         ]
       },

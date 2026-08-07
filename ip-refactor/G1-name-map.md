@@ -74,7 +74,7 @@ A name that any pass refutes is replaced and re-screened. Record the screen as p
 - **Deciding the `generic-keep?` rows or the Mogger parody** — operator calls; G1 only flags + proposes.
 - **Locking the map** — operator only.
 - **Class display names / class ids** (locked out of scope; the nine-class roster stays as-is).
-- **The brand "World of ClaudeCraft"** and the "Realm" wording decision (T1 / separate business track).
+- **The brand "Wildhaven"** and the "Realm" wording decision (T1 / separate business track).
 - **Re-baselining i18n/guide artifacts** (`i18n:hash --write`, `wiki:content`) — nothing English changed in G1.
 
 ## Verify

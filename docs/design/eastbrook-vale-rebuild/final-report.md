@@ -417,7 +417,7 @@ Historical rebuild-v1 simulator build and landing-shell evidence remains under
 | Physical-device GPU, memory, context recovery, and input    | VERIFY                   |
 
 `npm run native:sync` completed, the Debug simulator target built with `xcodebuild`, and bundle
-`com.worldofclaudecraft` installed and launched. Both supported landscape orientations were
+`com.wildhaven` installed and launched. Both supported landscape orientations were
 visually inspected in the iOS 18.4 simulator; sending the app to Settings and foregrounding it
 resumed the same PID. This proves current shell packaging, orientation, safe-area, and basic resume
 behavior. Browser Mobile Low evidence and simulator-shell evidence do not substitute for an

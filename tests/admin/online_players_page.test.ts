@@ -162,7 +162,7 @@ describe('Online players page', () => {
     expect(toggle).not.toBeChecked();
     await vi.advanceTimersByTimeAsync(180_000);
     expect(mocks.apiGet).toHaveBeenCalledTimes(2);
-    expect(localStorage.getItem('claudecraft_admin_online_players_auto_refresh')).toBe('0');
+    expect(localStorage.getItem('wildhaven_admin_online_players_auto_refresh')).toBe('0');
 
     // With polling off, the manual button is the way to get fresh rows.
     await fireEvent.click(screen.getByRole('button', { name: t('onlinePlayers.refresh') }));
@@ -170,7 +170,7 @@ describe('Online players page', () => {
   });
 
   it('starts with auto-refresh off when the operator opted out earlier', async () => {
-    localStorage.setItem('claudecraft_admin_online_players_auto_refresh', '0');
+    localStorage.setItem('wildhaven_admin_online_players_auto_refresh', '0');
     vi.useFakeTimers();
     render(OnlinePlayers);
     await vi.advanceTimersByTimeAsync(0);

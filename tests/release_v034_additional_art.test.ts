@@ -56,7 +56,7 @@ const RETIRED_HASHES = {
 
 const GENERATED_ABILITY_PACK = 'woc_openai_release_v034_audit_2026_08_02';
 const GENERATED_SOURCE = 'OpenAI built-in image generation';
-const GENERATED_OWNER = 'World of ClaudeCraft';
+const GENERATED_OWNER = 'Wildhaven';
 
 interface ReferenceRecord {
   path: string;

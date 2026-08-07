@@ -16,7 +16,7 @@ export function parseNativeDiscordUrl(value: string): NativeDiscordResult | null
   } catch {
     return null;
   }
-  if (url.protocol !== 'worldofclaudecraft:' || url.hostname !== 'discord-auth') return null;
+  if (url.protocol !== 'wildhaven:' || url.hostname !== 'discord-auth') return null;
   const mode = url.searchParams.get('mode');
   if (mode !== 'login' && mode !== 'link') return null;
   return {

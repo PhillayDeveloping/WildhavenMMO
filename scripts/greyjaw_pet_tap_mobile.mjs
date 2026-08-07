@@ -17,13 +17,13 @@ const browser = await puppeteer.launch({
     '--use-angle=swiftshader',
     '--enable-unsafe-swiftshader',
     '--no-sandbox',
-    '--user-data-dir=/tmp/claude-1000/-home-jegoh-Documents-repo-world-of-claudecraft/64492f84-8206-4e66-9910-ffeea2f82760/scratchpad/chromium-profile',
+    '--user-data-dir=/tmp/claude-1000/-home-jegoh-Documents-repo-wildhaven/64492f84-8206-4e66-9910-ffeea2f82760/scratchpad/chromium-profile',
     '--disable-crash-reporter',
     '--disable-breakpad',
   ],
   env: {
     ...process.env,
-    HOME: '/tmp/claude-1000/-home-jegoh-Documents-repo-world-of-claudecraft/64492f84-8206-4e66-9910-ffeea2f82760/scratchpad/chromium-home',
+    HOME: '/tmp/claude-1000/-home-jegoh-Documents-repo-wildhaven/64492f84-8206-4e66-9910-ffeea2f82760/scratchpad/chromium-home',
   },
   defaultViewport: { width: 844, height: 390, isMobile: true, hasTouch: true },
 });

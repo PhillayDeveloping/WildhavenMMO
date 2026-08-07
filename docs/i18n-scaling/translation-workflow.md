@@ -218,7 +218,7 @@ gate also enforces no `pending` admin rows.
 
 `scripts/i18n_glossary.json` (hand-maintained) is the canonical list of brand /
 proper-noun terms kept verbatim across locales (for example
-"World of ClaudeCraft") plus category key-patterns (class names, ability names,
+"Wildhaven") plus category key-patterns (class names, ability names,
 zone and dungeon names) whose established localized form must be reused rather
 than re-coined. `npm run i18n:worklist` ships it verbatim with every per-language
 batch. Edit this file to change which terms are locked; do not change tool logic.

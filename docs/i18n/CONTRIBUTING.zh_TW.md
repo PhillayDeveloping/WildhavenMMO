@@ -4,11 +4,11 @@
 
 </div>
 
-# 為 World of ClaudeCraft 做出貢獻
+# 為 Wildhaven 做出貢獻
 
-首先，謝謝你來到這裡。World of ClaudeCraft 是由一群熱愛經典 MMO 的人共同打造的，每一份貢獻，無論大小，都讓它變得更好。修正一個錯字、翻譯遊戲、回報一個錯誤、打造一整座全新的地城：這些全都很有意義，我們很歡迎你。
+首先，謝謝你來到這裡。Wildhaven 是由一群熱愛經典 MMO 的人共同打造的，每一份貢獻，無論大小，都讓它變得更好。修正一個錯字、翻譯遊戲、回報一個錯誤、打造一整座全新的地城：這些全都很有意義，我們很歡迎你。
 
-這份指南會協助你完成環境設定，並讓你的第一次貢獻順利進行。你不需要是專家。如果有任何不清楚的地方，歡迎到 [Discord](https://discord.com/invite/worldofclaudecraft) 提問，會有人很樂意幫你。
+這份指南會協助你完成環境設定，並讓你的第一次貢獻順利進行。你不需要是專家。如果有任何不清楚的地方，歡迎到 [Discord](https://discord.com/invite/wildhaven) 提問，會有人很樂意幫你。
 
 只要參與其中，就代表你同意遵守我們的[行為準則](../../CODE_OF_CONDUCT.md)。
 
@@ -17,11 +17,11 @@
 這裡有適合每一個人的位置：
 
 - **程式碼。** 修正錯誤、新增功能，或改善效能。標記為
-  [`good first issue`](https://github.com/levy-street/world-of-claudecraft/labels/good%20first%20issue)
-  和 [`help wanted`](https://github.com/levy-street/world-of-claudecraft/labels/help%20wanted)
+  [`good first issue`](https://github.com/levy-street/wildhaven/labels/good%20first%20issue)
+  和 [`help wanted`](https://github.com/levy-street/wildhaven/labels/help%20wanted)
   的議題是不錯的起點。
 - **翻譯。** 透過改善或補完某個語言，幫助世界各地的玩家。請參考下方的[翻譯遊戲](#translating-the-game)。這是入門最容易、影響也最大的方式之一。
-- **錯誤回報與功能點子。** 開一個[議題](https://github.com/levy-street/world-of-claudecraft/issues/new/choose)。
+- **錯誤回報與功能點子。** 開一個[議題](https://github.com/levy-street/wildhaven/issues/new/choose)。
   一份清楚的錯誤回報就是實實在在的貢獻。
 - **文件。** 像這份一樣的指南、README，以及 `docs/` 裡的設計文件，永遠都有改善的空間。
 - **遊玩測試與意見回饋。** 玩玩看這款遊戲，告訴我們哪裡感覺不對勁，並在 Discord 上分享你的想法。
@@ -34,8 +34,8 @@
 
 ```bash
 # 1. Fork the repo on GitHub, then clone your fork
-git clone https://github.com/<your-username>/world-of-claudecraft.git
-cd world-of-claudecraft
+git clone https://github.com/<your-username>/wildhaven.git
+cd wildhaven
 
 # 2. Install pnpm once (same command on macOS, Linux, Windows)
 #    Match the packageManager pin in package.json (today: 10.34.5).
@@ -139,7 +139,7 @@ CI 跑出綠燈，加上一份完整的檢查清單，就是我們合併前所�
 
 ## 在地化
 
-World of ClaudeCraft 以多種語言發行。每一段玩家可見的字串都必須是翻譯 key，而功能的貢獻者通常只需要加入英文原文。
+Wildhaven 以多種語言發行。每一段玩家可見的字串都必須是翻譯 key，而功能的貢獻者通常只需要加入英文原文。
 
 - 所有面向使用者的文字都是 `t()` key。請把新的英文文案加到 [`src/ui/i18n.catalog/`](../../src/ui/i18n.catalog/) 底下對應的分領域模組（新的 HUD 外框元素放在 `hud_chrome.ts`），然後用 `t('dotted.key', values)` 算繪它。對功能型 PR 來說，只有英文正是正確的做法：維護者會在發行時補上其他語系，所以你不需要編輯 `src/ui/i18n.locales/` 的覆蓋檔，也絕不要在裡面留下英文佔位字串或 `// TODO`。M16 例外是新增一個字數較多的英文值，它還需要 [`src/ui/CLAUDE.md`](../../src/ui/CLAUDE.md) 中所述的五個非拉丁語系填寫。
 - 數字、金錢、日期、單位與百分比都要透過格式化工具處理（`formatNumber`、`formatMoney`、`formatDateTime`、`Intl`），而不是手動拼接字串。
@@ -158,31 +158,31 @@ World of ClaudeCraft 以多種語言發行。每一段玩家可見的字串都�
 2. 改善既有的翻譯，或補上任何讀起來彆扭的部分。
 3. 執行 `pnpm run i18n:gen`，把重新產生的 bundle 和你的覆蓋檔一起提交，接著執行在地化測試套件（`npx vitest run tests/i18n_completeness.test.ts tests/localization_coverage.test.ts`）並開一個 PR。光靠型別檢查無法告訴你是否漏了某個 key，因為覆蓋檔本來就是刻意稀疏的。
 
-若要提議一個全新的語系，或想討論語氣與用語，請到 [Discord](https://discord.com/invite/worldofclaudecraft) 開一個討論串，我們會協助你把它接上去。我們特別歡迎母語者與流利的使用者。好的翻譯會讓世界各地的玩家覺得這款遊戲就像回到家一樣。
+若要提議一個全新的語系，或想討論語氣與用語，請到 [Discord](https://discord.com/invite/wildhaven) 開一個討論串，我們會協助你把它接上去。我們特別歡迎母語者與流利的使用者。好的翻譯會讓世界各地的玩家覺得這款遊戲就像回到家一樣。
 
 ## 回報錯誤與提出功能需求
 
-請使用[議題範本](https://github.com/levy-street/world-of-claudecraft/issues/new/choose)：
+請使用[議題範本](https://github.com/levy-street/wildhaven/issues/new/choose)：
 
-- **錯誤回報。** 請先搜尋[既有的議題](https://github.com/levy-street/world-of-claudecraft/issues)以避免重複，接著附上重現步驟、你預期的結果、實際發生的狀況，以及你的環境（離線或線上、瀏覽器、桌機或行動裝置）。
+- **錯誤回報。** 請先搜尋[既有的議題](https://github.com/levy-street/wildhaven/issues)以避免重複，接著附上重現步驟、你預期的結果、實際發生的狀況，以及你的環境（離線或線上、瀏覽器、桌機或行動裝置）。
 - **功能需求。** 請描述你想解決的問題，而不只是解決方案。脈絡能幫助我們設計出對的東西。
 - **安全性漏洞。** 請不要開公開議題。請依照 [SECURITY.md](../../SECURITY.md) 私下回報，我們會和你一起處理修正與揭露事宜。
 
 ## 取得協助
 
-卡住了，或只是想打聲招呼？歡迎加入[社群 Discord](https://discord.com/invite/worldofclaudecraft)。沒有任何問題太小，我們永遠歡迎新的貢獻者。
+卡住了，或只是想打聲招呼？歡迎加入[社群 Discord](https://discord.com/invite/wildhaven)。沒有任何問題太小，我們永遠歡迎新的貢獻者。
 
 ## 授權
 
 只要貢獻程式碼，就代表你同意你的程式碼貢獻將以本專案的 [MIT License](../../LICENSE) 授權，與涵蓋整個專案的授權相同。
 
-MIT License 的意思就如同字面：任何人都可以使用、修改與再散布這些程式碼，商用或非商用皆可。我們的[服務條款](https://worldofclaudecraft.com/terms)規範的是我們在 worldofclaudecraft.com 營運的託管遊戲（帳號、行為規範、虛擬物品），並不會限制 MIT License 賦予你或任何人對這份程式碼的權利。「World of ClaudeCraft」與「Levy Street」的名稱和品牌識別不在 MIT License 的涵蓋範圍內。
+MIT License 的意思就如同字面：任何人都可以使用、修改與再散布這些程式碼，商用或非商用皆可。我們的[服務條款](https://wildhaven.example/terms)規範的是我們在 wildhaven.example 營運的託管遊戲（帳號、行為規範、虛擬物品），並不會限制 MIT License 賦予你或任何人對這份程式碼的權利。「Wildhaven」與「Levy Street」的名稱和品牌識別不在 MIT License 的涵蓋範圍內。
 
 原創的創作素材（錄音、音樂、美術，以及類似的著作）是例外。如果你貢獻的是由你自己創作的原創素材，你可以選擇保留著作權，並以你選擇的授權方式提供（例如 CC BY-NC 4.0），前提是：
 
 - 該授權、它所涵蓋的素材路徑，以及你的姓名標示，都在同一個 pull
   request 中記錄到 [CREDITS.md](../../CREDITS.md) 的授權表格裡，而且
-- 它至少包含一項永久、免權利金的授權，允許 Levy Street 在 World of ClaudeCraft 中商業使用這些素材，包括官方發行版本與遊戲內商店。
+- 它至少包含一項永久、免權利金的授權，允許 Levy Street 在 Wildhaven 中商業使用這些素材，包括官方發行版本與遊戲內商店。
 
 對於列在 CREDITS.md 表格中的素材，該筆記錄的授權優先於專案預設的 MIT 授權。
 
@@ -192,4 +192,4 @@ MIT License 的意思就如同字面：任何人都可以使用、修改與再�
 
 ---
 
-謝謝你為 World of ClaudeCraft 做出貢獻。我們迫不及待想看看你和我們一起打造出什麼。
+謝謝你為 Wildhaven 做出貢獻。我們迫不及待想看看你和我們一起打造出什麼。

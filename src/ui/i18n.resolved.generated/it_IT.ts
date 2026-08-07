@@ -400,7 +400,7 @@ export const it_IT: EnTranslations = {
       "error": "Impossibile caricare le ricompense giornaliere.",
       "disabled": "Le ricompense giornaliere sono attualmente disattivate. Annunceremo gli aggiornamenti di questa funzionalità nel canale Discord.",
       "intro": "Detieni abbastanza WOC nel tuo portafoglio verificato per sbloccare le ricompense giornaliere. Guadagna punti con un giro giornaliero e incarichi a rotazione, poi scala la classifica giornaliera per aggiudicarti una parte del montepremi.",
-      "disclaimer": "Il prezzo di WOC può muoversi rapidamente. Consigliamo di detenere più del minimo di 20 USD, così le normali oscillazioni di prezzo non ti escludono. Questo non è un consiglio finanziario.",
+      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
       "prize": "Montepremi",
       "reset": "Azzeramento",
       "endsIn": "Termina tra {time}",
@@ -409,9 +409,6 @@ export const it_IT: EnTranslations = {
       "remainingHoursMinutes": "{hours}h {minutes}m",
       "remainingDaysHours": "{days} g {hours} h",
       "score": "Punteggio",
-      "walletValue": "Valore del portafoglio (WOC)",
-      "usd": "{amount} USD",
-      "sol": "{amount} SOL",
       "unknown": "Sconosciuto",
       "spinTitle": "Giro giornaliero",
       "spinDialogTitle": "Giro della ricompensa giornaliera",
@@ -436,17 +433,8 @@ export const it_IT: EnTranslations = {
       "history": "Vincitori precedenti",
       "noLeaders": "Ancora nessun punto.",
       "noHistory": "Ancora nessun pagamento.",
-      "walletConnectTitle": "Verifica portafoglio",
-      "walletConnectBody": "Verifica un portafoglio Solana con WOC per sbloccare le ricompense giornaliere.",
-      "walletConnectButton": "Verifica portafoglio",
-      "walletHoldTitle": "Detieni WOC",
-      "walletHoldBody": "Detieni almeno {amount} USD in WOC per sbloccare le ricompense giornaliere.",
-      "walletPriceBody": "Il prezzo di WOC non è disponibile al momento. Ricontrolla a breve.",
       "reason": {
         "eligible": "Ricompense sbloccate.",
-        "no_wallet": "Collega un portafoglio con almeno 20 USD in WOC.",
-        "under_minimum": "Il portafoglio è sotto il minimo di 20 USD in WOC.",
-        "price_unavailable": "Il prezzo di WOC non è disponibile, le ricompense sono temporaneamente bloccate.",
         "banned": "Sei escluso dalle Ricompense giornaliere. Motivo: {reason}",
         "bannedUntil": "Sei escluso dalle Ricompense giornaliere per altri {remaining}. L’accesso sarà ripristinato {until}. Motivo: {reason}"
       }
@@ -472,18 +460,6 @@ export const it_IT: EnTranslations = {
       "armoryEyebrow": "Stagione 1",
       "armoryTitle": "L'Armeria",
       "armoryBody": "Aspetti per armi in edizione limitata dall'Armeria della Stagione 1. Disponibili per tutto l'account, puramente cosmetici e visibili a chiunque ti circondi.",
-      "wallet": {
-        "title": "Portafoglio Solana",
-        "unlinked": "Connetti un'app portafoglio, poi firma una volta per collegare il suo indirizzo pubblico al tuo account WoC. Non riceviamo mai la tua frase di recupero o chiave privata.",
-        "connectedUnlinked": "L'app del portafoglio è connessa a questo browser, ma il suo indirizzo pubblico non è ancora collegato al tuo account WoC.",
-        "linkedDisconnected": "Il tuo indirizzo pubblico è collegato. Riconnetti l'app del portafoglio quando vuoi pagare con SOL o WOC.",
-        "linkedConnected": "Il tuo portafoglio collegato è connesso e pronto per acquisti con SOL o WOC.",
-        "mismatched": "È connesso un portafoglio diverso. Verificalo per sostituire l'indirizzo collegato, oppure riconnetti il portafoglio collegato.",
-        "connect": "Collega portafoglio",
-        "verify": "Verifica e collega",
-        "reconnect": "Riconnetti portafoglio",
-        "manage": "Gestisci portafoglio"
-      },
       "collectionLine": "Collezione {collection}",
       "collections": {
         "guildmark": "Marchio della gilda",
@@ -685,20 +661,11 @@ export const it_IT: EnTranslations = {
       "loading": "Caricamento di Claudium...",
       "balanceLabel": "Saldo",
       "balanceUnit": "{amount} Claudium",
-      "solBalance": "SOL: {amount}",
-      "usdcBalance": "Saldo USDC: {amount}",
-      "wocBalance": "WOC: {amount}",
       "unavailable": "Il negozio Claudium non è disponibile al momento. Il tuo saldo e i tuoi acquisti non subiranno modifiche. Riprova tra poco.",
       "disclosure": "Claudium è una valuta virtuale a senso unico: puoi acquistarlo con denaro reale e spenderlo in cosmetici. Non può essere riscattato, trasferito o convertito in denaro.",
       "buyTitle": "Acquista Claudium",
       "railLabel": "Metodo di pagamento",
       "railStripe": "Carta",
-      "railSol": "SOL",
-      "railUsdc": "USDC",
-      "railWoc": "WOC",
-      "railWocDiscount": "{percent}% di sconto",
-      "railWocUnavailable": "I prezzi WOC non sono disponibili al momento.",
-      "railNativeUnavailable": "SOL/WOC non disponibile.",
       "amountLabel": "Quantità",
       "showAmounts": "Mostra tutti gli importi di Claudium",
       "hideAmounts": "Nascondi importi extra di Claudium",
@@ -718,10 +685,7 @@ export const it_IT: EnTranslations = {
       "checkoutPending": "Transazione in corso. Conferma nel tuo portafoglio e mantieni questo pannello aperto.",
       "checkoutPendingButton": "In elaborazione",
       "checkoutFailed": "Impossibile caricare il pagamento. Riprova.",
-      "checkoutUnavailable": "L'acquisto di Claudium non è disponibile al momento.",
-      "checkoutWalletRequired": "Collega un portafoglio Solana prima di acquistare Claudium con criptovaluta.",
-      "checkoutWalletUnsupported": "Questo portafoglio non può firmare e inviare transazioni Solana.",
-      "checkoutNotSettled": "La transazione è stata inviata, ma Claudium non è ancora stato accreditato. Riprova tra poco."
+      "checkoutUnavailable": "L'acquisto di Claudium non è disponibile al momento."
     },
     "theme": {
       "preset": "Tema dell'interfaccia",
@@ -843,8 +807,8 @@ export const it_IT: EnTranslations = {
     },
     "nativeUpdate": {
       "title": "Aggiornamento disponibile",
-      "body": "È disponibile una nuova versione di World of ClaudeCraft. Aggiorna ora per le ultime correzioni e migliorie.",
-      "bodyWithVersion": "La versione {version} di World of ClaudeCraft è disponibile. Aggiorna ora per le ultime correzioni e migliorie.",
+      "body": "È disponibile una nuova versione di Wildhaven. Aggiorna ora per le ultime correzioni e migliorie.",
+      "bodyWithVersion": "La versione {version} di Wildhaven è disponibile. Aggiorna ora per le ultime correzioni e migliorie.",
       "notNow": "Non ora",
       "update": "Aggiorna"
     },
@@ -1196,8 +1160,6 @@ export const it_IT: EnTranslations = {
       "clickFeedback": "Indicatore di clic",
       "lockCursorOnRotate": "Blocca cursore durante la rotazione",
       "keybindHelpLockCursorOnRotate": "Mantiene il cursore del mouse dentro la finestra mentre trascini per ruotare la telecamera, così non può raggiungere il bordo dello schermo o passare a un altro monitor. Disattiva l'opzione se preferisci un cursore libero.",
-      "showWalletOnCharacterScreen": "Mostra portafoglio nella schermata personaggi",
-      "showWalletOnPlayerCard": "Mostra portafoglio nella scheda giocatore",
       "showDevBadges": "Mostra distintivi sviluppatore",
       "showOwnNameplate": "Mostra la mia targhetta",
       "showPlayerNameplates": "Mostra targhe dei giocatori",
@@ -1373,9 +1335,7 @@ export const it_IT: EnTranslations = {
         "aetherRush": "Impeto d’Etere"
       }
     },
-    "playerCard": {
-      "showWalletBadge": "Mostra distintivo portafoglio"
-    },
+    "playerCard": {},
     "landing": {
       "highContrast": "Contrasto elevato",
       "highContrastAria": "Attiva/disattiva lo sfondo a contrasto elevato: disabilita il trailer in movimento per mantenere leggibile il testo della schermata iniziale",
@@ -1564,7 +1524,6 @@ export const it_IT: EnTranslations = {
       "loggedOutPrompt": "Accedi per gestire il tuo account.",
       "memberSince": "Membro dal {date}",
       "sectionSettings": "Impostazioni account",
-      "sectionWallet": "Portafoglio $WOC",
       "sectionCharacters": "Personaggi",
       "sectionDanger": "Zona pericolosa",
       "changePassword": "Cambia password",
@@ -1591,8 +1550,6 @@ export const it_IT: EnTranslations = {
       "charactersSummary": "Gestisci i tuoi personaggi ed entra nel mondo.",
       "charactersCount": "Personaggi: {count}",
       "goToCharacters": "Visualizza personaggi",
-      "walletSummary": "Verifica un portafoglio Solana per mostrare il distintivo da titolare sulla tua scheda giocatore.",
-      "manageWallet": "Gestisci portafoglio",
       "deactivate": "Disattiva account",
       "deactivateWarning": "La disattivazione blocca il tuo account e ti disconnette ovunque. Contatta un admin per ripristinarlo. Conferma reinserendo nome utente e password.",
       "confirmUsername": "Digita il tuo nome utente per confermare",
@@ -2003,7 +1960,7 @@ export const it_IT: EnTranslations = {
     },
     "discord": {
       "title": "Discord",
-      "panelTitle": "World of ClaudeCraft",
+      "panelTitle": "Wildhaven",
       "open": "Discord",
       "close": "Chiudi",
       "keybind": "Pannello Discord",
@@ -2293,11 +2250,9 @@ export const it_IT: EnTranslations = {
       "bonusStatusEarned": "+{count}",
       "bonusSourceEmail": "Email verificata",
       "bonusSourceDiscord": "Discord collegato",
-      "bonusSourceWallet": "Portafoglio collegato",
       "bonusSourceReferral": "Amici invitati",
       "bonusAdvertEmail": "Verifica la tua email per guadagnare 2 spazi.",
       "bonusAdvertDiscord": "Collega il tuo Discord per guadagnare 2 spazi.",
-      "bonusAdvertWallet": "Collega un portafoglio per guadagnare 2 spazi.",
       "bonusReferralProgress": "{count}/{cap}",
       "bonusReferralExplainer": "Invita un amico: quando raggiunge il livello 10 guadagnate 2 spazi ciascuno, fino a 5 amici.",
       "bonusSectionAria": "Spazi bonus della banca e come guadagnarne altri",
@@ -3147,26 +3102,13 @@ export const it_IT: EnTranslations = {
       "account_taken": "Quell’account Epic è già collegato a un altro account.",
       "upstream": "Epic non ha risposto. Riprova tra un momento."
     },
-    "wallet": {
-      "handoff_invalid": "L'autorizzazione del portafoglio è scaduta o non ha potuto essere verificata. Riprova."
-    },
     "ota_updates": {
       "invalid_input": "Dati non validi."
-    },
-    "seeker": {
-      "native_only": "L'abilitazione Seeker è disponibile solo nell'app nativa.",
-      "attestation_failed": "Verifica del dispositivo non riuscita. Riprova.",
-      "solana_artifact_required": "Usa l'app del Solana Store per continuare.",
-      "wallet_required": "Prima collega e verifica un portafoglio.",
-      "genesis_token_required": "È richiesto un Seeker Genesis Token verificato.",
-      "genesis_token_claimed": "Quel Seeker Genesis Token è già stato riscattato.",
-      "entitlement_required": "È richiesta un'abilitazione Seeker verificata.",
-      "current_ownership_required": "È richiesto il possesso attuale del Seeker Genesis Token."
     }
   },
   "guide": {
-    "brand": "World of ClaudeCraft",
-    "brandShort": "ClaudeCraft",
+    "brand": "Wildhaven",
+    "brandShort": "Wildhaven",
     "tagline": "Un MMO in stile classico che giochi gratis nel tuo browser.",
     "skipToContent": "Vai al contenuto principale",
     "loading": "Caricamento in corso...",
@@ -3231,7 +3173,7 @@ export const it_IT: EnTranslations = {
       "github": "Sorgente su GitHub",
       "discord": "Unisciti al Discord",
       "communityWiki": "Wiki della Comunità",
-      "rights": "World of ClaudeCraft",
+      "rights": "Wildhaven",
       "linksLabel": "Collegamenti al gioco e alla community"
     },
     "language": {
@@ -3254,7 +3196,7 @@ export const it_IT: EnTranslations = {
     },
     "home": {
       "eyebrow": "MMO da browser in stile classico",
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "subtitle": "Affronta missioni, raggruppati ed esplora un mondo costruito a mano, gratis nel tuo browser.",
       "ctaPlay": "Gioca Ora",
       "ctaLearn": "Come si gioca",
@@ -3769,7 +3711,7 @@ export const it_IT: EnTranslations = {
     },
     "worldPage": {
       "heading": "Il mondo",
-      "intro": "World of ClaudeCraft è una terra continua che attraversi a piedi, tre zone disposte da sud a nord. Non c'è viaggio rapido, perciò il viaggio è parte dell'avventura.",
+      "intro": "Wildhaven è una terra continua che attraversi a piedi, tre zone disposte da sud a nord. Non c'è viaggio rapido, perciò il viaggio è parte dell'avventura.",
       "hub": "Base operativa",
       "mapHeading": "La strada verso nord",
       "mapSub": "Tre zone, da sud a nord, ognuna un gradino più in alto di livello. Segui la scia delle missioni e la terra ti porta dalla valle alle vette.",
@@ -4596,7 +4538,7 @@ export const it_IT: EnTranslations = {
   },
   "editor": {
     "appTitle": "Editor di Mappe",
-    "docTitle": "Editor di Mappe - World of ClaudeCraft",
+    "docTitle": "Editor di Mappe - Wildhaven",
     "untitledMap": "Mappa senza titolo",
     "playtestPlayerName": "Cartografo",
     "topbar": {
@@ -5072,8 +5014,8 @@ export const it_IT: EnTranslations = {
     "realmName": "Nome del mondo"
   },
   "footer": {
-    "copyright": "2026 World of ClaudeCraft",
-    "githubLink": "https://github.com/levy-street/world-of-claudecraft",
+    "copyright": "2026 Wildhaven",
+    "githubLink": "https://wildhaven.example",
     "githubLabel": "Progetto open source",
     "whitepaper": "Libro bianco",
     "terms": "Termini di servizio",
@@ -5130,13 +5072,10 @@ export const it_IT: EnTranslations = {
     "serverOnline": "Online",
     "serverOffline": "Offline",
     "play": "Gioca",
-    "playAria": "Gioca a World of ClaudeCraft",
+    "playAria": "Gioca a Wildhaven",
     "serverLabel": "Scegli il tuo mondo",
     "serverAria": "Seleziona il mondo: Online o Offline",
-    "serverOfflineSub": "Mondo locale istantaneo",
-    "caLabel": "Indirizzo del contratto $WOC",
-    "caCopyAria": "Copia l'indirizzo del contratto",
-    "caNote": "WOC è il token della nostra community. Non serve per giocare. Entra nel Discord per discutere dell'utilità e del flywheel di WOC."
+    "serverOfflineSub": "Mondo locale istantaneo"
   },
   "auth": {
     "enterRealm": "Entra nel mondo",
@@ -5184,171 +5123,6 @@ export const it_IT: EnTranslations = {
       "failed": "Impossibile salvare la tua email. Riprova."
     }
   },
-  "wallet": {
-    "label": "Portafoglio $WOC",
-    "connect": "Verifica portafoglio",
-    "connectTitle": "Verifica il tuo portafoglio Solana",
-    "connectAria": "Verifica il tuo portafoglio Solana",
-    "verify": "Verifica portafoglio",
-    "verifyNew": "Verifica nuovo portafoglio",
-    "verifyTitle": "Scegli un portafoglio e firma una volta per verificare che ne sei il proprietario.",
-    "verifyAria": "Scegli un portafoglio e firma una volta per verificare che ne sei il proprietario",
-    "verifyAddressAria": "Firma per verificare il portafoglio {address} per il tuo account",
-    "appConnected": "App connessa",
-    "connectApp": "Connetti app",
-    "connectAppTitle": "Connetti l'app del portafoglio su questo browser",
-    "connectAppAria": "Connetti l'app del portafoglio su questo browser",
-    "verifying": "Verifica...",
-    "verifyingTitle": "La verifica del portafoglio è in corso.",
-    "switch": "Cambia",
-    "switchTitle": "Verifica un altro portafoglio",
-    "switchAria": "Verifica un altro portafoglio",
-    "unlink": "Scollega",
-    "unlinkTitle": "Rimuovi la verifica del portafoglio da questo account",
-    "unlinkAria": "Rimuovi la verifica del portafoglio da questo account",
-    "signOut": "Disconnetti",
-    "signOutTitle": "Disconnetti l'app del portafoglio su questo browser",
-    "signOutAria": "Disconnetti l'app del portafoglio su questo browser",
-    "hide": "Nascondi",
-    "hideTitle": "Nascondi la riga del portafoglio in questa schermata",
-    "hideAria": "Nascondi la riga del portafoglio in questa schermata",
-    "hiddenNotice": "Riga del portafoglio nascosta. Riattivala in gioco da Opzioni > Interfaccia.",
-    "linkedTitle": "Portafoglio verificato per il tuo account. Fai clic per gestire l'app del portafoglio.",
-    "linkedDisconnectedTitle": "Il portafoglio resta verificato per il tuo account. Riconnettiti per gestire l'app del portafoglio.",
-    "linkedDisconnectedAria": "Il portafoglio resta verificato per il tuo account. Riconnettiti per gestire l'app del portafoglio.",
-    "linkTitle": "Fai clic per firmare e collegare questo portafoglio al tuo account.",
-    "connectedTitle": "Connesso. Accedi per collegare questo portafoglio al tuo account.",
-    "balanceTitle": "Saldo $WOC del portafoglio Solana verificato",
-    "balanceAria": "Saldo del portafoglio Solana verificato: {balance}",
-    "balancePreviewTitle": "Anteprima del saldo $WOC del portafoglio connesso",
-    "balancePreviewAria": "Anteprima del saldo del portafoglio connesso: {balance}. Collega il portafoglio per verificare il distintivo da titolare.",
-    "balanceAmount": "{amount} $WOC",
-    "bagConnect": "Collega portafoglio",
-    "bagLink": "Verifica portafoglio",
-    "bagReconnect": "Riconnetti portafoglio",
-    "connected": "Connesso: {address}",
-    "connectedWithBalance": "Connesso: {balance} - {address}",
-    "connectedLinked": "Verificato: {address}",
-    "connectedLinkedWithBalance": "Verificato: {balance} - {address}",
-    "helpDisconnected": "Verifica un portafoglio Solana per abilitare il distintivo da titolare e i badge della scheda giocatore. Non servono transazioni né SOL.",
-    "helpLoginToLink": "{address} connesso. Accedi per collegarlo al tuo account.",
-    "helpLoginToLinkWithBalance": "{address} connesso con {balance}. Accedi per collegarlo al tuo account.",
-    "helpReadyToLink": "Portafoglio selezionato: {address}. Firma una volta per verificare distintivo da titolare e schede giocatore.",
-    "helpReadyToLinkWithBalance": "Portafoglio selezionato: {address} con {balance}. Firma una volta per verificare distintivo da titolare e schede giocatore.",
-    "helpLinked": "I vantaggi da titolare sono attivi. L'app del portafoglio è connessa su questo browser.",
-    "helpLinkedWithBalance": "I vantaggi da titolare sono attivi. L'app del portafoglio è connessa su questo browser.",
-    "helpLinkedDisconnected": "I vantaggi da titolare sono attivi. Connetti l'app quando devi firmare o spendere.",
-    "helpLinkedDisconnectedWithBalance": "I vantaggi da titolare sono attivi. Connetti l'app quando devi firmare o spendere.",
-    "extensionHelp": "Per vedere un portafoglio qui, tieni attiva un'estensione portafoglio del browser come Solflare Wallet.",
-    "mobileAppHelp": "Scegli Phantom o Solflare. La tua app portafoglio chiederà approvazione. Tieni aperto questo gioco e tornaci quando hai finito.",
-    "seekerAppHelp": "Continua con Seed Vault Wallet. Esamina le richieste di connessione e di verifica in Seed Vault, poi torna al gioco.",
-    "standaloneAppHelp": "Le connessioni portafoglio non sono ancora disponibili nell'app dalla Schermata Home. Apri World of ClaudeCraft in Safari o Chrome per usare Phantom o Solflare.",
-    "openAppTitle": "Continua in {wallet}",
-    "openAppHelp": "Apri {wallet} per esaminare questa richiesta. Tieni aperta questa scheda del gioco mentre l'app portafoglio è attiva.",
-    "openAppButton": "Apri {wallet}",
-    "manualReturnBrowserHelp": "Dopo l'approvazione, torna a questa scheda del gioco. Se iOS apre un altro browser, chiudilo e torna manualmente al browser originale.",
-    "manualReturnStandaloneHelp": "Dopo l'approvazione, torna a World of ClaudeCraft dalla tua Schermata Home. Se iOS apre un browser, chiudilo e riapri manualmente l'app dalla Schermata Home.",
-    "preparingAppButton": "Preparazione di {wallet}...",
-    "walletAppUnavailable": "{wallet} non ha potuto essere preparato. Chiudi questa finestra e riprova.",
-    "flowConnect": "Scegli un portafoglio. La verifica continua automaticamente.",
-    "flowSign": "Firma il messaggio di verifica nell'app del portafoglio. Non servono transazioni né SOL.",
-    "flowVerify": "Verifica della proprietà del portafoglio...",
-    "linkFailed": "Verifica del portafoglio non riuscita.",
-    "verifyFailed": "Verifica del portafoglio non riuscita.",
-    "unlinkFailed": "Impossibile scollegare il portafoglio.",
-    "browser": {
-      "eyebrow": "Autorizzazione portafoglio desktop",
-      "title": "Connetti un portafoglio Solana",
-      "linkBody": "Scegli un'estensione portafoglio in questo browser. Firmerai un messaggio di verifica, poi tornerai all'app desktop.",
-      "paymentBody": "Scegli il portafoglio collegato al tuo account e approva la transazione in questo browser.",
-      "extensionHelp": "Nessuna estensione portafoglio compatibile trovata. Installa o sblocca Phantom, Solflare o un altro portafoglio Solana per browser, poi riprova.",
-      "safety": "World of ClaudeCraft non chiede mai la tua frase di recupero o chiave privata.",
-      "continueWith": "Continua con {wallet}",
-      "reviewTitle": "Revisione nel tuo portafoglio",
-      "reviewBody": "Segui la richiesta di {wallet}. Mantieni aperta questa pagina del browser.",
-      "completeTitle": "Autorizzazione portafoglio completata",
-      "completeBody": "Puoi tornare all'app desktop di World of ClaudeCraft.",
-      "returnButton": "Torna all'app desktop",
-      "failed": "Autorizzazione portafoglio non riuscita o scaduta. Torna all'app desktop e riprova.",
-      "retry": "Riprova"
-    },
-    "holder": "Titolare $WOC",
-    "holderTierTitle": "Titolare $WOC di rango {tier}",
-    "holderTiers": {
-      "ember": {
-        "name": "Brace",
-        "flavor": "La scintilla è accesa."
-      },
-      "coinbearer": {
-        "name": "Portamonete",
-        "flavor": "La prima moneta nel forziere di guerra."
-      },
-      "coppercrest": {
-        "name": "Cresta di rame",
-        "flavor": "Rame su rame, il tuo nome inizia a girare."
-      },
-      "silverbound": {
-        "name": "Vincolato d'argento",
-        "flavor": "Vincolato nell'argento, la borsa cresce."
-      },
-      "gilded": {
-        "name": "Dorato",
-        "flavor": "Dorato e sorridente."
-      },
-      "vaultwarden": {
-        "name": "Custode del caveau",
-        "flavor": "Ora custodisci un vero caveau: lo 0,01% di tutto $WOC."
-      },
-      "whale": {
-        "name": "Balena",
-        "flavor": "Sei entrato in acque profonde: lo 0,1% dell'offerta."
-      },
-      "leviathan": {
-        "name": "Leviatano",
-        "flavor": "I mercati sentono ogni tuo movimento: l'1% dell'offerta."
-      },
-      "tidelord": {
-        "name": "Signore delle maree",
-        "flavor": "La marea risponde al tuo richiamo: il 2% dell'offerta."
-      },
-      "stormcaller": {
-        "name": "Evocatore di tempeste",
-        "flavor": "Le tempeste si radunano nel tuo nome: il 3% dell'offerta."
-      },
-      "krakencrown": {
-        "name": "Corona del kraken",
-        "flavor": "Incoronato dagli abissi: il 4% dell'offerta."
-      },
-      "titanforged": {
-        "name": "Forgiato tra i titani",
-        "flavor": "Forgiato tra i titani: il 5% dell'offerta."
-      },
-      "starhoard": {
-        "name": "Tesoro stellare",
-        "flavor": "Un tesoro che piega la luce delle stelle: il 6% dell'offerta."
-      },
-      "voidwarden": {
-        "name": "Guardiano del vuoto",
-        "flavor": "Custode sull'orlo del vuoto: il 7% dell'offerta."
-      },
-      "realmshaper": {
-        "name": "Plasmatore del reame",
-        "flavor": "Ridai forma al reame: l'8% dell'offerta."
-      },
-      "worldforger": {
-        "name": "Forgiatore di mondi",
-        "flavor": "Forgi un mondo tutto tuo: il 9% dell'offerta."
-      },
-      "worldbearer": {
-        "name": "Portamondi",
-        "flavor": "Porti con te un pezzo del mondo: il 10% dell'offerta."
-      },
-      "sovereign": {
-        "name": "Sovrano",
-        "flavor": "Il regno si inginocchia: l'intera offerta."
-      }
-    }
-  },
   "playerCard": {
     "shareButton": "Condividi scheda giocatore",
     "title": "Scheda giocatore",
@@ -5365,16 +5139,15 @@ export const it_IT: EnTranslations = {
     "levelClass": "Livello {level} - {className}",
     "topPercent": "TOP {percent}%",
     "realmSubtitle": "Mondo {realm}",
-    "defaultRealm": "Mondo di ClaudeCraft",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "defaultRealm": "Wildhaven",
+    "brandWordmark": "WILDHAVEN",
     "recruited": "{count} reclutati",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",
     "footerCta": "Forgia la tua leggenda: {siteUrl}",
     "arenaStat": "Arena",
-    "shareTierBit": ", titolare $WOC di rango {tier}",
-    "shareText": "Sto forgiando la mia leggenda in World of ClaudeCraft: livello {level} {className}{tierBit}. Unisciti al mio mondo:",
-    "nativeShareTitle": "Mondo di ClaudeCraft",
+    "shareText": "Sto forgiando la mia leggenda in Wildhaven: livello {level} {className}{tierBit}. Unisciti al mio mondo:",
+    "nativeShareTitle": "Wildhaven",
     "fileNameFallback": "giocatore",
     "actionShareX": "Condividi su X",
     "actionCopyReferral": "Copia link di invito",
@@ -6074,14 +5847,14 @@ export const it_IT: EnTranslations = {
     }
   },
   "seo": {
-    "title": "World of ClaudeCraft: MMO web in stile classico",
-    "description": "Parti per un'avventura epica in World of ClaudeCraft, un micro-MMO in stile classico giocabile direttamente dal browser. Entra in un mondo condiviso persistente, fai crescere le classi e sconfiggi i nemici!",
+    "title": "Wildhaven: MMO web in stile classico",
+    "description": "Parti per un'avventura epica in Wildhaven, un micro-MMO in stile classico giocabile direttamente dal browser. Entra in un mondo condiviso persistente, fai crescere le classi e sconfiggi i nemici!",
     "genre": "MMORPG",
     "playMode": "Multigiocatore",
     "applicationCategory": "Gioco",
     "operatingSystem": "Browser web",
-    "officialLabel": "Sito ufficiale di World of ClaudeCraft",
-    "officialBody": "worldofclaudecraft.com è l'MMO gratuito ufficiale da browser del mondo Claudemoon. Gioca online con un personaggio persistente, esplora offline in solitaria, leggi il wiki e segui i link della community verificati da questo sito."
+    "officialLabel": "Sito ufficiale di Wildhaven",
+    "officialBody": "wildhaven.example è l'MMO gratuito ufficiale da browser del mondo Claudemoon. Gioca online con un personaggio persistente, esplora offline in solitaria, leggi il wiki e segui i link della community verificati da questo sito."
   },
   "a11y": {
     "goHome": "Vai alla pagina iniziale",
@@ -6089,9 +5862,9 @@ export const it_IT: EnTranslations = {
     "mainNavigation": "Navigazione principale",
     "languageSelection": "Selezione lingua",
     "characterActions": "Azioni personaggio",
-    "githubProject": "Apri il progetto World of ClaudeCraft su GitHub",
-    "discordCommunity": "Entra nella community Discord di World of ClaudeCraft",
-    "donateProject": "Fai una donazione per sostenere World of ClaudeCraft"
+    "githubProject": "Apri il progetto Wildhaven su GitHub",
+    "discordCommunity": "Entra nella community Discord di Wildhaven",
+    "donateProject": "Fai una donazione per sostenere Wildhaven"
   },
   "entryGuard": {
     "title": "Grafica ridotta",
@@ -6178,11 +5951,11 @@ export const it_IT: EnTranslations = {
       "dismiss": "Ignora"
     },
     "crash": {
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "body": "La vista di gioco ha smesso di funzionare. Ricaricarla?",
       "reload": "Ricarica",
       "quit": "Esci",
-      "fatalBody": "World of ClaudeCraft ha riscontrato un errore imprevisto e deve chiudersi."
+      "fatalBody": "Wildhaven ha riscontrato un errore imprevisto e deve chiudersi."
     }
   },
   "gpuNotice": {
@@ -6321,17 +6094,17 @@ export const it_IT: EnTranslations = {
     "iosStandaloneDetail": "Sei in modalità schermo intero dalla schermata Home. Mantieni il dispositivo in orizzontale.",
     "iosInstallDetail": "Per il vero schermo intero su iPhone o iPad, installa prima questa pagina nella schermata Home.",
     "iosShareStep": "In Safari, tocca Condividi e poi Aggiungi alla schermata Home.",
-    "iosOpenStep": "Apri World of ClaudeCraft dalla nuova icona nella schermata Home.",
+    "iosOpenStep": "Apri Wildhaven dalla nuova icona nella schermata Home.",
     "androidStandaloneDetail": "Sei in modalità app a schermo intero. Mantieni il dispositivo in orizzontale.",
     "androidInstallDetail": "Per lo schermo intero su Android, installa questa pagina o aggiungila alla schermata Home.",
     "androidInstallStep": "In Chrome, tocca il menu e poi Installa app o Aggiungi alla schermata Home.",
-    "androidOpenStep": "Apri World of ClaudeCraft dalla nuova icona.",
+    "androidOpenStep": "Apri Wildhaven dalla nuova icona.",
     "otherStandaloneDetail": "Mantieni il dispositivo in schermo intero orizzontale.",
     "otherInstallDetail": "Installa o aggiungi questa pagina alla schermata Home per la migliore esperienza mobile a schermo intero."
   },
   "serverUnavailable": {
-    "title": "World of ClaudeCraft - Mondo non disponibile",
-    "logoAlt": "World of ClaudeCraft",
+    "title": "Wildhaven - Mondo non disponibile",
+    "logoAlt": "Wildhaven",
     "eyebrow": "Manutenzione del mondo",
     "heading": "Il mondo è temporaneamente non disponibile.",
     "body": "Stiamo riavviando il servizio di gioco e prevediamo che Claudemoon torni a breve. Questa pagina continuerà a controllare automaticamente.",
@@ -14590,6 +14363,11 @@ export const it_IT: EnTranslations = {
         "sender": "Quartiermastro eroico",
         "subject": "I tuoi Marchi eroici",
         "body": "Il tuo gruppo ha superato la prova eroica mentre combattevi nelle retrovie o giacevi a terra. Anche il tuo vincolo è stato registrato, quindi la tua parte di Marchi eroici è arrivata qui invece di andare perduta. Usali bene.\n\n- Quartiermastro eroico"
+      },
+      "daily_reward_prize": {
+        "sender": "The Vale Steward",
+        "subject": "Your share of the daily purse",
+        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "La Gilda degli Artigiani",

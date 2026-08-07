@@ -10,10 +10,6 @@ export const USAGE_WINDOWS = [
 ] as const;
 
 const USAGE_METRICS = [
-  { key: 'woc.balance.api', labelKey: 'usage.metric.wocBalanceApi' },
-  { key: 'woc.balance.rate_limited', labelKey: 'usage.metric.wocBalanceRateLimited' },
-  { key: 'woc.balance.rpc', labelKey: 'usage.metric.wocBalanceRpc' },
-  { key: 'woc.balance.rpc.failure', labelKey: 'usage.metric.wocBalanceRpcFailure' },
   { key: 'turnstile.verify', labelKey: 'usage.metric.turnstileVerify' },
   { key: 'turnstile.verify.failure', labelKey: 'usage.metric.turnstileVerifyFailure' },
   { key: 'github.releases.api', labelKey: 'usage.metric.githubReleasesApi' },
@@ -27,18 +23,12 @@ const USAGE_METRICS = [
   { key: 'github.link.request', labelKey: 'usage.metric.githubLinkRequest' },
   { key: 'github.link.failure', labelKey: 'usage.metric.githubLinkFailure' },
   { key: 'github.link.rate_limited', labelKey: 'usage.metric.githubLinkRateLimited' },
-  { key: 'wallet.challenge.request', labelKey: 'usage.metric.walletChallengeRequest' },
-  { key: 'wallet.challenge.rate_limited', labelKey: 'usage.metric.walletChallengeRateLimited' },
-  { key: 'wallet.link.request', labelKey: 'usage.metric.walletLinkRequest' },
-  { key: 'wallet.link.failure', labelKey: 'usage.metric.walletLinkFailure' },
-  { key: 'wallet.link.rate_limited', labelKey: 'usage.metric.walletLinkRateLimited' },
   { key: 'card.publish.request', labelKey: 'usage.metric.cardPublishRequest' },
   { key: 'card.publish.rejected', labelKey: 'usage.metric.cardPublishRejected' },
   { key: 'card.publish.rate_limited', labelKey: 'usage.metric.cardPublishRateLimited' },
 ] as const;
 
 const USAGE_CACHES = [
-  { key: 'woc.balance', labelKey: 'usage.cache.wocBalance' },
   { key: 'github.releases', labelKey: 'usage.cache.githubReleases' },
   { key: 'github.contributors', labelKey: 'usage.cache.githubContributors' },
 ] as const;

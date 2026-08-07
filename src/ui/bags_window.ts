@@ -168,12 +168,9 @@ export interface BagsWindowDeps extends PainterHostPresentation {
   root(): HTMLElement;
   /** The live world (offline Sim or online ClientWorld mirror). */
   world(): IWorld;
-  /** Localized $WOC on-chain balance markup for the money footer. */
-  wocBalanceHtml(): string;
   /** Localized launcher for the Claudium store, empty when the feature is not available. */
   claudiumLauncherHtml(): string;
   openClaudium(): void;
-  openWallet(): void;
   hideTooltip(): void;
   /** True when this click is the release of a long-press tooltip peek, so the
    *  stack's action (use / sell / deposit / feed) must be SUPPRESSED. Wired to the
@@ -330,7 +327,7 @@ export class BagsWindow {
 
   /** Rewrite ONLY the .money footer in place, re-binding its two launchers. Every
    *  paint path runs through here (the full render(), the purse probe, and the async
-   *  $WOC / Claudium balance reads), so the latch arms on all of them.
+   *  Claudium balance read), so the latch arms on all of them.
    *
    *  Deliberately does NOT restore focus across the rewrite, unlike the
    *  deeds/professions refocus family. Two reasons, both settled on PR #2377: the
@@ -340,20 +337,17 @@ export class BagsWindow {
    *  from isModalOpen(), so canUseGameKeys() stays true and Tab is swallowed by
    *  target-nearest, which means keyboard focus never lands in here to begin with. */
   private paintMoneyRow(row: HTMLElement, copper: number): void {
-    row.innerHTML = `${this.deps.wocBalanceHtml()}${this.deps.claudiumLauncherHtml()}${this.deps.moneyHtml(copper)}`;
+    row.innerHTML = `${this.deps.claudiumLauncherHtml()}${this.deps.moneyHtml(copper)}`;
     row.querySelector('[data-claudium-launcher]')?.addEventListener('click', () => {
       this.deps.openClaudium();
-    });
-    row.querySelector('[data-wallet-action]')?.addEventListener('click', () => {
-      this.deps.openWallet();
     });
     this.lastMoneyCopper = copper;
   }
 
   /** The narrow repaint: find the existing footer and re-paint it. A window that has
    *  never been rendered has no .money row yet, so this is a no-op rather than a
-   *  partial paint. Public because the async $WOC / Claudium balance reads land on
-   *  their own schedule and need the same footer-only treatment: before this they
+   *  partial paint. Public because the async Claudium balance read lands on
+   *  its own schedule and needs the same footer-only treatment: before this it
    *  called the HUD's full renderBags() from a promise resolve, which tore the window
    *  down under a player who had not touched anything. */
   refreshMoneyRow(): void {

@@ -5,13 +5,12 @@
 //
 // Three concerns live here:
 //  1. discord_links        - the durable 1:1 account <-> Discord identity mirror
-//                            (mirrors wallet_links), written after OAuth verify.
+//                            written after OAuth verify.
 //  2. discord_oauth_states - single-use, short-lived OAuth `state` + PKCE verifier
-//                            rows (mirrors wallet_link_challenges), the CSRF guard.
-//  3. reward_points/ledger/swag_claims - the AUTHORED reward economy. Unlike the
-//                            chain-sourced $WOC balance, the server OWNS this
-//                            balance, so it is stored, audited (append-only
-//                            ledger), and mutated server-side only.
+//                            rows, the CSRF guard.
+//  3. reward_points/ledger/swag_claims - the AUTHORED reward economy. The server
+//                            OWNS this balance, so it is stored, audited
+//                            (append-only ledger), and mutated server-side only.
 import type { Pool } from 'pg';
 import { discordStatusIndexForPoints } from '../src/sim/discord_tier';
 import { enqueueLinkChange } from './discord_link_changes';

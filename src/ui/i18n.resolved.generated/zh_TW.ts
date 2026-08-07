@@ -400,7 +400,7 @@ export const zh_TW: EnTranslations = {
       "error": "無法載入每日獎勵。",
       "disabled": "每日獎勵目前已停用。我們將在 Discord 頻道中公布此功能的更新。",
       "intro": "在已驗證的錢包中持有足夠的 WOC 即可解鎖每日獎勵。透過每日一次轉盤與輪換任務賺取點數，再登上每日排行榜以分得獎池的一份獎勵。",
-      "disclaimer": "WOC 價格可能快速波動。我們建議持有高於 $20 USD 最低要求的數量，避免正常價格波動導致獎勵被鎖定。這不是財務建議。",
+      "disclaimer": "任務與排行榜每日重置一次。前十名瓜分獎金池，你的那一份將由渡鴉在你下次登入時送達。",
       "prize": "獎池",
       "reset": "重置",
       "endsIn": "{time}後結束",
@@ -409,9 +409,6 @@ export const zh_TW: EnTranslations = {
       "remainingHoursMinutes": "{hours}小時{minutes}分",
       "remainingDaysHours": "{days}天{hours}小時",
       "score": "分數",
-      "walletValue": "錢包價值 (WOC)",
-      "usd": "{amount} USD",
-      "sol": "{amount} SOL",
       "unknown": "未知",
       "spinTitle": "每日轉盤",
       "spinDialogTitle": "每日獎勵轉盤",
@@ -436,17 +433,8 @@ export const zh_TW: EnTranslations = {
       "history": "歷屆得獎者",
       "noLeaders": "尚無點數。",
       "noHistory": "尚無派彩紀錄。",
-      "walletConnectTitle": "驗證錢包",
-      "walletConnectBody": "驗證持有 WOC 的 Solana 錢包以解鎖每日獎勵。",
-      "walletConnectButton": "驗證錢包",
-      "walletHoldTitle": "持有 WOC",
-      "walletHoldBody": "持有至少價值 {amount} USD 的 WOC 以解鎖每日獎勵。",
-      "walletPriceBody": "目前無法取得 WOC 價格，請稍後再試。",
       "reason": {
         "eligible": "獎勵已解鎖。",
-        "no_wallet": "請連接持有至少 $20 USD WOC 的錢包。",
-        "under_minimum": "錢包低於 $20 USD 的 WOC 最低要求。",
-        "price_unavailable": "無法取得 WOC 價格，獎勵暫時鎖定。",
         "banned": "您已被禁止參加每日獎勵。原因：{reason}",
         "bannedUntil": "您還將被禁止參加每日獎勵 {remaining}。恢復時間：{until}。原因：{reason}"
       }
@@ -472,18 +460,6 @@ export const zh_TW: EnTranslations = {
       "armoryEyebrow": "第一賽季",
       "armoryTitle": "兵器庫",
       "armoryBody": "第一賽季兵器庫限定武器外觀。全帳號通用，純裝飾性，周圍所有玩家都能看到。",
-      "wallet": {
-        "title": "Solana 錢包",
-        "unlinked": "連接錢包應用程式，然後簽署一次，將其公開地址綁定到你的 WoC 帳號。我們絕不會取得你的復原短語或私鑰。",
-        "connectedUnlinked": "錢包應用程式已連接到此瀏覽器，但其公開地址尚未綁定到你的 WoC 帳號。",
-        "linkedDisconnected": "你的公開地址已綁定。需要使用 SOL 或 WOC 付款時，請重新連接該錢包應用程式。",
-        "linkedConnected": "已綁定的錢包應用程式已連接，可以使用 SOL 或 WOC 購買。",
-        "mismatched": "目前連接的是另一個錢包。驗證它即可取代已綁定的地址，或重新連接原先綁定的錢包。",
-        "connect": "連接錢包",
-        "verify": "驗證並綁定",
-        "reconnect": "重新連接錢包",
-        "manage": "管理錢包"
-      },
       "collectionLine": "{collection}系列",
       "collections": {
         "guildmark": "公會印記",
@@ -685,20 +661,11 @@ export const zh_TW: EnTranslations = {
       "loading": "正在載入 Claudium…",
       "balanceLabel": "餘額",
       "balanceUnit": "{amount} Claudium",
-      "solBalance": "SOL：{amount}",
-      "usdcBalance": "USDC：{amount}",
-      "wocBalance": "WOC：{amount}",
       "unavailable": "Claudium 商店目前無法使用。您的餘額與購買不受影響，請稍後再試。",
       "disclosure": "Claudium 是單向軟貨幣：可用金錢購買並用於兌換外觀物品，不能贖回、轉讓或兌現。",
       "buyTitle": "購買 Claudium",
       "railLabel": "付款方式",
       "railStripe": "信用卡",
-      "railSol": "SOL",
-      "railUsdc": "USDC",
-      "railWoc": "WOC",
-      "railWocDiscount": "優惠 {percent}%",
-      "railWocUnavailable": "WOC 定價目前無法使用。",
-      "railNativeUnavailable": "SOL/WOC 無法使用",
       "amountLabel": "數量",
       "showAmounts": "顯示所有 Claudium 數量",
       "hideAmounts": "隱藏其他 Claudium 數量",
@@ -718,10 +685,7 @@ export const zh_TW: EnTranslations = {
       "checkoutPending": "交易處理中。請在錢包中確認，並保持此面板開啟。",
       "checkoutPendingButton": "處理中",
       "checkoutFailed": "無法載入結帳頁面，請再試一次。",
-      "checkoutUnavailable": "該 Claudium 購買項目目前無法使用。",
-      "checkoutWalletRequired": "使用加密貨幣購買 Claudium 前，請先連接 Solana 錢包。",
-      "checkoutWalletUnsupported": "此錢包無法簽署及傳送 Solana 交易。",
-      "checkoutNotSettled": "交易已傳送，但 Claudium 尚未入帳，請稍後再試。"
+      "checkoutUnavailable": "該 Claudium 購買項目目前無法使用。"
     },
     "theme": {
       "preset": "介面主題",
@@ -843,8 +807,8 @@ export const zh_TW: EnTranslations = {
     },
     "nativeUpdate": {
       "title": "有可用更新",
-      "body": "World of ClaudeCraft 有新版本可用。立即更新以取得最新修正與改進。",
-      "bodyWithVersion": "World of ClaudeCraft {version} 版本已可用。立即更新以取得最新修正與改進。",
+      "body": "Wildhaven 有新版本可用。立即更新以取得最新修正與改進。",
+      "bodyWithVersion": "Wildhaven {version} 版本已可用。立即更新以取得最新修正與改進。",
       "notNow": "暫不",
       "update": "更新"
     },
@@ -1196,8 +1160,6 @@ export const zh_TW: EnTranslations = {
       "clickFeedback": "點擊標記",
       "lockCursorOnRotate": "旋轉時鎖定游標",
       "keybindHelpLockCursorOnRotate": "拖曳旋轉鏡頭時將滑鼠游標保持在視窗內，使其無法到達螢幕邊緣或移動到另一台顯示器。若你偏好自由游標，請關閉此選項。",
-      "showWalletOnCharacterScreen": "在角色畫面顯示錢包",
-      "showWalletOnPlayerCard": "在玩家卡片顯示錢包",
       "showDevBadges": "顯示開發者徽章",
       "showOwnNameplate": "顯示我的姓名板",
       "showPlayerNameplates": "顯示玩家姓名板",
@@ -1373,9 +1335,7 @@ export const zh_TW: EnTranslations = {
         "aetherRush": "以太奔湧"
       }
     },
-    "playerCard": {
-      "showWalletBadge": "顯示錢包徽章"
-    },
+    "playerCard": {},
     "landing": {
       "highContrast": "高對比度",
       "highContrastAria": "切換高對比度背景：關閉動態預告片，使開始畫面文字保持清晰",
@@ -1564,7 +1524,6 @@ export const zh_TW: EnTranslations = {
       "loggedOutPrompt": "登入以管理您的帳號。",
       "memberSince": "註冊於 {date}",
       "sectionSettings": "帳號設定",
-      "sectionWallet": "$WOC 錢包",
       "sectionCharacters": "角色",
       "sectionDanger": "危險區域",
       "changePassword": "變更密碼",
@@ -1591,8 +1550,6 @@ export const zh_TW: EnTranslations = {
       "charactersSummary": "管理您的角色並進入遊戲世界。",
       "charactersCount": "角色：{count}",
       "goToCharacters": "查看角色",
-      "walletSummary": "驗證 Solana 錢包以在玩家卡片上顯示持有者標誌。",
-      "manageWallet": "管理錢包",
       "deactivate": "停用帳號",
       "deactivateWarning": "停用將鎖定您的帳號並在所有裝置上登出。請聯絡管理員以還原。請重新輸入使用者名稱和密碼以確認。",
       "confirmUsername": "輸入您的使用者名稱以確認",
@@ -2003,7 +1960,7 @@ export const zh_TW: EnTranslations = {
     },
     "discord": {
       "title": "Discord",
-      "panelTitle": "World of ClaudeCraft",
+      "panelTitle": "Wildhaven",
       "open": "Discord",
       "close": "關閉",
       "keybind": "Discord 面板",
@@ -2293,11 +2250,9 @@ export const zh_TW: EnTranslations = {
       "bonusStatusEarned": "+{count}",
       "bonusSourceEmail": "已驗證電子郵件",
       "bonusSourceDiscord": "已連結 Discord",
-      "bonusSourceWallet": "已連結錢包",
       "bonusSourceReferral": "已推薦的好友",
       "bonusAdvertEmail": "驗證電子郵件可獲得 2 個格子。",
       "bonusAdvertDiscord": "連結 Discord 可獲得 2 個格子。",
-      "bonusAdvertWallet": "連結錢包可獲得 2 個格子。",
       "bonusReferralProgress": "{count}/{cap}",
       "bonusReferralExplainer": "邀請好友：當好友升到 10 級，你們各獲得 2 個格子，最多 5 位好友。",
       "bonusSectionAria": "獎勵銀行格子及獲取方式",
@@ -3147,26 +3102,13 @@ export const zh_TW: EnTranslations = {
       "account_taken": "該 Epic 帳號已連結到另一個帳號。",
       "upstream": "Epic 未回應。請稍後重試。"
     },
-    "wallet": {
-      "handoff_invalid": "錢包授權已過期或無法驗證。請再試一次。"
-    },
     "ota_updates": {
       "invalid_input": "輸入無效。"
-    },
-    "seeker": {
-      "native_only": "Seeker 權益僅可在原生應用程式中使用。",
-      "attestation_failed": "裝置驗證失敗。請再試一次。",
-      "solana_artifact_required": "請使用 Solana Store 版應用程式繼續。",
-      "wallet_required": "請先連結並驗證錢包。",
-      "genesis_token_required": "需要已驗證的 Seeker Genesis Token。",
-      "genesis_token_claimed": "該 Seeker Genesis Token 已被領取。",
-      "entitlement_required": "需要已驗證的 Seeker 權益。",
-      "current_ownership_required": "需要目前持有 Seeker Genesis Token。"
     }
   },
   "guide": {
-    "brand": "World of ClaudeCraft",
-    "brandShort": "ClaudeCraft",
+    "brand": "Wildhaven",
+    "brandShort": "Wildhaven",
     "tagline": "一款可在瀏覽器中免費遊玩的經典風格MMO。",
     "skipToContent": "跳至主要內容",
     "loading": "載入中...",
@@ -3231,7 +3173,7 @@ export const zh_TW: EnTranslations = {
       "github": "GitHub上的原始碼",
       "discord": "加入Discord",
       "communityWiki": "社群Wiki",
-      "rights": "World of ClaudeCraft",
+      "rights": "Wildhaven",
       "linksLabel": "遊玩與社群連結"
     },
     "language": {
@@ -3254,7 +3196,7 @@ export const zh_TW: EnTranslations = {
     },
     "home": {
       "eyebrow": "經典風格的瀏覽器MMO",
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "subtitle": "在你的瀏覽器中免費進行任務、組隊並探索一個精心打造的世界。",
       "ctaPlay": "立即遊玩",
       "ctaLearn": "如何遊玩",
@@ -3769,7 +3711,7 @@ export const zh_TW: EnTranslations = {
     },
     "worldPage": {
       "heading": "世界",
-      "intro": "World of ClaudeCraft 是一片你需徒步橫越的連綿大地，三大區域由南向北排列。沒有快速旅行，所以旅程本身就是冒險的一部分。",
+      "intro": "Wildhaven 是一片你需徒步橫越的連綿大地，三大區域由南向北排列。沒有快速旅行，所以旅程本身就是冒險的一部分。",
       "hub": "主據點",
       "mapHeading": "北行之路",
       "mapSub": "三個地區由南而北，等級層層遞增。跟著任務的軌跡走，這片土地會帶你從谷地一路前往群峰。",
@@ -4596,7 +4538,7 @@ export const zh_TW: EnTranslations = {
   },
   "editor": {
     "appTitle": "地圖編輯器",
-    "docTitle": "地圖編輯器 - World of ClaudeCraft",
+    "docTitle": "地圖編輯器 - Wildhaven",
     "untitledMap": "未命名地圖",
     "playtestPlayerName": "製圖師",
     "topbar": {
@@ -5072,8 +5014,8 @@ export const zh_TW: EnTranslations = {
     "realmName": "世界名稱"
   },
   "footer": {
-    "copyright": "2026 World of ClaudeCraft",
-    "githubLink": "https://github.com/levy-street/world-of-claudecraft",
+    "copyright": "2026 Wildhaven",
+    "githubLink": "https://wildhaven.example",
     "githubLabel": "開源專案",
     "whitepaper": "白皮書",
     "terms": "服務條款",
@@ -5130,13 +5072,10 @@ export const zh_TW: EnTranslations = {
     "serverOnline": "線上",
     "serverOffline": "離線",
     "play": "開始遊戲",
-    "playAria": "遊玩 World of ClaudeCraft",
+    "playAria": "遊玩 Wildhaven",
     "serverLabel": "選擇你的世界",
     "serverAria": "選擇世界：線上或離線",
-    "serverOfflineSub": "即時本地世界",
-    "caLabel": "$WOC 合約地址",
-    "caCopyAria": "複製合約地址",
-    "caNote": "WOC 是我們的社群代幣，並非遊玩所需。加入 Discord 一起討論 WOC 的用途與飛輪效應。"
+    "serverOfflineSub": "即時本地世界"
   },
   "auth": {
     "enterRealm": "進入世界",
@@ -5184,171 +5123,6 @@ export const zh_TW: EnTranslations = {
       "failed": "無法儲存您的電子郵件，請重試。"
     }
   },
-  "wallet": {
-    "label": "$WOC 錢包",
-    "connect": "驗證錢包",
-    "connectTitle": "驗證你的 Solana 錢包",
-    "connectAria": "驗證你的 Solana 錢包",
-    "verify": "驗證錢包",
-    "verifyNew": "驗證新錢包",
-    "verifyTitle": "選擇一個錢包並簽名一次以驗證所有權。",
-    "verifyAria": "選擇一個錢包並簽名一次以驗證所有權",
-    "verifyAddressAria": "簽名以為你的帳號驗證錢包 {address}",
-    "appConnected": "應用程式已連線",
-    "connectApp": "連接應用程式",
-    "connectAppTitle": "在此瀏覽器中連接錢包應用程式",
-    "connectAppAria": "在此瀏覽器中連接錢包應用程式",
-    "verifying": "正在驗證...",
-    "verifyingTitle": "錢包驗證正在進行中。",
-    "switch": "切換",
-    "switchTitle": "驗證另一個錢包",
-    "switchAria": "驗證另一個錢包",
-    "unlink": "解除綁定",
-    "unlinkTitle": "從此帳號移除錢包驗證",
-    "unlinkAria": "從此帳號移除錢包驗證",
-    "signOut": "斷開連線",
-    "signOutTitle": "在此瀏覽器中斷開錢包應用程式",
-    "signOutAria": "在此瀏覽器中斷開錢包應用程式",
-    "hide": "隱藏",
-    "hideTitle": "在此畫面隱藏錢包列",
-    "hideAria": "在此畫面隱藏錢包列",
-    "hiddenNotice": "錢包列已隱藏。可在遊戲內的「選項 > 介面」中重新啟用。",
-    "linkedTitle": "錢包已為你的帳號驗證。點擊以管理錢包應用程式。",
-    "linkedDisconnectedTitle": "錢包仍為你的帳號保持驗證。重新連線以管理錢包應用程式。",
-    "linkedDisconnectedAria": "錢包仍為你的帳號保持驗證。重新連線以管理錢包應用程式。",
-    "linkTitle": "點擊簽名並將此錢包綁定到你的帳號。",
-    "connectedTitle": "已連線。登入後可將此錢包綁定到你的帳號。",
-    "balanceTitle": "已驗證 Solana 錢包的 $WOC 餘額",
-    "balanceAria": "已驗證 Solana 錢包餘額：{balance}",
-    "balancePreviewTitle": "已連線錢包的 $WOC 餘額預覽",
-    "balancePreviewAria": "已連線錢包餘額預覽：{balance}。綁定錢包即可驗證持有者標識。",
-    "balanceAmount": "{amount} $WOC",
-    "bagConnect": "綁定錢包",
-    "bagLink": "驗證錢包",
-    "bagReconnect": "重新連接錢包",
-    "connected": "已連線：{address}",
-    "connectedWithBalance": "已連線：{balance} - {address}",
-    "connectedLinked": "已驗證：{address}",
-    "connectedLinkedWithBalance": "已驗證：{balance} - {address}",
-    "helpDisconnected": "驗證 Solana 錢包以啟用持有者標識和玩家卡徽章。無需交易或 SOL。",
-    "helpLoginToLink": "已連線 {address}。登入後可將它綁定到你的帳號。",
-    "helpLoginToLinkWithBalance": "已連線 {address}，餘額 {balance}。登入後可將它綁定到你的帳號。",
-    "helpReadyToLink": "已選擇錢包：{address}。簽名一次即可驗證持有者標識和玩家卡。",
-    "helpReadyToLinkWithBalance": "已選擇錢包：{address}，餘額 {balance}。簽名一次即可驗證持有者標識和玩家卡。",
-    "helpLinked": "持有者特權已啟用。錢包應用程式已在此瀏覽器中連線。",
-    "helpLinkedWithBalance": "持有者特權已啟用。錢包應用程式已在此瀏覽器中連線。",
-    "helpLinkedDisconnected": "持有者特權已啟用。需要簽名或花費時請連接應用程式。",
-    "helpLinkedDisconnectedWithBalance": "持有者特權已啟用。需要簽名或花費時請連接應用程式。",
-    "extensionHelp": "若要在此處看到錢包，請保持 Solflare Wallet 等瀏覽器錢包擴充功能處於啟用狀態。",
-    "mobileAppHelp": "選擇 Phantom 或 Solflare。錢包應用程式會要求核准。請保持遊戲開啟，完成後返回遊戲。",
-    "seekerAppHelp": "使用 Seed Vault Wallet 繼續。在 Seed Vault 中檢視連線與驗證要求，然後返回遊戲。",
-    "standaloneAppHelp": "主畫面應用程式目前尚不支援連接錢包。若要使用 Phantom 或 Solflare，請在 Safari 或 Chrome 中開啟 World of ClaudeCraft。",
-    "openAppTitle": "在 {wallet} 中繼續",
-    "openAppHelp": "開啟 {wallet} 檢視此請求。錢包應用程式啟用時，請保持此遊戲分頁開啟。",
-    "openAppButton": "開啟 {wallet}",
-    "manualReturnBrowserHelp": "核准後請返回此遊戲分頁。如果 iOS 開啟了其他瀏覽器，請將其關閉並手動返回原本的瀏覽器。",
-    "manualReturnStandaloneHelp": "核准後請從主畫面返回 World of ClaudeCraft。如果 iOS 開啟了瀏覽器，請將其關閉並重新開啟主畫面 App。",
-    "preparingAppButton": "正在準備 {wallet}...",
-    "walletAppUnavailable": "無法準備 {wallet}。請關閉此視窗並重試。",
-    "flowConnect": "選擇一個錢包。驗證會自動繼續。",
-    "flowSign": "在錢包應用程式中簽署驗證訊息。無需交易或 SOL。",
-    "flowVerify": "正在驗證錢包所有權...",
-    "linkFailed": "錢包驗證失敗。",
-    "verifyFailed": "錢包驗證失敗。",
-    "unlinkFailed": "無法解除錢包綁定。",
-    "browser": {
-      "eyebrow": "桌面錢包授權",
-      "title": "連接 Solana 錢包",
-      "linkBody": "在此瀏覽器中選擇錢包擴充功能。簽署驗證訊息後返回桌面應用程式。",
-      "paymentBody": "選擇已連結至帳號的錢包，並在此瀏覽器中核准交易。",
-      "extensionHelp": "找不到相容的錢包擴充功能。請安裝或解鎖 Phantom、Solflare 或其他 Solana 瀏覽器錢包，然後再試一次。",
-      "safety": "World of ClaudeCraft 絕不會要求復原短語或私鑰。",
-      "continueWith": "使用 {wallet} 繼續",
-      "reviewTitle": "在錢包中檢視",
-      "reviewBody": "按照 {wallet} 的提示操作。請保持此瀏覽器頁面開啟。",
-      "completeTitle": "錢包授權完成",
-      "completeBody": "現在可以返回 World of ClaudeCraft 桌面應用程式。",
-      "returnButton": "返回桌面應用程式",
-      "failed": "錢包授權失敗或已過期。請返回桌面應用程式並再試一次。",
-      "retry": "再試一次"
-    },
-    "holder": "$WOC 持有者",
-    "holderTierTitle": "{tier} $WOC 持有者",
-    "holderTiers": {
-      "ember": {
-        "name": "餘燼",
-        "flavor": "火種已經點燃。"
-      },
-      "coinbearer": {
-        "name": "持幣者",
-        "flavor": "第一枚硬幣已入戰箱。"
-      },
-      "coppercrest": {
-        "name": "銅徽",
-        "flavor": "銅幣成堆，你的名字開始流傳。"
-      },
-      "silverbound": {
-        "name": "銀誓",
-        "flavor": "白銀相繫，錢袋漸豐。"
-      },
-      "gilded": {
-        "name": "鍍金",
-        "flavor": "金光加身，笑意盈盈。"
-      },
-      "vaultwarden": {
-        "name": "寶庫守望者",
-        "flavor": "如今守護著真正的寶庫：全部 $WOC 的 0.01%。"
-      },
-      "whale": {
-        "name": "巨鯨",
-        "flavor": "你游過時，深水也會分開：供應量的 0.1%。"
-      },
-      "leviathan": {
-        "name": "利維坦",
-        "flavor": "市場會感到你的動作：供應量的 1%。"
-      },
-      "tidelord": {
-        "name": "潮汐領主",
-        "flavor": "潮汐回應你的召喚：供應量的 2%。"
-      },
-      "stormcaller": {
-        "name": "喚雷者",
-        "flavor": "風暴因你的名字而聚集：供應量的 3%。"
-      },
-      "krakencrown": {
-        "name": "海淵冠冕",
-        "flavor": "深海為你加冕：供應量的 4%。"
-      },
-      "titanforged": {
-        "name": "泰坦鑄成",
-        "flavor": "在泰坦之間鍛造而成：供應量的 5%。"
-      },
-      "starhoard": {
-        "name": "星藏者",
-        "flavor": "能彎折星光的寶藏：供應量的 6%。"
-      },
-      "voidwarden": {
-        "name": "虛空守望者",
-        "flavor": "守在虛空邊緣：供應量的 7%。"
-      },
-      "realmshaper": {
-        "name": "塑界者",
-        "flavor": "你重塑著領域：供應量的 8%。"
-      },
-      "worldforger": {
-        "name": "鑄世者",
-        "flavor": "鍛造屬於你的世界：供應量的 9%。"
-      },
-      "worldbearer": {
-        "name": "承世者",
-        "flavor": "你肩負著世界的一片：供應量的 10%。"
-      },
-      "sovereign": {
-        "name": "君主",
-        "flavor": "整個領域為你俯首：全部供應量。"
-      }
-    }
-  },
   "playerCard": {
     "shareButton": "分享玩家卡",
     "title": "玩家卡",
@@ -5365,16 +5139,15 @@ export const zh_TW: EnTranslations = {
     "levelClass": "{level}級 - {className}",
     "topPercent": "前 {percent}%",
     "realmSubtitle": "{realm} 世界",
-    "defaultRealm": "ClaudeCraft 世界",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "defaultRealm": "Wildhaven",
+    "brandWordmark": "WILDHAVEN",
     "recruited": "已招募 {count} 人",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",
     "footerCta": "鑄就你的傳說：{siteUrl}",
     "arenaStat": "競技場",
-    "shareTierBit": "，{tier}級 $WOC 持有者",
-    "shareText": "我正在 World of ClaudeCraft 中鑄就傳說：{level}級 {className}{tierBit}。加入我的世界：",
-    "nativeShareTitle": "ClaudeCraft 世界",
+    "shareText": "我正在 Wildhaven 中鑄就傳說：{level}級 {className}{tierBit}。加入我的世界：",
+    "nativeShareTitle": "Wildhaven",
     "fileNameFallback": "玩家",
     "actionShareX": "分享到 X",
     "actionCopyReferral": "複製推薦連結",
@@ -6074,14 +5847,14 @@ export const zh_TW: EnTranslations = {
     }
   },
   "seo": {
-    "title": "World of ClaudeCraft：經典風格網頁 MMO",
-    "description": "在 World of ClaudeCraft 展開史詩冒險。這是一款可直接在瀏覽器中遊玩的經典風格微型 MMO。加入持續共享的世界，提升職業等級並擊敗敵人！",
+    "title": "Wildhaven：經典風格網頁 MMO",
+    "description": "在 Wildhaven 展開史詩冒險。這是一款可直接在瀏覽器中遊玩的經典風格微型 MMO。加入持續共享的世界，提升職業等級並擊敗敵人！",
     "genre": "MMORPG",
     "playMode": "多人遊戲",
     "applicationCategory": "遊戲",
     "operatingSystem": "網頁瀏覽器",
-    "officialLabel": "World of ClaudeCraft 官方網站",
-    "officialBody": "worldofclaudecraft.com 是 Claudemoon 世界的官方免費瀏覽器 MMO。你可以用持久角色線上遊玩，也可以離線單人探索、閱讀 wiki，並從本站前往已驗證的社群連結。"
+    "officialLabel": "Wildhaven 官方網站",
+    "officialBody": "wildhaven.example 是 Claudemoon 世界的官方免費瀏覽器 MMO。你可以用持久角色線上遊玩，也可以離線單人探索、閱讀 wiki，並從本站前往已驗證的社群連結。"
   },
   "a11y": {
     "goHome": "前往首頁",
@@ -6089,9 +5862,9 @@ export const zh_TW: EnTranslations = {
     "mainNavigation": "主導覽",
     "languageSelection": "語言選擇",
     "characterActions": "角色操作",
-    "githubProject": "開啟 World of ClaudeCraft 的 GitHub 專案",
-    "discordCommunity": "加入 World of ClaudeCraft 的 Discord 社群",
-    "donateProject": "捐贈支持 World of ClaudeCraft"
+    "githubProject": "開啟 Wildhaven 的 GitHub 專案",
+    "discordCommunity": "加入 Wildhaven 的 Discord 社群",
+    "donateProject": "捐贈支持 Wildhaven"
   },
   "entryGuard": {
     "title": "已降低圖形設定",
@@ -6178,11 +5951,11 @@ export const zh_TW: EnTranslations = {
       "dismiss": "關閉"
     },
     "crash": {
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "body": "遊戲畫面已停止運作。要重新載入嗎？",
       "reload": "重新載入",
       "quit": "離開",
-      "fatalBody": "World of ClaudeCraft 發生未預期的錯誤，必須關閉。"
+      "fatalBody": "Wildhaven 發生未預期的錯誤，必須關閉。"
     }
   },
   "gpuNotice": {
@@ -6321,17 +6094,17 @@ export const zh_TW: EnTranslations = {
     "iosStandaloneDetail": "你正在從主畫面以全螢幕模式執行。請保持橫向。",
     "iosInstallDetail": "若要在 iPhone 或 iPad 上取得真正全螢幕，請先將此頁面加入主畫面。",
     "iosShareStep": "在 Safari 中點一下分享，然後選擇加入主畫面。",
-    "iosOpenStep": "從新的主畫面圖示開啟 World of ClaudeCraft。",
+    "iosOpenStep": "從新的主畫面圖示開啟 Wildhaven。",
     "androidStandaloneDetail": "你正在全螢幕應用模式中。請保持橫向。",
     "androidInstallDetail": "若要在 Android 上全螢幕，請先安裝此頁面或加入主畫面。",
     "androidInstallStep": "在 Chrome 中點選選單，然後選擇安裝應用程式或加入主畫面。",
-    "androidOpenStep": "從新圖示開啟 World of ClaudeCraft。",
+    "androidOpenStep": "從新圖示開啟 Wildhaven。",
     "otherStandaloneDetail": "請保持裝置為橫向全螢幕。",
     "otherInstallDetail": "安裝此頁面或將其加入主畫面，以獲得最佳行動裝置全螢幕體驗。"
   },
   "serverUnavailable": {
-    "title": "World of ClaudeCraft - 世界不可用",
-    "logoAlt": "World of ClaudeCraft",
+    "title": "Wildhaven - 世界不可用",
+    "logoAlt": "Wildhaven",
     "eyebrow": "世界維護",
     "heading": "這個世界暫時無法使用。",
     "body": "我們正在重新啟動遊戲服務，Claudemoon 應會很快恢復。此頁面會自動持續檢查。",
@@ -14590,6 +14363,11 @@ export const zh_TW: EnTranslations = {
         "sender": "英勇軍需官",
         "subject": "你的英勇印記",
         "body": "你的部隊清剿了英勇試煉，而你在後排作戰，或已倒在塵土之中。你的鎖定同樣已經生效，因此你那一份英勇印記飛到了這裡，而非就此遺失。好好使用它們。\n\n- 英勇軍需官"
+      },
+      "daily_reward_prize": {
+        "sender": "山谷總管",
+        "subject": "你的每日獎金份額",
+        "body": "山谷記得誰在其中最為勤勉，而昨日你的名字位列最高的十人之中。總管們已秤量出你應得的那份每日獎金，並託渡鴉送來。\n\n明日再來，若你能夠，便奪下頭名。\n\n- 山谷總管"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "工匠公會",

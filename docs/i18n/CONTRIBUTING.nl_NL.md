@@ -4,9 +4,9 @@
 
 </div>
 
-# Bijdragen aan World of ClaudeCraft
+# Bijdragen aan Wildhaven
 
-Allereerst bedankt dat je hier bent. World of ClaudeCraft wordt gebouwd door een
+Allereerst bedankt dat je hier bent. Wildhaven wordt gebouwd door een
 gemeenschap van mensen die houden van klassieke MMO's, en elke bijdrage, groot of
 klein, maakt het beter. Een typefout verbeteren, het spel vertalen, een bug
 melden, een hele nieuwe dungeon bouwen: het telt allemaal mee, en je bent hier
@@ -14,7 +14,7 @@ welkom.
 
 Deze gids helpt je op weg en zorgt ervoor dat je eerste bijdrage soepel verloopt.
 Je hoeft geen expert te zijn. Als iets onduidelijk is, vraag het dan op
-[Discord](https://discord.com/invite/worldofclaudecraft) en iemand helpt je graag verder.
+[Discord](https://discord.com/invite/wildhaven) en iemand helpt je graag verder.
 
 Door deel te nemen, ga je akkoord met onze [Gedragscode](../../CODE_OF_CONDUCT.md).
 
@@ -24,13 +24,13 @@ Er is hier voor iedereen een plek:
 
 - **Code.** Los een bug op, voeg een functie toe of verbeter de prestaties.
   Issues met het label
-  [`good first issue`](https://github.com/levy-street/world-of-claudecraft/labels/good%20first%20issue)
-  en [`help wanted`](https://github.com/levy-street/world-of-claudecraft/labels/help%20wanted)
+  [`good first issue`](https://github.com/levy-street/wildhaven/labels/good%20first%20issue)
+  en [`help wanted`](https://github.com/levy-street/wildhaven/labels/help%20wanted)
   zijn goede plekken om te beginnen.
 - **Vertalingen.** Help spelers over de hele wereld door een taal te verbeteren of
   te voltooien. Zie [De game vertalen](#translating-the-game) hieronder. Dit is een
   van de gemakkelijkste en meest impactvolle manieren om te beginnen.
-- **Bugmeldingen en ideeën voor functies.** Open een [issue](https://github.com/levy-street/world-of-claudecraft/issues/new/choose).
+- **Bugmeldingen en ideeën voor functies.** Open een [issue](https://github.com/levy-street/wildhaven/issues/new/choose).
   Een duidelijke bugmelding is een echte bijdrage.
 - **Documentatie.** Gidsen zoals deze, de README en de ontwerpdocumenten in
   `docs/` kunnen altijd beter.
@@ -45,8 +45,8 @@ Je hebt [Node.js 26](https://nodejs.org/) en **pnpm 10.34.x** nodig (exacte pin 
 
 ```bash
 # 1. Fork the repo on GitHub, then clone your fork
-git clone https://github.com/<your-username>/world-of-claudecraft.git
-cd world-of-claudecraft
+git clone https://github.com/<your-username>/wildhaven.git
+cd wildhaven
 
 # 2. Install pnpm once (same command on macOS, Linux, Windows)
 #    Match the packageManager pin in package.json (today: 10.34.5).
@@ -242,7 +242,7 @@ vriendelijk en opbouwend te zijn in een review, en we vragen hetzelfde van jou.
 
 ## Lokalisatie
 
-World of ClaudeCraft wordt in veel talen uitgebracht. Elke voor spelers zichtbare
+Wildhaven wordt in veel talen uitgebracht. Elke voor spelers zichtbare
 string moet een vertaalsleutel zijn, terwijl bijdragers van functies normaal
 gesproken alleen de Engelse bron toevoegen.
 
@@ -293,16 +293,16 @@ hoeft daarvoor geen gamecode te schrijven:
    omdat de overlays bewust dun zijn.
 
 Om een gloednieuwe locale voor te stellen, of om over toon en terminologie te
-overleggen, start een thread op [Discord](https://discord.com/invite/worldofclaudecraft) en we
+overleggen, start een thread op [Discord](https://discord.com/invite/wildhaven) en we
 helpen je hem aan te sluiten. Moedertaalsprekers en vloeiende sprekers zijn
 bijzonder welkom. Goede vertalingen laten het spel voor spelers overal als thuis
 voelen.
 
 ## Bugs melden en functies aanvragen
 
-Gebruik alsjeblieft de [issue-sjablonen](https://github.com/levy-street/world-of-claudecraft/issues/new/choose):
+Gebruik alsjeblieft de [issue-sjablonen](https://github.com/levy-street/wildhaven/issues/new/choose):
 
-- **Bugmelding.** Doorzoek eerst [bestaande issues](https://github.com/levy-street/world-of-claudecraft/issues)
+- **Bugmelding.** Doorzoek eerst [bestaande issues](https://github.com/levy-street/wildhaven/issues)
   om duplicaten te voorkomen, en vermeld dan de stappen om het te reproduceren, wat
   je verwachtte, wat er gebeurde en je omgeving (offline of online, browser,
   desktop of mobiel).
@@ -315,7 +315,7 @@ Gebruik alsjeblieft de [issue-sjablonen](https://github.com/levy-street/world-of
 ## Hulp krijgen
 
 Loop je vast, of wil je gewoon even hallo zeggen? Sluit je aan bij de
-[community-Discord](https://discord.com/invite/worldofclaudecraft). Geen vraag is te klein, en
+[community-Discord](https://discord.com/invite/wildhaven). Geen vraag is te klein, en
 nieuwe bijdragers zijn altijd welkom.
 
 ## Licentie
@@ -326,10 +326,10 @@ licentie die het project dekt.
 
 De MIT-licentie bedoelt wat ze zegt: iedereen mag de code gebruiken, aanpassen en
 herdistribueren, commercieel of niet. Onze
-[Servicevoorwaarden](https://worldofclaudecraft.com/terms) gelden voor het gehoste
-spel dat we draaien op worldofclaudecraft.com (accounts, gedrag, virtuele items)
+[Servicevoorwaarden](https://wildhaven.example/terms) gelden voor het gehoste
+spel dat we draaien op wildhaven.example (accounts, gedrag, virtuele items)
 en beperken niet de rechten die de MIT-licentie jou of wie dan ook op deze code
-geeft. De namen en de merkuitstraling "World of ClaudeCraft" en "Levy Street"
+geeft. De namen en de merkuitstraling "Wildhaven" en "Levy Street"
 vallen niet onder de MIT-licentie.
 
 Originele creatieve assets (geluidsopnamen, muziek, kunst en vergelijkbare
@@ -342,7 +342,7 @@ behouden en hem bijdragen onder een licentie naar keuze (bijvoorbeeld CC BY-NC
   vastgelegd in de licentietabel in [CREDITS.md](../../CREDITS.md) als onderdeel
   van dezelfde pull request, en
 - zij minstens een eeuwigdurende, royaltyvrije toestemming aan Levy Street bevat
-  om de assets commercieel te gebruiken in World of ClaudeCraft, inclusief
+  om de assets commercieel te gebruiken in Wildhaven, inclusief
   officiële releases en de in-game store.
 
 Voor assets die in de tabel in CREDITS.md staan, gaat die vastgelegde licentie
@@ -364,5 +364,5 @@ forkt of hij jouw asset mag doorgeven, en sommige regels zijn gemarkeerd met
 
 ---
 
-Bedankt dat je bijdraagt aan World of ClaudeCraft. We kunnen niet wachten om te
+Bedankt dat je bijdraagt aan Wildhaven. We kunnen niet wachten om te
 zien wat je samen met ons bouwt.

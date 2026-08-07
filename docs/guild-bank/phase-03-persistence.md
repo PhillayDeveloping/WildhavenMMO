@@ -6,7 +6,7 @@ This is Phase 3 of the Guild Bank feature: persistence. This is the dupe-safety 
 read the stopping rules first.
 
 Model: newest available Claude coding model, xhigh effort. Harness: Claude Code.
-Worktree: /Users/seanghods/repos/world-of-claudecraft-guild-bank.
+Worktree: /Users/seanghods/repos/wildhaven-guild-bank.
 
 Goal: persist the guild bank books durably and atomically, record every op in
 bank_ledger, charge the guild creation fee, and refuse disband while the bank is

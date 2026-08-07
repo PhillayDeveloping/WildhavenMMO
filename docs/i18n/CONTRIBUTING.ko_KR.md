@@ -4,16 +4,16 @@
 
 </div>
 
-# World of ClaudeCraft에 기여하기
+# Wildhaven에 기여하기
 
-먼저, 이곳을 찾아 주셔서 감사합니다. World of ClaudeCraft는 클래식 MMO를 사랑하는
+먼저, 이곳을 찾아 주셔서 감사합니다. Wildhaven는 클래식 MMO를 사랑하는
 사람들의 커뮤니티가 함께 만들어 가는 게임이며, 크고 작은 모든 기여가 게임을 더
 나아지게 합니다. 오타를 고치는 일, 게임을 번역하는 일, 버그를 제보하는 일, 완전히
 새로운 던전을 만드는 일까지 전부 소중하며, 여러분을 진심으로 환영합니다.
 
 이 가이드는 개발 환경을 갖추고 첫 기여를 매끄럽게 시작하도록 도와줍니다. 전문가일
 필요는 없습니다. 무엇이든 명확하지 않은 점이 있으면
-[Discord](https://discord.com/invite/worldofclaudecraft)에 물어보세요. 누군가 기꺼이 도와줄 것입니다.
+[Discord](https://discord.com/invite/wildhaven)에 물어보세요. 누군가 기꺼이 도와줄 것입니다.
 
 참여하시는 것은 곧 저희의 [행동 강령](../../CODE_OF_CONDUCT.md)을 따르겠다는 데
 동의하시는 것입니다.
@@ -23,13 +23,13 @@
 이곳에는 누구에게나 자리가 있습니다.
 
 - **코드.** 버그를 고치거나, 기능을 추가하거나, 성능을 개선하세요.
-  [`good first issue`](https://github.com/levy-street/world-of-claudecraft/labels/good%20first%20issue)
-  와 [`help wanted`](https://github.com/levy-street/world-of-claudecraft/labels/help%20wanted)
+  [`good first issue`](https://github.com/levy-street/wildhaven/labels/good%20first%20issue)
+  와 [`help wanted`](https://github.com/levy-street/wildhaven/labels/help%20wanted)
   라벨이 붙은 이슈가 시작하기에 좋습니다.
 - **번역.** 언어를 개선하거나 완성해서 전 세계의 플레이어를 도와주세요. 아래의
   [게임 번역하기](#translating-the-game)를 참고하세요. 시작하기 가장 쉬우면서도
   영향력이 큰 방법 중 하나입니다.
-- **버그 제보와 기능 제안.** [이슈](https://github.com/levy-street/world-of-claudecraft/issues/new/choose)를
+- **버그 제보와 기능 제안.** [이슈](https://github.com/levy-street/wildhaven/issues/new/choose)를
   열어 주세요. 명확한 버그 제보 하나도 진짜 기여입니다.
 - **문서.** 이 가이드를 비롯해 README, 그리고 `docs/`에 있는 설계 문서는 언제든 더
   좋아질 수 있습니다.
@@ -44,8 +44,8 @@
 
 ```bash
 # 1. Fork the repo on GitHub, then clone your fork
-git clone https://github.com/<your-username>/world-of-claudecraft.git
-cd world-of-claudecraft
+git clone https://github.com/<your-username>/wildhaven.git
+cd wildhaven
 
 # 2. Install pnpm once (same command on macOS, Linux, Windows)
 #    Match the packageManager pin in package.json (today: 10.34.5).
@@ -228,7 +228,7 @@ pnpm run gate
 
 ## 현지화
 
-World of ClaudeCraft는 여러 언어로 제공됩니다. 플레이어에게 보이는 모든 문자열은
+Wildhaven는 여러 언어로 제공됩니다. 플레이어에게 보이는 모든 문자열은
 번역 키여야 하지만, 기능을 기여하는 분은 보통 영어 원문만 추가하면 됩니다.
 
 - 사용자에게 보이는 모든 텍스트는 `t()` 키입니다. 새 영어 문구는
@@ -274,17 +274,17 @@ World of ClaudeCraft는 여러 언어로 제공됩니다. 플레이어에게 보
    으로는 키가 빠졌는지 알 수 없습니다.
 
 완전히 새로운 로케일을 제안하거나 어조와 용어에 대해 의논하고 싶다면
-[Discord](https://discord.com/invite/worldofclaudecraft)에서 스레드를 시작하세요. 저희가 연결 작업을
+[Discord](https://discord.com/invite/wildhaven)에서 스레드를 시작하세요. 저희가 연결 작업을
 도와드리겠습니다. 원어민과 유창한 분들을 특히 환영합니다. 좋은 번역은 어디에 있는
 플레이어에게든 게임을 내 집처럼 느끼게 해 줍니다.
 
 ## 버그 제보와 기능 요청
 
-[이슈 템플릿](https://github.com/levy-street/world-of-claudecraft/issues/new/choose)을
+[이슈 템플릿](https://github.com/levy-street/wildhaven/issues/new/choose)을
 사용해 주세요.
 
 - **버그 제보.** 중복을 피하기 위해 먼저
-  [기존 이슈](https://github.com/levy-street/world-of-claudecraft/issues)를 검색한
+  [기존 이슈](https://github.com/levy-street/wildhaven/issues)를 검색한
   다음, 재현 단계, 기대한 결과, 실제로 일어난 일, 그리고 사용 환경(오프라인 또는
   온라인, 브라우저, 데스크톱 또는 모바일)을 함께 적어 주세요.
 - **기능 요청.** 해결책만이 아니라 풀고자 하는 문제를 설명해 주세요. 맥락이 있으면
@@ -295,7 +295,7 @@ World of ClaudeCraft는 여러 언어로 제공됩니다. 플레이어에게 보
 ## 도움받기
 
 막혔거나, 그냥 인사를 건네고 싶으신가요?
-[커뮤니티 Discord](https://discord.com/invite/worldofclaudecraft)에 들어오세요. 너무 사소해서 못 할
+[커뮤니티 Discord](https://discord.com/invite/wildhaven)에 들어오세요. 너무 사소해서 못 할
 질문은 없으며, 새로운 기여자는 언제나 환영합니다.
 
 ## 라이선스
@@ -306,7 +306,7 @@ World of ClaudeCraft는 여러 언어로 제공됩니다. 플레이어에게 보
 
 MIT 라이선스는 문자 그대로를 뜻합니다. 누구든 상업적으로든 아니든 코드를 사용하고,
 수정하고, 재배포할 수 있습니다. 저희의
-[이용 약관](https://worldofclaudecraft.com/terms)은 worldofclaudecraft.com에서
+[이용 약관](https://wildhaven.example/terms)은 wildhaven.example에서
 저희가 운영하는 호스팅 게임(계정, 행동 규범, 가상 아이템)에 적용되며, MIT 라이선스가
 이 코드에 대해 여러분이나 다른 누구에게 주는 권리를 제한하지 않습니다. "World of
 ClaudeCraft"와 "Levy Street"라는 이름과 브랜딩은 MIT 라이선스의 적용 대상이
@@ -318,7 +318,7 @@ ClaudeCraft"와 "Levy Street"라는 이름과 브랜딩은 MIT 라이선스의 �
 
 - 라이선스, 그 라이선스가 적용되는 자산 경로, 그리고 여러분의 저작자 표시가 같은 풀
   리퀘스트 안에서 [CREDITS.md](../../CREDITS.md)의 라이선스 표에 기록되어야 하며,
-- 공식 릴리스와 인게임 상점을 포함해 World of ClaudeCraft에서 해당 자산을 상업적으로
+- 공식 릴리스와 인게임 상점을 포함해 Wildhaven에서 해당 자산을 상업적으로
   사용할 수 있도록, Levy Street에 최소한 영구적이고 로열티 없는 이용 허락을 부여해야
   합니다.
 
@@ -339,5 +339,5 @@ CREDITS.md 표에 등재된 자산에 대해서는, 기록된 그 라이선스�
 
 ---
 
-World of ClaudeCraft에 기여해 주셔서 감사합니다. 여러분이 저희와 함께 만들어 갈 것을
+Wildhaven에 기여해 주셔서 감사합니다. 여러분이 저희와 함께 만들어 갈 것을
 어서 보고 싶습니다.

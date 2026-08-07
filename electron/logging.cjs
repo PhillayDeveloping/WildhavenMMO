@@ -54,9 +54,9 @@ function consoleShim() {
 // null when only the console shim is available. The file transport rotates at
 // 5 MB (electron-log keeps one .old archive next to it); locations follow
 // app.name, which is the package NAME (verified on a packaged build):
-//   macOS   ~/Library/Logs/world-of-claudecraft/main.log
-//   Windows %USERPROFILE%\AppData\Roaming\world-of-claudecraft\logs\main.log
-//   Linux   ~/.config/world-of-claudecraft/logs/main.log
+//   macOS   ~/Library/Logs/wildhaven/main.log
+//   Windows %USERPROFILE%\AppData\Roaming\wildhaven\logs\main.log
+//   Linux   ~/.config/wildhaven/logs/main.log
 function initLogging({ isPackaged }) {
   const log = loadElectronLog({ isPackaged });
   if (!log) return { log: consoleShim(), filePath: null };

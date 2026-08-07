@@ -1,6 +1,6 @@
 # Epic BuildPatchTool (BPT) upload runbook
 
-How the maintainer packages World of ClaudeCraft for the Epic Games Store and
+How the maintainer packages Wildhaven for the Epic Games Store and
 uploads loose binaries with Epic's BuildPatchTool. Companion to
 `docs/desktop-release.md` (Epic section) and
 `docs/epic-games-integration/portal-checklist.md`.
@@ -54,7 +54,7 @@ npm run electron:build:epic
 
 # macOS runner (Developer ID + notarization env present):
 npm run electron:build:epic
-# -> release-epic/mac-universal/World of ClaudeCraft.app
+# -> release-epic/mac-universal/Wildhaven.app
 ```
 
 Channel rules (locked):
@@ -68,8 +68,8 @@ Suggested BuildRoot / AppLaunch:
 
 | Platform | BuildRoot | AppLaunch (relative to BuildRoot) |
 |---|---|---|
-| Windows | `release-epic/win-unpacked` | `World of ClaudeCraft.exe` |
-| macOS | `release-epic/mac-universal` | nested MacOS executable under `World of ClaudeCraft.app/Contents/MacOS/` (confirm the exact filename on the first pack) |
+| Windows | `release-epic/win-unpacked` | `Wildhaven.exe` |
+| macOS | `release-epic/mac-universal` | nested MacOS executable under `Wildhaven.app/Contents/MacOS/` (confirm the exact filename on the first pack) |
 
 `BuildVersion` should be a unique, human-readable string per upload (for example
 `0.33.0-windows` / `0.33.0-mac`). Epic rejects reusing a version that already

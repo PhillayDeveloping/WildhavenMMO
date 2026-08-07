@@ -8,7 +8,7 @@ import puppeteer from 'puppeteer-core';
 import { BROWSER_PATH } from './browser_path.mjs';
 
 const TARGETS = [
-  { label: 'pbe2', url: 'https://pbe2.worldofclaudecraft.com/', pos: '20,60' },
+  { label: 'pbe2', url: 'https://pbe2.wildhaven.example/', pos: '20,60' },
   { label: 'local', url: 'http://localhost:5173/', pos: '1480,60' },
 ];
 

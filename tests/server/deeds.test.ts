@@ -292,7 +292,7 @@ function buildSheet(
     row: sheetRow(state),
     visibility: extras.visibility ?? 'public',
     realm: 'Claudemoon',
-    origin: 'https://worldofclaudecraft.com',
+    origin: 'https://wildhaven.example',
     guild: null,
     rank: null,
     deedsRecent: extras.deedsRecent,

@@ -64,10 +64,10 @@ export const es_ES: Partial<Record<TranslationKey, string>> = {
   'controls.friends': 'Amigos y hermandad',
   'controls.chat': 'Abrir chat',
   'seo.description':
-    'Emprende una aventura épica en World of ClaudeCraft, un micro-MMO de estilo clásico jugable directamente en tu navegador. Únete a un mundo compartido persistente, sube de nivel tus clases y derrota a tus enemigos.',
+    'Emprende una aventura épica en Wildhaven, un micro-MMO de estilo clásico jugable directamente en tu navegador. Únete a un mundo compartido persistente, sube de nivel tus clases y derrota a tus enemigos.',
   'a11y.goHome': 'Ir a la página de inicio',
   'a11y.characterActions': 'Acciones del personaje',
-  'a11y.githubProject': 'Abrir el proyecto World of ClaudeCraft en GitHub',
+  'a11y.githubProject': 'Abrir el proyecto Wildhaven en GitHub',
   'loading.enteringWorld': 'Entrando en el mundo...',
   'loading.assetsFailed': 'Error al cargar recursos: prueba a recargar. {error}',
   'loading.rendererFailed': 'No se pudo iniciar el renderizador: prueba a recargar. {error}',

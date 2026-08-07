@@ -400,7 +400,7 @@ export const sv_SE: EnTranslations = {
       "error": "Kunde inte ladda dagliga belöningar.",
       "disabled": "Dagliga belöningar är för närvarande inaktiverade. Vi meddelar uppdateringar om den här funktionen i Discord-kanalen.",
       "intro": "Håll tillräckligt med WOC i din verifierade plånbok för att låsa upp dagliga belöningar. Tjäna poäng med ett dagligt snurr och roterande uppgifter, och klättra sedan på den dagliga topplistan för en andel av prispotten.",
-      "disclaimer": "WOC-priset kan röra sig snabbt. Vi rekommenderar att du håller mer än miniminivån på 20 USD så att vanliga prissvängningar inte låser dig ute. Detta är inte finansiell rådgivning.",
+      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
       "prize": "Prispott",
       "reset": "Återställning",
       "endsIn": "Slutar om {time}",
@@ -409,9 +409,6 @@ export const sv_SE: EnTranslations = {
       "remainingHoursMinutes": "{hours} h {minutes} min",
       "remainingDaysHours": "{days} dagar {hours} timmar",
       "score": "Poäng",
-      "walletValue": "Plånbokens värde (WOC)",
-      "usd": "{amount} USD",
-      "sol": "{amount} SOL",
       "unknown": "Okänd",
       "spinTitle": "Dagligt snurr",
       "spinDialogTitle": "Dagligt belöningssnurr",
@@ -436,17 +433,8 @@ export const sv_SE: EnTranslations = {
       "history": "Tidigare vinnare",
       "noLeaders": "Inga poäng ännu.",
       "noHistory": "Inga utbetalningar ännu.",
-      "walletConnectTitle": "Verifiera plånbok",
-      "walletConnectBody": "Verifiera en Solana-plånbok med WOC för att låsa upp dagliga belöningar.",
-      "walletConnectButton": "Verifiera plånbok",
-      "walletHoldTitle": "Håll WOC",
-      "walletHoldBody": "Håll minst {amount} USD i WOC för att låsa upp dagliga belöningar.",
-      "walletPriceBody": "WOC-prissättningen är otillgänglig just nu. Kom tillbaka snart.",
       "reason": {
         "eligible": "Belöningar upplåsta.",
-        "no_wallet": "Anslut en plånbok med minst 20 USD i WOC.",
-        "under_minimum": "Plånboken är under WOC-miniminivån på 20 USD.",
-        "price_unavailable": "WOC-priset är otillgängligt, belöningar är tillfälligt låsta.",
         "banned": "Du är avstängd från dagliga belöningar. Orsak: {reason}",
         "bannedUntil": "Du är avstängd från dagliga belöningar i ytterligare {remaining}. Åtkomsten återkommer {until}. Orsak: {reason}"
       }
@@ -472,18 +460,6 @@ export const sv_SE: EnTranslations = {
       "armoryEyebrow": "Säsong 1",
       "armoryTitle": "Vapenhuset",
       "armoryBody": "Begränsade vapenskins från säsong 1-vapenhuset. De gäller för hela kontot, är helt kosmetiska och visas för alla i din omgivning.",
-      "wallet": {
-        "title": "Solana-plånbok",
-        "unlinked": "Anslut en plånboksapp och signera sedan en gång för att länka dess offentliga adress till ditt WoC-konto. Vi tar aldrig emot din återställningsfras eller privata nyckel.",
-        "connectedUnlinked": "Plånboksappen är ansluten till denna webbläsare, men dess offentliga adress är ännu inte länkad till ditt WoC-konto.",
-        "linkedDisconnected": "Din offentliga adress är länkad. Återanslut den plånboksappen när du vill betala med SOL eller WOC.",
-        "linkedConnected": "Din länkade plånboksapp är ansluten och redo för SOL- eller WOC-köp.",
-        "mismatched": "En annan plånbok är ansluten. Verifiera den för att ersätta den länkade adressen, eller återanslut den länkade plånboken.",
-        "connect": "Anslut plånbok",
-        "verify": "Verifiera och länka",
-        "reconnect": "Återanslut plånbok",
-        "manage": "Hantera plånbok"
-      },
       "collectionLine": "{collection}-samlingen",
       "collections": {
         "guildmark": "Gillesmärke",
@@ -685,20 +661,11 @@ export const sv_SE: EnTranslations = {
       "loading": "Laddar Claudium...",
       "balanceLabel": "Saldo",
       "balanceUnit": "{amount} Claudium",
-      "solBalance": "SOL: {amount}",
-      "usdcBalance": "USDC: {amount}",
-      "wocBalance": "WOC: {amount}",
       "unavailable": "Claudium-butiken är inte tillgänglig just nu. Ditt saldo och dina köp påverkas inte. Försök igen om en stund.",
       "disclosure": "Claudium är en virtuell valuta som bara går åt ett håll: köp den för pengar och använd den till kosmetika. Den kan inte växlas in, överföras eller betalas ut.",
       "buyTitle": "Köp Claudium",
       "railLabel": "Betalningsmetod",
       "railStripe": "Kort",
-      "railSol": "SOL",
-      "railUsdc": "USDC",
-      "railWoc": "WOC",
-      "railWocDiscount": "{percent}% rabatt",
-      "railWocUnavailable": "WOC-priser är inte tillgängliga just nu.",
-      "railNativeUnavailable": "SOL/WOC är avstängt.",
       "amountLabel": "Belopp",
       "showAmounts": "Visa alla Claudium-belopp",
       "hideAmounts": "Dölj extra Claudium-belopp",
@@ -718,10 +685,7 @@ export const sv_SE: EnTranslations = {
       "checkoutPending": "Transaktion pågår. Bekräfta i din plånbok och håll denna panel öppen.",
       "checkoutPendingButton": "Bearbetar",
       "checkoutFailed": "Det gick inte att ladda kassan. Försök igen.",
-      "checkoutUnavailable": "Det Claudium-köpet är inte tillgängligt just nu.",
-      "checkoutWalletRequired": "Anslut en Solana-plånbok innan du köper Claudium med krypto.",
-      "checkoutWalletUnsupported": "Denna plånbok kan inte signera och skicka Solana-transaktioner.",
-      "checkoutNotSettled": "Transaktionen skickades men Claudium har inte krediterats ännu. Försök snart igen."
+      "checkoutUnavailable": "Det Claudium-köpet är inte tillgängligt just nu."
     },
     "theme": {
       "preset": "Gränssnittstema",
@@ -843,8 +807,8 @@ export const sv_SE: EnTranslations = {
     },
     "nativeUpdate": {
       "title": "Uppdatering tillgänglig",
-      "body": "En ny version av World of ClaudeCraft är tillgänglig. Uppdatera nu för de senaste korrigeringarna och förbättringarna.",
-      "bodyWithVersion": "Version {version} av World of ClaudeCraft är tillgänglig. Uppdatera nu för de senaste korrigeringarna och förbättringarna.",
+      "body": "En ny version av Wildhaven är tillgänglig. Uppdatera nu för de senaste korrigeringarna och förbättringarna.",
+      "bodyWithVersion": "Version {version} av Wildhaven är tillgänglig. Uppdatera nu för de senaste korrigeringarna och förbättringarna.",
       "notNow": "Inte nu",
       "update": "Uppdatera"
     },
@@ -1196,8 +1160,6 @@ export const sv_SE: EnTranslations = {
       "clickFeedback": "Klickmarkör",
       "lockCursorOnRotate": "Lås pekare under rotation",
       "keybindHelpLockCursorOnRotate": "Håller muspekaren inuti fönstret medan du drar för att rotera kameran, så att den inte kan nå skärmkanten eller flytta till en annan skärm. Stäng av om du föredrar en fri pekare.",
-      "showWalletOnCharacterScreen": "Visa plånbok på karaktärsskärmen",
-      "showWalletOnPlayerCard": "Visa plånbok på spelarkortet",
       "showDevBadges": "Visa utvecklarmärken",
       "showOwnNameplate": "Visa min namnskylt",
       "showPlayerNameplates": "Visa spelares namnskyltar",
@@ -1373,9 +1335,7 @@ export const sv_SE: EnTranslations = {
         "aetherRush": "Eterrusning"
       }
     },
-    "playerCard": {
-      "showWalletBadge": "Visa plånboksmärke"
-    },
+    "playerCard": {},
     "landing": {
       "highContrast": "Hög kontrast",
       "highContrastAria": "Växla bakgrund med hög kontrast: inaktiverar den rörliga trailern så att texten på startskärmen förblir läsbar",
@@ -1564,7 +1524,6 @@ export const sv_SE: EnTranslations = {
       "loggedOutPrompt": "Logga in för att hantera ditt konto.",
       "memberSince": "Medlem sedan {date}",
       "sectionSettings": "Kontoinställningar",
-      "sectionWallet": "$WOC-plånbok",
       "sectionCharacters": "Rollfigurer",
       "sectionDanger": "Farozon",
       "changePassword": "Ändra lösenord",
@@ -1591,8 +1550,6 @@ export const sv_SE: EnTranslations = {
       "charactersSummary": "Hantera dina rollfigurer och gå in i världen.",
       "charactersCount": "Rollfigurer: {count}",
       "goToCharacters": "Visa rollfigurer",
-      "walletSummary": "Verifiera en Solana-plånbok för att visa innehavarsymbol på ditt spelarkort.",
-      "manageWallet": "Hantera plånbok",
       "deactivate": "Avaktivera konto",
       "deactivateWarning": "Avaktivering låser ditt konto och loggar ut dig överallt. Kontakta en administratör för att återställa det. Bekräfta genom att ange ditt användarnamn och lösenord igen.",
       "confirmUsername": "Skriv ditt användarnamn för att bekräfta",
@@ -2003,7 +1960,7 @@ export const sv_SE: EnTranslations = {
     },
     "discord": {
       "title": "Discord",
-      "panelTitle": "World of ClaudeCraft",
+      "panelTitle": "Wildhaven",
       "open": "Discord",
       "close": "Stäng",
       "keybind": "Discord-panel",
@@ -2293,11 +2250,9 @@ export const sv_SE: EnTranslations = {
       "bonusStatusEarned": "+{count}",
       "bonusSourceEmail": "Verifierad e-post",
       "bonusSourceDiscord": "Discord länkat",
-      "bonusSourceWallet": "Plånbok länkad",
       "bonusSourceReferral": "Värvade vänner",
       "bonusAdvertEmail": "Verifiera din e-post för att tjäna 2 fack.",
       "bonusAdvertDiscord": "Länka ditt Discord för att tjäna 2 fack.",
-      "bonusAdvertWallet": "Länka en plånbok för att tjäna 2 fack.",
       "bonusReferralProgress": "{count}/{cap}",
       "bonusReferralExplainer": "Bjud in en vän: när vännen når nivå 10 tjänar ni 2 fack var, upp till 5 vänner.",
       "bonusSectionAria": "Bonusbankfack och hur du tjänar fler",
@@ -3147,26 +3102,13 @@ export const sv_SE: EnTranslations = {
       "account_taken": "Det Epic-kontot är redan länkat till ett annat konto.",
       "upstream": "Epic svarade inte. Försök igen om en stund."
     },
-    "wallet": {
-      "handoff_invalid": "Den plånboksbehörigheten har gått ut eller kunde inte verifieras. Försök igen."
-    },
     "ota_updates": {
       "invalid_input": "Ogiltig indata."
-    },
-    "seeker": {
-      "native_only": "Seeker-behörighet är endast tillgänglig i appen.",
-      "attestation_failed": "Enhetsverifieringen misslyckades. Försök igen.",
-      "solana_artifact_required": "Använd appen Solana Store för att fortsätta.",
-      "wallet_required": "Länka och verifiera en plånbok först.",
-      "genesis_token_required": "En verifierad Seeker Genesis Token krävs.",
-      "genesis_token_claimed": "Denna Seeker Genesis Token har redan hämtats.",
-      "entitlement_required": "Verifierad Seeker-behörighet krävs.",
-      "current_ownership_required": "Du måste fortfarande äga din Seeker Genesis Token."
     }
   },
   "guide": {
-    "brand": "World of ClaudeCraft",
-    "brandShort": "ClaudeCraft",
+    "brand": "Wildhaven",
+    "brandShort": "Wildhaven",
     "tagline": "En klassisk MMO du spelar gratis i din webbläsare.",
     "skipToContent": "Hoppa till huvudinnehållet",
     "loading": "Laddar...",
@@ -3231,7 +3173,7 @@ export const sv_SE: EnTranslations = {
       "github": "Källkod på GitHub",
       "discord": "Gå med i Discord",
       "communityWiki": "Community-wiki",
-      "rights": "World of ClaudeCraft",
+      "rights": "Wildhaven",
       "linksLabel": "Spel- och communitylänkar"
     },
     "language": {
@@ -3254,7 +3196,7 @@ export const sv_SE: EnTranslations = {
     },
     "home": {
       "eyebrow": "Klassiskt MMO i webbläsaren",
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "subtitle": "Lös uppdrag, slå er samman och utforska en handbyggd värld, gratis i din webbläsare.",
       "ctaPlay": "Spela nu",
       "ctaLearn": "Så spelar du",
@@ -3769,7 +3711,7 @@ export const sv_SE: EnTranslations = {
     },
     "worldPage": {
       "heading": "Världen",
-      "intro": "World of ClaudeCraft är ett enda sammanhängande land som du korsar till fots, tre zoner lagda från söder till norr. Det finns ingen snabbresa, så resan är en del av äventyret.",
+      "intro": "Wildhaven är ett enda sammanhängande land som du korsar till fots, tre zoner lagda från söder till norr. Det finns ingen snabbresa, så resan är en del av äventyret.",
       "hub": "Hembas",
       "mapHeading": "Vägen norrut",
       "mapSub": "Tre zoner, från söder till norr, var och en ett steg högre i nivå. Följ uppdragsspåret så bär landet dig från dalen till topparna.",
@@ -4596,7 +4538,7 @@ export const sv_SE: EnTranslations = {
   },
   "editor": {
     "appTitle": "Kartredigerare",
-    "docTitle": "Kartredigerare - World of ClaudeCraft",
+    "docTitle": "Kartredigerare - Wildhaven",
     "untitledMap": "Namnlös karta",
     "playtestPlayerName": "Kartmakare",
     "topbar": {
@@ -5072,8 +5014,8 @@ export const sv_SE: EnTranslations = {
     "realmName": "Världens namn"
   },
   "footer": {
-    "copyright": "2026 World of ClaudeCraft",
-    "githubLink": "https://github.com/levy-street/world-of-claudecraft",
+    "copyright": "2026 Wildhaven",
+    "githubLink": "https://wildhaven.example",
     "githubLabel": "Projekt med öppen källkod",
     "whitepaper": "Whitepaper",
     "terms": "Användarvillkor",
@@ -5130,13 +5072,10 @@ export const sv_SE: EnTranslations = {
     "serverOnline": "Online",
     "serverOffline": "Offline",
     "play": "Spela",
-    "playAria": "Spela World of ClaudeCraft",
+    "playAria": "Spela Wildhaven",
     "serverLabel": "Välj din värld",
     "serverAria": "Välj värld: Online eller Offline",
-    "serverOfflineSub": "Direkt lokal värld",
-    "caLabel": "$WOC Kontraktsadress",
-    "caCopyAria": "Kopiera kontraktsadress",
-    "caNote": "WOC är vår community-token. Den behövs inte för att spela. Gå med i Discord för att diskutera WOC:s nytta och svänghjul."
+    "serverOfflineSub": "Direkt lokal värld"
   },
   "auth": {
     "enterRealm": "Träd in i världen",
@@ -5184,171 +5123,6 @@ export const sv_SE: EnTranslations = {
       "failed": "Det gick inte att spara din e-postadress. Försök igen."
     }
   },
-  "wallet": {
-    "label": "$WOC-plånbok",
-    "connect": "Verifiera plånbok",
-    "connectTitle": "Verifiera din Solana-plånbok",
-    "connectAria": "Verifiera din Solana-plånbok",
-    "verify": "Verifiera plånbok",
-    "verifyNew": "Verifiera ny plånbok",
-    "verifyTitle": "Välj en plånbok och signera en gång för att verifiera ägande.",
-    "verifyAria": "Välj en plånbok och signera en gång för att verifiera ägande",
-    "verifyAddressAria": "Signera för att verifiera plånboken {address} för ditt konto",
-    "appConnected": "App ansluten",
-    "connectApp": "Anslut app",
-    "connectAppTitle": "Anslut plånboksappen i den här webbläsaren",
-    "connectAppAria": "Anslut plånboksappen i den här webbläsaren",
-    "verifying": "Verifierar...",
-    "verifyingTitle": "Plånboksverifiering pågår.",
-    "switch": "Byt",
-    "switchTitle": "Verifiera en annan plånbok",
-    "switchAria": "Verifiera en annan plånbok",
-    "unlink": "Avlänka",
-    "unlinkTitle": "Ta bort plånboksverifieringen från det här kontot",
-    "unlinkAria": "Ta bort plånboksverifieringen från det här kontot",
-    "signOut": "Koppla från",
-    "signOutTitle": "Koppla från plånboksappen i den här webbläsaren",
-    "signOutAria": "Koppla från plånboksappen i den här webbläsaren",
-    "hide": "Dölj",
-    "hideTitle": "Dölj plånboksraden på den här skärmen",
-    "hideAria": "Dölj plånboksraden på den här skärmen",
-    "hiddenNotice": "Plånboksraden är dold. Aktivera den igen i spelet via Alternativ > Gränssnitt.",
-    "linkedTitle": "Plånboken är verifierad för ditt konto. Klicka för att hantera plånboksappen.",
-    "linkedDisconnectedTitle": "Plånboken är fortfarande verifierad för ditt konto. Återanslut för att hantera plånboksappen.",
-    "linkedDisconnectedAria": "Plånboken är fortfarande verifierad för ditt konto. Återanslut för att hantera plånboksappen.",
-    "linkTitle": "Klicka för att signera och länka den här plånboken till ditt konto.",
-    "connectedTitle": "Ansluten. Logga in för att länka plånboken till ditt konto.",
-    "balanceTitle": "Verifierat $WOC-saldo i Solana-plånbok",
-    "balanceAria": "Verifierat Solana-plånbokssaldo: {balance}",
-    "balancePreviewTitle": "Förhandsvisning av ansluten plånboks $WOC-saldo",
-    "balancePreviewAria": "Förhandsvisning av ansluten plånboks saldo: {balance}. Länka plånboken för att verifiera innehavarmärket.",
-    "balanceAmount": "{amount} $WOC",
-    "bagConnect": "Länka plånbok",
-    "bagLink": "Verifiera plånbok",
-    "bagReconnect": "Återanslut plånbok",
-    "connected": "Ansluten: {address}",
-    "connectedWithBalance": "Ansluten: {balance} - {address}",
-    "connectedLinked": "Verifierad: {address}",
-    "connectedLinkedWithBalance": "Verifierad: {balance} - {address}",
-    "helpDisconnected": "Verifiera en Solana-plånbok för att aktivera innehavarmärke och spelarkortsmärken. Ingen transaktion eller SOL krävs.",
-    "helpLoginToLink": "Ansluten {address}. Logga in för att länka den till ditt konto.",
-    "helpLoginToLinkWithBalance": "Ansluten {address} med {balance}. Logga in för att länka den till ditt konto.",
-    "helpReadyToLink": "Plånbok vald: {address}. Signera en gång för att verifiera innehavarmärke och spelarkort.",
-    "helpReadyToLinkWithBalance": "Plånbok vald: {address} med {balance}. Signera en gång för att verifiera innehavarmärke och spelarkort.",
-    "helpLinked": "Innehavarförmåner är aktiva. Plånboksappen är ansluten i den här webbläsaren.",
-    "helpLinkedWithBalance": "Innehavarförmåner är aktiva. Plånboksappen är ansluten i den här webbläsaren.",
-    "helpLinkedDisconnected": "Innehavarförmåner är aktiva. Anslut appen när du behöver signera eller spendera.",
-    "helpLinkedDisconnectedWithBalance": "Innehavarförmåner är aktiva. Anslut appen när du behöver signera eller spendera.",
-    "extensionHelp": "För att se en plånbok här, håll ett webbläsartillägg för plånböcker som Solflare Wallet aktivt.",
-    "mobileAppHelp": "Välj Phantom eller Solflare. Din plånboksapp ber om godkännande. Håll det här spelet öppet och återgå till det när du är klar.",
-    "seekerAppHelp": "Fortsätt med Seed Vault Wallet. Granska anslutnings- och verifieringsförfrågningarna i Seed Vault, och återgå sedan till spelet.",
-    "standaloneAppHelp": "Plånboksanslutningar är ännu inte tillgängliga i hemskärmsappen. Öppna World of ClaudeCraft i Safari eller Chrome för att använda Phantom eller Solflare.",
-    "openAppTitle": "Fortsätt i {wallet}",
-    "openAppHelp": "Öppna {wallet} för att granska denna begäran. Håll denna spelflik öppen medan plånboksappen är aktiv.",
-    "openAppButton": "Öppna {wallet}",
-    "manualReturnBrowserHelp": "Efter godkännande, återgå till denna spelflik. Om iOS öppnar en annan webbläsare, stäng den och återgå till den ursprungliga webbläsaren manuellt.",
-    "manualReturnStandaloneHelp": "Efter godkännande, återgå till World of ClaudeCraft från din hemskärm. Om iOS öppnar en webbläsare, stäng den och öppna hemskärmsappen manuellt igen.",
-    "preparingAppButton": "Förbereder {wallet}...",
-    "walletAppUnavailable": "{wallet} kunde inte förberedas. Stäng det här fönstret och försök igen.",
-    "flowConnect": "Välj en plånbok. Verifieringen fortsätter automatiskt.",
-    "flowSign": "Signera verifieringsmeddelandet i din plånboksapp. Ingen transaktion eller SOL krävs.",
-    "flowVerify": "Verifierar plånboksägande...",
-    "linkFailed": "Plånboksverifieringen misslyckades.",
-    "verifyFailed": "Plånboksverifieringen misslyckades.",
-    "unlinkFailed": "Det gick inte att avlänka plånboken.",
-    "browser": {
-      "eyebrow": "Skrivbordsplånboksbehörighet",
-      "title": "Anslut en Solana-plånbok",
-      "linkBody": "Välj ett plånbokstillägg i denna webbläsare. Du signerar ett verifieringsmeddelande och återvänder sedan till skrivbordsappen.",
-      "paymentBody": "Välj plånboken länkad till ditt konto och godkänn transaktionen i denna webbläsare.",
-      "extensionHelp": "Inget kompatibelt plånbokstillägg hittades. Installera eller lås upp Phantom, Solflare eller en annan Solana-webbläsarplånbok och försök sedan igen.",
-      "safety": "World of ClaudeCraft ber aldrig om din återställningsfras eller privata nyckel.",
-      "continueWith": "Fortsätt med {wallet}",
-      "reviewTitle": "Granska i din plånbok",
-      "reviewBody": "Följ uppmaningen från {wallet}. Håll denna webbläsarsida öppen.",
-      "completeTitle": "Plånboksbehörighet slutförd",
-      "completeBody": "Du kan återvända till skrivbordsappen för World of ClaudeCraft.",
-      "returnButton": "Återgå till skrivbordsappen",
-      "failed": "Plånboksbehörighet misslyckades eller gick ut. Återgå till skrivbordsappen och försök igen.",
-      "retry": "Försök igen"
-    },
-    "holder": "$WOC-innehavare",
-    "holderTierTitle": "{tier} $WOC-innehavare",
-    "holderTiers": {
-      "ember": {
-        "name": "Glöd",
-        "flavor": "Gnistan är tänd."
-      },
-      "coinbearer": {
-        "name": "Myntbärare",
-        "flavor": "Första myntet i krigskassan."
-      },
-      "coppercrest": {
-        "name": "Kopparkam",
-        "flavor": "Kopparmynt staplade, ditt namn på allas läppar."
-      },
-      "silverbound": {
-        "name": "Silverbunden",
-        "flavor": "Bunden i silver, bygger upp pungen."
-      },
-      "gilded": {
-        "name": "Förgylld",
-        "flavor": "Förgylld och leende."
-      },
-      "vaultwarden": {
-        "name": "Valvväktare",
-        "flavor": "Vaktar nu ett verkligt valv: 0,01 % av allt $WOC."
-      },
-      "whale": {
-        "name": "Val",
-        "flavor": "Djupet delar sig när du simmar: 0,1 % av tillgången."
-      },
-      "leviathan": {
-        "name": "Leviatan",
-        "flavor": "Marknaderna känner när du rör dig: 1 % av tillgången."
-      },
-      "tidelord": {
-        "name": "Tidvattenherre",
-        "flavor": "Tidvattnet lyder din kallelse: 2 % av tillgången."
-      },
-      "stormcaller": {
-        "name": "Stormkallare",
-        "flavor": "Stormar samlas vid ditt namn: 3 % av tillgången."
-      },
-      "krakencrown": {
-        "name": "Krakenkrona",
-        "flavor": "Krönt av djupet: 4 % av tillgången."
-      },
-      "titanforged": {
-        "name": "Titansmidd",
-        "flavor": "Smidd bland titaner: 5 % av tillgången."
-      },
-      "starhoard": {
-        "name": "Stjärnskatt",
-        "flavor": "En skatt som böjer stjärnljuset: 6 % av tillgången."
-      },
-      "voidwarden": {
-        "name": "Tomhetsväktare",
-        "flavor": "Väktare vid tomhetens rand: 7 % av tillgången."
-      },
-      "realmshaper": {
-        "name": "Rikesformare",
-        "flavor": "Du omformar riket: 8 % av tillgången."
-      },
-      "worldforger": {
-        "name": "Världssmidare",
-        "flavor": "Smider en egen värld: 9 % av tillgången."
-      },
-      "worldbearer": {
-        "name": "Världsbärare",
-        "flavor": "Du bär en bit av världen: 10 % av tillgången."
-      },
-      "sovereign": {
-        "name": "Härskare",
-        "flavor": "Riket böjer knä: hela tillgången."
-      }
-    }
-  },
   "playerCard": {
     "shareButton": "Dela spelarkort",
     "title": "Spelarkort",
@@ -5365,16 +5139,15 @@ export const sv_SE: EnTranslations = {
     "levelClass": "Nivå {level} - {className}",
     "topPercent": "TOPP {percent}%",
     "realmSubtitle": "Världen {realm}",
-    "defaultRealm": "World of ClaudeCraft",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "defaultRealm": "Wildhaven",
+    "brandWordmark": "WILDHAVEN",
     "recruited": "{count} värvade",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",
     "footerCta": "Skapa din legend: {siteUrl}",
     "arenaStat": "Arena",
-    "shareTierBit": ", {tier}-rankad $WOC-innehavare",
-    "shareText": "Jag skapar min legend i World of ClaudeCraft: Nivå {level} {className}{tierBit}. Gå med i min värld:",
-    "nativeShareTitle": "World of ClaudeCraft",
+    "shareText": "Jag skapar min legend i Wildhaven: Nivå {level} {className}{tierBit}. Gå med i min värld:",
+    "nativeShareTitle": "Wildhaven",
     "fileNameFallback": "spelare",
     "actionShareX": "Dela på X",
     "actionCopyReferral": "Kopiera värvningslänk",
@@ -6074,14 +5847,14 @@ export const sv_SE: EnTranslations = {
     }
   },
   "seo": {
-    "title": "World of ClaudeCraft: Klassiskt inspirerad webb-MMO",
-    "description": "Ge dig ut på ett episkt äventyr i World of ClaudeCraft, en klassiskt inspirerad mikro-MMO som du spelar direkt i din webbläsare. Anslut till en beständig delad värld, höj nivå på klasser och besegra fiender!",
+    "title": "Wildhaven: Klassiskt inspirerad webb-MMO",
+    "description": "Ge dig ut på ett episkt äventyr i Wildhaven, en klassiskt inspirerad mikro-MMO som du spelar direkt i din webbläsare. Anslut till en beständig delad värld, höj nivå på klasser och besegra fiender!",
     "genre": "MMORPG",
     "playMode": "Flerspelarläge",
     "applicationCategory": "Spel",
     "operatingSystem": "Webbläsare",
-    "officialLabel": "Officiell webbplats för World of ClaudeCraft",
-    "officialBody": "worldofclaudecraft.com är den officiella gratis webbläsar-MMO:n för Claudemoon-världen. Spela online med en beständig karaktär, utforska solo offline, läs wikin och följ verifierade gemenskapslänkar från den här webbplatsen."
+    "officialLabel": "Officiell webbplats för Wildhaven",
+    "officialBody": "wildhaven.example är den officiella gratis webbläsar-MMO:n för Claudemoon-världen. Spela online med en beständig karaktär, utforska solo offline, läs wikin och följ verifierade gemenskapslänkar från den här webbplatsen."
   },
   "a11y": {
     "goHome": "Gå till startsidan",
@@ -6089,9 +5862,9 @@ export const sv_SE: EnTranslations = {
     "mainNavigation": "Huvudnavigering",
     "languageSelection": "Språkval",
     "characterActions": "Karaktärshandlingar",
-    "githubProject": "Öppna GitHub-projektet World of ClaudeCraft",
-    "discordCommunity": "Gå med i World of ClaudeCraft-gemenskapen på Discord",
-    "donateProject": "Donera för att stödja World of ClaudeCraft"
+    "githubProject": "Öppna GitHub-projektet Wildhaven",
+    "discordCommunity": "Gå med i Wildhaven-gemenskapen på Discord",
+    "donateProject": "Donera för att stödja Wildhaven"
   },
   "entryGuard": {
     "title": "Grafik sänkt",
@@ -6178,11 +5951,11 @@ export const sv_SE: EnTranslations = {
       "dismiss": "Stäng"
     },
     "crash": {
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "body": "Spelvyn slutade fungera. Ladda om den?",
       "reload": "Ladda om",
       "quit": "Avsluta",
-      "fatalBody": "World of ClaudeCraft stötte på ett oväntat fel och måste stängas."
+      "fatalBody": "Wildhaven stötte på ett oväntat fel och måste stängas."
     }
   },
   "gpuNotice": {
@@ -6321,17 +6094,17 @@ export const sv_SE: EnTranslations = {
     "iosStandaloneDetail": "Du är i helskärmsläge från hemskärmen. Håll enheten i liggande läge.",
     "iosInstallDetail": "För äkta helskärm på iPhone eller iPad, installera först den här sidan på din Hemskärm.",
     "iosShareStep": "I Safari, tryck på Dela och sedan Lägg till på Hemskärmen.",
-    "iosOpenStep": "Öppna World of ClaudeCraft från den nya Hemskärmsikonen.",
+    "iosOpenStep": "Öppna Wildhaven från den nya Hemskärmsikonen.",
     "androidStandaloneDetail": "Du är i helskärmsläge för appen. Håll enheten i liggande läge.",
     "androidInstallDetail": "För helskärm på Android, installera den här sidan eller lägg först till den på din Hemskärm.",
     "androidInstallStep": "I Chrome, tryck på menyn och sedan Installera app eller Lägg till på Hemskärmen.",
-    "androidOpenStep": "Öppna World of ClaudeCraft från den nya ikonen.",
+    "androidOpenStep": "Öppna Wildhaven från den nya ikonen.",
     "otherStandaloneDetail": "Håll din enhet i liggande helskärm.",
     "otherInstallDetail": "Installera eller lägg till den här sidan på din Hemskärm för bästa mobila helskärmsupplevelse."
   },
   "serverUnavailable": {
-    "title": "World of ClaudeCraft - Världen otillgänglig",
-    "logoAlt": "World of ClaudeCraft",
+    "title": "Wildhaven - Världen otillgänglig",
+    "logoAlt": "Wildhaven",
     "eyebrow": "Världsunderhåll",
     "heading": "Världen är tillfälligt otillgänglig.",
     "body": "Vi startar om speltjänsten och förväntar oss att Claudemoon är tillbaka inom kort. Den här sidan fortsätter att kontrollera automatiskt.",
@@ -11672,7 +11445,7 @@ export const sv_SE: EnTranslations = {
       "auctioneer_voss": {
         "name": "Auktionsförrättare Voss",
         "title": "Väktare av världsmarknaden",
-        "greeting": "World of ClaudeCraft-marknaden är öppen även här, {className}. Köp från varje äventyrare i riket, eller lägg ut dina egna varor."
+        "greeting": "Wildhaven-marknaden är öppen även här, {className}. Köp från varje äventyrare i riket, eller lägg ut dina egna varor."
       },
       "bursar_fernando": {
         "name": "Kamrer Fernando",
@@ -14590,6 +14363,11 @@ export const sv_SE: EnTranslations = {
         "sender": "Heroisk kvartermästare",
         "subject": "Dina heroiska märken",
         "body": "Din grupp klarade den heroiska prövningen medan du kämpade i eftertruppen eller låg fallen. Din låsning registrerades ändå, så din andel heroiska märken skickades hit i stället för att gå förlorad. Använd dem väl.\n\n- Heroisk kvartermästare"
+      },
+      "daily_reward_prize": {
+        "sender": "The Vale Steward",
+        "subject": "Your share of the daily purse",
+        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "Hantverksgillet",

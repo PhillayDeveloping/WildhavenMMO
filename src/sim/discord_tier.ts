@@ -4,11 +4,11 @@
 // stays intact). This pure, host-agnostic module exists so the server, the HUD
 // presentation code, and the Discord bot can all agree on the cosmetic status
 // index and the claimable-swag catalog without importing across host
-// boundaries. It mirrors src/sim/holder_tier.ts in shape.
+// boundaries.
 //
-// "Points" are an authored, account-wide reward currency the server owns (unlike
-// the chain-sourced $WOC balance). Status is derived from LIFETIME points so a
-// rung is never lost when current points are spent on swag.
+// "Points" are an authored, account-wide reward currency the server owns. Status
+// is derived from LIFETIME points so a rung is never lost when current points
+// are spent on swag.
 
 export interface DiscordStatusTierCore {
   /** 1-based rung (1 = Initiate, 8 = Mythic). 0 means "linked but no rung yet". */

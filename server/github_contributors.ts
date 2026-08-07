@@ -24,7 +24,7 @@ import { LEADERBOARD_MAX } from '../src/sim/leaderboard_page';
 import type { DevLeaderboardEntry } from '../src/world_api';
 import { recordUsageCacheEvent, recordUsageMetric, setUsageCacheSize } from './provider_usage';
 
-const DEFAULT_GITHUB_REPO = 'levy-street/world-of-claudecraft';
+const DEFAULT_GITHUB_REPO = 'PhillayDeveloping/wildhaven';
 const GITHUB_API_HOST = 'api.github.com';
 
 // The repo slug + optional token, INJECTED at boot (server/main.ts wires these from
@@ -156,7 +156,7 @@ function githubHeaders(): Record<string, string> {
   return {
     Accept: 'application/vnd.github+json',
     'X-GitHub-Api-Version': '2022-11-28',
-    'User-Agent': 'world-of-claudecraft-server',
+    'User-Agent': 'wildhaven-server',
     ...(runtime.githubToken ? { Authorization: `Bearer ${runtime.githubToken}` } : {}),
   };
 }

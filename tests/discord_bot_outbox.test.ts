@@ -58,7 +58,7 @@ function winnersDay(day: string): DailyRewardWinnersDay {
     taskName: 'gather',
     nextTaskName: 'delve',
     realm: 'Eastbrook',
-    prizePoolUsd: 100,
+    prizePoolCopper: 1_000_000,
     finalizedAt: null,
     payouts: [
       {
@@ -67,9 +67,8 @@ function winnersDay(day: string): DailyRewardWinnersDay {
         username: 'ann',
         points: 42,
         prizePercent: 0.5,
-        prizeUsd: 50,
+        prizeCopper: 500_000,
         status: 'paid',
-        txSignature: null,
       },
     ],
   };

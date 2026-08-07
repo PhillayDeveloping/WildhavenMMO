@@ -18,7 +18,7 @@
 // track still cannot flip a shipped app to another backend. No electron
 // imports; callers pass everything in.
 
-const PRODUCTION_API_ORIGIN = 'https://worldofclaudecraft.com';
+const PRODUCTION_API_ORIGIN = 'https://wildhaven.example';
 
 // Normalize an origin-ish string to its URL origin so 'https://x.com' and
 // 'https://x.com/' compare equal; null when the value is not a parseable

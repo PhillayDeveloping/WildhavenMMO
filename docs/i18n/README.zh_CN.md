@@ -1,12 +1,12 @@
 <div align="center">
 
-# World of ClaudeCraft
+# Wildhaven
 
 **在浏览器里免费畅玩一个纯手工打造的世界：做任务、组队、打团。开源、web3，现在就能在线游玩。**
 
-**官方网站：https://worldofclaudecraft.com/**
+**官方网站：https://wildhaven.example/**
 
-[![CI](https://github.com/levy-street/world-of-claudecraft/actions/workflows/ci.yml/badge.svg)](https://github.com/levy-street/world-of-claudecraft/actions/workflows/ci.yml)
+[![CI](https://github.com/levy-street/wildhaven/actions/workflows/ci.yml/badge.svg)](https://github.com/levy-street/wildhaven/actions/workflows/ci.yml)
 [![TypeScript](https://img.shields.io/badge/TypeScript-7.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Three.js](https://img.shields.io/badge/Three.js-r165-000000?logo=threedotjs&logoColor=white)](https://threejs.org/)
 [![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
@@ -16,23 +16,23 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](../../LICENSE)
 [![Version](https://img.shields.io/badge/version-0.34.0-blue)](../../package.json)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.zh_CN.md)
-[![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.com/invite/worldofclaudecraft)
+[![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.com/invite/wildhaven)
 
 [English](../../README.md) · [Español](README.es.md) · [Español (España)](README.es_ES.md) · [Français](README.fr_FR.md) · [Français (Canada)](README.fr_CA.md) · [Italiano](README.it_IT.md) · [Deutsch](README.de_DE.md) · **简体中文** · [繁體中文](README.zh_TW.md) · [한국어](README.ko_KR.md) · [日本語](README.ja_JP.md) · [Português (Brasil)](README.pt_BR.md) · [Русский](README.ru_RU.md) · [Čeština](README.cs_CZ.md) · [Nederlands](README.nl_NL.md) · [Polski](README.pl_PL.md) · [Bahasa Indonesia](README.id_ID.md) · [Türkçe](README.tr_TR.md) · [Svenska](README.sv_SE.md) · [Tiếng Việt](README.vi_VN.md) · [Dansk](README.da_DK.md)
 
-[立即游玩](https://worldofclaudecraft.com/) · [搭建你自己的世界](#host-your-own-world-one-command) · [训练智能体](#train-an-agent-headless-rl) · [Web3](#web3) · [参与贡献](CONTRIBUTING.zh_CN.md) · [Discord](https://discord.com/invite/worldofclaudecraft)
+[立即游玩](https://wildhaven.example/) · [搭建你自己的世界](#host-your-own-world-one-command) · [训练智能体](#train-an-agent-headless-rl) · [Web3](#web3) · [参与贡献](CONTRIBUTING.zh_CN.md) · [Discord](https://discord.com/invite/wildhaven)
 
-![World of ClaudeCraft 标题画面](../../docs/screenshots/title-screen.jpg)
+![Wildhaven 标题画面](../../docs/screenshots/title-screen.jpg)
 
 </div>
 
 ## 这是什么
 
-World of ClaudeCraft 是一款完整的经典时代 MMO：你现在就能在浏览器里直接游玩，用一条命令自行搭建，甚至还能训练 AI 智能体来玩它。它免费、开源，并已在 [worldofclaudecraft.com](https://worldofclaudecraft.com/) 上线运行。
+Wildhaven 是一款完整的经典时代 MMO：你现在就能在浏览器里直接游玩，用一条命令自行搭建，甚至还能训练 AI 智能体来玩它。它免费、开源，并已在 [wildhaven.example](https://wildhaven.example/) 上线运行。
 
 同一个共享世界在三个地方运行，全部出自同一份游戏核心：
 
-- **权威多人服务器**，也就是你在 worldofclaudecraft.com 上游玩的实时世界，由 Postgres 支撑的账号共享同一个持久化服务器，
+- **权威多人服务器**，也就是你在 wildhaven.example 上游玩的实时世界，由 Postgres 支撑的账号共享同一个持久化服务器，
 - **离线浏览器世界**，一个来自开发服务器的本地单人 Sim，既方便开发，也方便从头到尾通读游戏核心，
 - **无头 RL 环境**，Python 通过 Gym 接口驱动真正的游戏。
 
@@ -55,8 +55,6 @@ World of ClaudeCraft 是一款完整的经典时代 MMO：你现在就能在浏�
 - **全平台原生应用**：面向 Windows、Linux 和 macOS 的已签名桌面安装包，支持自动更新和可选的 Steam 成就同步，另有 iOS 和 Android 构建，全部共用同一个浏览器客户端和同一个在线世界。
 - **适配你手上的机器**：画面预设和自动帧率调节器会用视觉丰富度换取流畅度，并受一条公平性规则约束，绝不会隐藏任何玩家需要据以反应的信息。
 - **无头 RL 环境**，提供 Gymnasium 绑定、奖励塑形和基准测试模式。
-- **$WOC 效用完全可选**：链接一个 Solana 钱包即可获得持有者标识、Daily Rewards，以及装饰商店里的折扣付款方式。游戏始终免费游玩且非托管。
-- **Season 1 Armory**：通过 WOC Store 收集装饰性武器皮肤，使用以法币、SOL、USDC 或 $WOC 购买的 Claudium。装饰品从不提供战斗力。
 
 ## 截图
 
@@ -77,7 +75,7 @@ World of ClaudeCraft 是一款完整的经典时代 MMO：你现在就能在浏�
 
 ## 开始游玩
 
-在浏览器中访问 [worldofclaudecraft.com](https://worldofclaudecraft.com/) 即可游玩，也可以安装 Windows、Linux、macOS、iOS 或 Android 的原生应用。所有客户端连接的都是同一个在线世界。
+在浏览器中访问 [wildhaven.example](https://wildhaven.example/) 即可游玩，也可以安装 Windows、Linux、macOS、iOS 或 Android 的原生应用。所有客户端连接的都是同一个在线世界。
 
 ### 在线，与其他玩家一起
 
@@ -96,9 +94,9 @@ npm run dev        # then open http://localhost:5173 and choose Play Offline
 
 ### 面向 Windows、Linux 和 macOS 的桌面应用
 
-World of ClaudeCraft 以完整桌面应用的形式在三大主流桌面平台上发布：已签名的 Windows 安装包、Linux 的 AppImage 与 deb 包，以及经过签名和公证的 macOS 通用构建。它们使用与浏览器相同的游戏客户端和在线世界，并带有原生打包和自动更新。
+Wildhaven 以完整桌面应用的形式在三大主流桌面平台上发布：已签名的 Windows 安装包、Linux 的 AppImage 与 deb 包，以及经过签名和公证的 macOS 通用构建。它们使用与浏览器相同的游戏客户端和在线世界，并带有原生打包和自动更新。
 
-在线登录只支持 Discord 和邮箱，与网页流程完全一致：邮箱/密码在应用内登录，而“使用 Discord 继续”会在你的默认浏览器中打开 `/desktop-login` 页面，该页面通过 `worldofclaudecraft://` 深度链接把一次性代码交回应用，应用再用它换取一个普通的 World of ClaudeCraft 会话令牌。
+在线登录只支持 Discord 和邮箱，与网页流程完全一致：邮箱/密码在应用内登录，而“使用 Discord 继续”会在你的默认浏览器中打开 `/desktop-login` 页面，该页面通过 `wildhaven://` 深度链接把一次性代码交回应用，应用再用它换取一个普通的 Wildhaven 会话令牌。
 
 ```bash
 npm run electron:dev          # Vite + Electron dev shell
@@ -113,7 +111,7 @@ npm run electron:build:steam  # SteamPipe depot layouts (in-app updater off)
 VITE_DESKTOP_API_ORIGIN=http://127.0.0.1:8787 npm run electron:dev
 ```
 
-为预发布构建覆盖生产 API 源，请使用 `VITE_DESKTOP_API_ORIGIN=https://dev.worldofclaudecraft.com`（这是一个构建时取值：它会被打进产物并写入打包后的应用，已安装的构建会忽略它作为运行时环境变量）。Steam 是一条分发渠道（同一个 Electron 产物，通过 SteamPipe 上传），桌面玩家可以链接一个 Steam 账号，把自己赚取的 deeds 同步为 Steam 成就；登录本身仍然只用邮箱和 Discord。完整的发布手册（签名、公证、发布自动更新、SteamPipe 仓库、服务器部署）见 `docs/desktop-release.md`。iOS 和 Android 通过 Capacitor 发布，有各自的手册 `docs/mobile-store-release.md`。
+为预发布构建覆盖生产 API 源，请使用 `VITE_DESKTOP_API_ORIGIN=https://dev.wildhaven.example`（这是一个构建时取值：它会被打进产物并写入打包后的应用，已安装的构建会忽略它作为运行时环境变量）。Steam 是一条分发渠道（同一个 Electron 产物，通过 SteamPipe 上传），桌面玩家可以链接一个 Steam 账号，把自己赚取的 deeds 同步为 Steam 成就；登录本身仍然只用邮箱和 Discord。完整的发布手册（签名、公证、发布自动更新、SteamPipe 仓库、服务器部署）见 `docs/desktop-release.md`。iOS 和 Android 通过 Capacitor 发布，有各自的手册 `docs/mobile-store-release.md`。
 
 <a id="host-your-own-world-one-command"></a>
 
@@ -180,28 +178,6 @@ env.close()
 
 协议和绑定的文档见 `headless/CLAUDE.md` 和 `python/CLAUDE.md`。
 
-<a id="web3"></a>
-
-## Web3
-
-World of ClaudeCraft 以 **$WOC**（我们在 Solana 上的社区代币）为核心，是 web3 原生的。连接一个 Solana 钱包，用一次签名把它链接到你的账号（非托管，无需批准任何交易），你只读的 $WOC 余额便会显示在 HUD 中，旁边还有一枚装饰性的持有者层级徽章。
-
-$WOC 在实时游戏中也有可选的效用：
-
-- **WOC Store**：用法币、SOL、USDC 或 $WOC 购买 Claudium，这是一种单向的装饰货币。$WOC 支付通道相较其他方式有折扣。
-- **Season 1 Armory**：花费 Claudium 购买装饰性武器皮肤收藏。商店购买不会增加属性或战斗力。
-- **Daily Rewards**：通过验证的合格持有者可以在每日抽奖和轮换任务中赚取积分，然后争夺每日奖池的一份。
-
-这些都不是游玩所必需的。钱包链接是可选且非托管的，没有付费变强，整个游戏即便从不连接钱包也能正常游玩。
-
-**$WOC 合约地址（Solana）：**
-
-```
-3WjLscH2JsXLEFJZRA9z8ti8yRGxWGKbqymPd7UicRth
-```
-
-关于代币的更多信息见 [worldofclaudecraft.com](https://worldofclaudecraft.com/)。
-
 ## 世界巡礼
 
 ### 九大职业
@@ -262,8 +238,6 @@ Delves 是一种独立的、可缩放的小队模式，供一到两名玩家游�
 - **公会**：公会宪章、成员名册、等级和公会聊天。
 - **Guide**：`/wiki` 上一个可搜索的站内百科，涵盖职业、生物、区域和 deeds，直接由实时游戏内容生成，因此绝不会与它所记录的世界脱节。
 - **The Vale Cup 与 Card Duel**：在 Eastbrook 以南 Sowfield 球场进行的 boarball，赛制从 1v1 到 5v5，还有由城里的 Card Master 主持的快节奏一对一卡牌游戏。
-- **Daily Rewards**：通过验证的 $WOC 持有者可以从每日抽奖和轮换任务中赚取排行榜积分，并从每日奖池自动获得派彩。
-- **WOC Store 与 Season 1 Armory**：用法币、SOL、USDC 或 $WOC 购买 Claudium，再把它花在纯装饰性的武器皮肤上。
 - **进食与饮水**：坐下即可恢复，受到伤害或站起会打断，而且没错，你可以一边吃一边喝。
 - **商人**会收购食物和饮水，并出售货真价实的白色装备，钱币以金、银、铜显示。
 - **个人银行**（the Gilded Strongbox）：每座据点城镇的银行管理员为每个角色保管一个金库，从 24 格起，用金钱扩容最多可达 96 格，另有在线验证邮箱、链接账号和推荐好友所赚取的额外格子。
@@ -387,7 +361,7 @@ node scripts/crypt_raid.mjs     # five bots clear the Hollow Crypt (ALLOW_DEV_CO
 
 ## 参与贡献
 
-我们欢迎各种形式的贡献：代码、翻译、错误报告和文档。先从 [CONTRIBUTING.zh_CN.md](CONTRIBUTING.zh_CN.md) 了解环境搭建，阅读[行为准则](../../CODE_OF_CONDUCT.md)，并在报告漏洞前查看 [SECURITY.md](../../SECURITY.md)。新来的？可以找带 [`good first issue`](https://github.com/levy-street/world-of-claudecraft/labels/good%20first%20issue) 标签的议题，开一个[议题](https://github.com/levy-street/world-of-claudecraft/issues/new/choose)，或者来 [Discord](https://discord.com/invite/worldofclaudecraft) 打个招呼。
+我们欢迎各种形式的贡献：代码、翻译、错误报告和文档。先从 [CONTRIBUTING.zh_CN.md](CONTRIBUTING.zh_CN.md) 了解环境搭建，阅读[行为准则](../../CODE_OF_CONDUCT.md)，并在报告漏洞前查看 [SECURITY.md](../../SECURITY.md)。新来的？可以找带 [`good first issue`](https://github.com/levy-street/wildhaven/labels/good%20first%20issue) 标签的议题，开一个[议题](https://github.com/levy-street/wildhaven/issues/new/choose)，或者来 [Discord](https://discord.com/invite/wildhaven) 打个招呼。
 
 活跃开发在最新的 `release/vX.Y.Z` 分支上进行。请自己核对它是哪一个，而不是想当然，然后从它拉出新分支，并把你的拉取请求指向它。切勿从 `main` 拉出分支或以 `main` 为目标，它只有在某个版本正式发布时才会收到对应的发布分支。[CONTRIBUTING.md](CONTRIBUTING.zh_CN.md) 里有一行命令，可以找出当前最新的那一个。
 
@@ -401,7 +375,7 @@ node scripts/crypt_raid.mjs     # five bots clear the Hollow Crypt (ALLOW_DEV_CO
 |---|---|---|
 | **源代码**，指除下面单列出来的媒体素材之外的全部内容 | [MIT](../../LICENSE) | 可以，商用也可以。 |
 | **媒体素材**：模型、纹理、HDRI、图标、音效、字体（大多在 `public/` 下） | 逐个素材而定，记录在 [CREDITS.md](../../CREDITS.md) 中 | 大多可以（多数为 CC0）。有些不行，见下文。 |
-| **名称与品牌**：“World of ClaudeCraft”、“Levy Street”、各类标志 | 未授权 | 不可以。 |
+| **名称与品牌**：“Wildhaven”、“Levy Street”、各类标志 | 未授权 | 不可以。 |
 
 **尽管 fork 它，搭建你自己的世界。这条路行得通，素材不会挡道。** 你看到的大部分内容都是 CC0 公共领域素材（KayKit、Quaternius、Kenney、ambientCG、Poly Haven），而我们自己生成的道具、生物、背景和界面音效也随项目一同发布，因此 fork 出来即可直接运行。你只是不能把它们单独抽出来，当作独立的美术作品出售。
 
@@ -410,9 +384,8 @@ node scripts/crypt_raid.mjs     # five bots clear the Hollow Crypt (ALLOW_DEV_CO
 - `public/ui/skills/` 下的 **CraftPix 职业技能图标**由 Levy Street 购买，**不得再分发**，如果你想随包发布，请自行购买许可；
 - **@jamiecypher 音效**采用 CC BY-NC 4.0，可以在署名的前提下非商业分享，但商业授权仅限本项目；
 - **商店与荣誉美术**（Season 1 Armory、Claudium 套装、专业技能美术集、Book of Deeds 图标、精英巨龙徽记）是委托制作的商业美术，**版权保留**；
-- **第三方品牌标识**（Twitch、X、Kick、YouTube、Discord、Solana、USDC）是各自所有者的商标，我们无权代为授权；
 - 少量**经许可使用的图标和录音**需要获得许可才能转交他人。
 
 [CREDITS.md](../../CREDITS.md) 是权威清单，为每个素材列出了再分发一栏。凡是在那里列出的素材，其许可优先于项目的 MIT 许可。这份登记表仍在完善中，因此某个媒体素材若不在其中，只说明它尚未被记录，而不是可以自由使用：在依赖它之前请先询问。源代码则正好相反，凡是没有被单列出来的内容都属于 MIT。
 
-我们的[服务条款](https://worldofclaudecraft.com/terms)适用于我们在 worldofclaudecraft.com 运营的托管游戏：账号、行为规范、虚拟物品。它们不会限制 MIT 许可赋予你在这份源代码上的权利。
+我们的[服务条款](https://wildhaven.example/terms)适用于我们在 wildhaven.example 运营的托管游戏：账号、行为规范、虚拟物品。它们不会限制 MIT 许可赋予你在这份源代码上的权利。

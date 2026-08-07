@@ -116,7 +116,6 @@ const REGISTRY_ONLY_PATHS = new Set<string>([
   '/api/epic/link',
   '/api/epic/status',
   '/api/ota/updates',
-  '/api/seeker/entitlement',
 ]);
 
 // Every legacy /api ladder row (dispatcher === main handleApi), minus the
@@ -258,11 +257,6 @@ describe('registry completeness: migrated baseline (public reads + auth + charac
     { method: 'POST', path: '/api/account/2fa/disable' },
     { method: 'GET', path: '/api/email/unsubscribe' },
     // The wallet / card / referral surface (server/wallet.ts).
-    { method: 'POST', path: '/api/wallet/link/challenge' },
-    { method: 'POST', path: '/api/wallet/link' },
-    { method: 'DELETE', path: '/api/wallet/link' },
-    { method: 'GET', path: '/api/wallet' },
-    { method: 'GET', path: '/api/woc/balance' },
     { method: 'POST', path: '/api/card' },
     { method: 'GET', path: '/api/referrals' },
     // The reports + telemetry surface (server/reports.ts). All POST; the
@@ -300,12 +294,6 @@ describe('registry completeness: migrated baseline (public reads + auth + charac
     { method: 'DELETE', path: '/api/github' },
     { method: 'POST', path: '/api/desktop-login/create' },
     { method: 'POST', path: '/api/desktop-login/exchange' },
-    { method: 'POST', path: '/api/desktop-wallet/create' },
-    { method: 'POST', path: '/api/desktop-wallet/claim' },
-    { method: 'POST', path: '/api/desktop-wallet/complete' },
-    { method: 'POST', path: '/api/desktop-wallet/result' },
-    { method: 'GET', path: '/api/seeker/entitlement' },
-    { method: 'POST', path: '/api/seeker/entitlement' },
     { method: 'GET', path: '/api/daily-rewards' },
     { method: 'POST', path: '/api/daily-rewards/spin' },
     { method: 'GET', path: '/api/daily-rewards/history' },
@@ -340,15 +328,9 @@ describe('registry completeness: migrated baseline (public reads + auth + charac
     { method: 'GET', path: '/api/claudium/balance' },
     { method: 'GET', path: '/api/claudium/price/:rail' },
     { method: 'GET', path: '/api/claudium/skus' },
-    { method: 'GET', path: '/api/claudium/native/rails' },
-    { method: 'GET', path: '/api/claudium/native/price/:rail' },
-    { method: 'GET', path: '/api/claudium/native/balance/sol/:owner' },
-    { method: 'GET', path: '/api/claudium/native/balance/usdc/:owner' },
     { method: 'GET', path: '/api/claudium/store' },
     { method: 'GET', path: '/api/claudium/history' },
     { method: 'POST', path: '/api/claudium/purchase' },
-    { method: 'POST', path: '/api/claudium/native/quote' },
-    { method: 'POST', path: '/api/claudium/native/confirm' },
     { method: 'POST', path: '/api/claudium/spend' },
     // v0.20.0 third slice: the map editor surface, migrated in-merge. The custom
     // map family (server/maps_routes.ts) and the uploaded-GLB family
@@ -585,8 +567,8 @@ describe('registry completeness: oauth + internal surfaces (server/oauth.ts, ser
     // family below, plus the two registry-only rows (POST
     // /internal/discord/flex-batch and GET /internal/discord/outbox), which have
     // no legacy ladder arm by design and so are the internal rows with no twin.
-    expect(internalLadder.length).toBe(21);
-    expect(opsFamilyRows.length).toBe(7);
+    expect(internalLadder.length).toBe(20);
+    expect(opsFamilyRows.length).toBe(6);
   });
 
   it('registers exactly the oauth POST ladder routes', () => {

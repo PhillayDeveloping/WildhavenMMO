@@ -1,11 +1,11 @@
-<!-- World of ClaudeCraft, project-root CLAUDE.md. Keep this lean (about 200 lines)
+<!-- Wildhaven, project-root CLAUDE.md. Keep this lean (about 200 lines)
      and strictly repo-wide. Area-specific guidance lives in each subdirectory's own
      CLAUDE.md (src/sim/, src/render/, server/, ...), which load on demand when you
      open files there, so do NOT duplicate them here. Anchor guidance on stable paths,
      symbols, and pinned tests, never on counts that rot. HTML comments like this are
      stripped before load (zero tokens). No em dashes, en dashes, or emojis. -->
 
-# World of ClaudeCraft
+# Wildhaven
 
 A classic-style micro-MMO **and** a headless reinforcement-learning
 environment, both driven by one deterministic TypeScript simulation core.

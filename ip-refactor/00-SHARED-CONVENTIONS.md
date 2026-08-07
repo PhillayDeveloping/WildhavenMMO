@@ -6,7 +6,7 @@ decisions). This file holds the rules identical across all sessions; the per-ses
 carry only what is unique to their slice. Do not re-derive these.
 
 ## What the repo is (one sim, three hosts, one i18n seam)
-World of ClaudeCraft is a classic-style micro-MMO AND a headless RL env, all driven by one
+Wildhaven is a classic-style micro-MMO AND a headless RL env, all driven by one
 deterministic TypeScript sim core. The EXACT same `src/sim/` code runs offline (browser), on
 the authoritative server (`server/`), and headless (`headless/`). Behavior is identical
 everywhere and must stay so — this job changes NONE of it.
@@ -21,7 +21,7 @@ everywhere and must stay so — this job changes NONE of it.
 ## Branch & checkout
 - Branch: `feature/ip-pivot`, forked off `release/v0.18.0`. Confirm with
   `git branch --show-current` and `git worktree list` — this project uses many worktrees and
-  paths shift between sessions. Base checkout: `world-of-claudecraft/world-of-claudecraft`.
+  paths shift between sessions. Base checkout: `wildhaven/wildhaven`.
 - If `node_modules` is missing in a worktree, run `npm ci` FIRST.
 - Shared checkout: commit with EXPLICIT paths, never `git add -A` (the regen step writes many
   generated files; stage only the ones your slice owns).

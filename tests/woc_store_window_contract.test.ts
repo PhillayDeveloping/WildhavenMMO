@@ -181,13 +181,14 @@ describe('WOC Store window contract', () => {
       hud.indexOf('// Spellbook window painter'),
     );
     expect(claudiumDeps).toContain("root: () => $('#claudium-window')");
-    expect(claudiumDeps).toContain('walletState: () => walletConnectionView()');
     expect(claudiumDeps).toContain('onVisibilityChange: () => this.syncAnyWindowOpenState()');
-    const walletUiSubscription = hud.slice(
-      hud.indexOf('onWalletUiChange(() => {'),
-      hud.indexOf("$('#pf-name').textContent"),
-    );
-    expect(walletUiSubscription).toContain('this.claudiumWindow.onWalletChanged();');
+    // Card payment through Stripe is the only rail, so the window takes no wallet
+    // state and there is no wallet-UI subscription to repaint it. Asserted ABSENT
+    // rather than simply unlisted: either one coming back would mean a chain rail
+    // came back with it.
+    expect(claudiumDeps).not.toContain('walletState');
+    expect(hud).not.toContain('onWalletUiChange');
+    expect(hud).not.toContain('onWalletChanged');
     // No conditional GPU promotion on the store windows: the old
     // body.store-stack-open will-change rule dropped the promotion in the same
     // frame a window's inline display flipped, racing Chromium's layer
@@ -232,7 +233,11 @@ describe('WOC Store window contract', () => {
   });
 
   it('keeps the store and Claudium out of native builds while gating Daily Rewards by wallet capability', () => {
-    expect(main).toContain('dailyRewardsEnabled: NATIVE_APP ? await walletCapabilityReady : true');
+    // Daily Rewards is open to every account now (a moderation ban is the only
+    // lock), so the feature flag is an unconditional true rather than a wallet
+    // capability probe gated on the native build.
+    expect(main).toContain('dailyRewardsEnabled: true');
+    expect(main).not.toContain('walletCapabilityReady');
     expect(main).toContain('devCommandsEnabled: import.meta.env.DEV');
     const economyWiring = main.slice(
       main.indexOf('if (!NATIVE_APP) {', main.indexOf('const claudiumHooks')),
@@ -278,12 +283,20 @@ describe('WOC Store window contract', () => {
     expect(storeSnapshot).not.toContain('economy.nativePrice(');
   });
 
-  it('distinguishes a complete Claudium pack refresh from typed economy fallbacks', () => {
+  it('forwards the economy pack snapshot verbatim, with no locally synthesised fallback', () => {
+    // One service call, three fields passed straight through. The branch this
+    // used to assert (a typed available:false fallback assembled here) existed to
+    // paper over the native rails, which no longer exist: with only the card rail
+    // left, the service answer IS the answer, and re-deriving availability in the
+    // client would let the window disagree with the service about whether the
+    // store is open.
     const hook = main.slice(main.indexOf('snapshot: async () =>'));
     const snapshot = hook.slice(0, hook.indexOf('buy: async'));
     expect(snapshot).toContain('economy.packSnapshot()');
-    expect(snapshot).toContain('if (!pack.available)');
-    expect(snapshot).toContain('available: false');
-    expect(snapshot).toContain('available: true');
+    expect(snapshot).toContain('available: pack.available');
+    expect(snapshot).toContain('balance: pack.balance');
+    expect(snapshot).toContain('skus: pack.skus');
+    expect(snapshot).not.toContain('available: false');
+    expect(snapshot).not.toContain('available: true');
   });
 });

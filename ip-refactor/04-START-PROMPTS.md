@@ -41,7 +41,7 @@ Briefs: `G0-deip-gates.md`, `G1-name-map.md`
 
 ```
 You are executing a session of the IP Pivot refactor - Spine (sequential on feature/ip-pivot).
-Working directory: world-of-claudecraft/world-of-claudecraft  (branch feature/ip-pivot; deps installed)
+Working directory: wildhaven/wildhaven  (branch feature/ip-pivot; deps installed)
 
 SESSION BRIEF (the only line I change each session):
   woc-refactor/ip-refactor/G0-deip-gates.md
@@ -61,7 +61,7 @@ Briefs: `V1-abilities.md`, `V2-talents.md`
 
 ```
 You are executing a session of the IP Pivot refactor - Vocab track.
-Working directory: world-of-claudecraft/wt-ip-vocab  (branch track/ip-vocab off feature/ip-pivot; deps installed)
+Working directory: wildhaven/wt-ip-vocab  (branch track/ip-vocab off feature/ip-pivot; deps installed)
 
 SESSION BRIEF (the only line I change each session):
   woc-refactor/ip-refactor/V1-abilities.md
@@ -77,7 +77,7 @@ Briefs: `C1-creatures-core.md`, `C2-warlock-pets.md`
 
 ```
 You are executing a session of the IP Pivot refactor - Creatures track.
-Working directory: world-of-claudecraft/wt-ip-creatures  (branch track/ip-creatures off feature/ip-pivot; deps installed)
+Working directory: wildhaven/wt-ip-creatures  (branch track/ip-creatures off feature/ip-pivot; deps installed)
 
 SESSION BRIEF (the only line I change each session):
   woc-refactor/ip-refactor/C1-creatures-core.md
@@ -93,7 +93,7 @@ Briefs: `W1-items.md`, `W2-mob-mechanic-names.md`
 
 ```
 You are executing a session of the IP Pivot refactor - World track.
-Working directory: world-of-claudecraft/wt-ip-world  (branch track/ip-world off feature/ip-pivot; deps installed)
+Working directory: wildhaven/wt-ip-world  (branch track/ip-world off feature/ip-pivot; deps installed)
 
 SESSION BRIEF (the only line I change each session):
   woc-refactor/ip-refactor/W1-items.md
@@ -109,7 +109,7 @@ Briefs: `T1-debrand-text.md`
 
 ```
 You are executing a session of the IP Pivot refactor - Text track.
-Working directory: world-of-claudecraft/wt-ip-text  (branch track/ip-text off feature/ip-pivot; deps installed)
+Working directory: wildhaven/wt-ip-text  (branch track/ip-text off feature/ip-pivot; deps installed)
 
 SESSION BRIEF (the only line I change each session):
   woc-refactor/ip-refactor/T1-debrand-text.md
@@ -125,7 +125,7 @@ Briefs: `Z1-integrate-finale.md`
 
 ```
 You are executing a session of the IP Pivot refactor - Finale.
-Working directory: world-of-claudecraft/world-of-claudecraft  (branch feature/ip-pivot; deps installed; all four tracks already merged back)
+Working directory: wildhaven/wildhaven  (branch feature/ip-pivot; deps installed; all four tracks already merged back)
 
 SESSION BRIEF (the only line I change each session):
   woc-refactor/ip-refactor/Z1-integrate-finale.md
@@ -137,7 +137,7 @@ Per its Step 0 (00-SHARED-CONVENTIONS.md): read 02-WORKING-MEMORY.md + 00-SHARED
 
 ## Integration (you run this after a track session lands green on its track branch)
 ```bash
-REPO=world-of-claudecraft/world-of-claudecraft
+REPO=wildhaven/wildhaven
 cd "$REPO"
 git merge --no-ff track/ip-vocab          # the track whose session just landed
 npm run i18n:gen && npm run i18n:hash -- --write && npm run wiki:content   # re-run generators on the INTEGRATED tree (never hand-merge artifacts)

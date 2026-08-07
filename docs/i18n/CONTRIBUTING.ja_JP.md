@@ -4,11 +4,11 @@
 
 </div>
 
-# World of ClaudeCraft への貢献
+# Wildhaven への貢献
 
-まずは、ここに来てくれてありがとうございます。World of ClaudeCraft は、クラシックな MMO を愛する人々のコミュニティによって作られています。そして、大きなものでも小さなものでも、すべての貢献がこのゲームをより良くしてくれます。誤字の修正、ゲームの翻訳、バグの報告、まったく新しいダンジョンの構築。そのどれもが大切な貢献であり、あなたを心から歓迎します。
+まずは、ここに来てくれてありがとうございます。Wildhaven は、クラシックな MMO を愛する人々のコミュニティによって作られています。そして、大きなものでも小さなものでも、すべての貢献がこのゲームをより良くしてくれます。誤字の修正、ゲームの翻訳、バグの報告、まったく新しいダンジョンの構築。そのどれもが大切な貢献であり、あなたを心から歓迎します。
 
-このガイドは、開発環境のセットアップと、最初の貢献をスムーズに進めるためのものです。専門家である必要はありません。わからないことがあれば、[Discord](https://discord.com/invite/worldofclaudecraft) で気軽に聞いてください。誰かが喜んで力になってくれます。
+このガイドは、開発環境のセットアップと、最初の貢献をスムーズに進めるためのものです。専門家である必要はありません。わからないことがあれば、[Discord](https://discord.com/invite/wildhaven) で気軽に聞いてください。誰かが喜んで力になってくれます。
 
 参加にあたっては、[行動規範](../../CODE_OF_CONDUCT.md)に従うことに同意したものとみなされます。
 
@@ -17,11 +17,11 @@
 ここには、誰にでも活躍できる場所があります。
 
 - **コード。** バグを直したり、機能を追加したり、パフォーマンスを改善したり。
-  [`good first issue`](https://github.com/levy-street/world-of-claudecraft/labels/good%20first%20issue)
-  や [`help wanted`](https://github.com/levy-street/world-of-claudecraft/labels/help%20wanted)
+  [`good first issue`](https://github.com/levy-street/wildhaven/labels/good%20first%20issue)
+  や [`help wanted`](https://github.com/levy-street/wildhaven/labels/help%20wanted)
   のラベルが付いた issue は、始めるのにぴったりです。
 - **翻訳。** ある言語を改善したり完成させたりして、世界中のプレイヤーの助けになりましょう。下の[ゲームの翻訳](#translating-the-game)を参照してください。これは最も手軽に始められ、しかも影響の大きい貢献のひとつです。
-- **バグ報告や機能のアイデア。** [issue](https://github.com/levy-street/world-of-claudecraft/issues/new/choose) を立ててください。わかりやすいバグ報告は、それ自体が立派な貢献です。
+- **バグ報告や機能のアイデア。** [issue](https://github.com/levy-street/wildhaven/issues/new/choose) を立ててください。わかりやすいバグ報告は、それ自体が立派な貢献です。
 - **ドキュメント。** このガイドのような文書、README、`docs/` にある設計ドキュメントは、いつでも改善の余地があります。
 - **プレイテストとフィードバック。** 実際にゲームを遊んで、違和感のあるところを教えてください。アイデアは Discord で共有してください。
 
@@ -33,8 +33,8 @@
 
 ```bash
 # 1. Fork the repo on GitHub, then clone your fork
-git clone https://github.com/<your-username>/world-of-claudecraft.git
-cd world-of-claudecraft
+git clone https://github.com/<your-username>/wildhaven.git
+cd wildhaven
 
 # 2. Install pnpm once (same command on macOS, Linux, Windows)
 #    Match the packageManager pin in package.json (today: 10.34.5).
@@ -138,7 +138,7 @@ pnpm run gate
 
 ## ローカライズ
 
-World of ClaudeCraft は多くの言語で提供されています。プレイヤーに見えるすべての文字列は翻訳キーでなければなりませんが、機能を追加する貢献者は通常、英語の原文だけを追加します。
+Wildhaven は多くの言語で提供されています。プレイヤーに見えるすべての文字列は翻訳キーでなければなりませんが、機能を追加する貢献者は通常、英語の原文だけを追加します。
 
 - ユーザー向けのテキストはすべて `t()` キーです。新しい英語のテキストは、[`src/ui/i18n.catalog/`](../../src/ui/i18n.catalog/) 配下の該当するドメイン別モジュールに追加し（新しい HUD の枠回りは `hud_chrome.ts` です）、`t('dotted.key', values)` で描画してください。機能の PR では英語だけで完全に正しいやり方です。他のロケールはリリース時にメンテナーが埋めるので、`src/ui/i18n.locales/` のオーバーレイを編集する必要はなく、そこに英語のプレースホルダーや `// TODO` を残すこともありません。例外は M16 で、語数の多い新しい英語の値は、[`src/ui/CLAUDE.md`](../../src/ui/CLAUDE.md) に記載された 5 つの非ラテン言語の翻訳も同じ変更で必要になります。
 - 数値、金額、日付、単位、パーセンテージは、手作業で文字列を組み立てるのではなく、フォーマッター（`formatNumber`、`formatMoney`、`formatDateTime`、`Intl`）を通してください。
@@ -157,30 +157,30 @@ World of ClaudeCraft は多くの言語で提供されています。プレイ�
 2. 既存の翻訳を改善したり、ぎこちなく感じる箇所を埋めたりします。
 3. `pnpm run i18n:gen` を実行し、再生成されたバンドルをオーバーレイの編集と一緒にコミットしてから、ローカライズのスイート（`npx vitest run tests/i18n_completeness.test.ts tests/localization_coverage.test.ts`）を実行して PR を開いてください。オーバーレイは意図的に疎な構造になっているため、型チェックだけではキーの漏れはわかりません。
 
-まったく新しいロケールを提案したい場合や、トーンや用語について相談したい場合は、[Discord](https://discord.com/invite/worldofclaudecraft) でスレッドを立ててください。設定のつなぎ込みをお手伝いします。ネイティブの方や流暢に話せる方は、とりわけ歓迎します。良い翻訳は、世界中のプレイヤーにとって、このゲームを我が家のように感じさせてくれます。
+まったく新しいロケールを提案したい場合や、トーンや用語について相談したい場合は、[Discord](https://discord.com/invite/wildhaven) でスレッドを立ててください。設定のつなぎ込みをお手伝いします。ネイティブの方や流暢に話せる方は、とりわけ歓迎します。良い翻訳は、世界中のプレイヤーにとって、このゲームを我が家のように感じさせてくれます。
 
 ## バグの報告と機能のリクエスト
 
-[issue テンプレート](https://github.com/levy-street/world-of-claudecraft/issues/new/choose)を使ってください。
+[issue テンプレート](https://github.com/levy-street/wildhaven/issues/new/choose)を使ってください。
 
-- **バグ報告。** まず[既存の issue](https://github.com/levy-street/world-of-claudecraft/issues) を検索して重複を避け、そのうえで再現手順、期待していた動作、実際に起きたこと、そして環境（オフラインかオンラインか、ブラウザ、デスクトップかモバイルか）を書いてください。
+- **バグ報告。** まず[既存の issue](https://github.com/levy-street/wildhaven/issues) を検索して重複を避け、そのうえで再現手順、期待していた動作、実際に起きたこと、そして環境（オフラインかオンラインか、ブラウザ、デスクトップかモバイルか）を書いてください。
 - **機能リクエスト。** 解決策そのものだけでなく、あなたが解決しようとしている問題を説明してください。背景がわかると、私たちは正しいものを設計しやすくなります。
 - **セキュリティの脆弱性。** 公開の issue は立てないでください。[SECURITY.md](../../SECURITY.md) に従って非公開で報告していただければ、修正と公表について一緒に進めます。
 
 ## 助けが必要なとき
 
-行き詰まったとき、あるいはただ挨拶したいときは、[コミュニティの Discord](https://discord.com/invite/worldofclaudecraft) に参加してください。どんなに小さな質問でも構いませんし、新しい貢献者はいつでも歓迎です。
+行き詰まったとき、あるいはただ挨拶したいときは、[コミュニティの Discord](https://discord.com/invite/wildhaven) に参加してください。どんなに小さな質問でも構いませんし、新しい貢献者はいつでも歓迎です。
 
 ## ライセンス
 
 コードを提供することによって、あなたのコードの貢献がプロジェクトの [MIT ライセンス](../../LICENSE)（プロジェクト全体を覆うものと同じライセンス）のもとでライセンスされることに同意したものとみなされます。
 
-MIT ライセンスは書かれているとおりの意味です。誰でも、商用かどうかを問わず、このコードを使用、改変、再配布できます。私たちの[利用規約](https://worldofclaudecraft.com/terms)は、worldofclaudecraft.com で私たちが運営するホスト版のゲーム（アカウント、行動、仮想アイテム）を対象とするものであり、MIT ライセンスがあなたや他の誰かにこのコードについて与える権利を制限するものではありません。「World of ClaudeCraft」および「Levy Street」の名称とブランドは MIT ライセンスの対象外です。
+MIT ライセンスは書かれているとおりの意味です。誰でも、商用かどうかを問わず、このコードを使用、改変、再配布できます。私たちの[利用規約](https://wildhaven.example/terms)は、wildhaven.example で私たちが運営するホスト版のゲーム（アカウント、行動、仮想アイテム）を対象とするものであり、MIT ライセンスがあなたや他の誰かにこのコードについて与える権利を制限するものではありません。「Wildhaven」および「Levy Street」の名称とブランドは MIT ライセンスの対象外です。
 
 オリジナルの創作アセット（録音された音、音楽、アート、およびそれに類する著作物）は例外です。あなたが自分で制作したオリジナルのアセットを提供する場合、著作権を保持したまま、任意のライセンス（たとえば CC BY-NC 4.0）で提供することもできます。ただし、次の条件を満たす必要があります。
 
 - ライセンス、それが対象とするアセットのパス、そしてあなたのクレジットが、同じプルリクエストの中で [CREDITS.md](../../CREDITS.md) のライセンス表に記録されること。
-- 公式リリースやゲーム内ストアを含め、World of ClaudeCraft においてそのアセットを商用利用するための、恒久的かつロイヤリティ不要の許諾が、少なくとも Levy Street に与えられること。
+- 公式リリースやゲーム内ストアを含め、Wildhaven においてそのアセットを商用利用するための、恒久的かつロイヤリティ不要の許諾が、少なくとも Levy Street に与えられること。
 
 CREDITS.md の表に記載されたアセットについては、そこに記録されたライセンスがプロジェクト既定の MIT ライセンスに優先します。
 
@@ -190,4 +190,4 @@ CREDITS.md の表に記載されたアセットについては、そこに記録
 
 ---
 
-World of ClaudeCraft への貢献、ありがとうございます。あなたが私たちと一緒に何を作り上げてくれるのか、楽しみで仕方ありません。
+Wildhaven への貢献、ありがとうございます。あなたが私たちと一緒に何を作り上げてくれるのか、楽しみで仕方ありません。

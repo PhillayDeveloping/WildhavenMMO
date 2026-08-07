@@ -1,5 +1,5 @@
 // Capture matched in-game evidence and optional A/B performance measurements for
-// the Eastbrook Grand Armoury from a running World of ClaudeCraft client.
+// the Eastbrook Grand Armoury from a running Wildhaven client.
 //
 // Required environment variables:
 //   GAME_URL        Base URL of the running worktree, such as http://127.0.0.1:5184

@@ -400,7 +400,7 @@ export const de_DE: EnTranslations = {
       "error": "Tägliche Belohnungen konnten nicht geladen werden.",
       "disabled": "Tägliche Belohnungen sind derzeit deaktiviert. Neuigkeiten zu dieser Funktion geben wir im Discord-Kanal bekannt.",
       "intro": "Halte genügend WOC in deiner verifizierten Wallet, um tägliche Belohnungen freizuschalten. Verdiene Punkte mit einem täglichen Dreh und wechselnden Aufgaben und klettere dann in der täglichen Rangliste nach oben, um einen Anteil am Preispool zu erhalten.",
-      "disclaimer": "Der WOC-Kurs kann sich schnell bewegen. Wir empfehlen, mehr als das Minimum von 20 USD zu halten, damit gewöhnliche Kursschwankungen dich nicht aussperren. Dies ist keine Finanzberatung.",
+      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
       "prize": "Preispool",
       "reset": "Zurücksetzen",
       "endsIn": "Endet in {time}",
@@ -409,9 +409,6 @@ export const de_DE: EnTranslations = {
       "remainingHoursMinutes": "{hours}Std {minutes}Min",
       "remainingDaysHours": "{days} T {hours} Std",
       "score": "Punktzahl",
-      "walletValue": "Wallet-Wert (WOC)",
-      "usd": "{amount} USD",
-      "sol": "{amount} SOL",
       "unknown": "Unbekannt",
       "spinTitle": "Täglicher Dreh",
       "spinDialogTitle": "Täglicher Belohnungsdreh",
@@ -436,17 +433,8 @@ export const de_DE: EnTranslations = {
       "history": "Bisherige Gewinner",
       "noLeaders": "Noch keine Punkte.",
       "noHistory": "Noch keine Auszahlungen.",
-      "walletConnectTitle": "Wallet verifizieren",
-      "walletConnectBody": "Verifiziere eine Solana-Wallet mit WOC, um tägliche Belohnungen freizuschalten.",
-      "walletConnectButton": "Wallet verifizieren",
-      "walletHoldTitle": "WOC halten",
-      "walletHoldBody": "Halte mindestens {amount} USD in WOC, um tägliche Belohnungen freizuschalten.",
-      "walletPriceBody": "Der WOC-Preis ist derzeit nicht verfügbar. Schau bald wieder vorbei.",
       "reason": {
         "eligible": "Belohnungen freigeschaltet.",
-        "no_wallet": "Verbinde eine Wallet mit mindestens 20 USD in WOC.",
-        "under_minimum": "Deine Wallet liegt unter dem Mindestwert von 20 USD in WOC.",
-        "price_unavailable": "Der WOC-Preis ist nicht verfügbar, Belohnungen sind vorübergehend gesperrt.",
         "banned": "Du bist von den täglichen Belohnungen ausgeschlossen. Grund: {reason}",
         "bannedUntil": "Du bist noch für {remaining} von den täglichen Belohnungen ausgeschlossen. Der Zugang wird am {until} wiederhergestellt. Grund: {reason}"
       }
@@ -472,18 +460,6 @@ export const de_DE: EnTranslations = {
       "armoryEyebrow": "Saison 1",
       "armoryTitle": "Die Waffenkammer",
       "armoryBody": "Limitierte Waffenskins aus der Waffenkammer von Saison 1. Accountweit, rein kosmetisch und für alle in deiner Umgebung sichtbar.",
-      "wallet": {
-        "title": "Solana-Wallet",
-        "unlinked": "Verbinde eine Wallet-App und unterschreibe einmal, um ihre öffentliche Adresse mit deinem WoC-Konto zu verknüpfen. Wir erhalten niemals deine Wiederherstellungsphrase oder deinen privaten Schlüssel.",
-        "connectedUnlinked": "Die Wallet-App ist mit diesem Browser verbunden, aber ihre öffentliche Adresse ist noch nicht mit deinem WoC-Konto verknüpft.",
-        "linkedDisconnected": "Deine öffentliche Adresse ist verknüpft. Verbinde diese Wallet-App erneut, wenn du mit SOL oder WOC bezahlen möchtest.",
-        "linkedConnected": "Deine verknüpfte Wallet-App ist verbunden und bereit für SOL- oder WOC-Käufe.",
-        "mismatched": "Eine andere Wallet ist verbunden. Verifiziere sie, um die verknüpfte Adresse zu ersetzen, oder verbinde die verknüpfte Wallet erneut.",
-        "connect": "Wallet verbinden",
-        "verify": "Verifizieren und verknüpfen",
-        "reconnect": "Wallet erneut verbinden",
-        "manage": "Wallet verwalten"
-      },
       "collectionLine": "Kollektion: {collection}",
       "collections": {
         "guildmark": "Gildenzeichen",
@@ -685,20 +661,11 @@ export const de_DE: EnTranslations = {
       "loading": "Claudium wird geladen...",
       "balanceLabel": "Guthaben",
       "balanceUnit": "{amount} Claudium",
-      "solBalance": "SOL: {amount}",
-      "usdcBalance": "USDC: {amount}",
-      "wocBalance": "WOC: {amount}",
       "unavailable": "Der Claudium-Shop ist derzeit nicht verfügbar. Dein Guthaben und deine Käufe bleiben davon unberührt. Bitte versuche es gleich noch einmal.",
       "disclosure": "Claudium ist eine nicht rücktauschbare Spielwährung: Du kaufst es mit echtem Geld und gibst es für kosmetische Inhalte aus. Es kann weder eingelöst noch übertragen oder ausgezahlt werden.",
       "buyTitle": "Claudium kaufen",
       "railLabel": "Zahlungsart",
       "railStripe": "Karte",
-      "railSol": "SOL",
-      "railUsdc": "USDC",
-      "railWoc": "WOC",
-      "railWocDiscount": "{percent}% Rabatt",
-      "railWocUnavailable": "WOC-Preise sind derzeit nicht verfügbar.",
-      "railNativeUnavailable": "SOL/WOC deaktiviert.",
       "amountLabel": "Menge",
       "showAmounts": "Alle Claudium-Mengen anzeigen",
       "hideAmounts": "Zusätzliche Claudium-Mengen ausblenden",
@@ -718,10 +685,7 @@ export const de_DE: EnTranslations = {
       "checkoutPending": "Die Transaktion wird verarbeitet. Bestätige sie in deiner Wallet und lass dieses Fenster geöffnet.",
       "checkoutPendingButton": "Wird verarbeitet",
       "checkoutFailed": "Der Bezahlvorgang konnte nicht geladen werden. Bitte versuche es erneut.",
-      "checkoutUnavailable": "Dieser Claudium-Kauf ist derzeit nicht verfügbar.",
-      "checkoutWalletRequired": "Verbinde eine Solana-Wallet, bevor du Claudium mit Kryptowährung kaufst.",
-      "checkoutWalletUnsupported": "Diese Wallet kann Solana-Transaktionen weder signieren noch senden.",
-      "checkoutNotSettled": "Die Transaktion wurde gesendet, aber das Claudium wurde noch nicht gutgeschrieben. Bitte versuche es gleich noch einmal."
+      "checkoutUnavailable": "Dieser Claudium-Kauf ist derzeit nicht verfügbar."
     },
     "theme": {
       "preset": "Oberflächendesign",
@@ -843,8 +807,8 @@ export const de_DE: EnTranslations = {
     },
     "nativeUpdate": {
       "title": "Update verfügbar",
-      "body": "Eine neue Version von World of ClaudeCraft ist verfügbar. Aktualisiere jetzt für die neuesten Fehlerbehebungen und Verbesserungen.",
-      "bodyWithVersion": "Version {version} von World of ClaudeCraft ist verfügbar. Aktualisiere jetzt für die neuesten Fehlerbehebungen und Verbesserungen.",
+      "body": "Eine neue Version von Wildhaven ist verfügbar. Aktualisiere jetzt für die neuesten Fehlerbehebungen und Verbesserungen.",
+      "bodyWithVersion": "Version {version} von Wildhaven ist verfügbar. Aktualisiere jetzt für die neuesten Fehlerbehebungen und Verbesserungen.",
       "notNow": "Jetzt nicht",
       "update": "Aktualisieren"
     },
@@ -1196,8 +1160,6 @@ export const de_DE: EnTranslations = {
       "clickFeedback": "Klickmarkierung",
       "lockCursorOnRotate": "Cursor beim Drehen sperren",
       "keybindHelpLockCursorOnRotate": "Hält den Mauszeiger im Fenster, während Ihr zum Drehen der Kamera zieht, damit er nicht den Bildschirmrand erreicht oder auf einen anderen Monitor wandert. Schaltet dies aus, wenn Ihr einen freien Cursor bevorzugt.",
-      "showWalletOnCharacterScreen": "Wallet auf dem Charakterbildschirm anzeigen",
-      "showWalletOnPlayerCard": "Wallet auf der Spielerkarte anzeigen",
       "showDevBadges": "Entwicklerabzeichen anzeigen",
       "showOwnNameplate": "Eigene Namensplakette anzeigen",
       "showPlayerNameplates": "Spieler-Namensplaketten anzeigen",
@@ -1373,9 +1335,7 @@ export const de_DE: EnTranslations = {
         "aetherRush": "Aether-Ansturm"
       }
     },
-    "playerCard": {
-      "showWalletBadge": "Wallet-Abzeichen anzeigen"
-    },
+    "playerCard": {},
     "landing": {
       "highContrast": "Hoher Kontrast",
       "highContrastAria": "Hintergrund mit hohem Kontrast umschalten: deaktiviert den bewegten Trailer, damit der Text des Startbildschirms lesbar bleibt",
@@ -1564,7 +1524,6 @@ export const de_DE: EnTranslations = {
       "loggedOutPrompt": "Meldet Euch an, um Euer Konto zu verwalten.",
       "memberSince": "Mitglied seit {date}",
       "sectionSettings": "Kontoeinstellungen",
-      "sectionWallet": "$WOC-Wallet",
       "sectionCharacters": "Charaktere",
       "sectionDanger": "Gefahrenzone",
       "changePassword": "Passwort ändern",
@@ -1591,8 +1550,6 @@ export const de_DE: EnTranslations = {
       "charactersSummary": "Verwaltet Eure Charaktere und betretet die Welt.",
       "charactersCount": "Charaktere: {count}",
       "goToCharacters": "Charaktere anzeigen",
-      "walletSummary": "Verifiziert ein Solana-Wallet, um Inhaber-Flair auf Eurer Spielerkarte anzuzeigen.",
-      "manageWallet": "Wallet verwalten",
       "deactivate": "Konto deaktivieren",
       "deactivateWarning": "Die Deaktivierung sperrt Euer Konto und meldet Euch überall ab. Wendet Euch an einen Administrator, um es wiederherzustellen. Bestätigt durch erneute Eingabe von Benutzernamen und Passwort.",
       "confirmUsername": "Gebt zur Bestätigung Euren Benutzernamen ein",
@@ -2003,7 +1960,7 @@ export const de_DE: EnTranslations = {
     },
     "discord": {
       "title": "Discord",
-      "panelTitle": "World of ClaudeCraft",
+      "panelTitle": "Wildhaven",
       "open": "Discord",
       "close": "Schließen",
       "keybind": "Discord-Panel",
@@ -2293,11 +2250,9 @@ export const de_DE: EnTranslations = {
       "bonusStatusEarned": "+{count}",
       "bonusSourceEmail": "E-Mail-Adresse bestätigt",
       "bonusSourceDiscord": "Discord verknüpft",
-      "bonusSourceWallet": "Wallet verknüpft",
       "bonusSourceReferral": "Geworbene Freunde",
       "bonusAdvertEmail": "Bestätige deine E-Mail-Adresse und erhalte 2 Fächer.",
       "bonusAdvertDiscord": "Verknüpfe dein Discord-Konto und erhalte 2 Fächer.",
-      "bonusAdvertWallet": "Verknüpfe eine Wallet und erhalte 2 Fächer.",
       "bonusReferralProgress": "{count}/{cap}",
       "bonusReferralExplainer": "Lade einen Freund ein: Erreicht er Stufe 10, erhaltet ihr beide 2 Fächer, bis zu 5 Freunde.",
       "bonusSectionAria": "Bonus-Bankfächer und wie du mehr davon verdienst",
@@ -3147,26 +3102,13 @@ export const de_DE: EnTranslations = {
       "account_taken": "Dieses Epic-Konto ist bereits mit einem anderen Konto verknüpft.",
       "upstream": "Epic hat nicht geantwortet. Versuche es gleich noch einmal."
     },
-    "wallet": {
-      "handoff_invalid": "Diese Wallet-Autorisierung ist abgelaufen oder konnte nicht verifiziert werden. Bitte versuche es erneut."
-    },
     "ota_updates": {
       "invalid_input": "Ungültige Eingabe."
-    },
-    "seeker": {
-      "native_only": "Die Seeker-Berechtigung ist nur in der nativen App verfügbar.",
-      "attestation_failed": "Geräteverifizierung fehlgeschlagen. Bitte versuche es erneut.",
-      "solana_artifact_required": "Nutze die Solana Store App, um fortzufahren.",
-      "wallet_required": "Verknüpfe und verifiziere zuerst eine Wallet.",
-      "genesis_token_required": "Ein verifizierter Seeker Genesis Token ist erforderlich.",
-      "genesis_token_claimed": "Dieser Seeker Genesis Token wurde bereits beansprucht.",
-      "entitlement_required": "Eine verifizierte Seeker-Berechtigung ist erforderlich.",
-      "current_ownership_required": "Der Seeker Genesis Token muss sich aktuell in deinem Besitz befinden."
     }
   },
   "guide": {
-    "brand": "World of ClaudeCraft",
-    "brandShort": "ClaudeCraft",
+    "brand": "Wildhaven",
+    "brandShort": "Wildhaven",
     "tagline": "Ein MMO im klassischen Stil, das du kostenlos in deinem Browser spielst.",
     "skipToContent": "Zum Hauptinhalt springen",
     "loading": "Wird geladen...",
@@ -3231,7 +3173,7 @@ export const de_DE: EnTranslations = {
       "github": "Quellcode auf GitHub",
       "discord": "Tritt dem Discord bei",
       "communityWiki": "Community-Wiki",
-      "rights": "World of ClaudeCraft",
+      "rights": "Wildhaven",
       "linksLabel": "Spiel- und Community-Links"
     },
     "language": {
@@ -3254,7 +3196,7 @@ export const de_DE: EnTranslations = {
     },
     "home": {
       "eyebrow": "Browser-MMO im klassischen Stil",
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "subtitle": "Erfülle Quests, schließe dich mit anderen zusammen und erkunde eine handgebaute Welt, kostenlos in deinem Browser.",
       "ctaPlay": "Jetzt spielen",
       "ctaLearn": "So wird gespielt",
@@ -3769,7 +3711,7 @@ export const de_DE: EnTranslations = {
     },
     "worldPage": {
       "heading": "Die Welt",
-      "intro": "World of ClaudeCraft ist ein zusammenhängendes Land, das du zu Fuß durchquerst, drei Gebiete von Süden nach Norden gereiht. Es gibt keine Schnellreise, die Reise selbst ist also Teil des Abenteuers.",
+      "intro": "Wildhaven ist ein zusammenhängendes Land, das du zu Fuß durchquerst, drei Gebiete von Süden nach Norden gereiht. Es gibt keine Schnellreise, die Reise selbst ist also Teil des Abenteuers.",
       "hub": "Heimatbasis",
       "mapHeading": "Der Weg nach Norden",
       "mapSub": "Drei Gebiete, von Süden nach Norden, jedes eine Stufe höher im Level. Folge der Questspur, und das Land trägt dich vom Tal bis zu den Gipfeln.",
@@ -4596,7 +4538,7 @@ export const de_DE: EnTranslations = {
   },
   "editor": {
     "appTitle": "Karteneditor",
-    "docTitle": "Karteneditor - World of ClaudeCraft",
+    "docTitle": "Karteneditor - Wildhaven",
     "untitledMap": "Unbenannte Karte",
     "playtestPlayerName": "Kartenbauer",
     "topbar": {
@@ -5072,8 +5014,8 @@ export const de_DE: EnTranslations = {
     "realmName": "Weltname"
   },
   "footer": {
-    "copyright": "2026 World of ClaudeCraft",
-    "githubLink": "https://github.com/levy-street/world-of-claudecraft",
+    "copyright": "2026 Wildhaven",
+    "githubLink": "https://wildhaven.example",
     "githubLabel": "Open-Source-Projekt",
     "whitepaper": "Whitepaper",
     "terms": "Nutzungsbedingungen",
@@ -5130,13 +5072,10 @@ export const de_DE: EnTranslations = {
     "serverOnline": "Online",
     "serverOffline": "Offline",
     "play": "Spielen",
-    "playAria": "World of ClaudeCraft spielen",
+    "playAria": "Wildhaven spielen",
     "serverLabel": "Wähle deine Welt",
     "serverAria": "Welt wählen: Online oder Offline",
-    "serverOfflineSub": "Sofortige lokale Welt",
-    "caLabel": "$WOC-Vertragsadresse",
-    "caCopyAria": "Vertragsadresse kopieren",
-    "caNote": "WOC ist unser Community-Token. Es wird zum Spielen nicht benötigt. Tritt dem Discord bei, um über den Nutzen und das Schwungrad von WOC zu sprechen."
+    "serverOfflineSub": "Sofortige lokale Welt"
   },
   "auth": {
     "enterRealm": "Welt betreten",
@@ -5184,171 +5123,6 @@ export const de_DE: EnTranslations = {
       "failed": "Deine E-Mail konnte nicht gespeichert werden. Bitte versuche es erneut."
     }
   },
-  "wallet": {
-    "label": "$WOC-Wallet",
-    "connect": "Wallet verifizieren",
-    "connectTitle": "Euer Solana-Wallet verifizieren",
-    "connectAria": "Euer Solana-Wallet verifizieren",
-    "verify": "Wallet verifizieren",
-    "verifyNew": "Neues Wallet verifizieren",
-    "verifyTitle": "Wählt ein Wallet und unterschreibt einmal, um den Besitz zu bestätigen.",
-    "verifyAria": "Wählt ein Wallet und unterschreibt einmal, um den Besitz zu bestätigen",
-    "verifyAddressAria": "Unterschreiben, um Wallet {address} für Euer Konto zu verifizieren",
-    "appConnected": "App verbunden",
-    "connectApp": "App verbinden",
-    "connectAppTitle": "Wallet-App in diesem Browser verbinden",
-    "connectAppAria": "Wallet-App in diesem Browser verbinden",
-    "verifying": "Verifizierung...",
-    "verifyingTitle": "Die Wallet-Verifizierung läuft.",
-    "switch": "Wechseln",
-    "switchTitle": "Ein anderes Wallet verifizieren",
-    "switchAria": "Ein anderes Wallet verifizieren",
-    "unlink": "Trennen",
-    "unlinkTitle": "Wallet-Verifizierung von diesem Konto entfernen",
-    "unlinkAria": "Wallet-Verifizierung von diesem Konto entfernen",
-    "signOut": "Abmelden",
-    "signOutTitle": "Wallet-App in diesem Browser trennen",
-    "signOutAria": "Wallet-App in diesem Browser trennen",
-    "hide": "Ausblenden",
-    "hideTitle": "Wallet-Zeile auf diesem Bildschirm ausblenden",
-    "hideAria": "Wallet-Zeile auf diesem Bildschirm ausblenden",
-    "hiddenNotice": "Wallet-Zeile ausgeblendet. Aktiviere sie im Spiel unter Optionen > Oberfläche wieder.",
-    "linkedTitle": "Wallet für Euer Konto verifiziert. Klicken, um die Wallet-App zu verwalten.",
-    "linkedDisconnectedTitle": "Das Wallet bleibt für Euer Konto verifiziert. Verbindet Euch erneut, um die Wallet-App zu verwalten.",
-    "linkedDisconnectedAria": "Das Wallet bleibt für Euer Konto verifiziert. Verbindet Euch erneut, um die Wallet-App zu verwalten.",
-    "linkTitle": "Klicken, um zu unterschreiben und dieses Wallet mit Eurem Konto zu verknüpfen.",
-    "connectedTitle": "Verbunden. Loggt Euch ein, um dieses Wallet mit Eurem Konto zu verknüpfen.",
-    "balanceTitle": "$WOC-Guthaben des verifizierten Solana-Wallets",
-    "balanceAria": "Guthaben des verifizierten Solana-Wallets: {balance}",
-    "balancePreviewTitle": "Vorschau auf das $WOC-Guthaben des verbundenen Wallets",
-    "balancePreviewAria": "Vorschau auf das Guthaben des verbundenen Wallets: {balance}. Verknüpft das Wallet, um das Inhaber-Flair zu verifizieren.",
-    "balanceAmount": "{amount} $WOC",
-    "bagConnect": "Wallet verknüpfen",
-    "bagLink": "Wallet verifizieren",
-    "bagReconnect": "Wallet erneut verbinden",
-    "connected": "Verbunden: {address}",
-    "connectedWithBalance": "Verbunden: {balance} - {address}",
-    "connectedLinked": "Verifiziert: {address}",
-    "connectedLinkedWithBalance": "Verifiziert: {balance} - {address}",
-    "helpDisconnected": "Verifiziert ein Solana-Wallet, um Inhaber-Flair und Spielerkarten-Abzeichen zu aktivieren. Keine Transaktion und kein SOL erforderlich.",
-    "helpLoginToLink": "{address} verbunden. Loggt Euch ein, um es mit Eurem Konto zu verknüpfen.",
-    "helpLoginToLinkWithBalance": "{address} mit {balance} verbunden. Loggt Euch ein, um es mit Eurem Konto zu verknüpfen.",
-    "helpReadyToLink": "Wallet ausgewählt: {address}. Unterschreibt einmal, um Inhaber-Flair und Spielerkarten zu verifizieren.",
-    "helpReadyToLinkWithBalance": "Wallet ausgewählt: {address} mit {balance}. Unterschreibt einmal, um Inhaber-Flair und Spielerkarten zu verifizieren.",
-    "helpLinked": "Inhaberboni sind aktiv. Die Wallet-App ist in diesem Browser verbunden.",
-    "helpLinkedWithBalance": "Inhaberboni sind aktiv. Die Wallet-App ist in diesem Browser verbunden.",
-    "helpLinkedDisconnected": "Inhaberboni sind aktiv. Verbindet die App, wenn Ihr unterschreiben oder ausgeben müsst.",
-    "helpLinkedDisconnectedWithBalance": "Inhaberboni sind aktiv. Verbindet die App, wenn Ihr unterschreiben oder ausgeben müsst.",
-    "extensionHelp": "Damit hier eine Wallet erscheint, halte eine Browser-Wallet-Erweiterung wie Solflare Wallet aktiv.",
-    "mobileAppHelp": "Wähle Phantom oder Solflare. Deine Wallet-App wird um Genehmigung bitten. Halte dieses Spiel geöffnet und kehre zu ihm zurück, wenn du fertig bist.",
-    "seekerAppHelp": "Weiter mit Seed Vault Wallet. Prüfe die Verbindungs- und Verifizierungsanfragen in Seed Vault und kehre dann zum Spiel zurück.",
-    "standaloneAppHelp": "Wallet-Verbindungen sind in der Startbildschirm-App noch nicht verfügbar. Öffne World of ClaudeCraft in Safari oder Chrome, um Phantom oder Solflare zu nutzen.",
-    "openAppTitle": "Weiter in {wallet}",
-    "openAppHelp": "Öffne {wallet}, um diese Anfrage zu prüfen. Halte diesen Spieltab geöffnet, während die Wallet-App aktiv ist.",
-    "openAppButton": "{wallet} öffnen",
-    "manualReturnBrowserHelp": "Kehre nach der Genehmigung zu diesem Spieltab zurück. Falls iOS einen anderen Browser öffnet, schließe ihn und kehre manuell zum ursprünglichen Browser zurück.",
-    "manualReturnStandaloneHelp": "Kehre nach der Genehmigung von deinem Startbildschirm zu World of ClaudeCraft zurück. Falls iOS einen Browser öffnet, schließe ihn und öffne die Startbildschirm-App manuell erneut.",
-    "preparingAppButton": "{wallet} wird vorbereitet...",
-    "walletAppUnavailable": "{wallet} konnte nicht vorbereitet werden. Schließe dieses Fenster und versuche es erneut.",
-    "flowConnect": "Wählt ein Wallet. Die Verifizierung läuft automatisch weiter.",
-    "flowSign": "Unterschreibt die Verifizierungsnachricht in Eurer Wallet-App. Keine Transaktion und kein SOL erforderlich.",
-    "flowVerify": "Wallet-Besitz wird verifiziert...",
-    "linkFailed": "Wallet-Verifizierung fehlgeschlagen.",
-    "verifyFailed": "Wallet-Verifizierung fehlgeschlagen.",
-    "unlinkFailed": "Wallet konnte nicht getrennt werden.",
-    "browser": {
-      "eyebrow": "Desktop-Wallet-Autorisierung",
-      "title": "Solana-Wallet verbinden",
-      "linkBody": "Wähle eine Wallet-Erweiterung in diesem Browser. Du wirst eine Verifizierungsnachricht unterschreiben und dann zur Desktop-App zurückkehren.",
-      "paymentBody": "Wähle die mit deinem Konto verknüpfte Wallet und genehmige die Transaktion in diesem Browser.",
-      "extensionHelp": "Es wurde keine kompatible Wallet-Erweiterung gefunden. Installiere oder entsperre Phantom, Solflare oder eine andere Solana-Browser-Wallet und versuche es erneut.",
-      "safety": "World of ClaudeCraft fragt niemals nach deiner Wiederherstellungsphrase oder deinem privaten Schlüssel.",
-      "continueWith": "Weiter mit {wallet}",
-      "reviewTitle": "In deiner Wallet prüfen",
-      "reviewBody": "Folge der Aufforderung von {wallet}. Halte diese Browserseite offen.",
-      "completeTitle": "Wallet-Autorisierung abgeschlossen",
-      "completeBody": "Du kannst zur World of ClaudeCraft Desktop-App zurückkehren.",
-      "returnButton": "Zur Desktop-App zurückkehren",
-      "failed": "Wallet-Autorisierung fehlgeschlagen oder abgelaufen. Kehre zur Desktop-App zurück und versuche es erneut.",
-      "retry": "Erneut versuchen"
-    },
-    "holder": "$WOC-Inhaber",
-    "holderTierTitle": "$WOC-Inhaber mit Rang {tier}",
-    "holderTiers": {
-      "ember": {
-        "name": "Glut",
-        "flavor": "Der Funke ist entfacht."
-      },
-      "coinbearer": {
-        "name": "Münzträger",
-        "flavor": "Die erste Münze in der Kriegskasse."
-      },
-      "coppercrest": {
-        "name": "Kupferkamm",
-        "flavor": "Kupfer stapelt sich, Euer Name macht die Runde."
-      },
-      "silverbound": {
-        "name": "Silbergebunden",
-        "flavor": "In Silber gebunden, der Beutel wächst."
-      },
-      "gilded": {
-        "name": "Vergoldet",
-        "flavor": "Vergoldet und grinsend."
-      },
-      "vaultwarden": {
-        "name": "Tresorwächter",
-        "flavor": "Ihr bewacht jetzt einen echten Tresor: 0,01 % aller $WOC."
-      },
-      "whale": {
-        "name": "Wal",
-        "flavor": "Ihr schwimmt jetzt in tiefen Gewässern: 0,1 % des Angebots."
-      },
-      "leviathan": {
-        "name": "Leviathan",
-        "flavor": "Die Märkte spüren Eure Bewegungen: 1 % des Angebots."
-      },
-      "tidelord": {
-        "name": "Gezeitenfürst",
-        "flavor": "Die Gezeit folgt Eurem Ruf: 2 % des Angebots."
-      },
-      "stormcaller": {
-        "name": "Sturmrufer",
-        "flavor": "Stürme sammeln sich bei Eurem Namen: 3 % des Angebots."
-      },
-      "krakencrown": {
-        "name": "Krakenkrone",
-        "flavor": "Von der Tiefe gekrönt: 4 % des Angebots."
-      },
-      "titanforged": {
-        "name": "Titangeschmiedet",
-        "flavor": "Unter Titanen geschmiedet: 5 % des Angebots."
-      },
-      "starhoard": {
-        "name": "Sternenhort",
-        "flavor": "Ein Hort, der das Sternenlicht beugt: 6 % des Angebots."
-      },
-      "voidwarden": {
-        "name": "Leerenwächter",
-        "flavor": "Wächter am Rand der Leere: 7 % des Angebots."
-      },
-      "realmshaper": {
-        "name": "Reichsformer",
-        "flavor": "Ihr formt das Reich neu: 8 % des Angebots."
-      },
-      "worldforger": {
-        "name": "Weltenschmied",
-        "flavor": "Ihr schmiedet Eure eigene Welt: 9 % des Angebots."
-      },
-      "worldbearer": {
-        "name": "Weltenträger",
-        "flavor": "Ihr tragt ein Stück der Welt: 10 % des Angebots."
-      },
-      "sovereign": {
-        "name": "Souverän",
-        "flavor": "Das Reich beugt das Knie: das gesamte Angebot."
-      }
-    }
-  },
   "playerCard": {
     "shareButton": "Spielerkarte teilen",
     "title": "Spielerkarte",
@@ -5365,16 +5139,15 @@ export const de_DE: EnTranslations = {
     "levelClass": "Stufe {level} - {className}",
     "topPercent": "TOP {percent} %",
     "realmSubtitle": "Welt {realm}",
-    "defaultRealm": "Welt von ClaudeCraft",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "defaultRealm": "Wildhaven",
+    "brandWordmark": "WILDHAVEN",
     "recruited": "{count} rekrutiert",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",
     "footerCta": "Schmiedet Eure Legende: {siteUrl}",
     "arenaStat": "Arena",
-    "shareTierBit": ", $WOC-Inhaber mit Rang {tier}",
-    "shareText": "Ich schmiede meine Legende in World of ClaudeCraft: Stufe {level} {className}{tierBit}. Tritt meiner Welt bei:",
-    "nativeShareTitle": "Welt von ClaudeCraft",
+    "shareText": "Ich schmiede meine Legende in Wildhaven: Stufe {level} {className}{tierBit}. Tritt meiner Welt bei:",
+    "nativeShareTitle": "Wildhaven",
     "fileNameFallback": "spieler",
     "actionShareX": "Auf X teilen",
     "actionCopyReferral": "Empfehlungslink kopieren",
@@ -6074,14 +5847,14 @@ export const de_DE: EnTranslations = {
     }
   },
   "seo": {
-    "title": "World of ClaudeCraft: Klassisches Web-MMO",
-    "description": "Begib dich in World of ClaudeCraft auf ein episches Abenteuer, ein Micro-MMO im klassischen Stil direkt im Browser. Tritt einer dauerhaften, gemeinsamen Welt bei, steigere Klassen und besiege Gegner.",
+    "title": "Wildhaven: Klassisches Web-MMO",
+    "description": "Begib dich in Wildhaven auf ein episches Abenteuer, ein Micro-MMO im klassischen Stil direkt im Browser. Tritt einer dauerhaften, gemeinsamen Welt bei, steigere Klassen und besiege Gegner.",
     "genre": "MMORPG",
     "playMode": "Mehrspieler",
     "applicationCategory": "Spiel",
     "operatingSystem": "Webbrowser",
-    "officialLabel": "Offizielle Website von World of ClaudeCraft",
-    "officialBody": "worldofclaudecraft.com ist das offizielle kostenlose Browser-MMO für die Welt Claudemoon. Spiele online mit einem dauerhaften Charakter, erkunde solo offline, lies das Wiki und folge den verifizierten Community-Links auf dieser Website."
+    "officialLabel": "Offizielle Website von Wildhaven",
+    "officialBody": "wildhaven.example ist das offizielle kostenlose Browser-MMO für die Welt Claudemoon. Spiele online mit einem dauerhaften Charakter, erkunde solo offline, lies das Wiki und folge den verifizierten Community-Links auf dieser Website."
   },
   "a11y": {
     "goHome": "Zur Startseite",
@@ -6089,9 +5862,9 @@ export const de_DE: EnTranslations = {
     "mainNavigation": "Hauptnavigation",
     "languageSelection": "Sprachauswahl",
     "characterActions": "Charakteraktionen",
-    "githubProject": "World of ClaudeCraft-Projekt auf GitHub öffnen",
-    "discordCommunity": "Der World of ClaudeCraft-Community auf Discord beitreten",
-    "donateProject": "Spenden, um World of ClaudeCraft zu unterstützen"
+    "githubProject": "Wildhaven-Projekt auf GitHub öffnen",
+    "discordCommunity": "Der Wildhaven-Community auf Discord beitreten",
+    "donateProject": "Spenden, um Wildhaven zu unterstützen"
   },
   "entryGuard": {
     "title": "Grafik verringert",
@@ -6178,11 +5951,11 @@ export const de_DE: EnTranslations = {
       "dismiss": "Schließen"
     },
     "crash": {
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "body": "Die Spielansicht funktioniert nicht mehr. Neu laden?",
       "reload": "Neu laden",
       "quit": "Beenden",
-      "fatalBody": "World of ClaudeCraft ist auf einen unerwarteten Fehler gestoßen und muss geschlossen werden."
+      "fatalBody": "Wildhaven ist auf einen unerwarteten Fehler gestoßen und muss geschlossen werden."
     }
   },
   "gpuNotice": {
@@ -6321,17 +6094,17 @@ export const de_DE: EnTranslations = {
     "iosStandaloneDetail": "Du bist im Vollbildmodus vom Home-Bildschirm. Halte das Gerät im Querformat.",
     "iosInstallDetail": "Für echtes Vollbild auf iPhone oder iPad füge diese Seite zuerst zum Home-Bildschirm hinzu.",
     "iosShareStep": "Tippe in Safari auf Teilen und dann auf Zum Home-Bildschirm.",
-    "iosOpenStep": "Öffne World of ClaudeCraft über das neue Symbol auf dem Home-Bildschirm.",
+    "iosOpenStep": "Öffne Wildhaven über das neue Symbol auf dem Home-Bildschirm.",
     "androidStandaloneDetail": "Du bist im Vollbild-App-Modus. Halte das Gerät im Querformat.",
     "androidInstallDetail": "Installiere diese Seite auf Android oder füge sie zum Startbildschirm hinzu, um Vollbild zu nutzen.",
     "androidInstallStep": "Tippe in Chrome auf das Menü und dann auf App installieren oder Zum Startbildschirm hinzufügen.",
-    "androidOpenStep": "Öffne World of ClaudeCraft über das neue Symbol.",
+    "androidOpenStep": "Öffne Wildhaven über das neue Symbol.",
     "otherStandaloneDetail": "Halte dein Gerät im Vollbild-Querformat.",
     "otherInstallDetail": "Installiere diese Seite oder füge sie zum Startbildschirm hinzu, um das beste mobile Vollbild-Erlebnis zu erhalten."
   },
   "serverUnavailable": {
-    "title": "World of ClaudeCraft - Welt nicht verfügbar",
-    "logoAlt": "World of ClaudeCraft",
+    "title": "Wildhaven - Welt nicht verfügbar",
+    "logoAlt": "Wildhaven",
     "eyebrow": "Weltwartung",
     "heading": "Die Welt ist vorübergehend nicht verfügbar.",
     "body": "Wir starten den Spieldienst neu und erwarten, dass Claudemoon bald zurückkehrt. Diese Seite prüft automatisch weiter.",
@@ -14590,6 +14363,11 @@ export const de_DE: EnTranslations = {
         "sender": "Heroischer Quartiermeister",
         "subject": "Deine heroischen Marken",
         "body": "Deine Gruppe hat die heroische Prüfung gemeistert, während du in der Nachhut gekämpft hast oder bereits am Boden lagst. Auch deine Instanzbindung wurde aktiviert, daher ist dein Anteil an heroischen Marken hier angekommen, statt verloren zu gehen. Setze sie klug ein.\n\n- Heroischer Quartiermeister"
+      },
+      "daily_reward_prize": {
+        "sender": "The Vale Steward",
+        "subject": "Your share of the daily purse",
+        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "Die Handwerksgilde",

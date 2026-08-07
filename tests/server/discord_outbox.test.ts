@@ -158,7 +158,7 @@ function relayItem(accountId: number): QueuedRelay {
     realm: 'Claudemoon',
     zone: 'Blackrock Deeps, the Detention Block',
     message: `Need two more for a full clear, summons up at the meeting stone, whisper me. ${'x'.repeat(120)}`,
-    profileUrl: `https://worldofclaudecraft.com/c/claudemoon/adventurer${accountId}`,
+    profileUrl: `https://wildhaven.example/c/claudemoon/adventurer${accountId}`,
   };
 }
 
@@ -173,7 +173,7 @@ function activityItem(index: number, accountIds: number[]): QueuedActivity {
     accountIds,
     names: accountIds.map((id) => `Adventurer${id}`),
     realm: 'Claudemoon',
-    profileUrl: `https://worldofclaudecraft.com/c/claudemoon/adventurer${accountIds[0]}`,
+    profileUrl: `https://wildhaven.example/c/claudemoon/adventurer${accountIds[0]}`,
     itemName: `Moonlit Koi of the Verdant Vale ${index}`,
     deedId: `chr_willowfen_first_cast_${index}`,
     deedName: `First Cast of the Willowfen Reaches ${index}`,
@@ -186,7 +186,7 @@ function winnerDay(dayIndex: number): unknown {
   return {
     day: `2026-06-${String(20 + dayIndex).padStart(2, '0')}`,
     realm: 'Claudemoon',
-    prizePoolUsd: 150,
+    prizePoolCopper: 1_500_000,
     finalizedAt: '2026-06-30T22:00:00.000Z',
     taskName: 'Complete quests today. Points increase with time spent online.',
     nextTaskName: 'Win an arena match.',
@@ -196,18 +196,15 @@ function winnerDay(dayIndex: number): unknown {
       rank: rank + 1,
       accountId: rank + 1,
       username: `Adventurer${rank + 1}`,
-      walletPubkey: 'Wa11etPubKey1111111111111111111111111111111',
       points: 4200 - rank * 100,
       prizePercent: 0.2,
-      prizeUsd: 30,
+      prizeCopper: 300_000,
       status: 'paid',
-      txSignature: '5'.repeat(88),
       paidAt: '2026-06-30T22:05:00.000Z',
       voidReason: null,
       voidedById: null,
       voidedByUsername: null,
       voidedAt: null,
-      signedTransaction: null,
     })),
   };
 }

@@ -400,7 +400,7 @@ export const cs_CZ: EnTranslations = {
       "error": "Denní odměny se nepodařilo načíst.",
       "disabled": "Denní odměny jsou momentálně vypnuté. Novinky o této funkci oznámíme na kanálu Discord.",
       "intro": "Drž dost WOC v ověřené peněžence a odemkni denní odměny. Získávej body jedním denním zatočením a rotujícími úkoly, potom stoupej v denním žebříčku o podíl z prize poolu.",
-      "disclaimer": "Cena WOC se může rychle měnit. Doporučujeme držet víc než minimálních 20 USD, aby tě běžné cenové výkyvy neuzamkly ven. Toto není finanční rada.",
+      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
       "prize": "Prize pool",
       "reset": "Reset",
       "endsIn": "Končí za {time}",
@@ -409,9 +409,6 @@ export const cs_CZ: EnTranslations = {
       "remainingHoursMinutes": "{hours} h {minutes} min",
       "remainingDaysHours": "{days} d {hours} h",
       "score": "Skóre",
-      "walletValue": "Hodnota peněženky (WOC)",
-      "usd": "{amount} USD",
-      "sol": "{amount} SOL",
       "unknown": "Neznámé",
       "spinTitle": "Denní zatočení",
       "spinDialogTitle": "Denní zatočení odměn",
@@ -436,17 +433,8 @@ export const cs_CZ: EnTranslations = {
       "history": "Minulí vítězové",
       "noLeaders": "Zatím žádné body.",
       "noHistory": "Zatím žádné výplaty.",
-      "walletConnectTitle": "Ověřit peněženku",
-      "walletConnectBody": "Ověř peněženku Solana s WOC a odemkni denní odměny.",
-      "walletConnectButton": "Ověřit peněženku",
-      "walletHoldTitle": "Drž WOC",
-      "walletHoldBody": "Drž alespoň {amount} USD ve WOC a odemkni denní odměny.",
-      "walletPriceBody": "Cena WOC teď není dostupná. Vrať se za chvíli.",
       "reason": {
         "eligible": "Odměny odemčeny.",
-        "no_wallet": "Připoj peněženku s alespoň 20 USD ve WOC.",
-        "under_minimum": "Peněženka je pod minimem 20 USD ve WOC.",
-        "price_unavailable": "Cena WOC není dostupná, odměny jsou dočasně uzamčené.",
         "banned": "Máš zákaz účasti v denních odměnách. Důvod: {reason}",
         "bannedUntil": "Ještě {remaining} máš zákaz přístupu k denním odměnám. Přístup se vrátí {until}. Důvod: {reason}"
       }
@@ -472,18 +460,6 @@ export const cs_CZ: EnTranslations = {
       "armoryEyebrow": "1. sezóna",
       "armoryTitle": "Zbrojnice",
       "armoryBody": "Omezené vzhledy zbraní ze Zbrojnice 1. sezóny. Platí pro celý účet, jsou čistě kosmetické a uvidí je všichni kolem tebe.",
-      "wallet": {
-        "title": "Peněženka Solana",
-        "unlinked": "Připoj aplikaci peněženky a jednou podpiš pro propojení její veřejné adresy s tvým účtem WoC. Nikdy nepřijmeme tvoji obnovovací frázi ani soukromý klíč.",
-        "connectedUnlinked": "Aplikace peněženky je připojena k tomuto prohlížeči, ale její veřejná adresa ještě není propojena s tvým účtem WoC.",
-        "linkedDisconnected": "Tvoje veřejná adresa je propojena. Znovu připoj tuto aplikaci peněženky, když budeš chtít platit za SOL nebo WOC.",
-        "linkedConnected": "Tvoje propojená aplikace peněženky je připojena a připravena na nákupy za SOL nebo WOC.",
-        "mismatched": "Je připojena jiná peněženka. Ověř ji pro nahrazení propojené adresy nebo znovu připoj propojenou peněženku.",
-        "connect": "Připojit peněženku",
-        "verify": "Ověřit a propojit",
-        "reconnect": "Znovu připojit peněženku",
-        "manage": "Spravovat peněženku"
-      },
       "collectionLine": "Kolekce {collection}",
       "collections": {
         "guildmark": "Cechovní značka",
@@ -685,20 +661,11 @@ export const cs_CZ: EnTranslations = {
       "loading": "Načítání Claudium…",
       "balanceLabel": "Zůstatek",
       "balanceUnit": "{amount} Claudium",
-      "solBalance": "SOL: {amount}",
-      "usdcBalance": "USDC: {amount}",
-      "wocBalance": "WOC: {amount}",
       "unavailable": "Obchod Claudium nyní není dostupný. Tvůj zůstatek ani nákupy to neovlivní, zkus to za chvíli znovu.",
       "disclosure": "Claudium je jednosměrná herní měna: kupuje se za peníze a utrácí za kosmetické předměty. Nelze ji směnit zpět, převést ani vyplatit v hotovosti.",
       "buyTitle": "Koupit Claudium",
       "railLabel": "Způsob platby",
       "railStripe": "Karta",
-      "railSol": "SOL",
-      "railUsdc": "USDC",
-      "railWoc": "WOC",
-      "railWocDiscount": "Sleva {percent} %",
-      "railWocUnavailable": "Cena ve WOC nyní není dostupná.",
-      "railNativeUnavailable": "SOL/WOC nedostupné",
       "amountLabel": "Množství",
       "showAmounts": "Zobrazit všechny nabídky Claudium",
       "hideAmounts": "Skrýt další nabídky Claudium",
@@ -718,10 +685,7 @@ export const cs_CZ: EnTranslations = {
       "checkoutPending": "Transakce probíhá. Potvrď ji v peněžence a nech tento panel otevřený.",
       "checkoutPendingButton": "Zpracovává se",
       "checkoutFailed": "Platbu se nepodařilo načíst. Zkus to znovu.",
-      "checkoutUnavailable": "Tento nákup Claudium nyní není dostupný.",
-      "checkoutWalletRequired": "Před nákupem Claudium za kryptoměnu připoj peněženku Solana.",
-      "checkoutWalletUnsupported": "Tato peněženka neumí podepisovat a odesílat transakce Solana.",
-      "checkoutNotSettled": "Transakce byla odeslána, ale Claudium zatím nebylo připsáno. Zkus to za chvíli znovu."
+      "checkoutUnavailable": "Tento nákup Claudium nyní není dostupný."
     },
     "theme": {
       "preset": "Motiv UI",
@@ -843,8 +807,8 @@ export const cs_CZ: EnTranslations = {
     },
     "nativeUpdate": {
       "title": "Aktualizace dostupná",
-      "body": "Je dostupná nová verze World of ClaudeCraft. Aktualizuj teď pro nejnovější opravy a vylepšení.",
-      "bodyWithVersion": "Je dostupná verze {version} World of ClaudeCraft. Aktualizuj teď pro nejnovější opravy a vylepšení.",
+      "body": "Je dostupná nová verze Wildhaven. Aktualizuj teď pro nejnovější opravy a vylepšení.",
+      "bodyWithVersion": "Je dostupná verze {version} Wildhaven. Aktualizuj teď pro nejnovější opravy a vylepšení.",
       "notNow": "Teď ne",
       "update": "Aktualizovat"
     },
@@ -1196,8 +1160,6 @@ export const cs_CZ: EnTranslations = {
       "clickFeedback": "Značka kliknutí",
       "lockCursorOnRotate": "Zamknout kurzor při otáčení",
       "keybindHelpLockCursorOnRotate": "Drží kurzor myši uvnitř okna při tažení pro otáčení kamery, takže nemůže dojet k okraji obrazovky ani na jiný monitor. Vypni, pokud chceš volný kurzor.",
-      "showWalletOnCharacterScreen": "Zobrazit peněženku na obrazovce postavy",
-      "showWalletOnPlayerCard": "Zobrazit peněženku na kartě hráče",
       "showDevBadges": "Zobrazit vývojářské odznaky",
       "showOwnNameplate": "Zobrazit mou jmenovku",
       "showPlayerNameplates": "Zobrazit jmenovky hráčů",
@@ -1373,9 +1335,7 @@ export const cs_CZ: EnTranslations = {
         "aetherRush": "Éterický nával"
       }
     },
-    "playerCard": {
-      "showWalletBadge": "Zobrazit odznak peněženky"
-    },
+    "playerCard": {},
     "landing": {
       "highContrast": "Vysoký kontrast",
       "highContrastAria": "Přepnout vysoce kontrastní pozadí: vypne pohyblivý trailer, aby text úvodní obrazovky zůstal čitelný",
@@ -1564,7 +1524,6 @@ export const cs_CZ: EnTranslations = {
       "loggedOutPrompt": "Přihlas se, abys mohl(a) spravovat svůj účet.",
       "memberSince": "Členem od {date}",
       "sectionSettings": "Nastavení účtu",
-      "sectionWallet": "$WOC peněženka",
       "sectionCharacters": "Postavy",
       "sectionDanger": "Nebezpečná zóna",
       "changePassword": "Změnit heslo",
@@ -1591,8 +1550,6 @@ export const cs_CZ: EnTranslations = {
       "charactersSummary": "Spravuj své postavy a vstup do světa.",
       "charactersCount": "Postavy: {count}",
       "goToCharacters": "Zobrazit postavy",
-      "walletSummary": "Ověř peněženku Solana a zobraz odznak držitele na kartě hráče.",
-      "manageWallet": "Spravovat peněženku",
       "deactivate": "Deaktivovat účet",
       "deactivateWarning": "Deaktivace uzamkne účet a všude tě odhlásí. Pro obnovení kontaktuj admina. Potvrď znovu zadáním uživatelského jména a hesla.",
       "confirmUsername": "Pro potvrzení napiš své uživatelské jméno",
@@ -2003,7 +1960,7 @@ export const cs_CZ: EnTranslations = {
     },
     "discord": {
       "title": "Discord",
-      "panelTitle": "World of ClaudeCraft",
+      "panelTitle": "Wildhaven",
       "open": "Discord",
       "close": "Zavřít",
       "keybind": "Panel Discordu",
@@ -2293,11 +2250,9 @@ export const cs_CZ: EnTranslations = {
       "bonusStatusEarned": "+{count}",
       "bonusSourceEmail": "Ověřený e-mail",
       "bonusSourceDiscord": "Propojený Discord",
-      "bonusSourceWallet": "Propojená peněženka",
       "bonusSourceReferral": "Pozvaní přátelé",
       "bonusAdvertEmail": "Ověř svůj e-mail a získej 2 sloty.",
       "bonusAdvertDiscord": "Propoj svůj Discord a získej 2 sloty.",
-      "bonusAdvertWallet": "Propoj peněženku a získej 2 sloty.",
       "bonusReferralProgress": "{count}/{cap}",
       "bonusReferralExplainer": "Pozvi přítele: až dosáhne úrovně 10, získáte oba po 2 slotech, nejvýše za 5 přátel.",
       "bonusSectionAria": "Bonusové sloty banky a jak získat další",
@@ -3147,26 +3102,13 @@ export const cs_CZ: EnTranslations = {
       "account_taken": "Tento účet Epic je již propojen s jiným účtem.",
       "upstream": "Epic neodpověděl. Zkus to za chvíli znovu."
     },
-    "wallet": {
-      "handoff_invalid": "Toto oprávnění peněženky vypršelo nebo je neověřitelné. Zkus to znovu."
-    },
     "ota_updates": {
       "invalid_input": "Neplatný vstup."
-    },
-    "seeker": {
-      "native_only": "Oprávnění Seeker je dostupné jen v nativní aplikaci.",
-      "attestation_failed": "Ověření zařízení selhalo. Zkus to prosím znovu.",
-      "solana_artifact_required": "Pro pokračování použij aplikaci Solana Store.",
-      "wallet_required": "Nejdřív propoj a ověř peněženku.",
-      "genesis_token_required": "Je vyžadován ověřený Seeker Genesis Token.",
-      "genesis_token_claimed": "Tento Seeker Genesis Token už byl uplatněn.",
-      "entitlement_required": "Je vyžadováno ověřené oprávnění Seeker.",
-      "current_ownership_required": "Je vyžadováno aktuální vlastnictví Seeker Genesis Token."
     }
   },
   "guide": {
-    "brand": "World of ClaudeCraft",
-    "brandShort": "ClaudeCraft",
+    "brand": "Wildhaven",
+    "brandShort": "Wildhaven",
     "tagline": "MMO v klasickém stylu, které hraješ zdarma v prohlížeči.",
     "skipToContent": "Přejít na hlavní obsah",
     "loading": "Načítá se...",
@@ -3231,7 +3173,7 @@ export const cs_CZ: EnTranslations = {
       "github": "Zdrojový kód na GitHubu",
       "discord": "Připojit se na Discord",
       "communityWiki": "Komunitní wiki",
-      "rights": "World of ClaudeCraft",
+      "rights": "Wildhaven",
       "linksLabel": "Odkazy na hru a komunitu"
     },
     "language": {
@@ -3254,7 +3196,7 @@ export const cs_CZ: EnTranslations = {
     },
     "home": {
       "eyebrow": "Prohlížečové MMO v klasickém stylu",
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "subtitle": "Plň úkoly, hraj ve skupině a objevuj ručně vystavěný svět zdarma v prohlížeči.",
       "ctaPlay": "Hrát teď",
       "ctaLearn": "Jak hrát",
@@ -3769,7 +3711,7 @@ export const cs_CZ: EnTranslations = {
     },
     "worldPage": {
       "heading": "Svět",
-      "intro": "World of ClaudeCraft je jedna souvislá země, kterou přecházíš pěšky, tři zóny položené od jihu k severu. Není tu rychlé cestování, takže cesta je součástí dobrodružství.",
+      "intro": "Wildhaven je jedna souvislá země, kterou přecházíš pěšky, tři zóny položené od jihu k severu. Není tu rychlé cestování, takže cesta je součástí dobrodružství.",
       "hub": "Domovská základna",
       "mapHeading": "Cesta na sever",
       "mapSub": "Tři zóny od jihu k severu, každá o krok výš v úrovních. Sleduj stopu úkolů a země tě ponese z údolí až na štíty.",
@@ -4596,7 +4538,7 @@ export const cs_CZ: EnTranslations = {
   },
   "editor": {
     "appTitle": "Editor map",
-    "docTitle": "Editor map - World of ClaudeCraft",
+    "docTitle": "Editor map - Wildhaven",
     "untitledMap": "Nepojmenovaná mapa",
     "playtestPlayerName": "Tvůrce map",
     "topbar": {
@@ -5072,8 +5014,8 @@ export const cs_CZ: EnTranslations = {
     "realmName": "Název světa"
   },
   "footer": {
-    "copyright": "2026 World of ClaudeCraft",
-    "githubLink": "https://github.com/levy-street/world-of-claudecraft",
+    "copyright": "2026 Wildhaven",
+    "githubLink": "https://wildhaven.example",
     "githubLabel": "Open-source projekt",
     "whitepaper": "Whitepaper",
     "terms": "Podmínky služby",
@@ -5130,13 +5072,10 @@ export const cs_CZ: EnTranslations = {
     "serverOnline": "Online",
     "serverOffline": "Offline",
     "play": "Hrát",
-    "playAria": "Hrát World of ClaudeCraft",
+    "playAria": "Hrát Wildhaven",
     "serverLabel": "Vyber si svět",
     "serverAria": "Vybrat svět: online nebo offline",
-    "serverOfflineSub": "Okamžitý lokální svět",
-    "caLabel": "Adresa kontraktu $WOC",
-    "caCopyAria": "Kopírovat adresu kontraktu",
-    "caNote": "WOC je komunitní token. Ke hraní není potřeba. Připoj se na Discord a diskutuj o využití a ekonomickém modelu WOC."
+    "serverOfflineSub": "Okamžitý lokální svět"
   },
   "auth": {
     "enterRealm": "Vstoupit do světa",
@@ -5184,171 +5123,6 @@ export const cs_CZ: EnTranslations = {
       "failed": "E-mail se nepodařilo uložit. Zkus to prosím znovu."
     }
   },
-  "wallet": {
-    "label": "$WOC peněženka",
-    "connect": "Ověřit peněženku",
-    "connectTitle": "Ověřit tvoji peněženku Solana",
-    "connectAria": "Ověřit tvoji peněženku Solana",
-    "verify": "Ověřit peněženku",
-    "verifyNew": "Ověřit novou peněženku",
-    "verifyTitle": "Vyber peněženku a jednou podepiš pro ověření vlastnictví.",
-    "verifyAria": "Vyber peněženku a jednou podepiš pro ověření vlastnictví",
-    "verifyAddressAria": "Podepsat a ověřit peněženku {address} pro tvůj účet",
-    "appConnected": "Aplikace připojena",
-    "connectApp": "Připojit aplikaci",
-    "connectAppTitle": "Připojit aplikaci peněženky v tomto prohlížeči",
-    "connectAppAria": "Připojit aplikaci peněženky v tomto prohlížeči",
-    "verifying": "Ověřuje se...",
-    "verifyingTitle": "Ověření peněženky probíhá.",
-    "switch": "Změnit",
-    "switchTitle": "Ověřit jinou peněženku",
-    "switchAria": "Ověřit jinou peněženku",
-    "unlink": "Odpojit od účtu",
-    "unlinkTitle": "Odebrat ověření peněženky z tohoto účtu",
-    "unlinkAria": "Odebrat ověření peněženky z tohoto účtu",
-    "signOut": "Odpojit",
-    "signOutTitle": "Odpojit aplikaci peněženky v tomto prohlížeči",
-    "signOutAria": "Odpojit aplikaci peněženky v tomto prohlížeči",
-    "hide": "Skrýt",
-    "hideTitle": "Skrýt řádek peněženky na této obrazovce",
-    "hideAria": "Skrýt řádek peněženky na této obrazovce",
-    "hiddenNotice": "Řádek peněženky je skrytý. Znovu ho zapneš ve hře přes Možnosti > Rozhraní.",
-    "linkedTitle": "Peněženka je ověřená pro tvůj účet. Klikni pro správu aplikace peněženky.",
-    "linkedDisconnectedTitle": "Peněženka zůstává pro tvůj účet ověřená. Znovu se připoj, pokud chceš spravovat aplikaci peněženky.",
-    "linkedDisconnectedAria": "Peněženka zůstává pro tvůj účet ověřená. Znovu se připoj, pokud chceš spravovat aplikaci peněženky.",
-    "linkTitle": "Klikni, podepiš a propoj tuto peněženku se svým účtem.",
-    "connectedTitle": "Připojeno. Přihlas se a propoj tuto peněženku se svým účtem.",
-    "balanceTitle": "Ověřený zůstatek $WOC v peněžence Solana",
-    "balanceAria": "Ověřený zůstatek peněženky Solana: {balance}",
-    "balancePreviewTitle": "Náhled zůstatku $WOC v připojené peněžence",
-    "balancePreviewAria": "Náhled zůstatku připojené peněženky: {balance}. Pro ověření odznaku držitele peněženku propoj.",
-    "balanceAmount": "{amount} $WOC",
-    "bagConnect": "Propojit peněženku",
-    "bagLink": "Ověřit peněženku",
-    "bagReconnect": "Znovu připojit peněženku",
-    "connected": "Připojeno: {address}",
-    "connectedWithBalance": "Připojeno: {balance} - {address}",
-    "connectedLinked": "Ověřeno: {address}",
-    "connectedLinkedWithBalance": "Ověřeno: {balance} - {address}",
-    "helpDisconnected": "Ověř peněženku Solana a zapni odznak držitele a odznaky na kartě hráče. Není potřeba žádná transakce ani SOL.",
-    "helpLoginToLink": "Připojeno {address}. Přihlas se a propoj ji se svým účtem.",
-    "helpLoginToLinkWithBalance": "Připojeno {address} se zůstatkem {balance}. Přihlas se a propoj ji se svým účtem.",
-    "helpReadyToLink": "Vybraná peněženka: {address}. Jednou podepiš a ověř odznak držitele a karty hráče.",
-    "helpReadyToLinkWithBalance": "Vybraná peněženka: {address} se zůstatkem {balance}. Jednou podepiš a ověř odznak držitele a karty hráče.",
-    "helpLinked": "Výhody držitele jsou aktivní. Aplikace peněženky je v tomto prohlížeči připojena.",
-    "helpLinkedWithBalance": "Výhody držitele jsou aktivní. Aplikace peněženky je v tomto prohlížeči připojena.",
-    "helpLinkedDisconnected": "Výhody držitele jsou aktivní. Připoj aplikaci, až budeš potřebovat podepisovat nebo utrácet.",
-    "helpLinkedDisconnectedWithBalance": "Výhody držitele jsou aktivní. Připoj aplikaci, až budeš potřebovat podepisovat nebo utrácet.",
-    "extensionHelp": "Aby se tu peněženka zobrazila, nech aktivní rozšíření prohlížeče, například Solflare Wallet.",
-    "mobileAppHelp": "Zvol Phantom nebo Solflare. Tvoje aplikace peněženky požádá o schválení. Nechej tuto hru otevřenou a po dokončení se do ní vrať.",
-    "seekerAppHelp": "Pokračuj s peněženkou Seed Vault. Zkontroluj požadavky na připojení a ověření v Seed Vault, poté se vrať do hry.",
-    "standaloneAppHelp": "Připojení peněženky není zatím v aplikaci z domovské obrazovky dostupné. Otevři World of ClaudeCraft v Safari nebo Chrome pro použití Phantom nebo Solflare.",
-    "openAppTitle": "Pokračovat v {wallet}",
-    "openAppHelp": "Otevři {wallet} pro kontrolu tohoto požadavku. Nechej tuto záložku hry otevřenou, zatímco je aplikace peněženky aktivní.",
-    "openAppButton": "Otevřít {wallet}",
-    "manualReturnBrowserHelp": "Po schválení se vrať na tuto záložku hry. Pokud iOS otevře jiný prohlížeč, zavři ho a ručně se vrať do původního prohlížeče.",
-    "manualReturnStandaloneHelp": "Po schválení se vrať do World of ClaudeCraft z domovské obrazovky. Pokud iOS otevře prohlížeč, zavři ho a ručně znovu otevři aplikaci z domovské obrazovky.",
-    "preparingAppButton": "Připravuji {wallet}...",
-    "walletAppUnavailable": "{wallet} nelze připravit. Zavři toto okno a zkus to znovu.",
-    "flowConnect": "Vyber peněženku. Ověření bude automaticky pokračovat.",
-    "flowSign": "Podepiš ověřovací zprávu v aplikaci peněženky. Není potřeba žádná transakce ani SOL.",
-    "flowVerify": "Ověřuje se vlastnictví peněženky...",
-    "linkFailed": "Ověření peněženky selhalo.",
-    "verifyFailed": "Ověření peněženky selhalo.",
-    "unlinkFailed": "Peněženku se nepodařilo odpojit od účtu.",
-    "browser": {
-      "eyebrow": "Desktopová autorizace peněženky",
-      "title": "Připojit peněženku Solana",
-      "linkBody": "Zvol rozšíření peněženky v tomto prohlížeči. Podepíšeš ověřovací zprávu a vrátíš se do desktopové aplikace.",
-      "paymentBody": "Zvol peněženku propojenou s tvým účtem a schval transakci v tomto prohlížeči.",
-      "extensionHelp": "Nebyla nalezena žádná kompatibilní rozšíření peněženky. Nainstaluj nebo odemkni Phantom, Solflare nebo jiný Solana prohlížečový wallet a zkus to znovu.",
-      "safety": "World of ClaudeCraft nikdy nepožaduje tvoji obnovovací frázi ani soukromý klíč.",
-      "continueWith": "Pokračovat s {wallet}",
-      "reviewTitle": "Zkontroluj ve své peněžence",
-      "reviewBody": "Postupuj podle výzvy od {wallet}. Nechej tuto stránku prohlížeče otevřenou.",
-      "completeTitle": "Autorizace peněženky dokončena",
-      "completeBody": "Můžeš se vrátit do desktopové aplikace World of ClaudeCraft.",
-      "returnButton": "Vrátit se do desktopové aplikace",
-      "failed": "Autorizace peněženky selhala nebo vypršela. Vrať se do desktopové aplikace a zkus to znovu.",
-      "retry": "Zkusit znovu"
-    },
-    "holder": "držitel $WOC",
-    "holderTierTitle": "Držitel $WOC: {tier}",
-    "holderTiers": {
-      "ember": {
-        "name": "Žhavý uhlík",
-        "flavor": "Jiskra už hoří."
-      },
-      "coinbearer": {
-        "name": "Nosič mincí",
-        "flavor": "První mince ve válečné truhle."
-      },
-      "coppercrest": {
-        "name": "Měděný erb",
-        "flavor": "Měďáky se kupí a tvé jméno se šeptá."
-      },
-      "silverbound": {
-        "name": "Stříbrem spoutaný",
-        "flavor": "Spoutaný stříbrem, plnící měšec."
-      },
-      "gilded": {
-        "name": "Pozlacený",
-        "flavor": "Pozlacený a sebejistý."
-      },
-      "vaultwarden": {
-        "name": "Strážce trezoru",
-        "flavor": "Teď už střeží skutečný trezor: 0,01 % všech $WOC."
-      },
-      "whale": {
-        "name": "Velryba",
-        "flavor": "Hlubiny se rozestupují, když plaveš: 0,1 % zásoby."
-      },
-      "leviathan": {
-        "name": "Leviatan",
-        "flavor": "Trhy cítí každý tvůj pohyb: 1 % zásoby."
-      },
-      "tidelord": {
-        "name": "Pán přílivu",
-        "flavor": "Příliv odpovídá na tvé volání: 2 % zásoby."
-      },
-      "stormcaller": {
-        "name": "Volající bouři",
-        "flavor": "Bouře se stahují při tvém jménu: 3 % zásoby."
-      },
-      "krakencrown": {
-        "name": "Koruna krakena",
-        "flavor": "Korunován hlubinou: 4 % zásoby."
-      },
-      "titanforged": {
-        "name": "Titánsky kovaný",
-        "flavor": "Kovaný mezi titány: 5 % zásoby."
-      },
-      "starhoard": {
-        "name": "Hvězdný poklad",
-        "flavor": "Pokladnice, která ohýbá světlo hvězd: 6 % zásoby."
-      },
-      "voidwarden": {
-        "name": "Strážce prázdnoty",
-        "flavor": "Strážce na okraji prázdnoty: 7 % zásoby."
-      },
-      "realmshaper": {
-        "name": "Tvarovatel světa",
-        "flavor": "Přetváříš svět: 8 % zásoby."
-      },
-      "worldforger": {
-        "name": "Kovář světa",
-        "flavor": "Kuješ vlastní svět: 9 % zásoby."
-      },
-      "worldbearer": {
-        "name": "Nosič světa",
-        "flavor": "Neseš kus světa: 10 % zásoby."
-      },
-      "sovereign": {
-        "name": "Suverén",
-        "flavor": "Svět kleká na koleno: celá zásoba."
-      }
-    }
-  },
   "playerCard": {
     "shareButton": "Sdílet kartu hráče",
     "title": "Karta hráče",
@@ -5365,16 +5139,15 @@ export const cs_CZ: EnTranslations = {
     "levelClass": "Úroveň {level} - {className}",
     "topPercent": "TOP {percent} %",
     "realmSubtitle": "Svět {realm}",
-    "defaultRealm": "World of ClaudeCraft",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "defaultRealm": "Wildhaven",
+    "brandWordmark": "WILDHAVEN",
     "recruited": "přivedeno {count}",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",
     "footerCta": "Kuj svou legendu: {siteUrl}",
     "arenaStat": "Aréna",
-    "shareTierBit": ", držitel $WOC stupně {tier}",
-    "shareText": "Kuji svou legendu ve World of ClaudeCraft: úroveň {level} {className}{tierBit}. Přidej se do mého světa:",
-    "nativeShareTitle": "World of ClaudeCraft",
+    "shareText": "Kuji svou legendu ve Wildhaven: úroveň {level} {className}{tierBit}. Přidej se do mého světa:",
+    "nativeShareTitle": "Wildhaven",
     "fileNameFallback": "hrac",
     "actionShareX": "Sdílet na X",
     "actionCopyReferral": "Kopírovat doporučovací odkaz",
@@ -6074,14 +5847,14 @@ export const cs_CZ: EnTranslations = {
     }
   },
   "seo": {
-    "title": "World of ClaudeCraft: webové MMO v klasickém stylu",
-    "description": "Vydej se na epické dobrodružství ve World of ClaudeCraft, klasicky laděném micro-MMO hratelném přímo v prohlížeči. Připoj se k trvalému sdílenému světu, zvyšuj úrovně tříd a porážej nepřátele!",
+    "title": "Wildhaven: webové MMO v klasickém stylu",
+    "description": "Vydej se na epické dobrodružství ve Wildhaven, klasicky laděném micro-MMO hratelném přímo v prohlížeči. Připoj se k trvalému sdílenému světu, zvyšuj úrovně tříd a porážej nepřátele!",
     "genre": "MMORPG",
     "playMode": "Multiplayer",
     "applicationCategory": "Hra",
     "operatingSystem": "Webový prohlížeč",
-    "officialLabel": "Oficiální web World of ClaudeCraft",
-    "officialBody": "worldofclaudecraft.com je oficiální bezplatné prohlížečové MMO pro svět Claudemoon. Hraj online s trvalou postavou, prozkoumávej sólo offline, čti wiki a používej ověřené komunitní odkazy z tohoto webu."
+    "officialLabel": "Oficiální web Wildhaven",
+    "officialBody": "wildhaven.example je oficiální bezplatné prohlížečové MMO pro svět Claudemoon. Hraj online s trvalou postavou, prozkoumávej sólo offline, čti wiki a používej ověřené komunitní odkazy z tohoto webu."
   },
   "a11y": {
     "goHome": "Přejít na domovskou stránku",
@@ -6089,9 +5862,9 @@ export const cs_CZ: EnTranslations = {
     "mainNavigation": "Hlavní navigace",
     "languageSelection": "Výběr jazyka",
     "characterActions": "Akce postavy",
-    "githubProject": "Otevřít projekt World of ClaudeCraft na GitHubu",
-    "discordCommunity": "Připojit se ke komunitě World of ClaudeCraft na Discordu",
-    "donateProject": "Přispět na podporu World of ClaudeCraft"
+    "githubProject": "Otevřít projekt Wildhaven na GitHubu",
+    "discordCommunity": "Připojit se ke komunitě Wildhaven na Discordu",
+    "donateProject": "Přispět na podporu Wildhaven"
   },
   "entryGuard": {
     "title": "Grafika snížena",
@@ -6178,11 +5951,11 @@ export const cs_CZ: EnTranslations = {
       "dismiss": "Zavřít"
     },
     "crash": {
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "body": "Herní zobrazení přestalo fungovat. Načíst ho znovu?",
       "reload": "Načíst znovu",
       "quit": "Ukončit",
-      "fatalBody": "World of ClaudeCraft narazil na neočekávanou chybu a musí se zavřít."
+      "fatalBody": "Wildhaven narazil na neočekávanou chybu a musí se zavřít."
     }
   },
   "gpuNotice": {
@@ -6321,17 +6094,17 @@ export const cs_CZ: EnTranslations = {
     "iosStandaloneDetail": "Jsi v režimu celé obrazovky z plochy. Drž zařízení na šířku.",
     "iosInstallDetail": "Pro skutečnou celou obrazovku na iPhonu nebo iPadu si tuto stránku nejdřív přidej na plochu.",
     "iosShareStep": "V Safari klepni na Sdílet a potom na Přidat na plochu.",
-    "iosOpenStep": "Otevři World of ClaudeCraft z nové ikony na ploše.",
+    "iosOpenStep": "Otevři Wildhaven z nové ikony na ploše.",
     "androidStandaloneDetail": "Jsi v režimu aplikace na celou obrazovku. Drž zařízení na šířku.",
     "androidInstallDetail": "Pro celou obrazovku na Androidu si tuto stránku nejdřív nainstaluj nebo přidej na plochu.",
     "androidInstallStep": "V Chromu klepni na menu a potom na Instalovat aplikaci nebo Přidat na plochu.",
-    "androidOpenStep": "Otevři World of ClaudeCraft z nové ikony.",
+    "androidOpenStep": "Otevři Wildhaven z nové ikony.",
     "otherStandaloneDetail": "Drž zařízení na šířku a na celou obrazovku.",
     "otherInstallDetail": "Pro nejlepší mobilní zážitek na celou obrazovku si tuto stránku nainstaluj nebo přidej na plochu."
   },
   "serverUnavailable": {
-    "title": "World of ClaudeCraft - Svět nedostupný",
-    "logoAlt": "World of ClaudeCraft",
+    "title": "Wildhaven - Svět nedostupný",
+    "logoAlt": "Wildhaven",
     "eyebrow": "Údržba světa",
     "heading": "Svět je dočasně nedostupný.",
     "body": "Restartujeme herní službu a očekáváme, že se Claudemoon brzy vrátí. Tato stránka bude stav automaticky kontrolovat.",
@@ -14590,6 +14363,11 @@ export const cs_CZ: EnTranslations = {
         "sender": "Hrdinský zásobovač",
         "subject": "Vaše hrdinské marky",
         "body": "Vaše skupina zdolala hrdinskou zkoušku, zatímco jste bojovali v týlu nebo leželi poraženi. Také vaše uzamčení bylo zaznamenáno, takže váš podíl hrdinských marek dorazil sem, místo aby se ztratil. Využijte je dobře.\n\n- Hrdinský zásobovač"
+      },
+      "daily_reward_prize": {
+        "sender": "The Vale Steward",
+        "subject": "Your share of the daily purse",
+        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "Řemeslnický cech",

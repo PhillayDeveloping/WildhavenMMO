@@ -30,7 +30,6 @@ function build(gameWorld: IWorld, overrides: Record<string, unknown> = {}) {
     characterImage: 'data:image/png;base64,test',
     referral: null,
     standing: null,
-    balance: null,
     showDevBadges: true,
     slotName: (slot) => `slot:${slot}`,
     ...overrides,
@@ -81,7 +80,6 @@ describe('buildPlayerCardData', () => {
     });
 
     expect(data.titleText).toBeTruthy();
-    expect(data.balance).toBeNull();
     expect(data.devTier).toBeNull();
     expect(data.devMergedPrs).toBeNull();
   });

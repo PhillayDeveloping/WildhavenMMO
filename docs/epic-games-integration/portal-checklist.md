@@ -21,7 +21,7 @@ current Epic Developer Portal docs when UI labels move:
 ## 1. Organization and product
 
 - [ ] Organization approved / accessible under the correct legal entity
-- [ ] Product created for World of ClaudeCraft
+- [ ] Product created for Wildhaven
 - [ ] Note stable ids for later env wiring (placeholders only in docs):
   - Product id -> server `EPIC_PRODUCT_ID` and build `WOC_EPIC_PRODUCT_ID`
   - Deployment id(s) -> `EPIC_DEPLOYMENT_ID` / `WOC_EPIC_DEPLOYMENT_ID`

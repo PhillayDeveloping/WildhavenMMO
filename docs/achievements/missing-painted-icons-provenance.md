@@ -6,7 +6,7 @@ The machine-readable companion, [missing-painted-icons-accepted-art.json](missin
 
 ## Lineage and ownership
 
-Every new raster was created in one distinct call through OpenAI built-in image generation and is owned as a World of ClaudeCraft project asset, rights reserved. Repository inputs labeled CraftPix are licensed third-party style or subject references available to this project; they are recorded truthfully and are never described as first-party. No external proprietary-game art entered the lineage. Existing project-generated and commissioned references retain the ownership recorded in CREDITS.md and their mapping files.
+Every new raster was created in one distinct call through OpenAI built-in image generation and is owned as a Wildhaven project asset, rights reserved. Repository inputs labeled CraftPix are licensed third-party style or subject references available to this project; they are recorded truthfully and are never described as first-party. No external proprietary-game art entered the lineage. Existing project-generated and commissioned references retain the ownership recorded in CREDITS.md and their mapping files.
 
 ## Deterministic processing and acceptance
 
@@ -43,10 +43,10 @@ Constraints: no text, ribbon, extra frame, watermark, exterior shadow or glow; d
 
 Actual image inputs:
 
-- `docs/screenshots/wildheart/concept/wildheart-basin-keyart.jpg` - subject reference; World of ClaudeCraft project-generated art; Project asset, rights reserved
-- `public/ui/deeds/dgn_drowned_temple.webp` - frame reference; World of ClaudeCraft maintainer-commissioned bespoke art; Project asset, rights reserved
-- `public/ui/deeds/dgn_hollow_crypt.webp` - composition reference; World of ClaudeCraft maintainer-commissioned bespoke art; Project asset, rights reserved
-- `public/ui/deeds/chr_peaks_gatherer.webp` - frame reference; World of ClaudeCraft project-generated art; Project asset, rights reserved
+- `docs/screenshots/wildheart/concept/wildheart-basin-keyart.jpg` - subject reference; Wildhaven project-generated art; Project asset, rights reserved
+- `public/ui/deeds/dgn_drowned_temple.webp` - frame reference; Wildhaven maintainer-commissioned bespoke art; Project asset, rights reserved
+- `public/ui/deeds/dgn_hollow_crypt.webp` - composition reference; Wildhaven maintainer-commissioned bespoke art; Project asset, rights reserved
+- `public/ui/deeds/chr_peaks_gatherer.webp` - frame reference; Wildhaven project-generated art; Project asset, rights reserved
 
 Accepted high-resolution master: `tmp/imagegen/missing-painted-icons/masters/deeds/dgn_wildheart_basin.png`, SHA-256 `8c92f548f5352c70fe5c3fe5177ac77f0a807313e5eb6b727a9c78d1d1abc0b3`. Accepted 512px source: `tmp/imagegen/missing-painted-icons/accepted/deeds/dgn_wildheart_basin.png`, SHA-256 `dd745c14baf4cedb77958647c39d7478dc4525f58a9d50c0c6ab428a962a6a77`, alpha bounds [59,56,453,455], 0.424255 coverage. Shipping WebP: `/ui/deeds/dgn_wildheart_basin.webp`, SHA-256 `6bdf6a17e1ddb01fb1fbc962264bf6bd2ff9bd95502f4b1f8425b1562bcbe275`, 4872 bytes. Final alpha bounds [14,14,113,113], 0.432556 coverage.
 
@@ -71,10 +71,10 @@ Constraints: no text, ribbon, extra frame, watermark, exterior shadow or glow; d
 
 Actual image inputs:
 
-- `public/ui/mobs/wildheart_high_priest.webp` - subject reference; World of ClaudeCraft project-generated art; Project asset, rights reserved
-- `docs/screenshots/wildheart/wildheart-zulgar-desktop.jpg` - subject reference; World of ClaudeCraft project-generated art; Project asset, rights reserved
-- `public/ui/deeds/dgn_drowned_temple_heroic.webp` - frame reference; World of ClaudeCraft maintainer-commissioned bespoke art; Project asset, rights reserved
-- `docs/screenshots/wildheart/concept/wildheart-basin-keyart.jpg` - composition reference; World of ClaudeCraft project-generated art; Project asset, rights reserved
+- `public/ui/mobs/wildheart_high_priest.webp` - subject reference; Wildhaven project-generated art; Project asset, rights reserved
+- `docs/screenshots/wildheart/wildheart-zulgar-desktop.jpg` - subject reference; Wildhaven project-generated art; Project asset, rights reserved
+- `public/ui/deeds/dgn_drowned_temple_heroic.webp` - frame reference; Wildhaven maintainer-commissioned bespoke art; Project asset, rights reserved
+- `docs/screenshots/wildheart/concept/wildheart-basin-keyart.jpg` - composition reference; Wildhaven project-generated art; Project asset, rights reserved
 
 Accepted high-resolution master: `tmp/imagegen/missing-painted-icons/masters/deeds/dgn_wildheart_basin_heroic.png`, SHA-256 `0b4c8ebd81c3e7649c23c93ac055abe3f8922df0679ed198f64e2d58c92a87bd`. Accepted 512px source: `tmp/imagegen/missing-painted-icons/accepted/deeds/dgn_wildheart_basin_heroic.png`, SHA-256 `bdb1f9fcff4171f09eaf3ecf2fa39ece35225e29b53502c510cfe22dd0a236f4`, alpha bounds [60,56,452,455], 0.418285 coverage. Shipping WebP: `/ui/deeds/dgn_wildheart_basin_heroic.webp`, SHA-256 `7640ae22f08da8f378b2219b60668089cc728266d06c2f1196164fc2daf7de8d`, 5996 bytes. Final alpha bounds [15,14,113,113], 0.426208 coverage.
 
@@ -99,9 +99,9 @@ Constraints: no text, ribbon, extra frame, watermark, exterior shadow or glow; d
 
 Actual image inputs:
 
-- `public/ui/chrome/cards.webp` - subject reference; World of ClaudeCraft project-generated art; Project asset, rights reserved
-- `public/ui/deeds/pvp_duel_first_win.webp` - frame reference; World of ClaudeCraft maintainer-commissioned bespoke art; Project asset, rights reserved
-- `public/ui/deeds/pvp_arena_first_win.webp` - composition reference; World of ClaudeCraft maintainer-commissioned bespoke art; Project asset, rights reserved
-- `public/ui/deeds/chr_peaks_gatherer.webp` - frame reference; World of ClaudeCraft project-generated art; Project asset, rights reserved
+- `public/ui/chrome/cards.webp` - subject reference; Wildhaven project-generated art; Project asset, rights reserved
+- `public/ui/deeds/pvp_duel_first_win.webp` - frame reference; Wildhaven maintainer-commissioned bespoke art; Project asset, rights reserved
+- `public/ui/deeds/pvp_arena_first_win.webp` - composition reference; Wildhaven maintainer-commissioned bespoke art; Project asset, rights reserved
+- `public/ui/deeds/chr_peaks_gatherer.webp` - frame reference; Wildhaven project-generated art; Project asset, rights reserved
 
 Accepted high-resolution master: `tmp/imagegen/missing-painted-icons/masters/deeds/pvp_card_duel_first_win.png`, SHA-256 `0b95c80ff33fc5052b368c27407da882fcbe110bbd5c86fda5124483b1849acb`. Accepted 512px source: `tmp/imagegen/missing-painted-icons/accepted/deeds/pvp_card_duel_first_win.png`, SHA-256 `44de5b484a9bff1793ce23a218681d6d6940fe7813506bd134f4ccba5c20c065`, alpha bounds [56,57,455,454], 0.416470 coverage. Shipping WebP: `/ui/deeds/pvp_card_duel_first_win.webp`, SHA-256 `5c16fa2351320b2d53ac2e95aa4073289a883fe767003b1412ed8e8e0df16a53`, 5020 bytes. Final alpha bounds [14,14,113,113], 0.424072 coverage.

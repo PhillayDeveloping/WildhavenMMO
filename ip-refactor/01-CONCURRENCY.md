@@ -168,7 +168,7 @@ this environment).
 #    forking: G0 -> G1. Do NOT fork tracks until the operator flips NAME-MAP.md to LOCKED.
 
 # 1. Fork one worktree + branch per concurrent track (from the feature/ip-pivot checkout):
-cd world-of-claudecraft/world-of-claudecraft   # confirm via `git worktree list`
+cd wildhaven/wildhaven   # confirm via `git worktree list`
 git worktree add -b track/ip-vocab     ../wt-ip-vocab     feature/ip-pivot
 git worktree add -b track/ip-creatures ../wt-ip-creatures feature/ip-pivot
 git worktree add -b track/ip-world     ../wt-ip-world     feature/ip-pivot
@@ -183,7 +183,7 @@ for d in wt-ip-vocab wt-ip-creatures wt-ip-world wt-ip-text; do ( cd "../$d" && 
 
 # 4. After EACH session in a track, merge it back to feature/ip-pivot and keep base green.
 #    ONE integrator merges ONE branch at a time (feature/ip-pivot is a single checkout):
-cd world-of-claudecraft/world-of-claudecraft
+cd wildhaven/wildhaven
 git merge --no-ff track/ip-vocab
 #   generated-artifact conflicts (i18n.resolved.generated/* , i18n.resolved.sha256,
 #   guide/content.generated.ts) = DO NOT hand-merge; regenerate:

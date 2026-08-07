@@ -39,7 +39,7 @@ STEP 0 - PRE-FLIGHT (do all of this before writing any code)
    and the notes it indexes for: hud, i18n, shared-worktree-commit-care,
    never-push-to-fork, no-em-dashes-or-emojis, live-site-and-test-creds. Honor all of
    them (push branches/PRs to origin levy-street, never the FernandoX7 fork; no em dashes
-   or emojis anywhere; live site worldofclaudecraft.com with test creds fernando/turbo564
+   or emojis anywhere; live site wildhaven.example with test creds fernando/turbo564
    and the window.__game debug hook for the live walkthrough).
 4. BRANCH. Create the phase branch off the current integration base:
    `git checkout -b feature/phase-23-aaa-conformance-pass`. One card, one branch, one PR.
@@ -183,7 +183,7 @@ Run the state.md validation matrix rows for BOTH "Visual/token change" and "A11y
     contrast computation to prove the bumped pairs cross 7:1 / 4.5:1 in every theme.
 
 PLAYWRIGHT MCP LIVE-GAME WALKTHROUGH (always-on for this packet, per state.md):
-Drive worldofclaudecraft.com (or local `npm run dev` + `npm run server`) via Playwright
+Drive wildhaven.example (or local `npm run dev` + `npm run server`) via Playwright
 MCP, logging in with the test creds / window.__game hook:
   - Switch locale to a non-English locale and confirm NO English leak from any string a
     fix touched (new tooltips/hints route through t()).

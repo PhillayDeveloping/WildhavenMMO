@@ -1,7 +1,7 @@
 // The delivery seam. Everything above this file is pure rendering; everything
 // provider-specific is isolated here so swapping mail providers, or running with
 // none in dev, is a one-file concern. No new dependency: HttpSender uses the
-// same raw `fetch` the codebase already uses for Turnstile and the Solana RPC.
+// same raw `fetch` the codebase already uses for Turnstile.
 
 import { SesSender } from './ses_sender';
 

@@ -110,7 +110,7 @@ function fakeRuntime(overrides: Partial<CharactersRuntime> = {}): CharactersRunt
     saveMail: async () => {},
     purgeMailOwner: () => false,
     initialCharacterState: () => st(),
-    publicOrigin: () => 'https://worldofclaudecraft.com',
+    publicOrigin: () => 'https://wildhaven.example',
     ...overrides,
   };
 }
@@ -489,7 +489,7 @@ describe('owner sheet handler', () => {
         { deedId: 'prog_veteran', earnedAt: '2026-07-08T10:00:00.000Z' },
       ],
     });
-    installRuntime({ publicOrigin: () => 'https://worldofclaudecraft.com' });
+    installRuntime({ publicOrigin: () => 'https://wildhaven.example' });
     const row = charRow({
       id: 3,
       name: 'Sheety',

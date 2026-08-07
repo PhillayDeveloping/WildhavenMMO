@@ -520,82 +520,43 @@ export const KNOWN_DEVIATIONS: readonly KnownDeviation[] = [
   },
   {
     id: DEVIATION_ID.rateLimitedBodyToCode,
-    routes: ['/api/wallet/link/challenge', '/api/wallet/link', '/api/woc/balance', '/api/card'],
+    routes: ['/api/card'],
     currentBehavior:
-      'On throttle, the wallet link-challenge, wallet link, woc balance, and card ' +
-      'routes answer 429 { error: "rate limited" } (application/json): the two ' +
-      'wallet routes self-limit inside handleWalletChallenge / handleWalletLink, and ' +
-      'the woc balance + card arms limit inline in server/main.ts, each returning the ' +
-      'same bare English prose body.',
+      'On throttle, the card route answers 429 { error: "rate limited" } ' +
+      '(application/json): the card arm limits inline in server/main.ts and returns ' +
+      'that bare English prose body.',
     intendedBehavior:
-      'The new pipeline serves these routes: the throttle is a ' +
-      'rateLimit(policy) middleware (WALLET_LINK_POLICY / WOC_BALANCE_POLICY / ' +
-      'CARD_UPLOAD_POLICY) that throws HttpError(429, "rate_limit.exceeded", ' +
+      'The new pipeline serves the route behind a rateLimit(CARD_UPLOAD_POLICY) ' +
+      'middleware that throws HttpError(429, "rate_limit.exceeded", ' +
       '{ retryAfterSeconds }); the error boundary serializes it as RFC 9457 ' +
       'application/problem+json carrying the stable machine code "rate_limit.exceeded" ' +
       '(and a Retry-After header) instead of the bare { error: "rate limited" } prose. ' +
       'The code already exists in error_codes.ts (harvested with the error-code catalog; ' +
       'reused by the character-mutation limiters), so no catalog append is needed. The ' +
-      'legacy arms keep the prose body for the flag-off rollback until the legacy ladder ' +
+      'legacy arm keeps the prose body for the flag-off rollback until the legacy ladder ' +
       'is removed; the client code-matcher (userFacingApiError) covers the problem+json body.',
     introducedInPhase: 14,
     reason:
-      'The migration gives the four previously-raw rate-limited responses a stable code via ' +
+      'The migration gives the previously-raw rate-limited response a stable code via ' +
       'the error model (the deliberate stable-code deliverable). The 429 divergence is ' +
       'NOT exercised by the db-free parity corpus (runParity resets every limiter bucket ' +
       'before each pass, so a bucket is never drained), so it is documented here rather ' +
       'than caught by the harness. It is a sibling to newLimiterCharacterMutations (a 429 ' +
-      'that resolves to problem+json rate_limit.exceeded), except these four routes ' +
+      'that resolves to problem+json rate_limit.exceeded), except this route ' +
       'already returned a 429 today (as prose), so this changes the BODY SHAPE, not ' +
-      'whether a 429 exists. Adding /api/card here also masks it in the path-scoped parity ' +
-      'filter, so the card pre-auth 413 + Connection: close byte-identity (the only one of ' +
-      'the four with a corpus fixture, card_too_large_413, which does NOT hit the limiter) ' +
+      'whether a 429 exists. Listing /api/card here also masks it in the path-scoped parity ' +
+      'filter, so the card pre-auth 413 + Connection: close byte-identity (its corpus ' +
+      'fixture card_too_large_413, which does NOT hit the limiter) ' +
       'is re-pinned by a dedicated captureBothModes assertion in parity.test.ts and by the ' +
       'card_route unit test. TELEMETRY drift (observability-only, flag-gated): on the new ' +
-      'path the rateLimit(policy) middleware throws before the handler runs, so the four ' +
-      'provider_usage counters the legacy arms record on a throttle ' +
-      '(wallet.challenge.rate_limited / wallet.link.rate_limited / woc.balance.rate_limited / ' +
-      'card.publish.rate_limited) are NOT emitted, and the wallet .request counters no longer ' +
-      'count a throttled attempt (the handler that records them runs after the limiter). The ' +
+      'path the rateLimit(policy) middleware throws before the handler runs, so the ' +
+      'provider_usage counter the legacy arm records on a throttle ' +
+      '(card.publish.rate_limited) is NOT emitted. The ' +
       'rateLimit middleware is generic, so documenting the divergence is the correct ' +
       'resolution rather than coupling it to route-specific metrics; the admin dashboard ' +
-      "undercounts throttled wallet/card/balance events with API_DISPATCH at 'new' (the " +
+      "undercounts throttled card events with API_DISPATCH at 'new' (the " +
       'production default). Structured request-layer metrics live in the /metrics ' +
       'observability layer. No response-body or security impact.',
-  },
-  {
-    id: DEVIATION_ID.walletBodyValidationRemap,
-    routes: ['/api/wallet/link/challenge', '/api/wallet/link'],
-    currentBehavior:
-      'The wallet link-challenge and link handlers self-read their request body with ' +
-      'readBody INSIDE walletChallengeCore / walletLinkCore (no withBody middleware). On the ' +
-      'legacy handleApi ladder, a malformed JSON body or an over-cap body makes readBody ' +
-      "reject, and the reject falls to handleApi's outer catch, which answers 500 " +
-      '{ error: "internal error" } (application/json); a literal JSON null body (valid JSON) ' +
-      'is dereferenced (null.address), throwing a TypeError that falls to the same generic 500.',
-    intendedBehavior:
-      'The new pipeline serves these two routes. The migrated handlers call ' +
-      'the SAME limiter-free cores UNCHANGED (they self-read the body, so NO withBody ' +
-      'middleware is composed and there is NO 400/413 status remap: a malformed or over-cap ' +
-      'body still answers 500, and a null body still throws to 500). The ONLY divergence is ' +
-      'the 500 BODY SHAPE: the throw propagates to the withErrors boundary and ' +
-      'serializes as 500 application/problem+json (internal.error) instead of the legacy ' +
-      '500 { error: "internal error" }. Leak-free (the 500 detail is a static sentence; the ' +
-      'original error goes only to the logger). The client code-matcher covers the ' +
-      'problem+json body; the divergence becomes the real behavior when the legacy arm ' +
-      'is removed.',
-    introducedInPhase: 14,
-    reason:
-      'The migrated wallet challenge/link handlers surface an unexpected body throw (malformed ' +
-      '/ over-cap / null body) through the shared error-model boundary as 500 ' +
-      'problem+json instead of the legacy outer-catch 500 { error }. Same 500 STATUS, ' +
-      'different body shape; there is no status remap because these handlers self-read without ' +
-      'withBody. Exact sibling to accountBodyValidationRemap (the account self-read POST ' +
-      'routes); the card route does NOT get an entry because handleCardUpload CATCHES its own ' +
-      'readBinaryBody reject and answers a byte-identical 413/400 on both paths. These ' +
-      'framework-error paths are NOT exercised by the db-free parity corpus (which replays ' +
-      'valid bodies only), so the divergence is documented here rather than caught by the ' +
-      'harness.',
   },
   {
     id: DEVIATION_ID.reportsBodyValidationRemap,
@@ -1178,16 +1139,15 @@ export const KNOWN_DEVIATIONS: readonly KnownDeviation[] = [
       '/internal/daily-rewards/pending-payouts',
       '/internal/daily-rewards/payout-history',
       '/internal/daily-rewards/leaderboard',
-      '/internal/daily-rewards/mark-payout',
       '/internal/daily-rewards/void-payout',
       '/internal/daily-rewards/restore-payout',
     ],
     currentBehavior:
       'The legacy ops family is the FIRST arm of the /internal composite delegate ' +
       '(handleDailyRewardInternalApi, tried before handleInternalApi), fired ' +
-      'fire-and-forget with NO outer catch: mark-payout self-reads its body via an ' +
+      'fire-and-forget with NO outer catch: the moderation arms self-read their body via an ' +
       'UN-caught readBody (unlike internal.ts, which .catch(() => ({}))s every read), ' +
-      'so a malformed/over-cap body AND any DB throw in the seven handlers become an ' +
+      'so a malformed/over-cap body AND any DB throw in the six handlers become an ' +
       'unhandled rejection: NO response is written and the payout service request ' +
       'HANGS. The gate itself is FAIL-CLOSED: an unset ' +
       'WOC_DAILY_REWARD_SERVICE_SECRET and a wrong x-woc-daily-reward-secret header ' +
@@ -1222,9 +1182,6 @@ export const KNOWN_DEVIATIONS: readonly KnownDeviation[] = [
   {
     id: DEVIATION_ID.rateLimit429Draft11Headers,
     routes: [
-      '/api/wallet/link/challenge',
-      '/api/wallet/link',
-      '/api/woc/balance',
       '/api/card',
       '/api/characters',
       '/api/characters/:id/rename',

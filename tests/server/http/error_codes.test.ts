@@ -4,6 +4,13 @@ import { ERROR_CODES, type ErrorCode } from '../../../server/http/error_codes';
 // APPEND-ONLY (AIP-193): add new codes to this list; NEVER remove or rename an
 // existing one. This sorted set is the contract every migrated surface and the
 // client code-matcher depend on; the snapshot assertion below fails on any drift.
+//
+// ONE deliberate exception has been taken, and it is the only circumstance that
+// justifies one: the `wallet.*` and `seeker.*` codes were dropped when this fork
+// removed the Solana integration. Append-only exists so a client that still
+// understands a code keeps working, and no endpoint that could emit these
+// survives, so no client can ever receive one. Retiring an ordinary code still
+// means leaving it here.
 const EXPECTED_CODES = [
   'account.characters_online',
   'account.deactivated',
@@ -59,20 +66,11 @@ const EXPECTED_CODES = [
   'moderation.suspended_until',
   'origin.cross_site',
   'rate_limit.exceeded',
-  'seeker.attestation_failed',
-  'seeker.current_ownership_required',
-  'seeker.entitlement_required',
-  'seeker.genesis_token_claimed',
-  'seeker.genesis_token_required',
-  'seeker.native_only',
-  'seeker.solana_artifact_required',
-  'seeker.wallet_required',
   'two_factor.already_enabled',
   'two_factor.code_invalid',
   'two_factor.not_enabled',
   'two_factor.setup_required',
   'validation.failed',
-  'wallet.handoff_invalid',
   'deeds.invalid_input',
   'steam.disabled',
   'steam.invalid_ticket',

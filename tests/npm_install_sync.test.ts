@@ -9,9 +9,9 @@ describe('parseInstallProblems', () => {
   it('returns an empty list when npm ls reports no problems key at all', () => {
     // A clean `npm ls --depth=0 --json` tree omits `problems` entirely rather
     // than emitting an empty array.
-    expect(
-      parseInstallProblems(JSON.stringify({ name: 'world-of-claudecraft', version: '1.0.0' })),
-    ).toEqual([]);
+    expect(parseInstallProblems(JSON.stringify({ name: 'wildhaven', version: '1.0.0' }))).toEqual(
+      [],
+    );
   });
 
   it('returns an empty list when problems is an explicit empty array', () => {
@@ -21,12 +21,12 @@ describe('parseInstallProblems', () => {
   it('extracts a real npm ls drift report (three.js drift + a missing dependency)', () => {
     const raw = JSON.stringify({
       problems: [
-        'missing: @capgo/capacitor-updater@^8.51.2, required by world-of-claudecraft@0.33.0',
+        'missing: @capgo/capacitor-updater@^8.51.2, required by wildhaven@0.33.0',
         'invalid: three@0.185.1 /repo/node_modules/three',
       ],
     });
     expect(parseInstallProblems(raw)).toEqual([
-      'missing: @capgo/capacitor-updater@^8.51.2, required by world-of-claudecraft@0.33.0',
+      'missing: @capgo/capacitor-updater@^8.51.2, required by wildhaven@0.33.0',
       'invalid: three@0.185.1 /repo/node_modules/three',
     ]);
   });
@@ -97,13 +97,13 @@ describe('shouldCheckInstallSync', () => {
 describe('formatInstallSyncFailure', () => {
   it('pins the message shape and the pnpm install hint for multiple problems', () => {
     const msg = formatInstallSyncFailure([
-      'missing: @capgo/capacitor-updater@^8.51.2, required by world-of-claudecraft@0.33.0',
+      'missing: @capgo/capacitor-updater@^8.51.2, required by wildhaven@0.33.0',
       'invalid: three@0.185.1 /repo/node_modules/three',
     ]);
     expect(msg).toContain('node_modules does not match what pnpm-lock.yaml would install');
     expect(msg).toContain('2 problems');
     expect(msg).toContain(
-      '  - missing: @capgo/capacitor-updater@^8.51.2, required by world-of-claudecraft@0.33.0',
+      '  - missing: @capgo/capacitor-updater@^8.51.2, required by wildhaven@0.33.0',
     );
     expect(msg).toContain('  - invalid: three@0.185.1 /repo/node_modules/three');
     expect(msg).toContain(

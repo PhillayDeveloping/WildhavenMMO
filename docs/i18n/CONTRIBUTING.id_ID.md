@@ -4,9 +4,9 @@
 
 </div>
 
-# Berkontribusi ke World of ClaudeCraft
+# Berkontribusi ke Wildhaven
 
-Pertama-tama, terima kasih sudah berada di sini. World of ClaudeCraft dibangun
+Pertama-tama, terima kasih sudah berada di sini. Wildhaven dibangun
 oleh komunitas orang-orang yang mencintai MMO klasik, dan setiap kontribusi, besar
 atau kecil, membuatnya menjadi lebih baik. Memperbaiki salah ketik, menerjemahkan
 game, melaporkan bug, membangun sebuah dungeon yang benar-benar baru: semuanya
@@ -14,7 +14,7 @@ berarti, dan kamu disambut di sini.
 
 Panduan ini akan membantumu menyiapkan lingkungan kerja dan membuat kontribusi
 pertamamu berjalan mulus. Kamu tidak perlu menjadi ahli. Jika ada yang kurang
-jelas, tanyakan di [Discord](https://discord.com/invite/worldofclaudecraft) dan seseorang akan
+jelas, tanyakan di [Discord](https://discord.com/invite/wildhaven) dan seseorang akan
 dengan senang hati membantu.
 
 Dengan ikut berpartisipasi, kamu setuju untuk mengikuti
@@ -26,13 +26,13 @@ Ada tempat untuk semua orang di sini:
 
 - **Kode.** Memperbaiki bug, menambahkan fitur, atau meningkatkan performa. Isu
   yang berlabel
-  [`good first issue`](https://github.com/levy-street/world-of-claudecraft/labels/good%20first%20issue)
-  dan [`help wanted`](https://github.com/levy-street/world-of-claudecraft/labels/help%20wanted)
+  [`good first issue`](https://github.com/levy-street/wildhaven/labels/good%20first%20issue)
+  dan [`help wanted`](https://github.com/levy-street/wildhaven/labels/help%20wanted)
   adalah tempat yang bagus untuk memulai.
 - **Terjemahan.** Bantu para pemain di seluruh dunia dengan meningkatkan atau
   melengkapi sebuah bahasa. Lihat [Menerjemahkan game](#translating-the-game) di
   bawah. Ini adalah salah satu cara termudah dan paling berdampak untuk memulai.
-- **Laporan bug dan ide fitur.** Buka sebuah [isu](https://github.com/levy-street/world-of-claudecraft/issues/new/choose).
+- **Laporan bug dan ide fitur.** Buka sebuah [isu](https://github.com/levy-street/wildhaven/issues/new/choose).
   Laporan bug yang jelas adalah kontribusi yang nyata.
 - **Dokumentasi.** Panduan seperti yang satu ini, README, dan dokumen desain di
   `docs/` selalu bisa ditingkatkan.
@@ -47,8 +47,8 @@ Kamu memerlukan [Node.js 26](https://nodejs.org/) dan **pnpm 10.34.x** (pin tepa
 
 ```bash
 # 1. Fork the repo on GitHub, then clone your fork
-git clone https://github.com/<your-username>/world-of-claudecraft.git
-cd world-of-claudecraft
+git clone https://github.com/<your-username>/wildhaven.git
+cd wildhaven
 
 # 2. Install pnpm once (same command on macOS, Linux, Windows)
 #    Match the packageManager pin in package.json (today: 10.34.5).
@@ -249,7 +249,7 @@ darimu.
 
 ## Lokalisasi
 
-World of ClaudeCraft hadir dalam banyak bahasa. Setiap string yang terlihat pemain
+Wildhaven hadir dalam banyak bahasa. Setiap string yang terlihat pemain
 harus berupa kunci terjemahan, sementara kontributor fitur biasanya hanya
 menambahkan sumber bahasa Inggrisnya.
 
@@ -302,15 +302,15 @@ baru? Kamu tidak perlu menulis kode game apa pun untuk melakukannya:
 
 Untuk mengusulkan sebuah locale yang benar-benar baru, atau untuk mendiskusikan
 nada dan terminologi, mulai sebuah thread di
-[Discord](https://discord.com/invite/worldofclaudecraft) dan kami akan membantumu menyambungkannya.
+[Discord](https://discord.com/invite/wildhaven) dan kami akan membantumu menyambungkannya.
 Penutur asli dan fasih sangat kami sambut. Terjemahan yang baik membuat game
 terasa seperti rumah bagi para pemain di mana pun.
 
 ## Melaporkan bug dan meminta fitur
 
-Mohon gunakan [templat isu](https://github.com/levy-street/world-of-claudecraft/issues/new/choose):
+Mohon gunakan [templat isu](https://github.com/levy-street/wildhaven/issues/new/choose):
 
-- **Laporan bug.** Cari [isu yang sudah ada](https://github.com/levy-street/world-of-claudecraft/issues)
+- **Laporan bug.** Cari [isu yang sudah ada](https://github.com/levy-street/wildhaven/issues)
   terlebih dahulu untuk menghindari duplikat, lalu sertakan langkah-langkah untuk
   mereproduksi, apa yang kamu harapkan, apa yang terjadi, dan lingkunganmu (offline
   atau online, browser, desktop atau mobile).
@@ -323,7 +323,7 @@ Mohon gunakan [templat isu](https://github.com/levy-street/world-of-claudecraft/
 ## Mendapatkan bantuan
 
 Tersangkut, atau hanya ingin menyapa? Bergabunglah dengan
-[Discord komunitas](https://discord.com/invite/worldofclaudecraft). Tidak ada pertanyaan yang
+[Discord komunitas](https://discord.com/invite/wildhaven). Tidak ada pertanyaan yang
 terlalu kecil, dan kontributor baru selalu disambut.
 
 ## Lisensi
@@ -334,10 +334,10 @@ ini.
 
 Lisensi MIT berarti persis seperti yang tertulis: siapa pun boleh menggunakan,
 memodifikasi, dan mendistribusikan ulang kodenya, secara komersial maupun tidak.
-[Ketentuan Layanan](https://worldofclaudecraft.com/terms) kami mengatur game yang
-kami hosting di worldofclaudecraft.com (akun, perilaku, item virtual) dan tidak
+[Ketentuan Layanan](https://wildhaven.example/terms) kami mengatur game yang
+kami hosting di wildhaven.example (akun, perilaku, item virtual) dan tidak
 membatasi hak yang diberikan Lisensi MIT kepadamu atau siapa pun atas kode ini.
-Nama dan branding "World of ClaudeCraft" serta "Levy Street" tidak dicakup oleh
+Nama dan branding "Wildhaven" serta "Levy Street" tidak dicakup oleh
 Lisensi MIT.
 
 Aset kreatif orisinal (rekaman suara, musik, seni, dan karya sejenis) adalah
@@ -350,7 +350,7 @@ boleh tetap memegang hak ciptanya dan menyumbangkannya di bawah lisensi pilihanm
   dan
 - lisensi itu setidaknya menyertakan pemberian hak yang berlaku selamanya dan bebas
   royalti kepada Levy Street untuk menggunakan aset tersebut secara komersial di
-  World of ClaudeCraft, termasuk rilis resmi dan toko dalam game.
+  Wildhaven, termasuk rilis resmi dan toko dalam game.
 
 Untuk aset yang tercantum di tabel CREDITS.md, lisensi yang tercatat itulah yang
 berlaku, mengalahkan lisensi MIT bawaan proyek.
@@ -371,5 +371,5 @@ tidak boleh.
 
 ---
 
-Terima kasih telah berkontribusi ke World of ClaudeCraft. Kami tidak sabar untuk
+Terima kasih telah berkontribusi ke Wildhaven. Kami tidak sabar untuk
 melihat apa yang akan kamu bangun bersama kami.

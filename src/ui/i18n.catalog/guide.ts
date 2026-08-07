@@ -11,8 +11,8 @@
 
 export const guideStrings = {
   // Brand + shared chrome.
-  brand: 'World of ClaudeCraft',
-  brandShort: 'ClaudeCraft',
+  brand: 'Wildhaven',
+  brandShort: 'Wildhaven',
   tagline: 'A classic-style MMO you play free in your browser.',
   skipToContent: 'Skip to main content',
   loading: 'Loading...',
@@ -93,7 +93,7 @@ export const guideStrings = {
     github: 'Source on GitHub',
     discord: 'Join the Discord',
     communityWiki: 'Community Wiki',
-    rights: 'World of ClaudeCraft',
+    rights: 'Wildhaven',
     linksLabel: 'Play and community links',
   },
 
@@ -122,7 +122,7 @@ export const guideStrings = {
   // Home / overview landing.
   home: {
     eyebrow: 'Classic-style browser MMO',
-    title: 'World of ClaudeCraft',
+    title: 'Wildhaven',
     subtitle: 'Quest, group up, and explore a hand-built world, free in your browser.',
     ctaPlay: 'Play Now',
     ctaLearn: 'How to Play',
@@ -801,7 +801,7 @@ export const guideStrings = {
   worldPage: {
     heading: 'The world',
     intro:
-      'World of ClaudeCraft is one continuous land you cross on foot, three zones laid south to north. There is no fast travel, so the journey is part of the adventure.',
+      'Wildhaven is one continuous land you cross on foot, three zones laid south to north. There is no fast travel, so the journey is part of the adventure.',
     hub: 'Home base',
     mapHeading: 'The road north',
     mapSub:

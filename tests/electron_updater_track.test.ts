@@ -7,8 +7,8 @@ import { initUpdater } from '../electron/updater.cjs';
 // initUpdater's injected-autoUpdater test seam; everything else the module
 // touches is a plain fake, so this runs in Node with no electron.
 
-const PROD = 'https://worldofclaudecraft.com';
-const DEV = 'https://dev.worldofclaudecraft.com';
+const PROD = 'https://wildhaven.example';
+const DEV = 'https://dev.wildhaven.example';
 
 type Handler = (info: unknown) => void;
 

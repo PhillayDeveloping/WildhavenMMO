@@ -5,7 +5,7 @@
 This is Phase 2 QA of the Guild Bank feature.
 
 Model: newest available Claude coding model, xhigh effort. Harness: Claude Code.
-Worktree: /Users/seanghods/repos/world-of-claudecraft-guild-bank.
+Worktree: /Users/seanghods/repos/wildhaven-guild-bank.
 ULTRACODE: this is a high-risk phase (economy mutation paths); optionally add `ultracode`
 to run an adversarial-verify Workflow over the findings.
 

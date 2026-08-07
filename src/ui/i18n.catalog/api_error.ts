@@ -190,20 +190,7 @@ export const apiErrorStrings = {
     account_taken: 'That Epic account is already linked to another account.',
     upstream: 'Epic did not respond. Try again in a moment.',
   },
-  wallet: {
-    handoff_invalid: 'That wallet authorization expired or could not be verified. Try again.',
-  },
   ota_updates: {
     invalid_input: 'Invalid input.',
-  },
-  seeker: {
-    native_only: 'Seeker entitlement is available only in the native app.',
-    attestation_failed: 'Device verification failed. Please try again.',
-    solana_artifact_required: 'Use the Solana Store app to continue.',
-    wallet_required: 'Link and verify a wallet first.',
-    genesis_token_required: 'A verified Seeker Genesis Token is required.',
-    genesis_token_claimed: 'That Seeker Genesis Token has already been claimed.',
-    entitlement_required: 'Verified Seeker entitlement is required.',
-    current_ownership_required: 'Current Seeker Genesis Token ownership is required.',
   },
 };

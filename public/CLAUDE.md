@@ -8,7 +8,7 @@
 **PUBLIC: everything under `public/` ships verbatim to the live site.** `vite build`
 copies the whole tree (there is no exclusion) into `dist/`, and the server serves
 `dist/` statically, so every file here, **including this CLAUDE.md and the per-category
-`models/<category>/CLAUDE.md` notes**, is world-readable at worldofclaudecraft.com.
+`models/<category>/CLAUDE.md` notes**, is world-readable at wildhaven.example.
 Keep all of it safe-for-public: no secrets, no internal URLs or credentials, no
 unannounced-feature or exploit detail.
 

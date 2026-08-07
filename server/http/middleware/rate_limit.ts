@@ -46,15 +46,9 @@ import {
   rateLimitNow,
   rateLimitTier2Store,
   reportsCreateRateLimited,
-  SEEKER_SPIN_VERIFY_MAX_PER_MINUTE,
   STEAM_LINK_MAX_PER_MINUTE,
-  seekerSpinVerifyRateLimited,
   steamLinkRateLimited,
-  WALLET_LINK_MAX_PER_MINUTE,
   WINDOW_MS,
-  WOC_BALANCE_MAX_PER_MINUTE,
-  walletLinkRateLimited,
-  wocBalanceRateLimited,
 } from '../../ratelimit';
 import { attackSignalSink } from '../attack_signals';
 import { ctxAccountId } from '../context';
@@ -197,15 +191,6 @@ export const PUBLIC_READ_POLICY: RateLimitPolicy = {
   tier2: 'global',
 };
 
-export const WOC_BALANCE_POLICY: RateLimitPolicy = {
-  name: 'woc_balance',
-  keyClass: 'ip',
-  limit: WOC_BALANCE_MAX_PER_MINUTE,
-  windowSeconds: WINDOW_SECONDS,
-  tier1: (ctx) => wocBalanceRateLimited(ctx.req),
-  tier2: 'global',
-};
-
 export const CARD_UPLOAD_POLICY: RateLimitPolicy = {
   name: 'card_upload',
   keyClass: 'ip+account',
@@ -236,24 +221,6 @@ export const EPIC_LINK_POLICY: RateLimitPolicy = {
   limit: EPIC_LINK_MAX_PER_MINUTE,
   windowSeconds: WINDOW_SECONDS,
   tier1: (ctx) => epicLinkRateLimited(ctx.req, ctxAccountId(ctx)),
-  tier2: 'global',
-};
-
-export const WALLET_LINK_POLICY: RateLimitPolicy = {
-  name: 'wallet_link',
-  keyClass: 'ip+account',
-  limit: WALLET_LINK_MAX_PER_MINUTE,
-  windowSeconds: WINDOW_SECONDS,
-  tier1: (ctx) => walletLinkRateLimited(ctx.req, ctxAccountId(ctx)),
-  tier2: 'global',
-};
-
-export const SEEKER_SPIN_VERIFY_POLICY: RateLimitPolicy = {
-  name: 'seeker_spin_verify',
-  keyClass: 'ip+account',
-  limit: SEEKER_SPIN_VERIFY_MAX_PER_MINUTE,
-  windowSeconds: WINDOW_SECONDS,
-  tier1: (ctx) => seekerSpinVerifyRateLimited(ctx.req, ctxAccountId(ctx)),
   tier2: 'global',
 };
 

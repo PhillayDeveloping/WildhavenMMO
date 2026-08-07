@@ -33,6 +33,13 @@ const ph = (value: string): string =>
 // self-comparison would guard nothing). A NEW code fails dimension 5 until it is appended
 // here AND given an apiError.* catalog entry; a removed or renamed code fails too. One
 // line per code so appending a new one is a single-line edit.
+//
+// ONE deliberate exception has been taken to append-only, and it is the only
+// circumstance that justifies one: the `wallet.*` and `seeker.*` codes were
+// dropped when this fork removed the Solana integration. Append-only exists so a
+// client that still understands a code keeps working, and no endpoint that could
+// emit these survives, so no client can ever receive one. Retiring an ordinary
+// code still means leaving it here.
 const KNOWN_CODES = [
   'account.characters_online',
   'account.deactivated',
@@ -88,14 +95,6 @@ const KNOWN_CODES = [
   'moderation.suspended_until',
   'origin.cross_site',
   'rate_limit.exceeded',
-  'seeker.attestation_failed',
-  'seeker.current_ownership_required',
-  'seeker.entitlement_required',
-  'seeker.genesis_token_claimed',
-  'seeker.genesis_token_required',
-  'seeker.native_only',
-  'seeker.solana_artifact_required',
-  'seeker.wallet_required',
   'two_factor.already_enabled',
   'two_factor.code_invalid',
   'two_factor.not_enabled',
@@ -114,7 +113,6 @@ const KNOWN_CODES = [
   'epic.already_linked',
   'epic.account_taken',
   'epic.upstream',
-  'wallet.handoff_invalid',
   'ota_updates.invalid_input',
 ];
 

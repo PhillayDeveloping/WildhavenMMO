@@ -195,7 +195,7 @@ describe('class ability webp icons', () => {
         ({ sourcePack }) => sourcePack === 'woc_openai_missing_painted_icons_2026_08_01',
       )) {
         expect(entry.source, entry.abilityId).toBe('OpenAI built-in image generation');
-        expect(entry.owner, entry.abilityId).toBe('World of ClaudeCraft');
+        expect(entry.owner, entry.abilityId).toBe('Wildhaven');
         expect(entry.license, entry.abilityId).toContain('project asset');
         expect(entry.license, entry.abilityId).not.toContain('CraftPix');
         mapped.add(entry.abilityId);

@@ -1,6 +1,6 @@
 ---
 name: i18n-locale-fill
-description: Fill pending i18n rows across every locale for World of ClaudeCraft, the release-time workflow. Use when the release-tier gate (I18N_RELEASE_TIER=1) fails on pending rows, when asked to translate or fill locales, overlays, or matcher DICTs, or when preparing a release branch whose registry still has pending entries. Covers the worklist generator, where each scope's fills land, the placeholder and glossary contracts, and the known traps (English-in-overlay, shared DICT references, the "todo" guard, reword staleness, native punctuation in overlays).
+description: Fill pending i18n rows across every locale for Wildhaven, the release-time workflow. Use when the release-tier gate (I18N_RELEASE_TIER=1) fails on pending rows, when asked to translate or fill locales, overlays, or matcher DICTs, or when preparing a release branch whose registry still has pending entries. Covers the worklist generator, where each scope's fills land, the placeholder and glossary contracts, and the known traps (English-in-overlay, shared DICT references, the "todo" guard, reword staleness, native punctuation in overlays).
 user-invocable: true
 ---
 

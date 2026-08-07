@@ -1,6 +1,6 @@
 ---
 name: pr-screenshots
-description: Capture before/after screenshots for a World of ClaudeCraft PR (desktop and mobile), commit them under docs/screenshots, and reference them from the PR body. Use when a change is visual (render, HUD, CSS, content models, windows), when the PR template's screenshot requirement applies, or when asked to screenshot the game for a review or comparison. Covers the change-aware capture tooling, the before/after protocol, and the known puppeteer/CDP traps.
+description: Capture before/after screenshots for a Wildhaven PR (desktop and mobile), commit them under docs/screenshots, and reference them from the PR body. Use when a change is visual (render, HUD, CSS, content models, windows), when the PR template's screenshot requirement applies, or when asked to screenshot the game for a review or comparison. Covers the change-aware capture tooling, the before/after protocol, and the known puppeteer/CDP traps.
 user-invocable: true
 ---
 

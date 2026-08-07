@@ -320,7 +320,7 @@ describe.sequential('SFX Studio server security', () => {
     expect(allowed.status).toBe(200);
     expect(allowed.headers.get('content-type')).toBe('application/zip');
     expect(allowed.headers.get('content-disposition')).toMatch(
-      /^attachment; filename="world-of-claudecraft-sfx-[a-f0-9]{16}\.zip"$/,
+      /^attachment; filename="wildhaven-sfx-[a-f0-9]{16}\.zip"$/,
     );
     expect(allowed.headers.get('x-woc-sfx-keys')).toBe(String(Object.keys(SFX_CLIPS).length));
     expect(allowed.headers.get('x-woc-sfx-tracks')).toBe(

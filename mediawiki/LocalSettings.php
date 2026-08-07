@@ -3,8 +3,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit;
 }
 
-$wgSitename = 'World of Claudecraft Wiki';
-$wgMetaNamespace = 'World_of_Claudecraft';
+$wgSitename = 'Wildhaven Wiki';
+$wgMetaNamespace = 'Wildhaven';
 $wgScriptPath = '/wiki';
 $wgServer = getenv( 'MEDIAWIKI_SERVER' ) ?: 'http://localhost:8080';
 $wgArticlePath = "$wgScriptPath/index.php/$1";
@@ -12,8 +12,8 @@ $wgUsePathInfo = true;
 $wgResourceBasePath = $wgScriptPath;
 
 $wgLogos = [
-	'1x' => "$wgScriptPath/resources/assets/woc-logo-square.webp",
-	'icon' => "$wgScriptPath/resources/assets/woc-logo-square.webp",
+	'1x' => "$wgScriptPath/resources/assets/wildhaven-logo-square.webp",
+	'icon' => "$wgScriptPath/resources/assets/wildhaven-logo-square.webp",
 ];
 
 $wgEnableEmail = false;
@@ -30,7 +30,7 @@ $wgDBTableOptions = 'ENGINE=InnoDB, DEFAULT CHARSET=binary';
 $wgMainCacheType = CACHE_ACCEL;
 $wgMemCachedServers = [];
 
-$wgSecretKey = getenv( 'MEDIAWIKI_SECRET_KEY' ) ?: 'local-dev-change-me-world-of-claudecraft';
+$wgSecretKey = getenv( 'MEDIAWIKI_SECRET_KEY' ) ?: 'local-dev-change-me-wildhaven';
 $wgAuthenticationTokenVersion = '1';
 $wgUpgradeKey = getenv( 'MEDIAWIKI_UPGRADE_KEY' ) ?: 'local-dev-upgrade-key';
 

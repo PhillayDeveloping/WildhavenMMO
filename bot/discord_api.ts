@@ -50,10 +50,10 @@ export const DISCORD_CALL_TIMEOUT_MS = 15_000;
  * sync wrote the entry: the nickname PATCH carries the level-on-name reason,
  * the role add/remove pair the status-tier one.
  */
-export const AUDIT_LOG_REASON = 'World of ClaudeCraft level sync';
+export const AUDIT_LOG_REASON = 'Wildhaven level sync';
 
 /** The role add/remove pair's audit-log reason (same D14 bounds). */
-export const ROLE_AUDIT_LOG_REASON = 'World of ClaudeCraft status tier sync';
+export const ROLE_AUDIT_LOG_REASON = 'Wildhaven status tier sync';
 
 /**
  * Discord rejects a reason header that is empty or over 512 characters, and any
@@ -205,7 +205,7 @@ export class DiscordApi {
     const headers: Record<string, string> = {
       Authorization: `Bot ${this.token}`,
       'Content-Type': 'application/json',
-      'User-Agent': 'WorldOfClaudeCraftBot (https://worldofclaudecraft.com, 1.0)',
+      'User-Agent': 'WildhavenBot (https://wildhaven.example, 1.0)',
     };
     if (options.reason !== undefined) {
       headers['X-Audit-Log-Reason'] = sanitizeAuditReason(options.reason);

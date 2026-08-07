@@ -206,15 +206,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'apiError.epic.invalid_token':
     'Epic kunde inte verifiera den här länkningsbegäran. Försök igen från skrivbordsappen.',
   'apiError.epic.upstream': 'Epic svarade inte. Försök igen om en stund.',
-  'apiError.seeker.native_only': 'Seeker-behörighet är endast tillgänglig i appen.',
-  'apiError.seeker.attestation_failed': 'Enhetsverifieringen misslyckades. Försök igen.',
-  'apiError.seeker.solana_artifact_required': 'Använd appen Solana Store för att fortsätta.',
-  'apiError.seeker.wallet_required': 'Länka och verifiera en plånbok först.',
-  'apiError.seeker.genesis_token_required': 'En verifierad Seeker Genesis Token krävs.',
-  'apiError.seeker.genesis_token_claimed': 'Denna Seeker Genesis Token har redan hämtats.',
-  'apiError.seeker.entitlement_required': 'Verifierad Seeker-behörighet krävs.',
-  'apiError.seeker.current_ownership_required':
-    'Du måste fortfarande äga din Seeker Genesis Token.',
   'guide.professions.archetypeSwitchBody':
     'En deklaration är heller inget livstidsstraff. Ett par du aldrig hållit är helt enkelt ett nytt inriktningsuppdrag, medan en återkomst till ett par du vandrat ifrån kräver att du gör bot först: fem uppgifter första gången, och tre till för varje återkomst du redan gjort (att ta upp ett helt nytt par höjer aldrig antalet). Valet förblir betydelsefullt utan att någonsin låsa en dörr för gott.',
   'guide.professions.whatBody':
@@ -324,8 +315,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
     'Skördekanaliseringen börjar på 2,5 sekunder och kortas ner på två sätt: 0,4 sekunder för varje verktygsnivå du bär och kan hantera över nodens egen nivå, och 0,15 sekunder när ditt yrkes räknare passerar sitt 100-band, med ett golv på 1,5 sekunder. Flytta dig från nivå 1-noder upp till nivå 3-noder så försvinner ditt överskott, och samma hacka svingar långsamt igen. Att hålla exakt den nivå som krävs köper ingen fart; den öppnar bara noden.\n\nSkicklighetsvinsten bleknar på samma sätt som vid hantverk: en nod grånar när din skicklighet klättrar förbi dess nivå (nivå 1-noder lär inte ut något från skicklighet 75 och uppåt), så svaret på långsamma vinster är noder av högre nivå. De kräver ett verktyg av minst sin egen nivå i väskorna (ingen nod bearbetas någonsin med bara händerna, nivå 1 inräknad), och ett landverktyg över nivå 1 kräver dessutom att du först nått dess hanteringsgräns, 40/70/85/100 i sitt eget yrke för nivå 2 till 5. Fiske följer sin egen avsmalning: full vinst under 50 skicklighet, hälften under 100, ett sipprande på 0,1 under 150 och 0,02 under 200, skräpfångster lär inte ut något alls från 100 och uppåt, och vattnet självt sätter tak för lärdomen (nivå 1-vatten slutar lära ut vid 100, träskets vid 150), så en stillastående räknare kan också betyda att du vuxit ur vattnet.',
   'guide.profPages.faq.a8':
     'Delvis. De nio vanliga fältrecepten (nybörjarvapnet, rustningen, maten och trolldryckerna) tillverkas var som helst, när som helst, och det gör även de tre kombinationsrecepten hos de svurna paren. Allt annat ovanför dem är bundet till en stationstyp: smedja, kök, apotek, garveri, vävstol eller verktygsverkstad, och du måste vara inom 20 yard från stationen för att hantverket ska gå igenom.\n\nVid 75 skicklighet i ett hantverk specialiserar du dig, och tillsammans med 20 procent materialrabatt får du en mobil station: ställ upp den i fält så står den i 10 minuter och betjänar det hantverkets recept som om du stod vid den riktiga. Den mobila stationen är bara till för att tillverka: att lära sig recept och att lösa upp beställningar kräver alltid den riktiga stationen i staden.',
-  'wallet.seekerAppHelp':
-    'Fortsätt med Seed Vault Wallet. Granska anslutnings- och verifieringsförfrågningarna i Seed Vault, och återgå sedan till spelet.',
   'questUi.tracker.unknownQuest': 'Okänt uppdrag ({id})',
   'questUi.log.repeatableStatus': 'Upprepbart',
   'questUi.log.cooldownStatus': 'Tillgängligt igen snart',
@@ -724,8 +713,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'hud.prompts.resurrectionOffer': '{name} vill återge dig livet. Accepterar du?',
   'questUi.dialog.profIntroHint': 'Se {name} angående "{quest}".',
   'itemUi.stats.parry': 'Parering',
-  'apiError.wallet.handoff_invalid':
-    'Den plånboksbehörigheten har gått ut eller kunde inte verifieras. Försök igen.',
   'cardDuel.close': 'Stäng',
   'cardDuel.counts': 'Kortlek: {deck} · Kasserad: {discard}',
   'cardDuel.forfeit': 'Ge upp',
@@ -1002,58 +989,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.nameplate.mobLevel': '{level}',
   'hudChrome.specPanel.specUnlockBanner': 'Specialisering upplåst!',
   'hudChrome.specPanel.specUnlockHint': 'Tryck N för att välja din specialisering.',
-  'hudChrome.wocStore.wallet.connect': 'Anslut plånbok',
-  'hudChrome.wocStore.wallet.connectedUnlinked':
-    'Plånboksappen är ansluten till denna webbläsare, men dess offentliga adress är ännu inte länkad till ditt WoC-konto.',
-  'hudChrome.wocStore.wallet.linkedConnected':
-    'Din länkade plånboksapp är ansluten och redo för SOL- eller WOC-köp.',
-  'hudChrome.wocStore.wallet.linkedDisconnected':
-    'Din offentliga adress är länkad. Återanslut den plånboksappen när du vill betala med SOL eller WOC.',
-  'hudChrome.wocStore.wallet.manage': 'Hantera plånbok',
-  'hudChrome.wocStore.wallet.mismatched':
-    'En annan plånbok är ansluten. Verifiera den för att ersätta den länkade adressen, eller återanslut den länkade plånboken.',
-  'hudChrome.wocStore.wallet.reconnect': 'Återanslut plånbok',
-  'hudChrome.wocStore.wallet.title': 'Solana-plånbok',
-  'hudChrome.wocStore.wallet.unlinked':
-    'Anslut en plånboksapp och signera sedan en gång för att länka dess offentliga adress till ditt WoC-konto. Vi tar aldrig emot din återställningsfras eller privata nyckel.',
-  'hudChrome.wocStore.wallet.verify': 'Verifiera och länka',
-  'wallet.bagConnect': 'Länka plånbok',
-  'wallet.bagLink': 'Verifiera plånbok',
-  'wallet.bagReconnect': 'Återanslut plånbok',
-  'wallet.browser.completeBody': 'Du kan återvända till skrivbordsappen för World of ClaudeCraft.',
-  'wallet.browser.completeTitle': 'Plånboksbehörighet slutförd',
-  'wallet.browser.continueWith': 'Fortsätt med {wallet}',
-  'wallet.browser.extensionHelp':
-    'Inget kompatibelt plånbokstillägg hittades. Installera eller lås upp Phantom, Solflare eller en annan Solana-webbläsarplånbok och försök sedan igen.',
-  'wallet.browser.eyebrow': 'Skrivbordsplånboksbehörighet',
-  'wallet.browser.failed':
-    'Plånboksbehörighet misslyckades eller gick ut. Återgå till skrivbordsappen och försök igen.',
-  'wallet.browser.linkBody':
-    'Välj ett plånbokstillägg i denna webbläsare. Du signerar ett verifieringsmeddelande och återvänder sedan till skrivbordsappen.',
-  'wallet.browser.paymentBody':
-    'Välj plånboken länkad till ditt konto och godkänn transaktionen i denna webbläsare.',
-  'wallet.browser.retry': 'Försök igen',
-  'wallet.browser.returnButton': 'Återgå till skrivbordsappen',
-  'wallet.browser.reviewBody': 'Följ uppmaningen från {wallet}. Håll denna webbläsarsida öppen.',
-  'wallet.browser.reviewTitle': 'Granska i din plånbok',
-  'wallet.browser.safety':
-    'World of ClaudeCraft ber aldrig om din återställningsfras eller privata nyckel.',
-  'wallet.browser.title': 'Anslut en Solana-plånbok',
-  'wallet.manualReturnBrowserHelp':
-    'Efter godkännande, återgå till denna spelflik. Om iOS öppnar en annan webbläsare, stäng den och återgå till den ursprungliga webbläsaren manuellt.',
-  'wallet.manualReturnStandaloneHelp':
-    'Efter godkännande, återgå till World of ClaudeCraft från din hemskärm. Om iOS öppnar en webbläsare, stäng den och öppna hemskärmsappen manuellt igen.',
-  'wallet.mobileAppHelp':
-    'Välj Phantom eller Solflare. Din plånboksapp ber om godkännande. Håll det här spelet öppet och återgå till det när du är klar.',
-  'wallet.openAppButton': 'Öppna {wallet}',
-  'wallet.openAppHelp':
-    'Öppna {wallet} för att granska denna begäran. Håll denna spelflik öppen medan plånboksappen är aktiv.',
-  'wallet.openAppTitle': 'Fortsätt i {wallet}',
-  'wallet.preparingAppButton': 'Förbereder {wallet}...',
-  'wallet.standaloneAppHelp':
-    'Plånboksanslutningar är ännu inte tillgängliga i hemskärmsappen. Öppna World of ClaudeCraft i Safari eller Chrome för att använda Phantom eller Solflare.',
-  'wallet.walletAppUnavailable':
-    '{wallet} kunde inte förberedas. Stäng det här fönstret och försök igen.',
   'entities.abilities.primal_reflexes.description':
     'Dina instinkter skärps och ökar din chans att undvika anfall med 50% i 6 sek.',
   'entities.abilities.primal_reflexes.name': 'Ursinnesreflexer',
@@ -1853,7 +1788,7 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'editor.confirm.discardBody': 'Du har osparade ändringar i "{name}". Kasta dem?',
   'editor.confirm.discardTitle': 'Kasta ändringarna?',
   'editor.confirm.ok': 'OK',
-  'editor.docTitle': 'Kartredigerare - World of ClaudeCraft',
+  'editor.docTitle': 'Kartredigerare - Wildhaven',
   'editor.eraseTool.blockerHint': 'Klickar du nära en spärrvägg tas den väggen bort i stället.',
   'editor.eraseTool.hint':
     'Klicka på en placerad resurs för att ta bort den, eller klicka på skulpterad mark för att ta bort den nyaste stämpeln under pekaren.',
@@ -2298,8 +2233,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.calendar.result.removed': 'Evenemanget togs bort från kalendern.',
   'hudChrome.calendar.title': 'Evenemangskalender',
   'hudChrome.calendar.titlePlaceholder': 'Evenemangstitel',
-  'hudChrome.dailyRewards.disclaimer':
-    'WOC-priset kan röra sig snabbt. Vi rekommenderar att du håller mer än miniminivån på 20 USD så att vanliga prissvängningar inte låser dig ute. Detta är inte finansiell rådgivning.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     'Detta tar bort kistgenvägen från ditt HUD. Belöningar, behörighet och den här panelen finns kvar; du kan ta tillbaka genvägen från Alternativ.',
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Avbryt',
@@ -2411,8 +2344,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'sim.delve.riteSequenceReady': 'Helgedomarna slocknar. Upprepa sekvensen.',
   'sim.delve.riteWrong': 'Ett skarpt, sprucket klockslag. Svart vatten stänker vid dina fötter.',
   'sim.delve.ropesSealed': 'Du borde pröva att dra i klockrepen.',
-  'wallet.extensionHelp':
-    'För att se en plånbok här, håll ett webbläsartillägg för plånböcker som Solflare Wallet aktivt.',
   'worldContent.delveReliquaryInteract': 'Det dränkta relikvariet: Tryck på F för att inleda riten',
   'worldContent.delveRiteShrineBellInteract': 'Klockhelgedom: Tryck på F för att ringa i den',
   'worldContent.delveRiteShrineCandleInteract': 'Ljushelgedom: Tryck på F för att röra vid den',
@@ -2420,7 +2351,7 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'worldContent.delveRiteShrineSkullInteract': 'Skallhelgedom: Tryck på F för att röra vid den',
   'worldContent.mailboxName': 'Brevlåda',
   'entities.npcs.auctioneer_voss.greeting':
-    'World of ClaudeCraft-marknaden är öppen även här, {className}. Köp från varje äventyrare i riket, eller lägg ut dina egna varor.',
+    'Wildhaven-marknaden är öppen även här, {className}. Köp från varje äventyrare i riket, eller lägg ut dina egna varor.',
   'entities.npcs.auctioneer_voss.name': 'Auktionsförrättare Voss',
   'entities.npcs.auctioneer_voss.title': 'Väktare av världsmarknaden',
   'hudChrome.devBadge.badgeTitle': 'Utvecklare: {tier}',
@@ -2509,9 +2440,9 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.statInfo.sources.header': 'Består av:',
   'hudChrome.statInfo.sources.talents': 'Talanger och effekter: {value}',
   'a11y.characterActions': 'Karaktärshandlingar',
-  'a11y.discordCommunity': 'Gå med i World of ClaudeCraft-gemenskapen på Discord',
-  'a11y.donateProject': 'Donera för att stödja World of ClaudeCraft',
-  'a11y.githubProject': 'Öppna GitHub-projektet World of ClaudeCraft',
+  'a11y.discordCommunity': 'Gå med i Wildhaven-gemenskapen på Discord',
+  'a11y.donateProject': 'Donera för att stödja Wildhaven',
+  'a11y.githubProject': 'Öppna GitHub-projektet Wildhaven',
   'a11y.goHome': 'Gå till startsidan',
   'a11y.languageSelection': 'Språkval',
   'a11y.mainNavigation': 'Huvudnavigering',
@@ -4782,10 +4713,10 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'fiesta.word.shutdown': 'AVKLARAD!',
   'fiesta.word.spree': '{n}× SVIT!',
   'fiesta.word.wave': 'FÖRSTÄRKNINGAR!',
-  'footer.copyright': '2026 World of ClaudeCraft',
+  'footer.copyright': '2026 Wildhaven',
   'footer.discordLabel': 'Gå med i Discord',
   'footer.githubLabel': 'Projekt med öppen källkod',
-  'footer.githubLink': 'https://github.com/levy-street/world-of-claudecraft',
+  'footer.githubLink': 'https://wildhaven.example',
   'footer.whitepaper': 'Whitepaper',
   'footer.privacy': 'Integritetspolicy',
   'footer.terms': 'Användarvillkor',
@@ -5048,8 +4979,8 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'guide.bestiary.levelsSame': 'Nivå {min}',
   'guide.bestiary.notedLabel': 'Värt att notera',
   'guide.bestiary.rare': 'Sällsynt',
-  'guide.brand': 'World of ClaudeCraft',
-  'guide.brandShort': 'ClaudeCraft',
+  'guide.brand': 'Wildhaven',
+  'guide.brandShort': 'Wildhaven',
   'guide.breadcrumb.home': 'Guide',
   'guide.breadcrumb.label': 'Brödsmula',
   'guide.chooser.clear': 'Rensa',
@@ -5314,7 +5245,7 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'guide.footer.discord': 'Gå med i Discord',
   'guide.footer.github': 'Källkod på GitHub',
   'guide.footer.playNow': 'Spela nu',
-  'guide.footer.rights': 'World of ClaudeCraft',
+  'guide.footer.rights': 'Wildhaven',
   'guide.gear.consumablesElixirs':
     'Elixir ger en tillfällig förstärkning medan du äventyrar, en liten fördel som hjälper när du vill pressa lite längre.',
   'guide.gear.consumablesFood':
@@ -5478,7 +5409,7 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
     'Världen går att klara solo, men det bästa bytet väntar bakom en bra grupp.',
   'guide.home.subtitle':
     'Lös uppdrag, slå er samman och utforska en handbyggd värld, gratis i din webbläsare.',
-  'guide.home.title': 'World of ClaudeCraft',
+  'guide.home.title': 'Wildhaven',
   'guide.home.what.heading': 'Ett klassiskt MMO, gjort för att tas upp',
   'guide.home.what.pillarClassesBody':
     'Tanka, läk eller dela ut skadan. Varje klass spelas så som dess arketyp bör, med talanger för att göra den till din egen.',
@@ -5905,7 +5836,7 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'guide.worldPage.heading': 'Världen',
   'guide.worldPage.hub': 'Hembas',
   'guide.worldPage.intro':
-    'World of ClaudeCraft är ett enda sammanhängande land som du korsar till fots, tre zoner lagda från söder till norr. Det finns ingen snabbresa, så resan är en del av äventyret.',
+    'Wildhaven är ett enda sammanhängande land som du korsar till fots, tre zoner lagda från söder till norr. Det finns ingen snabbresa, så resan är en del av äventyret.',
   'guide.worldPage.mapHeading': 'Vägen norrut',
   'guide.worldPage.mapSub':
     'Tre zoner, från söder till norr, var och en ett steg högre i nivå. Följ uppdragsspåret så bär landet dig från dalen till topparna.',
@@ -6518,7 +6449,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.account.logOut': 'Logga ut',
   'hudChrome.account.logOutSummary': 'Logga ut från den här enheten.',
   'hudChrome.account.loggedOutPrompt': 'Logga in för att hantera ditt konto.',
-  'hudChrome.account.manageWallet': 'Hantera plånbok',
   'hudChrome.account.memberSince': 'Medlem sedan {date}',
   'hudChrome.account.newPassword': 'Nytt lösenord',
   'hudChrome.account.passwordChanged': 'Lösenordet uppdaterat. Andra enheter har loggats ut.',
@@ -6528,7 +6458,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.account.sectionDanger': 'Farozon',
   'hudChrome.account.sectionSecurity': 'Säkerhet',
   'hudChrome.account.sectionSettings': 'Kontoinställningar',
-  'hudChrome.account.sectionWallet': '$WOC-plånbok',
   'hudChrome.account.title': 'Konto',
   'hudChrome.account.twoFactorBegin': 'Påbörja inställning',
   'hudChrome.account.twoFactorBeginHint': 'Ange ditt lösenord för att påbörja inställningen.',
@@ -6559,8 +6488,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.account.twoFactorStatusOn': 'Tvåfaktorsautentisering är PÅ för ditt konto.',
   'hudChrome.account.twoFactorTitle': 'Tvåfaktorsautentisering',
   'hudChrome.account.twoFactorVerifyBtn': 'Verifiera och aktivera',
-  'hudChrome.account.walletSummary':
-    'Verifiera en Solana-plånbok för att visa innehavarsymbol på ditt spelarkort.',
   'hudChrome.bags.filterAll': 'Alla',
   'hudChrome.bags.filterArmor': 'Rustning',
   'hudChrome.bags.filterConsumable': 'Förbrukningsvaror',
@@ -6705,8 +6632,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.options.keybindHelpLockCursorOnRotate':
     'Håller muspekaren inuti fönstret medan du drar för att rotera kameran, så att den inte kan nå skärmkanten eller flytta till en annan skärm. Stäng av om du föredrar en fri pekare.',
   'hudChrome.options.lockCursorOnRotate': 'Lås pekare under rotation',
-  'hudChrome.options.showWalletOnCharacterScreen': 'Visa plånbok på karaktärsskärmen',
-  'hudChrome.options.showWalletOnPlayerCard': 'Visa plånbok på spelarkortet',
   'hudChrome.options.uiScale': 'Gränssnittsskala',
   'hudChrome.paperdoll.unequipAria': 'Ta av {item}',
   'hudChrome.paperdoll.unequipHint':
@@ -6771,7 +6696,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.perf.units.mb': '{value} MB',
   'hudChrome.perf.units.memPair': '{used} / {limit} MB',
   'hudChrome.perf.units.ms': '{value} ms',
-  'hudChrome.playerCard.showWalletBadge': 'Visa plånboksmärke',
   'hudChrome.plurals.characterCount.few': '{count} rollfigurer',
   'hudChrome.plurals.characterCount.many': '{count} rollfigurer',
   'hudChrome.plurals.characterCount.one': '{count} rollfigur',
@@ -7156,7 +7080,7 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
     'För helskärm på Android, installera den här sidan eller lägg först till den på din Hemskärm.',
   'mobilePreflight.androidInstallStep':
     'I Chrome, tryck på menyn och sedan Installera app eller Lägg till på Hemskärmen.',
-  'mobilePreflight.androidOpenStep': 'Öppna World of ClaudeCraft från den nya ikonen.',
+  'mobilePreflight.androidOpenStep': 'Öppna Wildhaven från den nya ikonen.',
   'mobilePreflight.androidStandaloneDetail':
     'Du är i helskärmsläge för appen. Håll enheten i liggande läge.',
   'mobilePreflight.baseLandscape': 'Rotera din enhet till liggande läge innan du går in i världen.',
@@ -7165,7 +7089,7 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'mobilePreflight.continue': 'Fortsätt till spelet',
   'mobilePreflight.iosInstallDetail':
     'För äkta helskärm på iPhone eller iPad, installera först den här sidan på din Hemskärm.',
-  'mobilePreflight.iosOpenStep': 'Öppna World of ClaudeCraft från den nya Hemskärmsikonen.',
+  'mobilePreflight.iosOpenStep': 'Öppna Wildhaven från den nya Hemskärmsikonen.',
   'mobilePreflight.iosShareStep': 'I Safari, tryck på Dela och sedan Lägg till på Hemskärmen.',
   'mobilePreflight.iosStandaloneDetail':
     'Du är i helskärmsläge från hemskärmen. Håll enheten i liggande läge.',
@@ -7175,10 +7099,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'mobilePreflight.rotateSub': 'Spela i liggande helskärm för bästa mobila upplevelse.',
   'mobilePreflight.rotateTitle': 'Rotera till liggande läge',
   'mobilePreflight.title': 'Spela i liggande helskärm',
-  'mode.caCopyAria': 'Kopiera kontraktsadress',
-  'mode.caLabel': '$WOC Kontraktsadress',
-  'mode.caNote':
-    'WOC är vår community-token. Den behövs inte för att spela. Gå med i Discord för att diskutera WOC:s nytta och svänghjul.',
   'mode.offlineAria': 'Spela offline: starta en omedelbar lokal enspelarsession',
   'mode.offlineDesc':
     'Omedelbar enspelarvärld i din webbläsare. Inget sparas: perfekt för en snabb drabbning eller testning.',
@@ -7188,7 +7108,7 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
     'Logga in på världen. Dina karaktärer lever på servern och du delar världen med alla andra som är inloggade.',
   'mode.onlineTitle': 'Spela online',
   'mode.play': 'Spela',
-  'mode.playAria': 'Spela World of ClaudeCraft',
+  'mode.playAria': 'Spela Wildhaven',
   'mode.serverAria': 'Välj värld: Online eller Offline',
   'mode.serverLabel': 'Välj din värld',
   'mode.serverOffline': 'Offline',
@@ -7221,16 +7141,16 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'playerCard.actionShareNative': 'Dela...',
   'playerCard.actionShareX': 'Dela på X',
   'playerCard.arenaStat': 'Arena',
-  'playerCard.brandWordmark': 'WORLD OF CLAUDECRAFT',
+  'playerCard.brandWordmark': 'WILDHAVEN',
   'playerCard.close': 'Stäng spelarkort',
-  'playerCard.defaultRealm': 'World of ClaudeCraft',
+  'playerCard.defaultRealm': 'Wildhaven',
   'playerCard.fileNameFallback': 'spelare',
   'playerCard.footerCta': 'Skapa din legend: {siteUrl}',
   'playerCard.footerHandle': '@{handle}',
   'playerCard.footerHandleWithRecruits': '@{handle} - {recruited}',
   'playerCard.levelClass': 'Nivå {level} - {className}',
   'playerCard.loading': 'Skapar ditt kort...',
-  'playerCard.nativeShareTitle': 'World of ClaudeCraft',
+  'playerCard.nativeShareTitle': 'Wildhaven',
   'playerCard.poseBattle': 'Strid',
   'playerCard.poseGroup': 'Pose',
   'playerCard.poseHero': 'Hjälte',
@@ -7244,8 +7164,7 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'playerCard.renderFailedStatus': 'Kortrenderingen misslyckades.',
   'playerCard.shareButton': 'Dela spelarkort',
   'playerCard.shareText':
-    'Jag skapar min legend i World of ClaudeCraft: Nivå {level} {className}{tierBit}. Gå med i min värld:',
-  'playerCard.shareTierBit': ', {tier}-rankad $WOC-innehavare',
+    'Jag skapar min legend i Wildhaven: Nivå {level} {className}{tierBit}. Gå med i min värld:',
   'playerCard.statusDownloaded': 'Kortet nedladdat.',
   'playerCard.statusGenericError': 'Något gick fel.',
   'playerCard.statusOpenedXWithImage': 'Öppnade X. Klistra in kortbilden i inlägget.',
@@ -7349,21 +7268,21 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'realmTypes.rpPvp': 'RP-PvP',
   'seo.applicationCategory': 'Spel',
   'seo.description':
-    'Ge dig ut på ett episkt äventyr i World of ClaudeCraft, en klassiskt inspirerad mikro-MMO som du spelar direkt i din webbläsare. Anslut till en beständig delad värld, höj nivå på klasser och besegra fiender!',
+    'Ge dig ut på ett episkt äventyr i Wildhaven, en klassiskt inspirerad mikro-MMO som du spelar direkt i din webbläsare. Anslut till en beständig delad värld, höj nivå på klasser och besegra fiender!',
   'seo.genre': 'MMORPG',
   'seo.officialBody':
-    'worldofclaudecraft.com är den officiella gratis webbläsar-MMO:n för Claudemoon-världen. Spela online med en beständig karaktär, utforska solo offline, läs wikin och följ verifierade gemenskapslänkar från den här webbplatsen.',
-  'seo.officialLabel': 'Officiell webbplats för World of ClaudeCraft',
+    'wildhaven.example är den officiella gratis webbläsar-MMO:n för Claudemoon-världen. Spela online med en beständig karaktär, utforska solo offline, läs wikin och följ verifierade gemenskapslänkar från den här webbplatsen.',
+  'seo.officialLabel': 'Officiell webbplats för Wildhaven',
   'seo.operatingSystem': 'Webbläsare',
   'seo.playMode': 'Flerspelarläge',
-  'seo.title': 'World of ClaudeCraft: Klassiskt inspirerad webb-MMO',
+  'seo.title': 'Wildhaven: Klassiskt inspirerad webb-MMO',
   'serverUnavailable.body':
     'Vi startar om speltjänsten och förväntar oss att Claudemoon är tillbaka inom kort. Den här sidan fortsätter att kontrollera automatiskt.',
   'serverUnavailable.eyebrow': 'Världsunderhåll',
   'serverUnavailable.heading': 'Världen är tillfälligt otillgänglig.',
-  'serverUnavailable.logoAlt': 'World of ClaudeCraft',
+  'serverUnavailable.logoAlt': 'Wildhaven',
   'serverUnavailable.status': 'Tillbaka snart',
-  'serverUnavailable.title': 'World of ClaudeCraft - Världen otillgänglig',
+  'serverUnavailable.title': 'Wildhaven - Världen otillgänglig',
   'settings.languageLoadFailed': 'Kunde inte ladda det språket. Behåller ditt nuvarande språk.',
   'settings.languageLoadUnavailable': 'Det språket är inte tillgängligt.',
   'settings.languageLoading': 'Laddar språk...',
@@ -7517,115 +7436,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'stats.playersOnline': 'Spelare online',
   'stats.realmName': 'Världens namn',
   'stats.title': 'Världsstatus',
-  'wallet.appConnected': 'App ansluten',
-  'wallet.balanceAmount': '{amount} $WOC',
-  'wallet.balanceAria': 'Verifierat Solana-plånbokssaldo: {balance}',
-  'wallet.balancePreviewAria':
-    'Förhandsvisning av ansluten plånboks saldo: {balance}. Länka plånboken för att verifiera innehavarmärket.',
-  'wallet.balancePreviewTitle': 'Förhandsvisning av ansluten plånboks $WOC-saldo',
-  'wallet.balanceTitle': 'Verifierat $WOC-saldo i Solana-plånbok',
-  'wallet.connect': 'Verifiera plånbok',
-  'wallet.connectApp': 'Anslut app',
-  'wallet.connectAppAria': 'Anslut plånboksappen i den här webbläsaren',
-  'wallet.connectAppTitle': 'Anslut plånboksappen i den här webbläsaren',
-  'wallet.connectAria': 'Verifiera din Solana-plånbok',
-  'wallet.connectTitle': 'Verifiera din Solana-plånbok',
-  'wallet.connected': 'Ansluten: {address}',
-  'wallet.connectedLinked': 'Verifierad: {address}',
-  'wallet.connectedLinkedWithBalance': 'Verifierad: {balance} - {address}',
-  'wallet.connectedTitle': 'Ansluten. Logga in för att länka plånboken till ditt konto.',
-  'wallet.connectedWithBalance': 'Ansluten: {balance} - {address}',
-  'wallet.flowConnect': 'Välj en plånbok. Verifieringen fortsätter automatiskt.',
-  'wallet.flowSign':
-    'Signera verifieringsmeddelandet i din plånboksapp. Ingen transaktion eller SOL krävs.',
-  'wallet.flowVerify': 'Verifierar plånboksägande...',
-  'wallet.helpDisconnected':
-    'Verifiera en Solana-plånbok för att aktivera innehavarmärke och spelarkortsmärken. Ingen transaktion eller SOL krävs.',
-  'wallet.helpLinked':
-    'Innehavarförmåner är aktiva. Plånboksappen är ansluten i den här webbläsaren.',
-  'wallet.helpLinkedDisconnected':
-    'Innehavarförmåner är aktiva. Anslut appen när du behöver signera eller spendera.',
-  'wallet.helpLinkedDisconnectedWithBalance':
-    'Innehavarförmåner är aktiva. Anslut appen när du behöver signera eller spendera.',
-  'wallet.helpLinkedWithBalance':
-    'Innehavarförmåner är aktiva. Plånboksappen är ansluten i den här webbläsaren.',
-  'wallet.helpLoginToLink': 'Ansluten {address}. Logga in för att länka den till ditt konto.',
-  'wallet.helpLoginToLinkWithBalance':
-    'Ansluten {address} med {balance}. Logga in för att länka den till ditt konto.',
-  'wallet.helpReadyToLink':
-    'Plånbok vald: {address}. Signera en gång för att verifiera innehavarmärke och spelarkort.',
-  'wallet.helpReadyToLinkWithBalance':
-    'Plånbok vald: {address} med {balance}. Signera en gång för att verifiera innehavarmärke och spelarkort.',
-  'wallet.hiddenNotice':
-    'Plånboksraden är dold. Aktivera den igen i spelet via Alternativ > Gränssnitt.',
-  'wallet.hide': 'Dölj',
-  'wallet.hideAria': 'Dölj plånboksraden på den här skärmen',
-  'wallet.hideTitle': 'Dölj plånboksraden på den här skärmen',
-  'wallet.holder': '$WOC-innehavare',
-  'wallet.holderTierTitle': '{tier} $WOC-innehavare',
-  'wallet.holderTiers.coinbearer.flavor': 'Första myntet i krigskassan.',
-  'wallet.holderTiers.coinbearer.name': 'Myntbärare',
-  'wallet.holderTiers.coppercrest.flavor': 'Kopparmynt staplade, ditt namn på allas läppar.',
-  'wallet.holderTiers.coppercrest.name': 'Kopparkam',
-  'wallet.holderTiers.ember.flavor': 'Gnistan är tänd.',
-  'wallet.holderTiers.ember.name': 'Glöd',
-  'wallet.holderTiers.gilded.flavor': 'Förgylld och leende.',
-  'wallet.holderTiers.gilded.name': 'Förgylld',
-  'wallet.holderTiers.krakencrown.flavor': 'Krönt av djupet: 4 % av tillgången.',
-  'wallet.holderTiers.krakencrown.name': 'Krakenkrona',
-  'wallet.holderTiers.leviathan.flavor': 'Marknaderna känner när du rör dig: 1 % av tillgången.',
-  'wallet.holderTiers.leviathan.name': 'Leviatan',
-  'wallet.holderTiers.realmshaper.flavor': 'Du omformar riket: 8 % av tillgången.',
-  'wallet.holderTiers.realmshaper.name': 'Rikesformare',
-  'wallet.holderTiers.silverbound.flavor': 'Bunden i silver, bygger upp pungen.',
-  'wallet.holderTiers.silverbound.name': 'Silverbunden',
-  'wallet.holderTiers.sovereign.flavor': 'Riket böjer knä: hela tillgången.',
-  'wallet.holderTiers.sovereign.name': 'Härskare',
-  'wallet.holderTiers.starhoard.flavor': 'En skatt som böjer stjärnljuset: 6 % av tillgången.',
-  'wallet.holderTiers.starhoard.name': 'Stjärnskatt',
-  'wallet.holderTiers.stormcaller.flavor': 'Stormar samlas vid ditt namn: 3 % av tillgången.',
-  'wallet.holderTiers.stormcaller.name': 'Stormkallare',
-  'wallet.holderTiers.tidelord.flavor': 'Tidvattnet lyder din kallelse: 2 % av tillgången.',
-  'wallet.holderTiers.tidelord.name': 'Tidvattenherre',
-  'wallet.holderTiers.titanforged.flavor': 'Smidd bland titaner: 5 % av tillgången.',
-  'wallet.holderTiers.titanforged.name': 'Titansmidd',
-  'wallet.holderTiers.vaultwarden.flavor': 'Vaktar nu ett verkligt valv: 0,01 % av allt $WOC.',
-  'wallet.holderTiers.vaultwarden.name': 'Valvväktare',
-  'wallet.holderTiers.voidwarden.flavor': 'Väktare vid tomhetens rand: 7 % av tillgången.',
-  'wallet.holderTiers.voidwarden.name': 'Tomhetsväktare',
-  'wallet.holderTiers.whale.flavor': 'Djupet delar sig när du simmar: 0,1 % av tillgången.',
-  'wallet.holderTiers.whale.name': 'Val',
-  'wallet.holderTiers.worldbearer.flavor': 'Du bär en bit av världen: 10 % av tillgången.',
-  'wallet.holderTiers.worldbearer.name': 'Världsbärare',
-  'wallet.holderTiers.worldforger.flavor': 'Smider en egen värld: 9 % av tillgången.',
-  'wallet.holderTiers.worldforger.name': 'Världssmidare',
-  'wallet.label': '$WOC-plånbok',
-  'wallet.linkFailed': 'Plånboksverifieringen misslyckades.',
-  'wallet.linkTitle': 'Klicka för att signera och länka den här plånboken till ditt konto.',
-  'wallet.linkedDisconnectedAria':
-    'Plånboken är fortfarande verifierad för ditt konto. Återanslut för att hantera plånboksappen.',
-  'wallet.linkedDisconnectedTitle':
-    'Plånboken är fortfarande verifierad för ditt konto. Återanslut för att hantera plånboksappen.',
-  'wallet.linkedTitle':
-    'Plånboken är verifierad för ditt konto. Klicka för att hantera plånboksappen.',
-  'wallet.signOut': 'Koppla från',
-  'wallet.signOutAria': 'Koppla från plånboksappen i den här webbläsaren',
-  'wallet.signOutTitle': 'Koppla från plånboksappen i den här webbläsaren',
-  'wallet.switch': 'Byt',
-  'wallet.switchAria': 'Verifiera en annan plånbok',
-  'wallet.switchTitle': 'Verifiera en annan plånbok',
-  'wallet.unlink': 'Avlänka',
-  'wallet.unlinkAria': 'Ta bort plånboksverifieringen från det här kontot',
-  'wallet.unlinkFailed': 'Det gick inte att avlänka plånboken.',
-  'wallet.unlinkTitle': 'Ta bort plånboksverifieringen från det här kontot',
-  'wallet.verify': 'Verifiera plånbok',
-  'wallet.verifyAddressAria': 'Signera för att verifiera plånboken {address} för ditt konto',
-  'wallet.verifyAria': 'Välj en plånbok och signera en gång för att verifiera ägande',
-  'wallet.verifyFailed': 'Plånboksverifieringen misslyckades.',
-  'wallet.verifyNew': 'Verifiera ny plånbok',
-  'wallet.verifyTitle': 'Välj en plånbok och signera en gång för att verifiera ägande.',
-  'wallet.verifying': 'Verifierar...',
-  'wallet.verifyingTitle': 'Plånboksverifiering pågår.',
   'wiki.cta': 'Bläddra i wikin',
   'wiki.desc': 'Upptäck rikets hemligheter, klassguider och strategier.',
   'wiki.title': 'Spelwiki och guide',
@@ -7770,7 +7580,7 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.leaderboard.guildEmpty': 'Inga rankade gillen ännu.',
   'hudChrome.discord.roleTagChatTitle': 'Verifierad serverroll: {role}',
   'hudChrome.discord.title': 'Discord',
-  'hudChrome.discord.panelTitle': 'World of ClaudeCraft',
+  'hudChrome.discord.panelTitle': 'Wildhaven',
   'hudChrome.discord.open': 'Discord',
   'hudChrome.discord.close': 'Stäng',
   'hudChrome.discord.keybind': 'Discord-panel',
@@ -7890,10 +7700,10 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'errors.api.desktopCodeInvalid':
     'Inloggningskoden för skrivbordsappen är ogiltig eller har gått ut. Försök igen.',
   'desktop.crash.body': 'Spelvyn slutade fungera. Ladda om den?',
-  'desktop.crash.fatalBody': 'World of ClaudeCraft stötte på ett oväntat fel och måste stängas.',
+  'desktop.crash.fatalBody': 'Wildhaven stötte på ett oväntat fel och måste stängas.',
   'desktop.crash.quit': 'Avsluta',
   'desktop.crash.reload': 'Ladda om',
-  'desktop.crash.title': 'World of ClaudeCraft',
+  'desktop.crash.title': 'Wildhaven',
   'desktop.update.downloadingTitle': 'Laddar ner uppdatering {version}...',
   'desktop.update.later': 'Senare',
   'desktop.update.readyTitle': 'Uppdatering {version} är klar',
@@ -7911,16 +7721,11 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.noLeaders': 'Inga poäng ännu.',
   'hudChrome.dailyRewards.prize': 'Prispott',
   'hudChrome.dailyRewards.reason.eligible': 'Belöningar upplåsta.',
-  'hudChrome.dailyRewards.reason.no_wallet': 'Anslut en plånbok med minst 20 USD i WOC.',
-  'hudChrome.dailyRewards.reason.price_unavailable':
-    'WOC-priset är otillgängligt, belöningar är tillfälligt låsta.',
-  'hudChrome.dailyRewards.reason.under_minimum': 'Plånboken är under WOC-miniminivån på 20 USD.',
   'hudChrome.dailyRewards.remainingHoursMinutes': '{hours} h {minutes} min',
   'hudChrome.dailyRewards.remainingLessThanMinute': '<1 min',
   'hudChrome.dailyRewards.remainingMinutes': '{minutes} min',
   'hudChrome.dailyRewards.reset': 'Återställning',
   'hudChrome.dailyRewards.score': 'Poäng',
-  'hudChrome.dailyRewards.sol': '{amount} SOL',
   'hudChrome.dailyRewards.spinButton': 'Snurra',
   'hudChrome.dailyRewards.spinClaimed': 'Hämtad: +{points} poäng.',
   'hudChrome.dailyRewards.spinClose': 'Stäng dagligt snurr',
@@ -7935,21 +7740,10 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.disabled':
     'Dagliga belöningar är för närvarande inaktiverade. Vi meddelar uppdateringar om den här funktionen i Discord-kanalen.',
   'hudChrome.dailyRewards.unknown': 'Okänd',
-  'hudChrome.dailyRewards.usd': '{amount} USD',
-  'hudChrome.dailyRewards.walletConnectBody':
-    'Verifiera en Solana-plånbok med WOC för att låsa upp dagliga belöningar.',
-  'hudChrome.dailyRewards.walletConnectButton': 'Verifiera plånbok',
-  'hudChrome.dailyRewards.walletConnectTitle': 'Verifiera plånbok',
-  'hudChrome.dailyRewards.walletHoldBody':
-    'Håll minst {amount} USD i WOC för att låsa upp dagliga belöningar.',
-  'hudChrome.dailyRewards.walletHoldTitle': 'Håll WOC',
-  'hudChrome.dailyRewards.walletPriceBody':
-    'WOC-prissättningen är otillgänglig just nu. Kom tillbaka snart.',
-  'hudChrome.dailyRewards.walletValue': 'Plånbokens värde (WOC)',
   'hudChrome.nativeUpdate.body':
-    'En ny version av World of ClaudeCraft är tillgänglig. Uppdatera nu för de senaste korrigeringarna och förbättringarna.',
+    'En ny version av Wildhaven är tillgänglig. Uppdatera nu för de senaste korrigeringarna och förbättringarna.',
   'hudChrome.nativeUpdate.bodyWithVersion':
-    'Version {version} av World of ClaudeCraft är tillgänglig. Uppdatera nu för de senaste korrigeringarna och förbättringarna.',
+    'Version {version} av Wildhaven är tillgänglig. Uppdatera nu för de senaste korrigeringarna och förbättringarna.',
   'hudChrome.nativeUpdate.notNow': 'Inte nu',
   'hudChrome.nativeUpdate.title': 'Uppdatering tillgänglig',
   'hudChrome.nativeUpdate.update': 'Uppdatera',
@@ -8192,7 +7986,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'guide.economy.bankTitle': 'Banken',
   'hudChrome.bank.bonusAdvertDiscord': 'Länka ditt Discord för att tjäna 2 fack.',
   'hudChrome.bank.bonusAdvertEmail': 'Verifiera din e-post för att tjäna 2 fack.',
-  'hudChrome.bank.bonusAdvertWallet': 'Länka en plånbok för att tjäna 2 fack.',
   'hudChrome.bank.bonusEarned': '+{count}',
   'hudChrome.bank.bonusReferralExplainer':
     'Bjud in en vän: när vännen når nivå 10 tjänar ni 2 fack var, upp till 5 vänner.',
@@ -8201,7 +7994,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.bank.bonusSourceDiscord': 'Discord länkat',
   'hudChrome.bank.bonusSourceEmail': 'Verifierad e-post',
   'hudChrome.bank.bonusSourceReferral': 'Värvade vänner',
-  'hudChrome.bank.bonusSourceWallet': 'Plånbok länkad',
   'hudChrome.bank.bonusStatusEarned': '+{count}',
   'hudChrome.bank.bonusTitle': 'Bonusfack',
   'hudChrome.bank.buyConfirm': 'Köp {count} extra bankfack för {price}?',
@@ -9448,17 +9240,11 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.claudium.checkoutClose': 'Stäng betalningsfönstret',
   'hudChrome.claudium.checkoutFailed': 'Det gick inte att ladda kassan. Försök igen.',
   'hudChrome.claudium.checkoutLoading': 'Laddar kassan...',
-  'hudChrome.claudium.checkoutNotSettled':
-    'Transaktionen skickades men Claudium har inte krediterats ännu. Försök snart igen.',
   'hudChrome.claudium.checkoutPending':
     'Transaktion pågår. Bekräfta i din plånbok och håll denna panel öppen.',
   'hudChrome.claudium.checkoutPendingButton': 'Bearbetar',
   'hudChrome.claudium.checkoutTitle': 'Slutför köp',
   'hudChrome.claudium.checkoutUnavailable': 'Det Claudium-köpet är inte tillgängligt just nu.',
-  'hudChrome.claudium.checkoutWalletRequired':
-    'Anslut en Solana-plånbok innan du köper Claudium med krypto.',
-  'hudChrome.claudium.checkoutWalletUnsupported':
-    'Denna plånbok kan inte signera och skicka Solana-transaktioner.',
   'hudChrome.claudium.close': 'Stäng Claudium',
   'hudChrome.claudium.disclosure':
     'Claudium är en virtuell valuta som bara går åt ett håll: köp den för pengar och använd den till kosmetika. Den kan inte växlas in, överföras eller betalas ut.',
@@ -9469,15 +9255,9 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.claudium.loading': 'Laddar Claudium...',
   'hudChrome.claudium.open': 'Öppna Claudium',
   'hudChrome.claudium.railLabel': 'Betalningsmetod',
-  'hudChrome.claudium.railNativeUnavailable': 'SOL/WOC är avstängt.',
-  'hudChrome.claudium.railSol': 'SOL',
   'hudChrome.claudium.railStripe': 'Kort',
-  'hudChrome.claudium.railWoc': 'WOC',
-  'hudChrome.claudium.railWocDiscount': '{percent}% rabatt',
-  'hudChrome.claudium.railWocUnavailable': 'WOC-priser är inte tillgängliga just nu.',
   'hudChrome.claudium.showAmounts': 'Visa alla Claudium-belopp',
   'hudChrome.claudium.skuRow': '{usd} för {claudium} Claudium',
-  'hudChrome.claudium.solBalance': 'SOL: {amount}',
   'hudChrome.claudium.spendButton': 'Lös in',
   'hudChrome.claudium.storeCost': '{amount} Claudium',
   'hudChrome.claudium.storeEmpty': 'Inga kosmetika är tillgängliga just nu.',
@@ -9485,7 +9265,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.claudium.title': 'Claudium',
   'hudChrome.claudium.unavailable':
     'Claudium-butiken är inte tillgänglig just nu. Ditt saldo och dina köp påverkas inte. Försök igen om en stund.',
-  'hudChrome.claudium.wocBalance': 'WOC: {amount}',
   'hudChrome.deeds.openBookHint': 'Öppna Bedrifternas bok',
   'hudChrome.statInfo.desc.warfare':
     'Ökar skadan mot spelare med {increase}% och minskar skadan från spelare med {reduction}%.',
@@ -10036,8 +9815,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'entities.items.eastbrook_ritual_vestments.name': 'Östbäcks Rituella Skrud',
   'entities.items.eastbrook_warded_leggings.name': 'Östbäcks Beskyddade Benkläder',
   'entities.items.wardweave_cowl.name': 'Skyddsvävd Huva',
-  'hudChrome.claudium.railUsdc': 'USDC',
-  'hudChrome.claudium.usdcBalance': 'USDC: {amount}',
   'hudChrome.dailyRewards.reason.bannedUntil':
     'Du är avstängd från dagliga belöningar i ytterligare {remaining}. Åtkomsten återkommer {until}. Orsak: {reason}',
   'hudChrome.dailyRewards.remainingDaysHours': '{days} dagar {hours} timmar',

@@ -1,6 +1,6 @@
 # Security Policy
 
-We take the security of World of ClaudeCraft seriously, and we appreciate the work
+We take the security of Wildhaven seriously, and we appreciate the work
 of everyone who helps keep players and self-hosters safe.
 
 ## Reporting a vulnerability
@@ -11,11 +11,11 @@ players and people running their own servers at risk.
 
 Instead, report privately using one of these channels:
 
-- **Email (preferred).** Write to tony@levystreet.com with "Security" in the
+- **Email (preferred).** Write to security@wildhaven.example with "Security" in the
   subject. This reaches the maintainers directly.
 - **Discord.** Send a private message to a member of the **Levy St**, **Admin**,
   or **Devs** group on the
-  [community Discord](https://discord.com/invite/worldofclaudecraft) and ask for a secure way to
+  [community Discord](https://discord.com/invite/wildhaven) and ask for a secure way to
   share the details.
 
 Please include as much as you can:
@@ -48,7 +48,7 @@ without permission.
 
 ## Supported versions
 
-World of ClaudeCraft is under active development and is currently pre-1.0. Fixes
+Wildhaven is under active development and is currently pre-1.0. Fixes
 land on the active `release/vX.Y.Z` branch, which merges into `main` when that
 version ships, so the supported targets are the most recent release and the
 current release branch. Older releases do not receive backports. If you run a

@@ -45,7 +45,7 @@ export function classifyAuthCode(raw: string): { code: string; recoveryCode: str
 export function formatRecoveryCodesFile(
   codes: string[],
   username: string,
-  brand = 'World of ClaudeCraft',
+  brand = 'Wildhaven',
 ): string {
   return [
     t('hudChrome.account.recoveryCodesFileHeader', { brand }),

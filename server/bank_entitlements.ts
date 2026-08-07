@@ -1,6 +1,6 @@
 // Bank bonus-slot entitlements: the pure, extensible source registry that turns a
-// bag of account facts (email verified, Discord linked, wallet linked, qualified
-// referrals) into the bonus-slot total plus the per-source breakdown the bank
+// bag of account facts (email verified, Discord linked, qualified referrals)
+// into the bonus-slot total plus the per-source breakdown the bank
 // window advertises. No DB import lives here: server/db.ts reads the raw facts in
 // one parameterized query and server/main.ts pipes them through computeBankBonus,
 // so this module stays a host-agnostic leaf a Vitest imports directly.
@@ -28,13 +28,12 @@ import type { BankBonusSource } from '../src/world_api';
 export interface BankBonusFacts {
   emailVerified: boolean;
   discordLinked: boolean;
-  walletLinked: boolean;
   qualifiedReferrals: number;
 }
 
 /** One entitlement source as data: how many slots a unit is worth, how many units
  *  cap the source, and the pure function that reads the fact into a unit count.
- *  A binary source (email/Discord/wallet) returns 0 or 1 units with capUnits 1;
+ *  A binary source (email/Discord) returns 0 or 1 units with capUnits 1;
  *  the referral source returns the raw qualified count with capUnits 5. */
 export interface BankBonusSourceDef {
   id: string;
@@ -43,14 +42,13 @@ export interface BankBonusSourceDef {
   units(f: BankBonusFacts): number;
 }
 
-/** The shipped v1 registry: +2 email (verified), +2 Discord, +2 wallet (a link row
- *  is the proof, never a balance), +2 per qualified referral capped at 5 (+10). The
+/** The shipped registry: +2 email (verified), +2 Discord, +2 per qualified
+ *  referral capped at 5 (+10). The
  *  order is the display order the bank-window footer renders. Append-only data: a new
  *  source is a new row (see the future X/Twitch rows in the module header). */
 export const BANK_BONUS_SOURCES: readonly BankBonusSourceDef[] = [
   { id: 'email', slotsPerUnit: 2, capUnits: 1, units: (f) => (f.emailVerified ? 1 : 0) },
   { id: 'discord', slotsPerUnit: 2, capUnits: 1, units: (f) => (f.discordLinked ? 1 : 0) },
-  { id: 'wallet', slotsPerUnit: 2, capUnits: 1, units: (f) => (f.walletLinked ? 1 : 0) },
   { id: 'referral', slotsPerUnit: 2, capUnits: 5, units: (f) => f.qualifiedReferrals },
 ];
 

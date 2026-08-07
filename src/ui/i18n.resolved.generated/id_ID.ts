@@ -400,7 +400,7 @@ export const id_ID: EnTranslations = {
       "error": "Tidak dapat memuat hadiah harian.",
       "disabled": "Hadiah Harian saat ini dinonaktifkan. Kami akan mengumumkan pembaruan fitur ini di kanal Discord.",
       "intro": "Simpan cukup WOC di dompet terverifikasimu untuk membuka hadiah harian. Kumpulkan poin lewat satu putaran harian dan tugas yang bergilir, lalu naiki papan peringkat harian untuk mendapat bagian dari kolam hadiah.",
-      "disclaimer": "Harga WOC dapat bergerak cepat. Kami menyarankan untuk menyimpan lebih dari batas minimum $20 USD agar gejolak harga yang wajar tidak mengunci aksesmu. Ini bukan nasihat keuangan.",
+      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
       "prize": "Kolam Hadiah",
       "reset": "Atur Ulang",
       "endsIn": "Berakhir dalam {time}",
@@ -409,9 +409,6 @@ export const id_ID: EnTranslations = {
       "remainingHoursMinutes": "{hours}j {minutes}m",
       "remainingDaysHours": "{days} hari {hours} jam",
       "score": "Skor",
-      "walletValue": "Nilai Dompet (WOC)",
-      "usd": "{amount} USD",
-      "sol": "{amount} SOL",
       "unknown": "Tidak diketahui",
       "spinTitle": "Putaran Harian",
       "spinDialogTitle": "Putaran Hadiah Harian",
@@ -436,17 +433,8 @@ export const id_ID: EnTranslations = {
       "history": "Pemenang Sebelumnya",
       "noLeaders": "Belum ada poin.",
       "noHistory": "Belum ada pembayaran.",
-      "walletConnectTitle": "Verifikasi Dompet",
-      "walletConnectBody": "Verifikasi dompet Solana berisi WOC untuk membuka hadiah harian.",
-      "walletConnectButton": "Verifikasi Dompet",
-      "walletHoldTitle": "Simpan WOC",
-      "walletHoldBody": "Simpan minimal {amount} USD dalam WOC untuk membuka hadiah harian.",
-      "walletPriceBody": "Harga WOC tidak tersedia saat ini. Silakan cek kembali sebentar lagi.",
       "reason": {
         "eligible": "Hadiah terbuka.",
-        "no_wallet": "Hubungkan dompet dengan setidaknya $20 USD dalam WOC.",
-        "under_minimum": "Dompet di bawah batas minimum $20 USD WOC.",
-        "price_unavailable": "Harga WOC tidak tersedia, hadiah terkunci sementara.",
         "banned": "Kamu dilarang mengikuti Hadiah Harian. Alasan: {reason}",
         "bannedUntil": "Kamu dilarang mengikuti Hadiah Harian selama {remaining} lagi. Akses kembali pada {until}. Alasan: {reason}"
       }
@@ -472,18 +460,6 @@ export const id_ID: EnTranslations = {
       "armoryEyebrow": "Musim 1",
       "armoryTitle": "Gudang Senjata",
       "armoryBody": "Tampilan senjata edisi terbatas dari Gudang Senjata Musim 1. Berlaku untuk seluruh akun, murni kosmetik, dan terlihat oleh semua pemain di sekitar Anda.",
-      "wallet": {
-        "title": "Dompet Solana",
-        "unlinked": "Hubungkan aplikasi dompet, lalu tanda tangani sekali untuk menautkan alamat publiknya ke akun WoC-mu. Kami tidak pernah menerima frasa pemulihan atau kunci privatmu.",
-        "connectedUnlinked": "Aplikasi dompet terhubung ke browser ini, namun alamat publiknya belum ditautkan ke akun WoC-mu.",
-        "linkedDisconnected": "Alamat publikmu sudah tertaut. Hubungkan kembali aplikasi dompet itu saat kamu ingin membayar dengan SOL atau WOC.",
-        "linkedConnected": "Aplikasi dompet tertautmu terhubung dan siap untuk pembelian SOL atau WOC.",
-        "mismatched": "Dompet berbeda sedang terhubung. Verifikasi untuk mengganti alamat tertaut, atau hubungkan kembali dompet yang tertaut.",
-        "connect": "Hubungkan dompet",
-        "verify": "Verifikasi dan tautkan",
-        "reconnect": "Hubungkan ulang dompet",
-        "manage": "Kelola dompet"
-      },
       "collectionLine": "{collection} Koleksi",
       "collections": {
         "guildmark": "Tanda Serikat",
@@ -685,20 +661,11 @@ export const id_ID: EnTranslations = {
       "loading": "Memuat Claudium...",
       "balanceLabel": "Saldo",
       "balanceUnit": "{amount} Claudium",
-      "solBalance": "SOL: {amount}",
-      "usdcBalance": "USDC: {amount}",
-      "wocBalance": "WOC: {amount}",
       "unavailable": "Toko Claudium tidak tersedia saat ini. Saldo dan pembelian Anda tidak terpengaruh; harap segera periksa kembali.",
       "disclosure": "Claudium adalah mata uang lunak satu arah: beli dengan uang dan belanjakan untuk kosmetik. Itu tidak dapat ditebus, ditransfer, atau diuangkan.",
       "buyTitle": "Beli Claudium",
       "railLabel": "Metode pembayaran",
       "railStripe": "Kartu",
-      "railSol": "SOL",
-      "railUsdc": "USDC",
-      "railWoc": "WOC",
-      "railWocDiscount": "Diskon {percent}%.",
-      "railWocUnavailable": "Harga WOC tidak tersedia saat ini.",
-      "railNativeUnavailable": "SOL/WOC tidak tersedia.",
       "amountLabel": "Jumlah",
       "showAmounts": "Tampilkan semua jumlah Claudium",
       "hideAmounts": "Sembunyikan jumlah Claudium tambahan",
@@ -718,10 +685,7 @@ export const id_ID: EnTranslations = {
       "checkoutPending": "Transaksi sedang berlangsung. Konfirmasikan di dompet Anda dan biarkan panel ini tetap terbuka.",
       "checkoutPendingButton": "Diproses",
       "checkoutFailed": "Pembayaran tidak dapat dimuat. Silakan coba lagi.",
-      "checkoutUnavailable": "Pembelian Claudium tersebut tidak tersedia saat ini.",
-      "checkoutWalletRequired": "Hubungkan dompet Solana sebelum membeli Claudium dengan kripto.",
-      "checkoutWalletUnsupported": "Dompet ini tidak dapat menandatangani dan mengirim transaksi Solana.",
-      "checkoutNotSettled": "Transaksi sudah terkirim tetapi Claudium belum dikreditkan. Silakan coba lagi sebentar lagi."
+      "checkoutUnavailable": "Pembelian Claudium tersebut tidak tersedia saat ini."
     },
     "theme": {
       "preset": "Tema UI",
@@ -843,8 +807,8 @@ export const id_ID: EnTranslations = {
     },
     "nativeUpdate": {
       "title": "Pembaruan Tersedia",
-      "body": "Versi baru World of ClaudeCraft tersedia. Perbarui sekarang untuk perbaikan dan peningkatan terbaru.",
-      "bodyWithVersion": "Versi {version} World of ClaudeCraft tersedia. Perbarui sekarang untuk perbaikan dan peningkatan terbaru.",
+      "body": "Versi baru Wildhaven tersedia. Perbarui sekarang untuk perbaikan dan peningkatan terbaru.",
+      "bodyWithVersion": "Versi {version} Wildhaven tersedia. Perbarui sekarang untuk perbaikan dan peningkatan terbaru.",
       "notNow": "Jangan sekarang",
       "update": "Perbarui"
     },
@@ -1196,8 +1160,6 @@ export const id_ID: EnTranslations = {
       "clickFeedback": "Penanda Klik",
       "lockCursorOnRotate": "Kunci Kursor Saat Memutar",
       "keybindHelpLockCursorOnRotate": "Menjaga kursor mouse tetap di dalam jendela saat Anda menyeret untuk memutar kamera, sehingga tidak mencapai tepi layar atau berpindah ke monitor lain. Matikan jika Anda lebih suka kursor bebas.",
-      "showWalletOnCharacterScreen": "Tampilkan Dompet di Layar Karakter",
-      "showWalletOnPlayerCard": "Tampilkan Dompet di Kartu Pemain",
       "showDevBadges": "Tampilkan Lencana Pengembang",
       "showOwnNameplate": "Tampilkan Papan Namaku",
       "showPlayerNameplates": "Tampilkan Papan Nama Pemain",
@@ -1373,9 +1335,7 @@ export const id_ID: EnTranslations = {
         "aetherRush": "Terjangan Aether"
       }
     },
-    "playerCard": {
-      "showWalletBadge": "Tampilkan lencana dompet"
-    },
+    "playerCard": {},
     "landing": {
       "highContrast": "Kontras Tinggi",
       "highContrastAria": "Alihkan latar belakang kontras tinggi: menonaktifkan cuplikan bergerak agar teks layar mulai tetap terbaca",
@@ -1564,7 +1524,6 @@ export const id_ID: EnTranslations = {
       "loggedOutPrompt": "Masuk untuk mengelola akunmu.",
       "memberSince": "Anggota sejak {date}",
       "sectionSettings": "Pengaturan Akun",
-      "sectionWallet": "Dompet $WOC",
       "sectionCharacters": "Karakter",
       "sectionDanger": "Zona Bahaya",
       "changePassword": "Ubah Kata Sandi",
@@ -1591,8 +1550,6 @@ export const id_ID: EnTranslations = {
       "charactersSummary": "Kelola karaktermu dan masuk ke dunia.",
       "charactersCount": "Karakter: {count}",
       "goToCharacters": "Lihat Karakter",
-      "walletSummary": "Verifikasi dompet Solana untuk menampilkan lencana pemegang di kartu pemainmu.",
-      "manageWallet": "Kelola Dompet",
       "deactivate": "Nonaktifkan Akun",
       "deactivateWarning": "Penonaktifan mengunci akunmu dan mengeluarkanmu dari mana saja. Hubungi admin untuk memulihkannya. Konfirmasi dengan memasukkan ulang nama pengguna dan kata sandimu.",
       "confirmUsername": "Ketik nama penggunamu untuk mengonfirmasi",
@@ -2003,7 +1960,7 @@ export const id_ID: EnTranslations = {
     },
     "discord": {
       "title": "Discord",
-      "panelTitle": "World of ClaudeCraft",
+      "panelTitle": "Wildhaven",
       "open": "Discord",
       "close": "Tutup",
       "keybind": "Panel Discord",
@@ -2293,11 +2250,9 @@ export const id_ID: EnTranslations = {
       "bonusStatusEarned": "+{count}",
       "bonusSourceEmail": "Email terverifikasi",
       "bonusSourceDiscord": "Discord tertaut",
-      "bonusSourceWallet": "Dompet tertaut",
       "bonusSourceReferral": "Teman yang dirujuk",
       "bonusAdvertEmail": "Verifikasi emailmu untuk mendapat 2 slot.",
       "bonusAdvertDiscord": "Tautkan Discord-mu untuk mendapat 2 slot.",
-      "bonusAdvertWallet": "Tautkan dompet untuk mendapat 2 slot.",
       "bonusReferralProgress": "{count}/{cap}",
       "bonusReferralExplainer": "Undang seorang teman: saat ia mencapai level 10, kalian masing-masing mendapat 2 slot, hingga 5 teman.",
       "bonusSectionAria": "Slot bank bonus dan cara mendapat lebih banyak",
@@ -3147,26 +3102,13 @@ export const id_ID: EnTranslations = {
       "account_taken": "Akun Epic tersebut sudah tertaut ke akun lain.",
       "upstream": "Epic tidak merespons. Coba lagi sebentar lagi."
     },
-    "wallet": {
-      "handoff_invalid": "Otorisasi dompet itu telah kedaluwarsa atau tidak dapat diverifikasi. Coba lagi."
-    },
     "ota_updates": {
       "invalid_input": "Masukan tidak valid."
-    },
-    "seeker": {
-      "native_only": "Hak akses Seeker hanya tersedia di aplikasi native.",
-      "attestation_failed": "Verifikasi perangkat gagal. Silakan coba lagi.",
-      "solana_artifact_required": "Gunakan aplikasi versi Solana Store untuk melanjutkan.",
-      "wallet_required": "Tautkan dan verifikasi dompet terlebih dahulu.",
-      "genesis_token_required": "Diperlukan Seeker Genesis Token yang terverifikasi.",
-      "genesis_token_claimed": "Seeker Genesis Token itu sudah diklaim.",
-      "entitlement_required": "Diperlukan hak akses Seeker yang terverifikasi.",
-      "current_ownership_required": "Diperlukan kepemilikan Seeker Genesis Token saat ini."
     }
   },
   "guide": {
-    "brand": "World of ClaudeCraft",
-    "brandShort": "ClaudeCraft",
+    "brand": "Wildhaven",
+    "brandShort": "Wildhaven",
     "tagline": "MMO bergaya klasik yang bisa kamu mainkan gratis di peramban.",
     "skipToContent": "Lewati ke konten utama",
     "loading": "Memuat...",
@@ -3231,7 +3173,7 @@ export const id_ID: EnTranslations = {
       "github": "Sumber di GitHub",
       "discord": "Gabung Discord",
       "communityWiki": "Wiki Komunitas",
-      "rights": "World of ClaudeCraft",
+      "rights": "Wildhaven",
       "linksLabel": "Tautan main dan komunitas"
     },
     "language": {
@@ -3254,7 +3196,7 @@ export const id_ID: EnTranslations = {
     },
     "home": {
       "eyebrow": "MMO browser bergaya klasik",
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "subtitle": "Berpetualang, bersatu, dan jelajahi dunia rakitan tangan, gratis di browser-mu.",
       "ctaPlay": "Main Sekarang",
       "ctaLearn": "Cara Bermain",
@@ -3769,7 +3711,7 @@ export const id_ID: EnTranslations = {
     },
     "worldPage": {
       "heading": "Dunia",
-      "intro": "World of ClaudeCraft adalah satu daratan menyambung yang kamu lintasi dengan berjalan kaki, tiga zona terbentang dari selatan ke utara. Tidak ada perjalanan kilat, jadi pengembaraan itu sendiri bagian dari petualangan.",
+      "intro": "Wildhaven adalah satu daratan menyambung yang kamu lintasi dengan berjalan kaki, tiga zona terbentang dari selatan ke utara. Tidak ada perjalanan kilat, jadi pengembaraan itu sendiri bagian dari petualangan.",
       "hub": "Markas utama",
       "mapHeading": "Jalan ke utara",
       "mapSub": "Tiga zona, dari selatan ke utara, masing-masing setingkat lebih tinggi dalam level. Ikuti jejak misi dan daratan akan membawamu dari lembah ke puncak.",
@@ -4596,7 +4538,7 @@ export const id_ID: EnTranslations = {
   },
   "editor": {
     "appTitle": "Editor Peta",
-    "docTitle": "Editor Peta - World of ClaudeCraft",
+    "docTitle": "Editor Peta - Wildhaven",
     "untitledMap": "Peta Tanpa Judul",
     "playtestPlayerName": "Pembuat Peta",
     "topbar": {
@@ -5072,8 +5014,8 @@ export const id_ID: EnTranslations = {
     "realmName": "Nama Dunia"
   },
   "footer": {
-    "copyright": "2026 World of ClaudeCraft",
-    "githubLink": "https://github.com/levy-street/world-of-claudecraft",
+    "copyright": "2026 Wildhaven",
+    "githubLink": "https://wildhaven.example",
     "githubLabel": "Proyek Sumber Terbuka",
     "whitepaper": "Whitepaper",
     "terms": "Ketentuan Layanan",
@@ -5130,13 +5072,10 @@ export const id_ID: EnTranslations = {
     "serverOnline": "Online",
     "serverOffline": "Offline",
     "play": "Main",
-    "playAria": "Mainkan World of ClaudeCraft",
+    "playAria": "Mainkan Wildhaven",
     "serverLabel": "Pilih dunia Anda",
     "serverAria": "Pilih dunia: Online atau Offline",
-    "serverOfflineSub": "Dunia lokal seketika",
-    "caLabel": "Alamat Kontrak $WOC",
-    "caCopyAria": "Salin alamat kontrak",
-    "caNote": "WOC adalah token komunitas kami. Token ini tidak diperlukan untuk bermain. Gabung Discord untuk membahas utilitas dan flywheel WOC."
+    "serverOfflineSub": "Dunia lokal seketika"
   },
   "auth": {
     "enterRealm": "Masuki Dunia",
@@ -5184,171 +5123,6 @@ export const id_ID: EnTranslations = {
       "failed": "Tidak dapat menyimpan emailmu. Silakan coba lagi."
     }
   },
-  "wallet": {
-    "label": "Dompet $WOC",
-    "connect": "Verifikasi Dompet",
-    "connectTitle": "Verifikasi dompet Solana Anda",
-    "connectAria": "Verifikasi dompet Solana Anda",
-    "verify": "Verifikasi Dompet",
-    "verifyNew": "Verifikasi Dompet Baru",
-    "verifyTitle": "Pilih dompet dan tanda tangani sekali untuk memverifikasi kepemilikan.",
-    "verifyAria": "Pilih dompet dan tanda tangani sekali untuk memverifikasi kepemilikan",
-    "verifyAddressAria": "Tanda tangani untuk memverifikasi dompet {address} bagi akun Anda",
-    "appConnected": "Aplikasi Terhubung",
-    "connectApp": "Hubungkan Aplikasi",
-    "connectAppTitle": "Hubungkan aplikasi dompet di peramban ini",
-    "connectAppAria": "Hubungkan aplikasi dompet di peramban ini",
-    "verifying": "Memverifikasi...",
-    "verifyingTitle": "Verifikasi dompet sedang berlangsung.",
-    "switch": "Ganti",
-    "switchTitle": "Verifikasi dompet yang berbeda",
-    "switchAria": "Verifikasi dompet yang berbeda",
-    "unlink": "Lepas Tautan",
-    "unlinkTitle": "Hapus verifikasi dompet dari akun ini",
-    "unlinkAria": "Hapus verifikasi dompet dari akun ini",
-    "signOut": "Putuskan Hubungan",
-    "signOutTitle": "Putuskan hubungan aplikasi dompet di peramban ini",
-    "signOutAria": "Putuskan hubungan aplikasi dompet di peramban ini",
-    "hide": "Sembunyikan",
-    "hideTitle": "Sembunyikan baris dompet di layar ini",
-    "hideAria": "Sembunyikan baris dompet di layar ini",
-    "hiddenNotice": "Baris dompet disembunyikan. Aktifkan kembali di dalam game dari Opsi > Antarmuka.",
-    "linkedTitle": "Dompet terverifikasi untuk akun Anda. Klik untuk mengelola aplikasi dompet.",
-    "linkedDisconnectedTitle": "Dompet tetap terverifikasi untuk akun Anda. Hubungkan kembali untuk mengelola aplikasi dompet.",
-    "linkedDisconnectedAria": "Dompet tetap terverifikasi untuk akun Anda. Hubungkan kembali untuk mengelola aplikasi dompet.",
-    "linkTitle": "Klik untuk menandatangani dan menautkan dompet ini ke akun Anda.",
-    "connectedTitle": "Terhubung. Masuk untuk menautkan dompet ini ke akun Anda.",
-    "balanceTitle": "Saldo $WOC dompet Solana terverifikasi",
-    "balanceAria": "Saldo dompet Solana terverifikasi: {balance}",
-    "balancePreviewTitle": "Pratinjau saldo $WOC dompet terhubung",
-    "balancePreviewAria": "Pratinjau saldo dompet terhubung: {balance}. Tautkan dompet untuk memverifikasi lencana pemegang.",
-    "balanceAmount": "{amount} $WOC",
-    "bagConnect": "Tautkan dompet",
-    "bagLink": "Verifikasi dompet",
-    "bagReconnect": "Hubungkan ulang dompet",
-    "connected": "Terhubung: {address}",
-    "connectedWithBalance": "Terhubung: {balance} - {address}",
-    "connectedLinked": "Terverifikasi: {address}",
-    "connectedLinkedWithBalance": "Terverifikasi: {balance} - {address}",
-    "helpDisconnected": "Verifikasi dompet Solana untuk mengaktifkan lencana pemegang dan tanda di kartu pemain. Tidak perlu transaksi atau SOL.",
-    "helpLoginToLink": "Terhubung {address}. Masuk untuk menautkannya ke akun Anda.",
-    "helpLoginToLinkWithBalance": "Terhubung {address} dengan {balance}. Masuk untuk menautkannya ke akun Anda.",
-    "helpReadyToLink": "Dompet dipilih: {address}. Tanda tangani sekali untuk memverifikasi lencana pemegang dan kartu pemain.",
-    "helpReadyToLinkWithBalance": "Dompet dipilih: {address} dengan {balance}. Tanda tangani sekali untuk memverifikasi lencana pemegang dan kartu pemain.",
-    "helpLinked": "Manfaat pemegang aktif. Aplikasi dompet terhubung di peramban ini.",
-    "helpLinkedWithBalance": "Manfaat pemegang aktif. Aplikasi dompet terhubung di peramban ini.",
-    "helpLinkedDisconnected": "Manfaat pemegang aktif. Hubungkan aplikasi saat Anda perlu menandatangani atau membelanjakan.",
-    "helpLinkedDisconnectedWithBalance": "Manfaat pemegang aktif. Hubungkan aplikasi saat Anda perlu menandatangani atau membelanjakan.",
-    "extensionHelp": "Agar dompet tampil di sini, biarkan ekstensi dompet peramban seperti Solflare Wallet tetap aktif.",
-    "mobileAppHelp": "Pilih Phantom atau Solflare. Aplikasi dompetmu akan meminta persetujuan. Jaga permainan ini tetap terbuka dan kembali ke sana saat selesai.",
-    "seekerAppHelp": "Lanjutkan dengan Seed Vault Wallet. Tinjau permintaan koneksi dan verifikasi di Seed Vault, lalu kembali ke permainan.",
-    "standaloneAppHelp": "Koneksi dompet belum tersedia di aplikasi Layar Utama. Buka World of ClaudeCraft di Safari atau Chrome untuk menggunakan Phantom atau Solflare.",
-    "openAppTitle": "Lanjutkan di {wallet}",
-    "openAppHelp": "Buka {wallet} untuk meninjau permintaan ini. Jaga tab permainan ini tetap terbuka saat aplikasi dompet aktif.",
-    "openAppButton": "Buka {wallet}",
-    "manualReturnBrowserHelp": "Setelah persetujuan, kembali ke tab permainan ini. Jika iOS membuka browser lain, tutup dan kembali ke browser asli secara manual.",
-    "manualReturnStandaloneHelp": "Setelah persetujuan, kembali ke World of ClaudeCraft dari Layar Utamamu. Jika iOS membuka browser, tutup dan buka kembali aplikasi Layar Utama secara manual.",
-    "preparingAppButton": "Mempersiapkan {wallet}...",
-    "walletAppUnavailable": "{wallet} tidak dapat dipersiapkan. Tutup jendela ini dan coba lagi.",
-    "flowConnect": "Pilih sebuah dompet. Verifikasi berlanjut secara otomatis.",
-    "flowSign": "Tanda tangani pesan verifikasi di aplikasi dompet Anda. Tidak perlu transaksi atau SOL.",
-    "flowVerify": "Memverifikasi kepemilikan dompet...",
-    "linkFailed": "Verifikasi dompet gagal.",
-    "verifyFailed": "Verifikasi dompet gagal.",
-    "unlinkFailed": "Tidak dapat melepas tautan dompet.",
-    "browser": {
-      "eyebrow": "Otorisasi dompet desktop",
-      "title": "Hubungkan Dompet Solana",
-      "linkBody": "Pilih ekstensi dompet di browser ini. Kamu akan menandatangani pesan verifikasi, lalu kembali ke aplikasi desktop.",
-      "paymentBody": "Pilih dompet yang tertaut ke akunmu dan setujui transaksi di browser ini.",
-      "extensionHelp": "Tidak ada ekstensi dompet yang kompatibel ditemukan. Instal atau buka Phantom, Solflare, atau dompet browser Solana lainnya, lalu coba lagi.",
-      "safety": "World of ClaudeCraft tidak pernah meminta frasa pemulihan atau kunci privatmu.",
-      "continueWith": "Lanjutkan dengan {wallet}",
-      "reviewTitle": "Tinjau di dompetmu",
-      "reviewBody": "Ikuti perintah dari {wallet}. Jaga halaman browser ini tetap terbuka.",
-      "completeTitle": "Otorisasi dompet selesai",
-      "completeBody": "Kamu dapat kembali ke aplikasi desktop World of ClaudeCraft.",
-      "returnButton": "Kembali ke aplikasi desktop",
-      "failed": "Otorisasi dompet gagal atau kedaluwarsa. Kembali ke aplikasi desktop dan coba lagi.",
-      "retry": "Coba Lagi"
-    },
-    "holder": "pemegang $WOC",
-    "holderTierTitle": "Pemegang $WOC {tier}",
-    "holderTiers": {
-      "ember": {
-        "name": "Bara",
-        "flavor": "Percikan telah menyala."
-      },
-      "coinbearer": {
-        "name": "Pembawa Koin",
-        "flavor": "Koin pertama di pundi perang."
-      },
-      "coppercrest": {
-        "name": "Puncak Tembaga",
-        "flavor": "Tembaga menumpuk, namamu disebut."
-      },
-      "silverbound": {
-        "name": "Terikat Perak",
-        "flavor": "Terikat perak, membangun kekayaan."
-      },
-      "gilded": {
-        "name": "Berlapis Emas",
-        "flavor": "Berlapis emas dan tersenyum lebar."
-      },
-      "vaultwarden": {
-        "name": "Penjaga Brankas",
-        "flavor": "Kini menjaga brankas sejati: 0,01% dari seluruh $WOC."
-      },
-      "whale": {
-        "name": "Paus",
-        "flavor": "Kedalaman terbelah saat kau berenang: 0,1% dari pasokan."
-      },
-      "leviathan": {
-        "name": "Leviathan",
-        "flavor": "Pasar merasakan gerakanmu: 1% dari pasokan."
-      },
-      "tidelord": {
-        "name": "Penguasa Pasang",
-        "flavor": "Pasang menjawab panggilanmu: 2% dari pasokan."
-      },
-      "stormcaller": {
-        "name": "Pemanggil Badai",
-        "flavor": "Badai berkumpul mendengar namamu: 3% dari pasokan."
-      },
-      "krakencrown": {
-        "name": "Mahkota Kraken",
-        "flavor": "Dimahkotai oleh kedalaman: 4% dari pasokan."
-      },
-      "titanforged": {
-        "name": "Tempaan Titan",
-        "flavor": "Ditempa di antara para titan: 5% dari pasokan."
-      },
-      "starhoard": {
-        "name": "Timbunan Bintang",
-        "flavor": "Timbunan yang membelokkan cahaya bintang: 6% dari pasokan."
-      },
-      "voidwarden": {
-        "name": "Penjaga Kehampaan",
-        "flavor": "Penjaga di tepi kehampaan: 7% dari pasokan."
-      },
-      "realmshaper": {
-        "name": "Pembentuk Ranah",
-        "flavor": "Kau membentuk ulang ranah: 8% dari pasokan."
-      },
-      "worldforger": {
-        "name": "Penempa Dunia",
-        "flavor": "Menempa dunia milikmu sendiri: 9% dari pasokan."
-      },
-      "worldbearer": {
-        "name": "Pemikul Dunia",
-        "flavor": "Kau memikul sekeping dunia: 10% dari pasokan."
-      },
-      "sovereign": {
-        "name": "Penguasa",
-        "flavor": "Ranah bertekuk lutut: seluruh pasokan."
-      }
-    }
-  },
   "playerCard": {
     "shareButton": "Bagikan Kartu Pemain",
     "title": "Kartu Pemain",
@@ -5365,16 +5139,15 @@ export const id_ID: EnTranslations = {
     "levelClass": "Level {level} - {className}",
     "topPercent": "TERATAS {percent}%",
     "realmSubtitle": "Dunia {realm}",
-    "defaultRealm": "World of ClaudeCraft",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "defaultRealm": "Wildhaven",
+    "brandWordmark": "WILDHAVEN",
     "recruited": "{count} direkrut",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",
     "footerCta": "Tempa legendamu: {siteUrl}",
     "arenaStat": "Arena",
-    "shareTierBit": ", pemegang $WOC peringkat {tier}",
-    "shareText": "Aku sedang menempa legendaku di World of ClaudeCraft: Level {level} {className}{tierBit}. Bergabunglah dengan duniaku:",
-    "nativeShareTitle": "World of ClaudeCraft",
+    "shareText": "Aku sedang menempa legendaku di Wildhaven: Level {level} {className}{tierBit}. Bergabunglah dengan duniaku:",
+    "nativeShareTitle": "Wildhaven",
     "fileNameFallback": "pemain",
     "actionShareX": "Bagikan ke X",
     "actionCopyReferral": "Salin Tautan Rujukan",
@@ -6074,14 +5847,14 @@ export const id_ID: EnTranslations = {
     }
   },
   "seo": {
-    "title": "World of ClaudeCraft: MMO Web Bergaya Klasik",
-    "description": "Mulailah petualangan epik di World of ClaudeCraft, micro-MMO bergaya klasik yang dapat dimainkan langsung di peramban. Bergabunglah dengan dunia bersama yang persisten, naikkan level kelas, dan kalahkan musuh!",
+    "title": "Wildhaven: MMO Web Bergaya Klasik",
+    "description": "Mulailah petualangan epik di Wildhaven, micro-MMO bergaya klasik yang dapat dimainkan langsung di peramban. Bergabunglah dengan dunia bersama yang persisten, naikkan level kelas, dan kalahkan musuh!",
     "genre": "MMORPG",
     "playMode": "Multipemain",
     "applicationCategory": "Permainan",
     "operatingSystem": "Peramban web",
-    "officialLabel": "Situs resmi World of ClaudeCraft",
-    "officialBody": "worldofclaudecraft.com adalah MMO peramban gratis resmi untuk dunia Claudemoon. Bermain daring dengan karakter yang persisten, jelajahi solo secara luring, baca wiki, dan ikuti tautan komunitas terverifikasi dari situs ini."
+    "officialLabel": "Situs resmi Wildhaven",
+    "officialBody": "wildhaven.example adalah MMO peramban gratis resmi untuk dunia Claudemoon. Bermain daring dengan karakter yang persisten, jelajahi solo secara luring, baca wiki, dan ikuti tautan komunitas terverifikasi dari situs ini."
   },
   "a11y": {
     "goHome": "Ke halaman utama",
@@ -6089,9 +5862,9 @@ export const id_ID: EnTranslations = {
     "mainNavigation": "Navigasi utama",
     "languageSelection": "Pemilihan bahasa",
     "characterActions": "Aksi karakter",
-    "githubProject": "Buka proyek GitHub World of ClaudeCraft",
-    "discordCommunity": "Gabung komunitas Discord World of ClaudeCraft",
-    "donateProject": "Berdonasi untuk mendukung World of ClaudeCraft"
+    "githubProject": "Buka proyek GitHub Wildhaven",
+    "discordCommunity": "Gabung komunitas Discord Wildhaven",
+    "donateProject": "Berdonasi untuk mendukung Wildhaven"
   },
   "entryGuard": {
     "title": "Grafis diturunkan",
@@ -6178,11 +5951,11 @@ export const id_ID: EnTranslations = {
       "dismiss": "Tutup"
     },
     "crash": {
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "body": "Tampilan gim berhenti bekerja. Muat ulang?",
       "reload": "Muat Ulang",
       "quit": "Keluar",
-      "fatalBody": "World of ClaudeCraft mengalami kesalahan tak terduga dan perlu ditutup."
+      "fatalBody": "Wildhaven mengalami kesalahan tak terduga dan perlu ditutup."
     }
   },
   "gpuNotice": {
@@ -6321,17 +6094,17 @@ export const id_ID: EnTranslations = {
     "iosStandaloneDetail": "Kamu berada dalam mode layar penuh layar-beranda. Pertahankan perangkat dalam posisi lanskap.",
     "iosInstallDetail": "Untuk layar penuh sejati di iPhone atau iPad, pasang halaman ini ke Layar Beranda terlebih dahulu.",
     "iosShareStep": "Di Safari, ketuk Bagikan, lalu Tambahkan ke Layar Beranda.",
-    "iosOpenStep": "Buka World of ClaudeCraft dari ikon Layar Beranda yang baru.",
+    "iosOpenStep": "Buka Wildhaven dari ikon Layar Beranda yang baru.",
     "androidStandaloneDetail": "Kamu berada dalam mode aplikasi layar penuh. Pertahankan perangkat dalam posisi lanskap.",
     "androidInstallDetail": "Untuk layar penuh di Android, pasang halaman ini atau tambahkan ke layar Beranda terlebih dahulu.",
     "androidInstallStep": "Di Chrome, ketuk menu, lalu Pasang aplikasi atau Tambahkan ke layar Beranda.",
-    "androidOpenStep": "Buka World of ClaudeCraft dari ikon baru.",
+    "androidOpenStep": "Buka Wildhaven dari ikon baru.",
     "otherStandaloneDetail": "Pertahankan perangkatmu dalam layar penuh posisi lanskap.",
     "otherInstallDetail": "Pasang atau tambahkan halaman ini ke layar Beranda untuk pengalaman seluler layar penuh terbaik."
   },
   "serverUnavailable": {
-    "title": "World of ClaudeCraft - Dunia Tidak Tersedia",
-    "logoAlt": "World of ClaudeCraft",
+    "title": "Wildhaven - Dunia Tidak Tersedia",
+    "logoAlt": "Wildhaven",
     "eyebrow": "Pemeliharaan dunia",
     "heading": "Dunia sementara tidak tersedia.",
     "body": "Kami sedang memulai ulang layanan game dan memperkirakan Claudemoon akan kembali sebentar lagi. Halaman ini akan terus memeriksa secara otomatis.",
@@ -14590,6 +14363,11 @@ export const id_ID: EnTranslations = {
         "sender": "Perbekal heroik",
         "subject": "Tanda Heroik milikmu",
         "body": "Kelompokmu menuntaskan ujian heroik saat kamu bertempur di barisan belakang atau telah tumbang. Penguncianmu juga tercatat, jadi bagian Tanda Heroik milikmu dikirim ke sini alih-alih hilang. Gunakan dengan baik.\n\n- Perbekal heroik"
+      },
+      "daily_reward_prize": {
+        "sender": "The Vale Steward",
+        "subject": "Your share of the daily purse",
+        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "Persatuan Perajin",

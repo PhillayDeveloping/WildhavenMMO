@@ -5,7 +5,7 @@
 This is Phase 4 of the Guild Bank feature: UI.
 
 Model: newest available Claude coding model, xhigh effort. Harness: Claude Code.
-Worktree: /Users/seanghods/repos/world-of-claudecraft-guild-bank.
+Worktree: /Users/seanghods/repos/wildhaven-guild-bank.
 
 Goal: give the bank window a Personal / Guild tab switch; the Guild tab renders the
 treasury, the pooled slots, deposit/withdraw/expansion actions, and exists only for

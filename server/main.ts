@@ -84,6 +84,7 @@ import { computeBankBonus } from './bank_entitlements';
 import { bankLedgerIdle } from './bank_ledger';
 import { BUG_DESCRIPTION_MAX, BugReportRateLimitError, createBugReport } from './bug_report_db';
 import { createCachedRead } from './cached_read';
+import { configureCardRuntime } from './card_routes';
 import { characterSheet, SHEET_RECENT_DEEDS, type SheetRank } from './character_sheet';
 import {
   buildCharacterList,
@@ -102,10 +103,12 @@ import {
   bustDailyRewardBoardCache,
   bustDailyRewardWinnersCache,
   dailyRewardEventsCutoffDay,
+  dailyRewardService,
   handleDailyRewardApi,
   handleDailyRewardInternalApi,
 } from './daily_rewards';
 import { pruneDailyRewardEventsBatch } from './daily_rewards_db';
+import { deliverOwedPrizes } from './daily_rewards_delivery';
 import {
   type ArenaLeaderRow,
   accountAndScopeForToken,
@@ -297,8 +300,6 @@ import {
   recordAuthFailure,
   requestIp,
   setRateLimitTier2Store,
-  walletLinkRateLimited,
-  wocBalanceRateLimited,
 } from './ratelimit';
 import { createPgRateLimitStore } from './ratelimit_db';
 import { isPublicCorsPath, publicOriginFromRequest, REALM, REALM_DIRECTORY } from './realm';
@@ -329,19 +330,7 @@ import {
   assetsListMineCore,
   assetUploadCore,
 } from './user_assets_routes';
-import {
-  configureWalletRuntime,
-  handleDesktopWalletHandoffClaim,
-  handleDesktopWalletHandoffComplete,
-  handleDesktopWalletHandoffCreate,
-  handleDesktopWalletHandoffResult,
-  handleWalletChallenge,
-  handleWalletGet,
-  handleWalletLink,
-  handleWalletUnlink,
-} from './wallet';
 import { allowedCorsOrigin, isWebClientRequest } from './web_login_guard';
-import { handleWocBalance, parseWocBalanceQuery } from './woc_balance';
 import { createWsAuth } from './ws_auth';
 import { bufferHandshakeMessages } from './ws_buffer';
 
@@ -391,8 +380,6 @@ const STATIC_PAGE_ALIASES = new Map([
   ['/social-media-links/', '/links.html'],
   ['/play', '/play.html'],
   ['/play/', '/play.html'],
-  ['/wallet-handoff', '/wallet-handoff.html'],
-  ['/wallet-handoff/', '/wallet-handoff.html'],
   ['/privacy', '/privacy.html'],
   ['/privacy/', '/privacy.html'],
   ['/terms', '/terms.html'],
@@ -771,7 +758,7 @@ function bustBoardCaches(): void {
   // and IP-ban writes fire this same hook, and they feed the
   // daily_reward_excluded_accounts view that unannouncedWinnerDays filters its
   // payouts through, so an exclusion is a content change a warm snapshot would
-  // hide. Without this a just-banned winner's username and wallet pubkey could
+  // hide. Without this a just-banned winner's username could
   // still be announced publicly for up to the winners TTL. Scope, honestly: the
   // bust is per process (the snapshot lives on this process's service singleton),
   // so it is immediate on the process that served the moderation write; a peer
@@ -926,7 +913,7 @@ async function refreshReleases(): Promise<ReleaseEntry[]> {
         headers: {
           Accept: 'application/vnd.github+json',
           'X-GitHub-Api-Version': '2022-11-28',
-          'User-Agent': 'world-of-claudecraft-server',
+          'User-Agent': 'wildhaven-server',
           ...(githubToken ? { Authorization: `Bearer ${githubToken}` } : {}),
         },
         signal: AbortSignal.timeout(8000),
@@ -2072,7 +2059,7 @@ async function handleApi(req: http.IncomingMessage, res: http.ServerResponse): P
     }
     // Account self-service portal, all bearer-auth, account-scoped. Each route
     // delegates to an exported, testable handler in server/account.ts (mirroring
-    // server/wallet.ts); main.ts only resolves the bearer account first.
+    // server/card_routes.ts); main.ts only resolves the bearer account first.
     if (req.method === 'GET' && url === '/api/account') {
       const accountId = await bearerActiveAccount(req, res);
       if (accountId === null) return;
@@ -2199,48 +2186,6 @@ async function handleApi(req: http.IncomingMessage, res: http.ServerResponse): P
       const token = new URL(req.url ?? '', 'http://localhost').searchParams.get('token') ?? '';
       return handleEmailUnsubscribe(res, token);
     }
-    // Non-custodial Solana wallet linking, all account-scoped.
-    if (req.method === 'POST' && url === '/api/desktop-wallet/create') {
-      const accountId = await bearerActiveAccount(req, res);
-      if (accountId === null) return;
-      if (!walletLinkRateLimited(req, accountId).allowed) {
-        return json(res, 429, { error: 'rate limited' });
-      }
-      return handleDesktopWalletHandoffCreate(req, res, accountId);
-    }
-    if (req.method === 'POST' && url === '/api/desktop-wallet/claim') {
-      if (!publicReadRateLimited(req).allowed) return json(res, 429, { error: 'rate_limited' });
-      return handleDesktopWalletHandoffClaim(req, res);
-    }
-    if (req.method === 'POST' && url === '/api/desktop-wallet/complete') {
-      if (!publicReadRateLimited(req).allowed) return json(res, 429, { error: 'rate_limited' });
-      return handleDesktopWalletHandoffComplete(req, res);
-    }
-    if (req.method === 'POST' && url === '/api/desktop-wallet/result') {
-      const accountId = await bearerActiveAccount(req, res);
-      if (accountId === null) return;
-      return handleDesktopWalletHandoffResult(req, res, accountId);
-    }
-    if (req.method === 'POST' && url === '/api/wallet/link/challenge') {
-      const accountId = await bearerActiveAccount(req, res);
-      if (accountId === null) return;
-      return handleWalletChallenge(req, res, accountId);
-    }
-    if (req.method === 'POST' && url === '/api/wallet/link') {
-      const accountId = await bearerActiveAccount(req, res);
-      if (accountId === null) return;
-      return handleWalletLink(req, res, accountId);
-    }
-    if (req.method === 'DELETE' && url === '/api/wallet/link') {
-      const accountId = await bearerActiveAccount(req, res);
-      if (accountId === null) return;
-      return handleWalletUnlink(req, res, accountId);
-    }
-    if (req.method === 'GET' && url === '/api/wallet') {
-      const accountId = await bearerActiveAccount(req, res);
-      if (accountId === null) return;
-      return handleWalletGet(req, res, accountId);
-    }
     if (req.method === 'POST' && url === '/api/auth/apple') {
       return handleAppleLogin(req, res, await readBody(req));
     }
@@ -2337,18 +2282,6 @@ async function handleApi(req: http.IncomingMessage, res: http.ServerResponse): P
       if (!githubRateLimited(req, accountId).allowed)
         return json(res, 429, { error: 'rate limited' });
       return handleGitHubUnlink(req, res, accountId);
-    }
-    // $WOC balance proxy, keeps the Solana RPC endpoint (and any key in it)
-    // server-side so it never ships in the client bundle. Public (on-chain
-    // balances are public) but narrow + IP rate-limited + per-wallet cached.
-    if (req.method === 'GET' && url === '/api/woc/balance') {
-      if (!wocBalanceRateLimited(req).allowed) {
-        recordUsageMetric('woc.balance.rate_limited');
-        return json(res, 429, { error: 'rate limited' });
-      }
-      // `fresh=1` is parsed AFTER the IP rate-limit above, so it can't be used to hammer the RPC.
-      const { owner, fresh } = parseWocBalanceQuery(req.url ?? '');
-      return handleWocBalance(res, owner, fresh);
     }
     if (url.startsWith('/api/daily-rewards')) {
       const accountId = await bearerActiveAccount(req, res);
@@ -2609,13 +2542,13 @@ configureAccountRuntime({
   disconnectAccount: (id, reason) => liveGame().disconnectAccount(id, reason),
 });
 
-// Inject the one main.ts-local singleton the ported wallet handlers
-// (server/wallet.ts) need but cannot import without a cycle: the live
+// Inject the one main.ts-local singleton the ported card handlers
+// (server/card_routes.ts) need but cannot import without a cycle: the live
 // authoritative Sim level the /api/card publish reads for an online character.
 // This is the exact (characterId) => game.liveLevelForCharacter(characterId) the
-// legacy /api/card arm passed to handleCardUpload; the legacy wallet/card/referral
+// legacy /api/card arm passed to handleCardUpload; the legacy card/referral
 // arms stay intact as the flag-off rollback path.
-configureWalletRuntime({
+configureCardRuntime({
   liveLevelForCharacter: (characterId) => liveGame().liveLevelForCharacter(characterId),
 });
 
@@ -3063,6 +2996,20 @@ export async function startServer(): Promise<http.Server> {
     acquireCharacterLease,
     releaseCharacterLease,
     bankBonusForAccount: async (id) => computeBankBonus(await bankBonusFactsForAccount(id)),
+    // Fire-and-forget: the void is the point (see the dep's contract in
+    // ws_auth.ts). deliverOwedPrizes already swallows its own failures into
+    // onError, so nothing here can reject into an unhandled rejection.
+    deliverDailyRewardPrizes: (accountId, pid) => {
+      void deliverOwedPrizes(
+        {
+          claimOwedPrizes: (id) => dailyRewardService.claimOwedPrizes(id),
+          mailPrize: (target, copper) => game.sim.mailDailyRewardPrize(target, copper),
+          onError: (err) => console.error('daily reward prize delivery failed:', err),
+        },
+        accountId,
+        pid,
+      );
+    },
   });
   wsAuth.attachUpgrade(server, wss);
 
@@ -3114,7 +3061,7 @@ export async function startServer(): Promise<http.Server> {
 
   game.start();
   server.listen(config.port, () => {
-    console.log(`World of ClaudeCraft server listening on http://localhost:${config.port}`);
+    console.log(`Wildhaven server listening on http://localhost:${config.port}`);
     console.log(`  REST: /api/register /api/login /api/characters /api/status`);
     console.log(`  WS:   /ws, then first message {t:"${ONLINE_WORLD_AUTH_TYPE}",token,character}`);
   });

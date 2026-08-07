@@ -19,8 +19,6 @@ import {
   resetPublicReadRateLimits,
   resetRateLimitClock,
   resetRateLimits,
-  resetWalletLinkRateLimits,
-  resetWocBalanceRateLimits,
   setRateLimitClock,
   WINDOW_MS,
 } from '../../server/ratelimit';
@@ -50,9 +48,7 @@ function resetAll() {
   resetRateLimits();
   resetAuthFailures();
   resetCardUploadRateLimits();
-  resetWalletLinkRateLimits();
   resetDiscordRateLimits();
-  resetWocBalanceRateLimits();
   resetPublicReadRateLimits();
   resetRateLimitClock();
 }

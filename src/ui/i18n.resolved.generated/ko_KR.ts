@@ -400,7 +400,7 @@ export const ko_KR: EnTranslations = {
       "error": "일일 보상을 불러올 수 없습니다.",
       "disabled": "일일 보상은 현재 비활성화되어 있습니다. 이 기능에 대한 업데이트는 Discord 채널에서 안내하겠습니다.",
       "intro": "인증된 지갑에 충분한 WOC를 보유하여 일일 보상을 잠금 해제하세요. 하루 한 번의 스핀과 교체되는 과제로 포인트를 획득한 뒤, 일일 순위표를 올라 상금 풀의 일부를 차지하세요.",
-      "disclaimer": "WOC 가격은 빠르게 변동될 수 있습니다. 일반적인 가격 변동으로 보상이 잠기지 않도록 $20 USD 최소 기준보다 더 많이 보유하는 것을 권장합니다. 이는 금융 조언이 아닙니다.",
+      "disclaimer": "과제와 순위표는 하루에 한 번 초기화됩니다. 상위 열 명이 상금을 나누며, 당신의 몫은 다음 접속 때 큰까마귀가 전해 줍니다.",
       "prize": "상금 풀",
       "reset": "초기화",
       "endsIn": "{time} 후 종료",
@@ -409,9 +409,6 @@ export const ko_KR: EnTranslations = {
       "remainingHoursMinutes": "{hours}시간 {minutes}분",
       "remainingDaysHours": "{days}일 {hours}시간",
       "score": "점수",
-      "walletValue": "지갑 가치 (WOC)",
-      "usd": "{amount} USD",
-      "sol": "{amount} SOL",
       "unknown": "알 수 없음",
       "spinTitle": "일일 스핀",
       "spinDialogTitle": "일일 보상 스핀",
@@ -436,17 +433,8 @@ export const ko_KR: EnTranslations = {
       "history": "지난 당첨자",
       "noLeaders": "아직 포인트가 없습니다.",
       "noHistory": "아직 지급 내역이 없습니다.",
-      "walletConnectTitle": "지갑 인증",
-      "walletConnectBody": "WOC를 보유한 Solana 지갑을 인증하여 일일 보상을 잠금 해제하세요.",
-      "walletConnectButton": "지갑 인증",
-      "walletHoldTitle": "WOC 보유",
-      "walletHoldBody": "일일 보상을 잠금 해제하려면 최소 {amount} USD 상당의 WOC를 보유하세요.",
-      "walletPriceBody": "현재 WOC 가격을 확인할 수 없습니다. 잠시 후 다시 확인하세요.",
       "reason": {
         "eligible": "보상이 잠금 해제되었습니다.",
-        "no_wallet": "$20 USD 상당 이상의 WOC를 보유한 지갑을 연결하세요.",
-        "under_minimum": "지갑이 최소 $20 USD WOC 기준에 미치지 못합니다.",
-        "price_unavailable": "WOC 가격을 확인할 수 없어 보상이 일시적으로 잠겨 있습니다.",
         "banned": "일일 보상 참여가 금지되었습니다. 사유: {reason}",
         "bannedUntil": "일일 보상 참여가 앞으로 {remaining} 동안 금지됩니다. 해제 시각: {until}. 사유: {reason}"
       }
@@ -472,18 +460,6 @@ export const ko_KR: EnTranslations = {
       "armoryEyebrow": "시즌 1",
       "armoryTitle": "무기고",
       "armoryBody": "시즌 1 무기고의 한정 무기 스킨입니다. 계정 전체에 적용되는 순수 장식이며 주변 모든 플레이어에게 보입니다.",
-      "wallet": {
-        "title": "Solana 지갑",
-        "unlinked": "지갑 앱을 연결한 뒤 한 번 서명하여 공개 주소를 WoC 계정에 연결하세요. 복구 문구나 개인 키는 절대로 전달되지 않습니다.",
-        "connectedUnlinked": "지갑 앱이 이 브라우저에 연결되었지만 공개 주소는 아직 WoC 계정에 연결되지 않았습니다.",
-        "linkedDisconnected": "공개 주소가 연결되어 있습니다. SOL 또는 WOC로 결제할 때 해당 지갑 앱을 다시 연결하세요.",
-        "linkedConnected": "연결된 지갑 앱이 접속되어 SOL 또는 WOC 구매에 사용할 수 있습니다.",
-        "mismatched": "다른 지갑이 접속되어 있습니다. 인증하여 연결된 주소를 바꾸거나 기존에 연결된 지갑을 다시 접속하세요.",
-        "connect": "지갑 연결",
-        "verify": "인증하고 연결",
-        "reconnect": "지갑 다시 연결",
-        "manage": "지갑 관리"
-      },
       "collectionLine": "{collection} 컬렉션",
       "collections": {
         "guildmark": "길드마크",
@@ -685,20 +661,11 @@ export const ko_KR: EnTranslations = {
       "loading": "Claudium 불러오는 중…",
       "balanceLabel": "잔액",
       "balanceUnit": "{amount} Claudium",
-      "solBalance": "SOL: {amount}",
-      "usdcBalance": "USDC: {amount}",
-      "wocBalance": "WOC: {amount}",
       "unavailable": "현재 Claudium 상점을 이용할 수 없습니다. 잔액과 구매 내역에는 영향이 없으니 잠시 후 다시 확인해 주세요.",
       "disclosure": "Claudium은 단방향 게임 화폐입니다. 현금으로 구매해 꾸미기 상품에 사용할 수 있으며 환전, 양도 또는 현금화할 수 없습니다.",
       "buyTitle": "Claudium 구매",
       "railLabel": "결제 수단",
       "railStripe": "카드",
-      "railSol": "SOL",
-      "railUsdc": "USDC",
-      "railWoc": "WOC",
-      "railWocDiscount": "{percent}% 할인",
-      "railWocUnavailable": "현재 WOC 가격을 이용할 수 없습니다.",
-      "railNativeUnavailable": "SOL/WOC 사용 불가",
       "amountLabel": "수량",
       "showAmounts": "모든 Claudium 수량 표시",
       "hideAmounts": "추가 Claudium 수량 숨기기",
@@ -718,10 +685,7 @@ export const ko_KR: EnTranslations = {
       "checkoutPending": "거래가 진행 중입니다. 지갑에서 확인하고 이 패널을 열어 두세요.",
       "checkoutPendingButton": "처리 중",
       "checkoutFailed": "결제를 불러오지 못했습니다. 다시 시도해 주세요.",
-      "checkoutUnavailable": "해당 Claudium 구매는 현재 이용할 수 없습니다.",
-      "checkoutWalletRequired": "암호화폐로 Claudium을 구매하기 전에 Solana 지갑을 연결하세요.",
-      "checkoutWalletUnsupported": "이 지갑은 Solana 거래에 서명하거나 전송할 수 없습니다.",
-      "checkoutNotSettled": "거래는 전송됐지만 Claudium이 아직 지급되지 않았습니다. 잠시 후 다시 시도해 주세요."
+      "checkoutUnavailable": "해당 Claudium 구매는 현재 이용할 수 없습니다."
     },
     "theme": {
       "preset": "UI 테마",
@@ -843,8 +807,8 @@ export const ko_KR: EnTranslations = {
     },
     "nativeUpdate": {
       "title": "업데이트 사용 가능",
-      "body": "World of ClaudeCraft의 새 버전을 사용할 수 있습니다. 지금 업데이트하여 최신 수정 사항과 개선 사항을 받으세요.",
-      "bodyWithVersion": "World of ClaudeCraft 버전 {version}을(를) 사용할 수 있습니다. 지금 업데이트하여 최신 수정 사항과 개선 사항을 받으세요.",
+      "body": "Wildhaven의 새 버전을 사용할 수 있습니다. 지금 업데이트하여 최신 수정 사항과 개선 사항을 받으세요.",
+      "bodyWithVersion": "Wildhaven 버전 {version}을(를) 사용할 수 있습니다. 지금 업데이트하여 최신 수정 사항과 개선 사항을 받으세요.",
       "notNow": "나중에",
       "update": "업데이트"
     },
@@ -1196,8 +1160,6 @@ export const ko_KR: EnTranslations = {
       "clickFeedback": "클릭 표시",
       "lockCursorOnRotate": "회전 중 커서 고정",
       "keybindHelpLockCursorOnRotate": "드래그하여 카메라를 회전하는 동안 마우스 커서를 창 안에 유지하여 화면 가장자리에 닿거나 다른 모니터로 이동하지 않도록 합니다. 자유로운 커서를 원하면 끄세요.",
-      "showWalletOnCharacterScreen": "캐릭터 화면에 지갑 표시",
-      "showWalletOnPlayerCard": "플레이어 카드에 지갑 표시",
       "showDevBadges": "개발자 배지 표시",
       "showOwnNameplate": "내 이름표 표시",
       "showPlayerNameplates": "플레이어 이름표 표시",
@@ -1373,9 +1335,7 @@ export const ko_KR: EnTranslations = {
         "aetherRush": "에테르 쇄도"
       }
     },
-    "playerCard": {
-      "showWalletBadge": "지갑 배지 표시"
-    },
+    "playerCard": {},
     "landing": {
       "highContrast": "고대비",
       "highContrastAria": "고대비 배경 전환: 움직이는 예고편을 꺼서 시작 화면 텍스트를 읽기 쉽게 유지합니다",
@@ -1564,7 +1524,6 @@ export const ko_KR: EnTranslations = {
       "loggedOutPrompt": "계정을 관리하려면 로그인하세요.",
       "memberSince": "가입일: {date}",
       "sectionSettings": "계정 설정",
-      "sectionWallet": "$WOC 지갑",
       "sectionCharacters": "캐릭터",
       "sectionDanger": "위험 구역",
       "changePassword": "비밀번호 변경",
@@ -1591,8 +1550,6 @@ export const ko_KR: EnTranslations = {
       "charactersSummary": "캐릭터를 관리하고 월드에 입장하세요.",
       "charactersCount": "캐릭터: {count}",
       "goToCharacters": "캐릭터 보기",
-      "walletSummary": "Solana 지갑을 인증하여 플레이어 카드에 보유자 표식을 표시하세요.",
-      "manageWallet": "지갑 관리",
       "deactivate": "계정 비활성화",
       "deactivateWarning": "비활성화하면 계정이 잠기고 모든 기기에서 로그아웃됩니다. 복원하려면 관리자에게 문의하세요. 사용자 이름과 비밀번호를 다시 입력하여 확인하세요.",
       "confirmUsername": "확인을 위해 사용자 이름을 입력하세요",
@@ -2003,7 +1960,7 @@ export const ko_KR: EnTranslations = {
     },
     "discord": {
       "title": "Discord",
-      "panelTitle": "World of ClaudeCraft",
+      "panelTitle": "Wildhaven",
       "open": "Discord",
       "close": "닫기",
       "keybind": "Discord 패널",
@@ -2293,11 +2250,9 @@ export const ko_KR: EnTranslations = {
       "bonusStatusEarned": "+{count}",
       "bonusSourceEmail": "이메일 인증됨",
       "bonusSourceDiscord": "Discord 연동됨",
-      "bonusSourceWallet": "지갑 연동됨",
       "bonusSourceReferral": "추천한 친구",
       "bonusAdvertEmail": "이메일을 인증하면 2칸을 얻습니다.",
       "bonusAdvertDiscord": "Discord를 연동하면 2칸을 얻습니다.",
-      "bonusAdvertWallet": "지갑을 연동하면 2칸을 얻습니다.",
       "bonusReferralProgress": "{count}/{cap}",
       "bonusReferralExplainer": "친구를 초대하세요: 친구가 10레벨에 도달하면 서로 2칸씩 얻으며, 최대 5명까지 가능합니다.",
       "bonusSectionAria": "보너스 은행 칸과 획득 방법",
@@ -3147,26 +3102,13 @@ export const ko_KR: EnTranslations = {
       "account_taken": "해당 Epic 계정은 이미 다른 계정에 연결되어 있습니다.",
       "upstream": "Epic이 응답하지 않습니다. 잠시 후 다시 시도해 주세요."
     },
-    "wallet": {
-      "handoff_invalid": "지갑 인증이 만료되었거나 확인할 수 없습니다. 다시 시도해 주세요."
-    },
     "ota_updates": {
       "invalid_input": "입력이 올바르지 않습니다."
-    },
-    "seeker": {
-      "native_only": "Seeker 자격은 네이티브 앱에서만 사용할 수 있습니다.",
-      "attestation_failed": "기기 인증에 실패했습니다. 다시 시도해 주세요.",
-      "solana_artifact_required": "Solana Store 앱을 사용하여 계속해 주세요.",
-      "wallet_required": "먼저 지갑을 연결하고 인증하세요.",
-      "genesis_token_required": "인증된 Seeker Genesis Token이 필요합니다.",
-      "genesis_token_claimed": "해당 Seeker Genesis Token은 이미 등록되었습니다.",
-      "entitlement_required": "인증된 Seeker 자격이 필요합니다.",
-      "current_ownership_required": "현재 Seeker Genesis Token을 보유해야 합니다."
     }
   },
   "guide": {
-    "brand": "World of ClaudeCraft",
-    "brandShort": "ClaudeCraft",
+    "brand": "Wildhaven",
+    "brandShort": "Wildhaven",
     "tagline": "브라우저에서 무료로 즐기는 클래식 스타일 MMO입니다.",
     "skipToContent": "본문으로 건너뛰기",
     "loading": "불러오는 중...",
@@ -3231,7 +3173,7 @@ export const ko_KR: EnTranslations = {
       "github": "GitHub 소스 코드",
       "discord": "Discord 참여하기",
       "communityWiki": "커뮤니티 위키",
-      "rights": "World of ClaudeCraft",
+      "rights": "Wildhaven",
       "linksLabel": "플레이 및 커뮤니티 링크"
     },
     "language": {
@@ -3254,7 +3196,7 @@ export const ko_KR: EnTranslations = {
     },
     "home": {
       "eyebrow": "클래식 스타일 브라우저 MMO",
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "subtitle": "퀘스트를 수행하고, 파티를 맺고, 손수 빚은 세계를 브라우저에서 무료로 탐험하세요.",
       "ctaPlay": "지금 플레이",
       "ctaLearn": "플레이 방법",
@@ -3769,7 +3711,7 @@ export const ko_KR: EnTranslations = {
     },
     "worldPage": {
       "heading": "세계",
-      "intro": "World of ClaudeCraft는 두 발로 가로지르는 하나로 이어진 대지이며, 남에서 북으로 펼쳐진 세 개의 지역으로 이루어져 있습니다. 빠른 이동이 없으니, 여정 자체가 모험의 일부입니다.",
+      "intro": "Wildhaven는 두 발로 가로지르는 하나로 이어진 대지이며, 남에서 북으로 펼쳐진 세 개의 지역으로 이루어져 있습니다. 빠른 이동이 없으니, 여정 자체가 모험의 일부입니다.",
       "hub": "본거지",
       "mapHeading": "북쪽으로 가는 길",
       "mapSub": "남쪽에서 북쪽으로 이어지는 세 지역은 각각 레벨이 한 단계씩 높아집니다. 퀘스트 길을 따라가면 땅이 당신을 골짜기에서 봉우리까지 이끌어 줍니다.",
@@ -4596,7 +4538,7 @@ export const ko_KR: EnTranslations = {
   },
   "editor": {
     "appTitle": "맵 편집기",
-    "docTitle": "맵 편집기 - World of ClaudeCraft",
+    "docTitle": "맵 편집기 - Wildhaven",
     "untitledMap": "제목 없는 맵",
     "playtestPlayerName": "지도제작자",
     "topbar": {
@@ -5072,8 +5014,8 @@ export const ko_KR: EnTranslations = {
     "realmName": "월드 이름"
   },
   "footer": {
-    "copyright": "2026 World of ClaudeCraft",
-    "githubLink": "https://github.com/levy-street/world-of-claudecraft",
+    "copyright": "2026 Wildhaven",
+    "githubLink": "https://wildhaven.example",
     "githubLabel": "오픈 소스 프로젝트",
     "whitepaper": "백서",
     "terms": "서비스 이용약관",
@@ -5130,13 +5072,10 @@ export const ko_KR: EnTranslations = {
     "serverOnline": "온라인",
     "serverOffline": "오프라인",
     "play": "플레이",
-    "playAria": "World of ClaudeCraft 플레이",
+    "playAria": "Wildhaven 플레이",
     "serverLabel": "월드를 선택하세요",
     "serverAria": "월드 선택: 온라인 또는 오프라인",
-    "serverOfflineSub": "즉시 시작하는 로컬 세상",
-    "caLabel": "$WOC 계약 주소",
-    "caCopyAria": "계약 주소 복사",
-    "caNote": "WOC는 커뮤니티 토큰입니다. 플레이에는 필요하지 않습니다. WOC의 활용과 선순환 구조에 관해 이야기하려면 Discord에 참여하세요."
+    "serverOfflineSub": "즉시 시작하는 로컬 세상"
   },
   "auth": {
     "enterRealm": "월드 입장",
@@ -5184,171 +5123,6 @@ export const ko_KR: EnTranslations = {
       "failed": "이메일을 저장하지 못했습니다. 다시 시도해 주세요."
     }
   },
-  "wallet": {
-    "label": "$WOC 지갑",
-    "connect": "지갑 인증",
-    "connectTitle": "Solana 지갑 인증",
-    "connectAria": "Solana 지갑 인증",
-    "verify": "지갑 인증",
-    "verifyNew": "새 지갑 인증",
-    "verifyTitle": "지갑을 선택하고 한 번 서명해 소유권을 인증하세요.",
-    "verifyAria": "지갑을 선택하고 한 번 서명해 소유권을 인증",
-    "verifyAddressAria": "계정에 지갑 {address}을(를) 인증하려면 서명하세요",
-    "appConnected": "앱 연결됨",
-    "connectApp": "앱 연결",
-    "connectAppTitle": "이 브라우저에서 지갑 앱 연결",
-    "connectAppAria": "이 브라우저에서 지갑 앱 연결",
-    "verifying": "인증 중...",
-    "verifyingTitle": "지갑 인증이 진행 중입니다.",
-    "switch": "전환",
-    "switchTitle": "다른 지갑 인증",
-    "switchAria": "다른 지갑 인증",
-    "unlink": "연결 해제",
-    "unlinkTitle": "이 계정에서 지갑 인증 제거",
-    "unlinkAria": "이 계정에서 지갑 인증 제거",
-    "signOut": "연결 끊기",
-    "signOutTitle": "이 브라우저에서 지갑 앱 연결 끊기",
-    "signOutAria": "이 브라우저에서 지갑 앱 연결 끊기",
-    "hide": "숨기기",
-    "hideTitle": "이 화면에서 지갑 줄 숨기기",
-    "hideAria": "이 화면에서 지갑 줄 숨기기",
-    "hiddenNotice": "지갑 줄이 숨겨졌습니다. 게임 내 옵션 > 인터페이스에서 다시 켤 수 있습니다.",
-    "linkedTitle": "계정에 지갑이 인증되었습니다. 클릭해 지갑 앱을 관리하세요.",
-    "linkedDisconnectedTitle": "지갑은 계정에 계속 인증되어 있습니다. 지갑 앱을 관리하려면 다시 연결하세요.",
-    "linkedDisconnectedAria": "지갑은 계정에 계속 인증되어 있습니다. 지갑 앱을 관리하려면 다시 연결하세요.",
-    "linkTitle": "클릭해 서명하고 이 지갑을 계정에 연결하세요.",
-    "connectedTitle": "연결되었습니다. 로그인하면 이 지갑을 계정에 연결할 수 있습니다.",
-    "balanceTitle": "인증된 Solana 지갑 $WOC 잔액",
-    "balanceAria": "인증된 Solana 지갑 잔액: {balance}",
-    "balancePreviewTitle": "연결된 지갑 $WOC 잔액 미리보기",
-    "balancePreviewAria": "연결된 지갑 잔액 미리보기: {balance}. 지갑을 연결해 보유자 표시를 인증하세요.",
-    "balanceAmount": "{amount} $WOC",
-    "bagConnect": "지갑 연결",
-    "bagLink": "지갑 인증",
-    "bagReconnect": "지갑 다시 연결",
-    "connected": "연결됨: {address}",
-    "connectedWithBalance": "연결됨: {balance} - {address}",
-    "connectedLinked": "인증됨: {address}",
-    "connectedLinkedWithBalance": "인증됨: {balance} - {address}",
-    "helpDisconnected": "Solana 지갑을 인증해 보유자 표시와 플레이어 카드 배지를 활성화하세요. 트랜잭션이나 SOL은 필요 없습니다.",
-    "helpLoginToLink": "{address} 연결됨. 로그인하면 계정에 연결할 수 있습니다.",
-    "helpLoginToLinkWithBalance": "{address} 연결됨, 잔액 {balance}. 로그인하면 계정에 연결할 수 있습니다.",
-    "helpReadyToLink": "선택한 지갑: {address}. 한 번 서명해 보유자 표시와 플레이어 카드를 인증하세요.",
-    "helpReadyToLinkWithBalance": "선택한 지갑: {address}, 잔액 {balance}. 한 번 서명해 보유자 표시와 플레이어 카드를 인증하세요.",
-    "helpLinked": "보유자 혜택이 활성화되었습니다. 이 브라우저에 지갑 앱이 연결되어 있습니다.",
-    "helpLinkedWithBalance": "보유자 혜택이 활성화되었습니다. 이 브라우저에 지갑 앱이 연결되어 있습니다.",
-    "helpLinkedDisconnected": "보유자 혜택이 활성화되었습니다. 서명이나 지출이 필요할 때 앱을 연결하세요.",
-    "helpLinkedDisconnectedWithBalance": "보유자 혜택이 활성화되었습니다. 서명이나 지출이 필요할 때 앱을 연결하세요.",
-    "extensionHelp": "여기에 지갑이 표시되려면 Solflare Wallet 같은 브라우저 지갑 확장 프로그램이 활성화되어 있어야 합니다.",
-    "mobileAppHelp": "Phantom 또는 Solflare를 선택하세요. 지갑 앱에서 승인을 요청합니다. 게임을 열어 둔 채 완료 후 돌아오세요.",
-    "seekerAppHelp": "Seed Vault Wallet로 계속하세요. Seed Vault에서 연결 및 인증 요청을 확인한 후 게임으로 돌아오세요.",
-    "standaloneAppHelp": "홈 화면 앱에서는 아직 지갑 연결을 사용할 수 없습니다. Phantom 또는 Solflare를 사용하려면 Safari나 Chrome에서 World of ClaudeCraft를 여세요.",
-    "openAppTitle": "{wallet}에서 계속",
-    "openAppHelp": "{wallet}을 열어 이 요청을 확인하세요. 지갑 앱을 사용하는 동안 이 게임 탭을 열어 두세요.",
-    "openAppButton": "{wallet} 열기",
-    "manualReturnBrowserHelp": "승인 후 이 게임 탭으로 돌아오세요. iOS에서 다른 브라우저가 열리면 닫고 원래 브라우저로 직접 돌아오세요.",
-    "manualReturnStandaloneHelp": "승인 후 홈 화면에서 World of ClaudeCraft로 돌아오세요. iOS에서 브라우저가 열리면 닫고 홈 화면 앱을 다시 여세요.",
-    "preparingAppButton": "{wallet} 준비 중...",
-    "walletAppUnavailable": "{wallet}을 준비하지 못했습니다. 이 창을 닫고 다시 시도하세요.",
-    "flowConnect": "지갑을 선택하세요. 인증은 자동으로 계속됩니다.",
-    "flowSign": "지갑 앱에서 인증 메시지에 서명하세요. 트랜잭션이나 SOL은 필요 없습니다.",
-    "flowVerify": "지갑 소유권 인증 중...",
-    "linkFailed": "지갑 인증에 실패했습니다.",
-    "verifyFailed": "지갑 인증에 실패했습니다.",
-    "unlinkFailed": "지갑 연결을 해제하지 못했습니다.",
-    "browser": {
-      "eyebrow": "데스크톱 지갑 인증",
-      "title": "Solana 지갑 연결",
-      "linkBody": "이 브라우저에서 지갑 확장 프로그램을 선택하세요. 인증 메시지에 서명한 뒤 데스크톱 앱으로 돌아갑니다.",
-      "paymentBody": "계정에 연결된 지갑을 선택하고 이 브라우저에서 거래를 승인하세요.",
-      "extensionHelp": "호환되는 지갑 확장 프로그램을 찾지 못했습니다. Phantom, Solflare 또는 다른 Solana 브라우저 지갑을 설치하거나 잠금 해제한 뒤 다시 시도하세요.",
-      "safety": "World of ClaudeCraft는 복구 문구나 개인 키를 요청하지 않습니다.",
-      "continueWith": "{wallet}(으)로 계속",
-      "reviewTitle": "지갑에서 검토",
-      "reviewBody": "{wallet}의 안내를 따르세요. 이 브라우저 페이지를 열어 두세요.",
-      "completeTitle": "지갑 인증 완료",
-      "completeBody": "World of ClaudeCraft 데스크톱 앱으로 돌아갈 수 있습니다.",
-      "returnButton": "데스크톱 앱으로 돌아가기",
-      "failed": "지갑 인증에 실패했거나 만료되었습니다. 데스크톱 앱으로 돌아가 다시 시도하세요.",
-      "retry": "다시 시도"
-    },
-    "holder": "$WOC 보유자",
-    "holderTierTitle": "{tier} $WOC 보유자",
-    "holderTiers": {
-      "ember": {
-        "name": "불씨",
-        "flavor": "불씨가 피어올랐습니다."
-      },
-      "coinbearer": {
-        "name": "주화지기",
-        "flavor": "전비 상자에 첫 주화가 들어왔습니다."
-      },
-      "coppercrest": {
-        "name": "동빛 문장",
-        "flavor": "동화가 쌓이고, 당신의 이름이 오르내립니다."
-      },
-      "silverbound": {
-        "name": "은빛 결속",
-        "flavor": "은빛으로 결속되어 자산을 키워 갑니다."
-      },
-      "gilded": {
-        "name": "황금빛",
-        "flavor": "황금빛으로 빛나며 웃습니다."
-      },
-      "vaultwarden": {
-        "name": "금고 파수꾼",
-        "flavor": "이제 진짜 금고를 지킵니다: 전체 $WOC의 0.01%."
-      },
-      "whale": {
-        "name": "고래",
-        "flavor": "당신이 헤엄치면 깊은 물길도 갈라집니다: 공급량의 0.1%."
-      },
-      "leviathan": {
-        "name": "레비아탄",
-        "flavor": "당신이 움직이면 시장이 느낍니다: 공급량의 1%."
-      },
-      "tidelord": {
-        "name": "파도 군주",
-        "flavor": "파도가 당신의 부름에 응답합니다: 공급량의 2%."
-      },
-      "stormcaller": {
-        "name": "폭풍소환자",
-        "flavor": "당신의 이름에 폭풍이 모입니다: 공급량의 3%."
-      },
-      "krakencrown": {
-        "name": "크라켄 왕관",
-        "flavor": "심연이 당신에게 관을 씌웁니다: 공급량의 4%."
-      },
-      "titanforged": {
-        "name": "티탄벼림",
-        "flavor": "티탄들 사이에서 벼려졌습니다: 공급량의 5%."
-      },
-      "starhoard": {
-        "name": "별 보물고",
-        "flavor": "별빛을 휘게 하는 보물고입니다: 공급량의 6%."
-      },
-      "voidwarden": {
-        "name": "공허 파수꾼",
-        "flavor": "공허의 끝을 지킵니다: 공급량의 7%."
-      },
-      "realmshaper": {
-        "name": "영역 조형자",
-        "flavor": "당신은 영역을 다시 빚습니다: 공급량의 8%."
-      },
-      "worldforger": {
-        "name": "세계 대장장이",
-        "flavor": "당신만의 세계를 벼립니다: 공급량의 9%."
-      },
-      "worldbearer": {
-        "name": "세계 운반자",
-        "flavor": "당신은 세계의 일부를 짊어집니다: 공급량의 10%."
-      },
-      "sovereign": {
-        "name": "군주",
-        "flavor": "렐름이 무릎을 꿇습니다: 전체 공급량."
-      }
-    }
-  },
   "playerCard": {
     "shareButton": "플레이어 카드 공유",
     "title": "플레이어 카드",
@@ -5365,16 +5139,15 @@ export const ko_KR: EnTranslations = {
     "levelClass": "{level}레벨 - {className}",
     "topPercent": "상위 {percent}%",
     "realmSubtitle": "{realm} 월드",
-    "defaultRealm": "ClaudeCraft의 세계",
-    "brandWordmark": "WORLD OF CLAUDECRAFT",
+    "defaultRealm": "Wildhaven",
+    "brandWordmark": "WILDHAVEN",
     "recruited": "{count}명 모집",
     "footerHandle": "@{handle}",
     "footerHandleWithRecruits": "@{handle} - {recruited}",
     "footerCta": "당신의 전설을 벼리세요: {siteUrl}",
     "arenaStat": "투기장",
-    "shareTierBit": ", {tier} 등급 $WOC 보유자",
-    "shareText": "World of ClaudeCraft에서 제 전설을 벼리고 있습니다: {level}레벨 {className}{tierBit}. 제 월드에 합류하세요:",
-    "nativeShareTitle": "ClaudeCraft의 세계",
+    "shareText": "Wildhaven에서 제 전설을 벼리고 있습니다: {level}레벨 {className}{tierBit}. 제 월드에 합류하세요:",
+    "nativeShareTitle": "Wildhaven",
     "fileNameFallback": "플레이어",
     "actionShareX": "X에 공유",
     "actionCopyReferral": "추천 링크 복사",
@@ -6074,14 +5847,14 @@ export const ko_KR: EnTranslations = {
     }
   },
   "seo": {
-    "title": "World of ClaudeCraft: 클래식 스타일 웹 MMO",
-    "description": "브라우저에서 바로 즐기는 클래식 스타일 마이크로 MMO, World of ClaudeCraft에서 장대한 모험을 시작하세요. 지속되는 공유 월드에 접속해 직업을 성장시키고 적을 물리치세요.",
+    "title": "Wildhaven: 클래식 스타일 웹 MMO",
+    "description": "브라우저에서 바로 즐기는 클래식 스타일 마이크로 MMO, Wildhaven에서 장대한 모험을 시작하세요. 지속되는 공유 월드에 접속해 직업을 성장시키고 적을 물리치세요.",
     "genre": "MMORPG",
     "playMode": "멀티플레이어",
     "applicationCategory": "게임",
     "operatingSystem": "웹 브라우저",
-    "officialLabel": "World of ClaudeCraft 공식 웹사이트",
-    "officialBody": "worldofclaudecraft.com은 Claudemoon 월드의 공식 무료 브라우저 MMO입니다. 지속 캐릭터로 온라인 플레이를 하거나, 오프라인에서 혼자 탐험하고, 위키를 읽고, 이 사이트에서 검증된 커뮤니티 링크를 확인하세요."
+    "officialLabel": "Wildhaven 공식 웹사이트",
+    "officialBody": "wildhaven.example은 Claudemoon 월드의 공식 무료 브라우저 MMO입니다. 지속 캐릭터로 온라인 플레이를 하거나, 오프라인에서 혼자 탐험하고, 위키를 읽고, 이 사이트에서 검증된 커뮤니티 링크를 확인하세요."
   },
   "a11y": {
     "goHome": "홈으로 이동",
@@ -6089,9 +5862,9 @@ export const ko_KR: EnTranslations = {
     "mainNavigation": "기본 탐색",
     "languageSelection": "언어 선택",
     "characterActions": "캐릭터 작업",
-    "githubProject": "GitHub에서 World of ClaudeCraft 프로젝트 열기",
-    "discordCommunity": "World of ClaudeCraft Discord 커뮤니티 참여",
-    "donateProject": "World of ClaudeCraft 후원하기"
+    "githubProject": "GitHub에서 Wildhaven 프로젝트 열기",
+    "discordCommunity": "Wildhaven Discord 커뮤니티 참여",
+    "donateProject": "Wildhaven 후원하기"
   },
   "entryGuard": {
     "title": "그래픽 낮춤",
@@ -6178,11 +5951,11 @@ export const ko_KR: EnTranslations = {
       "dismiss": "닫기"
     },
     "crash": {
-      "title": "World of ClaudeCraft",
+      "title": "Wildhaven",
       "body": "게임 화면이 응답하지 않습니다. 다시 불러올까요?",
       "reload": "다시 불러오기",
       "quit": "종료",
-      "fatalBody": "World of ClaudeCraft에 예기치 않은 오류가 발생하여 종료해야 합니다."
+      "fatalBody": "Wildhaven에 예기치 않은 오류가 발생하여 종료해야 합니다."
     }
   },
   "gpuNotice": {
@@ -6321,17 +6094,17 @@ export const ko_KR: EnTranslations = {
     "iosStandaloneDetail": "홈 화면 전체 화면 모드입니다. 기기를 가로로 유지하세요.",
     "iosInstallDetail": "iPhone 또는 iPad에서 진짜 전체 화면을 사용하려면 먼저 이 페이지를 홈 화면에 추가하세요.",
     "iosShareStep": "Safari에서 공유를 누른 뒤 홈 화면에 추가를 선택하세요.",
-    "iosOpenStep": "새 홈 화면 아이콘에서 World of ClaudeCraft를 여세요.",
+    "iosOpenStep": "새 홈 화면 아이콘에서 Wildhaven를 여세요.",
     "androidStandaloneDetail": "전체 화면 앱 모드입니다. 기기를 가로로 유지하세요.",
     "androidInstallDetail": "Android에서 전체 화면을 사용하려면 이 페이지를 설치하거나 홈 화면에 추가하세요.",
     "androidInstallStep": "Chrome에서 메뉴를 누른 뒤 앱 설치 또는 홈 화면에 추가를 선택하세요.",
-    "androidOpenStep": "새 아이콘에서 World of ClaudeCraft를 여세요.",
+    "androidOpenStep": "새 아이콘에서 Wildhaven를 여세요.",
     "otherStandaloneDetail": "기기를 가로 전체 화면으로 유지하세요.",
     "otherInstallDetail": "최상의 모바일 전체 화면 경험을 위해 이 페이지를 설치하거나 홈 화면에 추가하세요."
   },
   "serverUnavailable": {
-    "title": "World of ClaudeCraft - 월드 이용 불가",
-    "logoAlt": "World of ClaudeCraft",
+    "title": "Wildhaven - 월드 이용 불가",
+    "logoAlt": "Wildhaven",
     "eyebrow": "월드 점검",
     "heading": "월드를 일시적으로 이용할 수 없습니다.",
     "body": "게임 서비스를 재시작하고 있으며 Claudemoon은 곧 돌아올 예정입니다. 이 페이지는 자동으로 계속 확인합니다.",
@@ -14590,6 +14363,11 @@ export const ko_KR: EnTranslations = {
         "sender": "영웅 병참장교",
         "subject": "당신의 영웅의 징표",
         "body": "당신이 후방에서, 혹은 쓰러진 채로 싸우는 동안 당신의 부대가 영웅 시련을 돌파했습니다. 잠금은 똑같이 적용되었으니, 당신 몫의 영웅의 징표는 사라지지 않고 이곳으로 날아왔습니다. 잘 쓰십시오.\n\n- 영웅 병참장교"
+      },
+      "daily_reward_prize": {
+        "sender": "계곡의 집사",
+        "subject": "일일 상금 중 당신의 몫",
+        "body": "계곡은 그 안에서 누가 가장 힘써 일했는지 헤아리며, 어제 당신의 이름은 가장 높은 열 명 안에 들었습니다. 집사들이 당신의 몫을 달아 큰까마귀 편에 보냈습니다.\n\n내일 다시 와서, 할 수 있다면 첫 자리를 차지하십시오.\n\n- 계곡의 집사"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "제작 길드",

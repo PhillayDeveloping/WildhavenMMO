@@ -72,10 +72,9 @@ function harness() {
   const focusFirst = vi.fn();
   const release = vi.fn();
   const trap: FocusTrapHandle = { focusFirst, release, opener: vi.fn(() => null) };
+  // PlayerCardOptionsPort is down to showDevBadges: refreshBalance, showWallet
+  // and setShowWallet went with the wallet row on the card.
   const options = {
-    refreshBalance: vi.fn(),
-    showWallet: vi.fn(() => true),
-    setShowWallet: vi.fn(),
     showDevBadges: vi.fn(() => false),
   };
   const controller = new PlayerCardController({
@@ -106,7 +105,6 @@ describe('PlayerCardController', () => {
 
     expect(test.controller.isOpen).toBe(true);
     expect(test.ensurePreview).toHaveBeenCalledTimes(1);
-    expect(test.options.refreshBalance).toHaveBeenCalledTimes(1);
     expect(test.focusFirst).toHaveBeenCalledWith('[data-close]');
     expect(document.querySelector('.pc-preview canvas')).not.toBeNull();
 

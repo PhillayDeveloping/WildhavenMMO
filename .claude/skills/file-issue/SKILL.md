@@ -1,10 +1,10 @@
 ---
 name: file-issue
-description: Create a GitHub issue for World of ClaudeCraft in the maintainer's house format. Use when asked to file, open, or create a GitHub issue or bug report from a description, a screenshot, or a rough placeholder. Rewrites the input into a clean, professional issue (Problem, Steps to reproduce, Expected, Actual, Scope, Acceptance criteria) and includes a Screenshot section only for UI/UX issues. Posts to levy-street/world-of-claudecraft via gh.
+description: Create a GitHub issue for Wildhaven in the maintainer's house format. Use when asked to file, open, or create a GitHub issue or bug report from a description, a screenshot, or a rough placeholder. Rewrites the input into a clean, professional issue (Problem, Steps to reproduce, Expected, Actual, Scope, Acceptance criteria) and includes a Screenshot section only for UI/UX issues. Posts to levy-street/wildhaven via gh.
 user-invocable: true
 ---
 
-# File an issue (World of ClaudeCraft house style)
+# File an issue (Wildhaven house style)
 
 Turn a rough description, screenshot, or placeholder into a clean, professional GitHub
 issue that matches how the maintainer writes them, then create it on the canonical repo.
@@ -105,11 +105,11 @@ entirely.
 ## Step 4: Create it
 
 Write the body to a temp file and create the issue on the canonical repo. Always
-`levy-street/world-of-claudecraft`, never a fork.
+`levy-street/wildhaven`, never a fork.
 
 ```
 gh issue create \
-  --repo levy-street/world-of-claudecraft \
+  --repo levy-street/wildhaven \
   --title "<title>" \
   --body-file <path-to-body.md>
 ```

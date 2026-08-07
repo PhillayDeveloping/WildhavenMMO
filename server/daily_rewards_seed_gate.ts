@@ -6,7 +6,7 @@ import type { DailyRewardTaskSeed } from './daily_rewards_db';
 // event recorders, and finalizePreviousDay would otherwise each issue (one per
 // online player per minute, plus one per gameplay event, plus one per 3-second
 // internal poll). The key includes only the config fields the writes actually
-// persist (prizePoolUsd, wocUsdPrice, and a signature of the tasks array), so a
+// persist (prizePoolCopper and a signature of the tasks array), so a
 // genuine config change forces exactly one reseed and nothing else does. It
 // holds MANY keys at once: the finalize path seeds yesterday while status seeds
 // today, so a single-slot cache would thrash and gate nothing.
@@ -44,8 +44,7 @@ const seeded = new Set<string>();
 const inflight = new Map<string, Promise<void>>();
 
 interface SeedConfig {
-  prizePoolUsd: number;
-  wocUsdPrice: number | null;
+  prizePoolCopper: number;
   tasks: DailyRewardTaskSeed[];
 }
 
@@ -72,13 +71,7 @@ export function buildSeedKey(day: string, realm: string, config: SeedConfig): st
   // no field separator. Erring toward a fresh key (for example if a config
   // object's property order ever varied) only costs one extra idempotent write,
   // the safe direction; a spurious SKIP would be the unsafe one.
-  return JSON.stringify([
-    day,
-    realm,
-    config.prizePoolUsd,
-    config.wocUsdPrice,
-    tasksSignature(config.tasks),
-  ]);
+  return JSON.stringify([day, realm, config.prizePoolCopper, tasksSignature(config.tasks)]);
 }
 
 function markSeeded(key: string): void {

@@ -1,8 +1,8 @@
 // Pure email rendering: (event, locale, data) -> { subject, html, text }. No I/O,
 // no DOM, no Date: trivially unit-testable. The HTML body is derived from the
 // plaintext blocks so each template authors its copy exactly once.
-import { CATALOG, BRAND, type EmailTemplate } from './catalog';
-import { DEFAULT_EMAIL_LOCALE, type EmailTemplateKey, type EmailData } from './events';
+import { BRAND, CATALOG, type EmailTemplate } from './catalog';
+import { DEFAULT_EMAIL_LOCALE, type EmailData, type EmailTemplateKey } from './events';
 
 export interface RenderedEmail {
   subject: string;
@@ -15,7 +15,7 @@ export interface RenderedEmail {
 // field is obvious instead of producing a confusing empty sentence.
 export function interpolate(template: string, data: Record<string, string>): string {
   return template.replace(/\{\{\s*(\w+)\s*\}\}/g, (whole, key: string) =>
-    Object.prototype.hasOwnProperty.call(data, key) ? data[key] : whole,
+    Object.hasOwn(data, key) ? data[key] : whole,
   );
 }
 
@@ -73,7 +73,9 @@ export function renderEmail<K extends EmailTemplateKey>(
   // The subject becomes an email header; collapse any CR/LF an interpolated
   // value (e.g. a caller-supplied generic heading) might carry so it can never
   // inject an extra header line.
-  const subject = interpolate(tpl.subject, map).replace(/[\r\n]+/g, ' ').trim();
+  const subject = interpolate(tpl.subject, map)
+    .replace(/[\r\n]+/g, ' ')
+    .trim();
   const text = interpolate(tpl.text, map);
   return { subject, text, html: textToHtml(text) };
 }

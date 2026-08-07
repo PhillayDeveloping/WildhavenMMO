@@ -1,11 +1,11 @@
 ---
 name: woc-file-issue
-description: "Draft and create a focused GitHub issue for World of ClaudeCraft using the project issue format. Use only when the user explicitly asks to file, create, or open an issue. A request for a draft does not authorize creating the issue."
+description: "Draft and create a focused GitHub issue for Wildhaven using the project issue format. Use only when the user explicitly asks to file, create, or open an issue. A request for a draft does not authorize creating the issue."
 ---
 
 # File GitHub Issue
 
-Create a clear, bounded issue in `levy-street/world-of-claudecraft`.
+Create a clear, bounded issue in `levy-street/wildhaven`.
 
 ## Confirm authorization
 

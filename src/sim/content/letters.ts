@@ -61,6 +61,25 @@ export const HEROIC_MARK_LETTER: LetterDef = {
   delaySeconds: 0,
 };
 
+// Daily deeds prize letter: posted to a player who placed in the previous day's
+// daily standings. The day finalizes long after most winners have logged out, so
+// the purse cannot be handed over at the moment it is won; it rides a raven to
+// them instead and lands the next time they play. The PostOffice fills `copper`
+// per rank (each place wins a different share), so this base carries none, and
+// the body stays amount-free so the letterId localizes cleanly.
+export const DAILY_REWARD_LETTER: LetterDef = {
+  letterId: 'daily_reward_prize',
+  senderName: 'The Vale Steward',
+  subject: 'Your share of the daily purse',
+  body:
+    'The vale keeps count of who works hardest in it, and yesterday your name ' +
+    'stood among the ten highest. The stewards have weighed out your share of ' +
+    'the daily purse and sent it along by raven.\n\n' +
+    'Come back tomorrow and take the top place if you can.\n\n' +
+    '- The Vale Steward',
+  delaySeconds: 0,
+};
+
 // The one-time mastery reset notice (Professions 2.0): sent by the
 // tick mail phase to every pre-curve character whose load-time normalize just
 // zeroed their craft skills and gathering proficiencies (see

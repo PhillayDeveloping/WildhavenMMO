@@ -2548,7 +2548,7 @@ export class Sim {
       state?: CharacterState;
       characterId?: number;
       // Server-stamped bank bonus slots, recomputed from account facts at every
-      // join (email/Discord/wallet/referrals). Overrides the persisted value so
+      // join (email/Discord/referrals). Overrides the persisted value so
       // unlinking lowers capacity at the next login; a shrink below the used slot
       // count leaves the bank over-capacity in the tolerated bags.ts sense (new
       // deposits refuse, nothing is destroyed). Never passed offline (bonusSlots
@@ -4335,18 +4335,8 @@ export class Sim {
       enabled: true,
       day,
       resetAt: '1970-01-02T00:00:00.000Z',
-      prizePoolUsd: 0,
-      prizePoolSol: null,
-      eligibility: {
-        eligible: false,
-        reason: 'no_wallet',
-        banReason: null,
-        walletPubkey: null,
-        wocBalance: null,
-        wocUsdPrice: null,
-        usdValue: null,
-        minUsd: 20,
-      },
+      prizePoolCopper: 0,
+      eligibility: { eligible: true, reason: 'eligible', banReason: null },
       score: 0,
       rank: null,
       spin: { claimed: false, points: null, outcomeKey: null, claimedAt: null },
@@ -10080,6 +10070,16 @@ export class Sim {
     pid?: number,
   ): void {
     this.postOffice.mailSendResolved(recipient, subject, body, copper, items, pid);
+  }
+
+  /**
+   * Server path: post a placing player's share of the previous day's purse. The
+   * daily standings finalize on a schedule, so the winner is normally offline
+   * when the purse is split; the server reads the undelivered rows at join and
+   * calls this. Offline worlds never call it (they keep no daily standings).
+   */
+  mailDailyRewardPrize(pid: number, copper: number): void {
+    this.postOffice.mailDailyRewardPrize(pid, copper);
   }
 
   mailTake(mailId: number, pid?: number): void {

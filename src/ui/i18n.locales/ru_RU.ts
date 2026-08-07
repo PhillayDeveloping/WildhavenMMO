@@ -216,24 +216,6 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'hudChrome.wocStore.armoryTitle': 'Арсенал',
   'hudChrome.wocStore.armoryBody':
     'Ограниченные облики оружия из Арсенала 1-го сезона. Общие для всей учётной записи, чисто косметические и видимые всем вокруг.',
-  'hudChrome.wocStore.wallet.title': 'Кошелёк Solana',
-  'hudChrome.wocStore.wallet.unlinked':
-    'Подключите приложение кошелька, затем один раз подпишите сообщение, чтобы привязать его публичный адрес к учётной записи WoC. Мы никогда не получаем вашу фразу восстановления или закрытый ключ.',
-  'hudChrome.wocStore.wallet.connectedUnlinked':
-    'Приложение кошелька подключено к этому браузеру, но его публичный адрес ещё не привязан к вашей учётной записи WoC.',
-  'hudChrome.wocStore.wallet.linkedDisconnected':
-    'Ваш публичный адрес привязан. Подключите этот кошелёк снова, когда захотите заплатить SOL или WOC.',
-  'hudChrome.wocStore.wallet.linkedConnected':
-    'Привязанный кошелёк подключён и готов к покупкам за SOL или WOC.',
-  'hudChrome.wocStore.wallet.mismatched':
-    'Подключён другой кошелёк. Подтвердите его, чтобы заменить привязанный адрес, или снова подключите привязанный кошелёк.',
-  'hudChrome.wocStore.wallet.connect': 'Подключить кошелёк',
-  'hudChrome.wocStore.wallet.verify': 'Подтвердить и привязать',
-  'hudChrome.wocStore.wallet.reconnect': 'Подключить кошелёк снова',
-  'hudChrome.wocStore.wallet.manage': 'Управление кошельком',
-  'wallet.bagConnect': 'Привязать кошелёк',
-  'wallet.bagLink': 'Подтвердить кошелёк',
-  'wallet.bagReconnect': 'Подключить кошелёк снова',
   'hudChrome.wocStore.collectionLine': 'Коллекция «{collection}»',
   'hudChrome.wocStore.collections.guildmark': 'Клеймо гильдии',
   'hudChrome.wocStore.collections.emberwrought': 'Закалённое углями',
@@ -427,14 +409,7 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
     'Claudium — односторонняя игровая валюта: её можно купить за деньги и потратить на косметические предметы. Её нельзя вернуть, передать или обналичить.',
   'hudChrome.claudium.buyTitle': 'Купить Claudium',
   'hudChrome.claudium.railLabel': 'Способ оплаты',
-  'hudChrome.claudium.railNativeUnavailable': 'SOL/WOC недоступны',
-  'hudChrome.claudium.railSol': 'SOL',
   'hudChrome.claudium.railStripe': 'Карта',
-  'hudChrome.claudium.railWoc': 'WOC',
-  'hudChrome.claudium.railWocDiscount': 'Скидка {percent}%',
-  'hudChrome.claudium.solBalance': 'SOL: {amount}',
-  'hudChrome.claudium.wocBalance': 'WOC: {amount}',
-  'hudChrome.claudium.railWocUnavailable': 'Цена WOC сейчас недоступна.',
   'hudChrome.claudium.amountLabel': 'Количество',
   'hudChrome.claudium.showAmounts': 'Показать все варианты Claudium',
   'hudChrome.claudium.hideAmounts': 'Скрыть дополнительные варианты Claudium',
@@ -456,12 +431,6 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'hudChrome.claudium.checkoutPendingButton': 'Обработка',
   'hudChrome.claudium.checkoutFailed': 'Не удалось загрузить оплату. Повторите попытку.',
   'hudChrome.claudium.checkoutUnavailable': 'Эта покупка Claudium сейчас недоступна.',
-  'hudChrome.claudium.checkoutWalletRequired':
-    'Подключите кошелёк Solana перед покупкой Claudium за криптовалюту.',
-  'hudChrome.claudium.checkoutWalletUnsupported':
-    'Этот кошелёк не может подписывать и отправлять транзакции Solana.',
-  'hudChrome.claudium.checkoutNotSettled':
-    'Транзакция отправлена, но Claudium ещё не зачислен. Повторите попытку позже.',
   'hudChrome.itemHeroicTag': '[ГЕРОИЧЕСКИЙ]',
   'hudChrome.readyCheck.notInPartyError':
     'Чтобы начать проверку готовности, вы должны состоять в группе.',
@@ -525,12 +494,9 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
     'Ежедневные награды сейчас отключены. Мы сообщим об обновлениях этой функции в канале Discord.',
   'hudChrome.dailyRewards.intro':
     'Держите достаточно WOC в подтвержденном кошельке, чтобы открыть ежедневные награды. Зарабатывайте очки за один ежедневный спин и сменяющиеся задания, затем поднимайтесь в ежедневной таблице лидеров ради доли призового фонда.',
-  'hudChrome.dailyRewards.disclaimer':
-    'Цена WOC может быстро меняться. Мы рекомендуем держать больше минимальных $20 USD, чтобы обычные колебания цены не заблокировали награды. Это не финансовый совет.',
   'hudChrome.dailyRewards.prize': 'Призовой фонд',
   'hudChrome.dailyRewards.reset': 'Сброс',
   'hudChrome.dailyRewards.score': 'Счёт',
-  'hudChrome.dailyRewards.walletValue': 'Стоимость кошелька (WOC)',
   'hudChrome.dailyRewards.unknown': 'Неизвестно',
   'hudChrome.dailyRewards.spinTitle': 'Ежедневный спин',
   'hudChrome.dailyRewards.spinDialogTitle': 'Спин ежедневной награды',
@@ -556,19 +522,7 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.history': 'Прошлые победители',
   'hudChrome.dailyRewards.noLeaders': 'Пока нет очков.',
   'hudChrome.dailyRewards.noHistory': 'Пока нет выплат.',
-  'hudChrome.dailyRewards.walletConnectTitle': 'Подтвердить кошелек',
-  'hudChrome.dailyRewards.walletConnectBody':
-    'Подтвердите кошелек Solana с WOC, чтобы открыть ежедневные награды.',
-  'hudChrome.dailyRewards.walletConnectButton': 'Подтвердить кошелек',
-  'hudChrome.dailyRewards.walletHoldTitle': 'Держите WOC',
-  'hudChrome.dailyRewards.walletHoldBody':
-    'Держите не менее {amount} USD в WOC, чтобы открыть ежедневные награды.',
-  'hudChrome.dailyRewards.walletPriceBody': 'Цена WOC сейчас недоступна. Загляните чуть позже.',
   'hudChrome.dailyRewards.reason.eligible': 'Награды открыты.',
-  'hudChrome.dailyRewards.reason.no_wallet': 'Подключите кошелек с не менее чем $20 USD в WOC.',
-  'hudChrome.dailyRewards.reason.under_minimum': 'Кошелек ниже минимума в $20 USD WOC.',
-  'hudChrome.dailyRewards.reason.price_unavailable':
-    'Цена WOC недоступна, награды временно заблокированы.',
   'hudChrome.dailyRewards.reason.banned':
     'Вам запрещено участвовать в ежедневных наградах. Причина: {reason}',
   'hudChrome.dailyRewards.reason.bannedUntil':
@@ -638,9 +592,9 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'hudChrome.unitFrame.playerLabel': 'Ваш персонаж',
   'hudChrome.unitFrame.targetAnnounce': 'Цель: {name}',
   'hudChrome.unitFrame.targetLabel': 'Ваша цель',
-  'seo.officialLabel': 'Официальный сайт World of ClaudeCraft',
+  'seo.officialLabel': 'Официальный сайт Wildhaven',
   'seo.officialBody':
-    'worldofclaudecraft.com - официальная бесплатная браузерная MMO для мира Claudemoon. Играйте онлайн с постоянным персонажем, исследуйте мир в одиночку офлайн, читайте wiki и переходите по проверенным ссылкам сообщества с этого сайта.',
+    'wildhaven.example - официальная бесплатная браузерная MMO для мира Claudemoon. Играйте онлайн с постоянным персонажем, исследуйте мир в одиночку офлайн, читайте wiki и переходите по проверенным ссылкам сообщества с этого сайта.',
   'hudChrome.questShare.notShareable': 'Этим заданием нельзя поделиться.',
   'hudChrome.questShare.notInSharerParty':
     'Вы должны состоять в группе игрока {name}, чтобы принять это задание.',
@@ -1031,12 +985,9 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'hudChrome.options.lockCursorOnRotate': 'Блокировать курсор при вращении',
   'hudChrome.options.keybindHelpLockCursorOnRotate':
     'Удерживает курсор мыши внутри окна, пока вы вращаете камеру перетаскиванием, чтобы он не достигал края экрана и не переходил на другой монитор. Отключите, если предпочитаете свободный курсор.',
-  'hudChrome.options.showWalletOnCharacterScreen': 'Показывать кошелек на экране персонажей',
-  'hudChrome.options.showWalletOnPlayerCard': 'Показывать кошелек на карточке игрока',
   'hudChrome.options.showDevBadges': 'Показывать значки разработчика',
   'hudChrome.options.showOwnNameplate': 'Показывать свою табличку с именем',
   'hudChrome.options.showPlayerNameplates': 'Показывать таблички с именами игроков',
-  'hudChrome.playerCard.showWalletBadge': 'Показывать значок кошелька',
   'hudChrome.options.uiScale': 'Масштаб интерфейса',
   'hudChrome.options.highContrastBackground': 'Фон высокой контрастности',
   'hudChrome.options.showItemLevel': 'Показывать уровень предмета',
@@ -1201,8 +1152,8 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'stats.charactersCreated': 'Персонажей создано',
   'stats.playersOnline': 'Игроков в сети',
   'stats.realmName': 'Название игрового мира',
-  'footer.copyright': '2026 World of ClaudeCraft',
-  'footer.githubLink': 'https://github.com/levy-street/world-of-claudecraft',
+  'footer.copyright': '2026 Wildhaven',
+  'footer.githubLink': 'https://wildhaven.example',
   'footer.githubLabel': 'Проект с открытым исходным кодом',
   'footer.whitepaper': 'Белая книга',
   'footer.terms': 'Условия использования',
@@ -1270,157 +1221,6 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'auth.twoFactorPlaceholder': '6-значный код или код восстановления',
   'auth.twoFactorHint':
     'Введите код из приложения-аутентификатора или один из ваших кодов восстановления.',
-  'wallet.label': 'Кошелек $WOC',
-  'wallet.connect': 'Подтвердить кошелек',
-  'wallet.connectTitle': 'Подтвердить ваш кошелек Solana',
-  'wallet.connectAria': 'Подтвердить ваш кошелек Solana',
-  'wallet.verify': 'Подтвердить кошелек',
-  'wallet.verifyNew': 'Подтвердить новый кошелек',
-  'wallet.verifyTitle': 'Выберите кошелек и подпишите один раз, чтобы подтвердить владение.',
-  'wallet.verifyAria': 'Выберите кошелек и подпишите один раз, чтобы подтвердить владение',
-  'wallet.verifyAddressAria':
-    'Подпишите, чтобы подтвердить кошелек {address} для вашей учетной записи',
-  'wallet.appConnected': 'Приложение подключено',
-  'wallet.connectApp': 'Подключить приложение',
-  'wallet.connectAppTitle': 'Подключить приложение кошелька в этом браузере',
-  'wallet.connectAppAria': 'Подключить приложение кошелька в этом браузере',
-  'wallet.verifying': 'Подтверждение...',
-  'wallet.verifyingTitle': 'Идет подтверждение кошелька.',
-  'wallet.switch': 'Сменить',
-  'wallet.switchTitle': 'Подтвердить другой кошелек',
-  'wallet.switchAria': 'Подтвердить другой кошелек',
-  'wallet.unlink': 'Отвязать',
-  'wallet.unlinkTitle': 'Удалить подтверждение кошелька из этой учетной записи',
-  'wallet.unlinkAria': 'Удалить подтверждение кошелька из этой учетной записи',
-  'wallet.signOut': 'Отключить',
-  'wallet.signOutTitle': 'Отключить приложение кошелька в этом браузере',
-  'wallet.signOutAria': 'Отключить приложение кошелька в этом браузере',
-  'wallet.hide': 'Скрыть',
-  'wallet.hideTitle': 'Скрыть строку кошелька на этом экране',
-  'wallet.hideAria': 'Скрыть строку кошелька на этом экране',
-  'wallet.hiddenNotice':
-    'Строка кошелька скрыта. Снова включите ее в игре через Параметры > Интерфейс.',
-  'wallet.linkedTitle':
-    'Кошелек подтвержден для вашей учетной записи. Нажмите, чтобы управлять приложением кошелька.',
-  'wallet.linkedDisconnectedTitle':
-    'Кошелек остается подтвержденным для вашей учетной записи. Подключитесь снова, чтобы управлять приложением кошелька.',
-  'wallet.linkedDisconnectedAria':
-    'Кошелек остается подтвержденным для вашей учетной записи. Подключитесь снова, чтобы управлять приложением кошелька.',
-  'wallet.linkTitle': 'Нажмите, чтобы подписать и привязать этот кошелек к вашей учетной записи.',
-  'wallet.connectedTitle':
-    'Подключено. Войдите, чтобы привязать этот кошелек к вашей учетной записи.',
-  'wallet.balanceTitle': 'Баланс $WOC подтвержденного кошелька Solana',
-  'wallet.balanceAria': 'Баланс подтвержденного кошелька Solana: {balance}',
-  'wallet.balancePreviewTitle': 'Предпросмотр баланса $WOC подключенного кошелька',
-  'wallet.balancePreviewAria':
-    'Предпросмотр баланса подключенного кошелька: {balance}. Привяжите кошелек, чтобы подтвердить отметку держателя.',
-  'wallet.balanceAmount': '{amount} $WOC',
-  'wallet.connected': 'Подключено: {address}',
-  'wallet.connectedWithBalance': 'Подключено: {balance} - {address}',
-  'wallet.connectedLinked': 'Подтверждено: {address}',
-  'wallet.connectedLinkedWithBalance': 'Подтверждено: {balance} - {address}',
-  'wallet.helpDisconnected':
-    'Подтвердите кошелек Solana, чтобы включить отметку держателя и значки карточки игрока. Транзакция и SOL не требуются.',
-  'wallet.helpLoginToLink':
-    'Подключено: {address}. Войдите, чтобы привязать его к вашей учетной записи.',
-  'wallet.helpLoginToLinkWithBalance':
-    'Подключено: {address}, баланс {balance}. Войдите, чтобы привязать его к вашей учетной записи.',
-  'wallet.helpReadyToLink':
-    'Выбран кошелек: {address}. Подпишите один раз, чтобы подтвердить отметку держателя и карточки игрока.',
-  'wallet.helpReadyToLinkWithBalance':
-    'Выбран кошелек: {address}, баланс {balance}. Подпишите один раз, чтобы подтвердить отметку держателя и карточки игрока.',
-  'wallet.helpLinked':
-    'Привилегии держателя активны. Приложение кошелька подключено в этом браузере.',
-  'wallet.helpLinkedWithBalance':
-    'Привилегии держателя активны. Приложение кошелька подключено в этом браузере.',
-  'wallet.helpLinkedDisconnected':
-    'Привилегии держателя активны. Подключайте приложение, когда нужно подписать или потратить.',
-  'wallet.helpLinkedDisconnectedWithBalance':
-    'Привилегии держателя активны. Подключайте приложение, когда нужно подписать или потратить.',
-  'wallet.extensionHelp':
-    'Чтобы кошелек появился здесь, держите активным браузерное расширение кошелька, например Solflare Wallet.',
-  'wallet.mobileAppHelp':
-    'Выберите Phantom или Solflare. Приложение кошелька запросит подтверждение. Не закрывайте игру и вернитесь в нее после завершения.',
-  'wallet.seekerAppHelp':
-    'Продолжите с Seed Vault Wallet. Проверьте запросы на подключение и подтверждение в Seed Vault, затем вернитесь в игру.',
-  'wallet.standaloneAppHelp':
-    'Подключение кошелька пока недоступно в приложении с главного экрана. Для Phantom или Solflare откройте World of ClaudeCraft в Safari или Chrome.',
-  'wallet.openAppTitle': 'Продолжить в {wallet}',
-  'wallet.openAppHelp':
-    'Откройте {wallet}, чтобы проверить этот запрос. Не закрывайте вкладку с игрой, пока открыто приложение кошелька.',
-  'wallet.openAppButton': 'Открыть {wallet}',
-  'wallet.manualReturnBrowserHelp':
-    'После подтверждения вернитесь на вкладку с игрой. Если iOS откроет другой браузер, закройте его и вручную вернитесь в исходный браузер.',
-  'wallet.manualReturnStandaloneHelp':
-    'После подтверждения вернитесь в World of ClaudeCraft с экрана «Домой». Если iOS откроет браузер, закройте его и снова откройте приложение с экрана «Домой».',
-  'wallet.preparingAppButton': 'Подготовка {wallet}...',
-  'wallet.walletAppUnavailable':
-    'Не удалось подготовить {wallet}. Закройте это окно и повторите попытку.',
-  'wallet.flowConnect': 'Выберите кошелек. Подтверждение продолжится автоматически.',
-  'wallet.flowSign':
-    'Подпишите сообщение подтверждения в приложении кошелька. Транзакция и SOL не требуются.',
-  'wallet.flowVerify': 'Подтверждение владения кошельком...',
-  'wallet.linkFailed': 'Не удалось подтвердить кошелек.',
-  'wallet.verifyFailed': 'Не удалось подтвердить кошелек.',
-  'wallet.browser.eyebrow': 'Авторизация кошелька для приложения',
-  'wallet.browser.title': 'Подключить кошелек Solana',
-  'wallet.browser.linkBody':
-    'Выберите расширение кошелька в этом браузере. Подпишите сообщение проверки, затем вернитесь в приложение.',
-  'wallet.browser.paymentBody':
-    'Выберите кошелек, привязанный к аккаунту, и подтвердите транзакцию в этом браузере.',
-  'wallet.browser.extensionHelp':
-    'Совместимое расширение кошелька не найдено. Установите или разблокируйте Phantom, Solflare либо другой браузерный кошелек Solana и повторите попытку.',
-  'wallet.browser.safety':
-    'World of ClaudeCraft никогда не запрашивает фразу восстановления или закрытый ключ.',
-  'wallet.browser.continueWith': 'Продолжить с {wallet}',
-  'wallet.browser.reviewTitle': 'Проверьте запрос в кошельке',
-  'wallet.browser.reviewBody': 'Следуйте подсказке {wallet}. Не закрывайте эту страницу браузера.',
-  'wallet.browser.completeTitle': 'Авторизация кошелька завершена',
-  'wallet.browser.completeBody': 'Можно вернуться в приложение World of ClaudeCraft.',
-  'wallet.browser.returnButton': 'Вернуться в приложение',
-  'wallet.browser.failed':
-    'Авторизация кошелька не удалась или истекла. Вернитесь в приложение и повторите попытку.',
-  'wallet.browser.retry': 'Повторить',
-  'wallet.unlinkFailed': 'Не удалось отвязать кошелек.',
-  'wallet.holder': 'держатель $WOC',
-  'wallet.holderTierTitle': '{tier}: держатель $WOC',
-  'wallet.holderTiers.ember.name': 'Искра',
-  'wallet.holderTiers.ember.flavor': 'Искра зажжена.',
-  'wallet.holderTiers.coinbearer.name': 'Носитель монет',
-  'wallet.holderTiers.coinbearer.flavor': 'Первая монета в военной казне.',
-  'wallet.holderTiers.coppercrest.name': 'Медный герб',
-  'wallet.holderTiers.coppercrest.flavor': 'Медь копится, ваше имя произносят вслух.',
-  'wallet.holderTiers.silverbound.name': 'Серебряная связь',
-  'wallet.holderTiers.silverbound.flavor': 'Серебро связывает вас, запас растет.',
-  'wallet.holderTiers.gilded.name': 'Позолоченный',
-  'wallet.holderTiers.gilded.flavor': 'В позолоте и с улыбкой.',
-  'wallet.holderTiers.vaultwarden.name': 'Хранитель хранилища',
-  'wallet.holderTiers.vaultwarden.flavor':
-    'Теперь вы храните настоящее хранилище: 0,01% всех $WOC.',
-  'wallet.holderTiers.whale.name': 'Кит',
-  'wallet.holderTiers.whale.flavor': 'Глубины расступаются, когда вы плывете: 0,1% предложения.',
-  'wallet.holderTiers.leviathan.name': 'Левиафан',
-  'wallet.holderTiers.leviathan.flavor': 'Рынок чувствует ваше движение: 1% предложения.',
-  'wallet.holderTiers.tidelord.name': 'Повелитель приливов',
-  'wallet.holderTiers.tidelord.flavor': 'Прилив отвечает на ваш зов: 2% предложения.',
-  'wallet.holderTiers.stormcaller.name': 'Призыватель бурь',
-  'wallet.holderTiers.stormcaller.flavor': 'Бури собираются на ваше имя: 3% предложения.',
-  'wallet.holderTiers.krakencrown.name': 'Кракенова корона',
-  'wallet.holderTiers.krakencrown.flavor': 'Глубины венчают вас короной: 4% предложения.',
-  'wallet.holderTiers.titanforged.name': 'Титанокованный',
-  'wallet.holderTiers.titanforged.flavor': 'Выкован среди титанов: 5% предложения.',
-  'wallet.holderTiers.starhoard.name': 'Звездный клад',
-  'wallet.holderTiers.starhoard.flavor': 'Клад, изгибающий звездный свет: 6% предложения.',
-  'wallet.holderTiers.voidwarden.name': 'Страж пустоты',
-  'wallet.holderTiers.voidwarden.flavor': 'Хранитель у края пустоты: 7% предложения.',
-  'wallet.holderTiers.realmshaper.name': 'Творец пределов',
-  'wallet.holderTiers.realmshaper.flavor': 'Вы меняете облик мира: 8% предложения.',
-  'wallet.holderTiers.worldforger.name': 'Кователь миров',
-  'wallet.holderTiers.worldforger.flavor': 'Куете собственный мир: 9% предложения.',
-  'wallet.holderTiers.worldbearer.name': 'Носитель мира',
-  'wallet.holderTiers.worldbearer.flavor': 'Вы несете часть мира: 10% предложения.',
-  'wallet.holderTiers.sovereign.name': 'Суверен',
-  'wallet.holderTiers.sovereign.flavor': 'Мир преклоняет колено: все предложение.',
   'playerCard.shareButton': 'Поделиться карточкой игрока',
   'playerCard.title': 'Карточка игрока',
   'playerCard.close': 'Закрыть карточку игрока',
@@ -1437,17 +1237,16 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'playerCard.levelClass': 'Уровень {level} - {className}',
   'playerCard.topPercent': 'ТОП {percent}%',
   'playerCard.realmSubtitle': 'Мир {realm}',
-  'playerCard.defaultRealm': 'Мир ClaudeCraft',
-  'playerCard.brandWordmark': 'WORLD OF CLAUDECRAFT',
+  'playerCard.defaultRealm': 'Wildhaven',
+  'playerCard.brandWordmark': 'WILDHAVEN',
   'playerCard.recruited': 'приглашено: {count}',
   'playerCard.footerHandle': '@{handle}',
   'playerCard.footerHandleWithRecruits': '@{handle} - {recruited}',
   'playerCard.footerCta': 'Создайте свою легенду: {siteUrl}',
   'playerCard.arenaStat': 'Арена',
-  'playerCard.shareTierBit': ', держатель $WOC ранга {tier}',
   'playerCard.shareText':
-    'Я создаю свою легенду в World of ClaudeCraft: уровень {level}, {className}{tierBit}. Присоединяйтесь к моему миру:',
-  'playerCard.nativeShareTitle': 'Мир ClaudeCraft',
+    'Я создаю свою легенду в Wildhaven: уровень {level}, {className}{tierBit}. Присоединяйтесь к моему миру:',
+  'playerCard.nativeShareTitle': 'Wildhaven',
   'playerCard.fileNameFallback': 'игрок',
   'playerCard.actionShareX': 'Поделиться в X',
   'playerCard.actionCopyReferral': 'Копировать реферальную ссылку',
@@ -1508,9 +1307,9 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'controls.emoteWheel': 'Удерживать колесо эмоций',
   'controls.friends': 'Друзья и гильдия',
   'controls.chat': 'Открыть чат',
-  'seo.title': 'World of ClaudeCraft: веб-MMO в классическом стиле',
+  'seo.title': 'Wildhaven: веб-MMO в классическом стиле',
   'seo.description':
-    'Отправьтесь в эпическое приключение в World of ClaudeCraft, микро-MMO в классическом стиле прямо в браузере. Присоединяйтесь к постоянному общему миру, развивайте классы и побеждайте врагов.',
+    'Отправьтесь в эпическое приключение в Wildhaven, микро-MMO в классическом стиле прямо в браузере. Присоединяйтесь к постоянному общему миру, развивайте классы и побеждайте врагов.',
   'seo.genre': 'MMORPG',
   'seo.playMode': 'Многопользовательская игра',
   'seo.applicationCategory': 'Игра',
@@ -1520,9 +1319,9 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'a11y.mainNavigation': 'Основная навигация',
   'a11y.languageSelection': 'Выбор языка',
   'a11y.characterActions': 'Действия персонажа',
-  'a11y.githubProject': 'Открыть проект World of ClaudeCraft на GitHub',
-  'a11y.discordCommunity': 'Присоединиться к Discord-сообществу World of ClaudeCraft',
-  'a11y.donateProject': 'Пожертвовать на поддержку World of ClaudeCraft',
+  'a11y.githubProject': 'Открыть проект Wildhaven на GitHub',
+  'a11y.discordCommunity': 'Присоединиться к Discord-сообществу Wildhaven',
+  'a11y.donateProject': 'Пожертвовать на поддержку Wildhaven',
   'entryGuard.body':
     'Игра неожиданно закрылась при входе в мир, поэтому графика теперь установлена на {preset}. Вы можете изменить это в переключателе графики ниже или в настройках игры.',
   'entryGuard.dismiss': 'Закрыть',
@@ -1699,19 +1498,19 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
     'Для настоящего полноэкранного режима на iPhone или iPad сначала добавьте эту страницу на домашний экран.',
   'mobilePreflight.iosShareStep': 'В Safari нажмите Поделиться, затем На экран Домой.',
   'mobilePreflight.iosOpenStep':
-    'Откройте World of ClaudeCraft через новый значок на домашнем экране.',
+    'Откройте Wildhaven через новый значок на домашнем экране.',
   'mobilePreflight.androidStandaloneDetail':
     'Вы в полноэкранном режиме приложения. Держите устройство горизонтально.',
   'mobilePreflight.androidInstallDetail':
     'Для полноэкранного режима на Android установите эту страницу или добавьте ее на главный экран.',
   'mobilePreflight.androidInstallStep':
     'В Chrome откройте меню, затем выберите Установить приложение или Добавить на главный экран.',
-  'mobilePreflight.androidOpenStep': 'Откройте World of ClaudeCraft через новый значок.',
+  'mobilePreflight.androidOpenStep': 'Откройте Wildhaven через новый значок.',
   'mobilePreflight.otherStandaloneDetail': 'Держите устройство в полноэкранном альбомном режиме.',
   'mobilePreflight.otherInstallDetail':
     'Установите эту страницу или добавьте ее на главный экран для лучшего мобильного полноэкранного опыта.',
-  'serverUnavailable.title': 'World of ClaudeCraft - мир недоступен',
-  'serverUnavailable.logoAlt': 'World of ClaudeCraft',
+  'serverUnavailable.title': 'Wildhaven - мир недоступен',
+  'serverUnavailable.logoAlt': 'Wildhaven',
   'serverUnavailable.eyebrow': 'Технические работы',
   'serverUnavailable.heading': 'Мир временно недоступен.',
   'serverUnavailable.body':
@@ -5155,12 +4954,8 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'hud.errors.silenced': 'Вы лишены дара речи!',
   'hud.pet.noPetFood': 'У вас нет пищи, чтобы покормить питомца.',
   'hud.pet.petEatsFoodOnly': 'Ваш питомец ест только пищу.',
-  'mode.caCopyAria': 'Скопировать адрес контракта',
-  'mode.caLabel': 'Адрес контракта $WOC',
-  'mode.caNote':
-    'WOC - токен нашего сообщества. Он не нужен для игры. Присоединяйтесь к Discord, чтобы обсудить применение и экосистему WOC.',
   'mode.play': 'Играть',
-  'mode.playAria': 'Играть в World of ClaudeCraft',
+  'mode.playAria': 'Играть в Wildhaven',
   'mode.serverAria': 'Выберите мир: В сети или Не в сети',
   'mode.serverLabel': 'Выберите свой мир',
   'mode.serverOffline': 'Не в сети',
@@ -5632,7 +5427,6 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'hudChrome.account.loggedOutPrompt': 'Войдите, чтобы управлять аккаунтом.',
   'hudChrome.account.memberSince': 'Дата регистрации: {date}',
   'hudChrome.account.sectionSettings': 'Настройки аккаунта',
-  'hudChrome.account.sectionWallet': 'Кошелёк $WOC',
   'hudChrome.account.sectionCharacters': 'Персонажи',
   'hudChrome.account.sectionDanger': 'Опасная зона',
   'hudChrome.account.changePassword': 'Сменить пароль',
@@ -5661,9 +5455,6 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'hudChrome.account.charactersSummary': 'Управляйте персонажами и входите в мир.',
   'hudChrome.account.charactersCount': 'Персонажей: {count}',
   'hudChrome.account.goToCharacters': 'Показать персонажей',
-  'hudChrome.account.walletSummary':
-    'Подтвердите кошелёк Solana, чтобы показать знак держателя на карточке игрока.',
-  'hudChrome.account.manageWallet': 'Управление кошельком',
   'hudChrome.account.deactivate': 'Деактивировать аккаунт',
   'hudChrome.account.deactivateWarning':
     'Деактивация заблокирует ваш аккаунт и выполнит выход на всех устройствах. Для восстановления обратитесь к администратору. Подтвердите, повторно введя имя пользователя и пароль.',
@@ -5751,8 +5542,8 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'hudChrome.bags.backpack': 'Рюкзак',
   'hudChrome.bags.socketEmpty': 'Пустая ячейка для сумки',
   'hudChrome.bags.unequipHint': 'Нажмите, чтобы снять эту сумку',
-  'guide.brand': 'World of ClaudeCraft',
-  'guide.brandShort': 'ClaudeCraft',
+  'guide.brand': 'Wildhaven',
+  'guide.brandShort': 'Wildhaven',
   'guide.tagline': 'Классическая MMO, в которую можно играть бесплатно прямо в браузере.',
   'guide.skipToContent': 'Перейти к основному содержимому',
   'guide.loading': 'Загрузка...',
@@ -5859,11 +5650,11 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'guide.footer.github': 'Исходный код на GitHub',
   'guide.footer.discord': 'Присоединиться к Discord',
   'guide.footer.communityWiki': 'Вики сообщества',
-  'guide.footer.rights': 'World of ClaudeCraft',
+  'guide.footer.rights': 'Wildhaven',
   'guide.language.label': 'Язык',
   'guide.language.select': 'Выберите язык',
   'guide.home.eyebrow': 'Классическая браузерная MMO',
-  'guide.home.title': 'World of ClaudeCraft',
+  'guide.home.title': 'Wildhaven',
   'guide.home.subtitle':
     'Выполняйте задания, объединяйтесь в группы и исследуйте созданный вручную мир бесплатно прямо в браузере.',
   'guide.home.ctaPlay': 'Играть',
@@ -6238,7 +6029,7 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
     'Хладнокровные охотники со своим особым шипением и хваткой, непохожие на теплокровных зверей.',
   'guide.worldPage.heading': 'Мир',
   'guide.worldPage.intro':
-    'World of ClaudeCraft - это единый цельный край, который вы пересекаете пешком, три зоны, протянувшиеся с юга на север. Здесь нет быстрых перемещений, так что дорога - это часть приключения.',
+    'Wildhaven - это единый цельный край, который вы пересекаете пешком, три зоны, протянувшиеся с юга на север. Здесь нет быстрых перемещений, так что дорога - это часть приключения.',
   'guide.worldPage.hub': 'Опорная база',
   'guide.worldPage.valeBlurb':
     'Зеленая стартовая долина, где новые герои набираются опыта на волках и разбойниках вокруг города Восточный Брод.',
@@ -7584,7 +7375,7 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'hudChrome.discord.relay.event.hint': 'Объявите о рейде, встрече или событии',
   'hudChrome.discord.relay.help.hint': 'Попросите сообщество о помощи',
   'hudChrome.discord.title': 'Discord',
-  'hudChrome.discord.panelTitle': 'World of ClaudeCraft',
+  'hudChrome.discord.panelTitle': 'Wildhaven',
   'hudChrome.discord.open': 'Discord',
   'hudChrome.discord.viewCharacter': 'Показать {name}',
   'hudChrome.discord.rank': 'Ранг',
@@ -7679,9 +7470,9 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'hudChrome.devBadge.unlink': 'Отвязать GitHub',
   'hudChrome.nativeUpdate.title': 'Доступно обновление',
   'hudChrome.nativeUpdate.body':
-    'Доступна новая версия World of ClaudeCraft. Обновите сейчас, чтобы получить последние исправления и улучшения.',
+    'Доступна новая версия Wildhaven. Обновите сейчас, чтобы получить последние исправления и улучшения.',
   'hudChrome.nativeUpdate.bodyWithVersion':
-    'Доступна версия {version} World of ClaudeCraft. Обновите сейчас, чтобы получить последние исправления и улучшения.',
+    'Доступна версия {version} Wildhaven. Обновите сейчас, чтобы получить последние исправления и улучшения.',
   'hudChrome.nativeUpdate.notNow': 'Не сейчас',
   'hudChrome.nativeUpdate.update': 'Обновить',
   'hudChrome.cameraPrompt.title': 'Выберите камеру',
@@ -7704,12 +7495,12 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'desktop.update.restart': 'Перезапустить сейчас',
   'desktop.update.later': 'Позже',
   'desktop.update.dismiss': 'Закрыть',
-  'desktop.crash.title': 'World of ClaudeCraft',
+  'desktop.crash.title': 'Wildhaven',
   'desktop.crash.body': 'Игровой экран перестал отвечать. Перезагрузить его?',
   'desktop.crash.reload': 'Перезагрузить',
   'desktop.crash.quit': 'Выйти',
   'desktop.crash.fatalBody':
-    'World of ClaudeCraft столкнулась с непредвиденной ошибкой и будет закрыта.',
+    'Wildhaven столкнулась с непредвиденной ошибкой и будет закрыта.',
   'gpuNotice.bodyDesktop':
     'Игра работает без GPU-ускорения и будет сильно тормозить. Обновите драйверы видеокарты и перезапустите игру. В Windows также выберите для игры режим «Высокая производительность» в разделе Параметры > Система > Дисплей > Графика.',
   'gpuNotice.bodyWeb':
@@ -7723,7 +7514,7 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
     'Игра работает без GPU-ускорения и поэтому сильно тормозит. Включите аппаратное ускорение в настройках браузера, обновите драйверы видеокарты и перезапустите браузер.',
   'perfNudge.dismiss': 'Закрыть',
   'editor.appTitle': 'Редактор карт',
-  'editor.docTitle': 'Редактор карт - World of ClaudeCraft',
+  'editor.docTitle': 'Редактор карт - Wildhaven',
   'editor.untitledMap': 'Карта без названия',
   'editor.playtestPlayerName': 'Картограф',
   'editor.topbar.label': 'Действия редактора',
@@ -8306,8 +8097,6 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.remainingDaysHours': '{days}д {hours}ч',
   'hudChrome.dailyRewards.remainingLessThanMinute': '<1м',
   'hudChrome.dailyRewards.remainingMinutes': '{minutes}м',
-  'hudChrome.dailyRewards.sol': '{amount} SOL',
-  'hudChrome.dailyRewards.usd': '{amount} USD',
   'guide.professions.intro':
     'Помимо боя и заданий, мир вознаграждает тех, кто трудится на земле и у горна: собирайте сырьё, превращайте его в снаряжение и товары в десяти ремёслах и обретайте облик одного из десяти призваний, которые эти ремёсла олицетворяют.',
   'guide.professions.harvestTitle': 'Добыча с самой охоты',
@@ -8332,16 +8121,6 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'apiError.deeds.invalid_input': 'Недопустимые данные.',
   'apiError.ota_updates.invalid_input': 'Недопустимые данные.',
   'apiError.steam.disabled': 'Привязка Steam сейчас недоступна.',
-  'apiError.wallet.handoff_invalid':
-    'Срок действия авторизации кошелька истек или ее не удалось проверить. Повторите попытку.',
-  'apiError.seeker.native_only': 'Права Seeker доступны только в нативном приложении.',
-  'apiError.seeker.attestation_failed': 'Не удалось подтвердить устройство. Повторите попытку.',
-  'apiError.seeker.solana_artifact_required': 'Продолжите в версии приложения из Solana Store.',
-  'apiError.seeker.wallet_required': 'Сначала привяжите и подтвердите кошелек.',
-  'apiError.seeker.genesis_token_required': 'Требуется подтвержденный Seeker Genesis Token.',
-  'apiError.seeker.genesis_token_claimed': 'Этот Seeker Genesis Token уже был зарегистрирован.',
-  'apiError.seeker.entitlement_required': 'Требуются подтвержденные права Seeker.',
-  'apiError.seeker.current_ownership_required': 'Требуется текущее владение Seeker Genesis Token.',
   'apiError.steam.invalid_ticket':
     'Steam не смог подтвердить этот запрос на привязку. Повторите попытку из настольного приложения.',
   'apiError.steam.banned': 'Этот аккаунт Steam нельзя привязать.',
@@ -9098,11 +8877,9 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'hudChrome.bank.bonusStatusEarned': '+{count}',
   'hudChrome.bank.bonusSourceEmail': 'Почта подтверждена',
   'hudChrome.bank.bonusSourceDiscord': 'Discord привязан',
-  'hudChrome.bank.bonusSourceWallet': 'Кошелёк привязан',
   'hudChrome.bank.bonusSourceReferral': 'Приглашённые друзья',
   'hudChrome.bank.bonusAdvertEmail': 'Подтвердите почту, чтобы получить 2 ячейки.',
   'hudChrome.bank.bonusAdvertDiscord': 'Привяжите Discord, чтобы получить 2 ячейки.',
-  'hudChrome.bank.bonusAdvertWallet': 'Привяжите кошелёк, чтобы получить 2 ячейки.',
   'hudChrome.bank.bonusReferralProgress': '{count}/{cap}',
   'hudChrome.bank.bonusReferralExplainer':
     'Пригласите друга: когда он достигнет 10 уровня, вы оба получите по 2 ячейки, до 5 друзей.',
@@ -9908,8 +9685,6 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'devCommand.serverRequirement': 'Для серверных читов всё ещё требуется ALLOW_DEV_COMMANDS=1.',
   'devCommand.subtitle': 'Серверные средства управления для тестирования активного мира.',
   'devCommand.title': 'Центр команд',
-  'hudChrome.claudium.railUsdc': 'USDC',
-  'hudChrome.claudium.usdcBalance': 'USDC: {amount}',
   'hudChrome.partyFrames.healthNone': 'Нет',
   'hudChrome.partyFrames.sortName': 'Имя',
   'hudChrome.partyFrames.sortRole': 'Роль',
@@ -11172,4 +10947,8 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'hudChrome.auraOverlay.procs.aetherRush': 'Эфирный натиск',
   'itemUi.vendor.buyStack': 'Купить {count}',
   'itemUi.vendor.buyStackAria': 'Купить {count} {item} за {price}',
+  'hudChrome.dailyRewards.disclaimer': 'Задания и таблица лидеров сбрасываются раз в день. Первая десятка делит призовой фонд, и ваша доля прибудет с вороном при следующем входе в игру.',
+  'entities.letters.daily_reward_prize.sender': 'Управитель долины',
+  'entities.letters.daily_reward_prize.subject': 'Ваша доля дневной казны',
+  'entities.letters.daily_reward_prize.body': 'Долина ведёт счёт тем, кто трудится в ней усерднее всех, и вчера ваше имя стояло среди десяти первых. Управители отвесили вашу долю дневной казны и отправили её с вороном.\n\nВозвращайтесь завтра и займите первое место, если сумеете.\n\n- Управитель долины',
 };

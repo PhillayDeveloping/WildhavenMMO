@@ -1,12 +1,12 @@
 <div align="center">
 
-# World of ClaudeCraft
+# Wildhaven
 
 **Nhận nhiệm vụ, lập nhóm và raid một thế giới được dựng thủ công, miễn phí ngay trên trình duyệt. Mã nguồn mở, web3 và trực tuyến ngay bây giờ.**
 
-**Trang web chính thức: https://worldofclaudecraft.com/**
+**Trang web chính thức: https://wildhaven.example/**
 
-[![CI](https://github.com/levy-street/world-of-claudecraft/actions/workflows/ci.yml/badge.svg)](https://github.com/levy-street/world-of-claudecraft/actions/workflows/ci.yml)
+[![CI](https://github.com/levy-street/wildhaven/actions/workflows/ci.yml/badge.svg)](https://github.com/levy-street/wildhaven/actions/workflows/ci.yml)
 [![TypeScript](https://img.shields.io/badge/TypeScript-7.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Three.js](https://img.shields.io/badge/Three.js-r165-000000?logo=threedotjs&logoColor=white)](https://threejs.org/)
 [![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
@@ -16,23 +16,23 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](../../LICENSE)
 [![Version](https://img.shields.io/badge/version-0.34.0-blue)](../../package.json)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.vi_VN.md)
-[![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.com/invite/worldofclaudecraft)
+[![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.com/invite/wildhaven)
 
 [English](../../README.md) · [Español](README.es.md) · [Español (España)](README.es_ES.md) · [Français](README.fr_FR.md) · [Français (Canada)](README.fr_CA.md) · [Italiano](README.it_IT.md) · [Deutsch](README.de_DE.md) · [简体中文](README.zh_CN.md) · [繁體中文](README.zh_TW.md) · [한국어](README.ko_KR.md) · [日本語](README.ja_JP.md) · [Português (Brasil)](README.pt_BR.md) · [Русский](README.ru_RU.md) · [Čeština](README.cs_CZ.md) · [Nederlands](README.nl_NL.md) · [Polski](README.pl_PL.md) · [Bahasa Indonesia](README.id_ID.md) · [Türkçe](README.tr_TR.md) · [Svenska](README.sv_SE.md) · **Tiếng Việt** · [Dansk](README.da_DK.md)
 
-[Chơi ngay](https://worldofclaudecraft.com/) · [Tự dựng thế giới của bạn](#host-your-own-world-one-command) · [Huấn luyện một agent](#train-an-agent-headless-rl) · [Web3](#web3) · [Đóng góp](CONTRIBUTING.vi_VN.md) · [Discord](https://discord.com/invite/worldofclaudecraft)
+[Chơi ngay](https://wildhaven.example/) · [Tự dựng thế giới của bạn](#host-your-own-world-one-command) · [Huấn luyện một agent](#train-an-agent-headless-rl) · [Web3](#web3) · [Đóng góp](CONTRIBUTING.vi_VN.md) · [Discord](https://discord.com/invite/wildhaven)
 
-![Màn hình tiêu đề World of ClaudeCraft](../../docs/screenshots/title-screen.jpg)
+![Màn hình tiêu đề Wildhaven](../../docs/screenshots/title-screen.jpg)
 
 </div>
 
 ## Đây là gì
 
-World of ClaudeCraft là một tựa MMO thời kinh điển hoàn chỉnh mà bạn có thể chơi ngay bây giờ trên trình duyệt, tự dựng với một lệnh duy nhất, và thậm chí còn huấn luyện được các agent AI để chơi. Trò chơi miễn phí, mã nguồn mở, và đang chạy trực tiếp tại [worldofclaudecraft.com](https://worldofclaudecraft.com/).
+Wildhaven là một tựa MMO thời kinh điển hoàn chỉnh mà bạn có thể chơi ngay bây giờ trên trình duyệt, tự dựng với một lệnh duy nhất, và thậm chí còn huấn luyện được các agent AI để chơi. Trò chơi miễn phí, mã nguồn mở, và đang chạy trực tiếp tại [wildhaven.example](https://wildhaven.example/).
 
 Một thế giới chung chạy ở ba nơi, tất cả đều từ cùng một lõi game:
 
-- **máy chủ multiplayer giữ quyền quyết định**, thế giới sống động bạn chơi tại worldofclaudecraft.com, nơi các tài khoản lưu trên Postgres cùng chia sẻ một realm bền vững,
+- **máy chủ multiplayer giữ quyền quyết định**, thế giới sống động bạn chơi tại wildhaven.example, nơi các tài khoản lưu trên Postgres cùng chia sẻ một realm bền vững,
 - **thế giới ngoại tuyến trên trình duyệt**, một Sim đơn người chơi cục bộ mà bạn có được từ máy chủ dev, hữu ích cho việc phát triển và để đọc lõi game từ đầu đến cuối,
 - **môi trường RL không giao diện**, nơi Python điều khiển trò chơi thật qua giao diện Gym.
 
@@ -55,8 +55,6 @@ Cùng một seed, cùng một thế giới, ở mọi nơi. Phần lớn những
 - **Ứng dụng gốc trên mọi nền tảng**: trình cài đặt desktop có ký số cho Windows, Linux, và macOS với cập nhật tự động và tùy chọn phản chiếu thành tựu Steam, cộng thêm bản dựng iOS và Android, tất cả dùng chung client trình duyệt và cùng một thế giới trực tuyến.
 - **Co giãn theo cỗ máy bạn có**: các preset đồ họa và một bộ điều tiết khung hình tự động đánh đổi độ phong phú hình ảnh lấy sự mượt mà, và bị ràng buộc bởi một luật công bằng ngăn chúng che giấu bất cứ thứ gì người chơi phải phản ứng.
 - **Môi trường RL không giao diện** với các ràng buộc Gymnasium, định hình phần thưởng, và một chế độ benchmark.
-- **Tiện ích $WOC, hoàn toàn tùy chọn**: liên kết một ví Solana để có huy hiệu người nắm giữ, Daily Rewards, và một tùy chọn thanh toán được giảm giá trong cửa hàng trang trí. Trò chơi vẫn miễn phí và không giữ tài sản hộ.
-- **Season 1 Armory**: sưu tầm các skin vũ khí trang trí qua WOC Store, dùng Claudium mua bằng tiền pháp định, SOL, USDC, hoặc $WOC. Đồ trang trí không bao giờ mang lại sức mạnh chiến đấu.
 
 ## Ảnh chụp màn hình
 
@@ -77,7 +75,7 @@ Thời tiết do quần xã chi phối và chỉ thuộc về render, nên nó k
 
 ## Chơi đi
 
-Chơi trên trình duyệt tại [worldofclaudecraft.com](https://worldofclaudecraft.com/), hoặc cài ứng dụng gốc cho Windows, Linux, macOS, iOS, hoặc Android. Mọi client đều kết nối tới cùng một thế giới trực tuyến.
+Chơi trên trình duyệt tại [wildhaven.example](https://wildhaven.example/), hoặc cài ứng dụng gốc cho Windows, Linux, macOS, iOS, hoặc Android. Mọi client đều kết nối tới cùng một thế giới trực tuyến.
 
 ### Trực tuyến, cùng những người chơi khác
 
@@ -96,9 +94,9 @@ npm run dev        # then open http://localhost:5173 and choose Play Offline
 
 ### Ứng dụng desktop cho Windows, Linux, và macOS
 
-World of ClaudeCraft xuất xưởng dưới dạng ứng dụng desktop đầy đủ cho cả ba nền tảng desktop lớn: trình cài đặt Windows có ký số, gói AppImage và deb cho Linux, và bản dựng macOS universal có ký số và công chứng. Chúng dùng cùng client game và cùng thế giới trực tuyến như trình duyệt, với đóng gói gốc và cập nhật tự động.
+Wildhaven xuất xưởng dưới dạng ứng dụng desktop đầy đủ cho cả ba nền tảng desktop lớn: trình cài đặt Windows có ký số, gói AppImage và deb cho Linux, và bản dựng macOS universal có ký số và công chứng. Chúng dùng cùng client game và cùng thế giới trực tuyến như trình duyệt, với đóng gói gốc và cập nhật tự động.
 
-Đăng nhập trực tuyến chỉ qua Discord và email, đúng như luồng trên web: email/mật khẩu đăng nhập ngay trong ứng dụng, còn "Continue with Discord" mở trình duyệt mặc định của bạn ở trang `/desktop-login`, trang này trả một mã dùng một lần về cho ứng dụng qua một deep link `worldofclaudecraft://` mà ứng dụng đổi lấy một token phiên World of ClaudeCraft bình thường.
+Đăng nhập trực tuyến chỉ qua Discord và email, đúng như luồng trên web: email/mật khẩu đăng nhập ngay trong ứng dụng, còn "Continue with Discord" mở trình duyệt mặc định của bạn ở trang `/desktop-login`, trang này trả một mã dùng một lần về cho ứng dụng qua một deep link `wildhaven://` mà ứng dụng đổi lấy một token phiên Wildhaven bình thường.
 
 ```bash
 npm run electron:dev          # Vite + Electron dev shell
@@ -113,7 +111,7 @@ Trỏ vỏ ứng dụng tới một API khác bằng `VITE_DESKTOP_API_ORIGIN`, 
 VITE_DESKTOP_API_ORIGIN=http://127.0.0.1:8787 npm run electron:dev
 ```
 
-Ghi đè origin API production cho các bản dựng staging bằng `VITE_DESKTOP_API_ORIGIN=https://dev.worldofclaudecraft.com` (một giá trị lúc BUILD: nó được nướng vào bundle và đóng dấu vào ứng dụng đã đóng gói, còn các bản đã cài thì bỏ qua nó như một biến môi trường lúc chạy). Steam là một kênh phân phối (cùng một bundle Electron, tải lên qua SteamPipe), và người chơi desktop có thể liên kết một tài khoản Steam để phản chiếu các deed họ kiếm được thành thành tựu Steam; bản thân việc đăng nhập vẫn là email và Discord. Runbook phát hành đầy đủ (ký số, công chứng, xuất bản một bản cập nhật tự động, các depot SteamPipe, việc triển khai máy chủ) nằm ở `docs/desktop-release.md`. iOS và Android xuất xưởng qua Capacitor, với runbook riêng trong `docs/mobile-store-release.md`.
+Ghi đè origin API production cho các bản dựng staging bằng `VITE_DESKTOP_API_ORIGIN=https://dev.wildhaven.example` (một giá trị lúc BUILD: nó được nướng vào bundle và đóng dấu vào ứng dụng đã đóng gói, còn các bản đã cài thì bỏ qua nó như một biến môi trường lúc chạy). Steam là một kênh phân phối (cùng một bundle Electron, tải lên qua SteamPipe), và người chơi desktop có thể liên kết một tài khoản Steam để phản chiếu các deed họ kiếm được thành thành tựu Steam; bản thân việc đăng nhập vẫn là email và Discord. Runbook phát hành đầy đủ (ký số, công chứng, xuất bản một bản cập nhật tự động, các depot SteamPipe, việc triển khai máy chủ) nằm ở `docs/desktop-release.md`. iOS và Android xuất xưởng qua Capacitor, với runbook riêng trong `docs/mobile-store-release.md`.
 
 <a id="host-your-own-world-one-command"></a>
 
@@ -180,28 +178,6 @@ env.close()
 
 Giao thức và các ràng buộc được tài liệu hóa trong `headless/CLAUDE.md` và `python/CLAUDE.md`.
 
-<a id="web3"></a>
-
-## Web3
-
-World of ClaudeCraft mang bản chất web3 xoay quanh **$WOC**, token cộng đồng của chúng tôi trên Solana. Kết nối một ví Solana, liên kết nó với tài khoản của bạn bằng một chữ ký (không giữ tài sản hộ, không có giao dịch nào cần duyệt), và số dư $WOC chỉ đọc của bạn sẽ hiện lên trong HUD cùng với một huy hiệu bậc người nắm giữ mang tính trang trí.
-
-$WOC cũng có tiện ích tùy chọn trong trò chơi trực tiếp:
-
-- **WOC Store**: mua Claudium, đồng tiền trang trí một chiều, bằng tiền pháp định, SOL, USDC, hoặc $WOC. Kênh thanh toán $WOC được giảm giá so với các kênh còn lại.
-- **Season 1 Armory**: tiêu Claudium vào các bộ sưu tập skin vũ khí trang trí. Các giao dịch mua trong cửa hàng không thêm chỉ số hay sức mạnh chiến đấu.
-- **Daily Rewards**: những người nắm giữ đã xác minh và đủ điều kiện có thể kiếm điểm qua một lượt quay mỗi ngày và các nhiệm vụ luân phiên, rồi cạnh tranh giành một phần quỹ thưởng hằng ngày.
-
-Không có thứ nào trong số này là cần thiết để chơi. Việc liên kết ví là tùy chọn và không giữ tài sản hộ, không có pay-to-win, và toàn bộ trò chơi vẫn chơi tốt mà không cần kết nối ví bao giờ.
-
-**Địa chỉ hợp đồng $WOC (Solana):**
-
-```
-3WjLscH2JsXLEFJZRA9z8ti8yRGxWGKbqymPd7UicRth
-```
-
-Tìm hiểu thêm về token tại [worldofclaudecraft.com](https://worldofclaudecraft.com/).
-
 ## Một chuyến tham quan thế giới
 
 ### Chín class
@@ -262,8 +238,6 @@ Chiến thắng xếp hạng và các pha hạ gục trong Fiesta trả **Honor*
 - **Guild**: hiến chương, danh sách thành viên, cấp bậc, và chat guild.
 - **The Guide**: một wiki tìm kiếm được ngay trong trang tại `/wiki`, bao quát các class, sinh vật, vùng đất, và deed, sinh thẳng từ nội dung game sống nên nó không thể lệch khỏi thế giới mà nó mô tả.
 - **The Vale Cup và Card Duel**: boarball tại sân vận động Sowfield phía nam Eastbrook, ở các thể thức từ 1v1 tới 5v5, và một trò chơi bài đối đầu nhanh gọn do Card Master trong thị trấn tổ chức.
-- **Daily Rewards**: những người nắm giữ $WOC đã xác minh có thể kiếm điểm bảng xếp hạng từ một lượt quay mỗi ngày và các nhiệm vụ luân phiên, với chi trả tự động từ quỹ thưởng hằng ngày.
-- **WOC Store và Season 1 Armory**: mua Claudium bằng tiền pháp định, SOL, USDC, hoặc $WOC, rồi tiêu nó vào các skin vũ khí thuần túy trang trí.
 - **Ăn và uống**: ngồi để hồi phục, bị ngắt khi nhận sát thương hoặc khi đứng dậy, và đúng vậy, bạn có thể vừa ăn vừa uống cùng lúc.
 - **Người bán** mua thức ăn và nước và bán trang bị trắng tử tế, với tiền hiển thị bằng vàng, bạc, và đồng.
 - **Một ngân hàng cá nhân** (the Gilded Strongbox): các thủ quỹ ở mỗi thị trấn trung tâm giữ một hầm cho mỗi nhân vật, từ 24 ô lên tới 96 ô với các lần mở rộng mua bằng tiền, cộng thêm các ô thưởng kiếm được khi trực tuyến nhờ email đã xác minh, tài khoản đã liên kết, và giới thiệu bạn bè.
@@ -391,7 +365,7 @@ Mọi chuỗi hiển thị với người chơi đều phân giải qua `t()`, v
 
 ## Đóng góp
 
-Mọi kiểu đóng góp đều được hoan nghênh: mã, bản dịch, báo cáo lỗi, và tài liệu. Hãy bắt đầu với [CONTRIBUTING.md](CONTRIBUTING.vi_VN.md) để thiết lập, đọc [Quy tắc ứng xử](../../CODE_OF_CONDUCT.md), và xem [SECURITY.md](../../SECURITY.md) trước khi báo cáo một lỗ hổng. Mới ở đây? Hãy tìm các issue được gắn nhãn [`good first issue`](https://github.com/levy-street/world-of-claudecraft/labels/good%20first%20issue), mở một [issue](https://github.com/levy-street/world-of-claudecraft/issues/new/choose), hoặc chào một tiếng trên [Discord](https://discord.com/invite/worldofclaudecraft).
+Mọi kiểu đóng góp đều được hoan nghênh: mã, bản dịch, báo cáo lỗi, và tài liệu. Hãy bắt đầu với [CONTRIBUTING.md](CONTRIBUTING.vi_VN.md) để thiết lập, đọc [Quy tắc ứng xử](../../CODE_OF_CONDUCT.md), và xem [SECURITY.md](../../SECURITY.md) trước khi báo cáo một lỗ hổng. Mới ở đây? Hãy tìm các issue được gắn nhãn [`good first issue`](https://github.com/levy-street/wildhaven/labels/good%20first%20issue), mở một [issue](https://github.com/levy-street/wildhaven/issues/new/choose), hoặc chào một tiếng trên [Discord](https://discord.com/invite/wildhaven).
 
 Việc phát triển đang diễn ra trên nhánh `release/vX.Y.Z` mới nhất. Hãy tra cứu nhánh đó thay vì phỏng đoán, rồi tạo nhánh từ nó và nhắm pull request của bạn vào đó. Đừng bao giờ tạo nhánh từ hay nhắm vào `main`, nhánh chỉ nhận một nhánh phát hành khi phiên bản đó xuất xưởng. [CONTRIBUTING.md](CONTRIBUTING.vi_VN.md) có câu lệnh một dòng giúp tìm ra nhánh hiện tại.
 
@@ -405,7 +379,7 @@ Có ba thứ được cấp phép riêng, nên bỏ ra ba mươi giây để bi�
 |---|---|---|
 | **Mã nguồn**, nghĩa là tất cả trừ các tài nguyên media được tách ra bên dưới | [MIT](../../LICENSE) | Có. Kể cả mục đích thương mại. |
 | **Tài nguyên media**: mô hình, texture, HDRI, biểu tượng, âm thanh, phông chữ (phần lớn nằm dưới `public/`) | Theo từng tài nguyên, ghi trong [CREDITS.md](../../CREDITS.md) | Phần lớn là có (đa số là CC0). Một số thì không, xem bên dưới. |
-| **Tên và thương hiệu**: "World of ClaudeCraft", "Levy Street", các logo | Không được cấp phép | Không. |
+| **Tên và thương hiệu**: "Wildhaven", "Levy Street", các logo | Không được cấp phép | Không. |
 
 **Cứ fork nó và tự dựng thế giới của bạn. Điều đó chạy được, và các tài nguyên không cản đường bạn.** Phần lớn những gì bạn thấy đều là CC0 thuộc phạm vi công cộng (KayKit, Quaternius, Kenney, ambientCG, Poly Haven), còn các prop, sinh vật, phông nền và âm thanh giao diện do chúng tôi tự sinh ra thì đi kèm dự án nên một bản fork chạy được ngay. Chỉ là bạn không thể bóc chúng ra rồi bán như tác phẩm nghệ thuật độc lập.
 
@@ -414,9 +388,9 @@ Những gì bạn sẽ cần gỡ bỏ hoặc thay thế trước khi phân ph�
 - các **biểu tượng kỹ năng class của CraftPix** nằm dưới `public/ui/skills/` do Levy Street mua và **không được phép phân phối lại**, nên hãy mua giấy phép riêng nếu bạn muốn đi kèm chúng;
 - các **hiệu ứng âm thanh của @jamiecypher** theo giấy phép CC BY-NC 4.0, nên hãy chia sẻ chúng phi thương mại kèm ghi công, còn quyền thương mại chỉ áp dụng cho dự án này;
 - **art của cửa hàng và prestige** (Season 1 Armory, bộ Claudium, bộ art nghề nghiệp, các biểu tượng Book of Deeds, huy hiệu rồng tinh nhuệ) là art thương mại đặt hàng riêng và **mọi quyền được bảo lưu**;
-- các **nhãn hiệu thương hiệu bên thứ ba** (Twitch, X, Kick, YouTube, Discord, Solana, USDC) là nhãn hiệu của chủ sở hữu chúng và không phải của chúng tôi để cấp phép tiếp;
+- các **nhãn hiệu thương hiệu bên thứ ba** (Twitch, X, Kick, YouTube, Discord) là nhãn hiệu của chủ sở hữu chúng và không phải của chúng tôi để cấp phép tiếp;
 - một số ít **biểu tượng và bản ghi âm dùng theo sự cho phép** cần được cho phép mới chuyển giao tiếp được.
 
 [CREDITS.md](../../CREDITS.md) là danh sách có thẩm quyền, với một cột phân phối lại cho từng tài nguyên. Ở đâu một tài nguyên được liệt kê trong đó, giấy phép ấy sẽ thắng giấy phép MIT của dự án. Sổ đăng ký ấy vẫn đang được hoàn thiện, nên một tài nguyên media thiếu trong đó là chưa được ghi nhận chứ không phải tự do: hãy hỏi trước khi dựa vào nó. Mã nguồn thì ngược lại, và mọi thứ không bị tách ra đều là MIT.
 
-[Điều khoản dịch vụ](https://worldofclaudecraft.com/terms) của chúng tôi bao trùm trò chơi được lưu trữ mà chúng tôi vận hành tại worldofclaudecraft.com: tài khoản, ứng xử, vật phẩm ảo. Chúng không hạn chế các quyền mà Giấy phép MIT trao cho bạn trong mã nguồn này.
+[Điều khoản dịch vụ](https://wildhaven.example/terms) của chúng tôi bao trùm trò chơi được lưu trữ mà chúng tôi vận hành tại wildhaven.example: tài khoản, ứng xử, vật phẩm ảo. Chúng không hạn chế các quyền mà Giấy phép MIT trao cho bạn trong mã nguồn này.

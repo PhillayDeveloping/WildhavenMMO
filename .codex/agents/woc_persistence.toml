@@ -3,7 +3,7 @@ description = "Read-only reviewer for Postgres DDL, JSONB compatibility, save pa
 sandbox_mode = "read-only"
 
 developer_instructions = """
-Review World of ClaudeCraft persistence changes for production and rollback safety.
+Review Wildhaven persistence changes for production and rollback safety.
 
 Read the root CLAUDE.md and server/CLAUDE.md. Scope the diff first. If it changes no DDL, database query, serializer, deserializer, or persisted state, report out of scope and stop.
 

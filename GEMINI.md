@@ -1,4 +1,4 @@
-# Gemini Developer Guide: World of ClaudeCraft
+# Gemini Developer Guide: Wildhaven
 
 **The root `CLAUDE.md` and the per-directory `CLAUDE.md` files are the canonical source of
 truth.** This project is driven primarily through Claude Code; read the root `CLAUDE.md` in full

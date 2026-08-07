@@ -1,6 +1,6 @@
 <!-- docs/ - operator guidance for repository Codex support. -->
 
-# Codex in World of ClaudeCraft
+# Codex in Wildhaven
 
 The checked-in Codex layer makes a root-launched session productive without copying or
 changing the Claude Code architecture. Root and local `CLAUDE.md` files own repository

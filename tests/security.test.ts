@@ -34,13 +34,7 @@ import {
   resetAuthFailures,
   resetCardUploadRateLimits,
   resetRateLimits,
-  resetWalletLinkRateLimits,
-  resetWocBalanceRateLimits,
   trackedIpCount,
-  WALLET_LINK_MAX_PER_MINUTE,
-  WOC_BALANCE_MAX_PER_MINUTE,
-  walletLinkRateLimited,
-  wocBalanceRateLimited,
 } from '../server/ratelimit';
 import { passesTurnstile } from '../server/turnstile';
 import { isWebClientRequest } from '../server/web_login_guard';
@@ -96,9 +90,9 @@ describe('websocket authentication', () => {
   });
 
   it('keeps bearer tokens out of the websocket URL', () => {
-    const url = buildWebSocketUrl('https:', 'worldofclaudecraft.com');
+    const url = buildWebSocketUrl('https:', 'wildhaven.example');
 
-    expect(url).toBe('wss://worldofclaudecraft.com/ws');
+    expect(url).toBe('wss://wildhaven.example/ws');
     expect(url).not.toContain('token');
   });
 
@@ -125,7 +119,7 @@ describe('websocket authentication', () => {
 
 describe('desktop app request origins', () => {
   it('allows the Electron app protocol through the web-client login guard', () => {
-    const req = fakeReq({ origin: 'app://worldofclaudecraft' }, '127.0.0.1');
+    const req = fakeReq({ origin: 'app://wildhaven' }, '127.0.0.1');
 
     expect(isWebClientRequest(req)).toBe(true);
   });
@@ -161,8 +155,6 @@ describe('rate-limit client IP selection', () => {
   beforeEach(() => {
     resetRateLimits();
     resetCardUploadRateLimits();
-    resetWalletLinkRateLimits();
-    resetWocBalanceRateLimits();
   });
 
   it('ignores spoofed x-forwarded-for from untrusted direct clients', () => {
@@ -257,58 +249,6 @@ describe('rate-limit client IP selection', () => {
     expect(
       cardUploadRateLimited(fakeReq({ 'x-forwarded-for': ip }, '172.18.0.1'), 2000).allowed,
     ).toBe(false);
-  });
-
-  it('rate-limits wallet link/challenge attempts by account across client IPs', () => {
-    const accountId = 77;
-    for (let i = 0; i < WALLET_LINK_MAX_PER_MINUTE; i++) {
-      expect(
-        walletLinkRateLimited(
-          fakeReq({ 'x-forwarded-for': `203.0.114.${i + 1}` }, '172.18.0.1'),
-          accountId,
-        ).allowed,
-      ).toBe(true);
-    }
-    expect(
-      walletLinkRateLimited(
-        fakeReq({ 'x-forwarded-for': '203.0.114.250' }, '172.18.0.1'),
-        accountId,
-      ).allowed,
-    ).toBe(false);
-  });
-
-  it('rate-limits wallet link/challenge attempts by client IP across accounts', () => {
-    const ip = '203.0.114.220';
-    for (let i = 0; i < WALLET_LINK_MAX_PER_MINUTE; i++) {
-      expect(
-        walletLinkRateLimited(fakeReq({ 'x-forwarded-for': ip }, '172.18.0.1'), 1000 + i).allowed,
-      ).toBe(true);
-    }
-    expect(
-      walletLinkRateLimited(fakeReq({ 'x-forwarded-for': ip }, '172.18.0.1'), 2000).allowed,
-    ).toBe(false);
-  });
-
-  it('rate-limits the $WOC balance proxy per IP on its OWN bucket (decoupled from login/register)', () => {
-    const ip = '203.0.115.10';
-    const req = () => fakeReq({ 'x-forwarded-for': ip }, '172.18.0.1');
-    for (let i = 0; i < WOC_BALANCE_MAX_PER_MINUTE; i++) {
-      expect(wocBalanceRateLimited(req()).allowed).toBe(true);
-    }
-    // 21st balance read from this IP is limited
-    expect(wocBalanceRateLimited(req()).allowed).toBe(false);
-    // Crucially, exhausting the balance bucket must NOT spill into the shared
-    // register/login limiter, the player can still log in from the same IP.
-    expect(rateLimited(req()).allowed).toBe(true);
-  });
-
-  it('keeps the balance proxy unaffected by an exhausted login/register budget', () => {
-    const ip = '203.0.115.20';
-    const req = () => fakeReq({ 'x-forwarded-for': ip }, '172.18.0.1');
-    for (let i = 0; i < 21; i++) rateLimited(req()); // burn the shared login/register bucket
-    expect(rateLimited(req()).allowed).toBe(false);
-    // The balance proxy has its own bucket, so a card/bag open still succeeds.
-    expect(wocBalanceRateLimited(req()).allowed).toBe(true);
   });
 
   it('keeps limiting a persistent attacker after the memory backstop evicts', () => {
@@ -866,11 +806,7 @@ describe('Turnstile gate policy (passesTurnstile)', () => {
 
   it('bypasses verification for every desktop app origin even with a secret set', async () => {
     const fetchSpy = vi.fn();
-    for (const origin of [
-      'app://worldofclaudecraft',
-      'http://127.0.0.1:5173',
-      'http://localhost:5173',
-    ]) {
+    for (const origin of ['app://wildhaven', 'http://127.0.0.1:5173', 'http://localhost:5173']) {
       const req = fakeReq({ origin }, '203.0.113.55');
       await expect(passesTurnstile(req, {}, testSecret, fetchSpy as any)).resolves.toBe(true);
     }
@@ -879,7 +815,7 @@ describe('Turnstile gate policy (passesTurnstile)', () => {
 
   it('still fails closed for plain web origins with a secret set and no token', async () => {
     const fetchSpy = vi.fn();
-    const req = fakeReq({ origin: 'https://worldofclaudecraft.com' }, '203.0.113.55');
+    const req = fakeReq({ origin: 'https://wildhaven.example' }, '203.0.113.55');
     await expect(passesTurnstile(req, {}, testSecret, fetchSpy as any)).resolves.toBe(false);
     expect(fetchSpy).not.toHaveBeenCalled();
   });
@@ -890,7 +826,7 @@ describe('Turnstile gate policy (passesTurnstile)', () => {
   });
 
   it('verifies a supplied web token against siteverify', async () => {
-    const req = fakeReq({ origin: 'https://worldofclaudecraft.com' }, '203.0.113.55');
+    const req = fakeReq({ origin: 'https://wildhaven.example' }, '203.0.113.55');
     const fetchOk = vi.fn(
       async () => new Response(JSON.stringify({ success: true }), { status: 200 }),
     );
@@ -901,7 +837,7 @@ describe('Turnstile gate policy (passesTurnstile)', () => {
   });
 
   it('lets requests through when no secret is configured', async () => {
-    const req = fakeReq({ origin: 'https://worldofclaudecraft.com' }, '203.0.113.55');
+    const req = fakeReq({ origin: 'https://wildhaven.example' }, '203.0.113.55');
     await expect(passesTurnstile(req, {}, '')).resolves.toBe(true);
   });
 
@@ -914,7 +850,7 @@ describe('Turnstile gate policy (passesTurnstile)', () => {
       const native = fakeReq({ origin: 'capacitor://localhost' }, '203.0.113.55');
       await expect(passesTurnstile(native, {}, '')).resolves.toBe(false);
       // and the desktop bypass still admits its own origins under the same env
-      const desktop = fakeReq({ origin: 'app://worldofclaudecraft' }, '203.0.113.55');
+      const desktop = fakeReq({ origin: 'app://wildhaven' }, '203.0.113.55');
       await expect(passesTurnstile(desktop, {}, testSecret)).resolves.toBe(true);
     } finally {
       delete process.env.NATIVE_ATTESTATION_REQUIRED;

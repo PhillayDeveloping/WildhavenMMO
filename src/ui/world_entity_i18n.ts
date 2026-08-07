@@ -1,4 +1,5 @@
 import {
+  DAILY_REWARD_LETTER,
   GUILD_TREND_LETTERS,
   HEROIC_MARK_LETTER,
   type LetterDef,
@@ -578,6 +579,9 @@ const LETTER_IDS = [
   'letter_q_greyjaw',
   'letter_q_hollow',
   'heroic_marks_reward',
+  // The daily standings prize letter (DAILY_REWARD_LETTER in
+  // src/sim/content/letters.ts), carrying a placing player's share of the purse.
+  'daily_reward_prize',
   // Guild trend letters (Professions 2.0), one per canonical adjacent
   // pair in CRAFT_RING order (GUILD_TREND_LETTERS in src/sim/content/letters.ts).
   'guild_trend_engineering_alchemy',
@@ -752,6 +756,7 @@ function makeEnglishWorldEntities(): WorldEntityTranslations {
     [WELCOME_LETTER.letterId]: WELCOME_LETTER,
     [HEROIC_MARK_LETTER.letterId]: HEROIC_MARK_LETTER,
     [MASTERY_RESET_LETTER.letterId]: MASTERY_RESET_LETTER,
+    [DAILY_REWARD_LETTER.letterId]: DAILY_REWARD_LETTER,
   };
   for (const letter of Object.values(QUEST_LETTERS)) lettersById[letter.letterId] = letter;
   for (const letter of Object.values(GUILD_TREND_LETTERS)) lettersById[letter.letterId] = letter;

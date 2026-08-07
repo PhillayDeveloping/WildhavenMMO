@@ -22,7 +22,7 @@ GOAL: Implement an accessible Edit Mode that lets players drag-reposition HUD wi
    - the per-window modules exist under `src/ui/hud/` (the windows this editor must move are registered there).
    It also assumes the Phase 3 announcer (src/ui/hud/a11y/announcer.ts) and the Phase 5 single-pointer drag util (src/ui/hud/a11y/pointer.ts) have landed; agent B uses the announcer and agent A reuses the single-pointer drag alternative.
    If the registry, the modules, the announcer, or the pointer util are not present, STOP and surface "cross-packet checkpoint not met: <what is missing>". Do not stub the refactor.
-3. Memory scan. Read ~/.claude/projects/-Users-fernando-Documents-world-of-claudecraft/memory/MEMORY.md and the notes it indexes that are relevant here: hud, i18n, shared-worktree (stage only your files), never-push-to-fork (push to origin levy-street, never the FernandoX7 fork), no-em-dashes-or-emojis, live-site-and-test-creds (worldofclaudecraft.com, fernando/turbo564, window.__game debug hook). Honor all of them.
+3. Memory scan. Read ~/.claude/projects/-Users-fernando-Documents-wildhaven/memory/MEMORY.md and the notes it indexes that are relevant here: hud, i18n, shared-worktree (stage only your files), never-push-to-fork (push to origin levy-street, never the FernandoX7 fork), no-em-dashes-or-emojis, live-site-and-test-creds (wildhaven.example, fernando/turbo564, window.__game debug hook). Honor all of them.
 4. Branch. Create the phase branch off the packet base: `git checkout -b feature/p25-edit-mode-core`. One card, one branch, one PR.
 
 === STEP 1 - LOAD CONTEXT (do NOT read planning docs or src/ui/hud.ts in the main loop) ===

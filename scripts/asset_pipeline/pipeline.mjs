@@ -1,4 +1,4 @@
-// World of ClaudeCraft asset-creation pipeline (Tripo API + optional gpt-image-2).
+// Wildhaven asset-creation pipeline (Tripo API + optional gpt-image-2).
 //
 // Generates game-ready assets that match the shipped conventions exactly:
 // weapons (grip-at-origin variant GLB + HUD icon + registry wiring), props

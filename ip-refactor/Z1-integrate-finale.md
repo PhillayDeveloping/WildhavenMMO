@@ -38,7 +38,7 @@ Write a dated maintainer note (create `docs/refactor/ip-pivot-release-locale-fil
 
 ### (5) Documentation + memory pass (prose only)
 - **02-WORKING-MEMORY.md:** mark the program DONE - flip every slice on the status board to `merged`, tick every scanner-worklist row (scanner fully green), and record Z1's artifact regeneration in the touch log. Append-only.
-- **Maintainer memory `ip-pivot-project`:** update to the completion state (all slices merged, `ip_scrub` green, goldens byte-identical except the enumerated C1/C2 token swaps, release-locale-fill handed off). Note the DEFERRED tracks for the future: the brand rename ("World of ClaudeCraft" -> new product name, the lawyer's P0, a separate business track) and the HUD trade-dress redesign (out of scope this pass), plus the residual nine-class "copied compilation" risk the operator accepted.
+- **Maintainer memory `ip-pivot-project`:** update to the completion state (all slices merged, `ip_scrub` green, goldens byte-identical except the enumerated C1/C2 token swaps, release-locale-fill handed off). Note the DEFERRED tracks for the future: the brand rename ("Wildhaven" -> new product name, the lawyer's P0, a separate business track) and the HUD trade-dress redesign (out of scope this pass), plus the residual nine-class "copied compilation" risk the operator accepted.
 
 ## The mapping (apply NAME-MAP verbatim)
 Z1 applies NO mapping row - it introduces no new rename (every old -> new string is owned by V/C/W/T and already applied on the merged tree). Its only relationship to the NAME-MAP is CONFIRMATION: `tests/ip_scrub.test.ts` (keyed to the NAME-MAP `old` column) must be fully green, which proves every mapped `old` name is gone from every player-visible field. If a needed string were somehow off-map, that is a track defect, not a Z1 edit: STOP and surface it. The LOCKED NAME-MAP stays append-only and untouched.
@@ -80,7 +80,7 @@ From 00-SHARED-CONVENTIONS, the ones that bite the finale:
 - **Any new rename.** Every old -> new string is owned by V/C/W/T and already applied. Z1 introduces NO new mapped name; a missing/off-map string is an owning-track defect to flag, not a Z1 edit.
 - **Re-opening a track's edit.** Z1 does not re-rename `classes.ts`, `talents_classic.ts`, `warlock_pets.ts`, `items.ts`, the creature families, or the mob-mechanic auras; it confirms their aftermath.
 - **Fixing the locale overlays.** The 20 non-English overlays are the maintainer's release-tier job; Z1 WRITES the reconciliation note, it does not edit an overlay.
-- **The deferred tracks.** The brand rename ("World of ClaudeCraft" -> new product name) and the HUD trade-dress redesign are separate future tracks, noted in the handoff, NOT done here.
+- **The deferred tracks.** The brand rename ("Wildhaven" -> new product name) and the HUD trade-dress redesign are separate future tracks, noted in the handoff, NOT done here.
 - **Any id change beyond the already-landed C1/C2 sweep, any wire/save/RL-action-space change, any golden re-baseline** (other than confirming the C1/C2 token swap), and **any loosening/`.skip` of a gate.**
 
 ## Verify

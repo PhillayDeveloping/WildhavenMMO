@@ -2,7 +2,7 @@ name: OTA publish
 
 # Publishes a self-hosted OTA web bundle for the iOS/Android shells to the
 # update host (the Cloudflare R2 bucket that also serves desktop updates, under
-# https://updates.worldofclaudecraft.com/ota/). The full runbook is
+# https://updates.wildhaven.example/ota/). The full runbook is
 # docs/ota-updates.md.
 #
 # WHY THIS IS DISPATCH-ONLY, unlike Desktop publish which fires on a release tag:
@@ -81,7 +81,7 @@ jobs:
       # probe (rate limited, timed out) does NOT count as permission to publish.
       - name: Layout-epoch preflight against the live server
         if: ${{ !inputs.skip_server_check }}
-        run: node scripts/ota/check_server_layout.mjs wss://worldofclaudecraft.com/ws
+        run: node scripts/ota/check_server_layout.mjs wss://wildhaven.example/ws
 
       # Inputs go through env, never string-interpolated into the shell line.
       - name: Publish the bundle
@@ -99,7 +99,7 @@ jobs:
           AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
           OTA_S3_BUCKET: ${{ secrets.R2_BUCKET }}
           OTA_S3_PREFIX: ota
-          OTA_PUBLIC_BASE_URL: https://updates.worldofclaudecraft.com
+          OTA_PUBLIC_BASE_URL: https://updates.wildhaven.example
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
         run: |
           set -euo pipefail
@@ -123,7 +123,7 @@ jobs:
         run: |
           set -euo pipefail
           VERSION="$(node -p "require('./package.json').version")"
-          MANIFEST="https://updates.worldofclaudecraft.com/ota/latest.json"
+          MANIFEST="https://updates.wildhaven.example/ota/latest.json"
           echo "Expecting the update host and the game server to converge on ${VERSION}"
 
           published="$(curl -sSf --max-time 30 "${MANIFEST}" | jq -r .version)"
@@ -137,7 +137,7 @@ jobs:
           # its own validation (https, same-origin bundle URL, checksum present).
           # An offer coming back proves the whole chain, not just the upload.
           for attempt in $(seq 1 12); do
-            offered="$(curl -sS --max-time 30 -X POST https://worldofclaudecraft.com/api/ota/updates \
+            offered="$(curl -sS --max-time 30 -X POST https://wildhaven.example/api/ota/updates \
               -H 'content-type: application/json' \
               -d '{"platform":"ios","version_name":"builtin","version_build":"0.0.1"}' | jq -r '.version // empty')"
             if [ "${offered}" = "${VERSION}" ]; then

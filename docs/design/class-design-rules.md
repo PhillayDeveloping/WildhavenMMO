@@ -2,7 +2,7 @@
 
 Status: living design standard for class balance and combat-kit work.
 
-World of ClaudeCraft uses the same deterministic simulation on desktop, mobile, the
+Wildhaven uses the same deterministic simulation on desktop, mobile, the
 authoritative server, and the headless environment. A specialization must remain readable on a
 small screen, understandable from its tooltips, and measurable in the shared simulation.
 

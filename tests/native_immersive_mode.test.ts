@@ -4,12 +4,12 @@ import { describe, expect, it } from 'vitest';
 const root = new URL('../', import.meta.url);
 const read = (path: string) => readFileSync(new URL(path, root), 'utf8').replace(/\r\n/g, '\n');
 
-// PR #2423 split the Android app into product flavors (play, solanaStore): the shared
+// PR #2423 split the Android app into product flavors; only play survives the web3
 // behavior moved to BaseMainActivity, and each flavor now ships its own thin MainActivity
 // that only overrides plugin registration. The immersive-mode code this suite guards lives
 // in the base, so that is what it reads; the old single-activity path stopped existing and
 // took this file's whole collection down with it.
-const ACTIVITY_DIR = 'android/app/src/main/java/com/worldofclaudecraft';
+const ACTIVITY_DIR = 'android/app/src/main/java/com/wildhaven';
 
 /** Every flavor that ships its own MainActivity, discovered rather than listed. */
 function flavorActivities(): { flavor: string; source: string }[] {
@@ -18,7 +18,7 @@ function flavorActivities(): { flavor: string; source: string }[] {
     .filter((entry) => entry.isDirectory() && entry.name !== 'main')
     .map((entry) => ({
       flavor: entry.name,
-      path: `android/app/src/${entry.name}/java/com/worldofclaudecraft/MainActivity.java`,
+      path: `android/app/src/${entry.name}/java/com/wildhaven/MainActivity.java`,
     }))
     .filter(({ path }) => {
       try {
@@ -56,7 +56,7 @@ describe('Android immersive mode', () => {
     // flavor extending BridgeActivity directly would ship without immersive mode while
     // this suite stayed green over a surface that no longer matched it.
     const flavors = flavorActivities();
-    expect(flavors.map((f) => f.flavor).sort()).toEqual(['play', 'solanaStore']);
+    expect(flavors.map((f) => f.flavor).sort()).toEqual(['play']);
     for (const { flavor, source } of flavors) {
       expect(source, `${flavor} MainActivity must inherit the immersive base`).toMatch(
         /class MainActivity extends BaseMainActivity/,

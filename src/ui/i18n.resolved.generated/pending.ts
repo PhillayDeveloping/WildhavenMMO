@@ -9,25 +9,100 @@
 // Reproducibility is checked by tests/i18n_resolved_equivalence.test.ts.
 
 export const pending: Record<string, readonly string[]> = {
-  "es": [],
-  "es_ES": [],
-  "fr_FR": [],
-  "fr_CA": [],
+  "es": [
+    "entities.letters.daily_reward_prize.body",
+    "entities.letters.daily_reward_prize.sender",
+    "entities.letters.daily_reward_prize.subject",
+    "hudChrome.dailyRewards.disclaimer"
+  ],
+  "es_ES": [
+    "entities.letters.daily_reward_prize.body",
+    "entities.letters.daily_reward_prize.sender",
+    "entities.letters.daily_reward_prize.subject",
+    "hudChrome.dailyRewards.disclaimer"
+  ],
+  "fr_FR": [
+    "entities.letters.daily_reward_prize.body",
+    "entities.letters.daily_reward_prize.sender",
+    "entities.letters.daily_reward_prize.subject",
+    "hudChrome.dailyRewards.disclaimer"
+  ],
+  "fr_CA": [
+    "entities.letters.daily_reward_prize.body",
+    "entities.letters.daily_reward_prize.sender",
+    "entities.letters.daily_reward_prize.subject",
+    "hudChrome.dailyRewards.disclaimer"
+  ],
   "en_CA": [],
-  "it_IT": [],
-  "de_DE": [],
+  "it_IT": [
+    "entities.letters.daily_reward_prize.body",
+    "entities.letters.daily_reward_prize.sender",
+    "entities.letters.daily_reward_prize.subject",
+    "hudChrome.dailyRewards.disclaimer"
+  ],
+  "de_DE": [
+    "entities.letters.daily_reward_prize.body",
+    "entities.letters.daily_reward_prize.sender",
+    "entities.letters.daily_reward_prize.subject",
+    "hudChrome.dailyRewards.disclaimer"
+  ],
   "zh_CN": [],
   "zh_TW": [],
   "ko_KR": [],
   "ja_JP": [],
-  "pt_BR": [],
+  "pt_BR": [
+    "entities.letters.daily_reward_prize.body",
+    "entities.letters.daily_reward_prize.sender",
+    "entities.letters.daily_reward_prize.subject",
+    "hudChrome.dailyRewards.disclaimer"
+  ],
   "ru_RU": [],
-  "cs_CZ": [],
-  "nl_NL": [],
-  "pl_PL": [],
-  "id_ID": [],
-  "tr_TR": [],
-  "sv_SE": [],
-  "vi_VN": [],
-  "da_DK": []
+  "cs_CZ": [
+    "entities.letters.daily_reward_prize.body",
+    "entities.letters.daily_reward_prize.sender",
+    "entities.letters.daily_reward_prize.subject",
+    "hudChrome.dailyRewards.disclaimer"
+  ],
+  "nl_NL": [
+    "entities.letters.daily_reward_prize.body",
+    "entities.letters.daily_reward_prize.sender",
+    "entities.letters.daily_reward_prize.subject",
+    "hudChrome.dailyRewards.disclaimer"
+  ],
+  "pl_PL": [
+    "entities.letters.daily_reward_prize.body",
+    "entities.letters.daily_reward_prize.sender",
+    "entities.letters.daily_reward_prize.subject",
+    "hudChrome.dailyRewards.disclaimer"
+  ],
+  "id_ID": [
+    "entities.letters.daily_reward_prize.body",
+    "entities.letters.daily_reward_prize.sender",
+    "entities.letters.daily_reward_prize.subject",
+    "hudChrome.dailyRewards.disclaimer"
+  ],
+  "tr_TR": [
+    "entities.letters.daily_reward_prize.body",
+    "entities.letters.daily_reward_prize.sender",
+    "entities.letters.daily_reward_prize.subject",
+    "hudChrome.dailyRewards.disclaimer"
+  ],
+  "sv_SE": [
+    "entities.letters.daily_reward_prize.body",
+    "entities.letters.daily_reward_prize.sender",
+    "entities.letters.daily_reward_prize.subject",
+    "hudChrome.dailyRewards.disclaimer"
+  ],
+  "vi_VN": [
+    "entities.letters.daily_reward_prize.body",
+    "entities.letters.daily_reward_prize.sender",
+    "entities.letters.daily_reward_prize.subject",
+    "hudChrome.dailyRewards.disclaimer"
+  ],
+  "da_DK": [
+    "entities.letters.daily_reward_prize.body",
+    "entities.letters.daily_reward_prize.sender",
+    "entities.letters.daily_reward_prize.subject",
+    "hudChrome.dailyRewards.disclaimer"
+  ]
 };

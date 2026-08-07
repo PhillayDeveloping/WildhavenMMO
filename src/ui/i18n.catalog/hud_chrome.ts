@@ -121,9 +121,9 @@ export const hudChromeStrings = {
     disabled:
       'Daily Rewards is currently disabled. We will announce updates to this feature in the Discord channel.',
     intro:
-      'Hold enough WOC in your verified wallet to unlock daily rewards. Earn points with one daily spin and rotating tasks, then climb the daily leaderboard for a share of the prize pool.',
+      'Earn points with one daily spin and rotating tasks, then climb the daily leaderboard for a share of the prize pool.',
     disclaimer:
-      'WOC price can move quickly. We recommend holding more than the $20 USD minimum so normal price swings do not lock you out. This is not financial advice.',
+      'Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.',
     prize: 'Prize Pool',
     reset: 'Reset',
     endsIn: 'Ends in {time}',
@@ -132,9 +132,6 @@ export const hudChromeStrings = {
     remainingHoursMinutes: '{hours}h {minutes}m',
     remainingDaysHours: '{days}d {hours}h',
     score: 'Score',
-    walletValue: 'Wallet Value (WOC)',
-    usd: '{amount} USD',
-    sol: '{amount} SOL',
     unknown: 'Unknown',
     spinTitle: 'Daily Spin',
     spinDialogTitle: 'Daily Reward Spin',
@@ -160,17 +157,8 @@ export const hudChromeStrings = {
     history: 'Past Winners',
     noLeaders: 'No points yet.',
     noHistory: 'No payouts yet.',
-    walletConnectTitle: 'Verify Wallet',
-    walletConnectBody: 'Verify a Solana wallet with WOC to unlock daily rewards.',
-    walletConnectButton: 'Verify Wallet',
-    walletHoldTitle: 'Hold WOC',
-    walletHoldBody: 'Hold at least {amount} USD in WOC to unlock daily rewards.',
-    walletPriceBody: 'WOC pricing is unavailable right now. Check back shortly.',
     reason: {
       eligible: 'Rewards unlocked.',
-      no_wallet: 'Connect a wallet with at least $20 USD in WOC.',
-      under_minimum: 'Wallet is below the $20 USD WOC minimum.',
-      price_unavailable: 'WOC price is unavailable, rewards are temporarily locked.',
       banned: 'You are banned from Daily Rewards. Reason: {reason}',
       bannedUntil:
         'You are banned from Daily Rewards for another {remaining}. Access returns {until}. Reason: {reason}',
@@ -201,22 +189,6 @@ export const hudChromeStrings = {
     armoryTitle: 'The Armory',
     armoryBody:
       'Limited weapon skins from the Season 1 Armory. Account-wide, purely cosmetic, and shown to everyone around you.',
-    wallet: {
-      title: 'Solana wallet',
-      unlinked:
-        'Connect a wallet app, then sign once to link its public address to your WoC account. We never receive your recovery phrase or private key.',
-      connectedUnlinked:
-        'The wallet app is connected to this browser, but its public address is not linked to your WoC account yet.',
-      linkedDisconnected:
-        'Your public address is linked. Reconnect that wallet app when you want to pay with SOL or WOC.',
-      linkedConnected: 'Your linked wallet app is connected and ready for SOL or WOC purchases.',
-      mismatched:
-        'A different wallet is connected. Verify it to replace the linked address, or reconnect the linked wallet.',
-      connect: 'Connect wallet',
-      verify: 'Verify and link',
-      reconnect: 'Reconnect wallet',
-      manage: 'Manage wallet',
-    },
     collectionLine: '{collection} Collection',
     collections: armoryCollectionStrings,
     skins: armorySkinStrings,
@@ -270,9 +242,6 @@ export const hudChromeStrings = {
     loading: 'Loading Claudium...',
     balanceLabel: 'Balance',
     balanceUnit: '{amount} Claudium',
-    solBalance: 'SOL: {amount}',
-    usdcBalance: 'USDC: {amount}',
-    wocBalance: 'WOC: {amount}',
     unavailable:
       'The Claudium store is unavailable right now. Your balance and purchases are unaffected; please check back shortly.',
     disclosure:
@@ -280,12 +249,6 @@ export const hudChromeStrings = {
     buyTitle: 'Buy Claudium',
     railLabel: 'Payment method',
     railStripe: 'Card',
-    railSol: 'SOL',
-    railUsdc: 'USDC',
-    railWoc: 'WOC',
-    railWocDiscount: '{percent}% off',
-    railWocUnavailable: 'WOC pricing is unavailable right now.',
-    railNativeUnavailable: 'Crypto off.',
     amountLabel: 'Amount',
     showAmounts: 'Show all Claudium amounts',
     hideAmounts: 'Hide extra Claudium amounts',
@@ -302,14 +265,10 @@ export const hudChromeStrings = {
     checkoutTitle: 'Complete purchase',
     checkoutClose: 'Close checkout',
     checkoutLoading: 'Loading checkout...',
-    checkoutPending: 'Transaction in progress. Confirm in your wallet and keep this panel open.',
+    checkoutPending: 'Payment in progress. Keep this panel open.',
     checkoutPendingButton: 'Processing',
     checkoutFailed: 'Checkout could not be loaded. Please try again.',
     checkoutUnavailable: 'That Claudium purchase is not available right now.',
-    checkoutWalletRequired: 'Connect a Solana wallet before buying Claudium with crypto.',
-    checkoutWalletUnsupported: 'This wallet cannot sign and send Solana transactions.',
-    checkoutNotSettled:
-      'The transaction was sent but Claudium was not credited yet. Please try again shortly.',
   },
   theme: {
     preset: 'UI Theme',
@@ -560,9 +519,9 @@ export const hudChromeStrings = {
   },
   nativeUpdate: {
     title: 'Update Available',
-    body: 'A new version of World of ClaudeCraft is available. Update now for the latest fixes and improvements.',
+    body: 'A new version of Wildhaven is available. Update now for the latest fixes and improvements.',
     bodyWithVersion:
-      'Version {version} of World of ClaudeCraft is available. Update now for the latest fixes and improvements.',
+      'Version {version} of Wildhaven is available. Update now for the latest fixes and improvements.',
     notNow: 'Not now',
     update: 'Update',
   },
@@ -1080,8 +1039,6 @@ export const hudChromeStrings = {
     lockCursorOnRotate: 'Lock Cursor While Rotating',
     keybindHelpLockCursorOnRotate:
       'Keeps the mouse cursor inside the window while you drag to rotate the camera, so it cannot reach the screen edge or move to another monitor. Turn off if you prefer a free cursor.',
-    showWalletOnCharacterScreen: 'Show Wallet on Character Screen',
-    showWalletOnPlayerCard: 'Show Wallet on Player Card',
     // Interface panel toggle: nameplate glyph/outline, inspect block, player
     // card, and the Developers leaderboard tab (on by default).
     showDevBadges: 'Show Developer Badges',
@@ -1324,9 +1281,7 @@ export const hudChromeStrings = {
       aetherRush: 'Aether Rush',
     },
   },
-  playerCard: {
-    showWalletBadge: 'Show wallet badge',
-  },
+  playerCard: {},
   // Landing-page (start screen) accessibility controls.
   landing: {
     // Footer toggle: swap the moving trailer for a static high-contrast backdrop.
@@ -1577,7 +1532,6 @@ export const hudChromeStrings = {
     loggedOutPrompt: 'Log in to manage your account.',
     memberSince: 'Member since {date}',
     sectionSettings: 'Account Settings',
-    sectionWallet: '$WOC Wallet',
     sectionCharacters: 'Characters',
     sectionDanger: 'Danger Zone',
     // Change password
@@ -1608,9 +1562,6 @@ export const hudChromeStrings = {
     charactersSummary: 'Manage your characters and enter the world.',
     charactersCount: 'Characters: {count}',
     goToCharacters: 'View Characters',
-    // Wallet
-    walletSummary: 'Verify a Solana wallet to show holder flair on your player card.',
-    manageWallet: 'Manage Wallet',
     // Deactivate
     deactivate: 'Deactivate Account',
     deactivateWarning:
@@ -2242,7 +2193,7 @@ export const hudChromeStrings = {
   },
   discord: {
     title: 'Discord',
-    panelTitle: 'World of ClaudeCraft',
+    panelTitle: 'Wildhaven',
     open: 'Discord',
     close: 'Close',
     keybind: 'Discord Panel',
@@ -2419,7 +2370,7 @@ export const hudChromeStrings = {
     badgeTitle: 'Developer: {tier}',
     prsLanded: '{count} pull requests merged',
     contributor: 'Open-source contributor',
-    // GitHub link control (mirrors the wallet link beside it on character select).
+    // GitHub link control on character select.
     link: {
       cta: 'Link GitHub',
       relink: 'Relink GitHub',
@@ -2580,11 +2531,9 @@ export const hudChromeStrings = {
     bonusStatusEarned: '+{count}',
     bonusSourceEmail: 'Verified email',
     bonusSourceDiscord: 'Discord linked',
-    bonusSourceWallet: 'Wallet linked',
     bonusSourceReferral: 'Referred friends',
     bonusAdvertEmail: 'Verify your email to earn 2 slots.',
     bonusAdvertDiscord: 'Link your Discord to earn 2 slots.',
-    bonusAdvertWallet: 'Link a wallet to earn 2 slots.',
     bonusReferralProgress: '{count}/{cap}',
     bonusReferralExplainer:
       'Invite a friend: when they reach level 10 you each earn 2 slots, up to 5 friends.',

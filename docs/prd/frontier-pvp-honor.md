@@ -1,13 +1,13 @@
-# PRD: Frostreach Frontier (Open PvP Zone), Honor, and the $WOC Stakes Layer
+# PRD: Frostreach Frontier (Open PvP Zone) and Honor
 
 | | |
 |---|---|
-| **Status** | Draft v2 (v1 free loop + the $WOC stakes layer and agent posture) |
+| **Status** | Draft v2. The staked-season layer this doc once carried was cut with the rest of web3; what remains is the free loop. |
 | **Owner** | design |
 | **Created** | 2026-07-03 |
-| **Design reference** | Classic-era Wintergrasp / world PvP zones (two teams, contested objectives, honor currency, timed zone events); the degen-gaming thesis and Cambria's extraction loop (risk-native design, seasons, tunable rake) for the stakes layer |
-| **Related systems** | Duel/arena hostility (`src/sim/social/duel.ts`, `src/sim/social/arena.ts`, `isHostileTo`), world boss (`src/sim/world_boss.ts`), rare spawns (`MobTemplate.rare`), currencies (`copper`, `delveMarks` on `CharacterState`), vendors (`NpcDef.vendorItems`), realms (`server/realm.ts`), instance x-bands (`src/sim/data.ts`), wallet verification (`docs/prd/woc/wallet-link.md`), headless RL env (`headless/`, `python/`) |
-| **Companion docs** | `docs/prd/badges.md` (deterministic-currency precedent), `docs/prd/heroic-mythic-dungeons.md`, `docs/prd/woc/holder-cosmetic-flair.md` |
+| **Design reference** | Classic-era Wintergrasp / world PvP zones (two teams, contested objectives, honor currency, timed zone events) |
+| **Related systems** | Duel/arena hostility (`src/sim/social/duel.ts`, `src/sim/social/arena.ts`, `isHostileTo`), world boss (`src/sim/world_boss.ts`), rare spawns (`MobTemplate.rare`), currencies (`copper`, `delveMarks` on `CharacterState`), vendors (`NpcDef.vendorItems`), realms (`server/realm.ts`), instance x-bands (`src/sim/data.ts`), headless RL env (`headless/`, `python/`) |
+| **Companion docs** | `docs/prd/badges.md` (deterministic-currency precedent), `docs/prd/heroic-mythic-dungeons.md` |
 | **Implementation handoff** | `docs/prd/FRONTIER_PHASE1_HANDOFF.md` (Phase 1 slices, verified hook points, executor routing) |
 
 ---
@@ -30,14 +30,10 @@ banked**. They ride on your character as visible cargo, drop for the enemy when 
 die, and only become yours when you turn them in at your team's base. Every full
 cargo bag walking home is a PvP objective.
 
-The zone runs as **two loops on one design**. The **free loop** (sections 5 to 9)
-is always on, on every realm, with play stakes: the on-ramp, the skill-builder,
-and the identity layer. The **$WOC stakes layer** (section 12) reruns the same
-extraction loop as bounded, deposit-to-play **staked seasons** where cargo
-settles to $WOC, plus a sanctioned **agent server** where automation is a
-first-class way to play. The stakes layer never touches `src/sim/`: the sim
-deals in cargo, honor, and copper only, and the token bridge lives at the server
-boundary (the token firewall, section 12.2).
+The zone runs on **play stakes only** (sections 5 to 9): the on-ramp, the
+skill-builder, and the identity layer. An earlier draft paired this with a
+deposit-to-play staked season settling to a token; that layer is gone with the
+rest of the web3 surface, and the sim deals in cargo, honor, and copper only.
 
 All outcomes resolve in the authoritative `Sim`; clients mirror via `IWorld` /
 `ClientWorld`. Content is declarative in `src/sim/content/`.
@@ -58,11 +54,8 @@ Frontier section with an Enter button, your team, honor balance, and the next
 event countdown. This preserves the whole point: your level-20 main, its gear,
 and its guild all matter in the Frontier.
 
-The realm framing does return in one place: the **agent server** (section 12.6)
-is a dedicated realm where automation is sanctioned, because realms are exactly
-the isolation boundary that stance needs. And a `REALM_TYPE='PvP'` shard where
-the *entire overworld* uses Frontier flagging rules remains a
-config-plus-small-code follow-up (section 13), not v1.
+A `REALM_TYPE='PvP'` shard where the *entire overworld* uses Frontier flagging
+rules remains a config-plus-small-code follow-up (section 13), not v1.
 
 ## 3. Current state in the codebase (what this reuses and what is new)
 
@@ -78,8 +71,6 @@ config-plus-small-code follow-up (section 13), not v1.
 | Spatial bands | Overworld x in [-180, 180]; dungeons 900+; arena 4200+; delves 4800+ (delve band is open-ended along x today) | New Frontier band, `FRONTIER_X_MIN = 9000` (leaves headroom for delve growth; `isDelvePos` must gain an upper bound, see handoff gotcha G1) |
 | PvP rewards | Duel/arena kills grant nothing (no XP, no loot) | Honor grants on player kill, with diminishing returns (section 7) |
 | Back attachment (flag) | `src/render/characters/` template system | Team banner attachment tinted per team, plus nameplate tint |
-| Wallet identity | `docs/prd/woc/wallet-link.md`: non-custodial Solana wallet verification | Season deposits/settlement (server boundary only, section 12.2); custody design is its own doc |
-| Agents / automation | Headless RL env (`headless/env_server.ts`, `python/`), one sim in three hosts | The agent server realm (section 12.6) and the economy wind tunnel (section 12.7) |
 
 ## 4. Goals and non-goals
 
@@ -96,29 +87,21 @@ config-plus-small-code follow-up (section 13), not v1.
   reason to log in "for the top of the hour".
 - Identical behavior online, offline, and headless (the RL env gets a PvP zone for
   free, which is a genuinely interesting training environment).
-- **The stakes layer (phased, section 12)**: deposit-to-play $WOC staked seasons
-  on the same loop, a sanctioned agent server, and a headless economy red-team
-  harness that gates every season parameter change. Risk-native, not a wager
-  bolted on top: the extraction loop IS the risk loop.
-- **The token firewall as an invariant**: $WOC and wallets never enter
-  `src/sim/`; the complete game is playable with zero money attached.
 
 ### Non-goals
 - Siege weapons, destructible walls/gates, vehicles (the full Wintergrasp fortress
   siege). The event framework leaves room for it (section 8 backlog).
-- Ranked ratings or matchmaking. Honor is a currency, not a rating; staked
-  seasons bracket by deposit, not skill rating.
+- Ranked ratings or matchmaking. Honor is a currency, not a rating.
 - Cross-realm queueing or realm merging.
 - Professions/crafting. Frontier resources are turn-in valuables in v1, not
   crafting mats (future hook, section 13).
 - Battleground-style instanced matches with win conditions. The zone is persistent.
-- Pure-chance casino mechanics (slots, lockboxes, coin flips). The stakes layer
-  stays skill-forward: stat-check combat where bad players can beat good players
-  in a fight but skill has the EV edge over a season.
-- Liquid honor. Honor never trades and never bridges to $WOC, in any mode, ever
-  (section 12.3).
-- Perfect bot detection on human realms. Enforcement is economic first
-  (section 12.6); we do not pretend otherwise.
+- Pure-chance casino mechanics (slots, lockboxes, coin flips). The zone stays
+  skill-forward: stat-check combat where bad players can beat good players in a
+  fight but skill has the edge over time.
+- Liquid honor. Honor never trades, in any mode, ever.
+- Perfect bot detection. The bot detector seam (`server/bot_detector/`) is the
+  defense; we do not pretend it is complete.
 
 ## 5. Teams, flagging, and identity
 
@@ -214,8 +197,8 @@ health-like charge, spawned from declarative content records.
 
 - Honor is a plain counter on `CharacterState` (`honor: number`), granted
   server-side in the sim exactly like `delveMarks`. Additive JSONB field.
-- **Honor is soulbound, permanently** (section 12.3): no trading, no mailing, no
-  bridge to $WOC in any mode. It is the identity asset, and keeping it illiquid
+- **Honor is soulbound, permanently**: no trading, no mailing. It is the identity
+  asset, and keeping it illiquid
   is what keeps kill DR a balance knob instead of wash-trading security.
 - Anti-farm: level-difference gating and per-pair DR above; no honor from kills
   where killer and victim share a party (defense in depth; cross-team parties
@@ -340,7 +323,7 @@ HUD (each its own module the HUD composes, not new `hud.ts` banner sections):
   (`npm run wiki:content`), mind spoiler-safety for rares/boss.
 - **Classic fidelity**: honor DR schedules and level-gating mirror classic honor
   rules; no invented balance numbers without a `docs/design/` note.
-- **Token firewall**: no wallet, token, or settlement code or imports anywhere in
+- **Money firewall**: no payment, token, or settlement code or imports anywhere in
   `src/sim/` (extend `tests/architecture.test.ts` with this scan). The sim's
   vocabulary ends at cargo, honor, copper.
 
@@ -352,165 +335,24 @@ HUD (each its own module the HUD composes, not new `hud.ts` banner sections):
 | 2. Economy | Nodes, gather channel, cargo, death drop, turn-in, Honor Quartermaster (gear + consumables) | Full harvest-carry-die-loot-turn-in loop deterministic in a headless test |
 | 3. Events | Event scheduler + the six v1 events, team score, HUD countdown | Seeded sim replays the same event sequence; each event has a sim test |
 | 4. Apex | Frontier world boss, rare trio, cosmetics/titles, zone map layer, wiki content | Boss daily gate works; i18n gates green at PR tier |
-| 5. Wind tunnel | Season config format + headless exploit-agent harness (section 12.7) | Harness runs seeded seasons in CI and reports extraction metrics; kill-trading and node-botting strategies show sub-threshold profit on the candidate config |
-| 6. Staked season pilot | One 2-week bracketed season on a dedicated staked shard; deposits/settlement via the wallet boundary; season leaderboard + settlement stories | Season settles correctly end to end on a testnet dry run first; every settlement idempotent and auditable; wind-tunnel gate passed |
-| 7. Agent server | Sanctioned-automation realm, agent-entered staked seasons, mixed exhibition events | Agents connect via WS or env API and complete a season; agent entrants marked on leaderboards |
-
-## 12. The $WOC stakes layer
-
-The free Frontier above is a complete feature and ships on its own merits. This
-section is what turns the same loop risk-native. Design reference: the
-degen-gaming thesis (deposit to play, no skillshots, incomplete information,
-continuous risk/reward, adversarial robustness) and Cambria's season cadence.
-The pitch in one line: **make money by being good at World of ClaudeCraft.**
-
-### 12.1 Two loops, one design
-- **Free loop** (sections 5 to 9): always on, every realm, play stakes. It is the
-  on-ramp, the practice arena, and, deliberately, the stake multiplier: the
-  level, gear, and talents a character earns in free play determine its
-  efficiency in staked play. Time invested in the free game IS part of your
-  edge, which stacks the identity moat on top of the financial one.
-- **Staked seasons**: scheduled, bounded runs (2 weeks, Cambria's cadence) on
-  dedicated staked shards. Entry is a $WOC deposit; extraction settles back to
-  $WOC at season end. Bounded seasons before any 24/7 persistent staked world:
-  every season is an economic experiment with a settlement date, and a bad
-  parameter dies with its season instead of compounding.
-
-### 12.2 The token firewall (invariant, not preference)
-$WOC never enters `src/sim/`. The sim speaks cargo units, honor, and copper; the
-server boundary maps wallet deposits to season entries and sim outcomes to
-settlements, building on the verified wallet identity from
-`docs/prd/woc/wallet-link.md` (custody and settlement mechanics get their own
-doc in `docs/prd/woc/`). What the firewall buys:
-- The three-host guarantee survives: offline and headless run the identical
-  season rules with play stakes, which is what makes 12.7 possible at all.
-- `tests/architecture.test.ts` stays meaningful and gains the token scan.
-- A structural firewall for the regulatory question (12.9): the game is complete
-  and playable with zero money attached; the stakes layer is a server-side
-  mapping on top.
-
-### 12.3 Honor is soulbound; cargo is the stake
-Two assets, two jobs, never crossed:
-- **Honor** is identity: titles, vendor unlock rights, lifetime milestones.
-  Never tradeable, never bridgeable, in free or staked play. The moment honor is
-  liquid, every kill-DR rule becomes wash-trading security instead of game
-  balance, and the identity moat (the thing that retains players who are down
-  money) is for sale.
-- **Cargo** is the stake: in a staked season the deposit converts to season
-  entry plus season-scoped gear risk, resources extracted convert back to $WOC
-  at settlement, and death drops carried value to the killer exactly as in the
-  free loop. Full-loot honesty applies to the carried layer only, never to the
-  soulbound layer: you can lose a season, you cannot lose who you are in the
-  game.
-
-### 12.4 Rake and sinks
-The house edge is the classic MMO sink set, reframed and tunable per season in
-the season config (data, not code): the turn-in tax, durability loss on death
-(repairs cost season currency), consumables, and the season entry fee. Tuning
-principle from the degen thesis, stated as a requirement: **tune for longevity,
-not take**. Extraction-heavy economies eat their fish and die (the trenches);
-every rake change must pass the wind tunnel (12.7) with fish-survival metrics,
-not just house-revenue metrics.
-
-### 12.5 Brackets and new-player protection
-- Seasons are **stake-bracketed**: minnow, standard, and shark brackets by
-  deposit size, so new depositors fight each other and not season veterans
-  running juiced characters.
-- Staked play requires level 20 (the free zone is where you get there and learn
-  the loop with play stakes first).
-- The known tension: brackets invite smurfing (sharks entering minnow brackets
-  with fresh wallets). Mitigations are economic (bracket payouts scale with
-  bracket size, so farming minnows pays minnow money) plus wallet-age/history
-  heuristics at the server boundary; we do not claim this is fully solvable, we
-  claim it is tunable, and it is a standing wind-tunnel scenario.
-
-### 12.6 Agents are first-class: the agent server
-Posture: **embrace**. This repo ships a headless RL env as a feature; pretending
-the game is unbottable would be self-delusion with a settlement date. Instead:
-- **The agent server**: a dedicated realm (realm-flag config, e.g.
-  `REALM_AGENTS=1`, surfaced in `REALM_DIRECTORY` so humans know exactly where
-  they are) where automation is sanctioned. Agents connect through the normal WS
-  protocol or the headless env API and play the same authoritative sim. Realms
-  already give us the isolation boundary for free.
-- **Agent-entered staked seasons** run on the agent server: my agent, my stake,
-  my strategy. Leaderboards mark agent entrants and their authors. This is a
-  product nobody else has: degen gaming for the agent-builder crowd, and the RL
-  env flips from liability (bot vector) to developer surface.
-- **Human realms**: staked brackets are human-only by policy. Enforcement is
-  economic first (entry stakes make sybil farming a capital cost, DR and
-  brackets cap the yield), moderation second, and never claimed perfect
-  (non-goal). The honest offer to a caught botter is: your playstyle has a home,
-  it is the agent server, take your stake there.
-- **Mixed exhibition seasons** (humans and agents in one bracket, clearly
-  labeled) as scheduled spectacle events, not the default.
-
-### 12.7 The economy wind tunnel
-A deliverable with tests, not an aspiration: a headless harness (`headless/` +
-the season config) that runs many seeded seasons with scripted adversarial
-agents (kill-traders, node-botters, cargo-launderers, sybil rings, shark pods
-hunting minnows) against a candidate season configuration, and reports
-extraction rate, honor inflation, new-player survival and retention proxies, and
-the concentration of winnings. It runs in CI for any change to season
-parameters. This is the structural advantage the deterministic sim buys us:
-**Cambria tunes its economy on paying players; we tune ours in CI.** The same
-harness doubles as the regression suite for 12.5's smurfing scenarios and
-12.4's rake changes.
-
-### 12.8 Spectacle, scarcity, and GTM
-- **Relics go scarce**: the Ancient Relic Cache tier (6.1) upgrades in staked
-  seasons to limited-count legendary drops (fixed mint per season). This is the
-  asymmetric-upside slot: the improbable extraction clip that markets the game.
-- **Make winners legible** (the Moneymaker effect): season leaderboards (the
-  `K` leaderboard window grows a season tab), a kill/extraction feed, and
-  settlement-day stories: biggest extraction, best comeback, top guild, top
-  agent author. Emergent PvP drama is free perpetual content; give it surfaces.
-- Wintergrasp events double as spectacle scheduling: Warlord hour and Bloodmoon
-  are when streams tune in.
-
-### 12.9 Regulatory posture (honest, brief)
-Real-money entry plus chance-weighted outcomes is regulated gambling in many
-jurisdictions, and the no-skillshots design (correctly, for the game) pushes
-outcomes toward dice, which is the wrong direction for a skill-game legal
-classification. Jurisdiction strategy, geofencing, and licensing are a business
-decision with counsel that gates any staked season going live; they are out of
-scope for this PRD. What is in scope: the token firewall (12.2) and the
-complete-without-money free loop are the strongest structural mitigations we
-can build, so they are invariants regardless of how the legal question
-resolves.
 
 ## 13. Future hooks (explicitly deferred)
 - `REALM_TYPE='PvP'` shard where overworld zones use Frontier flagging.
 - Frontier resources as crafting mats when professions land.
 - Fortress siege event (own PRD).
-- 24/7 persistent staked world (only if bounded seasons prove the economy).
-- Spectator mode + betting on agent seasons (prediction-market layer; own PRD,
-  own regulatory analysis).
 - Cross-realm event calendar alignment.
 
 ## 14. Decisions and open questions
 
 Resolved in this revision:
-1. Entry level: 15+ for the free zone (DR level-gating protects them), hard 20
-   for staked seasons (12.5).
-2. Cargo on teleport-out: forfeit, no tax exit. Cleaner rule, stronger
-   extraction tension, and in staked play a tax exit would be a volatility
-   escape hatch.
+1. Entry level: 15+ (diminishing-returns level-gating protects them).
+2. Cargo on teleport-out: forfeit, no tax exit. Cleaner rule, and it keeps the
+   extraction tension the whole loop rests on.
 3. Stealth openers on mid-channel gatherers: allowed. Getting sapped at a node
    is the point; incomplete information is a feature.
 4. Offline worlds: the Frontier exists offline with nodes, rares, and events
-   (play stakes, no bot teams in v1); staked seasons are online-only on
-   dedicated shards.
-5. Agent posture: embrace, via the agent server (12.6).
+   (no bot teams in v1).
 
 Still open:
-1. Honor cap per day/week, or let DR do the work? (Lean: no cap in the free
-   loop, measure; the wind tunnel answers this for staked seasons.)
-2. Bracket boundaries and payout curves for the first staked season (a wind
-   tunnel output, not a taste call).
-3. Season deposit denomination and custody mechanics ($WOC native vs
-   stable-denominated entries settled in $WOC; escrow design): the
-   `docs/prd/woc/` settlement doc owns this.
-4. Does the free Frontier ship to all realms before season 1, or launch
-   together? (Lean: free first; it is the funnel and the playtest.)
-5. Mixed human/agent exhibition rules: same bracket, or agents handicapped
-   (tick-rate budget, action-rate caps)?
+1. Honor cap per day/week, or let diminishing returns do the work? (Lean: no
+   cap, measure first.)

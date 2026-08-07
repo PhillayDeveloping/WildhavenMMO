@@ -218,18 +218,17 @@ describe('ensureSchema wires every schema module at boot', () => {
     expect(applied).toContain("action TEXT NOT NULL CHECK (action IN ('void', 'restore'))");
     expect(applied).toContain('actor_id TEXT NOT NULL');
     expect(applied).toContain('actor_username TEXT NOT NULL');
-    expect(applied).toContain(
-      'ALTER TABLE daily_reward_payouts ADD COLUMN IF NOT EXISTS signed_transaction TEXT',
-    );
-    expect(applied).toContain('CREATE TABLE IF NOT EXISTS daily_reward_payout_attempts');
-    expect(applied).toContain("kind TEXT NOT NULL CHECK (kind IN ('payout', 'resend'))");
-    expect(applied).toContain(
-      'ALTER TABLE daily_reward_payout_attempts ADD COLUMN IF NOT EXISTS operation_id TEXT',
-    );
-    expect(applied).toContain(
-      'CREATE UNIQUE INDEX IF NOT EXISTS daily_reward_payout_attempts_operation',
-    );
-    expect(applied).toContain('tx_signature TEXT NOT NULL UNIQUE');
+    // The prize is in-game coin delivered by Ravenpost letter at the winner's
+    // next join, so the row's own status IS the ledger. Asserted ABSENT rather
+    // than simply unlisted: the attempts table and the transaction columns only
+    // existed to make an EXTERNAL payment runner's retries idempotent, and
+    // reintroducing either would mean a payment rail came back.
+    expect(applied).not.toContain('daily_reward_payout_attempts');
+    expect(applied).not.toContain('signed_transaction');
+    expect(applied).not.toContain('tx_signature');
+    // The prize amount is copper (the sim's base unit), never a fiat figure.
+    expect(applied).toContain('prize_copper BIGINT NOT NULL');
+    expect(applied).not.toContain('prize_usd');
   });
 
   it('applies timed Daily Rewards bans without changing the exclusion-view shape', async () => {

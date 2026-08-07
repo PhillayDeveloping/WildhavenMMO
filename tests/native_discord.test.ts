@@ -10,7 +10,7 @@ describe('native Discord OAuth deep link', () => {
   it('parses a returning login handoff', () => {
     expect(
       parseNativeDiscordUrl(
-        'worldofclaudecraft://discord-auth?ok=1&mode=login&code=abc_123&username=Player',
+        'wildhaven://discord-auth?ok=1&mode=login&code=abc_123&username=Player',
       ),
     ).toEqual({
       ok: true,
@@ -24,8 +24,8 @@ describe('native Discord OAuth deep link', () => {
   it('registers the callback on both native platforms', () => {
     const ios = readFileSync('ios/App/App/Info.plist', 'utf8');
     const android = readFileSync('android/app/src/main/AndroidManifest.xml', 'utf8');
-    expect(ios).toContain('<string>worldofclaudecraft</string>');
-    expect(android).toContain('android:scheme="worldofclaudecraft"');
+    expect(ios).toContain('<string>wildhaven</string>');
+    expect(android).toContain('android:scheme="wildhaven"');
     expect(android).toContain('android:host="discord-auth"');
   });
 
@@ -48,8 +48,8 @@ describe('native Discord OAuth deep link', () => {
   });
 
   it('rejects unrelated schemes, hosts, and modes', () => {
-    expect(parseNativeDiscordUrl('https://worldofclaudecraft.com/discord-auth')).toBeNull();
-    expect(parseNativeDiscordUrl('worldofclaudecraft://desktop-login?mode=login')).toBeNull();
-    expect(parseNativeDiscordUrl('worldofclaudecraft://discord-auth?mode=nope')).toBeNull();
+    expect(parseNativeDiscordUrl('https://wildhaven.example/discord-auth')).toBeNull();
+    expect(parseNativeDiscordUrl('wildhaven://desktop-login?mode=login')).toBeNull();
+    expect(parseNativeDiscordUrl('wildhaven://discord-auth?mode=nope')).toBeNull();
   });
 });

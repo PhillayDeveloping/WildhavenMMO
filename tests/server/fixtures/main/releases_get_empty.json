@@ -1,7 +1,7 @@
 {
-  "body": "{\"releases\":[],\"repo\":\"levy-street/world-of-claudecraft\"}",
+  "body": "{\"releases\":[],\"repo\":\"PhillayDeveloping/wildhaven\"}",
   "headers": {
-    "content-length": 57,
+    "content-length": 52,
     "content-type": "application/json",
     "cross-origin-opener-policy": "same-origin",
     "cross-origin-resource-policy": "same-origin",

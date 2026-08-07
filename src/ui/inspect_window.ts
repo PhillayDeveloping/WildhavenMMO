@@ -30,12 +30,6 @@ import { discordRoleTagLabel } from './discord_role_tag';
 import { discordStatusBadgeDataUrl, discordStatusDisplayName } from './discord_tier';
 import { classDisplayName, itemDisplayName } from './entity_i18n';
 import { esc } from './esc';
-import {
-  holderCardBadgeClass,
-  holderTierBadgeDataUrl,
-  holderTierByIndex,
-  holderTierDisplayName,
-} from './holder_tier';
 import { formatNumber, t } from './i18n';
 import { iconDataUrl, QUALITY_COLOR } from './icons';
 import {
@@ -43,7 +37,6 @@ import {
   buildInspectView,
   type InspectDevModel,
   type InspectDiscordModel,
-  type InspectHolderModel,
 } from './inspect_view';
 import type { PainterHostPresentation } from './painter_host';
 import { hydratePortraits, portraitChipHtml } from './portrait_chip';
@@ -65,8 +58,6 @@ export interface InspectEntity {
   equippedInstances: Partial<Record<EquipSlot, ItemInstancePayload>>;
   /** The server-resolved active Armory weapon skin (wire wsk), render-only. */
   weaponSkinId?: string | null;
-  holderTier?: number;
-  holderBalance?: number;
   discordTier?: number;
   discordName?: string;
   discordAvatar?: string;
@@ -151,8 +142,6 @@ export class InspectWindow {
         skinCatalog: e.skinCatalog ?? 'class',
         deedTitleText: e.title ? deedTitleText(e.title) : '',
         equippedItems: e.equippedItems,
-        holderTier: e.holderTier ?? 0,
-        holderBalance: e.holderBalance ?? null,
         discordTier: e.discordTier ?? 0,
         discordName: e.discordName ?? null,
         discordAvatar: e.discordAvatar ?? null,
@@ -182,7 +171,6 @@ export class InspectWindow {
           className: classDisplayName(cls),
         }),
       )}</div>` +
-      this.holderHtml(model.badges.holder) +
       this.discordHtml(model.badges.discord) +
       this.devHtml(model.badges.dev) +
       `</div>` +
@@ -280,28 +268,6 @@ export class InspectWindow {
       this.deps.attachTooltip(row, () => this.deps.itemTooltip(item, instance));
     }
     return row;
-  }
-
-  private holderHtml(holder: InspectHolderModel | null): string {
-    if (!holder) return '';
-    const tierDef = holderTierByIndex(holder.tierIndex);
-    if (!tierDef) return '';
-    const sub =
-      holder.balance !== null
-        ? esc(
-            t('wallet.balanceAmount', {
-              amount: formatNumber(holder.balance, { maximumFractionDigits: 0 }),
-            }),
-          )
-        : esc(t('wallet.holder'));
-    return (
-      `<div class="inspect-holder">` +
-      `<img class="${holderCardBadgeClass(tierDef)}" style="--holder-glow:${tierDef.glow}" src="${holderTierBadgeDataUrl(tierDef)}" alt="" draggable="false">` +
-      `<div class="inspect-holder-text">` +
-      `<div class="inspect-holder-name">${esc(holderTierDisplayName(tierDef))}</div>` +
-      `<div class="inspect-holder-sub">${sub}</div>` +
-      `</div></div>`
-    );
   }
 
   private discordHtml(discord: InspectDiscordModel | null): string {

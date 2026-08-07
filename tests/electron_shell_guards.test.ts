@@ -13,13 +13,13 @@ import {
   withCspHeader,
 } from '../electron/shell_guards.cjs';
 
-const APP = 'app://worldofclaudecraft';
+const APP = 'app://wildhaven';
 const DEV = 'http://127.0.0.1:5173';
 
 describe('deriveOrigin (app:// origin-"null" trap)', () => {
   it('derives protocol//host for the app scheme instead of collapsing to "null"', () => {
-    expect(deriveOrigin('app://worldofclaudecraft/index.html')).toBe('app://worldofclaudecraft');
-    expect(deriveOrigin('app://worldofclaudecraft')).toBe('app://worldofclaudecraft');
+    expect(deriveOrigin('app://wildhaven/index.html')).toBe('app://wildhaven');
+    expect(deriveOrigin('app://wildhaven')).toBe('app://wildhaven');
     // Every app:// host shares the SAME opaque URL.origin ("null"); protocol//host keeps them apart.
     expect(deriveOrigin('app://otherhost/x')).toBe('app://otherhost');
   });
@@ -39,8 +39,8 @@ describe('deriveOrigin (app:// origin-"null" trap)', () => {
 describe('originAllowed', () => {
   const allowed = new Set([APP, DEV]);
   it('allows the app origin regardless of path', () => {
-    expect(originAllowed('app://worldofclaudecraft/index.html', allowed)).toBe(true);
-    expect(originAllowed('app://worldofclaudecraft/assets/main-abc.js', allowed)).toBe(true);
+    expect(originAllowed('app://wildhaven/index.html', allowed)).toBe(true);
+    expect(originAllowed('app://wildhaven/assets/main-abc.js', allowed)).toBe(true);
   });
   it('denies a different app host, foreign https, and malformed URLs', () => {
     expect(originAllowed('app://otherhost/', allowed)).toBe(false);
@@ -65,7 +65,7 @@ describe('appNavigationOrigins', () => {
 describe('navigationAllowed', () => {
   const main = new Set([APP, DEV]);
   it('allows main-frame navigation within the app and dev origins', () => {
-    expect(navigationAllowed('app://worldofclaudecraft/play', true, main)).toBe(true);
+    expect(navigationAllowed('app://wildhaven/play', true, main)).toBe(true);
     expect(navigationAllowed('http://127.0.0.1:5173/x', true, main)).toBe(true);
   });
   it('blocks main-frame navigation to a foreign origin', () => {
@@ -77,10 +77,13 @@ describe('navigationAllowed', () => {
     expect(navigationAllowed(turnstile, true, main)).toBe(false);
     expect(navigationAllowed(turnstile, false, main)).toBe(true);
   });
-  it('allows WalletConnect verification only as an embedded subframe', () => {
+  it('refuses WalletConnect verification in both frames now that web3 is gone', () => {
+    // Was allowed as an embedded subframe for the wallet modal. With no wallet
+    // in the shell there is nothing legitimate on that origin, so the narrowed
+    // allowlist refuses it outright. Pinned so re-widening is deliberate.
     const verify = 'https://verify.walletconnect.com/session';
     expect(navigationAllowed(verify, true, main)).toBe(false);
-    expect(navigationAllowed(verify, false, main)).toBe(true);
+    expect(navigationAllowed(verify, false, main)).toBe(false);
   });
   it('denies a malformed navigation URL', () => {
     expect(navigationAllowed('::: not a url', true, main)).toBe(false);
@@ -149,7 +152,7 @@ describe('ALLOWED_PERMISSIONS (deny-by-default allow-list)', () => {
 
 describe('buildContentSecurityPolicy', () => {
   const csp = buildContentSecurityPolicy({
-    apiOrigin: 'https://worldofclaudecraft.com',
+    apiOrigin: 'https://wildhaven.example',
     scriptHashes: ['sha256-abc123'],
   });
   const directive = (name: string) => csp.split('; ').find((d) => d.startsWith(`${name} `));
@@ -169,7 +172,7 @@ describe('buildContentSecurityPolicy', () => {
   });
 
   it('lists the HTTPS API origin, wss:, and blob: explicitly in connect-src', () => {
-    expect(directive('connect-src')).toContain('https://worldofclaudecraft.com');
+    expect(directive('connect-src')).toContain('https://wildhaven.example');
     expect(directive('connect-src')).toContain('wss:');
     // blob: is required: GLTFLoader fetch()es a model's embedded textures as blob: URLs.
     expect(directive('connect-src')).toContain('blob:');
@@ -190,13 +193,14 @@ describe('buildContentSecurityPolicy', () => {
     expect(csp).toContain('frame-src https://challenges.cloudflare.com');
   });
 
-  it('allows only the WalletConnect transport, modal images, fonts, and verification frames', () => {
-    expect(directive('connect-src')).toContain('https://*.walletconnect.com');
-    expect(directive('connect-src')).toContain('wss://*.walletconnect.com');
-    expect(directive('connect-src')).toContain('https://api.web3modal.org');
-    expect(directive('img-src')).toContain('https://secure.walletconnect.com');
-    expect(directive('font-src')).toContain('https://fonts.reown.com');
-    expect(directive('frame-src')).toContain('https://verify.walletconnect.com');
+  it('grants no wallet origin anywhere in the policy', () => {
+    // The CSP once carried six wallet allowances (transport, modal images,
+    // fonts, verification frames). All are gone with web3, and their absence is
+    // pinned rather than the test deleted: an origin reappearing here would
+    // mean a wallet dependency crept back into the desktop shell.
+    for (const d of ['connect-src', 'img-src', 'font-src', 'frame-src']) {
+      expect(directive(d), d).not.toMatch(/walletconnect|web3modal|reown/);
+    }
   });
 });
 
@@ -305,14 +309,12 @@ describe('isTrustedSender', () => {
     expect(isTrustedSender(undefined, allowed)).toBe(false);
   });
   it('accepts the app frame and the dev-server frame', () => {
-    const appFrame = { origin: APP, url: 'app://worldofclaudecraft/index.html' };
+    const appFrame = { origin: APP, url: 'app://wildhaven/index.html' };
     expect(isTrustedSender(appFrame, allowed)).toBe(true);
     expect(isTrustedSender({ origin: DEV, url: `${DEV}/` }, allowed)).toBe(true);
   });
   it('falls back to frame.url when frame.origin is the opaque "null" string', () => {
-    expect(isTrustedSender({ origin: 'null', url: 'app://worldofclaudecraft/x' }, allowed)).toBe(
-      true,
-    );
+    expect(isTrustedSender({ origin: 'null', url: 'app://wildhaven/x' }, allowed)).toBe(true);
   });
   it('rejects a foreign sender and a frame with neither a matching origin nor url', () => {
     expect(

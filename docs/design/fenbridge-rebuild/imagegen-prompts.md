@@ -27,7 +27,7 @@ Output:
 Exact prompt:
 
 ```text
-Create a wholly original, high-end MMORPG environment concept painting for the town of Fenbridge in World of ClaudeCraft.
+Create a wholly original, high-end MMORPG environment concept painting for the town of Fenbridge in Wildhaven.
 
 Reference role: Image 1 is mood, palette, weather, material-language, and elevated three-quarter composition inspiration only. Do not copy its exact town plan, building silhouettes, ornaments, logos, banners, symbols, or individual props. Invent a distinct Fenbridge design.
 

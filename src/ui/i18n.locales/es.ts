@@ -222,16 +222,6 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'apiError.epic.invalid_token':
     'Epic no pudo verificar esta solicitud de vinculación. Inténtalo de nuevo desde la aplicación de escritorio.',
   'apiError.epic.upstream': 'Epic no respondió. Inténtalo de nuevo en un momento.',
-  'apiError.seeker.native_only':
-    'El derecho de acceso Seeker solo está disponible en la aplicación nativa.',
-  'apiError.seeker.attestation_failed': 'No se pudo verificar el dispositivo. Inténtalo de nuevo.',
-  'apiError.seeker.solana_artifact_required': 'Usa la aplicación Solana Store para continuar.',
-  'apiError.seeker.wallet_required': 'Primero vincula y verifica una cartera.',
-  'apiError.seeker.genesis_token_required': 'Se requiere un Seeker Genesis Token verificado.',
-  'apiError.seeker.genesis_token_claimed': 'Ese Seeker Genesis Token ya se ha reclamado.',
-  'apiError.seeker.entitlement_required': 'Se requiere un derecho de acceso Seeker verificado.',
-  'apiError.seeker.current_ownership_required':
-    'Se requiere ser el propietario actual del Seeker Genesis Token.',
   'guide.professions.archetypeSwitchBody':
     'Una declaración tampoco es una condena de por vida. Un par que nunca has tenido es simplemente una nueva misión de sintonización, mientras que volver a un par del que te alejaste te pide primero hacer enmiendas: cinco tareas la primera vez, y tres más añadidas por cada regreso que ya hayas hecho (tomar un par completamente nuevo nunca sube la cuenta). La elección sigue siendo significativa sin cerrar jamás una puerta para siempre.',
   'guide.professions.whatBody':
@@ -341,8 +331,6 @@ export const es: Partial<Record<TranslationKey, string>> = {
     'El lanzamiento de recolección empieza en 2,5 segundos y se recorta de dos maneras: 0,4 segundos por cada nivel de herramienta que lleves y puedas manejar por encima del nivel propio del nodo, y 0,15 segundos en cuanto el contador de tu oficio cruza su franja de 100, con un mínimo de 1,5 segundos. Pasa de nodos de nivel 1 a nodos de nivel 3 y tu excedente desaparece, así que el mismo pico vuelve a golpear más despacio. Llevar exactamente el nivel requerido no compra velocidad; solo abre el nodo.\n\nLa ganancia de habilidad se apaga igual que en la artesanía: un nodo se pone gris a medida que tu pericia sube por encima de su nivel (los nodos de nivel 1 no enseñan nada a partir de 75 de pericia), así que la respuesta a las ganancias lentas son nodos de nivel superior. Esos necesitan en tus bolsas una herramienta de al menos su nivel (ningún nodo se trabaja jamás con las manos desnudas, incluido el nivel 1), y una herramienta de tierra por encima del nivel 1 pide además su marca de manejo, 40/70/85/100 en su propio oficio para los niveles 2 a 5. La Pesca sigue su propio descenso: ganancia completa por debajo de 50 de pericia, la mitad por debajo de 100, un goteo de 0,1 por debajo de 150 y de 0,02 por debajo de 200, las capturas de chatarra no enseñan nada en absoluto a partir de 100, y el agua misma pone tope a la lección (las aguas de nivel 1 dejan de enseñar en 100, las de la ciénaga en 150), así que un contador estancado también puede significar que ya has superado esas aguas.',
   'guide.profPages.faq.a8':
     'En parte. Las nueve recetas comunes de campo (los básicos iniciales de arma, armadura, comida y poción) se elaboran en cualquier lugar y en cualquier momento, igual que las tres recetas combinadas de los pares jurados. Todo lo demás por encima de ellas está vinculado a un tipo de estación: fragua, cocinas, boticario, curtiduría, telar o taller de herramientas, y debes estar a menos de 20 metros de la estación para que la elaboración salga adelante.\n\nCon 75 de habilidad en un oficio te especializas y, junto con un 20 por ciento de descuento en materiales, ganas una estación móvil: colócala en el campo y aguanta 10 minutos, sirviendo las recetas de ese oficio como si estuvieras en la de verdad. La estación móvil es solo para elaborar: aprender recetas y desvincular encargos siempre requieren la estación auténtica del pueblo.',
-  'wallet.seekerAppHelp':
-    'Continúa con la cartera Seed Vault. Revisa las solicitudes de conexión y verificación en Seed Vault y luego vuelve al juego.',
   'questUi.tracker.unknownQuest': 'Misión desconocida ({id})',
   'questUi.log.repeatableStatus': 'Repetible',
   'questUi.log.cooldownStatus': 'Disponible de nuevo pronto',
@@ -744,8 +732,6 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'hud.prompts.resurrectionOffer': '{name} quiere devolverte a la vida. ¿Aceptas?',
   'questUi.dialog.profIntroHint': 'Habla con {name} para "{quest}".',
   'itemUi.stats.parry': 'Parada',
-  'apiError.wallet.handoff_invalid':
-    'La autorización de la cartera ha caducado o no se ha podido verificar. Inténtalo de nuevo.',
   'cardDuel.close': 'Cerrar',
   'cardDuel.counts': 'Mazo: {deck} · Descarte: {discard}',
   'cardDuel.forfeit': 'Rendirse',
@@ -952,60 +938,6 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'hudChrome.nameplate.mobLevel': '{level}',
   'hudChrome.specPanel.specUnlockBanner': '¡Especialización Desbloqueada!',
   'hudChrome.specPanel.specUnlockHint': 'Pulsa N para elegir tu especialización.',
-  'hudChrome.wocStore.wallet.connect': 'Conectar cartera',
-  'hudChrome.wocStore.wallet.connectedUnlinked':
-    'La aplicación de cartera está conectada a este navegador, pero su dirección pública aún no está vinculada a tu cuenta de WoC.',
-  'hudChrome.wocStore.wallet.linkedConnected':
-    'Tu aplicación de cartera vinculada está conectada y lista para compras con SOL o WOC.',
-  'hudChrome.wocStore.wallet.linkedDisconnected':
-    'Tu dirección pública está vinculada. Vuelve a conectar esa aplicación de cartera cuando quieras pagar con SOL o WOC.',
-  'hudChrome.wocStore.wallet.manage': 'Gestionar cartera',
-  'hudChrome.wocStore.wallet.mismatched':
-    'Hay una cartera diferente conectada. Verifícala para reemplazar la dirección vinculada, o vuelve a conectar la cartera vinculada.',
-  'hudChrome.wocStore.wallet.reconnect': 'Volver a conectar cartera',
-  'hudChrome.wocStore.wallet.title': 'Cartera de Solana',
-  'hudChrome.wocStore.wallet.unlinked':
-    'Conecta una aplicación de cartera y firma una vez para vincular su dirección pública a tu cuenta de WoC. Nunca recibimos tu frase de recuperación ni tu clave privada.',
-  'hudChrome.wocStore.wallet.verify': 'Verificar y vincular',
-  'wallet.bagConnect': 'Vincular cartera',
-  'wallet.bagLink': 'Verificar cartera',
-  'wallet.bagReconnect': 'Volver a conectar cartera',
-  'wallet.browser.completeBody':
-    'Puedes volver a la aplicación de escritorio de World of ClaudeCraft.',
-  'wallet.browser.completeTitle': 'Autorización de cartera completada',
-  'wallet.browser.continueWith': 'Continuar con {wallet}',
-  'wallet.browser.extensionHelp':
-    'No se encontró ninguna extensión de cartera compatible. Instala o desbloquea Phantom, Solflare u otra cartera de Solana para el navegador, luego vuelve a intentarlo.',
-  'wallet.browser.eyebrow': 'Autorización de cartera de escritorio',
-  'wallet.browser.failed':
-    'La autorización de la cartera falló o caducó. Vuelve a la aplicación de escritorio e inténtalo de nuevo.',
-  'wallet.browser.linkBody':
-    'Elige una extensión de cartera en este navegador. Firmarás un mensaje de verificación y luego volverás a la aplicación de escritorio.',
-  'wallet.browser.paymentBody':
-    'Elige la cartera vinculada a tu cuenta y aprueba la transacción en este navegador.',
-  'wallet.browser.retry': 'Reintentar',
-  'wallet.browser.returnButton': 'Volver a la aplicación de escritorio',
-  'wallet.browser.reviewBody':
-    'Sigue el mensaje de {wallet}. Mantén esta página del navegador abierta.',
-  'wallet.browser.reviewTitle': 'Revisar en tu cartera',
-  'wallet.browser.safety':
-    'World of ClaudeCraft nunca solicita tu frase de recuperación ni tu clave privada.',
-  'wallet.browser.title': 'Conectar una Cartera de Solana',
-  'wallet.manualReturnBrowserHelp':
-    'Tras la aprobación, vuelve a esta pestaña del juego. Si iOS abre otro navegador, ciérralo y regresa manualmente al navegador original.',
-  'wallet.manualReturnStandaloneHelp':
-    'Tras la aprobación, vuelve a World of ClaudeCraft desde tu pantalla de inicio. Si iOS abre un navegador, ciérralo y vuelve a abrir la aplicación de la pantalla de inicio manualmente.',
-  'wallet.mobileAppHelp':
-    'Elige Phantom o Solflare. Tu aplicación de cartera pedirá aprobación. Mantén este juego abierto y vuelve a él cuando termines.',
-  'wallet.openAppButton': 'Abrir {wallet}',
-  'wallet.openAppHelp':
-    'Abre {wallet} para revisar esta solicitud. Mantén esta pestaña del juego abierta mientras la aplicación de cartera esté activa.',
-  'wallet.openAppTitle': 'Continuar en {wallet}',
-  'wallet.preparingAppButton': 'Preparando {wallet}...',
-  'wallet.standaloneAppHelp':
-    'Las conexiones de cartera aún no están disponibles en la aplicación de la pantalla de inicio. Abre World of ClaudeCraft en Safari o Chrome para usar Phantom o Solflare.',
-  'wallet.walletAppUnavailable':
-    'No se pudo preparar {wallet}. Cierra esta ventana e inténtalo de nuevo.',
   'entities.abilities.primal_reflexes.description':
     'Tus instintos se agudizan, aumentando tu probabilidad de esquivar un 50% durante 6 segundos.',
   'entities.abilities.primal_reflexes.name': 'Reflejos Primigenios',
@@ -1835,7 +1767,7 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'editor.confirm.discardBody': 'Tienes cambios sin guardar en "{name}". ¿Descartarlos?',
   'editor.confirm.discardTitle': '¿Descartar los cambios?',
   'editor.confirm.ok': 'Aceptar',
-  'editor.docTitle': 'Editor de Mapas - World of ClaudeCraft',
+  'editor.docTitle': 'Editor de Mapas - Wildhaven',
   'editor.eraseTool.blockerHint':
     'Al hacer clic cerca de un muro de bloqueo, se elimina ese muro en su lugar.',
   'editor.eraseTool.hint':
@@ -2286,8 +2218,6 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'hudChrome.calendar.result.removed': 'El evento se retiró del calendario.',
   'hudChrome.calendar.title': 'Calendario de Eventos',
   'hudChrome.calendar.titlePlaceholder': 'Título del evento',
-  'hudChrome.dailyRewards.disclaimer':
-    'El precio de WOC puede moverse deprisa. Recomendamos mantener más del mínimo de $20 USD para que las oscilaciones normales del precio no te bloqueen el acceso. Esto no es asesoramiento financiero.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     'Esto quita el acceso directo del cofre de tu interfaz. Las recompensas, los requisitos y este panel siguen disponibles; puedes recuperar el acceso directo desde Opciones.',
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Cancelar',
@@ -2386,8 +2316,6 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'sim.delve.riteSequenceReady': 'Los santuarios quedan a oscuras. Repite la secuencia.',
   'sim.delve.riteWrong': 'Un chasquido áspero de campana. El agua negra salpica a tus pies.',
   'sim.delve.ropesSealed': 'Deberías intentar tirar de las cuerdas de las campanas.',
-  'wallet.extensionHelp':
-    'Para ver una cartera aquí, mantén activa una extensión de cartera del navegador como Solflare Wallet.',
   'worldContent.delveReliquaryInteract': 'Relicario Ahogado: pulsa F para comenzar el rito',
   'worldContent.delveRiteShrineBellInteract': 'Santuario de la Campana: pulsa F para tañerla',
   'worldContent.delveRiteShrineCandleInteract': 'Santuario de la Vela: pulsa F para tocarlo',
@@ -2501,9 +2429,9 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'hudChrome.unitFrame.playerLabel': 'Tu personaje',
   'hudChrome.unitFrame.targetAnnounce': 'Objetivo: {name}',
   'hudChrome.unitFrame.targetLabel': 'Tu objetivo',
-  'seo.officialLabel': 'Sitio web oficial de World of ClaudeCraft',
+  'seo.officialLabel': 'Sitio web oficial de Wildhaven',
   'seo.officialBody':
-    'worldofclaudecraft.com es el MMO de navegador gratuito oficial del mundo Claudemoon. Juega en línea con un personaje persistente, explora en solitario sin conexión, lee la wiki y sigue los enlaces comunitarios verificados desde este sitio.',
+    'wildhaven.example es el MMO de navegador gratuito oficial del mundo Claudemoon. Juega en línea con un personaje persistente, explora en solitario sin conexión, lee la wiki y sigue los enlaces comunitarios verificados desde este sitio.',
   'hudChrome.questShare.notShareable': 'Esta misión no se puede compartir.',
   'hudChrome.questShare.notInSharerParty':
     'Debes estar en el grupo de {name} para aceptar esa misión.',
@@ -2703,9 +2631,6 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'hudChrome.options.clickMoveRight': 'Clic derecho',
   'hudChrome.options.footstepSounds': 'Sonidos de pasos',
   'hudChrome.options.interfaceSounds': 'Sonidos de interfaz y respuesta',
-  'hudChrome.options.showWalletOnCharacterScreen': 'Mostrar cartera en la pantalla de personajes',
-  'hudChrome.options.showWalletOnPlayerCard': 'Mostrar cartera en la tarjeta de jugador',
-  'hudChrome.playerCard.showWalletBadge': 'Mostrar insignia de cartera',
   'hudChrome.options.uiScale': 'Escala de la interfaz',
   'hudChrome.options.playerFrameScale': 'Escala del marco del jugador',
   'hudChrome.options.targetFrameScale': 'Escala del marco del objetivo',
@@ -2866,8 +2791,8 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'stats.accountsCreated': 'Jugadores',
   'stats.playersOnline': 'Jugadores en Línea',
   'stats.realmName': 'Nombre del Mundo',
-  'footer.copyright': '2026 World of ClaudeCraft',
-  'footer.githubLink': 'https://github.com/levy-street/world-of-claudecraft',
+  'footer.copyright': '2026 Wildhaven',
+  'footer.githubLink': 'https://wildhaven.example',
   'footer.githubLabel': 'Proyecto de Código Abierto',
   'footer.whitepaper': 'Libro blanco',
   'footer.terms': 'Términos de Servicio',
@@ -2919,120 +2844,6 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'auth.enterWorld': 'Entrar al Mundo',
   'auth.offlineCharacter': 'Personaje en Solitario',
   'auth.create': 'Crear',
-  'wallet.label': 'Cartera $WOC',
-  'wallet.connect': 'Verificar cartera',
-  'wallet.connectTitle': 'Verifica tu cartera de Solana',
-  'wallet.connectAria': 'Verifica tu cartera de Solana',
-  'wallet.verify': 'Verificar cartera',
-  'wallet.verifyNew': 'Verificar nueva cartera',
-  'wallet.verifyTitle': 'Elige una cartera y firma una vez para verificar que eres su propietario.',
-  'wallet.verifyAria': 'Elige una cartera y firma una vez para verificar que eres su propietario',
-  'wallet.verifyAddressAria': 'Firma para verificar la cartera {address} en tu cuenta',
-  'wallet.appConnected': 'App conectada',
-  'wallet.connectApp': 'Conectar app',
-  'wallet.connectAppTitle': 'Conecta la app de cartera en este navegador',
-  'wallet.connectAppAria': 'Conecta la app de cartera en este navegador',
-  'wallet.verifying': 'Verificando...',
-  'wallet.verifyingTitle': 'La verificación de cartera está en curso.',
-  'wallet.switch': 'Cambiar',
-  'wallet.switchTitle': 'Verificar otra cartera',
-  'wallet.switchAria': 'Verificar otra cartera',
-  'wallet.unlink': 'Desvincular',
-  'wallet.unlinkTitle': 'Eliminar la verificación de cartera de esta cuenta',
-  'wallet.unlinkAria': 'Eliminar la verificación de cartera de esta cuenta',
-  'wallet.signOut': 'Desconectar',
-  'wallet.signOutTitle': 'Desconectar la app de cartera en este navegador',
-  'wallet.signOutAria': 'Desconectar la app de cartera en este navegador',
-  'wallet.hide': 'Ocultar',
-  'wallet.hideTitle': 'Ocultar la fila de cartera en esta pantalla',
-  'wallet.hideAria': 'Ocultar la fila de cartera en esta pantalla',
-  'wallet.hiddenNotice':
-    'Fila de cartera oculta. Vuelve a activarla dentro del juego desde Opciones > Interfaz.',
-  'wallet.linkedTitle':
-    'Cartera verificada para tu cuenta. Haz clic para gestionar la app de cartera.',
-  'wallet.linkedDisconnectedTitle':
-    'La cartera sigue verificada para tu cuenta. Vuelve a conectar para gestionar la app de cartera.',
-  'wallet.linkedDisconnectedAria':
-    'La cartera sigue verificada para tu cuenta. Vuelve a conectar para gestionar la app de cartera.',
-  'wallet.linkTitle': 'Haz clic para firmar y vincular esta cartera a tu cuenta.',
-  'wallet.connectedTitle': 'Conectada. Inicia sesión para vincular esta cartera a tu cuenta.',
-  'wallet.balanceTitle': 'Saldo de $WOC de la cartera de Solana verificada',
-  'wallet.balanceAria': 'Saldo de la cartera de Solana verificada: {balance}',
-  'wallet.balancePreviewTitle': 'Vista previa del saldo de $WOC de la cartera conectada',
-  'wallet.balancePreviewAria':
-    'Vista previa del saldo de la cartera conectada: {balance}. Vincula la cartera para verificar el distintivo de titular.',
-  'wallet.balanceAmount': '{amount} $WOC',
-  'wallet.connected': 'Conectada: {address}',
-  'wallet.connectedWithBalance': 'Conectada: {balance} - {address}',
-  'wallet.connectedLinked': 'Verificada: {address}',
-  'wallet.connectedLinkedWithBalance': 'Verificada: {balance} - {address}',
-  'wallet.helpDisconnected':
-    'Verifica una cartera de Solana para activar el distintivo de titular y las insignias de tarjeta de jugador. No requiere transacción ni SOL.',
-  'wallet.helpLoginToLink': '{address} conectada. Inicia sesión para vincularla a tu cuenta.',
-  'wallet.helpLoginToLinkWithBalance':
-    '{address} conectada con {balance}. Inicia sesión para vincularla a tu cuenta.',
-  'wallet.helpReadyToLink':
-    'Cartera seleccionada: {address}. Firma una vez para verificar el distintivo de titular y las tarjetas de jugador.',
-  'wallet.helpReadyToLinkWithBalance':
-    'Cartera seleccionada: {address} con {balance}. Firma una vez para verificar el distintivo de titular y las tarjetas de jugador.',
-  'wallet.helpLinked':
-    'Las ventajas de titular están activas. La app de cartera está conectada en este navegador.',
-  'wallet.helpLinkedWithBalance':
-    'Las ventajas de titular están activas. La app de cartera está conectada en este navegador.',
-  'wallet.helpLinkedDisconnected':
-    'Las ventajas de titular están activas. Conecta la app cuando necesites firmar o gastar.',
-  'wallet.helpLinkedDisconnectedWithBalance':
-    'Las ventajas de titular están activas. Conecta la app cuando necesites firmar o gastar.',
-  'wallet.flowConnect': 'Elige una cartera. La verificación continúa automáticamente.',
-  'wallet.flowSign':
-    'Firma el mensaje de verificación en tu app de cartera. No requiere transacción ni SOL.',
-  'wallet.flowVerify': 'Verificando la propiedad de la cartera...',
-  'wallet.linkFailed': 'La verificación de cartera falló.',
-  'wallet.verifyFailed': 'La verificación de cartera falló.',
-  'wallet.unlinkFailed': 'No se pudo desvincular la cartera.',
-  'wallet.holder': 'Titular de $WOC',
-  'wallet.holderTierTitle': 'Titular de $WOC de nivel {tier}',
-  'wallet.holderTiers.ember.name': 'Ascua',
-  'wallet.holderTiers.ember.flavor': 'La chispa está encendida.',
-  'wallet.holderTiers.coinbearer.name': 'Portamonedas',
-  'wallet.holderTiers.coinbearer.flavor': 'La primera moneda en el cofre de guerra.',
-  'wallet.holderTiers.coppercrest.name': 'Cresta de cobre',
-  'wallet.holderTiers.coppercrest.flavor': 'Cobre sobre cobre, tu nombre empieza a sonar.',
-  'wallet.holderTiers.silverbound.name': 'Ligado a la plata',
-  'wallet.holderTiers.silverbound.flavor': 'Ligado en plata, la bolsa crece.',
-  'wallet.holderTiers.gilded.name': 'Dorado',
-  'wallet.holderTiers.gilded.flavor': 'Dorado y sonriente.',
-  'wallet.holderTiers.vaultwarden.name': 'Guardián de la bóveda',
-  'wallet.holderTiers.vaultwarden.flavor':
-    'Ahora custodias una bóveda real: el 0,01 % del suministro de $WOC.',
-  'wallet.holderTiers.whale.name': 'Ballena',
-  'wallet.holderTiers.whale.flavor': 'Entras en aguas profundas: el 0,1 % del suministro.',
-  'wallet.holderTiers.leviathan.name': 'Leviatán',
-  'wallet.holderTiers.leviathan.flavor':
-    'Los mercados sienten cada movimiento tuyo: el 1 % del suministro.',
-  'wallet.holderTiers.tidelord.name': 'Señor de las mareas',
-  'wallet.holderTiers.tidelord.flavor': 'La marea responde a tu llamada: el 2 % del suministro.',
-  'wallet.holderTiers.stormcaller.name': 'Invocador de tormentas',
-  'wallet.holderTiers.stormcaller.flavor':
-    'Las tormentas se reúnen ante tu nombre: el 3 % del suministro.',
-  'wallet.holderTiers.krakencrown.name': 'Corona del kraken',
-  'wallet.holderTiers.krakencrown.flavor': 'Coronado por las profundidades: el 4 % del suministro.',
-  'wallet.holderTiers.titanforged.name': 'Forjado entre titanes',
-  'wallet.holderTiers.titanforged.flavor': 'Forjado entre titanes: el 5 % del suministro.',
-  'wallet.holderTiers.starhoard.name': 'Tesoro estelar',
-  'wallet.holderTiers.starhoard.flavor':
-    'Un tesoro que dobla la luz de las estrellas: el 6 % del suministro.',
-  'wallet.holderTiers.voidwarden.name': 'Guardián del vacío',
-  'wallet.holderTiers.voidwarden.flavor': 'Vigía al borde del vacío: el 7 % del suministro.',
-  'wallet.holderTiers.realmshaper.name': 'Modelador del reino',
-  'wallet.holderTiers.realmshaper.flavor': 'Remodelas el reino: el 8 % del suministro.',
-  'wallet.holderTiers.worldforger.name': 'Forjador de mundos',
-  'wallet.holderTiers.worldforger.flavor': 'Forjas un mundo propio: el 9 % del suministro.',
-  'wallet.holderTiers.worldbearer.name': 'Portamundos',
-  'wallet.holderTiers.worldbearer.flavor':
-    'Cargas con una parte del mundo: el 10 % del suministro.',
-  'wallet.holderTiers.sovereign.name': 'Soberano',
-  'wallet.holderTiers.sovereign.flavor': 'El reino hinca la rodilla: el suministro completo.',
   'playerCard.shareButton': 'Compartir tarjeta de jugador',
   'playerCard.title': 'Tarjeta de jugador',
   'playerCard.close': 'Cerrar tarjeta de jugador',
@@ -3049,17 +2860,16 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'playerCard.levelClass': 'Nivel {level} - {className}',
   'playerCard.topPercent': 'TOP {percent}%',
   'playerCard.realmSubtitle': 'Mundo {realm}',
-  'playerCard.defaultRealm': 'Mundo de ClaudeCraft',
-  'playerCard.brandWordmark': 'WORLD OF CLAUDECRAFT',
+  'playerCard.defaultRealm': 'Wildhaven',
+  'playerCard.brandWordmark': 'WILDHAVEN',
   'playerCard.recruited': '{count} reclutados',
   'playerCard.footerHandle': '@{handle}',
   'playerCard.footerHandleWithRecruits': '@{handle} - {recruited}',
   'playerCard.footerCta': 'Forja tu leyenda: {siteUrl}',
   'playerCard.arenaStat': 'Arena',
-  'playerCard.shareTierBit': ', titular de $WOC de rango {tier}',
   'playerCard.shareText':
-    'Estoy forjando mi leyenda en World of ClaudeCraft: nivel {level} {className}{tierBit}. Únete a mi mundo:',
-  'playerCard.nativeShareTitle': 'Mundo de ClaudeCraft',
+    'Estoy forjando mi leyenda en Wildhaven: nivel {level} {className}{tierBit}. Únete a mi mundo:',
+  'playerCard.nativeShareTitle': 'Wildhaven',
   'playerCard.fileNameFallback': 'jugador',
   'playerCard.actionShareX': 'Compartir en X',
   'playerCard.actionCopyReferral': 'Copiar enlace de invitación',
@@ -3121,9 +2931,9 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'controls.emoteWheel': 'Mantener rueda de gestos',
   'controls.friends': 'Amigos y Hermandad',
   'controls.chat': 'Abrir Chat',
-  'seo.title': 'World of ClaudeCraft: MMO web de estilo clásico',
+  'seo.title': 'Wildhaven: MMO web de estilo clásico',
   'seo.description':
-    'Emprende una aventura épica en World of ClaudeCraft, un micro-MMO de estilo clásico que se juega directamente en el navegador. Entra a un mundo compartido, sube de nivel y derrota enemigos.',
+    'Emprende una aventura épica en Wildhaven, un micro-MMO de estilo clásico que se juega directamente en el navegador. Entra a un mundo compartido, sube de nivel y derrota enemigos.',
   'seo.genre': 'MMORPG',
   'seo.playMode': 'Multijugador',
   'seo.applicationCategory': 'Juego',
@@ -3133,9 +2943,9 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'a11y.mainNavigation': 'Navegación principal',
   'a11y.languageSelection': 'Selección de idioma',
   'a11y.characterActions': 'Acciones de personaje',
-  'a11y.githubProject': 'Abrir el proyecto de World of ClaudeCraft en GitHub',
-  'a11y.discordCommunity': 'Unirse a la comunidad de World of ClaudeCraft en Discord',
-  'a11y.donateProject': 'Donar para apoyar World of ClaudeCraft',
+  'a11y.githubProject': 'Abrir el proyecto de Wildhaven en GitHub',
+  'a11y.discordCommunity': 'Unirse a la comunidad de Wildhaven en Discord',
+  'a11y.donateProject': 'Donar para apoyar Wildhaven',
   'loading.world': 'Cargando mundo...',
   'loading.worldProgress': 'Cargando mundo... {done}/{total}',
   'loading.enteringWorld': 'Entrando al mundo...',
@@ -3273,20 +3083,19 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'mobilePreflight.iosInstallDetail':
     'Para pantalla completa real en iPhone o iPad, instala esta página en tu pantalla de inicio primero.',
   'mobilePreflight.iosShareStep': 'En Safari, toca Compartir y luego Agregar a pantalla de inicio.',
-  'mobilePreflight.iosOpenStep':
-    'Abre World of ClaudeCraft desde el nuevo icono de la pantalla de inicio.',
+  'mobilePreflight.iosOpenStep': 'Abre Wildhaven desde el nuevo icono de la pantalla de inicio.',
   'mobilePreflight.androidStandaloneDetail':
     'Estás en modo de aplicación a pantalla completa. Mantén el dispositivo en horizontal.',
   'mobilePreflight.androidInstallDetail':
     'Para pantalla completa en Android, instala esta página o agrégala a la pantalla de inicio primero.',
   'mobilePreflight.androidInstallStep':
     'En Chrome, toca el menú y luego Instalar app o Agregar a pantalla de inicio.',
-  'mobilePreflight.androidOpenStep': 'Abre World of ClaudeCraft desde el nuevo icono.',
+  'mobilePreflight.androidOpenStep': 'Abre Wildhaven desde el nuevo icono.',
   'mobilePreflight.otherStandaloneDetail': 'Mantén el dispositivo en pantalla completa horizontal.',
   'mobilePreflight.otherInstallDetail':
     'Instala o agrega esta página a la pantalla de inicio para la mejor experiencia móvil a pantalla completa.',
-  'serverUnavailable.title': 'World of ClaudeCraft: Mundo no disponible',
-  'serverUnavailable.logoAlt': 'World of ClaudeCraft',
+  'serverUnavailable.title': 'Wildhaven: Mundo no disponible',
+  'serverUnavailable.logoAlt': 'Wildhaven',
   'serverUnavailable.eyebrow': 'Mantenimiento del mundo',
   'serverUnavailable.heading': 'El mundo no está disponible temporalmente.',
   'serverUnavailable.body':
@@ -5736,12 +5545,8 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'hud.errors.silenced': '¡Estás silenciado!',
   'hud.pet.noPetFood': 'No tienes comida para alimentar a tu mascota.',
   'hud.pet.petEatsFoodOnly': 'Tu mascota solo puede comer comida.',
-  'mode.caCopyAria': 'Copiar dirección del contrato',
-  'mode.caLabel': 'Dirección del contrato de $WOC',
-  'mode.caNote':
-    'WOC es nuestro token comunitario. No es necesario para jugar. Únete a Discord para hablar sobre la utilidad y el círculo virtuoso de WOC.',
   'mode.play': 'Jugar',
-  'mode.playAria': 'Jugar World of ClaudeCraft',
+  'mode.playAria': 'Jugar Wildhaven',
   'mode.serverAria': 'Selecciona el mundo: En Línea o Desconectado',
   'mode.serverLabel': 'Elige tu mundo',
   'mode.serverOffline': 'Desconectado',
@@ -6173,7 +5978,6 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'hudChrome.account.logOut': 'Cerrar Sesión',
   'hudChrome.account.logOutSummary': 'Cierra la sesión en este dispositivo.',
   'hudChrome.account.loggedOutPrompt': 'Inicia sesión para gestionar tu cuenta.',
-  'hudChrome.account.manageWallet': 'Gestionar Cartera',
   'hudChrome.account.memberSince': 'Miembro desde {date}',
   'hudChrome.account.newPassword': 'Nueva contraseña',
   'hudChrome.account.passwordChanged':
@@ -6183,10 +5987,7 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'hudChrome.account.sectionCharacters': 'Personajes',
   'hudChrome.account.sectionDanger': 'Zona de Peligro',
   'hudChrome.account.sectionSettings': 'Ajustes de Cuenta',
-  'hudChrome.account.sectionWallet': 'Cartera $WOC',
   'hudChrome.account.title': 'Cuenta',
-  'hudChrome.account.walletSummary':
-    'Verifica una cartera de Solana para mostrar el distintivo de titular en tu tarjeta de jugador.',
   'hudChrome.questTracker.count': '({count})',
   'hudChrome.questTracker.collapseHint': 'Contraer rastreador de misiones',
   'hudChrome.questTracker.expandHint': 'Expandir rastreador de misiones',
@@ -6253,8 +6054,8 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'guide.bestiary.levels': 'Niveles {min} a {max}',
   'guide.bestiary.levelsSame': 'Nivel {min}',
   'guide.bestiary.rare': 'Raro',
-  'guide.brand': 'World of ClaudeCraft',
-  'guide.brandShort': 'ClaudeCraft',
+  'guide.brand': 'Wildhaven',
+  'guide.brandShort': 'Wildhaven',
   'guide.classHook.druid':
     'Un cambiaformas que protege como oso, despedaza a sus enemigos como felino o sana en plena refriega.',
   'guide.classHook.hunter':
@@ -6443,7 +6244,7 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'guide.footer.discord': 'Únete al Discord',
   'guide.footer.github': 'Código en GitHub',
   'guide.footer.playNow': 'Jugar ahora',
-  'guide.footer.rights': 'World of ClaudeCraft',
+  'guide.footer.rights': 'Wildhaven',
   'guide.glossary.aggroDef':
     'La atención de un enemigo. El jugador que genera más amenaza mantiene la aggro y recibe los ataques.',
   'guide.glossary.aggroTerm': 'Aggro',
@@ -6519,7 +6320,7 @@ export const es: Partial<Record<TranslationKey, string>> = {
     'El mundo se puede recorrer en solitario, pero el mejor botín aguarda tras un buen grupo.',
   'guide.home.subtitle':
     'Haz misiones, forma grupo y explora un mundo hecho a mano, gratis en tu navegador.',
-  'guide.home.title': 'World of ClaudeCraft',
+  'guide.home.title': 'Wildhaven',
   'guide.home.what.heading': 'Un MMO clásico, hecho para empezar a jugar enseguida',
   'guide.home.what.pillarClassesBody':
     'Protege, sana o reparte el daño. Cada clase juega como debe hacerlo su arquetipo, con talentos para hacerla tuya.',
@@ -6659,7 +6460,7 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'guide.worldPage.heading': 'El mundo',
   'guide.worldPage.hub': 'Base de operaciones',
   'guide.worldPage.intro':
-    'World of ClaudeCraft es una sola tierra continua que recorres a pie, tres zonas dispuestas de sur a norte. No hay viaje rápido, así que el trayecto forma parte de la aventura.',
+    'Wildhaven es una sola tierra continua que recorres a pie, tres zonas dispuestas de sur a norte. No hay viaje rápido, así que el trayecto forma parte de la aventura.',
   'guide.worldPage.marshBlurb':
     'Una tierra ahogada de niebla y ruinas. Los mudfins pululan por los bajíos y algo más antiguo se agita bajo el agua, vigilado desde el pueblo-puente de Fenbridge.',
   'guide.worldPage.peaksBlurb':
@@ -7910,7 +7711,7 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'hudChrome.leaderboard.guildXp': 'XP total',
   'hudChrome.leaderboard.guildEmpty': 'Aún no hay hermandades clasificadas.',
   'hudChrome.discord.title': 'Discord',
-  'hudChrome.discord.panelTitle': 'World of ClaudeCraft',
+  'hudChrome.discord.panelTitle': 'Wildhaven',
   'hudChrome.discord.open': 'Discord',
   'hudChrome.discord.close': 'Cerrar',
   'hudChrome.discord.keybind': 'Panel de Discord',
@@ -8031,10 +7832,10 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'errors.api.desktopCodeInvalid':
     'El código de inicio de sesión de escritorio no es válido o expiró. Inténtalo de nuevo.',
   'desktop.crash.body': 'La vista del juego dejó de funcionar. ¿Recargarla?',
-  'desktop.crash.fatalBody': 'World of ClaudeCraft tuvo un error inesperado y debe cerrarse.',
+  'desktop.crash.fatalBody': 'Wildhaven tuvo un error inesperado y debe cerrarse.',
   'desktop.crash.quit': 'Salir',
   'desktop.crash.reload': 'Recargar',
-  'desktop.crash.title': 'World of ClaudeCraft',
+  'desktop.crash.title': 'Wildhaven',
   'desktop.update.downloadingTitle': 'Descargando actualización {version}...',
   'desktop.update.later': 'Más tarde',
   'desktop.update.readyTitle': 'La actualización {version} está lista',
@@ -8052,17 +7853,11 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.noLeaders': 'Aún no hay puntos.',
   'hudChrome.dailyRewards.prize': 'Fondo de premios',
   'hudChrome.dailyRewards.reason.eligible': 'Recompensas desbloqueadas.',
-  'hudChrome.dailyRewards.reason.no_wallet': 'Conecta una cartera con al menos $20 USD en WOC.',
-  'hudChrome.dailyRewards.reason.price_unavailable':
-    'El precio de WOC no está disponible; las recompensas están bloqueadas temporalmente.',
-  'hudChrome.dailyRewards.reason.under_minimum':
-    'La cartera está por debajo del mínimo de $20 USD en WOC.',
   'hudChrome.dailyRewards.remainingHoursMinutes': '{hours}h {minutes}min',
   'hudChrome.dailyRewards.remainingLessThanMinute': '<1min',
   'hudChrome.dailyRewards.remainingMinutes': '{minutes}min',
   'hudChrome.dailyRewards.reset': 'Reinicio',
   'hudChrome.dailyRewards.score': 'Puntuación',
-  'hudChrome.dailyRewards.sol': '{amount} SOL',
   'hudChrome.dailyRewards.spinButton': 'Girar',
   'hudChrome.dailyRewards.spinClaimed': 'Reclamado: +{points} puntos.',
   'hudChrome.dailyRewards.spinClose': 'Cerrar giro diario',
@@ -8077,21 +7872,10 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.disabled':
     'Las recompensas diarias están desactivadas actualmente. Anunciaremos las novedades de esta función en el canal de Discord.',
   'hudChrome.dailyRewards.unknown': 'Desconocido',
-  'hudChrome.dailyRewards.usd': '{amount} USD',
-  'hudChrome.dailyRewards.walletConnectBody':
-    'Verifica una cartera de Solana con WOC para desbloquear las recompensas diarias.',
-  'hudChrome.dailyRewards.walletConnectButton': 'Verificar cartera',
-  'hudChrome.dailyRewards.walletConnectTitle': 'Verificar cartera',
-  'hudChrome.dailyRewards.walletHoldBody':
-    'Mantén al menos {amount} USD en WOC para desbloquear las recompensas diarias.',
-  'hudChrome.dailyRewards.walletHoldTitle': 'Mantén WOC',
-  'hudChrome.dailyRewards.walletPriceBody':
-    'El precio de WOC no está disponible en este momento. Vuelve a consultarlo pronto.',
-  'hudChrome.dailyRewards.walletValue': 'Valor de cartera (WOC)',
   'hudChrome.nativeUpdate.body':
-    'Ya hay disponible una nueva versión de World of ClaudeCraft. Actualiza ahora para obtener las últimas correcciones y mejoras.',
+    'Ya hay disponible una nueva versión de Wildhaven. Actualiza ahora para obtener las últimas correcciones y mejoras.',
   'hudChrome.nativeUpdate.bodyWithVersion':
-    'La versión {version} de World of ClaudeCraft ya está disponible. Actualiza ahora para obtener las últimas correcciones y mejoras.',
+    'La versión {version} de Wildhaven ya está disponible. Actualiza ahora para obtener las últimas correcciones y mejoras.',
   'hudChrome.nativeUpdate.notNow': 'Ahora no',
   'hudChrome.nativeUpdate.title': 'Actualización disponible',
   'hudChrome.nativeUpdate.update': 'Actualizar',
@@ -8342,7 +8126,6 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'guide.economy.bankTitle': 'El banco',
   'hudChrome.bank.bonusAdvertDiscord': 'Vincula tu Discord para ganar 2 espacios.',
   'hudChrome.bank.bonusAdvertEmail': 'Verifica tu correo para ganar 2 espacios.',
-  'hudChrome.bank.bonusAdvertWallet': 'Vincula una cartera para ganar 2 espacios.',
   'hudChrome.bank.bonusEarned': '+{count}',
   'hudChrome.bank.bonusReferralExplainer':
     'Invita a un amigo: cuando alcance el nivel 10, cada uno gana 2 espacios, hasta 5 amigos.',
@@ -8351,7 +8134,6 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'hudChrome.bank.bonusSourceDiscord': 'Discord vinculado',
   'hudChrome.bank.bonusSourceEmail': 'Correo verificado',
   'hudChrome.bank.bonusSourceReferral': 'Amigos invitados',
-  'hudChrome.bank.bonusSourceWallet': 'Cartera vinculada',
   'hudChrome.bank.bonusStatusEarned': '+{count}',
   'hudChrome.bank.bonusTitle': 'Espacios extra',
   'hudChrome.bank.buyConfirm': '¿Comprar {count} espacios de banco adicionales por {price}?',
@@ -9748,18 +9530,12 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'hudChrome.claudium.checkoutClose': 'Cerrar el pago',
   'hudChrome.claudium.checkoutFailed': 'No se pudo cargar el pago. Inténtalo de nuevo.',
   'hudChrome.claudium.checkoutLoading': 'Cargando el pago...',
-  'hudChrome.claudium.checkoutNotSettled':
-    'La transacción se envió, pero el Claudium aún no se ha abonado. Vuelve a intentarlo dentro de poco.',
   'hudChrome.claudium.checkoutPending':
     'Transacción en curso. Confírmala en tu cartera y mantén abierto este panel.',
   'hudChrome.claudium.checkoutPendingButton': 'Procesando',
   'hudChrome.claudium.checkoutTitle': 'Completar compra',
   'hudChrome.claudium.checkoutUnavailable':
     'Esa compra de Claudium no está disponible en este momento.',
-  'hudChrome.claudium.checkoutWalletRequired':
-    'Conecta una cartera de Solana antes de comprar Claudium con criptomonedas.',
-  'hudChrome.claudium.checkoutWalletUnsupported':
-    'Esta cartera no puede firmar ni enviar transacciones de Solana.',
   'hudChrome.claudium.close': 'Cerrar Claudium',
   'hudChrome.claudium.disclosure':
     'Claudium es una moneda virtual unidireccional: se compra con dinero y se gasta en cosméticos. No se puede canjear, transferir ni convertir en dinero.',
@@ -9770,16 +9546,9 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'hudChrome.claudium.loading': 'Cargando Claudium...',
   'hudChrome.claudium.open': 'Abrir Claudium',
   'hudChrome.claudium.railLabel': 'Forma de pago',
-  'hudChrome.claudium.railNativeUnavailable': 'SOL/WOC no disponible.',
-  'hudChrome.claudium.railSol': 'SOL',
   'hudChrome.claudium.railStripe': 'Tarjeta',
-  'hudChrome.claudium.railWoc': 'WOC',
-  'hudChrome.claudium.railWocDiscount': '{percent} % de descuento',
-  'hudChrome.claudium.railWocUnavailable':
-    'Los precios en WOC no están disponibles en este momento.',
   'hudChrome.claudium.showAmounts': 'Mostrar todas las cantidades de Claudium',
   'hudChrome.claudium.skuRow': '{claudium} Claudium por {usd}',
-  'hudChrome.claudium.solBalance': 'SOL: {amount}',
   'hudChrome.claudium.spendButton': 'Canjear',
   'hudChrome.claudium.storeCost': '{amount} Claudium',
   'hudChrome.claudium.storeEmpty': 'No hay cosméticos disponibles en este momento.',
@@ -9787,7 +9556,6 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'hudChrome.claudium.title': 'Claudium',
   'hudChrome.claudium.unavailable':
     'La tienda de Claudium no está disponible en este momento. Tu saldo y tus compras no se verán afectados; vuelve a intentarlo dentro de poco.',
-  'hudChrome.claudium.wocBalance': 'WOC: {amount}',
   'hudChrome.deeds.openBookHint': 'Abrir el Libro de Gestas',
   'hudChrome.statInfo.desc.warfare':
     'Aumenta un {increase}% el daño infligido a jugadores y reduce un {reduction}% el daño recibido de jugadores.',
@@ -10258,8 +10026,6 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'entities.items.eastbrook_ritual_vestments.name': 'Vestiduras rituales de Eastbrook',
   'entities.items.eastbrook_warded_leggings.name': 'Perneras protegidas de Eastbrook',
   'entities.items.wardweave_cowl.name': 'Capucha de tejido protector',
-  'hudChrome.claudium.railUsdc': 'USDC',
-  'hudChrome.claudium.usdcBalance': 'Saldo en USDC: {amount}',
   'hudChrome.dailyRewards.reason.bannedUntil':
     'Tienes prohibido acceder a Recompensas diarias durante {remaining} más. El acceso se restablece {until}. Motivo: {reason}',
   'hudChrome.dailyRewards.remainingDaysHours': '{days} d {hours} h',

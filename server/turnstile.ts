@@ -56,7 +56,7 @@ export async function verifyTurnstile(
 // The full bot gate for account creation / login. Returns true when the request
 // may proceed. Native apps prove themselves with a platform attestation instead
 // of the widget. The Electron desktop shell is admitted by Origin alone: the
-// widget cannot pass Cloudflare's domain validation at app://worldofclaudecraft
+// widget cannot pass Cloudflare's domain validation at app://wildhaven
 // (siteverify widget error 110200, verified empirically), so there is no token
 // it could send. An Origin header is spoofable, so this is a deliberate,
 // documented softening of the bot gate for the desktop origins only; a real

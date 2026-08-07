@@ -1,6 +1,6 @@
 ---
 name: extract-and-test
-description: Build features and fix bugs the clean, scalable way for World of ClaudeCraft. Use when adding a feature, refactoring logic out of a large file (sim.ts, hud.ts, renderer.ts, main.ts), or fixing a bug, especially when the change would otherwise append a block of new logic to an existing big file. Extracts self-contained behavior into a small, well-named, unit-tested module behind one of this repo's existing seams instead of growing a monolith, and fixes bugs test-first (reproduce with a failing test, then make the smallest change that turns it green). Keeps merge conflicts small and the codebase scalable for many contributors.
+description: Build features and fix bugs the clean, scalable way for Wildhaven. Use when adding a feature, refactoring logic out of a large file (sim.ts, hud.ts, renderer.ts, main.ts), or fixing a bug, especially when the change would otherwise append a block of new logic to an existing big file. Extracts self-contained behavior into a small, well-named, unit-tested module behind one of this repo's existing seams instead of growing a monolith, and fixes bugs test-first (reproduce with a failing test, then make the smallest change that turns it green). Keeps merge conflicts small and the codebase scalable for many contributors.
 user-invocable: true
 ---
 

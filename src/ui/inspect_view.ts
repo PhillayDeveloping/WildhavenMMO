@@ -2,10 +2,10 @@
 //
 // The pure-core half of the inspect module pair (inspect_window.ts is the thin
 // painter). It turns another player's mirrored entity fields (all already
-// client-side: class, skin, worn gear, and the $WOC / Discord / dev identity
-// flair) into the structured model the painter draws: a compact header (name,
-// deed title, level, class, class color), the three badge decisions (holder /
-// Discord / dev, each gated exactly as the old inline card gated them), and the
+// client-side: class, skin, worn gear, and the Discord / dev identity flair)
+// into the structured model the painter draws: a compact header (name, deed
+// title, level, class, class color), the two badge decisions (Discord / dev,
+// each gated exactly as the old inline card gated them), and the
 // worn-gear paperdoll (reused from char_view's buildPaperdollView, so inspect
 // inherits the sheet's 6/6 column split). A separate builder covers the thinner
 // out-of-range remote-profile card.
@@ -37,13 +37,6 @@ export interface InspectHeaderModel {
   classColor: string;
 }
 
-/** $WOC holder-tier flair, present only for a connected holder (tier > 0).
- *  `balance` is the on-chain balance when known (> 0), else null. */
-export interface InspectHolderModel {
-  tierIndex: number;
-  balance: number | null;
-}
-
 /** Linked-Discord flair, present only when the player has a Discord tier (> 0).
  *  `memberDays` is the whole days since they joined (null when unknown). */
 export interface InspectDiscordModel {
@@ -62,9 +55,8 @@ export interface InspectDevModel {
   githubLogin: string | null;
 }
 
-/** The three identity-flair decisions. A null field means that badge is hidden. */
+/** The two identity-flair decisions. A null field means that badge is hidden. */
 export interface InspectBadgesModel {
-  holder: InspectHolderModel | null;
   discord: InspectDiscordModel | null;
   dev: InspectDevModel | null;
 }
@@ -92,8 +84,6 @@ export interface InspectInput {
   /** The active deed title text, already resolved by the painter; '' when none. */
   deedTitleText: string;
   equippedItems: Partial<Record<EquipSlot, string>>;
-  holderTier: number;
-  holderBalance: number | null;
   discordTier: number;
   discordName: string | null;
   discordAvatar: string | null;
@@ -111,7 +101,7 @@ const MS_PER_DAY = 86_400_000;
 
 /** Build the full inspect model from an inspected player's fields and the item
  *  table. Every badge is gated exactly as the old inline inspect card gated it:
- *  holder/Discord hidden at tier 0, dev hidden at tier 0 OR when showDevBadges is
+ *  Discord hidden at tier 0, dev hidden at tier 0 OR when showDevBadges is
  *  off. Gear reuses char_view's buildPaperdollView, so inspect and the character
  *  sheet share the identical 6/6 column split. */
 export function buildInspectView(
@@ -125,11 +115,6 @@ export function buildInspectView(
     cls: input.cls,
     classColor: classColorCss(input.cls),
   };
-
-  const holder: InspectHolderModel | null =
-    input.holderTier > 0
-      ? { tierIndex: input.holderTier, balance: input.holderBalance ? input.holderBalance : null }
-      : null;
 
   const memberDays =
     typeof input.discordJoined === 'number'
@@ -157,7 +142,7 @@ export function buildInspectView(
 
   return {
     header,
-    badges: { holder, discord, dev },
+    badges: { discord, dev },
     gear: buildPaperdollView(input.equippedItems, items),
     skin: input.skin,
     skinCatalog: input.skinCatalog,

@@ -20,12 +20,12 @@ describe('provider usage metrics', () => {
 
   it('reports rolling counts across the admin dashboard windows', () => {
     const now = 1_000_000_000;
-    recordUsageMetric('woc.balance.rpc', now - 25 * 60 * 60_000);
-    recordUsageMetric('woc.balance.rpc', now - 2 * 60 * 60_000);
-    recordUsageMetric('woc.balance.rpc', now - 2 * 60_000);
-    recordUsageMetric('woc.balance.rpc', now - 30_000);
+    recordUsageMetric('github.contributors.fetch', now - 25 * 60 * 60_000);
+    recordUsageMetric('github.contributors.fetch', now - 2 * 60 * 60_000);
+    recordUsageMetric('github.contributors.fetch', now - 2 * 60_000);
+    recordUsageMetric('github.contributors.fetch', now - 30_000);
 
-    expect(metricCounts('woc.balance.rpc', now)).toEqual({
+    expect(metricCounts('github.contributors.fetch', now)).toEqual({
       m1: 1,
       m5: 2,
       h1: 2,
@@ -63,24 +63,28 @@ describe('provider usage metrics', () => {
 
   it('reports cache counters and current cache size', () => {
     const now = 2_000_000_000;
-    setUsageCacheSize('woc.balance', 3, 1024, now);
-    recordUsageCacheEvent('woc.balance', 'hit', now);
-    recordUsageCacheEvent('woc.balance', 'miss', now);
-    recordUsageCacheEvent('woc.balance', 'stale', now);
-    recordUsageCacheEvent('woc.balance', 'store', now);
-    recordUsageCacheEvent('woc.balance', 'failure', now);
-    recordUsageCacheEvent('woc.balance', 'eviction', now);
+    setUsageCacheSize('github.contributors', 3, 1024, now);
+    recordUsageCacheEvent('github.contributors', 'hit', now);
+    recordUsageCacheEvent('github.contributors', 'miss', now);
+    recordUsageCacheEvent('github.contributors', 'stale', now);
+    recordUsageCacheEvent('github.contributors', 'store', now);
+    recordUsageCacheEvent('github.contributors', 'failure', now);
+    recordUsageCacheEvent('github.contributors', 'eviction', now);
 
-    const cache = providerUsageSnapshot(now).caches.find((row) => row.key === 'woc.balance');
-    expect(cache).toEqual(expect.objectContaining({
-      entries: 3,
-      maxEntries: 1024,
-      hits: 1,
-      misses: 1,
-      staleRefreshes: 1,
-      stores: 1,
-      failures: 1,
-      evictions: 1,
-    }));
+    const cache = providerUsageSnapshot(now).caches.find(
+      (row) => row.key === 'github.contributors',
+    );
+    expect(cache).toEqual(
+      expect.objectContaining({
+        entries: 3,
+        maxEntries: 1024,
+        hits: 1,
+        misses: 1,
+        staleRefreshes: 1,
+        stores: 1,
+        failures: 1,
+        evictions: 1,
+      }),
+    );
   });
 });

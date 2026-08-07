@@ -5,7 +5,12 @@
 // pure core (travel_speed_fx.ts) lays out. All gameplay/easing decisions live
 // in the pure core; this file only turns a state into pixels.
 
-import { speedStreaksInto, stepIntensity, vignetteAlpha, type SpeedStreak } from './travel_speed_fx';
+import {
+  type SpeedStreak,
+  speedStreaksInto,
+  stepIntensity,
+  vignetteAlpha,
+} from './travel_speed_fx';
 
 export class TravelSpeedFxPainter {
   private canvas: HTMLCanvasElement;
@@ -71,7 +76,10 @@ export class TravelSpeedFxPainter {
   // frame; paint() scales the rim darkness with globalAlpha.
   private rebuildVignette(): void {
     const ctx = this.ctx;
-    if (!ctx) { this.vignetteGrad = null; return; }
+    if (!ctx) {
+      this.vignetteGrad = null;
+      return;
+    }
     const cx = this.canvas.width / 2;
     const cy = this.canvas.height / 2;
     const half = Math.hypot(cx, cy);

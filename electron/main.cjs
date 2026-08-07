@@ -24,7 +24,7 @@ const {
   withCspHeader,
   ALLOWED_PERMISSIONS,
 } = require('./shell_guards.cjs');
-const { resolveDesktopConfig, walletConnectionSupported } = require('./desktop_config.cjs');
+const { resolveDesktopConfig } = require('./desktop_config.cjs');
 const { createSteamShell } = require('./steam.cjs');
 const { createEpicShell } = require('./epic.cjs');
 const { PRODUCTION_API_ORIGIN } = require('./update_guard.cjs');
@@ -45,10 +45,6 @@ const {
   relaunchForLinuxPrime,
   summarizeGpuDevices,
 } = require('./gpu_preference.cjs');
-const {
-  buildWalletHandoffBrowserUrl,
-  parseWalletHandoffDeepLink,
-} = require('./wallet_handoff.cjs');
 
 // On a Linux hybrid-graphics laptop, the PRIME render-offload env vars (DRI_PRIME,
 // __NV_PRIME_RENDER_OFFLOAD, etc; see electron/gpu_preference.cjs) only reach the GPU
@@ -66,7 +62,7 @@ if (relaunchForLinuxPrime({ log: console })) {
   process.exit(0);
 }
 
-const APP_ORIGIN = 'app://worldofclaudecraft';
+const APP_ORIGIN = 'app://wildhaven';
 // The Vite dev server URL is a DEV-ONLY seam (electron-dev.mjs sets it): its
 // origin joins the trusted set for BOTH navigation and IPC-sender trust, and it
 // is loaded as the UI, so a packaged build must never honor it from runtime
@@ -75,10 +71,9 @@ const APP_ORIGIN = 'app://worldofclaudecraft';
 const devServerUrl = app.isPackaged ? undefined : process.env.VITE_DEV_SERVER_URL;
 // Origins the main frame may navigate to (app origin, plus the dev server in dev).
 const appOrigins = appNavigationOrigins(APP_ORIGIN, devServerUrl);
-const deepLinkProtocol = 'worldofclaudecraft';
+const deepLinkProtocol = 'wildhaven';
 let mainWindow = null;
 let pendingLoginCode = null;
-let pendingWalletHandoffCode = null;
 // Session cap counter for the renderer console mirror (used by the
 // 'console-message' handler in createMainWindow).
 let consoleLinesMirrored = 0;
@@ -118,10 +113,10 @@ const desktopLoginOrigin = desktopConfig.loginOrigin.replace(/\/+$/, '');
 // build time, https-only) they upload compressed and rate-limited. No extra
 // user data rides along: the report carries only process/version metadata.
 crashReporter.start({
-  productName: 'World of ClaudeCraft',
+  productName: 'Wildhaven',
   // companyName is deprecated in Electron 43; the metadata field survives as
   // the _companyName global extra.
-  globalExtra: { _companyName: 'World of ClaudeCraft' },
+  globalExtra: { _companyName: 'Wildhaven' },
   submitURL: desktopConfig.crashSubmitUrl || undefined,
   uploadToServer: desktopConfig.crashSubmitUrl !== '',
   compress: true,
@@ -238,7 +233,7 @@ function createMainWindow() {
     height: 900,
     minWidth: 1024,
     minHeight: 720,
-    title: 'World of ClaudeCraft',
+    title: 'Wildhaven',
     backgroundColor: '#05070a',
     icon: path.join(__dirname, '..', 'build', 'icon.png'),
     webPreferences: {
@@ -384,10 +379,6 @@ function openDesktopLogin() {
   shell.openExternal(url.toString());
 }
 
-function openDesktopWalletHandoff(code) {
-  return shell.openExternal(buildWalletHandoffBrowserUrl(apiOrigin, code));
-}
-
 function deliverLoginCode(code) {
   pendingLoginCode = code;
   if (!mainWindow) return;
@@ -396,28 +387,14 @@ function deliverLoginCode(code) {
   mainWindow.focus();
 }
 
-function deliverWalletHandoffCode(code) {
-  pendingWalletHandoffCode = code;
-  if (process.platform === 'darwin') app.focus({ steal: true });
-  if (!mainWindow) return;
-  mainWindow.webContents.send('desktop-wallet-handoff-code', code);
-  if (mainWindow.isMinimized()) mainWindow.restore();
-  mainWindow.focus();
-}
-
 function handleDeepLink(url) {
-  const walletHandoff = parseWalletHandoffDeepLink(url);
-  if (walletHandoff) {
-    deliverWalletHandoffCode(walletHandoff.code);
-    return;
-  }
   let parsed;
   try {
     parsed = new URL(url);
   } catch {
     return;
   }
-  if (parsed.protocol !== 'worldofclaudecraft:' || parsed.hostname !== 'desktop-login') return;
+  if (parsed.protocol !== 'wildhaven:' || parsed.hostname !== 'desktop-login') return;
   const code = parsed.searchParams.get('code');
   if (!code) return;
   deliverLoginCode(code);
@@ -499,13 +476,6 @@ ipcMain.handle('desktop-epic-capability', (event) => {
   return epicShell.enabled;
 });
 
-// WalletConnect is available in the website-distributed desktop shell but is
-// intentionally absent from Steam until that distribution enables it.
-ipcMain.handle('desktop-wallet-capability', (event) => {
-  if (!trustedSender(event)) return false;
-  return walletConnectionSupported(desktopConfig);
-});
-
 ipcMain.handle('desktop-login-open-browser', (event) => {
   if (!trustedSender(event)) return null;
   openDesktopLogin();
@@ -516,23 +486,6 @@ ipcMain.handle('desktop-login-take-code', (event) => {
   if (!trustedSender(event)) return null;
   const code = pendingLoginCode;
   pendingLoginCode = null;
-  return code;
-});
-
-ipcMain.handle('desktop-wallet-open-browser', async (event, code) => {
-  if (!trustedSender(event)) return false;
-  try {
-    await openDesktopWalletHandoff(code);
-    return true;
-  } catch {
-    return false;
-  }
-});
-
-ipcMain.handle('desktop-wallet-take-code', (event) => {
-  if (!trustedSender(event)) return null;
-  const code = pendingWalletHandoffCode;
-  pendingWalletHandoffCode = null;
   return code;
 });
 

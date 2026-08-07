@@ -15,8 +15,7 @@ export function loadServerEnv(): void {
   }
   try {
     // Local-dev convenience: also load .env.local so the server can reuse the
-    // client's VITE_* values (e.g. the Solana RPC + $WOC mint) for the
-    // in-world holder-tier reads. Existing keys from .env are not overwritten.
+    // client's VITE_* values. Existing keys from .env are not overwritten.
     process.loadEnvFile?.('.env.local');
   } catch {
     // .env.local is optional.

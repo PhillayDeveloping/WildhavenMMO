@@ -4,16 +4,16 @@
 
 </div>
 
-# Přispívání do World of ClaudeCraft
+# Přispívání do Wildhaven
 
-Především děkujeme, že jsi tady. World of ClaudeCraft staví komunita lidí, kteří
+Především děkujeme, že jsi tady. Wildhaven staví komunita lidí, kteří
 milují klasická MMO, a každý příspěvek, velký i malý, ho dělá lepším. Oprava
 překlepu, překlad hry, hlášení chyby, stavba úplně nového dungeonu: všechno se
 počítá a jsi tu vítán.
 
 Tenhle průvodce ti pomůže s nastavením a udělá tvůj první příspěvek hladkým.
 Nemusíš být expert. Pokud je něco nejasné, zeptej se na
-[Discordu](https://discord.com/invite/worldofclaudecraft) a někdo ti rád pomůže.
+[Discordu](https://discord.com/invite/wildhaven) a někdo ti rád pomůže.
 
 Účastí souhlasíš s dodržováním našeho [Kodexu chování](../../CODE_OF_CONDUCT.md).
 
@@ -22,13 +22,13 @@ Nemusíš být expert. Pokud je něco nejasné, zeptej se na
 Místo tu má každý:
 
 - **Kód.** Oprav chybu, přidej funkci nebo zlepši výkon. Issues se štítky
-  [`good first issue`](https://github.com/levy-street/world-of-claudecraft/labels/good%20first%20issue)
-  a [`help wanted`](https://github.com/levy-street/world-of-claudecraft/labels/help%20wanted)
+  [`good first issue`](https://github.com/levy-street/wildhaven/labels/good%20first%20issue)
+  a [`help wanted`](https://github.com/levy-street/wildhaven/labels/help%20wanted)
   jsou dobrý začátek.
 - **Překlady.** Pomoz hráčům po celém světě tím, že vylepšíš nebo doplníš nějaký
   jazyk. Níže viz [Překlad hry](#translating-the-game). Je to jeden z nejjednodušších
   a nejužitečnějších způsobů, jak začít.
-- **Hlášení chyb a nápady na funkce.** Otevři [issue](https://github.com/levy-street/world-of-claudecraft/issues/new/choose).
+- **Hlášení chyb a nápady na funkce.** Otevři [issue](https://github.com/levy-street/wildhaven/issues/new/choose).
   Jasné hlášení chyby je opravdový příspěvek.
 - **Dokumentace.** Průvodci jako tenhle, README a designové dokumenty v `docs/` se
   dají vždycky vylepšit.
@@ -43,8 +43,8 @@ Budeš potřebovat [Node.js 26](https://nodejs.org/) a **pnpm 10.34.x** (přesn�
 
 ```bash
 # 1. Fork the repo on GitHub, then clone your fork
-git clone https://github.com/<your-username>/world-of-claudecraft.git
-cd world-of-claudecraft
+git clone https://github.com/<your-username>/wildhaven.git
+cd wildhaven
 
 # 2. Install pnpm once (same command on macOS, Linux, Windows)
 #    Match the packageManager pin in package.json (today: 10.34.5).
@@ -228,7 +228,7 @@ odmítnutí. Snažíme se být v review laskaví a konstruktivní a totéž pros
 
 ## Lokalizace
 
-World of ClaudeCraft vychází v mnoha jazycích. Každý řetězec viditelný pro hráče
+Wildhaven vychází v mnoha jazycích. Každý řetězec viditelný pro hráče
 musí být překladový klíč, přičemž přispěvatelé funkcí obvykle přidávají jen
 anglický zdroj.
 
@@ -274,15 +274,15 @@ Chceš vylepšit nějaký jazyk nebo pomoct dostat hru do nového? Nemusíš k t
    overlaye jsou záměrně řídké.
 
 Pokud chceš navrhnout úplně nový jazyk nebo probrat tón a terminologii, založ vlákno
-na [Discordu](https://discord.com/invite/worldofclaudecraft) a pomůžeme ti ho zapojit.
+na [Discordu](https://discord.com/invite/wildhaven) a pomůžeme ti ho zapojit.
 Rodilí a plynulí mluvčí jsou vítáni obzvlášť. Dobré překlady dělají hru domovem pro
 hráče všude na světě.
 
 ## Hlášení chyb a žádosti o funkce
 
-Prosím používej [šablony issue](https://github.com/levy-street/world-of-claudecraft/issues/new/choose):
+Prosím používej [šablony issue](https://github.com/levy-street/wildhaven/issues/new/choose):
 
-- **Hlášení chyby.** Nejdřív prohledej [existující issues](https://github.com/levy-street/world-of-claudecraft/issues),
+- **Hlášení chyby.** Nejdřív prohledej [existující issues](https://github.com/levy-street/wildhaven/issues),
   aby ses vyhnul duplicitám, a pak uveď kroky k reprodukci, co jsi očekával, co se
   stalo a jaké máš prostředí (offline nebo online, prohlížeč, desktop nebo mobil).
 - **Žádost o funkci.** Popiš problém, který se snažíš vyřešit, ne jen řešení.
@@ -294,7 +294,7 @@ Prosím používej [šablony issue](https://github.com/levy-street/world-of-clau
 ## Kde získat pomoc
 
 Zasekl ses nebo chceš jen pozdravit? Přidej se na
-[komunitní Discord](https://discord.com/invite/worldofclaudecraft). Žádná otázka není
+[komunitní Discord](https://discord.com/invite/wildhaven). Žádná otázka není
 příliš malá a noví přispěvatelé jsou vždycky vítáni.
 
 ## Licence
@@ -304,10 +304,10 @@ Přispěním kódu souhlasíš, že tvé kódové příspěvky budou licencovan�
 
 MIT licence znamená přesně to, co říká: kdokoli smí kód používat, upravovat a šířit
 dál, komerčně i nekomerčně. Naše
-[Podmínky služby](https://worldofclaudecraft.com/terms) upravují hostovanou hru,
-kterou provozujeme na worldofclaudecraft.com (účty, chování, virtuální předměty), a
+[Podmínky služby](https://wildhaven.example/terms) upravují hostovanou hru,
+kterou provozujeme na wildhaven.example (účty, chování, virtuální předměty), a
 neomezují práva, která MIT licence dává tobě ani komukoli jinému v tomto kódu.
-Názvy a branding "World of ClaudeCraft" a "Levy Street" MIT licence nekryje.
+Názvy a branding "Wildhaven" a "Levy Street" MIT licence nekryje.
 
 Výjimkou jsou původní kreativní assety (zvukové nahrávky, hudba, grafika a podobná
 autorská díla). Pokud přispěješ původním assetem, který jsi vytvořil, můžeš si místo
@@ -317,7 +317,7 @@ CC BY-NC 4.0), a to za podmínky, že:
 - licence, cesty k assetům, které kryje, a tvé uvedení autorství jsou zaznamenané
   v licenční tabulce v [CREDITS.md](../../CREDITS.md) v rámci téhož pull requestu, a
 - zahrnuje minimálně trvalé a bezúplatné oprávnění pro Levy Street používat assety
-  komerčně ve World of ClaudeCraft, včetně oficiálních vydání a obchodu ve hře.
+  komerčně ve Wildhaven, včetně oficiálních vydání a obchodu ve hře.
 
 U assetů uvedených v tabulce v CREDITS.md má tato zaznamenaná licence přednost před
 výchozí MIT licencí projektu.
@@ -336,5 +336,5 @@ o tom, co jsi nám poskytl. Sloupec **Redistribution** vyplň také poctivě. Pr
 
 ---
 
-Děkujeme, že přispíváš do World of ClaudeCraft. Nemůžeme se dočkat, co s námi
+Děkujeme, že přispíváš do Wildhaven. Nemůžeme se dočkat, co s námi
 postavíš.

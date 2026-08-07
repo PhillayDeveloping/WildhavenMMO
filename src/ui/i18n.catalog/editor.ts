@@ -11,7 +11,7 @@
 export const editorStrings = {
   appTitle: 'Map Editor',
   // Browser tab title. Hyphen separator (not a dash character).
-  docTitle: 'Map Editor - World of ClaudeCraft',
+  docTitle: 'Map Editor - Wildhaven',
   untitledMap: 'Untitled Map',
   // The offline character name a playtest boots with.
   playtestPlayerName: 'Mapmaker',

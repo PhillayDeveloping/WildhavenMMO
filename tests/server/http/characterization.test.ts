@@ -391,10 +391,6 @@ describe('main /api characterization: bearer-auth denial contracts (no Authoriza
     );
   });
 
-  it('GET /api/wallet without auth is 401', async () => {
-    await characterize('wallet_get_noauth_401', makeReq({ method: 'GET', url: '/api/wallet' }));
-  });
-
   it('GET /api/referrals without auth is 401', async () => {
     await characterize(
       'referrals_get_noauth_401',

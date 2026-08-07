@@ -1,7 +1,7 @@
-# World of ClaudeCraft — Project Notes
+# Wildhaven — Project Notes
 
-Source repo: https://github.com/levy-street/world-of-claudecraft
-Official site: https://worldofclaudecraft.com/
+Source repo: https://github.com/levy-street/wildhaven
+Official site: https://wildhaven.example/
 
 ## What it is
 
@@ -24,7 +24,7 @@ runtime rather than shipped as assets.
   for any original code I keep.
 - **Bundled art assets are CC0** (public domain), except the water normal
   maps which are MIT. Also free to use and modify.
-- **Not covered by MIT:** the "World of ClaudeCraft" name and logos — that's
+- **Not covered by MIT:** the "Wildhaven" name and logos — that's
   branding, not code. If I release a public or commercial version, rename
   and rebrand it to avoid trademark confusion (especially since "Claude"
   is in the name).
@@ -40,6 +40,16 @@ runtime rather than shipped as assets.
   and the server via `npm run server` (port 8787).
 
 ## Plan: database on Supabase, server stays local
+
+> **Answered and written up in [docs/supabase-database.md](docs/supabase-database.md).**
+> The two open questions below are resolved there against the real code: no
+> `ssl` option is set anywhere (all three connection sites pass only
+> `connectionString`, so `?sslmode=require` in the URL covers them), and there
+> is no separate migration command (`ensureSchema()` runs at boot). That file
+> also flags two things this plan did not anticipate: `sslmode=require` means
+> full certificate verification with the pinned `pg-connection-string`, and the
+> default pool size is sized against a stock Postgres container rather than a
+> Supabase plan's connection cap.
 
 Goal: the database lives in the cloud (Supabase), the game server (Node
 process) still runs on my own PC, started only when I'm actually playing/

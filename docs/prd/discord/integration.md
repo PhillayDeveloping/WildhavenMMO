@@ -1,6 +1,6 @@
 # Discord Integration
 
-A two-way bridge between World of ClaudeCraft and the official Discord server.
+A two-way bridge between Wildhaven and the official Discord server.
 Players link their Discord to their game account, earn an authored reward
 currency (points -> status tiers -> swag), flex their top character in Discord,
 and see live Discord presence + voice in the game HUD.
