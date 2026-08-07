@@ -272,7 +272,7 @@ describe('GET /api/discord (status)', () => {
     expect(data.linked).toBe(false);
     expect(data.points).toBe(0);
     expect(data.statusTier).toBe(0);
-    expect(data.inviteUrl).toBe('https://discord.com/invite/wildhaven');
+    expect(data.inviteUrl).toBe('https://wildhaven.example');
   });
 
   it('reports linked status, points and derived tier', async () => {
