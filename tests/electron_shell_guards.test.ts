@@ -3,6 +3,7 @@ import {
   ALLOWED_PERMISSIONS,
   appNavigationOrigins,
   buildContentSecurityPolicy,
+  CSP_ORIGINS,
   deriveOrigin,
   extractInlineScriptHashes,
   isDevToolsToggleShortcut,
@@ -201,6 +202,15 @@ describe('buildContentSecurityPolicy', () => {
     for (const d of ['connect-src', 'img-src', 'font-src', 'frame-src']) {
       expect(directive(d), d).not.toMatch(/walletconnect|web3modal|reown/);
     }
+  });
+
+  // Desktop is the only host that ships a CSP. Linked Discord avatars load from
+  // cdn.discordapp.com (server/discord_oauth.ts DISCORD_CDN_BASE) as <img> and
+  // nameplate-canvas badges; without this origin the desktop client silently
+  // drops every PFP while the web client still paints them.
+  it('allows Discord CDN avatars in img-src so linked PFPs paint on desktop', () => {
+    expect(directive('img-src')).toContain('https://cdn.discordapp.com');
+    expect(CSP_ORIGINS.img).toContain('https://cdn.discordapp.com');
   });
 });
 

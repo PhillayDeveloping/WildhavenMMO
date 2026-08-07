@@ -15,6 +15,9 @@ export const BUG_REPORT_RATE_LIMIT = 5;
 // src/ui/bug_report.ts). The server re-clamps because a direct API caller never
 // runs the client assembly.
 const META_STR_MAX = 512;
+// Mirrors moderation_db.ts's ACTION_REASON_MAX: an admin's optional resolve/dismiss
+// note is short-form context, not a report body.
+const REVIEW_NOTE_MAX = 500;
 
 // The real client only ever produces a downscaled JPEG data URL. Allow the common
 // raster image data-URL types and nothing else, so a hand-crafted payload (e.g.
@@ -52,6 +55,10 @@ function metaStr(value: unknown): string {
 
 function metaNum(value: unknown): number {
   return typeof value === 'number' && Number.isFinite(value) ? value : 0;
+}
+
+function cleanReviewNote(value: unknown): string {
+  return typeof value === 'string' ? value.trim().slice(0, REVIEW_NOTE_MAX) : '';
 }
 
 export function clampBugReportMeta(value: unknown): BugReportMeta {
@@ -180,4 +187,26 @@ export async function getBugReportScreenshot(id: number): Promise<string | null>
     Math.floor(id),
   ]);
   return res.rows[0]?.screenshot ?? null;
+}
+
+export type BugReportResolution = 'resolved' | 'dismissed';
+
+// Close one OPEN bug report, mirroring moderation_db.ts's ignoreReport UPDATE shape
+// (status flip + reviewed_at/reviewed_by_account_id/review_note stamp, gated on the
+// row still being 'open' so a double-submit or a race against another admin is a
+// no-op rather than clobbering an earlier resolution). Returns false when the id
+// does not exist or was already resolved/dismissed.
+export async function resolveBugReport(
+  id: number,
+  adminAccountId: number,
+  status: BugReportResolution,
+  note: unknown,
+): Promise<boolean> {
+  const res = await pool.query(
+    `UPDATE bug_reports
+     SET status = $2, reviewed_at = now(), reviewed_by_account_id = $3, review_note = $4
+     WHERE id = $1 AND status = 'open'`,
+    [id, status, adminAccountId, cleanReviewNote(note)],
+  );
+  return (res.rowCount ?? 0) > 0;
 }

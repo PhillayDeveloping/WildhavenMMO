@@ -11,7 +11,7 @@
 // Then re-pin test SOURCE_FINGERPRINT / ASSET_SHA256 literals from the printed
 // table, run remint_polish_provenance.mjs, and regenerate the media manifest.
 import { createHash } from 'node:crypto';
-import { readFileSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { eastbrookGrandArmourySourceFingerprint } from './eastbrook_grand_armoury/source_fingerprint.mjs';
@@ -19,10 +19,23 @@ import { eastbrookMailboxSourceFingerprint } from './eastbrook_mailbox/source_fi
 import { eastbrookNoticeboardSourceFingerprint } from './eastbrook_noticeboard/source_fingerprint.mjs';
 import { eastbrookTownSourceFingerprint } from './eastbrook_town/source_fingerprint.mjs';
 import { eastbrookSurfaceAtlasFingerprint } from './eastbrook_town/surface_atlas.mjs';
+import { FENBRIDGE_TOWN_ASSET_IDS, FENBRIDGE_TOWN_CONTRACTS } from './fenbridge_town/model.js';
 import { fenbridgeTownSourceFingerprint } from './fenbridge_town/source_fingerprint.mjs';
 import { tankSourceFingerprint } from './terrorspark_groundshaker/source_fingerprint.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
+
+// Fenbridge ships one stamped GLB per contract and its output path is already
+// declared there, so deriving the list keeps a newly authored asset covered
+// instead of silently dropping out of the re-mint.
+const FENBRIDGE_ASSETS = FENBRIDGE_TOWN_ASSET_IDS.map((id) => ({
+  rel: path.posix.join(
+    'public',
+    FENBRIDGE_TOWN_CONTRACTS[id].outputDirectory,
+    FENBRIDGE_TOWN_CONTRACTS[id].outputName,
+  ),
+  kind: 'fenbridge',
+}));
 
 const ASSETS = [
   { rel: 'public/models/props/eastbrook_bank.glb', kind: 'town' },
@@ -38,25 +51,7 @@ const ASSETS = [
   { rel: 'public/models/props/eastbrook_noticeboard.glb', kind: 'notice' },
   { rel: 'public/models/props/mailbox_pillar.glb', kind: 'mailbox' },
   { rel: 'public/models/mounts/terrorspark_groundshaker.glb', kind: 'tank' },
-  // Fenbridge was missing from this list, so a lockfile change re-stamped every
-  // other town and left these 15 carrying a fingerprint their own module no
-  // longer computes. Added when the web3 dependency removal moved the lock.
-  { rel: 'public/models/props/fenbridge_boardwalk.glb', kind: 'fenbridge' },
-  { rel: 'public/models/props/fenbridge_crooked_reed_inn.glb', kind: 'fenbridge' },
-  { rel: 'public/models/props/fenbridge_gate_arch.glb', kind: 'fenbridge' },
-  { rel: 'public/models/props/fenbridge_gilded_strongbox.glb', kind: 'fenbridge' },
-  { rel: 'public/models/props/fenbridge_hesk_tannery.glb', kind: 'fenbridge' },
-  { rel: 'public/models/props/fenbridge_lantern_chapel.glb', kind: 'fenbridge' },
-  { rel: 'public/models/props/fenbridge_mirelight_cistern.glb', kind: 'fenbridge' },
-  { rel: 'public/models/props/fenbridge_moonwort_apothecary.glb', kind: 'fenbridge' },
-  { rel: 'public/models/props/fenbridge_muster_board.glb', kind: 'fenbridge' },
-  { rel: 'public/models/props/fenbridge_palisade_wing.glb', kind: 'fenbridge' },
-  { rel: 'public/models/props/fenbridge_provision_stall.glb', kind: 'fenbridge' },
-  { rel: 'public/models/props/fenbridge_scout_lodge.glb', kind: 'fenbridge' },
-  { rel: 'public/models/props/fenbridge_warden_gatehouse.glb', kind: 'fenbridge' },
-  { rel: 'public/models/quest/fenbridge_muster_order.glb', kind: 'fenbridge' },
-  // Deliberately NOT hexn_palisade.glb: it ships from the biome pack and carries
-  // no sourceFingerprint extras, so it is not part of this provenance family.
+  ...FENBRIDGE_ASSETS,
 ];
 
 function findSourceFingerprint(buf) {
@@ -130,7 +125,11 @@ for (const asset of ASSETS) {
   console.log(`${asset.rel}: hits=${hits} bytes=${after.byteLength} sha256=${sha}`);
 }
 
+// tmp/ is gitignored, so a fresh clone does not have it. Without this the script
+// throws ENOENT here, AFTER every GLB has already been rewritten and verified,
+// which reads as a failed re-mint when the work actually succeeded.
 const outPath = path.join(ROOT, 'tmp/lockfile-fingerprint-remint.json');
+mkdirSync(path.dirname(outPath), { recursive: true });
 writeFileSync(outPath, `${JSON.stringify({ fps, results }, null, 2)}\n`);
 console.log(`wrote ${outPath}`);
 console.log(

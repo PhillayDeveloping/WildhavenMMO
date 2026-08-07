@@ -173,6 +173,7 @@
     <div id="combat-live" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></div>
     <div id="target-live" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></div>
     <div id="chat-live" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></div>
+    <div id="crafting-live" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></div>
     <div id="perf-overlay" aria-hidden="true"></div>
     <div id="click-move-marker" class="click-move-marker" aria-hidden="true">
       <span class="ctm-arrow ctm-n"></span>
@@ -244,9 +245,9 @@
         <!-- Decorative day/night dial: paints the 12h world cycle as a ring of sky
              colors with a "now" marker. aria-hidden like the minimap; the accessible
              time surface is #minimap-clock. -->
-        <canvas id="minimap-daynight" width="60" height="60" aria-hidden="true"></canvas>
+        <canvas id="minimap-daynight" width="88" height="88" aria-hidden="true"></canvas>
       </div>
-      <div id="minimap-clock" data-i18n-title="hudChrome.widgets.clockTitle" title="Local time — click to toggle 12/24-hour">--:--</div>
+      <div id="minimap-clock" data-i18n-title="hudChrome.widgets.clockTitle" title="Local time â€” click to toggle 12/24-hour">--:--</div>
       <div id="minimap-coords" data-i18n-title="hudChrome.widgets.worldCoordinates" data-i18n-aria="hudChrome.widgets.coordinates" title="Your current world coordinates" aria-label="Coordinates">0, 0</div>
       <div id="compass" data-i18n-aria="hudChrome.widgets.heading" aria-label="Heading">
         <div id="compass-strip"><div id="compass-track"></div></div>
@@ -255,7 +256,7 @@
       </div>
       <div id="minimap-zoom" data-i18n-aria="hudChrome.widgets.minimapZoom" aria-label="Minimap zoom">
         <button class="minimap-zoom-btn" id="minimap-zoom-out" data-i18n-title="hud.core.zoomOut" data-i18n-aria="hud.core.zoomOut" title="Zoom out" aria-label="Zoom out minimap">&minus;</button>
-        <span id="minimap-zoom-label" aria-live="polite">1×</span>
+        <span id="minimap-zoom-label" aria-live="polite">1Ã—</span>
         <button class="minimap-zoom-btn" id="minimap-zoom-in" data-i18n-title="hud.core.zoomIn" data-i18n-aria="hud.core.zoomIn" title="Zoom in" aria-label="Zoom in minimap">+</button>
       </div>
     </div>
@@ -292,11 +293,24 @@
     <div id="bottom-bar">
       <div id="actionbar-row">
         <div id="actionbar-stack">
+          <div id="pet-cluster">
+            <div id="petbar" class="panel"></div>
+            <div id="pet-frame" class="unitframe petframe" role="button" tabindex="0" data-i18n-aria="hudChrome.unitFrame.petLabel" aria-label="Your Pet" style="display: none">
+              <div class="portrait-wrap">
+                <div class="portrait"><canvas id="petf-portrait" width="54" height="54"></canvas></div>
+                <div class="level-chip" id="petf-level"></div>
+              </div>
+              <div class="uf-bars">
+                <div class="uf-name" id="petf-name"></div>
+                <div class="bar hp"><div class="bar-fill" id="petf-hp"></div><div class="bar-text" id="petf-hp-text"></div></div>
+              </div>
+            </div>
+          </div>
           <div id="player-frame" class="unitframe" role="group" tabindex="0" aria-haspopup="menu" data-i18n-aria="hudChrome.unitFrame.playerLabel" aria-label="Your Hero">
             <div class="portrait-wrap">
               <div class="portrait"><canvas id="pf-portrait" width="54" height="54"></canvas></div>
               <div class="level-chip" id="pf-level">1</div>
-              <div class="combat-flash" id="pf-combat" data-i18n-title="hud.social.status.combat" data-i18n-aria="hud.social.status.combat" title="In Combat" aria-label="In Combat">⚔</div>
+              <div class="combat-flash" id="pf-combat" data-i18n-title="hud.social.status.combat" data-i18n-aria="hud.social.status.combat" title="In Combat" aria-label="In Combat">âš”</div>
               <div class="rest-indicator" id="pf-rest" data-i18n-title="hudChrome.rest.resting" data-i18n-aria="hudChrome.rest.resting" title="Resting" aria-label="Resting">z</div>
             </div>
             <div class="uf-bars">
@@ -306,7 +320,6 @@
               <div class="bar mana" id="pf-resource"><div class="bar-fill" id="pf-res"></div><div class="bar-text" id="pf-res-text"></div><div class="low-resource-label" id="pf-low-resource"></div></div>
             </div>
           </div>
-          <div id="petbar" class="panel"></div>
           <div id="stancebar"></div>
           <div id="actionbar3" class="panel"></div>
           <div id="actionbar2" class="panel"></div>
@@ -425,8 +438,10 @@
     <div id="quest-log-window" class="window panel"></div>
     <div id="crafting-window" class="window panel"></div>
     <div id="vendor-window" class="window panel"></div>
+    <div id="warfare-window" class="window panel"></div>
     <div id="train-window" class="window panel"></div>
     <div id="unbind-window" class="window panel"></div>
+    <div id="commission-board-window" class="window panel"></div>
     <div id="card-duel-window" class="window panel"></div>
     <div id="town-focus-window" class="window panel"></div>
     <div id="map-window" class="window panel">
@@ -473,7 +488,7 @@
       </div>
       <div id="side-buttons-col-b" class="side-buttons-col">
         <button id="daily-rewards-button" type="button" data-i18n-title="hudChrome.wocStore.title" data-i18n-aria="hudChrome.wocStore.title" title="WOC Store" aria-label="WOC Store"></button>
-        <button class="micro-btn" id="mm-arena" data-i18n-title="hud.keybinds.actions.arena" data-i18n-aria="hud.keybinds.actions.arena" title="Arena (Ashen Coliseum)" aria-label="Arena (Ashen Coliseum)" data-icon="arena"><span class="keybind">g</span></button>
+        <button class="micro-btn" id="mm-arena" data-i18n-title="hudChrome.pvp.launcherTitle" data-i18n-aria="hudChrome.pvp.launcherTitle" title="PvP: Thornhollow Fields and the Arenas" aria-label="PvP: Thornhollow Fields and the Arenas" data-icon="arena"><span class="keybind">g</span></button>
         <button class="micro-btn" id="mm-dfinder" data-i18n-title="hudChrome.finder.title" data-i18n-aria="hudChrome.finder.title" title="Dungeon Finder" aria-label="Dungeon Finder" data-icon="dfinder"><span class="keybind">Shift+I</span></button>
         <button class="micro-btn" id="mm-valecup" data-i18n-title="hudChrome.keybinds.valecup" data-i18n-aria="hudChrome.keybinds.valecup" title="Vale Cup" aria-label="Vale Cup" data-icon="ball"><span class="keybind">y</span></button>
         <button class="micro-btn" id="mm-cardduel" data-i18n-title="cardDuel.title" data-i18n-aria="cardDuel.title" title="Card Duel" aria-label="Card Duel" data-icon="cards"></button>
@@ -660,7 +675,7 @@
             </button>
             <div class="play-online-status">
               <span class="server-dot" data-mode="online" aria-hidden="true"></span>
-              <b class="stats-value js-stat-characters">…</b> <span data-i18n="stats.charactersCreated">Characters Created</span>
+              <b class="stats-value js-stat-characters">â€¦</b> <span data-i18n="stats.charactersCreated">Characters Created</span>
             </div>
           </div>
 
@@ -669,7 +684,7 @@
                online-only, so there is no #btn-offline here (index.html keeps both). -->
           <button type="button" id="btn-online" class="play-compat-trigger" tabindex="-1" aria-hidden="true"></button>
 
-          <!-- Tip — part of the same play container (divider above). -->
+          <!-- Tip â€” part of the same play container (divider above). -->
           <div class="play-tip">
             <p id="performance-tip"><b data-i18n="mode.tipTitle">TIP:</b> <span data-i18n="mode.tipText">For the smoothest experience, turn off ad blocker extensions on this site. Community reports found some blockers can cause lag.</span></p>
           </div>
@@ -902,6 +917,7 @@
                 <div class="skin-picker">
                   <div class="skin-picker-header" data-i18n="auth.appearance">Appearance</div>
                   <div id="online-skin-row" class="skin-row" role="list" data-i18n-aria="auth.appearance" aria-label="Appearance"></div>
+                  <div id="charcreate-appearance"></div>
                 </div>
                 <div class="auth-actions cs-form-actions">
                   <button class="btn btn-secondary" id="btn-charcreate-back" data-i18n="auth.back">Back</button>
@@ -931,7 +947,7 @@
           <h2 class="skeleton-title" data-i18n="highscores.title">High Scores Leaderboard</h2>
           <p class="skeleton-desc" data-i18n="game.leaderboard.globalSubtitle">Top champions across all realms</p>
           <div id="hs-leaderboard" class="hs-leaderboard" aria-live="polite">
-            <div class="hs-loading" data-i18n="game.leaderboard.loading">Loading rankings…</div>
+            <div class="hs-loading" data-i18n="game.leaderboard.loading">Loading rankingsâ€¦</div>
           </div>
         </div>
       </section>
@@ -946,7 +962,7 @@
           <h2 class="skeleton-title" data-i18n="news.title">News & Updates</h2>
           <p class="skeleton-desc" data-i18n="news.desc">Read the latest patch notes, events, and community updates.</p>
           <div id="news-feed" class="news-feed" aria-live="polite">
-            <div class="news-loading" data-i18n="news.loading">Loading the latest updates…</div>
+            <div class="news-loading" data-i18n="news.loading">Loading the latest updatesâ€¦</div>
           </div>
         </div>
       </section>
@@ -964,13 +980,13 @@
             <a
               class="btn btn-primary desktop-download-link"
               data-platform="mac"
-              href="https://updates.wildhaven.example/desktop/wildhaven-0.34.0-mac-universal.dmg"
+              href="https://updates.wildhaven.example/desktop/wildhaven-0.35.0-mac-universal.dmg"
               data-i18n="download.macCta"
             >Download for macOS</a>
             <a
               class="btn btn-primary desktop-download-link"
               data-platform="win"
-              href="https://updates.wildhaven.example/desktop/wildhaven-0.34.0-win-x64.exe"
+              href="https://updates.wildhaven.example/desktop/wildhaven-0.35.0-win-x64.exe"
               data-i18n="download.windowsCta"
             >Download for Windows</a>
           </div>
@@ -1010,7 +1026,7 @@
           <span data-i18n="nav.donate">Donate</span>
         </a>
       </div>
-      <div id="game-version">v0.34.0</div>
+      <div id="game-version">v0.35.0</div>
       </div>
       <div class="footer-legal-row">
         <a href="/terms" class="footer-link" data-i18n="footer.terms">Terms of Service</a>
@@ -1021,26 +1037,26 @@
           <label for="lang-select" class="visually-hidden" data-i18n="a11y.languageSelection">Language selection</label>
           <select id="lang-select" class="lang-select-dropdown">
             <option value="en">English (US)</option>
-            <option value="es">Español (LatAm)</option>
-            <option value="es_ES">Español (España)</option>
-            <option value="fr_FR">Français (France)</option>
-            <option value="fr_CA">Français (Canada)</option>
+            <option value="es">EspaÃ±ol (LatAm)</option>
+            <option value="es_ES">EspaÃ±ol (EspaÃ±a)</option>
+            <option value="fr_FR">FranÃ§ais (France)</option>
+            <option value="fr_CA">FranÃ§ais (Canada)</option>
             <option value="en_CA">English (Canada)</option>
             <option value="it_IT">Italiano</option>
             <option value="de_DE">Deutsch</option>
-            <option value="zh_CN">简体中文</option>
-            <option value="zh_TW">繁體中文</option>
-            <option value="ko_KR">한국어</option>
-            <option value="ja_JP">日本語</option>
-            <option value="pt_BR">Português (Brasil)</option>
-            <option value="ru_RU">Русский</option>
-            <option value="cs_CZ">Čeština</option>
+            <option value="zh_CN">ç®€ä½“ä¸­æ–‡</option>
+            <option value="zh_TW">ç¹é«”ä¸­æ–‡</option>
+            <option value="ko_KR">í•œêµ­ì–´</option>
+            <option value="ja_JP">æ—¥æœ¬èªž</option>
+            <option value="pt_BR">PortuguÃªs (Brasil)</option>
+            <option value="ru_RU">Ð ÑƒÑÑÐºÐ¸Ð¹</option>
+            <option value="cs_CZ">ÄŒeÅ¡tina</option>
             <option value="nl_NL">Nederlands</option>
             <option value="pl_PL">Polski</option>
             <option value="id_ID">Bahasa Indonesia</option>
-            <option value="tr_TR">Türkçe</option>
+            <option value="tr_TR">TÃ¼rkÃ§e</option>
             <option value="sv_SE">Svenska</option>
-            <option value="vi_VN">Tiếng Việt</option>
+            <option value="vi_VN">Tiáº¿ng Viá»‡t</option>
             <option value="da_DK">Dansk</option>
           </select>
           <span id="lang-select-status" class="visually-hidden" role="status" aria-live="polite"></span>
@@ -1105,7 +1121,7 @@
           <button type="button" class="mobile-btn" id="mobile-discord" hidden data-i18n-title="hudChrome.discord.title" data-i18n-aria="hudChrome.discord.title" title="Discord" aria-label="Discord" data-icon="discord"><span class="mobile-label" data-i18n="hudChrome.discord.title">Discord</span></button>
           <button type="button" class="mobile-btn" id="mobile-donate" data-i18n-title="a11y.donateProject" data-i18n-aria="a11y.donateProject" title="Support the project" aria-label="Donate to support Wildhaven" data-icon="donate"><span class="mobile-label" data-i18n="nav.donate">Donate</span></button>
           <button class="mobile-btn" id="mobile-emote" data-i18n-title="hudChrome.emoteWheel.label" data-i18n-aria="hudChrome.emoteWheel.label" title="Emotes" aria-label="Emotes" data-icon="emote"><span class="mobile-label" data-i18n="hudChrome.emoteWheel.label">Emotes</span></button>
-          <button class="mobile-btn" id="mobile-arena" data-i18n-title="hud.keybinds.actions.arena" data-i18n-aria="hud.keybinds.actions.arena" title="Arena (Ashen Coliseum)" aria-label="Arena (Ashen Coliseum)" data-icon="arena"><span class="mobile-label" data-i18n="hud.core.mobileArena">Arena</span></button>
+          <button class="mobile-btn" id="mobile-arena" data-i18n-title="hudChrome.pvp.launcherTitle" data-i18n-aria="hudChrome.pvp.launcherTitle" title="PvP: Thornhollow Fields and the Arenas" aria-label="PvP: Thornhollow Fields and the Arenas" data-icon="arena"><span class="mobile-label" data-i18n="hudChrome.pvp.mobileLabel">PvP</span></button>
           <button class="mobile-btn" id="mobile-dfinder" data-i18n-title="hudChrome.finder.title" data-i18n-aria="hudChrome.finder.title" title="Dungeon Finder" aria-label="Dungeon Finder" data-icon="dfinder"><span class="mobile-label" data-i18n="hudChrome.finder.title">Dungeon Finder</span></button>
           <button class="mobile-btn" id="mobile-valecup" data-i18n-title="hudChrome.keybinds.valecup" data-i18n-aria="hudChrome.keybinds.valecup" title="Vale Cup" aria-label="Vale Cup" data-icon="ball"><span class="mobile-label" data-i18n="hudChrome.vcup.mobileLabel">Cup</span></button>
           <button class="mobile-btn" id="mobile-char" data-i18n-title="hud.keybinds.actions.char" data-i18n-aria="hud.keybinds.actions.char" title="Character" aria-label="Character" data-icon="character"><span class="mobile-label" data-i18n="hud.keybinds.actions.char">Character</span></button>
@@ -1135,7 +1151,7 @@
   </div>
   <div id="rotate-device" role="alert">
     <div>
-      <div class="rotate-icon" aria-hidden="true">↻</div>
+      <div class="rotate-icon" aria-hidden="true">â†»</div>
       <div class="rotate-title" data-i18n="mobilePreflight.rotateTitle">Rotate to Landscape</div>
       <div class="rotate-sub" data-i18n="mobilePreflight.rotateSub">Portrait mode is not supported. Rotate your device to landscape to continue.</div>
     </div>

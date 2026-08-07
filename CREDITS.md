@@ -24,7 +24,7 @@ repository or redistribute a build of it:
 | `Yes` | Public domain or MIT-equivalent. Redistribute freely, commercially or not. |
 | `Yes, attribution required` | Redistribute freely, but you must keep the credit and the licence notice. |
 | `Yes, under SIL OFL 1.1` | Redistribute under the Open Font License. You may not sell the fonts on their own. |
-| `With the project only` | Project-owned art you may keep and ship **as part of Wildhaven or a fork of it**, so your fork works out of the box. You may not extract these assets and redistribute, sell, or publish them on their own or as part of an asset pack. |
+| `With the project only` | Project-owned art you may keep and ship **as part of World of ClaudeCraft or a fork of it**, so your fork works out of the box. You may not extract these assets and redistribute, sell, or publish them on their own or as part of an asset pack. |
 | `Non-commercial only, with attribution` | CC BY-NC 4.0. Share and adapt non-commercially with credit. **Commercial use requires the author's permission.** |
 | **`No, permission required`** | **Do not redistribute.** Rights reserved, or licensed to Levy Street only. See below. |
 
@@ -62,10 +62,10 @@ get written permission.
 The **@jamiecypher** sound effects are a separate case: they are CC BY-NC 4.0,
 so you *may* redistribute them non-commercially with attribution, but you may
 **not** use them commercially. The perpetual commercial grant covering them runs
-to Wildhaven (Levy Street) only and does not transfer to forks. See
+to World of ClaudeCraft (Levy Street) only and does not transfer to forks. See
 the Audio section.
 
-The **brand marks** (Twitch, X, Kick, YouTube, Discord) are
+The **brand marks** (Twitch, X, Kick, YouTube, Discord, Solana, USDC) are
 trademarks and are not licensed to anyone by this file. See Brand marks.
 
 ## Can I still fork and host my own world?
@@ -95,7 +95,7 @@ than free, so ask before you rely on it.
 | Dungeon modular kit (walls, floors, pillars, torches, banners, chests, furniture; also the Drakelands castle structure set) | Kay Lousberg (KayKit) | https://github.com/KayKit-Game-Assets/KayKit-Dungeon-Remastered-1.0 | CC0 1.0 | Yes |
 | Graveyard/crypt props, dead trees, lanterns | Kay Lousberg (KayKit) | https://github.com/KayKit-Game-Assets/KayKit-Halloween-Bits-1.0 | CC0 1.0 | Yes |
 | Extra character animation library (Rig_Medium) | Kay Lousberg (KayKit) | https://kaylousberg.itch.io/kaykit-character-animations | CC0 1.0 | Yes |
-| Animated creatures (wolf, bull, fox, stag, alpaca, spider, frog, goblin, orc, yeti, giant, demon, ghost, goleling, glub, tribal, velociraptor, dragon) | Quaternius | https://poly.pizza/u/Quaternius · https://quaternius.com | CC0 1.0 | Yes |
+| Animated creatures (wolf, bull, fox, stag, alpaca, spider, frog, goblin, orc, yeti, giant, demon, ghost, goleling, glub, tribal, velociraptor, dragon) | Quaternius | https://poly.pizza/u/Quaternius Â· https://quaternius.com | CC0 1.0 | Yes |
 | Stylized Nature MegaKit (trees, rocks, bushes, mushrooms, grass) | Quaternius | https://quaternius.itch.io/stylized-nature-megakit | CC0 1.0 | Yes |
 | Medieval Village Pack (houses, inn, blacksmith, well, market, cart) | Quaternius | https://quaternius.com/packs/medievalvillage.html | CC0 1.0 | Yes |
 | Fantasy Props MegaKit (barrels, crates, lanterns, furniture, smithy) | Quaternius | https://quaternius.itch.io/fantasy-props-megakit | CC0 1.0 | Yes |
@@ -103,7 +103,7 @@ than free, so ask before you rely on it.
 | Pirate Kit (palm trees, docks, ship, chests, cannon, anchor, beach rocks, beach house) | Quaternius | https://quaternius.com/packs/piratekit.html | CC0 1.0 | Yes |
 | LowPoly Animated Fish (dolphin, shark, manta ray, whale, clownfish, blue tang, puffer, swordfish, anglerfish, koi) | Quaternius | https://poly.pizza/u/Quaternius | CC0 1.0 | Yes |
 | Modular Dungeons Pack (stone walls, arches, pillar, floor tile, wall banner, trap door, horse statue, cobweb, coin piles) | Quaternius | https://poly.pizza/u/Quaternius | CC0 1.0 | Yes |
-| Medieval Village MegaKit (wagon, crate, fences, vines, arch, exterior stairs) | Quaternius | https://quaternius.com/packs/medievalvillagemegakit.html | CC0 1.0 | Yes |
+| Medieval Village MegaKit (wagon, crate, fences, vines, arch, exterior stairs, castle bases, castle stairs) | Quaternius | https://quaternius.com/packs/medievalvillagemegakit.html | CC0 1.0 | Yes |
 | Survival Kit (tents, bedrolls, campfires, signpost, sand rocks) | Kenney | https://kenney.nl/assets/survival-kit | CC0 1.0 | Yes |
 | Watercraft Kit (sail boats, fishing boat, rowboat, buoys) | Kenney | https://kenney.nl/assets/watercraft-kit | CC0 1.0 | Yes |
 | Modular Dungeon Kit (corridor and room tiles, stairs, gates) | Kenney | https://kenney.nl/assets/modular-dungeon-kit | CC0 1.0 | Yes |
@@ -113,6 +113,10 @@ than free, so ask before you rely on it.
 | Mines and Cave Modular Set (mine carts, rails, ladder, cave rocks, entrances, supports, platforms) | loafbrr | https://loafbrr.itch.io/mines-and-cave-set | CC0 1.0 | Yes |
 | Terrain PBR textures (Grass001, Ground023, Rock026, Rock051, Rock060, Ground071, Ground080, PavingStones046, Snow010A) | ambientCG | https://ambientcg.com | CC0 1.0 | Yes |
 | Terrain PBR textures, biome set (Ground054, Ground095A, Ground093A, Rock029, Lava004, Gravel024, Rock035) | ambientCG | https://ambientcg.com | CC0 1.0 | Yes |
+| Thornhollow battleground terrain textures (`public/textures/battleground/*.jpg`) | ambientCG | https://ambientcg.com | CC0 1.0 | Yes |
+| Thornhollow wall tower (`public/models/city/wall_tower.glb`) | Wildhaven | Project-generated deterministic geometry (generator script not checked into this repository) | Project asset | With the project only |
+| Thornhollow ground decals (`public/textures/battleground/decals/*.webp`) | Wildhaven | Project-generated deterministic shape and noise synthesis (generator script not checked into this repository) | Project asset | With the project only |
+| Thornhollow Fields rune pad bodies (`public/models/battleground/rune_damage.glb`, `rune_defense.glb`, `rune_sprint.glb`) | Wildhaven | Project-generated via Tripo AI (text-to-3D), owned under the Tripo paid-plan license, then optimized to KTX2 with glTF-Transform. These three predate their generator being checked in, so no exporter script or pipeline spec is committed for them; the shipped binaries are pinned by sha256 and parsed shape in `tests/battleground_rune_models.test.ts` instead | Project asset | With the project only |
 | Surface-detail PBR textures for the triplanar material families (Bark012, Bricks076A/B, Fabric030, Metal013 incl. Metalness, Plaster007; Color/NormalGL/AmbientOcclusion/Roughness/Displacement under `public/textures/structures/`) | ambientCG | https://ambientcg.com | CC0 1.0 | Yes |
 | Canopy clump-detail textures (Moss002; NormalGL/AmbientOcclusion under `public/textures/foliage/`) | ambientCG | https://ambientcg.com | CC0 1.0 | Yes |
 | Worn-metal surface-detail PBR texture (RustCoarse01, from rust_coarse_01; NormalGL/AmbientOcclusion/Roughness/Displacement under `public/textures/structures/`) | Poly Haven | https://polyhaven.com/a/rust_coarse_01 | CC0 1.0 | Yes |
@@ -123,9 +127,9 @@ than free, so ask before you rely on it.
 | Basis Universal KTX2 transcoder (`public/basis/basis_transcoder.js`/`.wasm`, copied from three r165 `examples/jsm/libs/basis/`) | Binomial LLC | https://github.com/BinomialLLC/basis_universal | Apache-2.0 | Yes, attribution required |
 | Biome backdrop panoramas (vale_backdrop.webp, marsh_backdrop.webp, peaks_backdrop.webp and 4K variants) | Wildhaven | Project-generated procedural painterly sky panorama art | Project asset | With the project only |
 | Elite dragon rank emblem (`public/ui/ranks/elite-dragon-frame.webp`) | Wildhaven | Project-generated with OpenAI image generation and optimized locally | Project asset, rights reserved | **No, permission required** |
-| Eastbrook Vale rebuild master concept, nine turnaround sheets, full-color surface-atlas source, and comparison evidence (`docs/screenshots/eastbrook-vale-rebuild/concepts/`, `turnarounds/`, and `materials/`) | Wildhaven | Original project art generated with OpenAI image generation using only Wildhaven captures and project-generated style/scale anchors; the full-color atlas source and any comparison containing it are provenance evidence, not the redistributable shipping texture; prompts and provenance are committed under `docs/design/eastbrook-vale-rebuild/` | Project asset, rights reserved | **No, permission required** |
-| Eastbrook finishing-pass master concept and Ravenpost mailbox / noticeboard turnaround sheets (`docs/screenshots/eastbrook-vale-rebuild/polish/concepts/` and `polish/turnarounds/`) | Wildhaven | Original project art generated with OpenAI image generation using only accepted Wildhaven concepts, turnarounds, and in-game captures; no proprietary-game screenshots or third-party art entered the lineage; exact prompts, hashes, and provenance are committed under `docs/design/eastbrook-vale-rebuild/` | Project asset, rights reserved | **No, permission required** |
-| Eastbrook shared surface atlas (`public/textures/eastbrook_surface_atlas.webp`; accepted source and comparison under `docs/screenshots/eastbrook-vale-rebuild/materials/`) | Wildhaven | Original project art generated with OpenAI image generation from first-party Wildhaven references, then deterministically converted to a high-key grayscale detail multiplier via `scripts/assets/eastbrook_town`; exact prompt and provenance are committed under `docs/design/eastbrook-vale-rebuild/` | Project asset | With the project only |
+| Eastbrook Vale rebuild master concept, nine turnaround sheets, full-color surface-atlas source, and comparison evidence (`docs/screenshots/eastbrook-vale-rebuild/concepts/`, `turnarounds/`, and `materials/`) | Wildhaven | Original project art generated with OpenAI image generation using only World of ClaudeCraft captures and project-generated style/scale anchors; the full-color atlas source and any comparison containing it are provenance evidence, not the redistributable shipping texture; prompts and provenance are committed under `docs/design/eastbrook-vale-rebuild/` | Project asset, rights reserved | **No, permission required** |
+| Eastbrook finishing-pass master concept and Ravenpost mailbox / noticeboard turnaround sheets (`docs/screenshots/eastbrook-vale-rebuild/polish/concepts/` and `polish/turnarounds/`) | Wildhaven | Original project art generated with OpenAI image generation using only accepted World of ClaudeCraft concepts, turnarounds, and in-game captures; no proprietary-game screenshots or third-party art entered the lineage; exact prompts, hashes, and provenance are committed under `docs/design/eastbrook-vale-rebuild/` | Project asset, rights reserved | **No, permission required** |
+| Eastbrook shared surface atlas (`public/textures/eastbrook_surface_atlas.webp`; accepted source and comparison under `docs/screenshots/eastbrook-vale-rebuild/materials/`) | Wildhaven | Original project art generated with OpenAI image generation from first-party World of ClaudeCraft references, then deterministically converted to a high-key grayscale detail multiplier via `scripts/assets/eastbrook_town`; exact prompt and provenance are committed under `docs/design/eastbrook-vale-rebuild/` | Project asset | With the project only |
 | Fenbridge rebuild master concept and fourteen isolated turnaround sheets (`docs/design/fenbridge-rebuild/references/`) | Wildhaven | Original project art generated with OpenAI image generation from a user-supplied mood reference, with explicit non-copying constraints; the source attachment is not redistributed, and exact prompts, hashes, admission results, and provenance are committed under `docs/design/fenbridge-rebuild/` | Project asset, rights reserved | **No, permission required** |
 | Fenbridge shared surface maps (`public/textures/fenbridge_surface_atlas.webp`, `fenbridge_surface_normal.webp`, `fenbridge_surface_roughness.webp`; source board under `docs/design/fenbridge-rebuild/materials/`) | Wildhaven | Concept-authored 4x4 material board generated with OpenAI image generation from the Fenbridge master concept and Eastbrook atlas layout, then deterministically baked into albedo/normal/roughness WebP maps by `scripts/assets/fenbridge_town`; shipping hashes are pinned in the asset contract | Project asset | With the project only |
 | Meshy creature models (tolling_bell, spider_egg_sac from the Drowned Litany, yumi_cat from Protect Yumi, in `public/models/creatures/`) | Wildhaven | Project-generated via Meshy AI (text-to-3D; the humanoids and yumi_cat rigged and animated), owned under the Meshy paid-plan license | Project asset | With the project only |
@@ -133,10 +137,11 @@ than free, so ask before you rely on it.
 | Bag icons (`public/ui/items/{backpack,linen_pouch,travelers_knapsack,wolfhide_satchel,gravewoven_bag,mistcallers_duffel}.webp`, encoded to 128px WebP via `scripts/convert_item_icons_webp.mjs`) | Wildhaven | Project art created for this game; provenance per icon in `public/ui/items/mapping.json` | Project asset | With the project only |
 | Curated item icons (`public/ui/items/*.webp`, limited to ordinary `entries` governed by the top-level licence in `public/ui/items/mapping.json`; excludes entries with an overriding licence and every ID in `generatedBatches`) | CraftPix | https://craftpix.net; exact source-pack mapping per icon in `public/ui/items/mapping.json` | CraftPix premium (royalty-free commercial), purchased by Levy Street account (callum@levystreet.com) | **No, permission required** |
 | Professions 2.0 art set (`public/ui/professions/*.webp`, the `woc_professions_art` material icons recorded in `public/ui/items/mapping.json`, and the inline maker's-mark glyph in `src/ui/ui_icons.ts`) | Wildhaven | Maintainer-commissioned original art created for this game and normalized through the profession/item pipelines; provenance per raster in the corresponding mapping file | Project asset, rights reserved | **No, permission required** |
+| Claw and tusk corpse-harvest material icons (`public/ui/items/{sharp_claw,curved_tusk,pristine_claw}.webp`, the `woc_original_svg` overriding-licence entries in `public/ui/items/mapping.json`) | Wildhaven | Project-generated procedurally rasterized SVG placeholders, pending a commissioned painted icon in the profession-materials style; provenance per icon in `public/ui/items/mapping.json` | Project asset, rights reserved | **No, permission required** |
 | Generated item icon rebrand (`public/ui/items/*.webp`, exact IDs under `generatedBatches` in `public/ui/items/mapping.json`, including `silkspun_satchel` and `last_keep_signet`) | Wildhaven | Project-generated with OpenAI built-in image generation, reviewed and optimized locally; licensed CraftPix Premium references retain their third-party lineage in the mapping, the release v0.34.0 additions are prompt-and-hash pinned in `docs/achievements/release-v034-additional-art.json`, and the `quest-objective-dedupe-zone-quest-items-2026-08-04` batch was generated through the gpt-image-2 API text-to-image with no reference image of any kind, so no third-party art is in its lineage | Project asset, rights reserved | **No, permission required** |
 | Class ability icons (`public/ui/skills/<class>/*.webp`, excluding entries with an explicit project-generated or owner-provided licence in the per-class mapping; re-encoded from the source-pack PNGs to WebP via `scripts/convert_skill_icons_webp.mjs`; all 9 classes: paladin, hunter, priest, warlock, rogue, warrior, mage, druid, shaman; source packs paladin/archer/priest/warlock/thief/warrior/berserker/demon/druid/pyromancer/cryomancer/aeromancer/lightning-mage/earth-magician/100-rpg-skill-icons/100-skill-icons-pack-for-rpg + per-ability fill sets) | CraftPix | https://craftpix.net | CraftPix premium (royalty-free commercial), purchased by Levy Street account (callum@levystreet.com) | **No, permission required** |
 | Generated class ability additions (`public/ui/skills/<class>/*.webp`, exact `woc_openai_missing_painted_icons_2026_08_01` and `woc_openai_release_v034_audit_2026_08_02` entries in each class's `mapping.json`) | Wildhaven | Project-generated with OpenAI built-in image generation from the exact repository references recorded per ability; reviewed, normalized, and optimized locally; prompt, reference-role, source-hash, and shipping-hash records in `docs/achievements/missing-painted-icons-accepted-art.json` and `docs/achievements/release-v034-additional-art.json` | Project asset, rights reserved | **No, permission required** |
-| Collective Reversal and Hourglass of Suspension ability icons (`public/ui/skills/mage/collective_reversal.webp`, `public/ui/skills/mage/temporal_hourglass.webp`) | Wildhaven project owner | Owner-provided original artwork | Used with permission (Levy Street) | **No, permission required** |
+| Collective Reversal and Hourglass of Suspension ability icons (`public/ui/skills/mage/collective_reversal.webp`, `public/ui/skills/mage/temporal_hourglass.webp`) | World of ClaudeCraft project owner | Owner-provided original artwork | Used with permission (Levy Street) | **No, permission required** |
 | Season 1 Armory weapon models, source images, generated store thumbnails, and promotional card (Guildmark, Emberwrought, Hoarfrost, and Fallen Star collections, in `public/models/weapons/`, `public/ui/weapons/`, and `public/ui/store/`) | Wildhaven | Project-generated via `scripts/asset_pipeline` (Tripo AI 3D); storefront renders composited locally, with the text-free promo background derived through OpenAI image editing | Project asset, rights reserved | **No, permission required** |
 | Tripo3d vegetation prop models (`public/models/props/reeds.glb`) | Wildhaven | Project-generated via Tripo3d (text-to-3D), owned under the Tripo3d paid-plan license | Project asset, rights reserved | **No, permission required** |
 | Claudium visual asset set (`public/claudium/`: coin, UI icons, and denomination stacks; excludes the two payment-rail brand icons noted under Brand marks) | Wildhaven | Project-generated via the Higgsfield MCP connector (Recraft V4.1 stills), composited and web-optimized locally; owned under the Higgsfield paid-plan license | Project asset, rights reserved | **No, permission required** |
@@ -168,9 +173,15 @@ points at that platform. They are not project assets, and no endorsement or
 affiliation is implied. The Discord (Clyde) mark in the same file is used the
 same way.
 
+The Solana and USDC logos shipped as `public/claudium/icons/solana-icon.webp`
+and `public/claudium/icons/usdc-icon.webp` are trademarks of their respective
+owners, reproduced unmodified solely to identify the corresponding payment
+rail in the Claudium buy window (`src/ui/claudium_window.ts`). They are not
+project assets, and no endorsement or affiliation is implied.
+
 None of these marks are licensed to you by this file or by the project's MIT
 license. Trademark law, not copyright licensing, governs their use. The same
-applies to the "Wildhaven" and "Levy Street" names, logos, and
+applies to the "World of ClaudeCraft" and "Levy Street" names, logos, and
 branding.
 
 ## Audio
@@ -181,7 +192,7 @@ licensed source material from EastWest Composer Cloud, Epic Stock Media, and
 Freesound.org (CC0). @jamiecypher retains copyright and publishes this work
 under CC BY-NC 4.0 (Creative Commons Attribution-NonCommercial 4.0
 International): free to use and share non-commercially with attribution.
-@jamiecypher separately grants Wildhaven (Levy Street) a
+@jamiecypher separately grants World of ClaudeCraft (Levy Street) a
 perpetual, royalty-free license to use these assets commercially, including
 in official releases and the Claudium store.
 
@@ -199,14 +210,14 @@ non-commercial. For commercial use, arrange your own licence with the author.
 | Hover-Cycle movement layer (`mount_run_aether_hover_cycle.mp3`) | Umplix | [Hovermobile SFX](https://opengameart.org/content/hovermobile-sfx) | CC0 1.0 | Yes |
 | Stormfeather and Grand Gobbler wing layers (`mount_run_stormfeather_griffin.mp3`, `mount_run_thunderstrut_gobbler.mp3`) | AntumDeluge, derived from dave.des | [Large Wings Flap](https://opengameart.org/content/large-wings-flap) | CC0 1.0 | Yes |
 | Terrorspark Groundshaker movement layer (`mount_run_terrorspark_groundshaker.mp3`) | Wildhaven | Original deterministic FFmpeg synthesis via `scripts/gen_terrorspark_groundshaker_sfx.mjs` | Project asset | With the project only |
-| Quest event sounds (`quest_accept`, `quest_ready`, `quest_complete`) | @jamiecypher | Original work | CC BY-NC 4.0 (+ perpetual commercial grant to Wildhaven) | Non-commercial only, with attribution |
-| Lockpick minigame sounds (`lockpick_*`) | @jamiecypher | Original work | CC BY-NC 4.0 (+ perpetual commercial grant to Wildhaven) | Non-commercial only, with attribution |
-| Wand auto-attack sounds (`wand_*`) | @jamiecypher | Original work | CC BY-NC 4.0 (+ perpetual commercial grant to Wildhaven) | Non-commercial only, with attribution |
-| Level-up and Book of Deeds achievement chimes (`ui_level_up`, `ui_achievement`) | @jamiecypher | Original work | CC BY-NC 4.0 (+ perpetual commercial grant to Wildhaven) | Non-commercial only, with attribution |
-| Magic-school impact and casting-support one-shots (`impact_*`, `heal_impact`, `buff_apply`, `debuff_apply`, `spell_nova`) | @jamiecypher | Original work | CC BY-NC 4.0 (+ perpetual commercial grant to Wildhaven) | Non-commercial only, with attribution |
-| Magic-school projectile launches (`proj_*`) | @jamiecypher | Original work | CC BY-NC 4.0 (+ perpetual commercial grant to Wildhaven) | Non-commercial only, with attribution |
-| Melee, footstep, movement, combat-reaction, and player-state sounds (`melee_*`, `foot_*`, `move_*`, `combat_*`, `player_death*`, `player_hurt*`) | @jamiecypher | Original work | CC BY-NC 4.0 (+ perpetual commercial grant to Wildhaven) | Non-commercial only, with attribution |
-| Creature vocalizations, every mob family (`mob_*`) | @jamiecypher | Original work | CC BY-NC 4.0 (+ perpetual commercial grant to Wildhaven) | Non-commercial only, with attribution |
+| Quest event sounds (`quest_accept`, `quest_ready`, `quest_complete`) | @jamiecypher | Original work | CC BY-NC 4.0 (+ perpetual commercial grant to World of ClaudeCraft) | Non-commercial only, with attribution |
+| Lockpick minigame sounds (`lockpick_*`) | @jamiecypher | Original work | CC BY-NC 4.0 (+ perpetual commercial grant to World of ClaudeCraft) | Non-commercial only, with attribution |
+| Wand auto-attack sounds (`wand_*`) | @jamiecypher | Original work | CC BY-NC 4.0 (+ perpetual commercial grant to World of ClaudeCraft) | Non-commercial only, with attribution |
+| Level-up and Book of Deeds achievement chimes (`ui_level_up`, `ui_achievement`) | @jamiecypher | Original work | CC BY-NC 4.0 (+ perpetual commercial grant to World of ClaudeCraft) | Non-commercial only, with attribution |
+| Magic-school impact and casting-support one-shots (`impact_*`, `heal_impact`, `buff_apply`, `debuff_apply`, `spell_nova`) | @jamiecypher | Original work | CC BY-NC 4.0 (+ perpetual commercial grant to World of ClaudeCraft) | Non-commercial only, with attribution |
+| Magic-school projectile launches (`proj_*`) | @jamiecypher | Original work | CC BY-NC 4.0 (+ perpetual commercial grant to World of ClaudeCraft) | Non-commercial only, with attribution |
+| Melee, footstep, movement, combat-reaction, and player-state sounds (`melee_*`, `foot_*`, `move_*`, `combat_*`, `player_death*`, `player_hurt*`) | @jamiecypher | Original work | CC BY-NC 4.0 (+ perpetual commercial grant to World of ClaudeCraft) | Non-commercial only, with attribution |
+| Creature vocalizations, every mob family (`mob_*`) | @jamiecypher | Original work | CC BY-NC 4.0 (+ perpetual commercial grant to World of ClaudeCraft) | Non-commercial only, with attribution |
 
 ## Generated prop and creature models
 
@@ -267,6 +278,21 @@ non-commercial. For commercial use, arrange your own licence with the author.
 | Generated prop model (wildheart_giant_fern) | Wildhaven | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
 | Generated prop model (wildheart_ancestor_ruin) | Wildhaven | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
 | Generated prop model (wildheart_jungle_canopy_tree) | Wildhaven | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (streetlamp_eastbrook_civic) | Wildhaven | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (streetlamp_mirefen_witchflame) | Wildhaven | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (streetlamp_thornpeak_beacon) | Wildhaven | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (streetlamp_veiled_crystal) | Wildhaven | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (streetlamp_drakelands_brazier) | Wildhaven | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (streetlamp_frostveil_icicle) | Wildhaven | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (streetlamp_amberfall_crystal) | Wildhaven | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (streetlamp_willowfen_reed) | Wildhaven | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (streetlamp_nightbloom_moonflower) | Wildhaven | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (streetlamp_wraithwood_ghost) | Wildhaven | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (streetlamp_palmreach_totem) | Wildhaven | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (streetlamp_evergarden_flower) | Wildhaven | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (frostveil_ice_spire) | Wildhaven | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (streetlamp_galecrest_mast) | Wildhaven | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
+| Generated prop model (streetlamp_farshore_coral) | Wildhaven | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |
 | Generated creature model + animations (bear_form, the druid Bear Form quadruped) | Wildhaven | Project-generated Tripo AI 3D sculpt, owned under the Tripo paid-plan license; rigged and animated locally rather than auto-rigged (29 bone deform rig fitted to the sculpt by measurement, distance-solver skinning, and nine IK-authored clips), then KTX2-compressed via glTF-Transform | Project asset | With the project only |
 Assets were optimized for shipping (animation clip pruning, meshopt compression,
 texture resizing) via `scripts/assets/build_assets.mjs`; raw packs are not

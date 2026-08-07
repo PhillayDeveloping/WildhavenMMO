@@ -1,14 +1,15 @@
 {
   "name": "wildhaven",
-  "version": "0.34.0",
+  "version": "0.35.0",
   "private": true,
   "license": "MIT",
   "author": {
-    "name": "PhillayDeveloping"
+    "name": "Levy Street",
+    "email": "woc@levystreet.com"
   },
   "type": "module",
   "main": "electron/main.cjs",
-  "description": "Wildhaven: a classic-style micro-MMO + headless RL training environment",
+  "description": "World of Claudecraft: a classic-style micro-MMO + headless RL training environment",
   "scripts": {
     "dev": "vite",
     "release:check": "node scripts/release_version.mjs check",
@@ -20,7 +21,7 @@
     "wiki:content": "node scripts/wiki/build_content.mjs",
     "wiki:stills": "node scripts/wiki/render_model_stills.mjs",
     "sitemap:build": "node scripts/build_sitemap.mjs",
-    "build:native": "VITE_NATIVE_APP=1 VITE_API_ORIGIN=${VITE_API_ORIGIN:-https://wildhaven.example} npm run build && node scripts/build_media_manifest.mjs prune",
+    "build:native": "VITE_NATIVE_APP=1 VITE_API_ORIGIN=${VITE_API_ORIGIN:-https://worldofclaudecraft.com} npm run build && node scripts/build_media_manifest.mjs prune",
     "native:sync": "npm run build:native && npx cap sync",
     "ota:publish": "node scripts/ota/publish_bundle.mjs",
     "native:open:ios": "npm run native:sync && npx cap open ios",
@@ -85,7 +86,6 @@
     "audit:zone1": "npm run audit:quests",
     "db:up": "docker compose up -d postgres",
     "db:down": "docker compose down",
-    "db:check": "node --env-file-if-exists=.env scripts/db_check.mjs",
     "db:cleanup-zone1-removed": "tsx scripts/cleanup_removed_zone1_content.ts",
     "db:migrate-old-cragmaw-pelt": "tsx scripts/migrate_old_cragmaw_pelt.ts",
     "build:server": "node scripts/build_server.mjs",
@@ -164,8 +164,8 @@
     "steamworks.js": "^0.4.0"
   },
   "build": {
-    "appId": "com.wildhaven.desktop",
-    "productName": "Wildhaven",
+    "appId": "com.worldofclaudecraft.desktop",
+    "productName": "World of ClaudeCraft",
     "icon": "build/icon.png",
     "files": [
       "dist/**",
@@ -201,9 +201,9 @@
     },
     "protocols": [
       {
-        "name": "Wildhaven Login",
+        "name": "World of ClaudeCraft Login",
         "schemes": [
-          "wildhaven"
+          "worldofclaudecraft"
         ]
       }
     ],
@@ -275,16 +275,35 @@
     "artifactName": "${name}-${version}-${os}-${arch}.${ext}",
     "publish": {
       "provider": "generic",
-      "url": "https://updates.wildhaven.example/desktop"
+      "url": "https://updates.worldofclaudecraft.com/desktop"
     }
   },
   "allowScripts": {
-    "sharp@0.34.5": true,
+    "sharp@0.35.3": true,
     "ffmpeg-static@5.3.0": true,
     "ffprobe-static@3.1.0": true
   },
   "packageManager": "pnpm@10.34.5",
   "pnpm": {
+    "overrides": {
+      "axios@1": "^1.19.0",
+      "brace-expansion@1": "^1.1.18",
+      "brace-expansion@2": "^2.1.4",
+      "brace-expansion@5": "^5.0.9",
+      "fast-uri@3": "^3.1.5",
+      "js-yaml@4": "^4.3.1",
+      "postcss@8": "^8.5.25",
+      "sharp@0.34": "^0.35.3",
+      "tar@7": "^7.5.22",
+      "undici@6": "^6.28.0",
+      "undici@7": "^7.29.0"
+    },
+    "auditConfig": {
+      "ignoreGhsas": [
+        "GHSA-3gc7-fjrx-p6mg",
+        "GHSA-w5hq-g745-h8pq"
+      ]
+    },
     "onlyBuiltDependencies": [
       "esbuild",
       "ffmpeg-static",
@@ -294,7 +313,8 @@
       "utf-8-validate",
       "bigint-buffer",
       "electron-winstaller",
-      "fsevents"
+      "fsevents",
+      "@reown/appkit"
     ]
   }
 }

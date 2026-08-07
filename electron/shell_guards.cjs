@@ -90,8 +90,19 @@ const CSP_ORIGINS = {
     'https://connect.facebook.net',
     'https://www.facebook.com',
   ],
-  // tracking-pixel image beacons.
-  img: ['https://www.google-analytics.com', 'https://www.facebook.com'],
+  // Image origins the web client loads: tracking-pixel beacons and Discord
+  // linked profile pictures (nameplates, HUD widget, target frame, inspect).
+  // Discord PFPs use DISCORD_CDN_BASE in server/discord_oauth.ts
+  // (`cdn.discordapp.com`); without that origin here the desktop CSP blocks
+  // every avatar while the browser build (no CSP) still paints them, which is
+  // exactly the desktop-only regression upstream hit on release/v0.34.0.
+  // The WalletConnect/web3modal origins upstream carries here are deliberately
+  // absent: this fork ships no wallet, so nothing can request that art.
+  img: [
+    'https://www.google-analytics.com',
+    'https://www.facebook.com',
+    'https://cdn.discordapp.com',
+  ],
   // Cloudflare Turnstile: api.js (script) plus the challenge iframe (frame).
   turnstile: 'https://challenges.cloudflare.com',
   // Google Fonts: the stylesheet origin (style-src) and the font-file origin (font-src).

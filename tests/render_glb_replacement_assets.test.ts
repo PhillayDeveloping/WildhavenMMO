@@ -25,6 +25,7 @@ import {
 import { artisanRowPreloadInternalsForTest } from '../src/render/artisan_row_props';
 import { MEDIA_ASSETS } from '../src/render/assets/manifest.generated';
 import { bankerChestPreloadInternalsForTest } from '../src/render/banker_chest';
+import { battlegroundRuneModelPreloadInternalsForTest } from '../src/render/battleground_rune_model';
 import { marshDressingPreloadInternalsForTest } from '../src/render/delve_marsh_dressing';
 import { delvePropsPreloadInternalsForTest } from '../src/render/delve_props';
 import { doorPortalPreloadInternalsForTest } from '../src/render/door_portal';
@@ -71,7 +72,7 @@ const armouryFinalPipelineEnabled =
     item.src?.endsWith('eastbrook_grand_armoury-final.glb'),
   ) ?? false;
 const ARMOURY_SHIPPING_BYTE_CEILING = 160 * 1024;
-const ARMOURY_SHIPPING_SHA256 = '0a3f2ed3c984b78490be9f00071d1112a1f6d17fd916c1cce112bee8009c71cb';
+const ARMOURY_SHIPPING_SHA256 = '14b680592c91761454b8011aff1a3b4df532e12addd4e337ec33dbc079232c07';
 const MANIFEST_HASH_LENGTH = 12;
 
 function expectAssetExistsAndManifested(url: string): void {
@@ -500,6 +501,17 @@ describe('GLB-replacement asset preload sets resolve to real, manifested files',
 
   it('mailbox pillar asset', () => {
     expectAssetExistsAndManifested(mailboxPreloadInternalsForTest.mailboxAssetUrl);
+  });
+
+  // Thornhollow Fields rune pads: all three defs are filled in now, so this
+  // sweeps the real set. Existence + manifest presence is all it claims; the
+  // per-file sha256 and parsed-shape contract for those three bodies lives in
+  // tests/battleground_rune_models.test.ts, which is what stands in for the
+  // deterministic exporter they do not have.
+  it('battleground rune pad assets', () => {
+    for (const url of battlegroundRuneModelPreloadInternalsForTest.urls()) {
+      expectAssetExistsAndManifested(url);
+    }
   });
 
   it('banker chest asset', () => {

@@ -62,7 +62,6 @@ function winnersDay(day: string): DailyRewardWinnersDay {
     finalizedAt: null,
     payouts: [
       {
-        day,
         rank: 1,
         username: 'ann',
         points: 42,

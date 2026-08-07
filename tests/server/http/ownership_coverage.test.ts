@@ -629,8 +629,8 @@ describe('admin scope sweep: every non-login admin route rejects a read token', 
 // A negative control proves the sweep detects a route that forgot the gate.
 // -------------------------------------------------------------------------
 
-// Every registered internal-surface route (all 14 are secret-gated; there is no
-// anonymous internal route).
+// Every registered internal-surface route (every one is secret-gated; there is
+// no anonymous internal route).
 const internalSurfaceRoutes: RouteDef[] = apiRoutes.filter((route) => route.surface === 'internal');
 
 // The legacy fail() bodies the gates write (byte-parity with server/internal.ts
@@ -705,11 +705,15 @@ describe('internal secret-gate mounting sweep: every /internal route is gated', 
     vi.restoreAllMocks();
   });
 
-  it('selects the full 20-route internal surface (handleInternalApi 12 + 6 ops + flex-batch + outbox)', () => {
-    // The ops family includes finalization, four payout-service routes, and two moderation mutations.
-    // flex-batch and outbox are registry-only (no legacy arm) but still ride the same Discord secret
-    // gate, so the sweep below generates their unset-env and wrong-secret cases like every other route.
-    expect(internalSurfaceRoutes.length).toBe(20);
+  it('selects the full 17-route internal surface (handleInternalApi 9 + 6 ops + flex-batch + outbox)', () => {
+    // The ops family is finalization, the leaderboard read, and the four payout-inspection
+    // and moderation routes. flex-batch and outbox are registry-only (no legacy arm) but still
+    // ride the same Discord secret gate, so the sweep below generates their unset-env and
+    // wrong-secret cases like every other route.
+    // The retired relay/activity/winners GETs (upstream #2791) are absent from the registry
+    // entirely, and upstream's seventh ops route is the external payout runner's mark, which
+    // this fork does not carry: the purse is in-game coin delivered by Ravenpost.
+    expect(internalSurfaceRoutes.length).toBe(17);
   });
 
   for (const route of internalSurfaceRoutes) {

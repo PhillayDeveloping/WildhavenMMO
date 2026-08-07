@@ -369,6 +369,7 @@ export class DailyRewardsWindow {
       cosmetics: world.accountCosmetics,
       cls: player.templateId,
       mainhandItemId: player.mainhandItemId,
+      skinCatalog: player.skinCatalog,
     });
   }
 
