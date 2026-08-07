@@ -68,7 +68,7 @@ try {
     [acct.rows[0].id, name, cls],
   );
   console.log(
-    `created ${name} (${cls}, level 20, invulnerable) — character id ${res.rows[0].id} on account '${username}'`,
+    `created ${name} (${cls}, level 20, invulnerable), character id ${res.rows[0].id} on account '${username}'`,
   );
 } finally {
   await pool.end();
