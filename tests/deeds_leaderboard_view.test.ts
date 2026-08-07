@@ -24,7 +24,7 @@ function entry(over: Partial<DeedsLeaderboardEntry> = {}): DeedsLeaderboardEntry
   return {
     rank: 1,
     name: 'Aldwin',
-    realm: 'Claudemoon',
+    realm: 'Wildmoon',
     cls: 'warrior',
     level: 20,
     renown: 425,
@@ -74,7 +74,7 @@ describe('buildDeedsLeaderboardView', () => {
       {
         rank: 1,
         name: 'Aldwin',
-        realm: 'Claudemoon',
+        realm: 'Wildmoon',
         cls: 'warrior',
         knownClass: true,
         level: 20,

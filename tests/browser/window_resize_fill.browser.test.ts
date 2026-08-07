@@ -78,7 +78,7 @@ async function openLeaderboard(): Promise<HTMLElement> {
       root: () => root,
       world: () =>
         ({
-          realm: 'Claudemoon',
+          realm: 'Wildmoon',
           player: { name: 'Chronicler1', level: 60 },
           lifetimeXp: 5_000_000,
           leaderboard: () => Promise.resolve(fullPage()),

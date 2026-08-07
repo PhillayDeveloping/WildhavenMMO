@@ -155,10 +155,10 @@ function relayItem(accountId: number): QueuedRelay {
     characterName: `Adventurer${accountId}`,
     level: 40,
     className: 'Hunter',
-    realm: 'Claudemoon',
+    realm: 'Wildmoon',
     zone: 'Blackrock Deeps, the Detention Block',
     message: `Need two more for a full clear, summons up at the meeting stone, whisper me. ${'x'.repeat(120)}`,
-    profileUrl: `https://wildhaven.example/c/claudemoon/adventurer${accountId}`,
+    profileUrl: `https://wildhaven.example/c/wildmoon/adventurer${accountId}`,
   };
 }
 
@@ -172,8 +172,8 @@ function activityItem(index: number, accountIds: number[]): QueuedActivity {
     kind: 'deed',
     accountIds,
     names: accountIds.map((id) => `Adventurer${id}`),
-    realm: 'Claudemoon',
-    profileUrl: `https://wildhaven.example/c/claudemoon/adventurer${accountIds[0]}`,
+    realm: 'Wildmoon',
+    profileUrl: `https://wildhaven.example/c/wildmoon/adventurer${accountIds[0]}`,
     itemName: `Moonlit Koi of the Verdant Vale ${index}`,
     deedId: `chr_willowfen_first_cast_${index}`,
     deedName: `First Cast of the Willowfen Reaches ${index}`,
@@ -185,14 +185,14 @@ function activityItem(index: number, accountIds: number[]): QueuedActivity {
 function winnerDay(dayIndex: number): unknown {
   return {
     day: `2026-06-${String(20 + dayIndex).padStart(2, '0')}`,
-    realm: 'Claudemoon',
+    realm: 'Wildmoon',
     prizePoolCopper: 1_500_000,
     finalizedAt: '2026-06-30T22:00:00.000Z',
     taskName: 'Complete quests today. Points increase with time spent online.',
     nextTaskName: 'Win an arena match.',
     payouts: Array.from({ length: 10 }, (_, rank) => ({
       day: `2026-06-${String(20 + dayIndex).padStart(2, '0')}`,
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
       rank: rank + 1,
       accountId: rank + 1,
       username: `Adventurer${rank + 1}`,

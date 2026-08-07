@@ -664,7 +664,7 @@ async function makeWorld(): Promise<World> {
   // one counter and can never collide with (or sort ahead of) a real op's row.
   for (const seed of DORMANT_SEED) {
     await store.insertBankLedgerRow({
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
       characterId: actors[0].characterId,
       accountId: actors[0].characterId,
       op: 'deposit',
@@ -1160,7 +1160,7 @@ async function runSteps(steps: Step[], check: Check): Promise<RunResult> {
       characters: [],
       guildBanks: [...store.bookRows.entries()].map(([guild_id, data]) => ({
         guild_id,
-        realm: 'Claudemoon',
+        realm: 'Wildmoon',
         data,
       })),
     });

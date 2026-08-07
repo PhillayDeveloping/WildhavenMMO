@@ -109,7 +109,7 @@ describe('ClientWorld.deedsLeaderboard', () => {
 
   it('maps a resolved page through, self included, sending the session bearer', async () => {
     const body = {
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
       scope: 'global',
       board: 'deeds',
       metric: 'renown',
@@ -117,7 +117,7 @@ describe('ClientWorld.deedsLeaderboard', () => {
         {
           rank: 1,
           name: 'Aldwin',
-          realm: 'Claudemoon',
+          realm: 'Wildmoon',
           cls: 'warrior',
           level: 20,
           renown: 50,

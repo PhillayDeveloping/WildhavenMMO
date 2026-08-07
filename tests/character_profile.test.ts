@@ -12,7 +12,7 @@ import { ClientWorld } from '../src/net/online';
 
 const SHEET = {
   name: 'Mira',
-  realm: 'Claudemoon',
+  realm: 'Wildmoon',
   class: 'mage',
   classLabel: 'Mage',
   spec: 'Fire',
@@ -60,7 +60,7 @@ describe('ClientWorld.characterProfile', () => {
       guild: 'Iron Vanguard',
       zone: 'Thornpeak Heights',
       skin: 3,
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
     });
   });
 

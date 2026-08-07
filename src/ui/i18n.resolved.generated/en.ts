@@ -2078,7 +2078,7 @@ export const en: EnTranslations = {
         "titleDiscordian": "Title: Discordian",
         "titleSquire": "Title: Squire of the Realm",
         "chromaBlurple": "Blurple Mech Chroma",
-        "titleChampion": "Title: Champion of Claudemoon",
+        "titleChampion": "Title: Champion of Wildmoon",
         "swagStickers": "Sticker Pack (shipped)",
         "swagTee": "T-Shirt (shipped)"
       },
@@ -5854,7 +5854,7 @@ export const en: EnTranslations = {
     "applicationCategory": "Game",
     "operatingSystem": "Web browser",
     "officialLabel": "Official Wildhaven website",
-    "officialBody": "wildhaven.example is the official free browser MMO for the Claudemoon world. Play online with a persistent character, explore solo offline, read the wiki, and follow verified community links from this site."
+    "officialBody": "wildhaven.example is the official free browser MMO for the Wildmoon world. Play online with a persistent character, explore solo offline, read the wiki, and follow verified community links from this site."
   },
   "a11y": {
     "goHome": "Go to homepage",
@@ -6107,7 +6107,7 @@ export const en: EnTranslations = {
     "logoAlt": "Wildhaven",
     "eyebrow": "World maintenance",
     "heading": "The world is temporarily unavailable.",
-    "body": "We are restarting the game service and expect Claudemoon to return shortly. This page will keep checking automatically.",
+    "body": "We are restarting the game service and expect Wildmoon to return shortly. This page will keep checking automatically.",
     "status": "Back soon"
   },
   "hud": {

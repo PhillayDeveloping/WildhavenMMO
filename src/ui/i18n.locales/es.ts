@@ -2431,7 +2431,7 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'hudChrome.unitFrame.targetLabel': 'Tu objetivo',
   'seo.officialLabel': 'Sitio web oficial de Wildhaven',
   'seo.officialBody':
-    'wildhaven.example es el MMO de navegador gratuito oficial del mundo Claudemoon. Juega en línea con un personaje persistente, explora en solitario sin conexión, lee la wiki y sigue los enlaces comunitarios verificados desde este sitio.',
+    'wildhaven.example es el MMO de navegador gratuito oficial del mundo Wildmoon. Juega en línea con un personaje persistente, explora en solitario sin conexión, lee la wiki y sigue los enlaces comunitarios verificados desde este sitio.',
   'hudChrome.questShare.notShareable': 'Esta misión no se puede compartir.',
   'hudChrome.questShare.notInSharerParty':
     'Debes estar en el grupo de {name} para aceptar esa misión.',
@@ -3099,7 +3099,7 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'serverUnavailable.eyebrow': 'Mantenimiento del mundo',
   'serverUnavailable.heading': 'El mundo no está disponible temporalmente.',
   'serverUnavailable.body':
-    'Estamos reiniciando el servicio del juego y esperamos que Claudemoon vuelva pronto. Esta página seguirá comprobándolo automáticamente.',
+    'Estamos reiniciando el servicio del juego y esperamos que Wildmoon vuelva pronto. Esta página seguirá comprobándolo automáticamente.',
   'serverUnavailable.status': 'Volvemos pronto',
   'hud.core.elite': 'ÉLITE',
   'hud.core.boss': 'JEFE',
@@ -7811,7 +7811,7 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'hudChrome.discord.swag.titleDiscordian': 'Título: Discordiano',
   'hudChrome.discord.swag.titleSquire': 'Título: Escudero del Reino',
   'hudChrome.discord.swag.chromaBlurple': 'Cromática Mech Blurple',
-  'hudChrome.discord.swag.titleChampion': 'Título: Campeón de Claudemoon',
+  'hudChrome.discord.swag.titleChampion': 'Título: Campeón de Wildmoon',
   'hudChrome.discord.swag.swagStickers': 'Pack de stickers (envío físico)',
   'hudChrome.discord.swag.swagTee': 'Camiseta (envío físico)',
   'hudChrome.discord.relay.tooFast':

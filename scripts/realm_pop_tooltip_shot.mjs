@@ -20,7 +20,7 @@ const TIP = {
 };
 
 const rows = [
-  { name: 'Claudemoon', sub: '8 online now', type: 'Normal', cls: 'low', label: 'Low', tip: TIP.low, rec: true },
+  { name: 'Wildmoon', sub: '8 online now', type: 'Normal', cls: 'low', label: 'Low', tip: TIP.low, rec: true },
   { name: 'Ashen Reach', sub: '27 online now', type: 'PvP', cls: 'med', label: 'Medium', tip: TIP.med },
   { name: 'Stormhollow', sub: '54 online now', type: 'RP', cls: 'high', label: 'High', tip: TIP.high },
   { name: 'Ironwatch', sub: '92 online now', type: 'RP-PvP', cls: 'full', label: 'Full', tip: TIP.full },

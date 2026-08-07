@@ -1,7 +1,7 @@
 {
-  "body": "{\"leaders\":[],\"metric\":\"lifetimeXp\",\"page\":0,\"pageCount\":1,\"pageSize\":5,\"realm\":\"Claudemoon\",\"scope\":\"realm\",\"total\":0}",
+  "body": "{\"leaders\":[],\"metric\":\"lifetimeXp\",\"page\":0,\"pageCount\":1,\"pageSize\":5,\"realm\":\"Wildmoon\",\"scope\":\"realm\",\"total\":0}",
   "headers": {
-    "content-length": 119,
+    "content-length": 117,
     "content-type": "application/json",
     "cross-origin-opener-policy": "same-origin",
     "cross-origin-resource-policy": "same-origin",

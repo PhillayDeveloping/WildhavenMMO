@@ -225,7 +225,7 @@ describe('unknown-deed tolerance', () => {
 
 describe('buildDeedsBoardEntries', () => {
   function displayChar(id: number, name: string): DeedsBoardDisplayCharacter {
-    return { id, name, class: 'warrior', level: 20, realm: 'Claudemoon', activeTitle: null };
+    return { id, name, class: 'warrior', level: 20, realm: 'Wildmoon', activeTitle: null };
   }
 
   it('faces each ranked account with its display character, account id never on the entry', () => {
@@ -238,7 +238,7 @@ describe('buildDeedsBoardEntries', () => {
       {
         rank: 1,
         name: 'Aldwin',
-        realm: 'Claudemoon',
+        realm: 'Wildmoon',
         cls: 'warrior',
         level: 20,
         renown: 75,
@@ -247,7 +247,7 @@ describe('buildDeedsBoardEntries', () => {
       {
         rank: 2,
         name: 'Berrin',
-        realm: 'Claudemoon',
+        realm: 'Wildmoon',
         cls: 'warrior',
         level: 20,
         renown: 50,

@@ -2078,7 +2078,7 @@ export const cs_CZ: EnTranslations = {
         "titleDiscordian": "Titul: Discordián",
         "titleSquire": "Titul: Panoš světa",
         "chromaBlurple": "Modrofialová mech chroma",
-        "titleChampion": "Titul: Šampion Claudemoonu",
+        "titleChampion": "Titul: Šampion Wildmoonu",
         "swagStickers": "Balíček samolepek (odesílá se)",
         "swagTee": "Tričko (odesílá se)"
       },
@@ -5854,7 +5854,7 @@ export const cs_CZ: EnTranslations = {
     "applicationCategory": "Hra",
     "operatingSystem": "Webový prohlížeč",
     "officialLabel": "Oficiální web Wildhaven",
-    "officialBody": "wildhaven.example je oficiální bezplatné prohlížečové MMO pro svět Claudemoon. Hraj online s trvalou postavou, prozkoumávej sólo offline, čti wiki a používej ověřené komunitní odkazy z tohoto webu."
+    "officialBody": "wildhaven.example je oficiální bezplatné prohlížečové MMO pro svět Wildmoon. Hraj online s trvalou postavou, prozkoumávej sólo offline, čti wiki a používej ověřené komunitní odkazy z tohoto webu."
   },
   "a11y": {
     "goHome": "Přejít na domovskou stránku",
@@ -6107,7 +6107,7 @@ export const cs_CZ: EnTranslations = {
     "logoAlt": "Wildhaven",
     "eyebrow": "Údržba světa",
     "heading": "Svět je dočasně nedostupný.",
-    "body": "Restartujeme herní službu a očekáváme, že se Claudemoon brzy vrátí. Tato stránka bude stav automaticky kontrolovat.",
+    "body": "Restartujeme herní službu a očekáváme, že se Wildmoon brzy vrátí. Tato stránka bude stav automaticky kontrolovat.",
     "status": "Brzy zpět"
   },
   "hud": {

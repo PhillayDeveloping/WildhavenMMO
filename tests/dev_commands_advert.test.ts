@@ -28,7 +28,7 @@ describe('dev command capability advert (client)', () => {
   it('reads dev_commands true off /api/status', async () => {
     const fetchMock = vi
       .fn()
-      .mockResolvedValue(jsonResponse({ ok: true, realm: 'Claudemoon', dev_commands: true }));
+      .mockResolvedValue(jsonResponse({ ok: true, realm: 'Wildmoon', dev_commands: true }));
     vi.stubGlobal('fetch', fetchMock);
     const api = new Api();
 
@@ -41,7 +41,7 @@ describe('dev command capability advert (client)', () => {
       'fetch',
       vi
         .fn()
-        .mockResolvedValue(jsonResponse({ ok: true, realm: 'Claudemoon', dev_commands: false })),
+        .mockResolvedValue(jsonResponse({ ok: true, realm: 'Wildmoon', dev_commands: false })),
     );
     await expect(new Api().devCommandsAdvert()).resolves.toBe(false);
   });
@@ -51,7 +51,7 @@ describe('dev command capability advert (client)', () => {
   it('treats a missing dev_commands field as off', async () => {
     vi.stubGlobal(
       'fetch',
-      vi.fn().mockResolvedValue(jsonResponse({ ok: true, realm: 'Claudemoon' })),
+      vi.fn().mockResolvedValue(jsonResponse({ ok: true, realm: 'Wildmoon' })),
     );
     await expect(new Api().devCommandsAdvert()).resolves.toBe(false);
   });

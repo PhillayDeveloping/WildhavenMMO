@@ -487,7 +487,7 @@ describe('daily rewards', () => {
     db.winnerAnnouncements = [
       {
         day: '2026-06-30',
-        realm: 'Claudemoon',
+        realm: 'Wildmoon',
         prizePoolCopper: 1_500_000,
         finalizedAt: '2026-07-01T00:00:00.000Z',
         payouts: [],
@@ -569,7 +569,7 @@ describe('daily rewards', () => {
     function winnerDay(day: string): DailyRewardWinnerAnnouncement {
       return {
         day,
-        realm: 'Claudemoon',
+        realm: 'Wildmoon',
         prizePoolCopper: 1_500_000,
         finalizedAt: '2026-07-01T00:00:00.000Z',
         payouts: [],

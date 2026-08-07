@@ -22,10 +22,10 @@ const throwingMw: Middleware = async () => {
 
 describe('withCors: api allow class', () => {
   it('reflects an allowed origin with the full CORS header set', async () => {
-    const ctx = fakeCtx({ headers: { origin: 'https://claudemoon.example.com' } });
+    const ctx = fakeCtx({ headers: { origin: 'https://wildmoon.example.com' } });
     const res = resOf(ctx);
     await compose([withCors('api', () => true), async (_ctx, next) => next()])(ctx);
-    expect(res.headers['access-control-allow-origin']).toBe('https://claudemoon.example.com');
+    expect(res.headers['access-control-allow-origin']).toBe('https://wildmoon.example.com');
     expect(res.headers.vary).toBe('Origin');
     expect(res.headers['access-control-allow-methods']).toBe('GET, POST, PUT, DELETE, OPTIONS');
     expect(res.headers['access-control-allow-headers']).toBe('Authorization, Content-Type');
@@ -33,11 +33,11 @@ describe('withCors: api allow class', () => {
   });
 
   it('still carries the CORS headers on a downstream error mapped by withErrors', async () => {
-    const ctx = fakeCtx({ headers: { origin: 'https://claudemoon.example.com' } });
+    const ctx = fakeCtx({ headers: { origin: 'https://wildmoon.example.com' } });
     const res = resOf(ctx);
     await compose([withErrors(), withCors('api', () => true), throwingMw])(ctx);
     expect(res.statusCode).toBe(500);
-    expect(res.headers['access-control-allow-origin']).toBe('https://claudemoon.example.com');
+    expect(res.headers['access-control-allow-origin']).toBe('https://wildmoon.example.com');
     expect(res.headers.vary).toBe('Origin');
   });
 

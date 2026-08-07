@@ -95,7 +95,7 @@ function leaderboardWindow(leaderboard: () => Promise<LeaderboardPage>): {
       root: () => root,
       world: () =>
         ({
-          realm: 'Claudemoon',
+          realm: 'Wildmoon',
           player: { name: 'Aurelia', level: 60 },
           lifetimeXp: 5_000_000,
           leaderboard,
@@ -295,7 +295,7 @@ describe('axe: options menu', () => {
         root: () => root,
         world: () =>
           ({
-            realm: 'Claudemoon',
+            realm: 'Wildmoon',
             player: { name: 'Aurelia', pos: { x: 0, y: 0, z: 0 } },
           }) as never,
         options: () => null,
@@ -376,7 +376,7 @@ describe('axe: options menu', () => {
         root: () => root,
         world: () =>
           ({
-            realm: 'Claudemoon',
+            realm: 'Wildmoon',
             player: { name: 'Aurelia', pos: { x: 0, y: 0, z: 0 } },
           }) as never,
         options: () => hooks as never,
@@ -434,7 +434,7 @@ describe('axe: social window', () => {
           ({
             socialInfo: null,
             partyInfo: null,
-            realm: 'Claudemoon',
+            realm: 'Wildmoon',
             player: { name: 'Aurelia' },
           }) as never,
         captureFocus: () => null,
@@ -454,7 +454,7 @@ describe('axe: social window', () => {
           ({
             socialInfo: { friends: [], guild: null, ignored: [] },
             partyInfo: null,
-            realm: 'Claudemoon',
+            realm: 'Wildmoon',
             player: { name: 'Aurelia' },
           }) as never,
         captureFocus: () => null,
@@ -483,7 +483,7 @@ describe('axe: social window', () => {
           ({
             socialInfo: { friends: [], guild: null, ignored: [] },
             partyInfo: null,
-            realm: 'Claudemoon',
+            realm: 'Wildmoon',
             player: { name: 'Aurelia' },
             // 3 same-realm matches, none the local player (so none is filtered out).
             searchCharacters: async () => [
@@ -525,7 +525,7 @@ describe('axe: social window', () => {
           ({
             socialInfo: { friends: [], guild: null, ignored: [] },
             partyInfo: null,
-            realm: 'Claudemoon',
+            realm: 'Wildmoon',
             player: { name: 'Aurelia' },
           }) as never,
         captureFocus: () => null,
@@ -575,7 +575,7 @@ describe('axe: social window', () => {
           ({
             socialInfo: { friends: [], guild: null, ignored: [] },
             partyInfo: null,
-            realm: 'Claudemoon',
+            realm: 'Wildmoon',
             player: { name: 'Aurelia' },
           }) as never,
         captureFocus: () => null,

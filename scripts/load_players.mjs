@@ -35,7 +35,7 @@ const SERVER_URL = (
 ).replace(/\/+$/, '');
 const WS_URL = `${SERVER_URL.replace(/^http/, 'ws')}/ws`;
 const DATABASE_URL = process.env.DATABASE_URL;
-const REALM = process.env.REALM_NAME ?? 'Claudemoon';
+const REALM = process.env.REALM_NAME ?? 'Wildmoon';
 const BOT_COUNT = boundedInt(process.env.BOT_COUNT, 25, 1, 100);
 const BOT_LEVEL = boundedInt(process.env.BOT_LEVEL, 18, 1, 60);
 const DURATION_MS = boundedInt(

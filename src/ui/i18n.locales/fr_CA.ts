@@ -71,7 +71,7 @@ export const fr_CA: Partial<Record<TranslationKey, string>> = {
   'mobilePreflight.androidInstallStep':
     "Dans Chrome, touchez le menu, puis Installer l'application ou Ajouter à l'écran d'accueil.",
   'serverUnavailable.body':
-    'Nous redémarrons le service de jeu et Claudemoon devrait revenir sous peu. Cette page continuera de vérifier automatiquement.',
+    'Nous redémarrons le service de jeu et Wildmoon devrait revenir sous peu. Cette page continuera de vérifier automatiquement.',
   'serverUnavailable.status': 'De retour bientôt',
   'delveUi.affix.candleblind': 'Aveuglement de chandelle',
   'delveUi.blessing.chapel_candle':

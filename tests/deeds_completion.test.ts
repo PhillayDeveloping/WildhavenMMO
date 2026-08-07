@@ -204,7 +204,7 @@ describe('cross-surface parity', () => {
     const sheet = characterSheet({
       row,
       visibility: 'public',
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
       origin: 'https://wildhaven.example',
       guild: null,
       rank: null,

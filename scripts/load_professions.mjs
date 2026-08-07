@@ -93,7 +93,7 @@ const OBSERVERS = boundedEnvInt(process.env.OBSERVERS, 32, 1, 128);
 const BOT_LEVEL = boundedEnvInt(process.env.BOT_LEVEL, 60, 1, 60);
 const WARMUP_MS = boundedEnvInt(process.env.WARMUP_MS, 45000, 2000, 300000);
 const REPORT_MS = boundedEnvInt(process.env.REPORT_MS, 10000, 1000, 60000);
-const REALM = process.env.REALM_NAME ?? 'Claudemoon';
+const REALM = process.env.REALM_NAME ?? 'Wildmoon';
 const METRICS_TOKEN = process.env.METRICS_TOKEN ?? '';
 const JSON_OUT = process.env.JSON_OUT ?? '';
 const CLEANUP = process.env.CLEANUP === '1';

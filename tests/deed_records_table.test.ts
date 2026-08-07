@@ -211,7 +211,7 @@ describe('recordDeedUnlock', () => {
     await deedRecordsIdle();
     expect(insertMock).toHaveBeenCalledTimes(1);
     expect(insertMock).toHaveBeenCalledWith({
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
       characterId: 42,
       accountId: 7,
       deedId: 'prog_first_steps',
@@ -348,7 +348,7 @@ describe('recordDeedUnlocks (batch drain)', () => {
     await deedRecordsIdle();
     expect(insertDeedsMock).toHaveBeenCalledTimes(1);
     const [who, ids] = insertDeedsMock.mock.calls[0];
-    expect(who).toEqual({ realm: 'Claudemoon', characterId: 42, accountId: 7 });
+    expect(who).toEqual({ realm: 'Wildmoon', characterId: 42, accountId: 7 });
     expect([...ids]).toEqual(['a', 'b', 'c', 'd', 'e']); // event order preserved
     expect(insertMock).not.toHaveBeenCalled(); // zero single-row round trips
   });
@@ -439,7 +439,7 @@ describe('recordDeedUnlocks (batch drain)', () => {
     expect(insertDeedsMock).not.toHaveBeenCalled();
     expect(insertMock).toHaveBeenCalledTimes(1);
     expect(insertMock).toHaveBeenCalledWith({
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
       characterId: 42,
       accountId: 7,
       deedId: 'prog_veteran',
@@ -533,7 +533,7 @@ describe('deedUnlocked through GameServer.detectActivity', () => {
     expect(insertMock).not.toHaveBeenCalled(); // a multi-deed slice takes the batch path
     expect(insertDeedsMock).toHaveBeenCalledTimes(1);
     const [who, ids] = insertDeedsMock.mock.calls[0];
-    expect(who).toEqual({ realm: 'Claudemoon', characterId: 42, accountId: 7 });
+    expect(who).toEqual({ realm: 'Wildmoon', characterId: 42, accountId: 7 });
     const drainedIds = [...ids];
     expect(drainedIds.length).toBeGreaterThan(1);
     expect(drainedIds).toContain('prog_veteran');
@@ -607,7 +607,7 @@ describe('deedUnlocked through GameServer.detectActivity', () => {
     expect(insertMock).not.toHaveBeenCalled(); // a multi-deed retro slice batches
     expect(insertDeedsMock).toHaveBeenCalledTimes(1);
     const [who, ids] = insertDeedsMock.mock.calls[0];
-    expect(who).toEqual({ realm: 'Claudemoon', characterId: 42, accountId: 7 });
+    expect(who).toEqual({ realm: 'Wildmoon', characterId: 42, accountId: 7 });
     expect([...ids]).toContain('prog_veteran');
     expect(broadcastSpy).not.toHaveBeenCalled();
     expect(broadcastsFlagMock).not.toHaveBeenCalled();
@@ -803,7 +803,7 @@ describe('deedUnlocked through GameServer.detectActivity', () => {
     await settle();
     expect(insertMock).toHaveBeenCalledTimes(1);
     expect(insertMock).toHaveBeenCalledWith({
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
       characterId: 42,
       accountId: 7,
       deedId: 'gone_deed',

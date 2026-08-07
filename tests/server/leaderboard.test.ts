@@ -96,7 +96,7 @@ function deedsRow(rank: number): DeedsLeaderboardEntry {
   return {
     rank,
     name: `Chronicler${rank}`,
-    realm: 'Claudemoon',
+    realm: 'Wildmoon',
     cls: 'warrior' as DeedsLeaderboardEntry['cls'],
     level: 20,
     renown: 500 - rank,
@@ -121,7 +121,7 @@ function characterRow(id: number, name: string): CharacterRow {
   };
 }
 
-const REALM_NAME = 'Claudemoon';
+const REALM_NAME = 'Wildmoon';
 
 function fakeRuntime(overrides: Partial<LeaderboardRuntime> = {}): LeaderboardRuntime {
   return {

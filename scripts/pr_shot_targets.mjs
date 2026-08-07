@@ -65,7 +65,7 @@ async function stubGlobalLeaderboardFetch(page) {
       lifetimeXp: 5200000,
       prestigeRank: 2,
       guild: 'Monarchs',
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
     },
     {
       rank: 2,
@@ -75,7 +75,7 @@ async function stubGlobalLeaderboardFetch(page) {
       lifetimeXp: 4100000,
       prestigeRank: 0,
       guild: 'Monarchs',
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
     },
     {
       rank: 3,
@@ -94,7 +94,7 @@ async function stubGlobalLeaderboardFetch(page) {
       level: 19,
       lifetimeXp: 2900000,
       prestigeRank: 0,
-      realm: 'Claudemoon',
+      realm: 'Wildmoon',
     },
     {
       rank: 5,
@@ -3737,7 +3737,7 @@ export const TARGETS = [
             {
               rank: 1,
               name: 'Aldwin',
-              realm: 'Claudemoon',
+              realm: 'Wildmoon',
               cls: 'warrior',
               level: 20,
               renown: 1620,
@@ -3755,7 +3755,7 @@ export const TARGETS = [
             {
               rank: 3,
               name: 'Cifern',
-              realm: 'Claudemoon',
+              realm: 'Wildmoon',
               cls: 'priest',
               level: 19,
               renown: 1390,
@@ -3764,7 +3764,7 @@ export const TARGETS = [
             {
               rank: 4,
               name: 'Doran',
-              realm: 'Claudemoon',
+              realm: 'Wildmoon',
               cls: 'rogue',
               level: 20,
               renown: 1350,

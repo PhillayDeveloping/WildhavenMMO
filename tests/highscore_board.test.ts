@@ -29,7 +29,7 @@ function entry(over: Partial<LeaderboardEntry> = {}): LeaderboardEntry {
     lifetimeXp: 5_000_000,
     prestigeRank: 0,
     title: null,
-    realm: 'Claudemoon',
+    realm: 'Wildmoon',
     ...over,
   };
 }
@@ -47,7 +47,7 @@ describe('highscore_board: the guild tag beside each ranked name', () => {
     expect(html).toContain('<span class="hs-guild"');
     expect(html).toContain('&lt;Monarchs&gt;');
     expect(html.indexOf('Zyzz')).toBeLessThan(html.indexOf('Monarchs'));
-    expect(html.indexOf('Monarchs')).toBeLessThan(html.indexOf('Claudemoon'));
+    expect(html.indexOf('Monarchs')).toBeLessThan(html.indexOf('Wildmoon'));
     expect(html.indexOf('hs-guild')).toBeLessThan(html.indexOf('hs-realm'));
   });
 

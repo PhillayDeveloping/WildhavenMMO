@@ -2078,7 +2078,7 @@ export const ko_KR: EnTranslations = {
         "titleDiscordian": "칭호: Discordian",
         "titleSquire": "칭호: 렐름의 종자",
         "chromaBlurple": "Blurple 메크 크로마",
-        "titleChampion": "칭호: Claudemoon의 챔피언",
+        "titleChampion": "칭호: Wildmoon의 챔피언",
         "swagStickers": "스티커 팩 (배송)",
         "swagTee": "티셔츠 (배송)"
       },
@@ -5854,7 +5854,7 @@ export const ko_KR: EnTranslations = {
     "applicationCategory": "게임",
     "operatingSystem": "웹 브라우저",
     "officialLabel": "Wildhaven 공식 웹사이트",
-    "officialBody": "wildhaven.example은 Claudemoon 월드의 공식 무료 브라우저 MMO입니다. 지속 캐릭터로 온라인 플레이를 하거나, 오프라인에서 혼자 탐험하고, 위키를 읽고, 이 사이트에서 검증된 커뮤니티 링크를 확인하세요."
+    "officialBody": "wildhaven.example은 Wildmoon 월드의 공식 무료 브라우저 MMO입니다. 지속 캐릭터로 온라인 플레이를 하거나, 오프라인에서 혼자 탐험하고, 위키를 읽고, 이 사이트에서 검증된 커뮤니티 링크를 확인하세요."
   },
   "a11y": {
     "goHome": "홈으로 이동",
@@ -6107,7 +6107,7 @@ export const ko_KR: EnTranslations = {
     "logoAlt": "Wildhaven",
     "eyebrow": "월드 점검",
     "heading": "월드를 일시적으로 이용할 수 없습니다.",
-    "body": "게임 서비스를 재시작하고 있으며 Claudemoon은 곧 돌아올 예정입니다. 이 페이지는 자동으로 계속 확인합니다.",
+    "body": "게임 서비스를 재시작하고 있으며 Wildmoon은 곧 돌아올 예정입니다. 이 페이지는 자동으로 계속 확인합니다.",
     "status": "곧 돌아옵니다"
   },
   "hud": {

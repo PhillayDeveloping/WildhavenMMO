@@ -30,7 +30,7 @@ function xpRow(over: Record<string, unknown> = {}): Record<string, unknown> {
     name: 'Zyzz',
     class: 'warrior',
     level: 60,
-    realm: 'Claudemoon',
+    realm: 'Wildmoon',
     lifetime_xp: '5000000',
     prestige_rank: 0,
     active_title: null,

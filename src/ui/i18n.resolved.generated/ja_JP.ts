@@ -2078,7 +2078,7 @@ export const ja_JP: EnTranslations = {
         "titleDiscordian": "称号：Discordian",
         "titleSquire": "称号：レルムの従者",
         "chromaBlurple": "Blurpleメックカラー",
-        "titleChampion": "称号：Claudemoonのチャンピオン",
+        "titleChampion": "称号：Wildmoonのチャンピオン",
         "swagStickers": "ステッカーパック（発送）",
         "swagTee": "Tシャツ（発送）"
       },
@@ -5854,7 +5854,7 @@ export const ja_JP: EnTranslations = {
     "applicationCategory": "ゲーム",
     "operatingSystem": "Webブラウザ",
     "officialLabel": "Wildhaven 公式サイト",
-    "officialBody": "wildhaven.example は Claudemoon ワールドの公式無料ブラウザMMOです。永続キャラクターでオンラインプレイし、オフラインでソロ探索し、wikiを読み、このサイトから確認済みのコミュニティリンクをたどれます。"
+    "officialBody": "wildhaven.example は Wildmoon ワールドの公式無料ブラウザMMOです。永続キャラクターでオンラインプレイし、オフラインでソロ探索し、wikiを読み、このサイトから確認済みのコミュニティリンクをたどれます。"
   },
   "a11y": {
     "goHome": "ホームへ移動",
@@ -6107,7 +6107,7 @@ export const ja_JP: EnTranslations = {
     "logoAlt": "Wildhaven",
     "eyebrow": "ワールドメンテナンス",
     "heading": "ワールドは一時的に利用できません。",
-    "body": "ゲームサービスを再起動しています。Claudemoonはまもなく戻る予定です。このページは自動的に確認を続けます。",
+    "body": "ゲームサービスを再起動しています。Wildmoonはまもなく戻る予定です。このページは自動的に確認を続けます。",
     "status": "まもなく復帰"
   },
   "hud": {

@@ -259,13 +259,13 @@ describe('public card origin config', () => {
   it('selects the matching trusted realm origin', () => {
     expect(
       publicOriginForRealm('Ironforge', [
-        { name: 'Claudemoon', url: 'https://claudemoon.example.com', type: 'Normal' },
+        { name: 'Wildmoon', url: 'https://wildmoon.example.com', type: 'Normal' },
         { name: 'Ironforge', url: 'https://ironforge.example.com', type: 'PvP' },
       ]),
     ).toBe('https://ironforge.example.com');
     expect(
       publicOriginForRealm('Missing', [
-        { name: 'Claudemoon', url: 'https://claudemoon.example.com', type: 'Normal' },
+        { name: 'Wildmoon', url: 'https://wildmoon.example.com', type: 'Normal' },
       ]),
     ).toBe('');
   });
@@ -859,7 +859,7 @@ describe('GET /p/<slug>', () => {
       {
         REALM_NAME: 'Ironforge',
         REALMS:
-          'Claudemoon=https://claudemoon.example.com=Normal,Ironforge=https://ironforge.example.com=PvP',
+          'Wildmoon=https://wildmoon.example.com=Normal,Ironforge=https://ironforge.example.com=PvP',
       },
       async (routes) => {
         cardRows = [

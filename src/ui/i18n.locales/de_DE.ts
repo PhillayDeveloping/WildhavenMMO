@@ -2595,7 +2595,7 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.unitFrame.targetLabel': 'Euer Ziel',
   'seo.officialLabel': 'Offizielle Website von Wildhaven',
   'seo.officialBody':
-    'wildhaven.example ist das offizielle kostenlose Browser-MMO für die Welt Claudemoon. Spiele online mit einem dauerhaften Charakter, erkunde solo offline, lies das Wiki und folge den verifizierten Community-Links auf dieser Website.',
+    'wildhaven.example ist das offizielle kostenlose Browser-MMO für die Welt Wildmoon. Spiele online mit einem dauerhaften Charakter, erkunde solo offline, lies das Wiki und folge den verifizierten Community-Links auf dieser Website.',
   'hudChrome.questShare.notShareable': 'Diese Quest kann nicht geteilt werden.',
   'hudChrome.questShare.notInSharerParty':
     'Ihr müsst in der Gruppe von {name} sein, um diese Quest anzunehmen.',
@@ -3257,7 +3257,7 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'serverUnavailable.eyebrow': 'Weltwartung',
   'serverUnavailable.heading': 'Die Welt ist vorübergehend nicht verfügbar.',
   'serverUnavailable.body':
-    'Wir starten den Spieldienst neu und erwarten, dass Claudemoon bald zurückkehrt. Diese Seite prüft automatisch weiter.',
+    'Wir starten den Spieldienst neu und erwarten, dass Wildmoon bald zurückkehrt. Diese Seite prüft automatisch weiter.',
   'serverUnavailable.status': 'Bald zurück',
   'hud.core.elite': 'ELITE',
   'hud.core.boss': 'BOSS',
@@ -7703,7 +7703,7 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.discord.swag.titleDiscordian': 'Titel: Discordianer',
   'hudChrome.discord.swag.titleSquire': 'Titel: Knappe des Reichs',
   'hudChrome.discord.swag.chromaBlurple': 'Blurple-Mech-Chroma',
-  'hudChrome.discord.swag.titleChampion': 'Titel: Champion von Claudemoon',
+  'hudChrome.discord.swag.titleChampion': 'Titel: Champion von Wildmoon',
   'hudChrome.discord.swag.swagStickers': 'Stickerpaket (Versand)',
   'hudChrome.discord.swag.swagTee': 'T-Shirt (Versand)',
   'hudChrome.discord.relay.tooFast':

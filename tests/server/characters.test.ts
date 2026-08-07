@@ -48,7 +48,7 @@ import { type FakeRes, fakeCtx } from './helpers';
 
 // The realm this test process serves (REALM_NAME unset -> the default). The list
 // handlers stamp it onto every body, so it is the expected `realm` field.
-const REALM = 'Claudemoon';
+const REALM = 'Wildmoon';
 
 // A well-formed bearer header (64 lowercase-hex, matching characters.ts BEARER_PATTERN).
 const BEARER = `Bearer ${'a'.repeat(64)}`;

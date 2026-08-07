@@ -301,10 +301,10 @@ describe("another officer's save can no longer launder an unflushed deposit into
     const findings = auditBank({
       ledgerRows: rows,
       characters: [
-        { id: 1, realm: 'Claudemoon', state: { bank: null } },
-        { id: 2, realm: 'Claudemoon', state: { bank: null } },
+        { id: 1, realm: 'Wildmoon', state: { bank: null } },
+        { id: 2, realm: 'Wildmoon', state: { bank: null } },
       ],
-      guildBanks: [{ guild_id: GUILD_ID, realm: 'Claudemoon', data: book }],
+      guildBanks: [{ guild_id: GUILD_ID, realm: 'Wildmoon', data: book }],
     });
     // Nothing was minted. The ledger rows of the fenced (undone) ops remain by
     // design (docs/guild-bank/state.md, the evidence trail), so a LIVE realm's
@@ -536,7 +536,7 @@ describe('I: the revert path writes no compensating ledger rows', () => {
       ledgerRows: rows,
       characters: [],
       guildBanks: [
-        { guild_id: GUILD_ID, realm: 'Claudemoon', data: dbMock.durableBooks.get(GUILD_ID) },
+        { guild_id: GUILD_ID, realm: 'Wildmoon', data: dbMock.durableBooks.get(GUILD_ID) },
       ],
     });
     // This one the audit DOES catch (treasury_mismatch) -- documented as the

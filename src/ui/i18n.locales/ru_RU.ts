@@ -594,7 +594,7 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'hudChrome.unitFrame.targetLabel': 'Ваша цель',
   'seo.officialLabel': 'Официальный сайт Wildhaven',
   'seo.officialBody':
-    'wildhaven.example - официальная бесплатная браузерная MMO для мира Claudemoon. Играйте онлайн с постоянным персонажем, исследуйте мир в одиночку офлайн, читайте wiki и переходите по проверенным ссылкам сообщества с этого сайта.',
+    'wildhaven.example - официальная бесплатная браузерная MMO для мира Wildmoon. Играйте онлайн с постоянным персонажем, исследуйте мир в одиночку офлайн, читайте wiki и переходите по проверенным ссылкам сообщества с этого сайта.',
   'hudChrome.questShare.notShareable': 'Этим заданием нельзя поделиться.',
   'hudChrome.questShare.notInSharerParty':
     'Вы должны состоять в группе игрока {name}, чтобы принять это задание.',
@@ -1514,7 +1514,7 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'serverUnavailable.eyebrow': 'Технические работы',
   'serverUnavailable.heading': 'Мир временно недоступен.',
   'serverUnavailable.body':
-    'Мы перезапускаем игровой сервис и ожидаем, что Claudemoon скоро вернется. Эта страница продолжит проверку автоматически.',
+    'Мы перезапускаем игровой сервис и ожидаем, что Wildmoon скоро вернется. Эта страница продолжит проверку автоматически.',
   'serverUnavailable.status': 'Скоро вернется',
   'hud.core.elite': 'ЭЛИТА',
   'hud.core.boss': 'БОСС',
@@ -7360,7 +7360,7 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'hudChrome.discord.swag.titleDiscordian': 'Титул: Discordian',
   'hudChrome.discord.swag.titleSquire': 'Титул: Оруженосец Королевства',
   'hudChrome.discord.swag.chromaBlurple': 'Расцветка меха Blurple',
-  'hudChrome.discord.swag.titleChampion': 'Титул: Чемпион Claudemoon',
+  'hudChrome.discord.swag.titleChampion': 'Титул: Чемпион Wildmoon',
   'hudChrome.discord.swag.swagStickers': 'Набор стикеров (с доставкой)',
   'hudChrome.discord.swag.swagTee': 'Футболка (с доставкой)',
   'hudChrome.discord.relay.tooFast':
