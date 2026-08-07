@@ -86,15 +86,15 @@ export function diagnose(err) {
   if (code === 'SELF_SIGNED_CERT_IN_CHAIN') {
     return [
       'The certificate chain is valid but ends in a root this machine does not trust. For Supabase that is expected: the pooler chains to "Supabase Root 2021 CA", a private root no trust store carries.',
-      'Fix: download the root (Supabase dashboard, Project Settings > Database > SSL Configuration) and point NODE_EXTRA_CA_CERTS at the file.',
-      'It MUST be in the environment before node starts. Node reads it at startup, so .env cannot carry it: neither --env-file nor process.loadEnvFile() runs early enough.',
+      'Fix: download the root (Supabase dashboard, Project Settings > Database > SSL Configuration) and set DATABASE_CA_CERT in .env to its path. Verification stays full; the certificate is simply named rather than looked up in the trust store.',
+      'NODE_EXTRA_CA_CERTS does the same job machine-wide, but it has to be a real environment variable set before node starts: .env structurally cannot carry it, because neither --env-file nor process.loadEnvFile() runs early enough.',
       'sslmode=no-verify connects while dropping verification: use it to CONFIRM the cause, never to run.',
     ].join('\n     ');
   }
   if (/self.signed|unable to verify|certificate/i.test(msg)) {
     return [
       'TLS verification failed. With the pinned pg-connection-string, sslmode=require means FULL verification (chain + hostname), not just encryption.',
-      'In order of likelihood: a private root CA that no trust store carries (see NODE_EXTRA_CA_CERTS), a missing intermediate, a corporate TLS-inspecting proxy, then the certificate itself.',
+      'In order of likelihood: a private root CA that no trust store carries (point DATABASE_CA_CERT at it), a missing intermediate, a corporate TLS-inspecting proxy, then the certificate itself.',
       'sslmode=no-verify connects while dropping verification: use it to CONFIRM the cause, never to run.',
     ].join('\n     ');
   }

@@ -1,5 +1,7 @@
 import { randomUUID } from 'node:crypto';
+import { readFileSync } from 'node:fs';
 import { Pool, type QueryResult } from 'pg';
+import { resolveDatabaseSsl } from '../scripts/lib/db_ssl.mjs';
 import {
   type AccountFlair,
   EMPTY_ACCOUNT_FLAIR,
@@ -189,8 +191,29 @@ export const DB_HEAVY_STATEMENT_TIMEOUT_MS = 60_000;
 // ever fires), one layer outside the heavy allowance.
 export const DB_QUERY_TIMEOUT_MS = DB_HEAVY_STATEMENT_TIMEOUT_MS + 5000;
 
+// TLS material for every connection this process opens. A hosted database whose
+// chain ends in a private root (Supabase) needs that root supplied explicitly;
+// DATABASE_CA_CERT names the file and this resolves it into the connectionString
+// + ssl pair pg actually honours. Unset leaves both byte-identical to the raw
+// DATABASE_URL, so the docker-compose and local-container paths are untouched.
+// Resolved ONCE at import so a missing or malformed certificate fails the boot
+// here, with the path in the message, instead of as a repeating connect error.
+// The one shared implementation is what keeps `npm run db:check` honest.
+const DB_CONNECTION = resolveDatabaseSsl(DATABASE_URL, process.env, (p) => readFileSync(p, 'utf8'));
+if (DB_CONNECTION.ignoredReason) {
+  console.warn(`db tls: ${DB_CONNECTION.ignoredReason}`);
+} else if (DB_CONNECTION.caPath) {
+  console.log(`db tls: verifying against the certificate at ${DB_CONNECTION.caPath}`);
+}
+
+/** Connection options every pg Client/Pool in this process is built from. */
+export const DB_CONNECTION_OPTIONS = {
+  connectionString: DB_CONNECTION.connectionString,
+  ...(DB_CONNECTION.ssl ? { ssl: DB_CONNECTION.ssl } : {}),
+};
+
 export const pool = new Pool({
-  connectionString: DATABASE_URL,
+  ...DB_CONNECTION_OPTIONS,
   max: DB_POOL_MAX_CLIENTS,
   connectionTimeoutMillis: DB_POOL_CONNECT_TIMEOUT_MS,
   statement_timeout: DB_STATEMENT_TIMEOUT_MS,
@@ -1145,14 +1168,16 @@ export async function ensureSchema(): Promise<void> {
   // Boot runs on a DEDICATED client, never the pool: the pool carries a
   // driver-side query_timeout, a per-query timer that SET LOCAL cannot lift,
   // and the advisory-lock wait plus the one-shot market backfill may
-  // legitimately outlast any per-request budget. This client is constructed
-  // with the connection string alone, so no statement_timeout or query_timeout
-  // config applies to boot at all. pg's Client is resolved at call time rather
+  // legitimately outlast any per-request budget. This client carries the
+  // connection options ALONE (no statement_timeout or query_timeout), so no
+  // per-request budget applies to boot; it must still carry the TLS material,
+  // or schema setup would be the one connection that cannot reach a database
+  // behind a private root. pg's Client is resolved at call time rather
   // than imported at module scope because many test suites module-mock 'pg'
   // with a Pool-only factory and never boot the schema; a top-level named
   // import would invalidate every one of those mocks.
   const { Client } = await import('pg');
-  const client = new Client({ connectionString: DATABASE_URL });
+  const client = new Client(DB_CONNECTION_OPTIONS);
   try {
     // Inside the try so the finally's end() always runs, even on a connect
     // failure (end() on a never-connected client is a harmless no-op).
@@ -1299,7 +1324,7 @@ export async function runConcurrentIndexMigrations(): Promise<void> {
   // Resolved at call time, not module scope: many suites module-mock 'pg' with
   // a Pool-only factory (the ensureSchema precedent above).
   const { Client } = await import('pg');
-  const client = new Client({ connectionString: DATABASE_URL });
+  const client = new Client(DB_CONNECTION_OPTIONS);
   let locked = false;
   try {
     await client.connect();

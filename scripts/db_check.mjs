@@ -15,6 +15,7 @@
 // The decisions live in scripts/lib/db_check_core.mjs so they are unit-tested
 // without a database (tests/db_check_core.test.ts); this file is only the IO.
 
+import { readFileSync } from 'node:fs';
 import pg from 'pg';
 import {
   diagnose,
@@ -23,12 +24,13 @@ import {
   judgeHeadroom,
   safeUrl,
 } from './lib/db_check_core.mjs';
+import { resolveDatabaseSsl } from './lib/db_ssl.mjs';
 
 const { Client } = pg;
 
-// Mirrors server/db.ts: the connection string carries the TLS mode, so no `ssl`
-// option is set here either. Anything this script tolerates that the server does
-// not would make the check a lie.
+// The connection options come from the SAME resolver server/db.ts builds its
+// pool from, rather than a second reading of the environment. Anything this
+// script tolerates that the server does not would make the check a lie.
 const DATABASE_URL = (process.env.DATABASE_URL ?? '').trim();
 const CONNECT_TIMEOUT_MS = 15_000;
 
@@ -61,8 +63,22 @@ async function main() {
   notes.forEach(report);
 
   const local = isLocalHost(new URL(DATABASE_URL).hostname);
+
+  // Resolve the TLS material before connecting, so an unreadable or non-PEM
+  // certificate is reported by name here rather than as a connect failure.
+  let connection;
+  try {
+    connection = resolveDatabaseSsl(DATABASE_URL, process.env, (p) => readFileSync(p, 'utf8'));
+  } catch (err) {
+    fail(err.message);
+    process.exit(1);
+  }
+  if (connection.ignoredReason) warn(connection.ignoredReason);
+  else if (connection.caPath) ok(`Verifying the server certificate against ${connection.caPath}.`);
+
   const client = new Client({
-    connectionString: DATABASE_URL,
+    connectionString: connection.connectionString,
+    ...(connection.ssl ? { ssl: connection.ssl } : {}),
     connectionTimeoutMillis: CONNECT_TIMEOUT_MS,
   });
 
