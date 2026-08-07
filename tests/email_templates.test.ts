@@ -1,7 +1,7 @@
-import { describe, it, expect } from 'vitest';
-import { interpolate, renderEmail } from '../server/email/templates';
+import { describe, expect, it } from 'vitest';
 import { CATALOG } from '../server/email/catalog';
-import { EVENT_CATEGORY, type EmailEvent } from '../server/email/events';
+import { type EmailEvent, EVENT_CATEGORY } from '../server/email/events';
+import { interpolate, renderEmail } from '../server/email/templates';
 
 describe('interpolate', () => {
   it('fills known {{tokens}} and tolerates whitespace', () => {
@@ -23,14 +23,20 @@ describe('renderEmail', () => {
 
   it('turns a bare URL line into an anchor in html', () => {
     const r = renderEmail('email_change_verify', 'en', {
-      username: 'Aelwyn', newEmail: 'new@example.com', verifyUrl: 'https://woc.test/api/account/email/verify?token=abc',
+      username: 'Aelwyn',
+      newEmail: 'new@example.com',
+      verifyUrl: 'https://woc.test/api/account/email/verify?token=abc',
     });
     expect(r.text).toContain('https://woc.test/api/account/email/verify?token=abc');
     expect(r.html).toContain('<a href="https://woc.test/api/account/email/verify?token=abc">');
   });
 
   it('escapes html-significant characters from interpolated data', () => {
-    const r = renderEmail('generic', 'en', { username: '<b>x</b>', heading: 'Hi', body: 'a & b < c' });
+    const r = renderEmail('generic', 'en', {
+      username: '<b>x</b>',
+      heading: 'Hi',
+      body: 'a & b < c',
+    });
     expect(r.html).toContain('&lt;b&gt;x&lt;/b&gt;');
     expect(r.html).toContain('a &amp; b &lt; c');
     // The raw subject keeps the interpolated value; only html escapes.
@@ -39,7 +45,9 @@ describe('renderEmail', () => {
 
   it('strips CR/LF from the subject to block header injection', () => {
     const r = renderEmail('generic', 'en', {
-      username: 'A', heading: 'Hello\r\nBcc: victim@example.com', body: 'hi',
+      username: 'A',
+      heading: 'Hello\r\nBcc: victim@example.com',
+      body: 'hi',
     });
     expect(r.subject).not.toMatch(/[\r\n]/);
     expect(r.subject).toBe('Hello Bcc: victim@example.com');
@@ -69,8 +77,9 @@ describe('catalog completeness', () => {
   });
 
   it('only generic may default to marketing; every lifecycle event is transactional', () => {
-    const marketingDefaults = (Object.keys(EVENT_CATEGORY) as EmailEvent[])
-      .filter((e) => EVENT_CATEGORY[e] === 'marketing');
+    const marketingDefaults = (Object.keys(EVENT_CATEGORY) as EmailEvent[]).filter(
+      (e) => EVENT_CATEGORY[e] === 'marketing',
+    );
     // generic is fail-closed (gated by default); all six lifecycle events are
     // intrinsically transactional and always delivered.
     expect(marketingDefaults).toEqual(['generic']);

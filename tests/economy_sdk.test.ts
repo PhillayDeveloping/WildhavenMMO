@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { EconomyClient, startClaudiumPurchase } from '../src/net/economy_sdk';
+
 afterEach(() => {
   vi.unstubAllGlobals();
 });
@@ -183,7 +184,10 @@ describe('startClaudiumPurchase', () => {
     expect(purchase).toHaveBeenCalledWith(
       expect.objectContaining({ rail: 'stripe', sku: 'claudium_500' }),
     );
-    expect(stripe).toHaveBeenCalledWith({ clientSecret: 'cs_test', publishableKey: 'pk_test' }, 'pi_1');
+    expect(stripe).toHaveBeenCalledWith(
+      { clientSecret: 'cs_test', publishableKey: 'pk_test' },
+      'pi_1',
+    );
     expect(result.ok).toBe(true);
   });
 

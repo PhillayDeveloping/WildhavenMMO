@@ -2,8 +2,9 @@
 // opens the chatbox + quest tracker + map, then captures the HUD under each
 // preset (and a custom-override sample). Renders at max graphics (?gfx=ultra).
 // Needs a dev server (default :5173, override with GAME_URL). Writes to tmp/.
-import puppeteer from 'puppeteer-core';
+
 import fs from 'node:fs';
+import puppeteer from 'puppeteer-core';
 import { BROWSER_PATH } from './browser_path.mjs';
 
 const URL = (process.env.GAME_URL ?? 'http://localhost:5173') + '/?gfx=ultra';
@@ -18,7 +19,9 @@ const browser = await puppeteer.launch({
 });
 const page = await browser.newPage();
 page.on('pageerror', (e) => console.log('PAGEERROR:', e.message));
-page.on('console', (m) => { if (m.type() === 'error') console.log('CONSOLE:', m.text()); });
+page.on('console', (m) => {
+  if (m.type() === 'error') console.log('CONSOLE:', m.text());
+});
 
 await page.goto(URL, { waitUntil: 'domcontentloaded', timeout: 60000 });
 await page.waitForSelector('#btn-offline', { timeout: 60000 });
@@ -48,30 +51,39 @@ async function shot(name, fn) {
     await sleep(700);
     await page.screenshot({ path: `tmp/theme-${name}.png` });
     console.log('captured', name);
-  } catch (e) { console.log('FAILED', name, e.message); }
+  } catch (e) {
+    console.log('FAILED', name, e.message);
+  }
 }
 
-const setPreset = (id) => page.evaluate((p) => window.__game.hud.optionsHooks.theme.setPreset(p), id);
+const setPreset = (id) =>
+  page.evaluate((p) => window.__game.hud.optionsHooks.theme.setPreset(p), id);
 
 for (const p of ['classic', 'midnight', 'parchment', 'highContrast']) {
   await shot(p, () => setPreset(p));
 }
 
 // Custom override sample: teal accent on the midnight base.
-await shot('custom', () => page.evaluate(() => {
-  const t = window.__game.hud.optionsHooks.theme;
-  t.setPreset('midnight'); t.setCustom('accent', '#39d3c0'); t.setCustom('border', '#1f6f66');
-}));
+await shot('custom', () =>
+  page.evaluate(() => {
+    const t = window.__game.hud.optionsHooks.theme;
+    t.setPreset('midnight');
+    t.setCustom('accent', '#39d3c0');
+    t.setCustom('border', '#1f6f66');
+  }),
+);
 
 // The Options > Interface panel itself, showing the preset + picker grid.
-await shot('options-panel', () => page.evaluate(() => {
-  const hud = window.__game.hud;
-  hud.optionsHooks.theme.resetCustom();
-  hud.optionsHooks.theme.setPreset('classic');
-  hud.toggleOptionsMenu();
-  hud.optionsView = 'interface';
-  hud.renderOptions();
-}));
+await shot('options-panel', () =>
+  page.evaluate(() => {
+    const hud = window.__game.hud;
+    hud.optionsHooks.theme.resetCustom();
+    hud.optionsHooks.theme.setPreset('classic');
+    hud.toggleOptionsMenu();
+    hud.optionsView = 'interface';
+    hud.renderOptions();
+  }),
+);
 
 await browser.close();
 console.log('done');

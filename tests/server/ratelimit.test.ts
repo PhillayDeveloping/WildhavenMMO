@@ -13,8 +13,8 @@ import { noopAttackSignalSink, setAttackSignalSink } from '../../server/http/att
 import {
   authThrottled,
   CARD_UPLOAD_MAX_PER_MINUTE,
-  cardUploadRateLimited,
   CLAUDIUM_PURCHASE_MAX_PER_MINUTE,
+  cardUploadRateLimited,
   claudiumMutationRateLimited,
   clearAuthFailures,
   rateLimited,

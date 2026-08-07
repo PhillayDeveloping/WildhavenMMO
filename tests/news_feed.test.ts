@@ -274,8 +274,7 @@ describe('stripReleaseNotesPreamble', () => {
 
 describe('compact news strips the redundant preamble at render time', () => {
   it('renders neither the Release Notes h1 nor the metadata rows', () => {
-    const body =
-      '# Wildhaven v0.26.0 Release Notes\n\n**Release:** v0.26.0\n\nThe real intro.';
+    const body = '# Wildhaven v0.26.0 Release Notes\n\n**Release:** v0.26.0\n\nThe real intro.';
     const html = renderCompactNews(
       [
         {

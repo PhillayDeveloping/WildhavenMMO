@@ -806,9 +806,7 @@ describe('client HTML shell', () => {
     expect(sitemapXml).toContain('<loc>https://wildhaven.example/</loc>');
     expect(sitemapXml).toContain('<loc>https://wildhaven.example/links</loc>');
     expect(sitemapXml).toContain('<loc>https://wildhaven.example/play</loc>');
-    expect(playHtml).toContain(
-      '<link rel="canonical" href="https://wildhaven.example/play" />',
-    );
+    expect(playHtml).toContain('<link rel="canonical" href="https://wildhaven.example/play" />');
     expect(playHtml).toContain(
       '<meta property="og:url" content="https://wildhaven.example/play" />',
     );
@@ -823,9 +821,7 @@ describe('client HTML shell', () => {
     expect(privacyHtml).toContain('<h1>Privacy Policy</h1>');
     expect(privacyHtml).toContain('href="/support">Support</a>');
     expect(privacyHtml).toContain('href="/data-deletion">Data Deletion</a>');
-    expect(termsHtml).toContain(
-      '<link rel="canonical" href="https://wildhaven.example/terms" />',
-    );
+    expect(termsHtml).toContain('<link rel="canonical" href="https://wildhaven.example/terms" />');
     expect(termsHtml).toContain('<h1>Terms and Conditions</h1>');
     expect(termsHtml).toContain('href="/support">Support</a>');
     expect(termsHtml).toContain('href="/data-deletion">Data Deletion</a>');

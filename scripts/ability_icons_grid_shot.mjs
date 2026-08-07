@@ -5,8 +5,9 @@
 //
 // Needs `npm run dev` on :5173 (override with GAME_URL). Writes to tmp/.
 // ?gfx=ultra requested for parity with "max graphics" capture sessions.
-import puppeteer from 'puppeteer-core';
+
 import fs from 'node:fs';
+import puppeteer from 'puppeteer-core';
 import { BROWSER_PATH } from './browser_path.mjs';
 
 const URL = (process.env.GAME_URL ?? 'http://localhost:5173') + '/?gfx=ultra';
@@ -21,14 +22,23 @@ const browser = await puppeteer.launch({
 });
 const page = await browser.newPage();
 page.on('pageerror', (e) => console.log('PAGEERROR:', e.message));
-page.on('console', (m) => { if (m.type() === 'error') console.log('CONSOLE:', m.text()); });
+page.on('console', (m) => {
+  if (m.type() === 'error') console.log('CONSOLE:', m.text());
+});
 
 await page.goto(URL, { waitUntil: 'domcontentloaded', timeout: 30000 });
 
 // Formerly-colliding fallback groups (see tests/ability_icons.test.ts), the
 // whole point of the change is that each member now renders differently.
 const COLLISION_GROUPS = [
-  ['summon_imp', 'summon_voidwalker', 'summon_succubus', 'summon_felhunter', 'summon_felguard', 'summon_doomguard'],
+  [
+    'summon_imp',
+    'summon_voidwalker',
+    'summon_succubus',
+    'summon_felhunter',
+    'summon_felguard',
+    'summon_doomguard',
+  ],
   ['defensive_stance', 'stealth', 'cat_form', 'prowl', 'berserker_rage'],
   ['execute', 'slam', 'mortal_strike', 'whirlwind'],
   ['taunt', 'maul', 'growl', 'bloodthirst'],
@@ -70,12 +80,14 @@ await page.evaluate(async (collisionGroups) => {
     c.style.cssText = 'display:flex;flex-direction:column;align-items:center;width:96px;gap:4px';
     const img = document.createElement('img');
     img.src = iconDataUrl('ability', id, 192);
-    img.width = 64; img.height = 64;
+    img.width = 64;
+    img.height = 64;
     img.style.cssText = 'border-radius:8px;border:1px solid #3a2c18;box-shadow:0 2px 6px #0008';
     const lbl = document.createElement('div');
-    lbl.textContent = (ABILITIES[id]?.name) ?? id;
+    lbl.textContent = ABILITIES[id]?.name ?? id;
     lbl.style.cssText = 'font-size:11px;color:#cdbb8e;text-align:center;line-height:1.15';
-    c.appendChild(img); c.appendChild(lbl);
+    c.appendChild(img);
+    c.appendChild(lbl);
     return c;
   };
 
@@ -86,7 +98,8 @@ await page.evaluate(async (collisionGroups) => {
   root.appendChild(h2a);
   for (const grp of collisionGroups) {
     const row = document.createElement('div');
-    row.style.cssText = 'display:flex;gap:10px;flex-wrap:wrap;padding:8px 10px;margin-bottom:6px;' +
+    row.style.cssText =
+      'display:flex;gap:10px;flex-wrap:wrap;padding:8px 10px;margin-bottom:6px;' +
       'background:#1d1610;border:1px solid #2c2114;border-radius:10px';
     for (const id of grp) row.appendChild(cell(id));
     root.appendChild(row);
@@ -100,7 +113,8 @@ await page.evaluate(async (collisionGroups) => {
   for (const [cls, def] of Object.entries(CLASSES)) {
     const h3 = document.createElement('h3');
     h3.textContent = `${def.name ?? cls}  (${def.abilities.length})`;
-    h3.style.cssText = 'font:600 15px Georgia,serif;color:#d4af37;margin:14px 0 6px;border-bottom:1px solid #2c2114;padding-bottom:4px';
+    h3.style.cssText =
+      'font:600 15px Georgia,serif;color:#d4af37;margin:14px 0 6px;border-bottom:1px solid #2c2114;padding-bottom:4px';
     root.appendChild(h3);
     const grid = document.createElement('div');
     grid.style.cssText = 'display:flex;gap:8px;flex-wrap:wrap';

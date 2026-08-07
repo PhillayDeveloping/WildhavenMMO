@@ -1,15 +1,15 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import {
-  base32Encode,
   base32Decode,
+  base32Encode,
+  generateRecoveryCodes,
   generateSecret,
   generateTotp,
-  verifyTotp,
-  totpCounter,
-  otpauthUri,
-  generateRecoveryCodes,
-  normalizeRecoveryCode,
   hashRecoveryCode,
+  normalizeRecoveryCode,
+  otpauthUri,
+  totpCounter,
+  verifyTotp,
 } from '../server/totp';
 
 // RFC 6238 Appendix B reference seed: the ASCII string "12345678901234567890"
@@ -72,7 +72,9 @@ describe('verifyTotp behaviour', () => {
   it('returns a strictly increasing counter across periods (enables replay guard)', () => {
     const t0 = 1_700_000_000_000;
     const c0 = verifyTotp(RFC_SECRET, generateTotp(RFC_SECRET, t0), t0, { window: 0 });
-    const c1 = verifyTotp(RFC_SECRET, generateTotp(RFC_SECRET, t0 + 30_000), t0 + 30_000, { window: 0 });
+    const c1 = verifyTotp(RFC_SECRET, generateTotp(RFC_SECRET, t0 + 30_000), t0 + 30_000, {
+      window: 0,
+    });
     expect(c0).not.toBeNull();
     expect(c1).not.toBeNull();
     expect(c1!).toBe(c0! + 1);

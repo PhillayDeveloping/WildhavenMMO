@@ -806,11 +806,7 @@ describe('Turnstile gate policy (passesTurnstile)', () => {
 
   it('bypasses verification for every desktop app origin even with a secret set', async () => {
     const fetchSpy = vi.fn();
-    for (const origin of [
-      'app://wildhaven',
-      'http://127.0.0.1:5173',
-      'http://localhost:5173',
-    ]) {
+    for (const origin of ['app://wildhaven', 'http://127.0.0.1:5173', 'http://localhost:5173']) {
       const req = fakeReq({ origin }, '203.0.113.55');
       await expect(passesTurnstile(req, {}, testSecret, fetchSpy as any)).resolves.toBe(true);
     }

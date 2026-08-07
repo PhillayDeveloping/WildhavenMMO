@@ -8482,8 +8482,7 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'errors.api.desktopCodeInvalid':
     'Kode masuk desktop tidak valid atau kedaluwarsa. Silakan coba lagi.',
   'desktop.crash.body': 'Tampilan gim berhenti bekerja. Muat ulang?',
-  'desktop.crash.fatalBody':
-    'Wildhaven mengalami kesalahan tak terduga dan perlu ditutup.',
+  'desktop.crash.fatalBody': 'Wildhaven mengalami kesalahan tak terduga dan perlu ditutup.',
   'desktop.crash.quit': 'Keluar',
   'desktop.crash.reload': 'Muat Ulang',
   'desktop.crash.title': 'Wildhaven',

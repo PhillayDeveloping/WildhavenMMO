@@ -240,9 +240,7 @@ describe('guide.html shell', () => {
   });
 
   it('ships crawlable canonical + social metadata for /wiki', () => {
-    expect(guideHtml).toContain(
-      '<link rel="canonical" href="https://wildhaven.example/wiki" />',
-    );
+    expect(guideHtml).toContain('<link rel="canonical" href="https://wildhaven.example/wiki" />');
     expect(guideHtml).toContain(
       '<meta property="og:url" content="https://wildhaven.example/wiki" />',
     );

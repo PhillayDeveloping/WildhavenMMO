@@ -22,6 +22,13 @@ process.env.DATABASE_URL ||= 'postgres://test:test@127.0.0.1:5433/wocc_phase14_c
 import { readFileSync } from 'node:fs';
 import type * as http from 'node:http';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import {
+  configureCardRuntime,
+  resetCardDbForTests,
+  resetCardRuntimeForTests,
+  routes,
+  setCardDbForTests,
+} from '../../server/card_routes';
 import type { AccountModerationStatus } from '../../server/db';
 import { compose } from '../../server/http/compose';
 import { withSecurityHeaders } from '../../server/http/middleware/security_headers';
@@ -34,13 +41,6 @@ import {
   resetRateLimitClock,
   setRateLimitClock,
 } from '../../server/ratelimit';
-import {
-  configureCardRuntime,
-  resetCardDbForTests,
-  resetCardRuntimeForTests,
-  routes,
-  setCardDbForTests,
-} from '../../server/card_routes';
 import { type FakeRes, fakeCtx } from './helpers';
 
 // Wrap handleCardUpload in a mock whose DEFAULT delegates to the real implementation (so the

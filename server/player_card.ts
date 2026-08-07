@@ -317,8 +317,7 @@ export const PUBLIC_CARD_COPY: Record<PublicCardLocale, PublicCardCopy> = {
     gameName: 'Wildhaven',
     unknownClass: '모험가',
     levelClass: '{level}레벨 {className}',
-    description:
-      '{name}님이 Wildhaven에서 전설을 만들어 가고 있습니다. 세계에 합류하세요.',
+    description: '{name}님이 Wildhaven에서 전설을 만들어 가고 있습니다. 세계에 합류하세요.',
     cta: '나만의 전설 만들기',
     missingTitle: '카드를 찾을 수 없음',
     missingHeading: '이 카드는 더 이상 사용할 수 없습니다.',

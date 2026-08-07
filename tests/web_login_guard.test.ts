@@ -50,9 +50,9 @@ describe('web login guard (anti-bot)', () => {
     expect(
       isWebClientRequest(req({ origin: 'capacitor://localhost', host: 'wildhaven.example' })),
     ).toBe(true);
-    expect(
-      isWebClientRequest(req({ origin: 'http://localhost', host: 'wildhaven.example' })),
-    ).toBe(true);
+    expect(isWebClientRequest(req({ origin: 'http://localhost', host: 'wildhaven.example' }))).toBe(
+      true,
+    );
     expect(
       isWebClientRequest(req({ origin: 'https://localhost', host: 'wildhaven.example' })),
     ).toBe(true);
@@ -62,21 +62,17 @@ describe('web login guard (anti-bot)', () => {
     expect(
       isNativeAppRequest(req({ origin: 'capacitor://localhost', host: 'wildhaven.example' })),
     ).toBe(true);
-    expect(
-      isNativeAppRequest(req({ origin: 'http://localhost', host: 'wildhaven.example' })),
-    ).toBe(true);
+    expect(isNativeAppRequest(req({ origin: 'http://localhost', host: 'wildhaven.example' }))).toBe(
+      true,
+    );
     expect(
       isNativeAppRequest(req({ origin: 'https://localhost', host: 'wildhaven.example' })),
     ).toBe(true);
     expect(
-      isNativeAppRequest(
-        req({ origin: 'https://wildhaven.example', host: 'wildhaven.example' }),
-      ),
+      isNativeAppRequest(req({ origin: 'https://wildhaven.example', host: 'wildhaven.example' })),
     ).toBe(false);
     expect(
-      isNativeAppRequest(
-        req({ origin: 'https://evil.example.com', host: 'wildhaven.example' }),
-      ),
+      isNativeAppRequest(req({ origin: 'https://evil.example.com', host: 'wildhaven.example' })),
     ).toBe(false);
     expect(isNativeAppRequest(req({ host: 'wildhaven.example' }))).toBe(false);
   });

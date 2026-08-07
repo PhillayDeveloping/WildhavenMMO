@@ -7836,8 +7836,7 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'errors.api.desktopCodeInvalid':
     'O código de login do desktop é inválido ou expirou. Tente novamente.',
   'desktop.crash.body': 'A visualização do jogo parou de funcionar. Recarregar?',
-  'desktop.crash.fatalBody':
-    'O Wildhaven encontrou um erro inesperado e precisa fechar.',
+  'desktop.crash.fatalBody': 'O Wildhaven encontrou um erro inesperado e precisa fechar.',
   'desktop.crash.quit': 'Sair',
   'desktop.crash.reload': 'Recarregar',
   'desktop.crash.title': 'Wildhaven',

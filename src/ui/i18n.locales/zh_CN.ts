@@ -7070,8 +7070,7 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'hudChrome.devBadge.linkedAs': '已关联为 {login}',
   'hudChrome.devBadge.unlink': '取消关联 GitHub',
   'hudChrome.nativeUpdate.title': '有可用更新',
-  'hudChrome.nativeUpdate.body':
-    'Wildhaven 有新版本可用。立即更新以获取最新修复和改进。',
+  'hudChrome.nativeUpdate.body': 'Wildhaven 有新版本可用。立即更新以获取最新修复和改进。',
   'hudChrome.nativeUpdate.bodyWithVersion':
     'Wildhaven {version} 版本已可用。立即更新以获取最新修复和改进。',
   'hudChrome.nativeUpdate.notNow': '暂不',
@@ -10302,8 +10301,10 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'hudChrome.auraOverlay.procs.aetherRush': '以太奔涌',
   'itemUi.vendor.buyStack': '购买 {count} 个',
   'itemUi.vendor.buyStackAria': '以 {price} 购买 {count} 个 {item}',
-  'hudChrome.dailyRewards.disclaimer': '任务与排行榜每日重置一次。前十名瓜分奖金池，你的那一份将由渡鸦在你下次登录时送达。',
+  'hudChrome.dailyRewards.disclaimer':
+    '任务与排行榜每日重置一次。前十名瓜分奖金池，你的那一份将由渡鸦在你下次登录时送达。',
   'entities.letters.daily_reward_prize.sender': '山谷总管',
   'entities.letters.daily_reward_prize.subject': '你的每日奖金份额',
-  'entities.letters.daily_reward_prize.body': '山谷记得谁在其中最为勤勉，而昨日你的名字位列最高的十人之中。总管们已称量出你应得的那份每日奖金，并托渡鸦送来。\n\n明日再来，若你能够，便夺下头名。\n\n- 山谷总管',
+  'entities.letters.daily_reward_prize.body':
+    '山谷记得谁在其中最为勤勉，而昨日你的名字位列最高的十人之中。总管们已称量出你应得的那份每日奖金，并托渡鸦送来。\n\n明日再来，若你能够，便夺下头名。\n\n- 山谷总管',
 };

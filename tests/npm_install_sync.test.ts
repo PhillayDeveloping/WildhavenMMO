@@ -9,9 +9,9 @@ describe('parseInstallProblems', () => {
   it('returns an empty list when npm ls reports no problems key at all', () => {
     // A clean `npm ls --depth=0 --json` tree omits `problems` entirely rather
     // than emitting an empty array.
-    expect(
-      parseInstallProblems(JSON.stringify({ name: 'wildhaven', version: '1.0.0' })),
-    ).toEqual([]);
+    expect(parseInstallProblems(JSON.stringify({ name: 'wildhaven', version: '1.0.0' }))).toEqual(
+      [],
+    );
   });
 
   it('returns an empty list when problems is an explicit empty array', () => {

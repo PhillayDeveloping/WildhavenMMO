@@ -14,12 +14,12 @@ process.env.DATABASE_URL ||= 'postgres://test:test@127.0.0.1:5433/wildhaven_phas
 import { readFileSync } from 'node:fs';
 import type * as http from 'node:http';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { resetCardDbForTests, routes, setCardDbForTests } from '../../server/card_routes';
 import type { AccountModerationStatus } from '../../server/db';
 import { compose } from '../../server/http/compose';
 import { ERROR_CODES } from '../../server/http/error_codes';
 import { withErrors } from '../../server/http/middleware/with_errors';
 import type { Method, Middleware } from '../../server/http/types';
-import { resetCardDbForTests, routes, setCardDbForTests } from '../../server/card_routes';
 import { type FakeRes, fakeCtx, stableStringify } from './helpers';
 
 // The referralsHandler self-reads referralCountForAccount + primarySlugForAccount off

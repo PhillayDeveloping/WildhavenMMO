@@ -44,11 +44,7 @@ describe('desktopBuilderConfig', () => {
   });
 
   it('routes every non-production origin to the dev update channel (issue 1537)', () => {
-    for (const apiOrigin of [
-      'https://dev.wildhaven.example',
-      'http://localhost:8787',
-      undefined,
-    ]) {
+    for (const apiOrigin of ['https://dev.wildhaven.example', 'http://localhost:8787', undefined]) {
       const config = desktopBuilderConfig({ base, distribution: 'website', apiOrigin });
       expect(config.publish?.channel).toBe('dev');
     }

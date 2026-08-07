@@ -10773,8 +10773,10 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'hudChrome.auraOverlay.procs.aetherRush': 'エーテルラッシュ',
   'itemUi.vendor.buyStack': '{count}個購入',
   'itemUi.vendor.buyStackAria': '{item}を{count}個、{price}で購入',
-  'hudChrome.dailyRewards.disclaimer': 'タスクとリーダーボードは一日に一度リセットされます。上位十名が賞金を分け合い、あなたの取り分は次回ログイン時に大鴉が届けます。',
+  'hudChrome.dailyRewards.disclaimer':
+    'タスクとリーダーボードは一日に一度リセットされます。上位十名が賞金を分け合い、あなたの取り分は次回ログイン時に大鴉が届けます。',
   'entities.letters.daily_reward_prize.sender': '谷の執政官',
   'entities.letters.daily_reward_prize.subject': '日々の賞金のあなたの取り分',
-  'entities.letters.daily_reward_prize.body': '谷は誰が最も励んだかを数えており、昨日あなたの名は上位十名に並びました。執政官たちはあなたの取り分を量り、大鴉に託して送りました。\n\n明日も来て、できるなら首位を取りなさい。\n\n- 谷の執政官',
+  'entities.letters.daily_reward_prize.body':
+    '谷は誰が最も励んだかを数えており、昨日あなたの名は上位十名に並びました。執政官たちはあなたの取り分を量り、大鴉に託して送りました。\n\n明日も来て、できるなら首位を取りなさい。\n\n- 谷の執政官',
 };

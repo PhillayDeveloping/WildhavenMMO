@@ -72,9 +72,7 @@ describe('formatRecoveryCodesFile', () => {
     expect(lines[6]).toBe('01. aaaa-bbbb');
     // Independently confirm the lines are t()-resolved (not decoupled literals that
     // happen to match), so a future catalog wording change still updates this pin.
-    expect(lines[0]).toBe(
-      t('hudChrome.account.recoveryCodesFileHeader', { brand: 'Wildhaven' }),
-    );
+    expect(lines[0]).toBe(t('hudChrome.account.recoveryCodesFileHeader', { brand: 'Wildhaven' }));
     expect(lines[3]).toBe(t('hudChrome.account.recoveryCodesFileHint'));
     expect(lines[4]).toBe(t('hudChrome.account.recoveryCodesFileWarn'));
   });

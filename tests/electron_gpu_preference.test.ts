@@ -22,8 +22,7 @@ import {
   USER_GPU_PREFERENCES_KEY,
 } from '../electron/gpu_preference.cjs';
 
-const EXE =
-  'C:\\Users\\p\\AppData\\Local\\Programs\\wildhaven\\Wildhaven.exe';
+const EXE = 'C:\\Users\\p\\AppData\\Local\\Programs\\wildhaven\\Wildhaven.exe';
 
 /** The error execFileSync surfaces when reg.exe exits 1 (value or key not found). */
 function missingValueError(): Error {

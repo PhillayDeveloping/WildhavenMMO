@@ -124,7 +124,6 @@ describe('updaterAllowed (the store / dev double gate)', () => {
   });
 });
 
-
 describe('resolveCrashSubmitUrl', () => {
   it('accepts only https URLs, from env first then the stamp (unpackaged)', () => {
     expect(

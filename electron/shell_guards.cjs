@@ -91,10 +91,7 @@ const CSP_ORIGINS = {
     'https://www.facebook.com',
   ],
   // tracking-pixel image beacons.
-  img: [
-    'https://www.google-analytics.com',
-    'https://www.facebook.com',
-  ],
+  img: ['https://www.google-analytics.com', 'https://www.facebook.com'],
   // Cloudflare Turnstile: api.js (script) plus the challenge iframe (frame).
   turnstile: 'https://challenges.cloudflare.com',
   // Google Fonts: the stylesheet origin (style-src) and the font-file origin (font-src).

@@ -234,12 +234,7 @@ async function approveAuthorize(
 ): Promise<void> {
   const accountId = await fullSessionAccount(req);
   if (accountId === null)
-    return oauthError(
-      res,
-      401,
-      'access_denied',
-      'log in to your Wildhaven account first',
-    );
+    return oauthError(res, 401, 'access_denied', 'log in to your Wildhaven account first');
   const body = await readForm(req);
   const clientId = body.client_id ?? '';
   const redirectUri = body.redirect_uri ?? '';

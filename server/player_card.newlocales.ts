@@ -31,8 +31,7 @@ export const PLAYERCARD_NEW: Record<
     gameName: 'Wildhaven',
     unknownClass: 'Petualang',
     levelClass: '{className} Level {level}',
-    description:
-      '{name} sedang menempa legenda di Wildhaven. Bergabunglah dengan ranah ini.',
+    description: '{name} sedang menempa legenda di Wildhaven. Bergabunglah dengan ranah ini.',
     cta: 'Tempa legendamu',
     missingTitle: 'Kartu tidak ditemukan',
     missingHeading: 'Kartu ini sudah tidak tersedia.',
@@ -142,8 +141,7 @@ export const PLAYERCARD_NEW: Record<
     gameName: 'Wildhaven',
     unknownClass: 'Nhà Phiêu Lưu',
     levelClass: '{className} Cấp {level}',
-    description:
-      '{name} đang rèn nên một huyền thoại tại Wildhaven. Hãy gia nhập vương quốc.',
+    description: '{name} đang rèn nên một huyền thoại tại Wildhaven. Hãy gia nhập vương quốc.',
     cta: 'Rèn nên huyền thoại của bạn',
     missingTitle: 'Không tìm thấy thẻ',
     missingHeading: 'Thẻ này không còn khả dụng.',

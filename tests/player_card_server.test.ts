@@ -814,12 +814,8 @@ describe('GET /p/<slug>', () => {
       );
       const html = String(res.body);
       expect(res.statusCode).toBe(200);
-      expect(html).toContain(
-        '<link rel="canonical" href="https://wildhaven.example/p/sir-test">',
-      );
-      expect(html).toContain(
-        'property="og:url" content="https://wildhaven.example/p/sir-test"',
-      );
+      expect(html).toContain('<link rel="canonical" href="https://wildhaven.example/p/sir-test">');
+      expect(html).toContain('property="og:url" content="https://wildhaven.example/p/sir-test"');
       expect(html).toContain(
         'property="og:image" content="https://wildhaven.example/p/sir-test/card.png"',
       );

@@ -187,9 +187,7 @@ describe('planReleaseVersion', () => {
     expect(plan.gradle).toContain('versionName "0.21.0"');
     expect(plan.pbxproj.match(/MARKETING_VERSION = 0\.21\.0;/g)).toHaveLength(2);
     expect(plan.htmlFiles['index.html']).toContain('wildhaven-0.21.0-mac-universal.dmg');
-    expect(plan.htmlFiles['index.html']).toContain(
-      'wildhaven-0.21.0-linux-x86_64.AppImage',
-    );
+    expect(plan.htmlFiles['index.html']).toContain('wildhaven-0.21.0-linux-x86_64.AppImage');
     expect(plan.htmlFiles['index.html']).toContain('wildhaven-0.21.0-win-x64.exe');
     expect(plan.htmlFiles['play.html']).toContain('wildhaven-0.21.0-win-x64.exe');
     expect(plan.htmlFiles['play.html']).toContain('<div id="game-version">v0.21.0</div>');

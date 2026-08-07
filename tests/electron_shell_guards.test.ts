@@ -310,9 +310,7 @@ describe('isTrustedSender', () => {
     expect(isTrustedSender({ origin: DEV, url: `${DEV}/` }, allowed)).toBe(true);
   });
   it('falls back to frame.url when frame.origin is the opaque "null" string', () => {
-    expect(isTrustedSender({ origin: 'null', url: 'app://wildhaven/x' }, allowed)).toBe(
-      true,
-    );
+    expect(isTrustedSender({ origin: 'null', url: 'app://wildhaven/x' }, allowed)).toBe(true);
   });
   it('rejects a foreign sender and a frame with neither a matching origin nor url', () => {
     expect(

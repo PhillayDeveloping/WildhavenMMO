@@ -3083,8 +3083,7 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'mobilePreflight.iosInstallDetail':
     'Para pantalla completa real en iPhone o iPad, instala esta página en tu pantalla de inicio primero.',
   'mobilePreflight.iosShareStep': 'En Safari, toca Compartir y luego Agregar a pantalla de inicio.',
-  'mobilePreflight.iosOpenStep':
-    'Abre Wildhaven desde el nuevo icono de la pantalla de inicio.',
+  'mobilePreflight.iosOpenStep': 'Abre Wildhaven desde el nuevo icono de la pantalla de inicio.',
   'mobilePreflight.androidStandaloneDetail':
     'Estás en modo de aplicación a pantalla completa. Mantén el dispositivo en horizontal.',
   'mobilePreflight.androidInstallDetail':

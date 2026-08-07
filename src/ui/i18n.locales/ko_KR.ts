@@ -10774,8 +10774,10 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.auraOverlay.procs.aetherRush': '에테르 쇄도',
   'itemUi.vendor.buyStack': '{count}개 구매',
   'itemUi.vendor.buyStackAria': '{price}에 {item} {count}개 구매',
-  'hudChrome.dailyRewards.disclaimer': '과제와 순위표는 하루에 한 번 초기화됩니다. 상위 열 명이 상금을 나누며, 당신의 몫은 다음 접속 때 큰까마귀가 전해 줍니다.',
+  'hudChrome.dailyRewards.disclaimer':
+    '과제와 순위표는 하루에 한 번 초기화됩니다. 상위 열 명이 상금을 나누며, 당신의 몫은 다음 접속 때 큰까마귀가 전해 줍니다.',
   'entities.letters.daily_reward_prize.sender': '계곡의 집사',
   'entities.letters.daily_reward_prize.subject': '일일 상금 중 당신의 몫',
-  'entities.letters.daily_reward_prize.body': '계곡은 그 안에서 누가 가장 힘써 일했는지 헤아리며, 어제 당신의 이름은 가장 높은 열 명 안에 들었습니다. 집사들이 당신의 몫을 달아 큰까마귀 편에 보냈습니다.\n\n내일 다시 와서, 할 수 있다면 첫 자리를 차지하십시오.\n\n- 계곡의 집사',
+  'entities.letters.daily_reward_prize.body':
+    '계곡은 그 안에서 누가 가장 힘써 일했는지 헤아리며, 어제 당신의 이름은 가장 높은 열 명 안에 들었습니다. 집사들이 당신의 몫을 달아 큰까마귀 편에 보냈습니다.\n\n내일 다시 와서, 할 수 있다면 첫 자리를 차지하십시오.\n\n- 계곡의 집사',
 };

@@ -7297,8 +7297,7 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'mobilePreflight.continue': 'Doorgaan naar het Spel',
   'mobilePreflight.iosInstallDetail':
     'Voor echt volledig scherm op iPhone of iPad moet je deze pagina eerst aan je beginscherm toevoegen.',
-  'mobilePreflight.iosOpenStep':
-    'Open Wildhaven vanaf het nieuwe pictogram op het beginscherm.',
+  'mobilePreflight.iosOpenStep': 'Open Wildhaven vanaf het nieuwe pictogram op het beginscherm.',
   'mobilePreflight.iosShareStep': 'Tik in Safari op Deel en daarna op Zet op beginscherm.',
   'mobilePreflight.iosStandaloneDetail':
     'Je bent in de volledig-scherm-modus vanaf het beginscherm. Houd het apparaat in liggende stand.',

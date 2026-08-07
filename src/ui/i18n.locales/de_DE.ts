@@ -3241,8 +3241,7 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'mobilePreflight.iosInstallDetail':
     'Für echtes Vollbild auf iPhone oder iPad füge diese Seite zuerst zum Home-Bildschirm hinzu.',
   'mobilePreflight.iosShareStep': 'Tippe in Safari auf Teilen und dann auf Zum Home-Bildschirm.',
-  'mobilePreflight.iosOpenStep':
-    'Öffne Wildhaven über das neue Symbol auf dem Home-Bildschirm.',
+  'mobilePreflight.iosOpenStep': 'Öffne Wildhaven über das neue Symbol auf dem Home-Bildschirm.',
   'mobilePreflight.androidStandaloneDetail':
     'Du bist im Vollbild-App-Modus. Halte das Gerät im Querformat.',
   'mobilePreflight.androidInstallDetail':
