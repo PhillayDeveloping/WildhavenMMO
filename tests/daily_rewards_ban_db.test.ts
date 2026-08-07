@@ -328,7 +328,7 @@ describe('Daily Rewards finalize read and score writes', () => {
   it('stops rewriting the prize pool once the day is finalized', async () => {
     mocks.query.mockResolvedValue({ rows: [], rowCount: 1 });
 
-    await new PgDailyRewardDb().ensureDay('2026-07-11', 150, 0.5);
+    await new PgDailyRewardDb().ensureDay('2026-07-11', 1_500_000);
 
     const sql = String(mocks.query.mock.calls[0][0]);
     // The conflict update is fenced on the unfinalized day: after finalizeDay
@@ -336,7 +336,7 @@ describe('Daily Rewards finalize read and score writes', () => {
     // the announced prize pool away from its finalize-time value.
     expect(sql).toContain('ON CONFLICT (day, realm) DO UPDATE');
     expect(sql).toContain('WHERE daily_reward_days.finalized_at IS NULL');
-    expect(mocks.query.mock.calls[0][1]).toEqual(['2026-07-11', 'test-realm', 150, 0.5]);
+    expect(mocks.query.mock.calls[0][1]).toEqual(['2026-07-11', 'test-realm', 1_500_000]);
   });
 
   it('makes finalization a conditional one-time database transition', async () => {

@@ -103,10 +103,12 @@ import {
   bustDailyRewardBoardCache,
   bustDailyRewardWinnersCache,
   dailyRewardEventsCutoffDay,
+  dailyRewardService,
   handleDailyRewardApi,
   handleDailyRewardInternalApi,
 } from './daily_rewards';
 import { pruneDailyRewardEventsBatch } from './daily_rewards_db';
+import { deliverOwedPrizes } from './daily_rewards_delivery';
 import {
   type ArenaLeaderRow,
   accountAndScopeForToken,
@@ -2994,6 +2996,20 @@ export async function startServer(): Promise<http.Server> {
     acquireCharacterLease,
     releaseCharacterLease,
     bankBonusForAccount: async (id) => computeBankBonus(await bankBonusFactsForAccount(id)),
+    // Fire-and-forget: the void is the point (see the dep's contract in
+    // ws_auth.ts). deliverOwedPrizes already swallows its own failures into
+    // onError, so nothing here can reject into an unhandled rejection.
+    deliverDailyRewardPrizes: (accountId, pid) => {
+      void deliverOwedPrizes(
+        {
+          claimOwedPrizes: (id) => dailyRewardService.claimOwedPrizes(id),
+          mailPrize: (target, copper) => game.sim.mailDailyRewardPrize(target, copper),
+          onError: (err) => console.error('daily reward prize delivery failed:', err),
+        },
+        accountId,
+        pid,
+      );
+    },
   });
   wsAuth.attachUpgrade(server, wss);
 

@@ -2,7 +2,7 @@
 // slash-command definitions + routing, role-sync diffing, embed/message building,
 // and voice-presence shaping. Kept separate from the ws/fetch IO (gateway.ts,
 // discord_api.ts, server_client.ts) so it is unit-tested without a network. This
-// is the same pure/IO split the server uses (wallet_link.ts vs wallet.ts).
+// is the same pure/IO split the server uses (deeds_board.ts vs deeds.ts).
 import { specialRoleByKey, specialRoleByName } from '../src/sim/discord_roles';
 import { DISCORD_STATUS_DEFS, discordStatusByIndex } from '../src/sim/discord_tier';
 import type { VcNationId } from '../src/sim/types';
@@ -746,9 +746,8 @@ export interface DailyRewardWinner {
   username: string;
   points: number;
   prizePercent: number;
-  prizeUsd: number;
+  prizeCopper: number;
   status: string;
-  txSignature: string | null;
 }
 
 export interface DailyRewardWinnersDay {
@@ -756,16 +755,29 @@ export interface DailyRewardWinnersDay {
   taskName: string;
   nextTaskName: string;
   realm: string;
-  prizePoolUsd: number;
+  prizePoolCopper: number;
   finalizedAt: string | null;
   payouts: DailyRewardWinner[];
 }
 
-function usd(value: number): string {
-  return `$${value.toLocaleString('en-US', {
-    maximumFractionDigits: 2,
-    minimumFractionDigits: 2,
-  })}`;
+// The sim's coin denominations: 100 copper to the silver, 100 silver to the gold.
+// Deliberately re-derived here rather than imported: bot/ ships as a standalone
+// zero-dependency bundle and never imports from src/, the same rule the Vale Cup
+// nation names follow (their copy is pinned to the catalog by a test instead).
+const COPPER_PER_SILVER = 100;
+const COPPER_PER_GOLD = 10000;
+
+/** Format copper the way the game does: "12g 50s", trailing zero units dropped. */
+function coin(copper: number): string {
+  const safe = Number.isFinite(copper) ? Math.max(0, Math.floor(copper)) : 0;
+  const gold = Math.floor(safe / COPPER_PER_GOLD);
+  const silver = Math.floor((safe % COPPER_PER_GOLD) / COPPER_PER_SILVER);
+  const rest = safe % COPPER_PER_SILVER;
+  const parts: string[] = [];
+  if (gold > 0) parts.push(`${gold.toLocaleString('en-US')}g`);
+  if (silver > 0) parts.push(`${silver}s`);
+  if (rest > 0 || parts.length === 0) parts.push(`${rest}c`);
+  return parts.join(' ');
 }
 
 function percent(value: number): string {
@@ -781,7 +793,7 @@ export function buildDailyRewardWinnersMessage(
     .slice(0, 10)
     .map(
       (row) =>
-        `**#${row.rank}** ${row.username} - ${row.points.toLocaleString('en-US')} pts - ${usd(row.prizeUsd)} (${percent(row.prizePercent)})`,
+        `**#${row.rank}** ${row.username} - ${row.points.toLocaleString('en-US')} pts - ${coin(row.prizeCopper)} (${percent(row.prizePercent)})`,
     );
   const description =
     rows.length > 0 ? rows.join('\n') : 'No daily reward winners were recorded for this day.';
@@ -794,7 +806,7 @@ export function buildDailyRewardWinnersMessage(
         description,
         fields: [
           { name: 'Realm', value: day.realm, inline: true },
-          { name: 'Prize Pool', value: usd(day.prizePoolUsd), inline: true },
+          { name: 'Prize Pool', value: coin(day.prizePoolCopper), inline: true },
           { name: 'Next task', value: day.nextTaskName, inline: false },
         ],
         footer: { text: 'Wildhaven' },

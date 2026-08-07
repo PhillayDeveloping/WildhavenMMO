@@ -14,9 +14,9 @@ import { DailyRewardScheduleCache } from './daily_reward_schedule';
 import { DAILY_REWARD_BOARD_TTL_MS, DailyRewardBoardCache } from './daily_rewards_board_cache';
 import {
   type DailyRewardDb,
-  type DailyRewardInternalPayoutRow,
+  type DailyRewardOwedPrize,
   type DailyRewardPayoutActor,
-  type DailyRewardPayoutAttemptRow,
+  type DailyRewardPayoutRow,
   type DailyRewardScoreRow,
   type DailyRewardTaskSeed,
   type DailyRewardWinnerAnnouncement,
@@ -39,7 +39,11 @@ import { requestIp } from './ratelimit';
 import { REALM } from './realm';
 import { isNativeAppRequest } from './web_login_guard';
 
-const DEFAULT_POOL_USD = 150;
+// The daily purse, in COPPER (10000 to the gold), split down the ten ranks by
+// DAILY_REWARD_SPLITS. 250 gold puts first place at 50g and tenth at 12g 50s: a
+// day's standing is worth chasing without minting enough coin to move vendor
+// prices, since the whole realm can win at most one pool a day.
+const DEFAULT_POOL_COPPER = 250 * 10000;
 const DEFAULT_ACTIVE_SECONDS = 120;
 const DEFAULT_DAY_START_UTC_MINUTES = 22 * 60;
 const MAX_DAILY_REWARD_TASKS = 100;
@@ -129,7 +133,7 @@ interface Eligibility {
 
 export interface DailyRewardRuntimeConfig {
   enabled: boolean;
-  prizePoolUsd: number;
+  prizePoolCopper: number;
   activeSeconds: number;
   dayStartUtcMinutes: number;
   tasks: DailyRewardTaskSeed[];
@@ -259,7 +263,7 @@ function parseTaskPayload(payload: unknown): DailyRewardTaskSeed[] {
 function fallbackRuntimeConfig(): DailyRewardRuntimeConfig {
   return {
     enabled: true,
-    prizePoolUsd: DEFAULT_POOL_USD,
+    prizePoolCopper: DEFAULT_POOL_COPPER,
     activeSeconds: DEFAULT_ACTIVE_SECONDS,
     dayStartUtcMinutes: DEFAULT_DAY_START_UTC_MINUTES,
     tasks: DEFAULT_TASKS,
@@ -280,10 +284,10 @@ function parseRuntimeConfigPayload(payload: unknown): DailyRewardRuntimeConfig {
     // A configured authority must affirmatively enable rewards. Older/malformed
     // service responses fail closed; the no-service local path uses fallbackRuntimeConfig.
     enabled: record.enabled === true,
-    prizePoolUsd:
-      finitePositive(record.prizePoolUsd) ??
-      finitePositive(record.prize_pool_usd) ??
-      fallback.prizePoolUsd,
+    prizePoolCopper:
+      finitePositive(record.prizePoolCopper) ??
+      finitePositive(record.prize_pool_copper) ??
+      fallback.prizePoolCopper,
     activeSeconds:
       finitePositive(record.activeSeconds) ??
       finitePositive(record.active_seconds) ??
@@ -306,12 +310,12 @@ function parseStrictRuntimeConfigPayload(
   const record = payload as Record<string, unknown>;
   if (record.day !== expectedDay) throw new Error('config response day did not match request');
 
-  const prizePoolUsd = finitePositive(record.prizePoolUsd);
+  const prizePoolCopper = finitePositive(record.prizePoolCopper);
   const activeSeconds = finitePositive(record.activeSeconds);
   const dayStartUtcMinutes = finiteDayStartUtcMinutes(record.dayStartUtcMinutes);
   if (
     typeof record.enabled !== 'boolean' ||
-    prizePoolUsd === null ||
+    prizePoolCopper === null ||
     activeSeconds === null ||
     dayStartUtcMinutes === null
   ) {
@@ -330,7 +334,7 @@ function parseStrictRuntimeConfigPayload(
 
   return {
     enabled: record.enabled,
-    prizePoolUsd,
+    prizePoolCopper,
     activeSeconds,
     dayStartUtcMinutes,
     tasks: tasks as DailyRewardTaskSeed[],
@@ -340,8 +344,9 @@ function parseStrictRuntimeConfigPayload(
 function dailyRewardServiceSecret(): string {
   // Dedicated secret only: never fall back to RESTART_COUNTDOWN_SECRET. That is an
   // unrelated ops secret, and reusing it would let its holder call the daily-rewards
-  // internal payout endpoints (pending-payouts/mark-payout). internalAuthorized fails
-  // closed when this is unset, so the internal surface stays locked until it is set.
+  // internal ops endpoints (the readouts and the prize moderation arms).
+  // internalAuthorized fails closed when this is unset, so the internal surface
+  // stays locked until it is set.
   return process.env.WOC_DAILY_REWARD_SERVICE_SECRET ?? '';
 }
 
@@ -730,17 +735,16 @@ export class DailyRewardService {
    *    a full TTL and announce it twice.
    *  - voidPayout / restorePayout: a moderation edit to the payout rows a day
    *    carries.
-   *  - markPayout's claim and mark arms (Phase 5 QA): the payout runner stamping
-   *    status / tx_signature / paid_at is content of a possibly-unannounced day.
-   *    The resend arms are exempt because they write only the payout-ATTEMPTS
-   *    table, which unannouncedWinnerDays never selects.
+   *    (Prize DELIVERY deliberately does NOT bust: claimOwedPrizes only moves a
+   *    row from 'pending' to 'paid', and the announcement embed carries neither
+   *    field, so evicting a healthy snapshot for it would be pure churn.)
    *  - the excluded-accounts writes (the daily-reward ban and IP-ban tables
    *    behind the daily_reward_excluded_accounts view, which unannouncedWinnerDays
    *    filters its payouts through): busted through bustDailyRewardWinnersCache,
    *    which main.ts calls from the post-moderation hook beside the board busts.
    * The last two are what server/CLAUDE.md's hot-path rule demands: an exclusion
    * is a moderation action, and a warm snapshot would let a just-banned winner's
-   * username and wallet pubkey be announced publicly for up to a TTL. TTL alone
+   * username and prize be announced publicly for up to a TTL. TTL alone
    * only delays enforcement, so it is not an acceptable answer here.
    * ACCEPTED TTL-BOUNDED GAPS, named so nobody re-derives them as oversights: a
    * LOGIN from an already-banned IP moves an account into the excluded view with
@@ -809,7 +813,7 @@ export class DailyRewardService {
   // each re-issuing the pair on every call.
   private async ensureSeeded(day: string, config: DailyRewardRuntimeConfig): Promise<void> {
     await runSeedOnce(buildSeedKey(day, REALM, config), async () => {
-      await this.db.ensureDay(day, config.prizePoolUsd, null);
+      await this.db.ensureDay(day, config.prizePoolCopper);
       await this.db.seedTasks(day, config.tasks);
     });
   }
@@ -827,7 +831,7 @@ export class DailyRewardService {
         enabled: false,
         day,
         resetAt: nextUtcResetIso(day, config.dayStartUtcMinutes),
-        prizePoolUsd: config.prizePoolUsd,
+        prizePoolCopper: config.prizePoolCopper,
         eligibility: {
           eligible: false,
           reason: 'eligible',
@@ -864,7 +868,7 @@ export class DailyRewardService {
       enabled: true,
       day,
       resetAt: nextUtcResetIso(day, config.dayStartUtcMinutes),
-      prizePoolUsd: config.prizePoolUsd,
+      prizePoolCopper: config.prizePoolCopper,
       eligibility,
       score,
       rank,
@@ -914,7 +918,9 @@ export class DailyRewardService {
     await this.ensureSeeded(day, config);
     const eligibility = await this.eligibility(accountId);
     if (!eligibility.eligible)
-      return { error: 'daily rewards are locked for this wallet', status: 403 };
+      // A moderation ban is the only thing that can refuse a spin now, so the
+      // message names that rather than the account-linking gate it used to mean.
+      return { error: 'daily rewards are locked for this account', status: 403 };
     const existing = await this.db.spinForAccount(day, accountId);
     if (existing) return { error: 'daily spin already claimed', status: 409 };
     const outcome = pickSpinOutcome();
@@ -1260,9 +1266,8 @@ export class DailyRewardService {
         name: row.username,
         points: row.points,
         prizePercent: row.prizePercent,
-        prizeUsd: row.prizeUsd,
+        prizeCopper: row.prizeCopper,
         status: row.status,
-        txSignature: row.txSignature,
         paidAt: row.paidAt,
       })),
     };
@@ -1346,7 +1351,7 @@ export class DailyRewardService {
     }
     await this.ensureSeeded(day, config);
     const startedAt = Date.now();
-    const outcome = await this.db.finalizeDay(day, config.prizePoolUsd, DAILY_REWARD_SPLITS);
+    const outcome = await this.db.finalizeDay(day, config.prizePoolCopper, DAILY_REWARD_SPLITS);
     // Finalizing is what ADDS a day to the unannounced set, so the bot must see
     // it on its next poll rather than up to a TTL later. The already_finalized
     // arm added nothing, and the fast path above returns before reaching here.
@@ -1361,101 +1366,19 @@ export class DailyRewardService {
     return { payouts: await this.db.pendingPayouts(limit, day) };
   }
 
-  async markPayout(body: unknown): Promise<
-    | {
-        ok: true;
-        payout?: DailyRewardInternalPayoutRow;
-        attempt?: DailyRewardPayoutAttemptRow;
-      }
-    | { error: string; status: number }
-  > {
-    const record = body && typeof body === 'object' ? (body as Record<string, unknown>) : {};
-    const day = typeof record.day === 'string' ? record.day : '';
-    const rank = Number(record.rank);
-    const status = typeof record.status === 'string' ? record.status : '';
-    const txSignature = typeof record.txSignature === 'string' ? record.txSignature : null;
-    const error = typeof record.error === 'string' ? record.error.slice(0, 1000) : null;
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(day) || !Number.isInteger(rank) || rank < 1 || rank > 10) {
-      return { error: 'invalid payout target', status: 400 };
-    }
-    if (
-      !['processing', 'paid', 'failed', 'resend_processing', 'resent', 'resend_failed'].includes(
-        status,
-      )
-    )
-      return { error: 'invalid payout status', status: 400 };
-    if (
-      ['processing', 'paid', 'resend_processing', 'resent', 'resend_failed'].includes(status) &&
-      !txSignature
-    ) {
-      return { error: 'transaction signature is required', status: 400 };
-    }
-    const signedTransaction =
-      typeof record.signedTransaction === 'string' ? record.signedTransaction : null;
-    if (signedTransaction && signedTransaction.length > 5000) {
-      return { error: 'signed transaction is too large', status: 400 };
-    }
-    const operationId = typeof record.operationId === 'string' ? record.operationId.trim() : '';
-    if (status.startsWith('resend') || status === 'resent') {
-      if (!/^[A-Za-z0-9][A-Za-z0-9._:-]{7,127}$/.test(operationId)) {
-        return { error: 'valid resend operation id is required', status: 400 };
-      }
-    }
-    if (status === 'processing') {
-      const result = await this.db.claimPayout(day, rank, txSignature as string, signedTransaction);
-      if (result.outcome === 'not_found') return { error: 'payout not found', status: 404 };
-      if (result.outcome === 'invalid_status') {
-        return { error: 'payout cannot be claimed', status: 409 };
-      }
-      // A claim stamps status and tx_signature on a payout row a day still in the
-      // unannounced set carries, so the warm snapshot must not outlive it (the
-      // winnersCache bust doctrine). 'claimed' ONLY: the 'existing' arm is the
-      // runner's idempotent retry and writes nothing, and busting on every retry
-      // would evict a healthy snapshot exactly when the runner is unhealthy
-      // (caught by the QA fresh-eyes round; 'like voidPayout' was wrong because
-      // voidPayout has no no-op success arm).
-      if (result.outcome === 'claimed') this.winnersCache.bust();
-      return { ok: true, payout: result.payout };
-    }
-    if (status === 'resend_processing') {
-      const result = await this.db.claimPayoutResend(
-        day,
-        rank,
-        operationId,
-        txSignature as string,
-        signedTransaction,
-      );
-      if (result.outcome === 'not_found') return { error: 'paid payout not found', status: 404 };
-      if (result.outcome === 'invalid_status') {
-        return { error: 'only paid payouts can be resent', status: 409 };
-      }
-      return { ok: true, attempt: result.attempt };
-    }
-    if (status === 'resent' || status === 'resend_failed') {
-      const ok = await this.db.markPayoutResend(
-        day,
-        rank,
-        operationId,
-        status === 'resent' ? 'paid' : 'failed',
-        txSignature as string,
-        error,
-      );
-      return ok ? { ok: true } : { error: 'resend attempt not found', status: 404 };
-    }
-    const outcome = await this.db.markPayout(day, rank, status, txSignature, error);
-    // Same doctrine as the claim arm above: paid/failed stamps (status, paid_at,
-    // tx_signature) are content of a possibly-unannounced day. 'updated' ONLY:
-    // 'already' is the runner re-posting a paid mark after a dropped response,
-    // which wrote nothing (the outcome split exists for exactly this decision).
-    if (outcome === 'updated') this.winnersCache.bust();
-    return outcome !== 'missing' ? { ok: true } : { error: 'payout not found', status: 404 };
+  /**
+   * Claim every prize this account is owed, marking the rows paid. The join path
+   * composes this with the mailbox in server/daily_rewards_delivery.ts; it lives
+   * here rather than being read off `this.db` directly so the db handle stays
+   * private and the delivery seam has one owner.
+   */
+  claimOwedPrizes(accountId: number): Promise<DailyRewardOwedPrize[]> {
+    return this.db.claimOwedPrizes(accountId);
   }
 
   async voidPayout(
     body: unknown,
-  ): Promise<
-    { ok: true; payout: DailyRewardInternalPayoutRow } | { error: string; status: number }
-  > {
+  ): Promise<{ ok: true; payout: DailyRewardPayoutRow } | { error: string; status: number }> {
     const record = body && typeof body === 'object' ? (body as Record<string, unknown>) : {};
     const target = payoutModerationTarget(record);
     if ('error' in target) return target;
@@ -1480,9 +1403,7 @@ export class DailyRewardService {
 
   async restorePayout(
     body: unknown,
-  ): Promise<
-    { ok: true; payout: DailyRewardInternalPayoutRow } | { error: string; status: number }
-  > {
+  ): Promise<{ ok: true; payout: DailyRewardPayoutRow } | { error: string; status: number }> {
     const record = body && typeof body === 'object' ? (body as Record<string, unknown>) : {};
     const target = payoutModerationTarget(record);
     if ('error' in target) return target;
@@ -1545,8 +1466,8 @@ export function bustDailyRewardBoardCache(): void {
 // on the module singleton. main.ts wires this into bustBoardCaches, the
 // post-moderation hook, because the daily-reward ban and IP-ban writes feed the
 // daily_reward_excluded_accounts view that unannouncedWinnerDays filters its
-// payouts through: without the bust, a just-excluded winner's username and wallet
-// pubkey stay announceable for up to a TTL. A suite driving the real service over
+// payouts through: without the bust, a just-excluded winner's username and prize
+// stay announceable for up to a TTL. A suite driving the real service over
 // db fakes also resets the snapshot through this handle.
 export function bustDailyRewardWinnersCache(): void {
   dailyRewardService.bustWinnersCache();
@@ -1641,13 +1562,6 @@ export async function handleDailyRewardInternalApi(
     json(res, 200, { success: true, data, error: null });
     return true;
   }
-  if (req.method === 'POST' && url.pathname === '/internal/daily-rewards/mark-payout') {
-    const result = await dailyRewardService.markPayout(await readBody(req));
-    if ('error' in result)
-      json(res, result.status, { success: false, data: null, error: result.error });
-    else json(res, 200, { success: true, data: result, error: null });
-    return true;
-  }
   if (req.method === 'POST' && url.pathname === '/internal/daily-rewards/void-payout') {
     const result = await dailyRewardService.voidPayout(await readBody(req));
     if ('error' in result) {
@@ -1677,12 +1591,11 @@ export async function handleDailyRewardInternalApi(
 //   POST /api/daily-rewards/spin                   player spin (JSON)
 //   GET  /api/daily-rewards/history                payout history (JSON)
 //   POST /internal/daily-rewards/finalize          close one explicit reward day
-//   POST /internal/daily-rewards/pending-payouts   payout service ops
-//   POST /internal/daily-rewards/payout-history    payout service ops
-//   POST /internal/daily-rewards/leaderboard       payout service ops
-//   POST /internal/daily-rewards/mark-payout       payout service ops
-//   POST /internal/daily-rewards/void-payout       payout moderation ops
-//   POST /internal/daily-rewards/restore-payout    payout moderation ops
+//   POST /internal/daily-rewards/pending-payouts   ops readout: prizes not yet collected
+//   POST /internal/daily-rewards/payout-history    ops readout: past prizes
+//   POST /internal/daily-rewards/leaderboard       ops readout: the daily board
+//   POST /internal/daily-rewards/void-payout       prize moderation ops
+//   POST /internal/daily-rewards/restore-payout    prize moderation ops
 // The legacy dispatch stays as the flag-off rollback path until the ladder-deletion PR: the
 // main.ts prefix arm (startsWith('/api/daily-rewards'), bearerActiveAccount
 // BEFORE delegating) for the player family, and the /internal composite
@@ -1692,13 +1605,14 @@ export async function handleDailyRewardInternalApi(
 // PARITY-FIRST BY CONSTRUCTION: each thin handler calls the SAME sub-dispatcher
 // the ladder serves (handleDailyRewardApi / handleDailyRewardInternalApi)
 // UNCHANGED, so every body, the in-family 404 'unknown endpoint', the lenient
-// Number(...)|| limit decodes, and mark-payout's validation prose are
+// Number(...)|| limit decodes, and the moderation validation prose are
 // byte-identical with zero dual-edit drift. No withBody anywhere: spins are
-// body-free, and mark-payout SELF-READS via the core's un-caught readBody (the
-// dailyRewardsOpsBodyValidationRemap deviation). Off-table shapes (wrong
-// method, unknown subpath, the no-slash '/api/daily-rewardsX' sibling, HEAD)
-// resolve unmatched and delegate to the ladder unchanged. v0.20.0 grew each
-// family by its paginated leaderboard read (four player + seven ops routes).
+// body-free, and the moderation arms SELF-READ via the core's un-caught
+// readBody (the dailyRewardsOpsBodyValidationRemap deviation). Off-table shapes
+// (wrong method, unknown subpath, the no-slash '/api/daily-rewardsX' sibling,
+// HEAD) resolve unmatched and delegate to the ladder unchanged. v0.20.0 grew
+// each family by its paginated leaderboard read (four player routes; the ops
+// family is six since prize delivery stopped needing an external runner).
 //
 // The player guard is the shared legacy-body createActiveGuard (mirrors the
 // prefix arm's bearerActiveAccount byte-for-byte). The ops gate is the
@@ -1822,14 +1736,6 @@ export const routes: RouteDef[] = [
   {
     method: 'POST',
     path: '/internal/daily-rewards/leaderboard',
-    surface: 'internal',
-    meta: { envelope: 'admin' },
-    middleware: [dailyRewardOpsGate],
-    handler: dailyRewardOpsHandler,
-  },
-  {
-    method: 'POST',
-    path: '/internal/daily-rewards/mark-payout',
     surface: 'internal',
     meta: { envelope: 'admin' },
     middleware: [dailyRewardOpsGate],

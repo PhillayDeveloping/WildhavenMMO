@@ -19,6 +19,7 @@
 import { bagCapacity, canGrantCopies, instancedCountCap } from '../bags';
 import { rekeySigner } from '../character_rename';
 import {
+  DAILY_REWARD_LETTER,
   HEROIC_MARK_LETTER,
   type LetterDef,
   QUEST_LETTERS,
@@ -683,6 +684,23 @@ export class PostOffice {
       this.mailKeyFor(meta),
       meta.name,
       { ...HEROIC_MARK_LETTER, items: [{ itemId, count }] },
+      'system',
+    );
+  }
+
+  // Daily standings prize hook: posts a placing player's share of the previous
+  // day's purse. The day finalizes on a schedule rather than on a player action,
+  // so the winner is normally offline when it is decided; the server reads the
+  // undelivered rows at join and calls this. Same no-postage, no-proximity terms
+  // as the Heroic Marks letter: the coin was already earned.
+  mailDailyRewardPrize(pid: number, copper: number): void {
+    const meta = this.ctx.players.get(pid);
+    const coin = Math.floor(copper);
+    if (!meta || !Number.isFinite(coin) || coin <= 0) return;
+    this.sendLetter(
+      this.mailKeyFor(meta),
+      meta.name,
+      { ...DAILY_REWARD_LETTER, copper: coin },
       'system',
     );
   }

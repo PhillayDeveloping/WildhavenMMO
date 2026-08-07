@@ -3,11 +3,8 @@ import { resolve } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type {
   DailyRewardDb,
-  DailyRewardInternalPayoutRow,
+  DailyRewardOwedPrize,
   DailyRewardPayoutActor,
-  DailyRewardPayoutAttemptClaimResult,
-  DailyRewardPayoutClaimResult,
-  DailyRewardPayoutMarkOutcome,
   DailyRewardPayoutModerationResult,
   DailyRewardPayoutRow,
   DailyRewardScoreRow,
@@ -17,18 +14,11 @@ import type {
   DailyRewardWinnerAnnouncement,
 } from '../server/daily_rewards_db';
 
-const walletMock = vi.hoisted(() => ({
-  row: { account_id: 1, pubkey: 'Wallet1111111111111111111111111111111111111', linked_at: 'now' },
-}));
-const balanceMock = vi.hoisted(() => ({ value: 50 as number | null }));
-
-vi.mock('../server/db', () => ({
-  walletForAccount: vi.fn(async () => walletMock.row),
-}));
-
-vi.mock('../server/woc_balance', () => ({
-  cachedWocBalance: vi.fn(async () => balanceMock.value),
-}));
+// server/db is stubbed EMPTY rather than left unmocked: importing it for real
+// opens a pg Pool at module load, which these DB-free unit tests must not do.
+// The service reaches it only through the injected FakeDailyRewardDb, so there
+// is nothing on it for this suite to answer.
+vi.mock('../server/db', () => ({}));
 
 import {
   currentDailyRewardDay,
@@ -234,7 +224,7 @@ class FakeDailyRewardDb implements DailyRewardDb {
     this.dayFinalizedCalls++;
     return this.finalizedDays.has(JSON.stringify([day, realm]));
   }
-  async pendingPayouts(): Promise<DailyRewardInternalPayoutRow[]> {
+  async pendingPayouts(): Promise<DailyRewardPayoutRow[]> {
     return [];
   }
   async unannouncedWinnerDays(limit: number): Promise<DailyRewardWinnerAnnouncement[]> {
@@ -245,19 +235,16 @@ class FakeDailyRewardDb implements DailyRewardDb {
   async markWinnersAnnounced(): Promise<boolean> {
     return this.markWinnersAnnouncedOk;
   }
-  markPayoutOutcome: DailyRewardPayoutMarkOutcome = 'updated';
-  async markPayout(): Promise<DailyRewardPayoutMarkOutcome> {
-    return this.markPayoutOutcome;
-  }
-  claimPayoutResult: DailyRewardPayoutClaimResult = { outcome: 'not_found' };
-  async claimPayout(): Promise<DailyRewardPayoutClaimResult> {
-    return this.claimPayoutResult;
-  }
-  async claimPayoutResend(): Promise<DailyRewardPayoutAttemptClaimResult> {
-    return { outcome: 'not_found' };
-  }
-  async markPayoutResend(): Promise<boolean> {
-    return true;
+  owedPrizes: DailyRewardOwedPrize[] = [];
+  claimOwedPrizesCalls: number[] = [];
+  async claimOwedPrizes(accountId: number): Promise<DailyRewardOwedPrize[]> {
+    this.claimOwedPrizesCalls.push(accountId);
+    // Claiming is a one-shot: the real UPDATE moves the rows out of 'pending',
+    // so a second call for the same account must come back empty. The fake
+    // mirrors that, or a test could pass while double-paying.
+    const owed = this.owedPrizes;
+    this.owedPrizes = [];
+    return owed;
   }
   async voidPayout(
     _day: string,
@@ -279,7 +266,7 @@ class FakeDailyRewardDb implements DailyRewardDb {
 function rewardConfig(overrides: Partial<DailyRewardRuntimeConfig> = {}): DailyRewardRuntimeConfig {
   return {
     enabled: true,
-    prizePoolUsd: 150,
+    prizePoolCopper: 1_500_000,
     activeSeconds: 120,
     dayStartUtcMinutes: 22 * 60,
     tasks: [
@@ -334,12 +321,6 @@ describe('daily rewards', () => {
     // key and silently stop calling db.ensureDay/db.seedTasks on a fresh FakeDb.
     resetDailyRewardSeedGateForTests();
     stubRewardConfig();
-    walletMock.row = {
-      account_id: 1,
-      pubkey: 'Wallet1111111111111111111111111111111111111',
-      linked_at: 'now',
-    };
-    balanceMock.value = 50;
   });
 
   afterEach(() => {
@@ -348,11 +329,14 @@ describe('daily rewards', () => {
   });
 
   it('admits every account that is not banned', async () => {
-    const eligibility = await dailyRewardEligibility();
-    expect(eligibility).toMatchObject({
+    // Participation carries no holdings test of any kind, so the answer is
+    // unconditional and the whole shape is pinned rather than matched loosely:
+    // a new gate field appearing here would be a regression, not an addition.
+    await expect(dailyRewardEligibility()).resolves.toEqual({
       eligible: true,
       reason: 'eligible',
-      usdValue: 25,
+      banReason: null,
+      banExpiresAt: null,
     });
   });
 
@@ -504,7 +488,7 @@ describe('daily rewards', () => {
       {
         day: '2026-06-30',
         realm: 'Claudemoon',
-        prizePoolUsd: 150,
+        prizePoolCopper: 1_500_000,
         finalizedAt: '2026-07-01T00:00:00.000Z',
         payouts: [],
       },
@@ -586,7 +570,7 @@ describe('daily rewards', () => {
       return {
         day,
         realm: 'Claudemoon',
-        prizePoolUsd: 150,
+        prizePoolCopper: 1_500_000,
         finalizedAt: '2026-07-01T00:00:00.000Z',
         payouts: [],
       };
@@ -660,16 +644,16 @@ describe('daily rewards', () => {
       const { service } = cachedService(db);
 
       const first = (await service.discordWinnerAnnouncements(1)) as {
-        days: Array<{ prizePoolUsd: number; payouts: Array<{ username: string }> }>;
+        days: Array<{ prizePoolCopper: number; payouts: Array<{ username: string }> }>;
       };
-      first.days[0].prizePoolUsd = -1;
+      first.days[0].prizePoolCopper = -1;
       first.days[0].payouts[0].username = 'Tampered';
 
       const second = (await service.discordWinnerAnnouncements(1)) as {
-        days: Array<{ prizePoolUsd: number; payouts: Array<{ username: string }> }>;
+        days: Array<{ prizePoolCopper: number; payouts: Array<{ username: string }> }>;
       };
       expect(db.unannouncedWinnerDaysCalls).toBe(1); // same cached snapshot
-      expect(second.days[0].prizePoolUsd).toBe(150);
+      expect(second.days[0].prizePoolCopper).toBe(1_500_000);
       expect(second.days[0].payouts[0].username).toBe('Winner');
     });
 
@@ -730,7 +714,7 @@ describe('daily rewards', () => {
     });
 
     /** A payout row for the two moderation writes to answer with. */
-    function payoutRow(day: string, rank: number): DailyRewardInternalPayoutRow {
+    function payoutRow(day: string, rank: number): DailyRewardPayoutRow {
       return {
         day,
         realm: REALM,
@@ -739,15 +723,13 @@ describe('daily rewards', () => {
         username: 'Winner',
         points: 4200,
         prizePercent: 0.2,
-        prizeUsd: 30,
-        status: 'void',
-        txSignature: null,
+        prizeCopper: 300_000,
+        status: 'voided',
         paidAt: null,
         voidReason: 'cheating',
         voidedById: 'admin-1',
         voidedByUsername: 'Admin',
         voidedAt: '2026-07-01T00:00:00.000Z',
-        signedTransaction: null,
       };
     }
 
@@ -794,103 +776,6 @@ describe('daily rewards', () => {
       clock.ms += 1;
       await service.discordWinnerAnnouncements(1);
       expect(db.unannouncedWinnerDaysCalls).toBe(2);
-    });
-
-    it('busts when the payout runner claims a payout, the processing stamp', async () => {
-      // claimPayout stamps status and tx_signature on a payout row of a day the
-      // snapshot may still be holding (Phase 5 QA: this arm and the paid/failed
-      // mark below were the two content writers the bust doctrine missed).
-      const db = new FakeDailyRewardDb();
-      db.winnerAnnouncements = [winnerDay('2026-06-30')];
-      db.claimPayoutResult = { outcome: 'claimed', payout: payoutRow('2026-06-30', 1) };
-      const { service, clock } = cachedService(db);
-
-      await service.discordWinnerAnnouncements(1);
-      await expect(
-        service.markPayout({ day: '2026-06-30', rank: 1, status: 'processing', txSignature: 's1' }),
-      ).resolves.toMatchObject({ ok: true });
-
-      clock.ms += 1;
-      await service.discordWinnerAnnouncements(1);
-      expect(db.unannouncedWinnerDaysCalls).toBe(2);
-    });
-
-    it('busts when the payout runner marks a payout paid', async () => {
-      const db = new FakeDailyRewardDb();
-      db.winnerAnnouncements = [winnerDay('2026-06-30')];
-      const { service, clock } = cachedService(db);
-
-      await service.discordWinnerAnnouncements(1);
-      await expect(
-        service.markPayout({ day: '2026-06-30', rank: 1, status: 'paid', txSignature: 's1' }),
-      ).resolves.toMatchObject({ ok: true });
-
-      clock.ms += 1;
-      await service.discordWinnerAnnouncements(1);
-      expect(db.unannouncedWinnerDaysCalls).toBe(2);
-    });
-
-    it("does not bust on a claim retry that matched an already-claimed row ('existing')", async () => {
-      // claimPayout's 'existing' outcome is the runner's idempotent retry and
-      // writes NOTHING; busting on every retry would evict a healthy snapshot
-      // exactly when the runner is retrying (QA fresh-eyes round: the first shape
-      // of this fix busted here too).
-      const db = new FakeDailyRewardDb();
-      db.winnerAnnouncements = [winnerDay('2026-06-30')];
-      db.claimPayoutResult = { outcome: 'existing', payout: payoutRow('2026-06-30', 1) };
-      const { service, clock } = cachedService(db);
-
-      await service.discordWinnerAnnouncements(1);
-      await expect(
-        service.markPayout({ day: '2026-06-30', rank: 1, status: 'processing', txSignature: 's1' }),
-      ).resolves.toMatchObject({ ok: true });
-
-      clock.ms += 1;
-      await service.discordWinnerAnnouncements(1);
-      expect(db.unannouncedWinnerDaysCalls).toBe(1);
-    });
-
-    it("does not bust on a paid-mark replay that wrote nothing ('already')", async () => {
-      // markPayout answers 'already' for a re-posted paid mark with the same
-      // signature (a dropped response, retried). Nothing moved, so the snapshot
-      // stays; only a real 'updated' write busts.
-      const db = new FakeDailyRewardDb();
-      db.winnerAnnouncements = [winnerDay('2026-06-30')];
-      db.markPayoutOutcome = 'already';
-      const { service, clock } = cachedService(db);
-
-      await service.discordWinnerAnnouncements(1);
-      await expect(
-        service.markPayout({ day: '2026-06-30', rank: 1, status: 'paid', txSignature: 's1' }),
-      ).resolves.toMatchObject({ ok: true });
-
-      clock.ms += 1;
-      await service.discordWinnerAnnouncements(1);
-      expect(db.unannouncedWinnerDaysCalls).toBe(1);
-    });
-
-    it('does not bust on a resend stamp, which the announcement never reads', async () => {
-      // The resend arms write only the payout-ATTEMPTS table, which
-      // unannouncedWinnerDays never selects, so evicting the snapshot for them
-      // would be churn with nothing to converge on.
-      const db = new FakeDailyRewardDb();
-      db.winnerAnnouncements = [winnerDay('2026-06-30')];
-      const { service, clock } = cachedService(db);
-
-      await service.discordWinnerAnnouncements(1);
-      await expect(
-        service.markPayout({
-          day: '2026-06-30',
-          rank: 1,
-          status: 'resent',
-          txSignature: 's1',
-          operationId: 'resend-op-1',
-        }),
-      ).resolves.toMatchObject({ ok: true });
-
-      clock.ms += 1;
-      await service.discordWinnerAnnouncements(1);
-      expect(db.unannouncedWinnerDaysCalls).toBe(1);
     });
 
     it('clamps the ask at both edges and serves every limit from ONE snapshot', async () => {
@@ -1787,7 +1672,9 @@ describe('daily rewards', () => {
       ],
     });
 
-    balanceMock.value = 0;
+    // Locked arm: a moderation ban is now the ONLY thing that holds a player out
+    // of the daily standings, so it is what this arm must exercise.
+    db.banReason = 'confirmed multi-boxing';
     await service.recordDelveClear(
       1,
       101,
@@ -1797,7 +1684,7 @@ describe('daily rewards', () => {
     );
     expect(db.events.filter((event) => event.kind === 'task')).toHaveLength(0);
 
-    balanceMock.value = 50;
+    db.banReason = null;
     resetDailyRewardPriceCacheForTests();
     stubRewardConfig({ tasks: [] });
     await service.recordDelveClear(
@@ -1861,7 +1748,7 @@ describe('daily rewards', () => {
       enabled: true,
       day: '2026-06-30',
       resetAt: '2026-07-01T00:00:00.000Z',
-      prizePoolUsd: 150,
+      prizePoolCopper: 1_500_000,
       eligibility: {
         eligible: false,
         reason: 'banned' as const,
@@ -2045,7 +1932,7 @@ describe('daily rewards', () => {
     it('bypasses a warm gameplay config cache when finalizing', async () => {
       const targetDay = '2026-07-01';
       await expect(dailyRewardRuntimeConfig(targetDay)).resolves.toMatchObject({
-        prizePoolUsd: 150,
+        prizePoolCopper: 1_500_000,
         dayStartUtcMinutes: 22 * 60,
       });
       const db = new FakeDailyRewardDb();
@@ -2061,7 +1948,7 @@ describe('daily rewards', () => {
     });
 
     it.each([
-      ['missing fields', { day: '2026-07-01', prizePoolUsd: 150 }],
+      ['missing fields', { day: '2026-07-01', prizePoolCopper: 150 }],
       ['wrong day', { day: '2026-06-30', ...rewardConfig() }],
       ['invalid tasks', { day: '2026-07-01', ...rewardConfig(), tasks: [{}] }],
     ])('fails closed for a successful but %s config response', async (_label, payload) => {
@@ -2145,11 +2032,11 @@ describe('daily rewards', () => {
       const service = new DailyRewardService(db);
       await service.ensureActiveDay('2026-06-30');
       expect(db.ensureDayCalls).toBe(1);
-      // Change ONLY prizePoolUsd (a config field ensureDay persists): the same day
+      // Change ONLY prizePoolCopper (a config field ensureDay persists): the same day
       // must reseed so the new prize pool is written, proving the gate key covers
       // the day-config fields, not just the tasks signature.
       resetDailyRewardPriceCacheForTests();
-      stubRewardConfig({ prizePoolUsd: 500 });
+      stubRewardConfig({ prizePoolCopper: 500 });
       await service.ensureActiveDay('2026-06-30');
       expect(db.ensureDayCalls).toBe(2);
       expect(db.seedTasksCalls).toBe(2);
@@ -2160,12 +2047,12 @@ describe('daily rewards', () => {
       const service = new DailyRewardService(db);
       await service.ensureActiveDay('2026-06-30');
       expect(db.ensureDayCalls).toBe(1);
-      // Change ONLY prizePoolUsd (a config field ensureDay persists): the same
+      // Change ONLY prizePoolCopper (a config field ensureDay persists): the same
       // day must reseed. This pins the SERVICE passing the pool through to the
       // gate key; an ensureSeeded that stripped it (the unit key tests cannot
       // see that seam) would silently skip persisting a genuine pool change.
       resetDailyRewardPriceCacheForTests();
-      stubRewardConfig({ prizePoolUsd: 175 });
+      stubRewardConfig({ prizePoolCopper: 175 });
       await service.ensureActiveDay('2026-06-30');
       expect(db.ensureDayCalls).toBe(2);
       expect(db.seedTasksCalls).toBe(2);

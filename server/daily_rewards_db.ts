@@ -16,12 +16,13 @@ import { REALM } from './realm';
 // ranked SQL those derivations replaced is deliberately DELETED, not
 // retained: a revert to direct per-status db reads must reintroduce the
 // queries consciously instead of quietly rebinding to leftovers. finalizeDay,
-// pendingPayouts, and leaderboardPage stay always-live SQL: payout
+// pendingPayouts, and leaderboardPage stay always-live SQL: prize
 // correctness and the ops page tolerate no staleness.
-// The payout path embeds the predicate too: finalizeDay selects winners from
-// the same population the board displays, and pendingPayouts rechecks
-// eligibility at pay time so a ban or suspension landing after finalization
-// still blocks the transfer.
+// The prize path embeds the predicate too: finalizeDay selects winners from
+// the same population the board displays, and claimOwedPrizes rechecks
+// eligibility at delivery time, so a ban or suspension landing after
+// finalization holds the letter back (the row stays owed rather than being
+// forfeited, so lifting the ban pays it out on the next join).
 
 export interface DailyRewardTaskRow {
   taskId: string;
@@ -55,6 +56,12 @@ export interface DailyRewardSpinRow {
   createdAt: string;
 }
 
+/**
+ * One rank's share of a day's purse. `prizeCopper` is in the sim's base coin
+ * unit (10000 copper to the gold), so the whole pipeline stays integer math.
+ * `status` is 'pending' (owed), 'paid' (the Ravenpost letter went out), or
+ * 'voided' (moderation struck it before delivery).
+ */
 export interface DailyRewardPayoutRow {
   day: string;
   realm: string;
@@ -63,9 +70,8 @@ export interface DailyRewardPayoutRow {
   username: string;
   points: number;
   prizePercent: number;
-  prizeUsd: number;
+  prizeCopper: number;
   status: string;
-  txSignature: string | null;
   paidAt: string | null;
   voidReason: string | null;
   voidedById: string | null;
@@ -73,9 +79,11 @@ export interface DailyRewardPayoutRow {
   voidedAt: string | null;
 }
 
-export interface DailyRewardInternalPayoutRow extends DailyRewardPayoutRow {
-  realm: string;
-  signedTransaction: string | null;
+/** One owed prize the delivery sweep is about to post to a joining player. */
+export interface DailyRewardOwedPrize {
+  day: string;
+  rank: number;
+  prizeCopper: number;
 }
 
 export interface DailyRewardPayoutActor {
@@ -84,35 +92,7 @@ export interface DailyRewardPayoutActor {
 }
 
 export type DailyRewardPayoutModerationResult =
-  | { outcome: 'updated'; payout: DailyRewardInternalPayoutRow }
-  | { outcome: 'not_found' }
-  | { outcome: 'invalid_status'; status: string };
-
-/**
- * markPayout's answer, split so the caller can tell a real write from an
- * idempotent replay: 'updated' stamped the row, 'already' matched an
- * already-paid row with the same signature and wrote NOTHING (the payout
- * runner re-posting a paid mark after a dropped response), 'missing' matched
- * nothing at all. The split exists because the winners-cache bust must ride
- * real writes only; busting on every replay would evict a healthy snapshot
- * exactly when the runner is retrying (Phase 5 QA, fresh-eyes round).
- */
-export type DailyRewardPayoutMarkOutcome = 'updated' | 'already' | 'missing';
-
-export type DailyRewardPayoutClaimResult =
-  | { outcome: 'claimed' | 'existing'; payout: DailyRewardInternalPayoutRow }
-  | { outcome: 'not_found' }
-  | { outcome: 'invalid_status'; status: string };
-
-export interface DailyRewardPayoutAttemptRow {
-  status: 'prepared' | 'paid' | 'failed';
-  operationId: string;
-  txSignature: string;
-  signedTransaction: string | null;
-}
-
-export type DailyRewardPayoutAttemptClaimResult =
-  | { outcome: 'claimed' | 'existing'; attempt: DailyRewardPayoutAttemptRow }
+  | { outcome: 'updated'; payout: DailyRewardPayoutRow }
   | { outcome: 'not_found' }
   | { outcome: 'invalid_status'; status: string };
 
@@ -121,14 +101,14 @@ export type DailyRewardFinalizeOutcome = 'finalized' | 'already_finalized';
 export interface DailyRewardWinnerAnnouncement {
   day: string;
   realm: string;
-  prizePoolUsd: number;
+  prizePoolCopper: number;
   finalizedAt: string | null;
-  payouts: DailyRewardInternalPayoutRow[];
+  payouts: DailyRewardPayoutRow[];
 }
 
 export interface DailyRewardDb {
   banForAccount(accountId: number): Promise<{ reason: string; expiresAt: string | null } | null>;
-  ensureDay(day: string, prizePoolUsd: number, wocUsdPrice: number | null): Promise<void>;
+  ensureDay(day: string, prizePoolCopper: number): Promise<void>;
   seedTasks(day: string, tasks: DailyRewardTaskSeed[]): Promise<void>;
   tasksForAccount(day: string, accountId: number): Promise<DailyRewardTaskRow[]>;
   tasksForType(day: string, type: string): Promise<DailyRewardTaskRow[]>;
@@ -160,41 +140,20 @@ export interface DailyRewardDb {
   recentPayouts(limit: number): Promise<DailyRewardPayoutRow[]>;
   finalizeDay(
     day: string,
-    prizePoolUsd: number,
+    prizePoolCopper: number,
     splits: readonly number[],
   ): Promise<DailyRewardFinalizeOutcome>;
   dayFinalized(day: string, realm: string): Promise<boolean>;
-  pendingPayouts(limit: number, day?: string): Promise<DailyRewardInternalPayoutRow[]>;
+  pendingPayouts(limit: number, day?: string): Promise<DailyRewardPayoutRow[]>;
   unannouncedWinnerDays(limit: number): Promise<DailyRewardWinnerAnnouncement[]>;
   markWinnersAnnounced(day: string): Promise<boolean>;
-  markPayout(
-    day: string,
-    rank: number,
-    status: string,
-    txSignature: string | null,
-    error: string | null,
-  ): Promise<DailyRewardPayoutMarkOutcome>;
-  claimPayout(
-    day: string,
-    rank: number,
-    txSignature: string,
-    signedTransaction: string | null,
-  ): Promise<DailyRewardPayoutClaimResult>;
-  claimPayoutResend(
-    day: string,
-    rank: number,
-    operationId: string,
-    txSignature: string,
-    signedTransaction: string | null,
-  ): Promise<DailyRewardPayoutAttemptClaimResult>;
-  markPayoutResend(
-    day: string,
-    rank: number,
-    operationId: string,
-    status: 'paid' | 'failed',
-    txSignature: string,
-    error: string | null,
-  ): Promise<boolean>;
+  /**
+   * Claim every prize this account is owed, marking the rows paid in one
+   * transaction and returning what was claimed so the caller can post the
+   * letters. Claiming and marking are the same statement so a crash cannot pay
+   * twice: a row leaves 'pending' exactly once.
+   */
+  claimOwedPrizes(accountId: number): Promise<DailyRewardOwedPrize[]>;
   voidPayout(
     day: string,
     rank: number,
@@ -239,22 +198,13 @@ function payoutRow(row: Record<string, unknown>): DailyRewardPayoutRow {
     username: String(row.username),
     points: Number(row.points),
     prizePercent: Number(row.prize_percent),
-    prizeUsd: Number(row.prize_usd),
+    prizeCopper: Number(row.prize_copper),
     status: String(row.status),
-    txSignature: optionalString(row.tx_signature),
     paidAt: dateString(row.paid_at),
     voidReason: optionalString(row.void_reason),
     voidedById: optionalString(row.voided_by_id),
     voidedByUsername: optionalString(row.voided_by_username),
     voidedAt: dateString(row.voided_at),
-  };
-}
-
-function internalPayoutRow(row: Record<string, unknown>): DailyRewardInternalPayoutRow {
-  return {
-    ...payoutRow(row),
-    realm: String(row.realm),
-    signedTransaction: optionalString(row.signed_transaction),
   };
 }
 
@@ -334,20 +284,19 @@ export class PgDailyRewardDb implements DailyRewardDb {
       : null;
   }
 
-  async ensureDay(day: string, prizePoolUsd: number, wocUsdPrice: number | null): Promise<void> {
+  async ensureDay(day: string, prizePoolCopper: number): Promise<void> {
     // The conflict update is fenced on the unfinalized day: once finalizeDay has
     // stamped finalized_at, the announced prize pool is frozen at its
     // finalize-time value, so a straggler event whose timestamp still maps to
     // the finalized day (the seconds-wide window at rollover, or a restarted
     // process with a cold seed gate) can no longer drift it.
     await pool.query(
-      `INSERT INTO daily_reward_days (day, realm, prize_pool_usd, woc_usd_price)
-       VALUES ($1, $2, $3, $4)
+      `INSERT INTO daily_reward_days (day, realm, prize_pool_copper)
+       VALUES ($1, $2, $3)
        ON CONFLICT (day, realm) DO UPDATE
-          SET prize_pool_usd = EXCLUDED.prize_pool_usd,
-              woc_usd_price = COALESCE(EXCLUDED.woc_usd_price, daily_reward_days.woc_usd_price)
+          SET prize_pool_copper = EXCLUDED.prize_pool_copper
           WHERE daily_reward_days.finalized_at IS NULL`,
-      [day, REALM, prizePoolUsd, wocUsdPrice],
+      [day, REALM, prizePoolCopper],
     );
   }
 
@@ -717,7 +666,7 @@ export class PgDailyRewardDb implements DailyRewardDb {
     const res = await pool.query(
       `SELECT p.day, p.realm, p.rank, p.account_id, p.username,
               p.points, p.prize_percent,
-              p.prize_usd, p.status, p.tx_signature, p.paid_at, p.void_reason,
+              p.prize_copper, p.status, p.paid_at, p.void_reason,
               p.voided_by_id, p.voided_by_username, p.voided_at
          FROM daily_reward_payouts p
         WHERE p.realm = $1
@@ -730,7 +679,7 @@ export class PgDailyRewardDb implements DailyRewardDb {
 
   async finalizeDay(
     day: string,
-    prizePoolUsd: number,
+    prizePoolCopper: number,
     splits: readonly number[],
   ): Promise<DailyRewardFinalizeOutcome> {
     const client = await pool.connect();
@@ -758,7 +707,7 @@ export class PgDailyRewardDb implements DailyRewardDb {
         const percent = splits[rank - 1] ?? 0;
         await client.query(
           `INSERT INTO daily_reward_payouts
-            (day, realm, rank, account_id, username, points, prize_percent, prize_usd)
+            (day, realm, rank, account_id, username, points, prize_percent, prize_copper)
            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
            ON CONFLICT (day, realm, rank) DO NOTHING`,
           [
@@ -769,7 +718,8 @@ export class PgDailyRewardDb implements DailyRewardDb {
             String(row.username),
             Number(row.points),
             percent,
-            Number((prizePoolUsd * percent).toFixed(2)),
+            // Floor, never round: the sum of the shares must not exceed the pool.
+            Math.floor(prizePoolCopper * percent),
           ],
         );
       }
@@ -783,19 +733,22 @@ export class PgDailyRewardDb implements DailyRewardDb {
     }
   }
 
-  async pendingPayouts(limit: number, day?: string): Promise<DailyRewardInternalPayoutRow[]> {
+  // The ops readout of prizes still owed. Purely informational now that delivery
+  // is automatic at join: it answers "who has not logged in to collect", not
+  // "what does a payment runner still have to do".
+  async pendingPayouts(limit: number, day?: string): Promise<DailyRewardPayoutRow[]> {
     const boundedLimit = Math.max(1, Math.min(100, limit));
     const dayFilter = day ? 'AND p.day = $2' : '';
     const limitPlaceholder = day ? '$3' : '$2';
     const res = await pool.query(
       `SELECT p.day, p.realm, p.rank, p.account_id, p.username,
               p.points,
-              p.prize_percent, p.prize_usd, p.status, p.tx_signature, p.paid_at,
-              p.signed_transaction, p.void_reason, p.voided_by_id,
+              p.prize_percent, p.prize_copper, p.status, p.paid_at,
+              p.void_reason, p.voided_by_id,
               p.voided_by_username, p.voided_at
          FROM daily_reward_payouts p
         WHERE p.realm = $1
-          AND p.status IN ('pending', 'failed', 'processing')
+          AND p.status = 'pending'
           ${dayFilter}
           AND EXISTS (SELECT 1 FROM accounts a
                        WHERE a.id = p.account_id AND ${ELIGIBLE_ACCOUNT_SQL})
@@ -804,12 +757,43 @@ export class PgDailyRewardDb implements DailyRewardDb {
         LIMIT ${limitPlaceholder}`,
       day ? [REALM, day, boundedLimit] : [REALM, boundedLimit],
     );
-    return res.rows.map(internalPayoutRow);
+    return res.rows.map(payoutRow);
+  }
+
+  /**
+   * Claim and mark in ONE statement: the UPDATE selects the owed rows and stamps
+   * them paid atomically, so two concurrent joins for the same account (a
+   * reconnect racing a takeover) cannot both see the same row as owed. The
+   * caller posts a letter for every row this returns, and returning nothing is
+   * the normal case.
+   *
+   * Delivery is deliberately fenced on moderation state: a banned or excluded
+   * account keeps its rows 'pending' rather than losing them, so lifting a ban
+   * pays out on the next join with no operator action.
+   */
+  async claimOwedPrizes(accountId: number): Promise<DailyRewardOwedPrize[]> {
+    const res = await pool.query(
+      `UPDATE daily_reward_payouts p
+          SET status = 'paid', paid_at = now(), updated_at = now()
+        WHERE p.account_id = $1 AND p.realm = $2 AND p.status = 'pending'
+          AND p.prize_copper > 0
+          AND EXISTS (SELECT 1 FROM accounts a
+                       WHERE a.id = p.account_id AND ${ELIGIBLE_ACCOUNT_SQL})
+          AND NOT EXISTS (SELECT 1 FROM daily_reward_excluded_accounts b
+                           WHERE b.account_id = p.account_id)
+        RETURNING p.day, p.rank, p.prize_copper`,
+      [accountId, REALM],
+    );
+    return res.rows.map((row) => ({
+      day: String(row.day),
+      rank: Number(row.rank),
+      prizeCopper: Number(row.prize_copper),
+    }));
   }
 
   async unannouncedWinnerDays(limit: number): Promise<DailyRewardWinnerAnnouncement[]> {
     const days = await pool.query(
-      `SELECT d.day, d.realm, d.prize_pool_usd, d.finalized_at
+      `SELECT d.day, d.realm, d.prize_pool_copper, d.finalized_at
          FROM daily_reward_days d
         WHERE d.realm = $1
           AND d.finalized_at IS NOT NULL
@@ -828,7 +812,7 @@ export class PgDailyRewardDb implements DailyRewardDb {
       const payouts = await pool.query(
         `SELECT p.day, p.realm, p.rank, p.account_id, p.username,
                 p.points,
-                p.prize_percent, p.prize_usd, p.status, p.tx_signature, p.paid_at,
+                p.prize_percent, p.prize_copper, p.status, p.paid_at,
                 p.void_reason, p.voided_by_id, p.voided_by_username, p.voided_at
            FROM daily_reward_payouts p
           WHERE p.day = $1 AND p.realm = $2
@@ -840,9 +824,9 @@ export class PgDailyRewardDb implements DailyRewardDb {
       out.push({
         day: String(day.day),
         realm: String(day.realm),
-        prizePoolUsd: Number(day.prize_pool_usd),
+        prizePoolCopper: Number(day.prize_pool_copper),
         finalizedAt: dateString(day.finalized_at),
-        payouts: payouts.rows.map(internalPayoutRow),
+        payouts: payouts.rows.map(payoutRow),
       });
     }
     return out;
@@ -856,222 +840,6 @@ export class PgDailyRewardDb implements DailyRewardDb {
       [day, REALM],
     );
     return (res.rowCount ?? 0) > 0;
-  }
-
-  async markPayout(
-    day: string,
-    rank: number,
-    status: string,
-    txSignature: string | null,
-    error: string | null,
-  ): Promise<DailyRewardPayoutMarkOutcome> {
-    const client = await pool.connect();
-    try {
-      await client.query('BEGIN');
-      const res = await client.query(
-        `UPDATE daily_reward_payouts
-            SET status = $4,
-                error = $6,
-                paid_at = CASE WHEN $4 = 'paid' THEN now() ELSE paid_at END,
-                updated_at = now()
-          WHERE day = $1 AND realm = $2 AND rank = $3
-            AND (
-              (status = 'processing' AND tx_signature = $5)
-              OR (status IN ('pending', 'failed') AND $4 = 'failed' AND $5 IS NULL)
-            )`,
-        [day, REALM, rank, status, txSignature, error],
-      );
-      let outcome: DailyRewardPayoutMarkOutcome = (res.rowCount ?? 0) === 1 ? 'updated' : 'missing';
-      if (outcome === 'missing' && status === 'paid' && txSignature) {
-        const existing = await client.query(
-          `SELECT 1
-             FROM daily_reward_payouts
-            WHERE day = $1 AND realm = $2 AND rank = $3
-              AND status = 'paid' AND tx_signature = $4`,
-          [day, REALM, rank, txSignature],
-        );
-        if ((existing.rowCount ?? 0) === 1) outcome = 'already';
-      }
-      if ((res.rowCount ?? 0) === 1 && txSignature) {
-        await client.query(
-          `UPDATE daily_reward_payout_attempts
-              SET status = $4, error = $5, updated_at = now()
-            WHERE day = $1 AND realm = $2 AND rank = $3
-              AND tx_signature = $6 AND kind = 'payout'`,
-          [day, REALM, rank, status, error, txSignature],
-        );
-      }
-      await client.query('COMMIT');
-      return outcome;
-    } catch (err) {
-      await client.query('ROLLBACK').catch(() => undefined);
-      throw err;
-    } finally {
-      client.release();
-    }
-  }
-
-  async claimPayout(
-    day: string,
-    rank: number,
-    txSignature: string,
-    signedTransaction: string | null,
-  ): Promise<DailyRewardPayoutClaimResult> {
-    const client = await pool.connect();
-    try {
-      await client.query('BEGIN');
-      const current = await client.query(
-        `SELECT p.day, p.realm, p.rank, p.account_id, p.username,
-                p.points,
-                p.prize_percent, p.prize_usd, p.status, p.tx_signature, p.paid_at,
-                p.signed_transaction, p.void_reason, p.voided_by_id,
-                p.voided_by_username, p.voided_at
-           FROM daily_reward_payouts p
-          WHERE p.day = $1 AND p.realm = $2 AND p.rank = $3
-          FOR UPDATE OF p`,
-        [day, REALM, rank],
-      );
-      const row = current.rows[0] as Record<string, unknown> | undefined;
-      if (!row) {
-        await client.query('COMMIT');
-        return { outcome: 'not_found' };
-      }
-      const status = String(row.status);
-      if (status === 'processing' || status === 'paid') {
-        await client.query('COMMIT');
-        return { outcome: 'existing', payout: internalPayoutRow(row) };
-      }
-      if (status !== 'pending' && status !== 'failed') {
-        await client.query('COMMIT');
-        return { outcome: 'invalid_status', status };
-      }
-      await client.query(
-        `INSERT INTO daily_reward_payout_attempts
-          (day, realm, rank, kind, status, tx_signature, signed_transaction)
-         VALUES ($1, $2, $3, 'payout', 'prepared', $4, $5)`,
-        [day, REALM, rank, txSignature, signedTransaction],
-      );
-      await client.query(
-        `UPDATE daily_reward_payouts
-            SET status = 'processing', tx_signature = $4, signed_transaction = $5,
-                error = NULL, updated_at = now()
-          WHERE day = $1 AND realm = $2 AND rank = $3`,
-        [day, REALM, rank, txSignature, signedTransaction],
-      );
-      await client.query('COMMIT');
-      return {
-        outcome: 'claimed',
-        payout: internalPayoutRow({
-          ...row,
-          status: 'processing',
-          tx_signature: txSignature,
-          signed_transaction: signedTransaction,
-        }),
-      };
-    } catch (err) {
-      await client.query('ROLLBACK').catch(() => undefined);
-      throw err;
-    } finally {
-      client.release();
-    }
-  }
-
-  async claimPayoutResend(
-    day: string,
-    rank: number,
-    operationId: string,
-    txSignature: string,
-    signedTransaction: string | null,
-  ): Promise<DailyRewardPayoutAttemptClaimResult> {
-    const client = await pool.connect();
-    try {
-      await client.query('BEGIN');
-      const payout = await client.query(
-        `SELECT status
-           FROM daily_reward_payouts
-          WHERE day = $1 AND realm = $2 AND rank = $3
-          FOR UPDATE`,
-        [day, REALM, rank],
-      );
-      if (!payout.rows[0]) {
-        await client.query('COMMIT');
-        return { outcome: 'not_found' };
-      }
-      if (String(payout.rows[0].status) !== 'paid') {
-        await client.query('COMMIT');
-        return { outcome: 'invalid_status', status: String(payout.rows[0].status) };
-      }
-      const existing = await client.query(
-        `SELECT status, operation_id, tx_signature, signed_transaction
-           FROM daily_reward_payout_attempts
-          WHERE day = $1 AND realm = $2 AND rank = $3
-            AND kind = 'resend' AND operation_id = $4
-          ORDER BY id DESC
-          LIMIT 1`,
-        [day, REALM, rank, operationId],
-      );
-      if (existing.rows[0]) {
-        await client.query('COMMIT');
-        return {
-          outcome: 'existing',
-          attempt: {
-            status: String(existing.rows[0].status) as 'prepared' | 'paid' | 'failed',
-            operationId: String(existing.rows[0].operation_id),
-            txSignature: String(existing.rows[0].tx_signature),
-            signedTransaction: optionalString(existing.rows[0].signed_transaction),
-          },
-        };
-      }
-      await client.query(
-        `INSERT INTO daily_reward_payout_attempts
-          (day, realm, rank, kind, operation_id, status, tx_signature, signed_transaction)
-         VALUES ($1, $2, $3, 'resend', $4, 'prepared', $5, $6)`,
-        [day, REALM, rank, operationId, txSignature, signedTransaction],
-      );
-      await client.query('COMMIT');
-      return {
-        outcome: 'claimed',
-        attempt: { status: 'prepared', operationId, txSignature, signedTransaction },
-      };
-    } catch (err) {
-      await client.query('ROLLBACK').catch(() => undefined);
-      throw err;
-    } finally {
-      client.release();
-    }
-  }
-
-  async markPayoutResend(
-    day: string,
-    rank: number,
-    operationId: string,
-    status: 'paid' | 'failed',
-    txSignature: string,
-    error: string | null,
-  ): Promise<boolean> {
-    const res = await pool.query(
-      `UPDATE daily_reward_payout_attempts a
-          SET status = $5, error = $7, updated_at = now()
-        WHERE a.day = $1 AND a.realm = $2 AND a.rank = $3
-          AND a.kind = 'resend' AND a.operation_id = $4
-          AND a.status = 'prepared' AND a.tx_signature = $6
-          AND EXISTS (
-            SELECT 1 FROM daily_reward_payouts p
-             WHERE p.day = a.day AND p.realm = a.realm AND p.rank = a.rank
-               AND p.status = 'paid'
-          )`,
-      [day, REALM, rank, operationId, status, txSignature, error],
-    );
-    if ((res.rowCount ?? 0) > 0) return true;
-    if (status !== 'paid') return false;
-    const existing = await pool.query(
-      `SELECT 1 FROM daily_reward_payout_attempts
-        WHERE day = $1 AND realm = $2 AND rank = $3
-          AND kind = 'resend' AND operation_id = $4
-          AND status = 'paid' AND tx_signature = $5`,
-      [day, REALM, rank, operationId, txSignature],
-    );
-    return (existing.rowCount ?? 0) > 0;
   }
 
   async voidPayout(
@@ -1139,7 +907,7 @@ export class PgDailyRewardDb implements DailyRewardDb {
       return {
         outcome: 'updated',
         payout: {
-          ...internalPayoutRow({
+          ...payoutRow({
             ...row,
             status: 'voided',
             void_reason: reason,
@@ -1227,7 +995,7 @@ export class PgDailyRewardDb implements DailyRewardDb {
       return {
         outcome: 'updated',
         payout: {
-          ...internalPayoutRow({
+          ...payoutRow({
             ...row,
             status: 'pending',
             tx_signature: null,

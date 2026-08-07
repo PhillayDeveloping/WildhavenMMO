@@ -17,7 +17,7 @@ import {
 import { markDialogRoot } from './dialog_root';
 import { tEntity } from './entity_i18n';
 import { esc } from './esc';
-import { formatDateTime, formatNumber, t } from './i18n';
+import { formatDateTime, formatMoney, formatNumber, t } from './i18n';
 import { hydratePortraits, portraitChipHtml } from './portrait_chip';
 import { rovingTarget } from './roving_index';
 import { svgIcon } from './ui_icons';
@@ -725,12 +725,7 @@ export class DailyRewardsWindow {
 
   private summaryHtml(view: Extract<DailyRewardsView, { kind: 'ready' }>): string {
     const s = view.status;
-    const prize = t('hudChrome.dailyRewards.usd', {
-      amount: `$${formatNumber(s.prizePoolUsd, {
-        maximumFractionDigits: 2,
-        minimumFractionDigits: 2,
-      })}`,
-    });
+    const prize = formatMoney(s.prizePoolCopper);
     const reset = formatDateTime(new Date(s.resetAt), { hour: 'numeric', minute: '2-digit' });
     const remaining = this.remainingText(s.resetAt);
     const reason = dailyRewardReasonText(s.eligibility);
@@ -881,9 +876,7 @@ export class DailyRewardsWindow {
         : history.payouts
             .slice(0, 10)
             .map((row) => {
-              const prize = `$${t('hudChrome.dailyRewards.usd', {
-                amount: formatNumber(row.prizeUsd, { maximumFractionDigits: 2 }),
-              })}`;
+              const prize = formatMoney(row.prizeCopper);
               return `<div class="dr-rank"><span>${esc(row.day)} #${row.rank}</span><b>${esc(row.name)}</b><strong>${esc(prize)}</strong></div>`;
             })
             .join('');

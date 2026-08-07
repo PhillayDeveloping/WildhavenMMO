@@ -122,7 +122,8 @@ export const hudChromeStrings = {
       'Daily Rewards is currently disabled. We will announce updates to this feature in the Discord channel.',
     intro:
       'Earn points with one daily spin and rotating tasks, then climb the daily leaderboard for a share of the prize pool.',
-    disclaimer: 'Tasks and the leaderboard reset once per day.',
+    disclaimer:
+      'Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.',
     prize: 'Prize Pool',
     reset: 'Reset',
     endsIn: 'Ends in {time}',
@@ -131,7 +132,6 @@ export const hudChromeStrings = {
     remainingHoursMinutes: '{hours}h {minutes}m',
     remainingDaysHours: '{days}d {hours}h',
     score: 'Score',
-    usd: '{amount} USD',
     unknown: 'Unknown',
     spinTitle: 'Daily Spin',
     spinDialogTitle: 'Daily Reward Spin',
@@ -1281,8 +1281,7 @@ export const hudChromeStrings = {
       aetherRush: 'Aether Rush',
     },
   },
-  playerCard: {
-  },
+  playerCard: {},
   // Landing-page (start screen) accessibility controls.
   landing: {
     // Footer toggle: swap the moving trailer for a static high-contrast backdrop.

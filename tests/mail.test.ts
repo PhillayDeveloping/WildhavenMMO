@@ -5,7 +5,12 @@
 
 import { describe, expect, it } from 'vitest';
 import { HEROIC_MARK_ITEM_ID } from '../src/sim/content/dungeon_difficulty';
-import { HEROIC_MARK_LETTER, QUEST_LETTERS, WELCOME_LETTER } from '../src/sim/content/letters';
+import {
+  DAILY_REWARD_LETTER,
+  HEROIC_MARK_LETTER,
+  QUEST_LETTERS,
+  WELCOME_LETTER,
+} from '../src/sim/content/letters';
 import { MAILBOXES } from '../src/sim/content/mailboxes';
 import { BUILTIN_WORLD } from '../src/sim/data';
 import {
@@ -648,6 +653,77 @@ describe('the Heroic Marks reward letter (mailHeroicMarks)', () => {
     sim.postOffice.mailHeroicMarks(pid, HEROIC_MARK_ITEM_ID, 0);
     sim.postOffice.mailHeroicMarks(pid, HEROIC_MARK_ITEM_ID, -2);
     expect((sim.postOffice as any).mail.length).toBe(before);
+  });
+});
+
+describe('the daily standings prize letter (mailDailyRewardPrize)', () => {
+  it('books a system letter carrying the rank share as attached coin', () => {
+    const sim = makeWorld();
+    const pid = sim.addPlayer('warrior', 'Winner');
+    sim.mailDailyRewardPrize(pid, 500_000); // 50g, the top rank's 20% of a 250g pool
+    tickFor(sim, 1);
+    moveToMailbox(sim, pid);
+    const info = sim.mailInfoFor(pid);
+    const letter = info?.messages.find((m) => m.letterId === DAILY_REWARD_LETTER.letterId);
+    expect(letter).toBeDefined();
+    expect(letter?.kind).toBe('system');
+    expect(letter?.copper).toBe(500_000);
+    // The purse is coin, never goods: an items array would be a different reward.
+    expect(letter?.items).toEqual([]);
+  });
+
+  it('delivers with no postage and no mailbox proximity, like the Heroic Marks letter', () => {
+    // The day finalizes on a schedule, so the winner is nowhere near a raven
+    // pillar (and owes nobody a stamp) when the coin is decided.
+    const sim = makeWorld();
+    const pid = sim.addPlayer('warrior', 'Winner');
+    const before = sim.meta(pid)?.copper ?? 0;
+    moveAwayFromMailboxes(sim, pid);
+    sim.mailDailyRewardPrize(pid, 500_000);
+    tickFor(sim, 1);
+    expect(sim.meta(pid)?.copper).toBe(before); // not credited directly, it rides the letter
+    moveToMailbox(sim, pid);
+    expect(
+      sim.mailInfoFor(pid)?.messages.some((m) => m.letterId === DAILY_REWARD_LETTER.letterId),
+    ).toBe(true);
+  });
+
+  it('refuses an unknown recipient and any non-positive amount', () => {
+    const sim = makeWorld();
+    const pid = sim.addPlayer('warrior', 'Winner');
+    const before = (sim.postOffice as any).mail.length;
+    sim.mailDailyRewardPrize(999999, 500_000); // no such player
+    sim.mailDailyRewardPrize(pid, 0);
+    sim.mailDailyRewardPrize(pid, -500);
+    sim.mailDailyRewardPrize(pid, Number.NaN);
+    expect((sim.postOffice as any).mail.length).toBe(before);
+  });
+
+  it('floors a fractional amount rather than booking a fractional copper', () => {
+    const sim = makeWorld();
+    const pid = sim.addPlayer('warrior', 'Winner');
+    sim.mailDailyRewardPrize(pid, 1234.99);
+    tickFor(sim, 1);
+    moveToMailbox(sim, pid);
+    const letter = sim
+      .mailInfoFor(pid)
+      ?.messages.find((m) => m.letterId === DAILY_REWARD_LETTER.letterId);
+    expect(letter?.copper).toBe(1234);
+  });
+
+  it('books one letter per call, so several owed days arrive as several letters', () => {
+    const sim = makeWorld();
+    const pid = sim.addPlayer('warrior', 'Winner');
+    sim.mailDailyRewardPrize(pid, 500_000);
+    sim.mailDailyRewardPrize(pid, 100_000);
+    tickFor(sim, 1);
+    moveToMailbox(sim, pid);
+    const letters =
+      sim.mailInfoFor(pid)?.messages.filter((m) => m.letterId === DAILY_REWARD_LETTER.letterId) ??
+      [];
+    // Sorted, because the mailbox owns its own display order (newest first) and
+    // this test claims only that both days arrived, each with its own amount.
+    expect(letters.map((m) => m.copper).sort((a, b) => a - b)).toEqual([100_000, 500_000]);
   });
 });
 

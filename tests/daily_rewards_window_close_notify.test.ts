@@ -20,9 +20,8 @@ function worldStub(): IWorld {
   const status = {
     day: '2026-01-01',
     resetAt: '2026-01-02T00:00:00Z',
-    prizePoolUsd: 0,
-    prizePoolSol: null,
-    eligibility: { eligible: false, reason: 'no_wallet' },
+    prizePoolCopper: 0,
+    eligibility: { eligible: true, reason: 'eligible' },
     score: 0,
     rank: null,
     spin: { claimed: false },

@@ -32,15 +32,19 @@ export interface DailyRewardLeaderboardPage {
   total: number;
 }
 
+/**
+ * One past placing and what it won. `prizeCopper` is in the sim's base coin
+ * unit (10000 copper to the gold); `status` is 'pending' until the Ravenpost
+ * letter goes out at the winner's next login, then 'paid'.
+ */
 export interface DailyRewardPayoutLogEntry {
   day: string;
   rank: number;
   name: string;
   points: number;
   prizePercent: number;
-  prizeUsd: number;
+  prizeCopper: number;
   status: string;
-  txSignature: string | null;
   paidAt: string | null;
 }
 
@@ -60,7 +64,8 @@ export interface DailyRewardStatus {
   enabled?: boolean;
   day: string;
   resetAt: string;
-  prizePoolUsd: number;
+  /** The day's purse in copper, split down the ten ranks at day rollover. */
+  prizePoolCopper: number;
   eligibility: DailyRewardEligibilityView;
   score: number;
   rank: number | null;

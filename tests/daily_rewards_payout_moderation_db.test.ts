@@ -131,7 +131,12 @@ const h = vi.hoisted(() => {
     query,
     release,
     connect: vi.fn(async () => ({ query, release })),
-    poolQuery: vi.fn(async (_sql: string, _params: unknown[] = []) => ({ rows: [], rowCount: 0 })),
+    poolQuery: vi.fn(async (_sql: string, _params: unknown[] = []) => ({
+      // Widened from the inferred never[] so a per-test mockResolvedValueOnce can
+      // hand back real rows (claimOwedPrizes returns them).
+      rows: [] as Record<string, unknown>[],
+      rowCount: 0,
+    })),
   };
 });
 
@@ -272,19 +277,16 @@ describe('daily reward payout moderation persistence', () => {
     ]);
   });
 
-  it('keeps voided payouts out of pending work and prevents mark-payout from overwriting them', async () => {
+  it('keeps voided and already-paid prizes out of the outstanding-work readout', async () => {
     const db = new PgDailyRewardDb();
     await db.pendingPayouts(20);
-    await db.markPayout('2026-07-14', 1, 'paid', 'signature', null);
 
     const pendingSql = String(h.poolQuery.mock.calls[0][0]);
-    const markSql = String(
-      h.query.mock.calls.find(([sql]) => String(sql).includes('UPDATE daily_reward_payouts'))?.[0],
-    );
-    expect(pendingSql).toContain("p.status IN ('pending', 'failed', 'processing')");
+    // Exactly 'pending', so neither a delivered prize nor one a moderator struck
+    // can reappear as outstanding work.
+    expect(pendingSql).toContain("p.status = 'pending'");
+    expect(pendingSql).not.toContain("'voided'");
     expect(pendingSql).toContain('p.realm = $1');
-    expect(markSql).toContain("status = 'processing' AND tx_signature = $5");
-    expect(markSql).not.toContain("status = 'paid' AND $4 = 'paid'");
   });
 
   it('optionally filters pending work by day before ordering and limiting it', async () => {
@@ -297,159 +299,47 @@ describe('daily reward payout moderation persistence', () => {
     expect(h.poolQuery.mock.calls[0][1]).toEqual(['test-realm', '2026-07-14', 100]);
   });
 
-  it('durably claims one signed transaction and makes competing workers reuse it', async () => {
-    const db = new PgDailyRewardDb();
-    const first = await db.claimPayout('2026-07-14', 1, 'signature-one', 'signed-one');
-    const second = await db.claimPayout('2026-07-14', 1, 'signature-two', 'signed-two');
-
-    expect(first).toMatchObject({
-      outcome: 'claimed',
-      payout: {
-        status: 'processing',
-        txSignature: 'signature-one',
-        signedTransaction: 'signed-one',
-      },
-    });
-    expect(second).toMatchObject({
-      outcome: 'existing',
-      payout: {
-        status: 'processing',
-        txSignature: 'signature-one',
-        signedTransaction: 'signed-one',
-      },
-    });
-    expect(h.state.attempts).toEqual([
-      {
-        kind: 'payout',
-        status: 'prepared',
-        operationId: null,
-        signature: 'signature-one',
-        transaction: 'signed-one',
-      },
-    ]);
-  });
-
-  it('treats completion of an already-paid authoritative signature as idempotent success', async () => {
-    h.state.row = { ...payout('paid'), tx_signature: 'authoritative-signature' };
-
-    await expect(
-      new PgDailyRewardDb().markPayout('2026-07-14', 1, 'paid', 'authoritative-signature', null),
-    ).resolves.toBe('already');
-    expect(h.state.row).toMatchObject({
-      status: 'paid',
-      tx_signature: 'authoritative-signature',
-    });
-  });
-
-  it('reuses one resend operation after response loss while allowing a later resend', async () => {
-    h.state.row = { ...payout('paid'), tx_signature: 'original-signature' };
-    const db = new PgDailyRewardDb();
-
-    const first = await db.claimPayoutResend(
-      '2026-07-14',
-      1,
-      'operation-one',
-      'resend-signature',
-      'resend-transaction',
-    );
-    const competing = await db.claimPayoutResend(
-      '2026-07-14',
-      1,
-      'operation-one',
-      'discarded-signature',
-      'discarded-transaction',
-    );
-    h.poolQuery.mockImplementationOnce(async () => {
-      h.state.attempts[0].status = 'paid';
-      return { rows: [], rowCount: 1 };
-    });
-    const marked = await db.markPayoutResend(
-      '2026-07-14',
-      1,
-      'operation-one',
-      'paid',
-      'resend-signature',
-      null,
-    );
-    const recovered = await db.claimPayoutResend(
-      '2026-07-14',
-      1,
-      'operation-one',
-      'another-discarded-signature',
-      'another-discarded-transaction',
-    );
-    const later = await db.claimPayoutResend(
-      '2026-07-14',
-      1,
-      'operation-two',
-      'later-signature',
-      'later-transaction',
-    );
-
-    expect(first).toMatchObject({ outcome: 'claimed', attempt: { status: 'prepared' } });
-    expect(competing).toMatchObject({
-      outcome: 'existing',
-      attempt: {
-        status: 'prepared',
-        operationId: 'operation-one',
-        txSignature: 'resend-signature',
-        signedTransaction: 'resend-transaction',
-      },
-    });
-    expect(marked).toBe(true);
-    expect(recovered).toMatchObject({
-      outcome: 'existing',
-      attempt: {
-        status: 'paid',
-        operationId: 'operation-one',
-        txSignature: 'resend-signature',
-        signedTransaction: 'resend-transaction',
-      },
-    });
-    expect(later).toMatchObject({
-      outcome: 'claimed',
-      attempt: {
-        status: 'prepared',
-        operationId: 'operation-two',
-        txSignature: 'later-signature',
-      },
-    });
-    expect(h.state.row.tx_signature).toBe('original-signature');
-  });
-
-  it('returns a terminally failed resend operation without replacing it', async () => {
-    h.state.row = { ...payout('paid'), tx_signature: 'original-signature' };
-    h.state.attempts.push({
-      kind: 'resend',
-      status: 'failed',
-      operationId: 'operation-one',
-      signature: 'failed-signature',
-      transaction: 'failed-transaction',
-    });
-
-    const result = await new PgDailyRewardDb().claimPayoutResend(
-      '2026-07-14',
-      1,
-      'operation-one',
-      'discarded-signature',
-      'discarded-transaction',
-    );
-
-    expect(result).toMatchObject({
-      outcome: 'existing',
-      attempt: {
-        status: 'failed',
-        operationId: 'operation-one',
-        txSignature: 'failed-signature',
-      },
-    });
-    expect(h.state.attempts).toHaveLength(1);
-  });
-
   it('scopes payout history to the active realm', async () => {
     await new PgDailyRewardDb().recentPayouts(25);
     const [sql, params] = h.poolQuery.mock.calls[0];
     expect(String(sql)).toContain('WHERE p.realm = $1');
     expect(params).toEqual(['test-realm', 25]);
+  });
+
+  it('claims owed prizes and marks them paid in ONE statement, so two joins cannot both collect', async () => {
+    h.poolQuery.mockResolvedValueOnce({
+      rows: [{ day: '2026-07-14', rank: 1, prize_copper: '500000' }],
+      rowCount: 1,
+    });
+    const claimed = await new PgDailyRewardDb().claimOwedPrizes(7);
+
+    const [sql, params] = h.poolQuery.mock.calls[0];
+    const text = String(sql);
+    // The whole anti-double-pay argument rests on this being one statement: the
+    // rows are selected BY the UPDATE that marks them, never read then written,
+    // so a racing second join sees them already out of 'pending'.
+    expect(text).toContain('UPDATE daily_reward_payouts');
+    expect(text).toContain("SET status = 'paid'");
+    expect(text).toContain("p.status = 'pending'");
+    expect(text).toContain('RETURNING');
+    expect(text).not.toContain('SELECT p.day, p.realm, p.rank');
+    expect(params).toEqual([7, 'test-realm']);
+    // NUMERIC/BIGINT arrives from pg as a string; it must reach the caller as a
+    // number, or the mail attachment silently becomes a string concat.
+    expect(claimed).toEqual([{ day: '2026-07-14', rank: 1, prizeCopper: 500000 }]);
+  });
+
+  it('holds a banned or excluded winner PENDING rather than forfeiting the prize', async () => {
+    h.poolQuery.mockResolvedValueOnce({ rows: [], rowCount: 0 });
+    await new PgDailyRewardDb().claimOwedPrizes(7);
+
+    const text = String(h.poolQuery.mock.calls[0][0]);
+    // Both moderation gates fence the CLAIM, not a delete: an account that is
+    // banned when it logs in keeps its row owed, so lifting the ban pays it out
+    // at the next join with no operator action.
+    expect(text).toContain('EXISTS (SELECT 1 FROM accounts a');
+    expect(text).toContain('NOT EXISTS (SELECT 1 FROM daily_reward_excluded_accounts b');
+    expect(text).toContain('p.prize_copper > 0');
+    expect(text).not.toContain('DELETE');
   });
 });

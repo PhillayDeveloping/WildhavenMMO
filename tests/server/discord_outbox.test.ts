@@ -186,7 +186,7 @@ function winnerDay(dayIndex: number): unknown {
   return {
     day: `2026-06-${String(20 + dayIndex).padStart(2, '0')}`,
     realm: 'Claudemoon',
-    prizePoolUsd: 150,
+    prizePoolCopper: 1_500_000,
     finalizedAt: '2026-06-30T22:00:00.000Z',
     taskName: 'Complete quests today. Points increase with time spent online.',
     nextTaskName: 'Win an arena match.',
@@ -196,18 +196,15 @@ function winnerDay(dayIndex: number): unknown {
       rank: rank + 1,
       accountId: rank + 1,
       username: `Adventurer${rank + 1}`,
-      walletPubkey: 'Wa11etPubKey1111111111111111111111111111111',
       points: 4200 - rank * 100,
       prizePercent: 0.2,
-      prizeUsd: 30,
+      prizeCopper: 300_000,
       status: 'paid',
-      txSignature: '5'.repeat(88),
       paidAt: '2026-06-30T22:05:00.000Z',
       voidReason: null,
       voidedById: null,
       voidedByUsername: null,
       voidedAt: null,
-      signedTransaction: null,
     })),
   };
 }

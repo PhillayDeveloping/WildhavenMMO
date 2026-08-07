@@ -7,15 +7,15 @@
 //     shared legacy-body activeGuard (createActiveGuard over the lazy guard db),
 //     calling handleDailyRewardApi UNCHANGED;
 //   - the OPS family (POST /internal/daily-rewards/{pending-payouts,payout-history,
-//     leaderboard,mark-payout}), surface 'internal' + meta.envelope 'admin', each gated
+//     leaderboard,void-payout,restore-payout}), surface 'internal' + meta.envelope 'admin', each gated
 //     by the FAIL-CLOSED requireInternalSecretFailClosed gate (401 on both an unset env
 //     secret AND a mismatch, never a feature-off 404, never a fallback secret), calling
 //     handleDailyRewardInternalApi UNCHANGED (the core re-checks the same secret).
 //
 // It is a PARITY-FIRST migration: each thin handler reuses the same sub-dispatcher the
-// ladder serves, so every body, the lenient Number(...)||limit decode, and mark-payout's
+// ladder serves, so every body, the lenient Number(...)||limit decode, and the moderation
 // validation prose are byte-identical. There is NO withBody anywhere (native Seeker spins
-// self-read their artifact proof while web spins stay body-free; mark-payout self-reads via
+// self-read their artifact proof while web spins stay body-free; the moderation arms self-read via
 // the core's un-caught readBody, the
 // dailyRewardsOpsBodyValidationRemap deviation). Native Seeker spin requests use the shared
 // handler's IP-and-account ownership-RPC limiter; web requests retain the legacy behavior.
@@ -42,10 +42,7 @@ const h = vi.hoisted(() => {
     spin: null as { outcomeKey: string; points: number; createdAt: string } | null,
     recentPayouts: [] as unknown[],
     pendingPayouts: [] as unknown[],
-    markPayoutOutcome: 'updated' as 'updated' | 'already' | 'missing',
-    claimPayoutResult: { outcome: 'not_found' } as unknown,
-    claimPayoutResendResult: { outcome: 'not_found' } as unknown,
-    markPayoutResendOk: true,
+    owedPrizes: [] as unknown[],
     voidPayoutResult: { outcome: 'not_found' } as unknown,
     restorePayoutResult: { outcome: 'not_found' } as unknown,
     ensureDayThrows: false,
@@ -79,10 +76,7 @@ const h = vi.hoisted(() => {
     pendingPayouts: vi.fn(async (_limit: number) => state.pendingPayouts),
     unannouncedWinnerDays: vi.fn(async () => [] as unknown[]),
     markWinnersAnnounced: vi.fn(async () => true),
-    markPayout: vi.fn(async () => state.markPayoutOutcome),
-    claimPayout: vi.fn(async () => state.claimPayoutResult),
-    claimPayoutResend: vi.fn(async () => state.claimPayoutResendResult),
-    markPayoutResend: vi.fn(async () => state.markPayoutResendOk),
+    claimOwedPrizes: vi.fn(async () => state.owedPrizes),
     voidPayout: vi.fn(async () => state.voidPayoutResult),
     restorePayout: vi.fn(async () => state.restorePayoutResult),
   };
@@ -115,10 +109,7 @@ vi.mock('../../server/daily_rewards_db', async (importOriginal) => {
     pendingPayouts = h.db.pendingPayouts;
     unannouncedWinnerDays = h.db.unannouncedWinnerDays;
     markWinnersAnnounced = h.db.markWinnersAnnounced;
-    markPayout = h.db.markPayout;
-    claimPayout = h.db.claimPayout;
-    claimPayoutResend = h.db.claimPayoutResend;
-    markPayoutResend = h.db.markPayoutResend;
+    claimOwedPrizes = h.db.claimOwedPrizes;
     voidPayout = h.db.voidPayout;
     restorePayout = h.db.restorePayout;
   }
@@ -149,7 +140,7 @@ const OPS_SECRET_ENV = 'WOC_DAILY_REWARD_SERVICE_SECRET';
 const OPS_SECRET = 'ops-secret';
 const OPS_HEADERS = { [OPS_HEADER]: OPS_SECRET };
 
-// The eleven routes, in declared order: four player reads/mutations and seven payout ops.
+// The ten routes, in declared order: four player reads/mutations and six prize ops.
 const PLAYER_PATHS: ReadonlyArray<readonly [Method, string]> = [
   ['GET', '/api/daily-rewards'],
   ['GET', '/api/daily-rewards/leaderboard'],
@@ -161,7 +152,6 @@ const OPS_PATHS: ReadonlyArray<readonly [Method, string]> = [
   ['POST', '/internal/daily-rewards/pending-payouts'],
   ['POST', '/internal/daily-rewards/payout-history'],
   ['POST', '/internal/daily-rewards/leaderboard'],
-  ['POST', '/internal/daily-rewards/mark-payout'],
   ['POST', '/internal/daily-rewards/void-payout'],
   ['POST', '/internal/daily-rewards/restore-payout'],
 ];
@@ -175,16 +165,14 @@ function payoutRow(rank: number) {
     username: 'alice',
     points: 100,
     prizePercent: 0.2,
-    prizeUsd: 30,
+    prizeCopper: 500_000,
     status: 'pending',
-    txSignature: null,
     paidAt: null,
     voidReason: null,
     voidedById: null,
     voidedByUsername: null,
     voidedAt: null,
     realm: 'test-realm',
-    signedTransaction: null,
   };
 }
 
@@ -230,10 +218,7 @@ function stubPriceConfig(): void {
             : {
                 enabled: true,
                 day: url.searchParams.get('day'),
-                minUsd: 20,
-                prizePoolUsd: 150,
-                wocUsdPrice: 0.5,
-                solUsdPrice: 200,
+                prizePoolCopper: 1_500_000,
                 activeSeconds: 120,
                 dayStartUtcMinutes: 22 * 60,
                 tasks: [
@@ -331,10 +316,7 @@ beforeEach(() => {
   h.state.spin = null;
   h.state.recentPayouts = [];
   h.state.pendingPayouts = [];
-  h.state.markPayoutOutcome = 'updated';
-  h.state.claimPayoutResult = { outcome: 'not_found' };
-  h.state.claimPayoutResendResult = { outcome: 'not_found' };
-  h.state.markPayoutResendOk = true;
+  h.state.owedPrizes = [];
   h.state.voidPayoutResult = { outcome: 'not_found' };
   h.state.restorePayoutResult = { outcome: 'not_found' };
   h.state.ensureDayThrows = false;
@@ -381,7 +363,6 @@ describe('daily-rewards route table', () => {
       'POST /internal/daily-rewards/pending-payouts',
       'POST /internal/daily-rewards/payout-history',
       'POST /internal/daily-rewards/leaderboard',
-      'POST /internal/daily-rewards/mark-payout',
       'POST /internal/daily-rewards/void-payout',
       'POST /internal/daily-rewards/restore-payout',
     ]);
@@ -477,9 +458,13 @@ describe('player routes: thin-handler dispatch', () => {
     const r = await runRoute('GET', '/api/daily-rewards', { headers: { authorization: BEARER } });
     expect(r.status).toBe(200);
     const body = r.body as Record<string, unknown>;
-    // The status payload the shared core builds (no wallet -> a locked, not-eligible view).
+    // The status payload the shared core builds. Every account is eligible now,
+    // so the only not-eligible arm left is a moderation ban.
     expect(body).toMatchObject({
-      prizePoolUsd: 150,
+      // No WOC_DAILY_REWARD_SERVICE_URL is set on this path, so the service takes
+      // its LOCAL fallback config: DEFAULT_POOL_COPPER, 250g. (The old value here
+      // matched the stub only because the old USD default happened to be 150 too.)
+      prizePoolCopper: 2_500_000,
       eligibility: { eligible: true, reason: 'eligible' },
       spin: { claimed: false },
     });
@@ -567,9 +552,8 @@ describe('player routes: thin-handler dispatch', () => {
           name: 'alice',
           points: 100,
           prizePercent: 0.2,
-          prizeUsd: 30,
+          prizeCopper: 500_000,
           status: 'pending',
-          txSignature: null,
           paidAt: null,
         },
       ],
@@ -643,7 +627,7 @@ describe('ops routes: fail-closed secret gate', () => {
     });
     expect(h.db.finalizeDay).toHaveBeenCalledWith(
       '2026-07-01',
-      150,
+      1_500_000,
       [0.2, 0.15, 0.12, 0.1, 0.09, 0.08, 0.075, 0.07, 0.065, 0.05],
     );
     expect(h.db.pendingPayouts).not.toHaveBeenCalled();
@@ -726,186 +710,6 @@ describe('ops routes: fail-closed secret gate', () => {
     expect(r.reached).toBe(true);
     // The requested day flows through verbatim (no clock read for an explicit day).
     expect(h.db.leaderboardPage).toHaveBeenLastCalledWith('2026-07-01', 1, 25);
-  });
-});
-
-// ---------------------------------------------------------------------------
-// 5. mark-payout validation, through the real gate + handler chain.
-// ---------------------------------------------------------------------------
-
-describe('ops mark-payout validation', () => {
-  beforeEach(() => {
-    process.env[OPS_SECRET_ENV] = OPS_SECRET;
-  });
-
-  it('400s an empty body { } -> invalid payout target', async () => {
-    const r = await runRoute('POST', '/internal/daily-rewards/mark-payout', {
-      headers: OPS_HEADERS,
-      body: {},
-    });
-    expect(r.status).toBe(400);
-    expect(r.body).toEqual({ success: false, data: null, error: 'invalid payout target' });
-    expect(h.db.markPayout).not.toHaveBeenCalled();
-  });
-
-  it('400s an unknown status -> invalid payout status', async () => {
-    const r = await runRoute('POST', '/internal/daily-rewards/mark-payout', {
-      headers: OPS_HEADERS,
-      body: { day: '2026-07-01', rank: 1, status: 'nope' },
-    });
-    expect(r.status).toBe(400);
-    expect(r.body).toEqual({ success: false, data: null, error: 'invalid payout status' });
-    expect(h.db.markPayout).not.toHaveBeenCalled();
-  });
-
-  it('404s when markPayout finds no matching row', async () => {
-    h.state.markPayoutOutcome = 'missing';
-    const r = await runRoute('POST', '/internal/daily-rewards/mark-payout', {
-      headers: OPS_HEADERS,
-      body: { day: '2026-07-01', rank: 1, status: 'paid', txSignature: 'signature' },
-    });
-    expect(r.status).toBe(404);
-    expect(r.body).toEqual({ success: false, data: null, error: 'payout not found' });
-    expect(h.db.markPayout).toHaveBeenCalledWith('2026-07-01', 1, 'paid', 'signature', null);
-  });
-
-  it('200s { ok: true } when markPayout succeeds', async () => {
-    h.state.markPayoutOutcome = 'updated';
-    const r = await runRoute('POST', '/internal/daily-rewards/mark-payout', {
-      headers: OPS_HEADERS,
-      body: { day: '2026-07-01', rank: 1, status: 'paid', txSignature: 'sig' },
-    });
-    expect(r.status).toBe(200);
-    expect(r.body).toEqual({ success: true, data: { ok: true }, error: null });
-    expect(h.db.markPayout).toHaveBeenCalledWith('2026-07-01', 1, 'paid', 'sig', null);
-  });
-
-  it('claims and returns the authoritative signed transaction before broadcast', async () => {
-    h.state.claimPayoutResult = {
-      outcome: 'claimed',
-      payout: {
-        ...payoutRow(1),
-        status: 'processing',
-        txSignature: 'authoritative-signature',
-        signedTransaction: 'authoritative-transaction',
-      },
-    };
-    const r = await runRoute('POST', '/internal/daily-rewards/mark-payout', {
-      headers: OPS_HEADERS,
-      body: {
-        day: '2026-07-01',
-        rank: 1,
-        status: 'processing',
-        txSignature: 'proposed-signature',
-        signedTransaction: 'proposed-transaction',
-      },
-    });
-
-    expect(r.status).toBe(200);
-    expect(r.body).toMatchObject({
-      success: true,
-      data: {
-        ok: true,
-        payout: {
-          txSignature: 'authoritative-signature',
-          signedTransaction: 'authoritative-transaction',
-        },
-      },
-    });
-    expect(h.db.claimPayout).toHaveBeenCalledWith(
-      '2026-07-01',
-      1,
-      'proposed-signature',
-      'proposed-transaction',
-    );
-  });
-
-  it('claims a durable resend attempt before broadcast', async () => {
-    h.state.claimPayoutResendResult = {
-      outcome: 'claimed',
-      attempt: {
-        status: 'prepared',
-        operationId: 'operation-one',
-        txSignature: 'resend-signature',
-        signedTransaction: 'resend-transaction',
-      },
-    };
-    const r = await runRoute('POST', '/internal/daily-rewards/mark-payout', {
-      headers: OPS_HEADERS,
-      body: {
-        day: '2026-07-01',
-        rank: 1,
-        status: 'resend_processing',
-        operationId: 'operation-one',
-        txSignature: 'resend-signature',
-        signedTransaction: 'resend-transaction',
-      },
-    });
-
-    expect(r.status).toBe(200);
-    expect(h.db.claimPayoutResend).toHaveBeenCalledWith(
-      '2026-07-01',
-      1,
-      'operation-one',
-      'resend-signature',
-      'resend-transaction',
-    );
-    expect(h.db.markPayout).not.toHaveBeenCalled();
-    expect(r.body).toMatchObject({
-      success: true,
-      data: {
-        attempt: {
-          status: 'prepared',
-          operationId: 'operation-one',
-          txSignature: 'resend-signature',
-          signedTransaction: 'resend-transaction',
-        },
-      },
-    });
-  });
-
-  it('requires an explicit operation id for resend idempotency', async () => {
-    const r = await runRoute('POST', '/internal/daily-rewards/mark-payout', {
-      headers: OPS_HEADERS,
-      body: {
-        day: '2026-07-01',
-        rank: 1,
-        status: 'resend_processing',
-        txSignature: 'resend-signature',
-        signedTransaction: 'resend-transaction',
-      },
-    });
-
-    expect(r.status).toBe(400);
-    expect(r.body).toMatchObject({
-      success: false,
-      error: 'valid resend operation id is required',
-    });
-    expect(h.db.claimPayoutResend).not.toHaveBeenCalled();
-  });
-
-  it('marks the prepared resend attempt paid without changing the original payout', async () => {
-    const r = await runRoute('POST', '/internal/daily-rewards/mark-payout', {
-      headers: OPS_HEADERS,
-      body: {
-        day: '2026-07-01',
-        rank: 1,
-        status: 'resent',
-        operationId: 'operation-one',
-        txSignature: 'resend-signature',
-      },
-    });
-
-    expect(r.status).toBe(200);
-    expect(h.db.markPayoutResend).toHaveBeenCalledWith(
-      '2026-07-01',
-      1,
-      'operation-one',
-      'paid',
-      'resend-signature',
-      null,
-    );
-    expect(h.db.markPayout).not.toHaveBeenCalled();
   });
 });
 
@@ -1014,20 +818,22 @@ describe('ops payout moderation', () => {
 // ---------------------------------------------------------------------------
 
 describe('body-validation remap deviations', () => {
-  it('ops: a mark-payout body of INVALID JSON 500s the admin envelope (dailyRewardsOpsBodyValidationRemap)', async () => {
-    // mark-payout self-reads the body via the core's un-caught readBody. A malformed body
-    // rejects there and escapes to withErrors, which serializes the admin 500 envelope.
-    // The legacy ladder counterfactual was a HANG (no outer catch).
+  it('ops: a void-payout body of INVALID JSON 500s the admin envelope (dailyRewardsOpsBodyValidationRemap)', async () => {
+    // void-payout self-reads the body via the core's un-caught readBody (it is the
+    // surviving self-reading ops arm now that the external payout runner's
+    // mark-payout is gone). A malformed body rejects there and escapes to
+    // withErrors, which serializes the admin 500 envelope. The legacy ladder
+    // counterfactual was a HANG (no outer catch).
     process.env[OPS_SECRET_ENV] = OPS_SECRET;
     const errSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
     const req = makeReq({
       method: 'POST',
-      url: '/internal/daily-rewards/mark-payout',
+      url: '/internal/daily-rewards/void-payout',
       headers: OPS_HEADERS,
       body: '{ not valid json',
     });
 
-    const r = await runRoute('POST', '/internal/daily-rewards/mark-payout', {
+    const r = await runRoute('POST', '/internal/daily-rewards/void-payout', {
       headers: OPS_HEADERS,
       req,
     });
@@ -1036,7 +842,7 @@ describe('body-validation remap deviations', () => {
     expect(r.body).toEqual({ success: false, data: null, error: 'internal.error' });
     expect(r.contentType).toBe('application/json');
     expect(r.headers['x-request-id']).toBeDefined();
-    expect(h.db.markPayout).not.toHaveBeenCalled();
+    expect(h.db.voidPayout).not.toHaveBeenCalled();
     errSpy.mockRestore();
   });
 

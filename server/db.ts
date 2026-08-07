@@ -851,11 +851,14 @@ CREATE TABLE IF NOT EXISTS epic_links (
   epic_account_id TEXT NOT NULL UNIQUE,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+-- The daily standings purse is in-game coin, held in COPPER (the sim's base
+-- unit, 10000 to the gold) so the whole pipeline is integer math and no rounding
+-- can mint or burn a fraction. BIGINT because a pool times a percent split is
+-- summed per rank and a generous pool over many days would crowd INT.
 CREATE TABLE IF NOT EXISTS daily_reward_days (
   day TEXT NOT NULL,
   realm TEXT NOT NULL DEFAULT '${REALM_SQL_DEFAULT}',
-  prize_pool_usd NUMERIC NOT NULL,
-  woc_usd_price NUMERIC,
+  prize_pool_copper BIGINT NOT NULL,
   finalized_at TIMESTAMPTZ,
   discord_announced_at TIMESTAMPTZ,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
@@ -935,6 +938,10 @@ CREATE TABLE IF NOT EXISTS daily_reward_task_completions (
   completed_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   PRIMARY KEY (day, realm, account_id, task_id)
 );
+-- One row per placing account per day, holding that rank's share of the purse.
+-- The prize is delivered in-game by Ravenpost letter the next time the winner
+-- logs in (server/daily_rewards_delivery.ts), so the status vocabulary is just
+-- 'pending' (owed), 'paid' (letter posted), and 'voided' (moderation struck it).
 CREATE TABLE IF NOT EXISTS daily_reward_payouts (
   day TEXT NOT NULL,
   realm TEXT NOT NULL DEFAULT '${REALM_SQL_DEFAULT}',
@@ -943,10 +950,8 @@ CREATE TABLE IF NOT EXISTS daily_reward_payouts (
   username TEXT NOT NULL,
   points INT NOT NULL,
   prize_percent NUMERIC NOT NULL,
-  prize_usd NUMERIC NOT NULL,
+  prize_copper BIGINT NOT NULL,
   status TEXT NOT NULL DEFAULT 'pending',
-  tx_signature TEXT,
-  error TEXT,
   paid_at TIMESTAMPTZ,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
@@ -956,9 +961,12 @@ ALTER TABLE daily_reward_payouts ADD COLUMN IF NOT EXISTS void_reason TEXT;
 ALTER TABLE daily_reward_payouts ADD COLUMN IF NOT EXISTS voided_by_id TEXT;
 ALTER TABLE daily_reward_payouts ADD COLUMN IF NOT EXISTS voided_by_username TEXT;
 ALTER TABLE daily_reward_payouts ADD COLUMN IF NOT EXISTS voided_at TIMESTAMPTZ;
-ALTER TABLE daily_reward_payouts ADD COLUMN IF NOT EXISTS signed_transaction TEXT;
 CREATE INDEX IF NOT EXISTS daily_reward_payouts_status
   ON daily_reward_payouts(status, day DESC, realm);
+-- The delivery sweep's read: every unpaid row this account is owed, cheapest as
+-- an account-leading index because it runs once per join.
+CREATE INDEX IF NOT EXISTS daily_reward_payouts_owed
+  ON daily_reward_payouts(account_id, realm, status);
 CREATE TABLE IF NOT EXISTS daily_reward_payout_moderation_audit (
   id BIGSERIAL PRIMARY KEY,
   day TEXT NOT NULL,
@@ -975,27 +983,10 @@ CREATE TABLE IF NOT EXISTS daily_reward_payout_moderation_audit (
 );
 CREATE INDEX IF NOT EXISTS daily_reward_payout_moderation_target
   ON daily_reward_payout_moderation_audit(day, realm, rank, created_at DESC);
-CREATE TABLE IF NOT EXISTS daily_reward_payout_attempts (
-  id BIGSERIAL PRIMARY KEY,
-  day TEXT NOT NULL,
-  realm TEXT NOT NULL,
-  rank INT NOT NULL,
-  kind TEXT NOT NULL CHECK (kind IN ('payout', 'resend')),
-  operation_id TEXT,
-  status TEXT NOT NULL CHECK (status IN ('prepared', 'paid', 'failed')),
-  tx_signature TEXT NOT NULL UNIQUE,
-  signed_transaction TEXT,
-  error TEXT,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-  updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-  FOREIGN KEY (day, realm, rank) REFERENCES daily_reward_payouts(day, realm, rank)
-);
-CREATE INDEX IF NOT EXISTS daily_reward_payout_attempts_target
-  ON daily_reward_payout_attempts(day, realm, rank, created_at DESC);
-ALTER TABLE daily_reward_payout_attempts ADD COLUMN IF NOT EXISTS operation_id TEXT;
-CREATE UNIQUE INDEX IF NOT EXISTS daily_reward_payout_attempts_operation
-  ON daily_reward_payout_attempts(day, realm, rank, kind, operation_id)
-  WHERE operation_id IS NOT NULL;
+-- There is deliberately no payout-attempts table. Upstream needed one to make an
+-- external payment runner's retries idempotent across a network it did not
+-- control. Delivery here is a local write inside one transaction against a row
+-- this process owns, so the payout row's own status IS the ledger.
 -- Shareable player cards (docs/prd/woc/player-card.md). One card per character;
 -- the PNG is composited client-side and stored here as bytes so any realm
 -- process (all share this database) can serve /p/<slug> and the OG image. slug

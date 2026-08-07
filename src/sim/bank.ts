@@ -41,7 +41,7 @@ export const BANK_EXPANSION_PRICES: readonly number[] = [
 ];
 
 /** The most bonus slots the server's entitlement registry can grant: +2 email,
- *  +2 Discord, +2 wallet, +2 per qualified referral capped at 5 (+10), so 16.
+ *  +2 Discord, +2 per qualified referral capped at 5 (+10), so 14.
  *  This is the load-path clamp for `bonusSlots` (a tampered save must not mint
  *  capacity the registry cannot grant). The server-side registry ceiling is pinned
  *  equal to this constant (tests/bank_entitlements.test.ts), so a future source
