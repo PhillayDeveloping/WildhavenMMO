@@ -707,11 +707,12 @@ describe('bank_window: bonus-slot breakdown footer', () => {
       'hudChrome.bank.bonusStatusEarned',
       'hudChrome.bank.bonusSourceEmail',
       'hudChrome.bank.bonusSourceDiscord',
-      'hudChrome.bank.bonusSourceWallet',
+      // No bonusSourceWallet / bonusAdvertWallet: the wallet entitlement source
+      // went with web3 (which is why BANK_MAX_BONUS_SLOTS is 14, not 16), and
+      // both keys are gone from the catalog too, so the painter cannot name them.
       'hudChrome.bank.bonusSourceReferral',
       'hudChrome.bank.bonusAdvertEmail',
       'hudChrome.bank.bonusAdvertDiscord',
-      'hudChrome.bank.bonusAdvertWallet',
       'hudChrome.bank.bonusReferralProgress',
       'hudChrome.bank.bonusReferralExplainer',
       'hudChrome.bank.bonusSectionAria',
