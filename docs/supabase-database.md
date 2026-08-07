@@ -39,7 +39,22 @@ covers all three at once.
    DATABASE_URL=postgresql://postgres.<ref>:<password>@aws-0-<region>.pooler.supabase.com:5432/postgres?sslmode=require
    ```
 
-4. **There is no separate migration command.** `ensureSchema()` runs at boot in
+4. **Check the string before you start the server.**
+
+   ```bash
+   npm run db:check
+   ```
+
+   This connects exactly the way `server/db.ts` does (connection string only, no
+   `ssl` option), then proves the three things that actually decide whether the
+   boot will succeed: TLS negotiated, the role may `CREATE TABLE`, and
+   `max_connections` can seat a realm. It never prints your password, and its only
+   write is a temporary table inside a rolled-back transaction. A failure names the
+   fix rather than the driver error: the pooler-vs-direct hostname mix-up, the
+   `postgres.<ref>` username shape, and the TLS-verification causes in likelihood
+   order all have their own message.
+
+5. **There is no separate migration command.** `ensureSchema()` runs at boot in
    `server/main.ts`, before the server listens, under a
    `pg_advisory_xact_lock` so concurrent realm processes serialize. Starting the
    server once against the fresh Supabase database creates the schema.
@@ -48,8 +63,13 @@ covers all three at once.
    npm run server
    ```
 
-5. **From then on**, just `npm run server` whenever you are hosting. Characters
+6. **From then on**, just `npm run server` whenever you are hosting. Characters
    and accounts persist in Supabase even while the server process is stopped.
+
+   Note that `docker-compose.yml` is NOT this path: its `game` service builds a
+   `DATABASE_URL` pointing at the bundled `postgres` service and waits on that
+   service's health check. Running the server against Supabase means running it
+   directly (`npm run server`), which is what this document assumes throughout.
 
 ## Two things worth knowing before the first connection
 
