@@ -382,7 +382,6 @@ describe('characterization: internal handleDailyRewardInternalApi (late-arrival 
     { path: '/internal/daily-rewards/pending-payouts', name: 'daily_rewards_pending_payouts' },
     { path: '/internal/daily-rewards/payout-history', name: 'daily_rewards_payout_history' },
     { path: '/internal/daily-rewards/leaderboard', name: 'daily_rewards_leaderboard' },
-    { path: '/internal/daily-rewards/mark-payout', name: 'daily_rewards_mark_payout' },
     { path: '/internal/daily-rewards/void-payout', name: 'daily_rewards_void_payout' },
     { path: '/internal/daily-rewards/restore-payout', name: 'daily_rewards_restore_payout' },
   ] as const;
@@ -432,16 +431,16 @@ describe('characterization: internal handleDailyRewardInternalApi (late-arrival 
     });
   });
 
-  // and mark-payout validates its payout target BEFORE the first query, so the
+  // void-payout validates its moderation target BEFORE the first query, so the
   // empty-body 400 freezes the handler's validation prose through the real gate.
-  it('POST /internal/daily-rewards/mark-payout (correct secret, empty body) -> 400 invalid payout target', async () => {
+  it('POST /internal/daily-rewards/void-payout (correct secret, empty body) -> 400 invalid payout target', async () => {
     await withEnv(SECRET_ENV.dailyReward, GATE_ENABLED_VALUE, async () => {
       await characterize(
         FIXTURE_SUBDIR.internal,
-        'daily_rewards_mark_payout_empty_400',
+        'daily_rewards_void_payout_empty_400',
         makeReq({
           method: 'POST',
-          url: '/internal/daily-rewards/mark-payout',
+          url: '/internal/daily-rewards/void-payout',
           headers: { [DAILY_REWARD_HEADER]: GATE_ENABLED_VALUE },
           body: {},
         }),

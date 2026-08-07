@@ -1,5 +1,5 @@
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
-import { join, relative } from 'node:path';
+import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 
@@ -275,7 +275,6 @@ const UI_PURE_CORES = [
   'src/ui/claudium_launcher_balance_core.ts',
   'src/ui/claudium_view.ts',
   'src/ui/woc_store_view.ts',
-  'src/ui/wallet_connection_view.ts',
   'src/ui/hud/loot/loot_roll_status_view.ts',
   'src/ui/hud/loot/loot_settings_view.ts',
   'src/ui/craft_celebration_view.ts',
@@ -1026,13 +1025,19 @@ describe('src/render pure-core invariants', () => {
 // the `it()` below) so the regression test further down can run the EXACT same
 // derivation against a mutated copy of the real arrays instead of hand-duplicating
 // the logic, which would risk the two silently drifting apart.
+// `relative` yields platform-native separators, so on Windows every path here
+// would come back as `src\ui\...` and miss the forward-slash pin below. Both
+// producers normalize to POSIX separators so the comparison is the same on
+// every host.
+const toPosix = (p: string): string => p.split(sep).join('/');
+
 function deriveBareNamedCores(uiCores: string[], renderCores: string[]): string[] {
   const viewOrCoreRe = /_(?:view|core)\.ts$/;
   return [
     ...new Set(
       [...uiCores, ...renderCores]
         .filter((f) => !viewOrCoreRe.test(f))
-        .map((f) => relative(repoRoot, f)),
+        .map((f) => toPosix(relative(repoRoot, f))),
     ),
   ].sort();
 }
@@ -1125,7 +1130,7 @@ describe('curated bare-named pure cores (cross-check)', () => {
     // but forgotten here would escape both onDiskCores() (bare name) and the loop above
     // (not listed), reopening the gap; this equality makes that omission fail.
     const derivedBare = deriveBareNamedCores(UI_PURE_CORES, RENDER_PURE_CORES);
-    const bareNamedRel = [...new Set(BARE_NAMED.map((f) => relative(repoRoot, f)))].sort();
+    const bareNamedRel = [...new Set(BARE_NAMED.map((f) => toPosix(relative(repoRoot, f))))].sort();
     expect(
       derivedBare,
       'BARE_NAMED must equal the registered cores whose name is bare (not _view/_core)',
@@ -1156,7 +1161,7 @@ describe('curated bare-named pure cores (cross-check)', () => {
 
     const derivedBare = deriveBareNamedCores(mutatedUiCores, RENDER_PURE_CORES);
     const mutatedBareNamedRel = [
-      ...new Set(mutatedBareNamed.map((f) => relative(repoRoot, f))),
+      ...new Set(mutatedBareNamed.map((f) => toPosix(relative(repoRoot, f)))),
     ].sort();
     // The OLD derived check: still green after the synchronized delete (the gap).
     expect(derivedBare).toEqual(mutatedBareNamedRel);
@@ -1479,7 +1484,6 @@ const UI_DOM_MODULES = [
   'src/ui/meters.ts',
   'src/ui/meters_frame.ts',
   'src/ui/minimap_gilded_ornament.ts',
-  'src/ui/mobile_wallet_launcher.ts',
   'src/ui/mount_race_controls.ts',
   'src/ui/mount_race_strip.ts',
   'src/ui/aura_overlay_config.ts',

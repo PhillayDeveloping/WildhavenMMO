@@ -2,7 +2,7 @@
   "body": "{\"error\":\"access_denied\",\"error_description\":\"log in to your Wildhaven account first\"}",
   "headers": {
     "cache-control": "no-store",
-    "content-length": 97,
+    "content-length": 86,
     "content-type": "application/json",
     "cross-origin-opener-policy": "same-origin",
     "cross-origin-resource-policy": "same-origin",
