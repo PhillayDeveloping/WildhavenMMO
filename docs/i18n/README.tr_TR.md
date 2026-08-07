@@ -55,8 +55,6 @@ Aynı tohum, aynı dünya, her yerde. Gördüklerinin büyük bölümü hâlâ �
 - **Her platformda yerel uygulamalar**: Windows, Linux ve macOS için otomatik güncellemeli ve isteğe bağlı Steam başarım yansıtmalı imzalı masaüstü yükleyicileri, ayrıca iOS ve Android yapıları, hepsi tarayıcı istemcisini ve aynı çevrimiçi dünyayı paylaşır.
 - **Elindeki makineye ölçeklenir**: grafik ön ayarları ve otomatik bir kare hızı düzenleyicisi görsel zenginliği akıcılıkla takas eder ve bir oyuncunun tepki verdiği hiçbir şeyi gizlemelerini engelleyen bir adalet kuralına tabidir.
 - Gymnasium bağlamaları, ödül şekillendirme ve bir kıyaslama modu içeren **başsız RL ortamı**.
-- **$WOC yardımcı işlevi, tamamen isteğe bağlı**: sahiplik flair'i, Daily Rewards ve kozmetik mağazada indirimli bir ödeme seçeneği için bir Solana cüzdanı bağla. Oyun ücretsiz oynanabilir ve emanetsiz kalır.
-- **Season 1 Armory**: fiat, SOL, USDC veya $WOC ile satın alınan Claudium'u kullanarak WOC Store üzerinden kozmetik silah kaplamaları topla. Kozmetikler asla savaş gücü sağlamaz.
 
 ## Ekran görüntüleri
 
@@ -180,28 +178,6 @@ env.close()
 
 Protokol ve bağlamalar `headless/CLAUDE.md` ve `python/CLAUDE.md` içinde belgelenmiştir.
 
-<a id="web3"></a>
-
-## Web3
-
-Wildhaven, Solana üzerindeki topluluk jetonumuz **$WOC** etrafında web3 yerlisidir. Bir Solana cüzdanı bağla, tek bir imzayla hesabına ilişkilendir (emanetsiz, onaylanacak işlem yok) ve salt okunur $WOC bakiyen, kozmetik bir sahiplik kademesi rozetinin yanında HUD'da görünür.
-
-$WOC'un canlı oyunda isteğe bağlı bir yardımcı işlevi de vardır:
-
-- **WOC Store**: tek yönlü kozmetik para birimi olan Claudium'u fiat, SOL, USDC veya $WOC ile satın al. $WOC ödeme rayı diğerlerine göre indirimlidir.
-- **Season 1 Armory**: Claudium'u kozmetik silah kaplaması koleksiyonlarına harca. Mağaza satın alımları istatistik veya savaş gücü eklemez.
-- **Daily Rewards**: uygun doğrulanmış sahipler, günlük bir çevirme ve dönüşümlü görevler aracılığıyla puan kazanabilir, sonra günlük ödül havuzundan bir pay için yarışabilir.
-
-Bunların hiçbiri oynamak için gerekli değildir. Cüzdan ilişkilendirme isteğe bağlı ve emanetsizdir, kazan-için-öde yoktur ve tüm oyun bir cüzdan bağlamadan da gayet iyi oynanır.
-
-**$WOC sözleşme adresi (Solana):**
-
-```
-3WjLscH2JsXLEFJZRA9z8ti8yRGxWGKbqymPd7UicRth
-```
-
-Jeton hakkında daha fazla bilgi: [wildhaven.example](https://wildhaven.example/).
-
 ## Dünyada bir tur
 
 ### Dokuz sınıf
@@ -262,8 +238,6 @@ Dereceli galibiyetler ve Fiesta alaşağıları **Honor** kazandırır; kasabada
 - **Loncalar**: tüzükler, kadrolar, rütbeler ve lonca sohbeti.
 - **The Guide**: `/wiki` adresinde sınıfları, yaratıkları, bölgeleri ve deed'leri kapsayan, aranabilir site içi bir wiki; doğrudan canlı oyun içeriğinden üretilir, böylece belgelediği dünyadan sapması mümkün değildir.
 - **The Vale Cup ve Card Duel**: Eastbrook'un güneyindeki Sowfield stadyumunda 1v1'den 5v5'e formatlarda boarball ve kasabada Card Master'ın düzenlediği hızlı, karşılıklı bir kart oyunu.
-- **Daily Rewards**: doğrulanmış $WOC sahipleri günlük bir çevirmeden ve dönüşümlü görevlerden lider tablosu puanı kazanabilir, günlük ödül havuzundan otomatik ödemelerle.
-- **WOC Store ve Season 1 Armory**: Claudium'u fiat, SOL, USDC veya $WOC ile satın al, sonra onu tamamen kozmetik silah kaplamalarına harca.
 - **Yeme ve içme**: geri kazanmak için otur, hasar veya ayağa kalkmayla bozulur ve evet, aynı anda yiyip içebilirsin.
 - Yiyecek ve su satın alan ve dürüst beyaz donanım satan **satıcılar**, parayı altın, gümüş ve bakır olarak gösterir.
 - **Kişisel bir banka** (the Gilded Strongbox): her merkez kasabadaki kasadarlar karakter başına bir kasa tutar, 24 yuvadan parayla satın alınan genişletmelerle 96 yuvaya kadar, ayrıca doğrulanmış bir e-posta, ilişkilendirilmiş hesaplar ve davetlerle çevrimiçi kazanılan bonus yuvalar.
@@ -414,7 +388,6 @@ Yeniden dağıtmadan önce kaldırman veya değiştirmen gerekenler:
 - `public/ui/skills/` altındaki **CraftPix sınıf yetenek simgeleri** Levy Street tarafından satın alındı ve **yeniden dağıtılamaz**, o yüzden onları göndermek istiyorsan kendi lisansını satın al;
 - **@jamiecypher ses efektleri** CC BY-NC 4.0'dır, yani onları atıfla ve ticari olmayan biçimde paylaş, ancak ticari izin yalnızca bu proje için geçerlidir;
 - **mağaza ve prestij sanatı** (Season 1 Armory, Claudium seti, meslekler sanat seti, Book of Deeds simgeleri, seçkin ejderha amblemi) sipariş üzerine yapılmış ticari sanattır ve **hakları saklıdır**;
-- **üçüncü taraf marka işaretleri** (Twitch, X, Kick, YouTube, Discord, Solana, USDC) sahiplerinin ticari markalarıdır ve onları lisanslamak bize düşmez;
 - **izinle kullanılan bir avuç simge ve kayıt** başkasına geçirilmek için izin gerektirir.
 
 [CREDITS.md](../../CREDITS.md) yetkili listedir ve varlık başına bir yeniden dağıtım sütunu içerir. Bir varlık orada listelenmişse, o lisans projenin MIT lisansının önüne geçer. O kayıt hâlâ tamamlanıyor, bu yüzden orada eksik olan bir medya varlığı serbest değil, kaydedilmemiş demektir: ona güvenmeden önce sor. Kaynak kodu için durum tersidir ve ayrılmayan her şey MIT'dir.

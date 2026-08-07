@@ -30,15 +30,9 @@ export interface AccountPortalModel {
   email: string;
 }
 
-export type AccountPortalSection = 'settings' | 'wallet' | 'characters' | 'companion' | 'logout';
+export type AccountPortalSection = 'settings' | 'characters' | 'companion' | 'logout';
 
-const SECTION_ORDER: AccountPortalSection[] = [
-  'settings',
-  'wallet',
-  'characters',
-  'companion',
-  'logout',
-];
+const SECTION_ORDER: AccountPortalSection[] = ['settings', 'characters', 'companion', 'logout'];
 
 // Password length bounds — mirror the server's validPassword (6..128 chars) so
 // the client gate matches what the server will accept byte-for-byte.

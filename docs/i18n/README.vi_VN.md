@@ -55,8 +55,6 @@ Cùng một seed, cùng một thế giới, ở mọi nơi. Phần lớn những
 - **Ứng dụng gốc trên mọi nền tảng**: trình cài đặt desktop có ký số cho Windows, Linux, và macOS với cập nhật tự động và tùy chọn phản chiếu thành tựu Steam, cộng thêm bản dựng iOS và Android, tất cả dùng chung client trình duyệt và cùng một thế giới trực tuyến.
 - **Co giãn theo cỗ máy bạn có**: các preset đồ họa và một bộ điều tiết khung hình tự động đánh đổi độ phong phú hình ảnh lấy sự mượt mà, và bị ràng buộc bởi một luật công bằng ngăn chúng che giấu bất cứ thứ gì người chơi phải phản ứng.
 - **Môi trường RL không giao diện** với các ràng buộc Gymnasium, định hình phần thưởng, và một chế độ benchmark.
-- **Tiện ích $WOC, hoàn toàn tùy chọn**: liên kết một ví Solana để có huy hiệu người nắm giữ, Daily Rewards, và một tùy chọn thanh toán được giảm giá trong cửa hàng trang trí. Trò chơi vẫn miễn phí và không giữ tài sản hộ.
-- **Season 1 Armory**: sưu tầm các skin vũ khí trang trí qua WOC Store, dùng Claudium mua bằng tiền pháp định, SOL, USDC, hoặc $WOC. Đồ trang trí không bao giờ mang lại sức mạnh chiến đấu.
 
 ## Ảnh chụp màn hình
 
@@ -180,28 +178,6 @@ env.close()
 
 Giao thức và các ràng buộc được tài liệu hóa trong `headless/CLAUDE.md` và `python/CLAUDE.md`.
 
-<a id="web3"></a>
-
-## Web3
-
-Wildhaven mang bản chất web3 xoay quanh **$WOC**, token cộng đồng của chúng tôi trên Solana. Kết nối một ví Solana, liên kết nó với tài khoản của bạn bằng một chữ ký (không giữ tài sản hộ, không có giao dịch nào cần duyệt), và số dư $WOC chỉ đọc của bạn sẽ hiện lên trong HUD cùng với một huy hiệu bậc người nắm giữ mang tính trang trí.
-
-$WOC cũng có tiện ích tùy chọn trong trò chơi trực tiếp:
-
-- **WOC Store**: mua Claudium, đồng tiền trang trí một chiều, bằng tiền pháp định, SOL, USDC, hoặc $WOC. Kênh thanh toán $WOC được giảm giá so với các kênh còn lại.
-- **Season 1 Armory**: tiêu Claudium vào các bộ sưu tập skin vũ khí trang trí. Các giao dịch mua trong cửa hàng không thêm chỉ số hay sức mạnh chiến đấu.
-- **Daily Rewards**: những người nắm giữ đã xác minh và đủ điều kiện có thể kiếm điểm qua một lượt quay mỗi ngày và các nhiệm vụ luân phiên, rồi cạnh tranh giành một phần quỹ thưởng hằng ngày.
-
-Không có thứ nào trong số này là cần thiết để chơi. Việc liên kết ví là tùy chọn và không giữ tài sản hộ, không có pay-to-win, và toàn bộ trò chơi vẫn chơi tốt mà không cần kết nối ví bao giờ.
-
-**Địa chỉ hợp đồng $WOC (Solana):**
-
-```
-3WjLscH2JsXLEFJZRA9z8ti8yRGxWGKbqymPd7UicRth
-```
-
-Tìm hiểu thêm về token tại [wildhaven.example](https://wildhaven.example/).
-
 ## Một chuyến tham quan thế giới
 
 ### Chín class
@@ -262,8 +238,6 @@ Chiến thắng xếp hạng và các pha hạ gục trong Fiesta trả **Honor*
 - **Guild**: hiến chương, danh sách thành viên, cấp bậc, và chat guild.
 - **The Guide**: một wiki tìm kiếm được ngay trong trang tại `/wiki`, bao quát các class, sinh vật, vùng đất, và deed, sinh thẳng từ nội dung game sống nên nó không thể lệch khỏi thế giới mà nó mô tả.
 - **The Vale Cup và Card Duel**: boarball tại sân vận động Sowfield phía nam Eastbrook, ở các thể thức từ 1v1 tới 5v5, và một trò chơi bài đối đầu nhanh gọn do Card Master trong thị trấn tổ chức.
-- **Daily Rewards**: những người nắm giữ $WOC đã xác minh có thể kiếm điểm bảng xếp hạng từ một lượt quay mỗi ngày và các nhiệm vụ luân phiên, với chi trả tự động từ quỹ thưởng hằng ngày.
-- **WOC Store và Season 1 Armory**: mua Claudium bằng tiền pháp định, SOL, USDC, hoặc $WOC, rồi tiêu nó vào các skin vũ khí thuần túy trang trí.
 - **Ăn và uống**: ngồi để hồi phục, bị ngắt khi nhận sát thương hoặc khi đứng dậy, và đúng vậy, bạn có thể vừa ăn vừa uống cùng lúc.
 - **Người bán** mua thức ăn và nước và bán trang bị trắng tử tế, với tiền hiển thị bằng vàng, bạc, và đồng.
 - **Một ngân hàng cá nhân** (the Gilded Strongbox): các thủ quỹ ở mỗi thị trấn trung tâm giữ một hầm cho mỗi nhân vật, từ 24 ô lên tới 96 ô với các lần mở rộng mua bằng tiền, cộng thêm các ô thưởng kiếm được khi trực tuyến nhờ email đã xác minh, tài khoản đã liên kết, và giới thiệu bạn bè.
@@ -414,7 +388,7 @@ Những gì bạn sẽ cần gỡ bỏ hoặc thay thế trước khi phân ph�
 - các **biểu tượng kỹ năng class của CraftPix** nằm dưới `public/ui/skills/` do Levy Street mua và **không được phép phân phối lại**, nên hãy mua giấy phép riêng nếu bạn muốn đi kèm chúng;
 - các **hiệu ứng âm thanh của @jamiecypher** theo giấy phép CC BY-NC 4.0, nên hãy chia sẻ chúng phi thương mại kèm ghi công, còn quyền thương mại chỉ áp dụng cho dự án này;
 - **art của cửa hàng và prestige** (Season 1 Armory, bộ Claudium, bộ art nghề nghiệp, các biểu tượng Book of Deeds, huy hiệu rồng tinh nhuệ) là art thương mại đặt hàng riêng và **mọi quyền được bảo lưu**;
-- các **nhãn hiệu thương hiệu bên thứ ba** (Twitch, X, Kick, YouTube, Discord, Solana, USDC) là nhãn hiệu của chủ sở hữu chúng và không phải của chúng tôi để cấp phép tiếp;
+- các **nhãn hiệu thương hiệu bên thứ ba** (Twitch, X, Kick, YouTube, Discord) là nhãn hiệu của chủ sở hữu chúng và không phải của chúng tôi để cấp phép tiếp;
 - một số ít **biểu tượng và bản ghi âm dùng theo sự cho phép** cần được cho phép mới chuyển giao tiếp được.
 
 [CREDITS.md](../../CREDITS.md) là danh sách có thẩm quyền, với một cột phân phối lại cho từng tài nguyên. Ở đâu một tài nguyên được liệt kê trong đó, giấy phép ấy sẽ thắng giấy phép MIT của dự án. Sổ đăng ký ấy vẫn đang được hoàn thiện, nên một tài nguyên media thiếu trong đó là chưa được ghi nhận chứ không phải tự do: hãy hỏi trước khi dựa vào nó. Mã nguồn thì ngược lại, và mọi thứ không bị tách ra đều là MIT.

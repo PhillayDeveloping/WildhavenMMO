@@ -55,8 +55,6 @@ Stejný seed, stejný svět, všude. Velká část toho, co vidíš, se pořád 
 - **Nativní aplikace na každé platformě**: podepsané desktopové instalátory pro Windows, Linux a macOS s automatickými aktualizacemi a volitelným zrcadlením achievementů na Steamu, plus buildy pro iOS a Android, všechny sdílejí prohlížečového klienta a tentýž online svět.
 - **Škáluje se podle stroje, který máš**: grafické předvolby a automatický regulátor snímkové frekvence vyměňují vizuální bohatost za plynulost a drží se pravidla férovosti, které jim nikdy nedovolí skrýt něco, na co hráč reaguje.
 - **Bezhlavé RL prostředí** s Gymnasium bindingy, tvarováním odměny a benchmarkovým režimem.
-- **$WOC utilita, zcela volitelná**: propoj Solana peněženku pro odznak držitele, Daily Rewards a zvýhodněnou platební možnost v kosmetickém obchodě. Hra zůstává zdarma ke hraní a nekustodiální.
-- **Season 1 Armory**: sbírej kosmetické skiny zbraní přes WOC Store za Claudium nakoupené za fiat, SOL, USDC nebo $WOC. Kosmetika nikdy neposkytuje bojovou sílu.
 
 ## Snímky obrazovky
 
@@ -180,28 +178,6 @@ env.close()
 
 Protokol a bindingy jsou zdokumentované v `headless/CLAUDE.md` a `python/CLAUDE.md`.
 
-<a id="web3"></a>
-
-## Web3
-
-Wildhaven je web3 nativní kolem **$WOC**, našeho komunitního tokenu na Solaně. Připoj Solana peněženku, propoj ji s účtem jediným podpisem (nekustodiálně, žádná transakce ke schválení) a tvůj $WOC zůstatek pro čtení se objeví v HUD vedle kosmetického odznaku úrovně držitele.
-
-$WOC má také volitelnou utilitu v živé hře:
-
-- **WOC Store**: kup Claudium, jednosměrnou kosmetickou měnu, za fiat, SOL, USDC nebo $WOC. Platební cesta přes $WOC je oproti ostatním zvýhodněná.
-- **Season 1 Armory**: utrať Claudium za kolekce kosmetických skinů zbraní. Nákupy v obchodě nepřidávají staty ani bojovou sílu.
-- **Daily Rewards**: způsobilí ověření držitelé mohou získávat body denním roztočením a rotujícími úkoly a pak soutěžit o podíl z denního výherního fondu.
-
-Nic z toho není ke hraní potřeba. Propojení peněženky je volitelné a nekustodiální, není tu žádné pay-to-win a celá hra si v pohodě vystačí bez toho, abys kdy peněženku připojil.
-
-**$WOC kontraktní adresa (Solana):**
-
-```
-3WjLscH2JsXLEFJZRA9z8ti8yRGxWGKbqymPd7UicRth
-```
-
-Více o tokenu na [wildhaven.example](https://wildhaven.example/).
-
 ## Prohlídka světa
 
 ### Devět tříd
@@ -262,8 +238,6 @@ Hodnocené výhry a sražení ve Fiestě platí **Honor**, který ve městě qua
 - **Guildy**: zakládací listiny, rostery, hodnosti a guildovní chat.
 - **Guide**: prohledávatelná wiki přímo na webu na `/wiki` pokrývající třídy, tvory, zóny a deeds, generovaná přímo z živého herního obsahu, takže se nemůže rozejít se světem, který popisuje.
 - **The Vale Cup a Card Duel**: boarball na stadionu Sowfield jižně od Eastbrooku, ve formátech od 1v1 po 5v5, a rychlá karetní hra jeden na jednoho, kterou ve městě pořádá Card Master.
-- **Daily Rewards**: ověření držitelé $WOC mohou získávat body do žebříčku z denního roztočení a rotujících úkolů, s automatickými výplatami z denního výherního fondu.
-- **WOC Store a Season 1 Armory**: kup Claudium za fiat, SOL, USDC nebo $WOC a pak ho utrať za čistě kosmetické skiny zbraní.
 - **Jídlo a pití**: sedni si a regeneruj, přeruší tě poškození nebo vstávání, a ano, jíst a pít jde současně.
 - **Obchodníci**, kteří kupují jídlo a vodu a prodávají poctivou bílou výbavu, s mincemi zobrazenými ve zlatě, stříbře a mědi.
 - **Osobní banka** (the Gilded Strongbox): bursaři v každém hlavním městě drží trezor pro každou postavu, od 24 slotů až po 96 s rozšířeními za mince, plus bonusové sloty získané online za ověřený e-mail, propojené účty a doporučení.
@@ -413,7 +387,6 @@ Co bys musel odstranit nebo nahradit, než to budeš šířit dál:
 - **ikony schopností tříd od CraftPix** pod `public/ui/skills/` koupila Levy Street a **nesmí se šířit dál**, takže pokud je chceš dodávat, kup si vlastní licenci;
 - **zvukové efekty od @jamiecypher** jsou CC BY-NC 4.0, takže je sdílej nekomerčně a s uvedením autora, ale komerční licence platí jen pro tento projekt;
 - **grafika obchodu a prestiže** (Season 1 Armory, sada Claudium, sada grafiky profesí, ikony Book of Deeds, emblém elitního draka) je zakázková komerční grafika a **práva jsou vyhrazena**;
-- **značky třetích stran** (Twitch, X, Kick, YouTube, Discord, Solana, USDC) jsou ochranné známky svých vlastníků a nejsou naše, abychom je licencovali dál;
 - **hrstka ikon a nahrávek použitých se svolením** potřebuje svolení k dalšímu předání.
 
 [CREDITS.md](../../CREDITS.md) je autoritativní seznam se sloupcem o dalším šíření pro každý asset. Kde je asset uvedený tam, tamní licence má přednost před MIT licencí projektu. Ten registr se pořád ještě dokončuje, takže mediální asset, který v něm chybí, je nezaznamenaný, ne volný: než se na něj spolehneš, zeptej se. U zdrojového kódu to platí naopak a všechno, co není vyčleněné, je MIT.

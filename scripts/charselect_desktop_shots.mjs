@@ -1,7 +1,7 @@
 // Desktop character-select chrome shots: registers a throwaway account, creates
 // three characters, lands on the roster, and captures the screen at a wide and
 // a narrow desktop width. Verifies the site menu bar stays visible above the
-// full-screen stage and the $WOC Wallet / Developer cards lay out sanely.
+// full-screen stage and the account-link cards lay out sanely.
 // Needs the dev server (GAME_URL, default :5173) and the game server on :8787.
 import fs from 'node:fs';
 import puppeteer from 'puppeteer-core';

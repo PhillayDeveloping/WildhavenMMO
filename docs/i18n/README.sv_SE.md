@@ -55,8 +55,6 @@ Samma seed, samma värld, överallt. Mycket av det du ser ritas fortfarande frå
 - **Nativa appar på varje plattform**: signerade skrivbordsinstallerare för Windows, Linux och macOS med automatiska uppdateringar och valfri spegling av Steam-achievements, plus iOS- och Android-byggen, alla med samma webbläsarklient och samma onlinevärld.
 - **Skalar till maskinen du har**: grafikförinställningar och en automatisk bildfrekvensregulator byter visuell rikedom mot mjukhet, och hålls till en rättviseregel som hindrar dem från att någonsin dölja något som en spelare reagerar på.
 - **Huvudlös RL-miljö** med Gymnasium-bindningar, belöningsformning och ett benchmark-läge.
-- **$WOC-nytta, helt valfritt**: länka en Solana-plånbok för innehavarflair, Daily Rewards och ett rabatterat betalningsalternativ i den kosmetiska butiken. Spelet förblir gratis att spela och icke-förvaltande.
-- **Season 1 Armory**: samla kosmetiska vapenskins genom WOC Store, med Claudium köpt för fiatvaluta, SOL, USDC eller $WOC. Kosmetika ger aldrig stridskraft.
 
 ## Skärmbilder
 
@@ -180,28 +178,6 @@ env.close()
 
 Protokollet och bindningarna är dokumenterade i `headless/CLAUDE.md` och `python/CLAUDE.md`.
 
-<a id="web3"></a>
-
-## Web3
-
-Wildhaven är web3-inbyggt kring **$WOC**, vår community-token på Solana. Anslut en Solana-plånbok, länka den till ditt konto med en signatur (icke-förvaltande, ingen transaktion att godkänna), och ditt skrivskyddade $WOC-saldo dyker upp i HUD:en tillsammans med en kosmetisk innehavarnivå-badge.
-
-$WOC har också valfri nytta i det levande spelet:
-
-- **WOC Store**: köp Claudium, den enkelriktade kosmetiska valutan, med fiatvaluta, SOL, USDC eller $WOC. Betalningsspåret i $WOC är rabatterat mot de andra.
-- **Season 1 Armory**: spendera Claudium på samlingar av kosmetiska vapenskins. Butiksköp lägger inte till statistik eller stridskraft.
-- **Daily Rewards**: berättigade verifierade innehavare kan tjäna poäng genom ett dagligt snurr och roterande uppgifter, och sedan tävla om en andel av den dagliga prispotten.
-
-Inget av detta behövs för att spela. Plånbokslänkning är valfri och icke-förvaltande, det finns inget pay-to-win, och hela spelet spelas utmärkt utan att någonsin ansluta en plånbok.
-
-**$WOC-kontraktsadress (Solana):**
-
-```
-3WjLscH2JsXLEFJZRA9z8ti8yRGxWGKbqymPd7UicRth
-```
-
-Mer om token på [wildhaven.example](https://wildhaven.example/).
-
 ## En rundtur i världen
 
 ### De nio klasserna
@@ -262,8 +238,6 @@ Rankade vinster och Fiesta-nedtagningar ger **Honor**, som kvartermästaren i st
 - **Gillen**: stiftelseurkunder, medlemslistor, ranger och gillechatt.
 - **The Guide**: en sökbar wiki på plats under `/wiki` som täcker klasser, varelser, zoner och deeds, genererad direkt från levande spelinnehåll så att den inte kan glida ifrån världen den dokumenterar.
 - **The Vale Cup och Card Duel**: boarball på Sowfield-arenan söder om Eastbrook, i format från 1v1 till 5v5, och ett snabbt kortspel man mot man som hålls av the Card Master i staden.
-- **Daily Rewards**: verifierade $WOC-innehavare kan tjäna topplistepoäng från ett dagligt snurr och roterande uppgifter, med automatiska utbetalningar från den dagliga prispotten.
-- **WOC Store och Season 1 Armory**: köp Claudium med fiatvaluta, SOL, USDC eller $WOC, och spendera det sedan på rent kosmetiska vapenskins.
 - **Äta och dricka**: sitt för att återställa, avbrutet av skada eller att resa sig, och ja, du kan äta och dricka samtidigt.
 - **Handlare** som köper mat och vatten och säljer ärlig vit utrustning, med mynt visade i guld, silver och koppar.
 - **En personlig bank** (the Gilded Strongbox): kassörer i varje navstad håller ett valv per karaktär, från 24 platser upp till 96 med myntköpta utökningar, plus bonusplatser som tjänas in online för en verifierad e-postadress, länkade konton och värvningar.
@@ -413,7 +387,6 @@ Vad du skulle behöva ta bort eller ersätta innan du distribuerar vidare:
 - **CraftPix klassförmågeikoner** under `public/ui/skills/` köptes av Levy Street och **får inte distribueras vidare**, så köp din egen licens om du vill leverera dem;
 - **@jamiecypher-ljudeffekterna** är CC BY-NC 4.0, så dela dem icke-kommersiellt med kreditering, men det kommersiella tillståndet gäller endast det här projektet;
 - **butiks- och prestigekonsten** (Season 1 Armory, Claudium-uppsättningen, yrkeskonstuppsättningen, Book of Deeds-ikonerna, elitdrakemblemet) är beställd kommersiell konst och **rättigheterna är förbehållna**;
-- **tredjeparts varumärkesmärken** (Twitch, X, Kick, YouTube, Discord, Solana, USDC) är varumärken som tillhör sina ägare och är inte våra att licensiera vidare;
 - en handfull **ikoner och inspelningar som används med tillstånd** kräver tillstånd för att föras vidare.
 
 [CREDITS.md](../../CREDITS.md) är den auktoritativa listan, med en kolumn för vidaredistribution per tillgång. Där en tillgång är listad där gäller den licensen framför projektets MIT-licens. Det registret håller fortfarande på att färdigställas, så en mediatillgång som saknas i det är oregistrerad snarare än fri: fråga innan du förlitar dig på den. Källkoden fungerar tvärtom, och allt som inte undantas är MIT.

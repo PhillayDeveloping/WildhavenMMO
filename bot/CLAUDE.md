@@ -146,7 +146,7 @@ of `src/ui/` imports.
 - **The game server is the authority for rewards.** The bot never computes points
   or status; it reads them and pushes grants the server validates (dedupe keys).
   Discord (gateway/REST) state lives only here.
-- **Pure/IO split** (like `wallet_link.ts` vs `wallet.ts`): protocol/diff/embed
+- **Pure/IO split** (like `deeds_board.ts` vs `deeds.ts`): protocol/diff/embed
   logic in `logic.ts` (tested), ws/fetch IO in the shells. Don't inline opcode or
   role-diff logic into `gateway.ts`/`main.ts`.
 - **One injection convention in the three shells.** Each shell takes its IO as

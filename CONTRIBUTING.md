@@ -163,9 +163,9 @@ API, while `@typescript/native` provides the `tsc` binary. Things to know:
   `package.json` changes. CI installs with `pnpm install --frozen-lockfile`; a
   stale lockfile fails closed. Do not introduce a second lockfile
   (`package-lock.json` / yarn.lock): dual lockfiles diverge silently and are
-  forbidden. Peer dependency noise from optional wallet/solana trees is
-  tolerated via `.npmrc` (`strict-peer-dependencies=false`); do not loosen that
-  further without measuring.
+  forbidden. Peer dependency noise (packages that request `typescript@^5` against
+  the pinned TS6 wrapper) is tolerated via `.npmrc`
+  (`strict-peer-dependencies=false`); do not loosen that further without measuring.
 - **When to revisit.** Collapse the dual alias back to a single `typescript`
   dependency once BOTH hold: the TypeScript 7.1 stable JS API has shipped
   (TypeScript 7.0 ships no JS API at all; the replacement is tracked in

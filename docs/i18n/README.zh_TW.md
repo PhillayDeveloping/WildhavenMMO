@@ -55,8 +55,6 @@ Wildhaven 是一款完整的經典時代 MMO，你現在就能直接在瀏覽器
 - **每個平台上的原生應用程式**：Windows、Linux 與 macOS 的簽章桌面安裝程式，具備自動更新與可選的 Steam 成就同步，外加 iOS 與 Android 版本，全都共用同一個瀏覽器客戶端與同一個線上世界。
 - **依你手上的機器縮放**：圖形預設集與自動幀率調節器會以視覺豐富度換取流暢度，並受一條公平性規則約束，永遠不會隱藏玩家需要據以反應的資訊。
 - **無頭 RL 環境**，附帶 Gymnasium 綁定、獎勵塑形與基準測試模式。
-- **$WOC 效用，完全可選**：連結一個 Solana 錢包即可獲得持有者標識、Daily Rewards，以及裝飾商店中的折扣付款選項。遊戲維持免費遊玩且非託管。
-- **Season 1 Armory**：透過 WOC Store 收集裝飾性武器外觀，使用以法幣、SOL、USDC 或 $WOC 購買的 Claudium。裝飾品永遠不會提供戰鬥力。
 
 ## 螢幕截圖
 
@@ -180,28 +178,6 @@ env.close()
 
 協議與綁定的說明文件位於 `headless/CLAUDE.md` 與 `python/CLAUDE.md`。
 
-<a id="web3"></a>
-
-## Web3
-
-Wildhaven 圍繞 **$WOC**（我們在 Solana 上的社群代幣）打造原生 web3 體驗。連結一個 Solana 錢包，用一次簽署把它連結到你的帳號（非託管，無需核准任何交易），你那唯讀的 $WOC 餘額就會顯示在 HUD 上，旁邊還有一枚裝飾性的持有者等級徽章。
-
-$WOC 在即時遊戲中也具備可選的效用：
-
-- **WOC Store**：以法幣、SOL、USDC 或 $WOC 購買 Claudium，這是一種單向的裝飾貨幣。$WOC 付款管道相較於其他方式享有折扣。
-- **Season 1 Armory**：把 Claudium 花在裝飾性的武器外觀收藏上。商店購買不會增加屬性或戰鬥力。
-- **Daily Rewards**：符合資格的已驗證持有者可以透過每日轉盤與輪替任務賺取點數，接著爭奪每日獎池的一份。
-
-這些都不是遊玩所必需。錢包連結是可選且非託管的，沒有付費致勝，整款遊戲在完全不連結錢包的情況下也能順暢遊玩。
-
-**$WOC 合約位址（Solana）：**
-
-```
-3WjLscH2JsXLEFJZRA9z8ti8yRGxWGKbqymPd7UicRth
-```
-
-關於代幣的更多資訊請見 [wildhaven.example](https://wildhaven.example/)。
-
 ## 世界巡禮
 
 ### 九個職業
@@ -262,8 +238,6 @@ Delves 是一種獨立、可縮放的小隊模式，供一到兩名玩家進行�
 - **公會**：憲章、成員名冊、階級與公會聊天。
 - **The Guide**：位於 `/wiki` 的站內可搜尋百科，涵蓋職業、生物、區域與 deeds，直接由即時遊戲內容生成，因此不會與它所記載的世界脫節。
 - **The Vale Cup 與 Card Duel**：在 Eastbrook 南方 Sowfield 球場舉行的 boarball，賽制從 1v1 到 5v5，以及由城鎮中的 Card Master 主持的快節奏一對一卡牌遊戲。
-- **Daily Rewards**：已驗證的 $WOC 持有者可以透過每日轉盤與輪替任務賺取排行榜點數，並自動從每日獎池獲得派彩。
-- **WOC Store 與 Season 1 Armory**：以法幣、SOL、USDC 或 $WOC 購買 Claudium，再把它花在純裝飾性的武器外觀上。
 - **進食與飲水**：坐下以恢復，受到傷害或站起會中斷，而且沒錯，你可以同時進食與飲水。
 - **商人**會收購食物與水，並販售貨真價實的白色裝備，金錢以金、銀、銅顯示。
 - **個人銀行**（the Gilded Strongbox）：每座樞紐城鎮的錢莊管事為每個角色保管一個金庫，從 24 格起，可用金錢擴充到 96 格，另有透過已驗證電子郵件、連結帳號與推薦在線上取得的額外格數。
@@ -409,7 +383,6 @@ node scripts/crypt_raid.mjs     # five bots clear the Hollow Crypt (ALLOW_DEV_CO
 - `public/ui/skills/` 下的 **CraftPix 職業技能圖示**由 Levy Street 購買，**不得再散布**，若你想隨包發布，請自行購買授權；
 - **@jamiecypher 的音效**採用 CC BY-NC 4.0，因此可以在標註來源的前提下非商業分享，但商業授權僅及於本專案；
 - **商店與威望美術**（Season 1 Armory、Claudium 套組、專業美術集、Book of Deeds 圖示、精英巨龍徽記）是委託製作的商業美術，**權利保留**；
-- **第三方品牌標誌**（Twitch、X、Kick、YouTube、Discord、Solana、USDC）是各自所有者的商標，不是我們能轉授的；
 - 少數**經許可使用的圖示與錄音**需要取得許可才能轉交他人。
 
 [CREDITS.md](../../CREDITS.md) 是權威清單，並為每一件素材列出再散布欄位。凡是列在那裡的素材，其授權優先於本專案的 MIT 授權。那份登錄表仍在補齊中，所以一件未列於其中的媒體素材是尚未記錄，而非可自由使用：在依賴它之前請先詢問。原始碼則相反，凡是未被劃分出去的內容都是 MIT。

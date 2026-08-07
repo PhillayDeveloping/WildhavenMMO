@@ -55,8 +55,6 @@ Seed yang sama, dunia yang sama, di mana saja. Sebagian besar dari yang Anda lih
 - **Aplikasi native di setiap platform**: installer desktop bertanda tangan untuk Windows, Linux, dan macOS dengan pembaruan otomatis dan pencerminan achievement Steam yang opsional, ditambah build iOS dan Android, semuanya berbagi client browser dan dunia online yang sama.
 - **Menyesuaikan dengan mesin yang Anda punya**: preset grafis dan governor frame rate otomatis menukar kekayaan visual demi kelancaran, dan tunduk pada aturan keadilan yang mencegahnya menyembunyikan sesuatu yang direspons pemain.
 - **Lingkungan RL headless** dengan binding Gymnasium, pembentukan reward, dan mode benchmark.
-- **Utilitas $WOC, sepenuhnya opsional**: tautkan dompet Solana untuk gaya holder, Daily Rewards, dan opsi pembayaran berdiskon di toko kosmetik. Game tetap gratis dimainkan dan non-custodial.
-- **Season 1 Armory**: kumpulkan skin senjata kosmetik melalui WOC Store, menggunakan Claudium yang dibeli dengan fiat, SOL, USDC, atau $WOC. Kosmetik tidak pernah memberikan kekuatan combat.
 
 ## Tangkapan layar
 
@@ -180,28 +178,6 @@ env.close()
 
 Protokol dan binding didokumentasikan di `headless/CLAUDE.md` dan `python/CLAUDE.md`.
 
-<a id="web3"></a>
-
-## Web3
-
-Wildhaven adalah web3-native di sekitar **$WOC**, token komunitas kami di Solana. Hubungkan dompet Solana, tautkan ke akun Anda dengan satu tanda tangan (non-custodial, tanpa transaksi untuk disetujui), dan saldo $WOC read-only Anda muncul di HUD bersama lencana tier holder kosmetik.
-
-$WOC juga punya utilitas opsional di dalam game yang hidup:
-
-- **WOC Store**: beli Claudium, mata uang kosmetik satu arah, dengan fiat, SOL, USDC, atau $WOC. Jalur pembayaran $WOC diberi diskon dibanding yang lain.
-- **Season 1 Armory**: belanjakan Claudium untuk koleksi skin senjata kosmetik. Pembelian di toko tidak menambah stat atau kekuatan combat.
-- **Daily Rewards**: holder terverifikasi yang memenuhi syarat dapat mengumpulkan poin melalui putaran harian dan tugas bergilir, lalu bersaing memperebutkan bagian dari kolam hadiah harian.
-
-Tidak satu pun dari ini diperlukan untuk bermain. Menautkan dompet bersifat opsional dan non-custodial, tidak ada pay-to-win, dan seluruh game berjalan baik tanpa pernah menghubungkan dompet.
-
-**Alamat kontrak $WOC (Solana):**
-
-```
-3WjLscH2JsXLEFJZRA9z8ti8yRGxWGKbqymPd7UicRth
-```
-
-Selengkapnya tentang token di [wildhaven.example](https://wildhaven.example/).
-
 ## Tur keliling dunia
 
 ### Sembilan class
@@ -262,8 +238,6 @@ Kemenangan berperingkat dan takedown Fiesta membayar **Honor**, yang ditukar qua
 - **Guild**: piagam, roster, rank, dan chat guild.
 - **The Guide**: wiki di dalam situs yang dapat dicari di `/wiki`, mencakup class, makhluk, zona, dan deed, dihasilkan langsung dari konten game yang hidup sehingga tidak bisa menyimpang dari dunia yang didokumentasikannya.
 - **The Vale Cup dan Card Duel**: boarball di stadion Sowfield selatan Eastbrook, dalam format dari 1v1 hingga 5v5, dan permainan kartu satu lawan satu yang cepat, dipandu Card Master di kota.
-- **Daily Rewards**: holder $WOC terverifikasi dapat mengumpulkan poin papan peringkat dari putaran harian dan tugas bergilir, dengan pembayaran otomatis dari kolam hadiah harian.
-- **WOC Store dan Season 1 Armory**: beli Claudium dengan fiat, SOL, USDC, atau $WOC, lalu belanjakan untuk skin senjata yang murni kosmetik.
 - **Makan dan minum**: duduk untuk memulihkan, terganggu oleh damage atau berdiri, dan ya, Anda bisa makan dan minum sekaligus.
 - **Pedagang** yang membeli makanan dan air serta menjual gear putih jujur, dengan koin ditampilkan dalam gold, silver, dan copper.
 - **Bank pribadi** (the Gilded Strongbox): bursar di setiap kota hub menyimpan satu brankas per karakter, dari 24 slot hingga 96 dengan perluasan yang dibeli koin, ditambah slot bonus yang didapat secara online untuk email terverifikasi, akun tertaut, dan referal.
@@ -415,7 +389,6 @@ Yang perlu Anda hapus atau ganti sebelum mendistribusikan ulang:
 - **ikon ability class CraftPix** di bawah `public/ui/skills/` dibeli oleh Levy Street dan **tidak boleh didistribusikan ulang**, jadi belilah lisensi Anda sendiri jika ingin mengirimkannya;
 - **efek suara @jamiecypher** berlisensi CC BY-NC 4.0, jadi bagikan secara non-komersial dengan kredit, tetapi hak komersialnya hanya berlaku untuk proyek ini;
 - **seni toko dan prestise** (Season 1 Armory, set Claudium, set seni profesi, ikon Book of Deeds, emblem naga elite) adalah seni komersial pesanan dan **haknya dilindungi**;
-- **merek pihak ketiga** (Twitch, X, Kick, YouTube, Discord, Solana, USDC) adalah merek dagang milik pemiliknya dan bukan milik kami untuk dilisensikan lebih lanjut;
 - segelintir **ikon dan rekaman yang dipakai dengan izin** butuh izin untuk diteruskan.
 
 [CREDITS.md](../../CREDITS.md) adalah daftar yang otoritatif, dengan kolom distribusi ulang per aset. Di mana sebuah aset terdaftar di sana, lisensi itulah yang berlaku di atas lisensi MIT proyek ini. Register tersebut masih dilengkapi, jadi aset media yang belum ada di sana berarti belum tercatat, bukan bebas: tanyakan dulu sebelum mengandalkannya. Kode sumber berlaku sebaliknya, dan semua yang tidak dikecualikan adalah MIT.

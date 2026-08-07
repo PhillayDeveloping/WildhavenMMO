@@ -22,7 +22,7 @@ never awaits any of it.
 - `ticket.ts` - pure (IO-free) helpers: the hex ticket shape clamp, the
   `AuthenticateUserTicket` / `SetUserStatsForGame` request builders, the
   verdict parse (the same pure-versus-fetch split
-  `wallet_link.ts` keeps against `wallet.ts`).
+  `deeds_board.ts` keeps against `deeds.ts`).
 - `web_api.ts` - the fetch shell: the ONE place server code talks to the Steam
   Web API (partner host, 5 s timeout, 'upstream' on any fault).
 - `mirror.ts` - the push worker: per-process FIFO with in-flight dedupe,

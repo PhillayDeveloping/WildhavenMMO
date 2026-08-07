@@ -55,8 +55,6 @@ Ten sam seed, ten sam świat, wszędzie. Duża część tego, co widzisz, wcią�
 - **Natywne aplikacje na każdą platformę**: podpisane instalatory desktopowe dla Windows, Linux i macOS z automatycznymi aktualizacjami i opcjonalnym odzwierciedlaniem osiągnięć Steam, plus buildy iOS i Android, wszystkie współdzielące klienta przeglądarkowego i ten sam świat online.
 - **Skaluje się do maszyny, którą masz**: presety graficzne i automatyczny regulator liczby klatek wymieniają bogactwo wizualne na płynność, a trzyma je w ryzach zasada uczciwości, która nie pozwala im nigdy ukryć czegoś, na co gracz reaguje.
 - **Bezgłowe środowisko RL** z powiązaniami Gymnasium, kształtowaniem nagrody i trybem benchmarku.
-- **Użyteczność $WOC, w pełni opcjonalna**: powiąż portfel Solana, by uzyskać wyróżnienie posiadacza, Daily Rewards i tańszą opcję płatności w sklepie kosmetycznym. Gra pozostaje darmowa i niepowiernicza.
-- **Season 1 Armory**: zbieraj kosmetyczne skiny broni w WOC Store, używając Claudium kupionego za walutę fiducjarną, SOL, USDC lub $WOC. Kosmetyki nigdy nie dają mocy bojowej.
 
 ## Zrzuty ekranu
 
@@ -180,28 +178,6 @@ env.close()
 
 Protokół i powiązania są udokumentowane w `headless/CLAUDE.md` i `python/CLAUDE.md`.
 
-<a id="web3"></a>
-
-## Web3
-
-Wildhaven jest natywnie web3 wokół **$WOC**, naszego społecznościowego tokena na Solana. Połącz portfel Solana, powiąż go z kontem jednym podpisem (niepowiernicze, brak transakcji do zatwierdzenia), a twoje tylko do odczytu saldo $WOC pojawi się w HUD obok kosmetycznej odznaki poziomu posiadacza.
-
-$WOC ma też opcjonalną użyteczność w żywej grze:
-
-- **WOC Store**: kupuj Claudium, jednokierunkową walutę kosmetyczną, za walutę fiducjarną, SOL, USDC lub $WOC. Ścieżka płatności $WOC jest tańsza od pozostałych.
-- **Season 1 Armory**: wydawaj Claudium na kolekcje kosmetycznych skinów broni. Zakupy w sklepie nie dodają statystyk ani mocy bojowej.
-- **Daily Rewards**: uprawnieni zweryfikowani posiadacze mogą zdobywać punkty przez codzienne losowanie i rotujące zadania, a potem rywalizować o udział w dziennej puli nagród.
-
-Nic z tego nie jest potrzebne do gry. Powiązanie portfela jest opcjonalne i niepowiernicze, nie ma pay-to-win, a cała gra działa świetnie bez ani jednego połączenia portfela.
-
-**Adres kontraktu $WOC (Solana):**
-
-```
-3WjLscH2JsXLEFJZRA9z8ti8yRGxWGKbqymPd7UicRth
-```
-
-Więcej o tokenie na [wildhaven.example](https://wildhaven.example/).
-
 ## Wycieczka po świecie
 
 ### Dziewięć klas
@@ -262,8 +238,6 @@ Rankingowe zwycięstwa i pokonani w Fiesta płacą w **Honor**, który kwatermis
 - **Gildie**: statuty, listy członków, rangi i czat gildii.
 - **The Guide**: przeszukiwalna wiki w witrynie pod `/wiki`, obejmująca klasy, stworzenia, strefy i deeds, generowana wprost z aktualnej zawartości gry, więc nie może rozjechać się ze światem, który opisuje.
 - **The Vale Cup i Card Duel**: boarball na stadionie Sowfield na południe od Eastbrook, w formatach od 1v1 do 5v5, oraz szybka gra karciana jeden na jednego prowadzona przez Card Mastera w mieście.
-- **Daily Rewards**: zweryfikowani posiadacze $WOC mogą zdobywać punkty do tablicy wyników z codziennego losowania i rotujących zadań, z automatycznymi wypłatami z dziennej puli nagród.
-- **WOC Store i Season 1 Armory**: kupuj Claudium za walutę fiducjarną, SOL, USDC lub $WOC, a potem wydawaj je na czysto kosmetyczne skiny broni.
 - **Jedzenie i picie**: usiądź, by regenerować, przerywane przez obrażenia lub wstanie, i tak, możesz jeść i pić naraz.
 - **Sprzedawcy**, którzy kupują jedzenie i wodę oraz sprzedają uczciwy biały sprzęt, z monetami pokazanymi w złocie, srebrze i miedzi.
 - **Osobisty bank** (the Gilded Strongbox): szafarze w każdym mieście węzłowym trzymają skarbiec dla każdej postaci, od 24 slotów aż do 96 z rozszerzeniami kupowanymi za monety, plus dodatkowe sloty zdobywane online za zweryfikowany e-mail, powiązane konta i polecenia.
@@ -416,7 +390,6 @@ Co trzeba by usunąć albo zastąpić przed redystrybucją:
 - **ikony umiejętności klasowych CraftPix** pod `public/ui/skills/` zostały kupione przez Levy Street i **nie mogą być redystrybuowane**, więc kup własną licencję, jeśli chcesz je dostarczać;
 - **efekty dźwiękowe @jamiecypher** są na CC BY-NC 4.0, więc udostępniaj je niekomercyjnie z podaniem autora, ale zgoda komercyjna obejmuje wyłącznie ten projekt;
 - **grafika sklepowa i prestiżowa** (Season 1 Armory, zestaw Claudium, zestaw grafik profesji, ikony Book of Deeds, emblemat elitarnego smoka) to zamówiona grafika komercyjna i **prawa są zastrzeżone**;
-- **znaki marek stron trzecich** (Twitch, X, Kick, YouTube, Discord, Solana, USDC) są znakami towarowymi swoich właścicieli i nie do nas należy ich dalsze licencjonowanie;
 - garść **ikon i nagrań używanych za zgodą** wymaga zgody, by przekazać je dalej.
 
 [CREDITS.md](../../CREDITS.md) jest listą rozstrzygającą, z kolumną redystrybucji przy każdym zasobie. Tam, gdzie zasób jest na niej wymieniony, ta licencja ma pierwszeństwo przed licencją MIT projektu. Ten rejestr wciąż jest uzupełniany, więc zasób medialny, którego w nim brakuje, jest niezapisany, a nie wolny: zapytaj, zanim na nim polegniesz. Z kodem źródłowym jest odwrotnie i wszystko, co nie zostało wydzielone, jest na MIT.

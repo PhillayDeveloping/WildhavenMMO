@@ -5216,28 +5216,9 @@ async function completeDesktopAppLogin(code: string): Promise<void> {
   }
 }
 
-// `focusWallet` differentiates the Wallet card's CTA from "View Characters":
-// both land on the realm/character picker, but Manage Wallet then scrolls to and
-// focuses the wallet control once it renders.
-let pendingWalletFocus = false;
-function accountGoToCharacters(focusWallet = false): void {
-  pendingWalletFocus = focusWallet;
+function accountGoToCharacters(): void {
   switchMainView('#hero-view');
-  void enterRealmFlow().then(() => {
-    if (pendingWalletFocus) tryFocusWalletButton();
-  });
-}
-
-function tryFocusWalletButton(attempt = 0): void {
-  const btn = document.getElementById('btn-wallet');
-  if (btn && btn.offsetParent !== null) {
-    pendingWalletFocus = false;
-    btn.scrollIntoView({ block: 'center' });
-    btn.focus();
-    return;
-  }
-  if (attempt < 20) window.setTimeout(() => tryFocusWalletButton(attempt + 1), 100);
-  else pendingWalletFocus = false;
+  void enterRealmFlow();
 }
 
 let accountPortalWired = false;
@@ -5306,11 +5287,8 @@ function setupAccountPortal(): void {
 
   setupSecuritySection();
 
-  document
-    .getElementById('account-manage-wallet')
-    ?.addEventListener('click', () => accountGoToCharacters(true));
   ($('#account-go-characters') as HTMLElement).addEventListener('click', () =>
-    accountGoToCharacters(false),
+    accountGoToCharacters(),
   );
   ($('#account-logout') as HTMLElement).addEventListener('click', logoutAccount);
 }
@@ -6662,7 +6640,6 @@ async function loadHighscores(): Promise<void> {
 async function loadNews(): Promise<void> {
   await loadNewsInto($('#news-feed'), () => api.releases(20));
 }
-
 
 function syncHomepageMusicToggle(): void {
   const btn = document.getElementById('homepage-music-toggle') as HTMLButtonElement | null;

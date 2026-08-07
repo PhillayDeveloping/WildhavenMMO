@@ -50,7 +50,7 @@ code is the flat `src/ui/icons.ts`, so re-verify against code.
 (its output IS the current `public/` asset stack), and `prd/DELVE_REBUILD_V0.8.md` +
 `prd/DELVE_HANDOFF.md` describe systems long since shipped (`src/sim/delve_layout.ts`,
 `src/sim/content/delves/`, `src/sim/lockpick.ts`): read them as records, not plans.
-`prd/frontier-pvp-honor.md` (Frostreach Frontier PvP zone, honor, $WOC stakes layer)
+`prd/frontier-pvp-honor.md` (Frostreach Frontier PvP zone, honor)
 pairs with `prd/FRONTIER_PHASE1_HANDOFF.md`, a slice-by-slice implementation handoff
 whose slices are specced but NOT yet implemented; read the handoff before starting one.
 

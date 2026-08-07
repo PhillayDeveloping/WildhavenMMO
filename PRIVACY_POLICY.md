@@ -20,7 +20,7 @@ By using the Service you agree to this Policy. If you do not agree, do not use t
 - Chat, character names, trades, and leaderboard scores are visible to other players. Treat anything you type or name as public.
 - We use limited technical data (such as your IP address) to run the servers, stop abuse, and keep the Game secure.
 - You can delete your characters and your account at any time.
-- We are an independent project and are not affiliated with or endorsed by any third-party company or brand. The $WOC token was created by a third party. See Section 14.
+- We are an independent project and are not affiliated with or endorsed by any third-party company or brand.
 
 The rest of this Policy gives the detail.
 
@@ -35,8 +35,6 @@ The rest of this Policy gives the detail.
 **Chat and social activity.** The Game includes chat (general, party, and similar channels), trading, duels, and parties. Messages you send and the social actions you take are transmitted to other players and may be stored on our servers for delivery, moderation, safety, and abuse prevention. Character names and leaderboard scores are shown publicly to other players and on high score and ranking screens.
 
 **Technical and log data.** When you connect to the Service we automatically receive technical information, including your IP address, device and browser type, operating system, language and display settings, session identifiers, session tokens (which expire after 7 days), connection timestamps, and error and performance logs. We use your IP address to rate-limit sign-in attempts and to detect and prevent abuse.
-
-**Optional wallet verification.** If you choose to verify a Solana wallet to display holder flair or a player-card badge, we store the public wallet address you provide. This is optional, is used only for cosmetic in-game display, and does not involve any transaction, signature that moves funds, or transfer of SOL. We do not access your private keys and cannot move your funds.
 
 **Cookies and local storage.** The Site and Game use cookies and browser local storage to keep you signed in (your session token), remember your settings and preferences (such as language, audio, and control options), and operate core features. You can clear or block these through your browser, but the online Game may not work correctly without them.
 
@@ -60,7 +58,6 @@ We use personal information to:
 - Prevent, detect, and respond to cheating, fraud, abuse, harassment, and security incidents.
 - Moderate user content and enforce our Terms.
 - Respond to your support requests and communicate with you about the Service.
-- Display optional cosmetic features you choose to enable, such as wallet-linked badges.
 - Comply with legal obligations and respond to lawful requests.
 
 ---
@@ -146,7 +143,7 @@ We use technical and organisational measures to protect personal information, in
 
 ## 12. Third-party services and links
 
-The Service links to and integrates third-party services, including GitHub, Ko-fi, PayPal, Stripe, Discord, and the Solana network. These services are controlled by others and have their own privacy policies. We are not responsible for their practices. Review their policies before using them.
+The Service links to and integrates third-party services, including GitHub, Ko-fi, PayPal, Stripe, and Discord. These services are controlled by others and have their own privacy policies. We are not responsible for their practices. Review their policies before using them.
 
 ---
 
@@ -162,13 +159,11 @@ New Zealand users may also contact the Office of the Privacy Commissioner at pri
 
 ---
 
-## 14. No affiliation and the $WOC token
+## 14. No affiliation
 
 Wildhaven is an independent, community project.
 
 It is not affiliated with, endorsed by, sponsored by, or associated with any third-party company, game, product, or brand. All third-party names and trademarks are the property of their respective owners.
-
-The $WOC token referenced by the community was created and is controlled by a third party. We do not issue, control, endorse, or guarantee it. It is not required to play, has no connection to your account data, and is not an investment offered by us. Wallet verification is cosmetic only. See our Terms and Conditions for more.
 
 ---
 

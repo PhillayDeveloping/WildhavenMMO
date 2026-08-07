@@ -15624,7 +15624,7 @@ export class Hud {
   /**
    * The out-of-range Player Info card: the same #inspect-window, painted from the
    * public character sheet. Deliberately thinner than openInspect: no worn gear,
-   * no wallet balance, no Discord/GitHub identity. Those live on the per-entity
+   * no Discord/GitHub identity. Those live on the per-entity
    * wire and stay proximity-gated, so standing next to someone still shows you
    * strictly more than looking their name up from chat.
    */
