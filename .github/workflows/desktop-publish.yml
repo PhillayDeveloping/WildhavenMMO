@@ -17,15 +17,25 @@ name: Desktop publish
 # The full runbook, including the one-time R2, Apple, and Azure provisioning
 # these jobs depend on, is docs/desktop-release.md ("Publishing from CI").
 #
-# Triggers:
-#   - a release tag (v<version>) pushed to a commit that is on main; the tag
-#     must match package.json "version" and DESKTOP_VERSION, so the download
-#     page, the feed, and the artifacts stay in lockstep.
-#   - manual dispatch, which is a DRY RUN by default: it builds, signs,
-#     verifies, and checksums exactly like a release, then attaches the
-#     artifacts to the workflow run for inspection instead of uploading.
-#     Tick "publish" to really upload (the backfill path). The same version
-#     lockstep guard runs; only the tag and main-ancestry checks are skipped.
+# Triggers: MANUAL DISPATCH ONLY, which is a DRY RUN by default: it builds,
+# signs, verifies, and checksums exactly like a release, then attaches the
+# artifacts to the workflow run for inspection instead of uploading. Tick
+# "publish" to really upload (the backfill path). The version lockstep guard
+# still runs; only the tag and main-ancestry checks are skipped.
+#
+# The tag trigger is DELIBERATELY OFF in this fork. Everything below it needs
+# provisioning this repository does not have: a Cloudflare R2 update host at
+# updates.wildhaven.example, an Apple notarization key, and an Azure Key Vault
+# code-signing certificate. There are no repository secrets at all, and both
+# platform jobs refuse to publish an unsigned build, so a tag push could only
+# ever fail. It failed on the version guard first (v0.1.0 against a
+# package.json still reading 0.34.0, itself deliberate: see the v0.1.0 release
+# notes), which is the guard working, but the run was doomed either way and
+# every future tag would repeat it.
+#
+# Desktop artifacts are currently built locally and attached to the GitHub
+# release by hand. Restore the tag trigger once the update host and the two
+# signing identities exist.
 #
 # The platform jobs are independent: a mac signing failure never blocks the
 # Linux publish and vice versa. Within each job, versioned artifacts upload
@@ -33,9 +43,6 @@ name: Desktop publish
 # file is not yet downloadable.
 
 on:
-  push:
-    tags:
-      - 'v*'
   workflow_dispatch:
     inputs:
       publish:

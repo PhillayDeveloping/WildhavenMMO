@@ -57,8 +57,30 @@ describe('OTA publish workflow contract', () => {
     expect(workflow).toContain('workflow_dispatch:');
     expect(workflow).not.toMatch(/^on:[\s\S]*?\n {2}push:/m);
     expect(workflow).not.toContain("tags:\n      - 'v*'");
-    // The desktop workflow is the deliberate contrast: it DOES fire on a tag.
-    expect(desktopWorkflow).toContain("tags:\n      - 'v*'");
+    // Both negatives above are absence assertions, which pass just as happily
+    // against a workflow whose trigger block was reformatted out from under
+    // them. The desktop workflow used to be the live contrast that ruled that
+    // out; it is dispatch-only too now (see below), so prove the matchers
+    // still bite by running them at a known-positive sample instead.
+    const tagTriggered = "on:\n  push:\n    tags:\n      - 'v*'\n";
+    expect(tagTriggered).toMatch(/^on:[\s\S]*?\n {2}push:/m);
+    expect(tagTriggered).toContain("tags:\n      - 'v*'");
+  });
+
+  // The desktop workflow fired on a release tag upstream, where the update host
+  // and both signing identities exist. In this fork neither does, and there are
+  // no repository secrets at all, so every tag push started a run that could
+  // only fail: the version guard caught it first, and the signing steps refuse
+  // an unsigned build regardless. Desktop artifacts are built locally and
+  // attached to the release by hand, so the tag trigger is only noise until that
+  // provisioning lands.
+  it('leaves desktop publishing to manual dispatch while the signing identities are missing', () => {
+    expect(desktopWorkflow).toContain('workflow_dispatch:');
+    expect(desktopWorkflow).not.toMatch(/^on:[\s\S]*?\n {2}push:/m);
+    expect(desktopWorkflow).not.toContain("tags:\n      - 'v*'");
+    // The reason has to travel with the removal, or restoring the trigger looks
+    // like a one-line fix rather than something gated on real provisioning.
+    expect(desktopWorkflow).toContain('Restore the tag trigger once');
   });
 
   // A stray click must never ship JavaScript to every install.
