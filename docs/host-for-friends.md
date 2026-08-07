@@ -103,6 +103,18 @@ Optional but worth doing once strangers can reach the address:
   password has no way back into their account: see the block in `.env.example`
   and verify with `node scripts/email_check.mjs <address>`.
 
+## Settle the realm name before anyone plays
+
+`REALM_NAME` (default `Wildmoon`) is the scope key for saved data, not a display
+label. Twenty-five tables carry a `realm` column (characters, guilds, leases,
+deeds, daily rewards, per-player facts) and several `world_state` rows are keyed
+`<thing>:<realm>` (market, mail, rifts). Start the server under a different name
+and it serves an empty world: every existing character stops being listed.
+
+Nothing is deleted and renaming back restores it, but there is no migration
+command, so carrying players across a rename means updating each of those by
+hand. Decide the name while the world is still empty.
+
 ## What stays your problem
 
 - **`ALLOW_DEV_COMMANDS` must never be set here.** It enables the full cheat
