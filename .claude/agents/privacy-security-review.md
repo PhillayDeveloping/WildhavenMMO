@@ -47,7 +47,7 @@ Once in scope, review the staged or recent changes by running `git diff --cached
 your reading on `server/` (`game.ts`, `db.ts`, `auth.ts`, `social_db.ts`, `admin.ts`,
 `admin_db.ts`, `moderation_db.ts`, `ratelimit.ts`, `turnstile.ts`, `ws_buffer.ts`,
 `http_util.ts`, `static_cache.ts`) plus the newer auth / secret / economy / privacy surfaces
-(`oauth.ts` / `oauth_db.ts`, `totp.ts`, `wallet.ts` / `wallet_link.ts` / `woc_balance.ts`,
+(`oauth.ts` / `oauth_db.ts`, `totp.ts`, `card_routes.ts`, `claudium.ts`,
 `account.ts`, the `email/` modules, `internal.ts`, `ip_block.ts` / `ip_block_db.ts`,
 `avatar.ts`, `native_attestation.ts`, `web_login_guard.ts`, the `bot_detector/` modules) and
 `src/admin/`, but check any file the diff touches.
@@ -122,17 +122,17 @@ production.
   handlers AND by the pipeline middleware `server/http/middleware/turnstile.ts`, which is how
   a `RouteDef` endpoint gets the check (declared per-route on register/login, never a global
   prologue). For a new RouteDef auth endpoint verify the turnstile middleware is declared on
-  the route; flag any new auth entry point, including OAuth consent / device-code and
-  wallet-link, that declares neither.
+  the route; flag any new auth entry point, including OAuth consent / device-code,
+  that declares neither.
 - OAuth2 (`server/oauth.ts` / `oauth_db.ts`): tokens are read-scoped. Flag a read-scoped token
   accepted where a full session token is required, a mutating route reachable with a read token,
   or a dropped PKCE / `state` parameter.
 - TOTP 2FA (`server/totp.ts`): the secret and recovery codes are never logged or returned to the
   client; a spent code or a replayed counter is rejected. Flag a missing replay guard.
-- Wallet linking (`server/wallet.ts` / `wallet_link.ts`): the ed25519 signature is verified
-  against a server-issued, single-use, short-lived challenge; the server never trusts a
-  client-asserted `$WOC` balance over `server/woc_balance.ts`. Flag a reused/absent challenge or
-  a client-supplied balance.
+- Daily standings prizes (`server/daily_rewards_db.ts` `claimOwedPrizes`): the claim and the
+  paid stamp are ONE statement, so a racing second join cannot collect twice, and delivery
+  re-checks the moderation predicates. Flag a read-then-write split, a dropped eligibility
+  fence, or any client-supplied prize amount.
 
 ### 5. Parameterized SQL (CRITICAL)
 
