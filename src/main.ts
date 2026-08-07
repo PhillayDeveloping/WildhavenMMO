@@ -8569,8 +8569,18 @@ function wireStartScreens(): void {
   const discordLoginBtn = $('#btn-login-discord');
   const discordOrDivider = document.getElementById('auth-or-divider');
   if (discordLoginBtn && DISCORD_BUILD_ENABLED) {
-    discordLoginBtn.hidden = false;
-    if (discordOrDivider) discordOrDivider.hidden = false;
+    // The build flag only says this bundle CAN offer Discord; whether the realm
+    // actually has an OAuth app is the server's answer. Stay hidden until the
+    // public advert confirms it, so a self-hosted realm with no DISCORD_CLIENT_ID
+    // never shows a button whose only possible outcome is an error toast. Late
+    // rather than eager on purpose: revealing first and retracting on the answer
+    // is the worse of the two, and the advert lands well before a player has
+    // opened the auth panel. Failing closed is the advert's own contract.
+    void api.discordAdvert().then((enabled) => {
+      if (!enabled) return;
+      discordLoginBtn.hidden = false;
+      if (discordOrDivider) discordOrDivider.hidden = false;
+    });
     discordLoginBtn.addEventListener('click', (e) => {
       e.preventDefault();
       // In the desktop shell, Discord OAuth cannot run in-app: the redirect to Discord is

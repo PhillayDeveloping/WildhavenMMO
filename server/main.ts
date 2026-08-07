@@ -187,6 +187,7 @@ import {
 } from './desktop_login';
 import {
   configureDiscordRuntime,
+  discordEnabled,
   handleDiscordCallback,
   handleDiscordLoginLink,
   handleDiscordLoginNew,
@@ -1929,6 +1930,11 @@ async function handleApi(req: http.IncomingMessage, res: http.ServerResponse): P
         names: [...liveGame().clients.values()].map((s) => s.name),
         steam: { enabled: false },
         epic: { enabled: false },
+        // NOT hardcoded like steam/epic above: this arm serves the Discord OAuth
+        // start route exactly as the migrated one does, so reporting the real env
+        // strands nobody. Dual-arm edit: the migrated statusHandler
+        // (server/leaderboard.ts) carries the identical field.
+        discord: { enabled: discordEnabled() },
         // The /dev GUI capability advert. NOT hardcoded like steam.enabled above:
         // the dev_* cheats ride the websocket dispatcher, which this arm serves
         // exactly as the migrated one does, so advertising the real env here
@@ -2462,6 +2468,7 @@ async function handleApi(req: http.IncomingMessage, res: http.ServerResponse): P
 configureLeaderboardRuntime({
   playersOnline: () => liveGame().clients.size,
   playersCap: canonicalPlayersCap,
+  discordEnabled,
   perfProfile: () => liveGame().perfProfile(),
   getLeaderboard,
   getGuildLeaderboard,

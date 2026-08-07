@@ -130,6 +130,10 @@ export interface LeaderboardRuntime {
   /** The configured realm player cap for /api/status, canonicalized to a
    *  non-negative count (0 when the cap is disabled). */
   playersCap(): number;
+  /** discord.ts discordEnabled(): is Discord OAuth configured on this realm?
+   *  Injected rather than imported so this module keeps a static route table
+   *  and no import cycle, like every other runtime member here. */
+  discordEnabled(): boolean;
   /** game.perfProfile(), for the dev-gated /api/perf route. */
   perfProfile(): unknown;
   /** Cache-fronted player leaderboard read (main.ts getLeaderboard). */
@@ -614,6 +618,14 @@ async function projectStatsHandler(ctx: Ctx): Promise<void> {
  * steam.enabled / epic.enabled are the capability adverts clients read before
  * rendering any Steam / Epic link UI (dual-arm edit: the legacy main.ts twin
  * carries the same fields).
+ * discord.enabled is the same advert for the sign-in button on the AUTH screen.
+ * It has to live here rather than on GET /api/discord because that endpoint
+ * requires a bearer token, and the login screen is precisely where no token
+ * exists yet: without it a server with no DISCORD_CLIENT_ID still offers
+ * "Continue with Discord", which can only ever answer 503 discord.not_configured.
+ * Unlike steam/epic this reports the real env on BOTH arms, because the OAuth
+ * start route is served identically by each (dual-arm edit: same field in the
+ * legacy main.ts twin).
  * players_cap is the configured realm player cap (0 when disabled), also a dual-arm
  * edit: the legacy main.ts twin carries the same field with the same semantics.
  * dev_commands is the capability advert for the /dev GUI: the dev_* cheats ride the
@@ -635,6 +647,7 @@ async function statusHandler(ctx: Ctx): Promise<void> {
     players_cap: rt.playersCap(),
     steam: { enabled: steamEnabled() },
     epic: { enabled: epicEnabled() },
+    discord: { enabled: rt.discordEnabled() },
     dev_commands: process.env.ALLOW_DEV_COMMANDS === '1',
     profiler_invulnerability: process.env.ALLOW_DEV_COMMANDS === '1',
   });
