@@ -110,8 +110,36 @@ describe('diagnose', () => {
     const out = diagnose({ message: 'self signed certificate in certificate chain' });
     expect(out).toContain('FULL verification');
     expect(out).toContain('proxy');
+    // The general branch still has to point at the private-root case, which is
+    // the likeliest cause and the only one with an exact fix.
+    expect(out).toContain('NODE_EXTRA_CA_CERTS');
     // The escape hatch must be offered as a diagnostic only.
     expect(out).toContain('never to run');
+  });
+
+  it('names the private root and the env-only fix when the code says the root is unknown', () => {
+    // What connecting to a Supabase Session Pooler over sslmode=require actually
+    // returns. The chain is well-formed; the root is simply not publicly trusted,
+    // so the generic "certificate" wording sends the operator hunting the wrong bug.
+    const out = diagnose({ code: 'SELF_SIGNED_CERT_IN_CHAIN' });
+    expect(out).toContain('Supabase Root 2021 CA');
+    expect(out).toContain('NODE_EXTRA_CA_CERTS');
+    // The load-bearing half: .env cannot carry it, and saying so is the whole
+    // point of this arm. Both mechanisms are named because a reader who knows
+    // one of them still gets it wrong.
+    expect(out).toContain('--env-file');
+    expect(out).toContain('process.loadEnvFile()');
+    expect(out).toContain('never to run');
+  });
+
+  it('does not mistake an unknown root for a broken certificate', () => {
+    // The two certificate arms must stay distinguishable: the private-root case
+    // has one exact remedy, the general case is a ranked list of guesses.
+    const root = diagnose({ code: 'SELF_SIGNED_CERT_IN_CHAIN' });
+    const generic = diagnose({ message: 'unable to verify the first certificate' });
+    expect(root).not.toBe(generic);
+    expect(root).not.toContain('In order of likelihood');
+    expect(generic).not.toContain('Supabase Root 2021 CA');
   });
 
   it('falls through to the raw message rather than swallowing an unknown error', () => {
