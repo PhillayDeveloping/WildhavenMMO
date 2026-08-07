@@ -400,7 +400,7 @@ export const it_IT: EnTranslations = {
       "error": "Impossibile caricare le ricompense giornaliere.",
       "disabled": "Le ricompense giornaliere sono attualmente disattivate. Annunceremo gli aggiornamenti di questa funzionalità nel canale Discord.",
       "intro": "Detieni abbastanza WOC nel tuo portafoglio verificato per sbloccare le ricompense giornaliere. Guadagna punti con un giro giornaliero e incarichi a rotazione, poi scala la classifica giornaliera per aggiudicarti una parte del montepremi.",
-      "disclaimer": "Il prezzo di WOC può muoversi rapidamente. Consigliamo di detenere più del minimo di 20 USD, così le normali oscillazioni di prezzo non ti escludono. Questo non è un consiglio finanziario.",
+      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
       "prize": "Montepremi",
       "reset": "Azzeramento",
       "endsIn": "Termina tra {time}",
@@ -409,7 +409,6 @@ export const it_IT: EnTranslations = {
       "remainingHoursMinutes": "{hours}h {minutes}m",
       "remainingDaysHours": "{days} g {hours} h",
       "score": "Punteggio",
-      "usd": "{amount} USD",
       "unknown": "Sconosciuto",
       "spinTitle": "Giro giornaliero",
       "spinDialogTitle": "Giro della ricompensa giornaliera",
@@ -14364,6 +14363,11 @@ export const it_IT: EnTranslations = {
         "sender": "Quartiermastro eroico",
         "subject": "I tuoi Marchi eroici",
         "body": "Il tuo gruppo ha superato la prova eroica mentre combattevi nelle retrovie o giacevi a terra. Anche il tuo vincolo è stato registrato, quindi la tua parte di Marchi eroici è arrivata qui invece di andare perduta. Usali bene.\n\n- Quartiermastro eroico"
+      },
+      "daily_reward_prize": {
+        "sender": "The Vale Steward",
+        "subject": "Your share of the daily purse",
+        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "La Gilda degli Artigiani",

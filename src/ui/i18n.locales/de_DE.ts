@@ -2368,8 +2368,6 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.calendar.result.removed': 'Das Ereignis wurde aus dem Kalender genommen.',
   'hudChrome.calendar.title': 'Ereigniskalender',
   'hudChrome.calendar.titlePlaceholder': 'Titel des Ereignisses',
-  'hudChrome.dailyRewards.disclaimer':
-    'Der WOC-Kurs kann sich schnell bewegen. Wir empfehlen, mehr als das Minimum von 20 USD zu halten, damit gewöhnliche Kursschwankungen dich nicht aussperren. Dies ist keine Finanzberatung.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     'Dies entfernt die Truhen-Verknüpfung aus deinem HUD. Belohnungen, Teilnahmeberechtigung und dieses Panel bleiben verfügbar; du kannst die Verknüpfung über die Optionen zurückholen.',
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Abbrechen',
@@ -7768,7 +7766,6 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.disabled':
     'Tägliche Belohnungen sind derzeit deaktiviert. Neuigkeiten zu dieser Funktion geben wir im Discord-Kanal bekannt.',
   'hudChrome.dailyRewards.unknown': 'Unbekannt',
-  'hudChrome.dailyRewards.usd': '{amount} USD',
   'hudChrome.nativeUpdate.body':
     'Eine neue Version von Wildhaven ist verfügbar. Aktualisiere jetzt für die neuesten Fehlerbehebungen und Verbesserungen.',
   'hudChrome.nativeUpdate.bodyWithVersion':

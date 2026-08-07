@@ -400,7 +400,7 @@ export const en: EnTranslations = {
       "error": "Could not load daily rewards.",
       "disabled": "Daily Rewards is currently disabled. We will announce updates to this feature in the Discord channel.",
       "intro": "Earn points with one daily spin and rotating tasks, then climb the daily leaderboard for a share of the prize pool.",
-      "disclaimer": "Tasks and the leaderboard reset once per day.",
+      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
       "prize": "Prize Pool",
       "reset": "Reset",
       "endsIn": "Ends in {time}",
@@ -409,7 +409,6 @@ export const en: EnTranslations = {
       "remainingHoursMinutes": "{hours}h {minutes}m",
       "remainingDaysHours": "{days}d {hours}h",
       "score": "Score",
-      "usd": "{amount} USD",
       "unknown": "Unknown",
       "spinTitle": "Daily Spin",
       "spinDialogTitle": "Daily Reward Spin",
@@ -14364,6 +14363,11 @@ export const en: EnTranslations = {
         "sender": "The Heroic Quartermaster",
         "subject": "Your Heroic Marks",
         "body": "Your warband cleared the heroic trial while you fought from the back, or from the dirt. Your lockout was struck all the same, so your share of Heroic Marks flies to you here rather than being lost. Spend them well.\n\n- The Heroic Quartermaster"
+      },
+      "daily_reward_prize": {
+        "sender": "The Vale Steward",
+        "subject": "Your share of the daily purse",
+        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "The Crafting Guild",

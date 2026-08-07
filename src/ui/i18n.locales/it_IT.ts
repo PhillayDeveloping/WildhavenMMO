@@ -2338,8 +2338,6 @@ export const it_IT: Partial<Record<TranslationKey, string>> = {
   'hudChrome.calendar.result.removed': "L'evento è stato tolto dal calendario.",
   'hudChrome.calendar.title': 'Calendario degli Eventi',
   'hudChrome.calendar.titlePlaceholder': "Titolo dell'evento",
-  'hudChrome.dailyRewards.disclaimer':
-    'Il prezzo di WOC può muoversi rapidamente. Consigliamo di detenere più del minimo di 20 USD, così le normali oscillazioni di prezzo non ti escludono. Questo non è un consiglio finanziario.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     'Questo rimuove la scorciatoia del forziere dalla tua interfaccia. Ricompense, idoneità e questo pannello restano disponibili; puoi ripristinare la scorciatoia dalle Opzioni.',
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Annulla',
@@ -8003,7 +8001,6 @@ export const it_IT: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.disabled':
     'Le ricompense giornaliere sono attualmente disattivate. Annunceremo gli aggiornamenti di questa funzionalità nel canale Discord.',
   'hudChrome.dailyRewards.unknown': 'Sconosciuto',
-  'hudChrome.dailyRewards.usd': '{amount} USD',
   'hudChrome.nativeUpdate.body':
     'È disponibile una nuova versione di Wildhaven. Aggiorna ora per le ultime correzioni e migliorie.',
   'hudChrome.nativeUpdate.bodyWithVersion':

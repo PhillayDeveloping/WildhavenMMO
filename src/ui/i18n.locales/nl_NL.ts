@@ -2471,8 +2471,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.calendar.result.removed': 'Het evenement is van de kalender gehaald.',
   'hudChrome.calendar.title': 'Evenementenkalender',
   'hudChrome.calendar.titlePlaceholder': 'Titel van het evenement',
-  'hudChrome.dailyRewards.disclaimer':
-    'De WOC-prijs kan snel bewegen. We raden aan meer aan te houden dan het minimum van $20 USD, zodat normale koersschommelingen je niet buitensluiten. Dit is geen financieel advies.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     'Dit verwijdert de kistsnelkoppeling uit je HUD. Beloningen, geschiktheid en dit paneel blijven beschikbaar; je kunt de snelkoppeling terughalen via Opties.',
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Annuleren',
@@ -7906,7 +7904,6 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.disabled':
     'Dagelijkse beloningen zijn momenteel uitgeschakeld. We kondigen updates voor deze functie aan in het Discord-kanaal.',
   'hudChrome.dailyRewards.unknown': 'Onbekend',
-  'hudChrome.dailyRewards.usd': '{amount} USD',
   'hudChrome.nativeUpdate.body':
     'Er is een nieuwe versie van Wildhaven beschikbaar. Werk nu bij voor de nieuwste oplossingen en verbeteringen.',
   'hudChrome.nativeUpdate.bodyWithVersion':

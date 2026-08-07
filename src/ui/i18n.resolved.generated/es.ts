@@ -400,7 +400,7 @@ export const es: EnTranslations = {
       "error": "No se pudieron cargar las recompensas diarias.",
       "disabled": "Las recompensas diarias están desactivadas actualmente. Anunciaremos las novedades de esta función en el canal de Discord.",
       "intro": "Mantén suficiente WOC en tu cartera verificada para desbloquear las recompensas diarias. Gana puntos con un giro diario y tareas rotativas, y escala la clasificación diaria para llevarte una parte del fondo de premios.",
-      "disclaimer": "El precio de WOC puede moverse deprisa. Recomendamos mantener más del mínimo de $20 USD para que las oscilaciones normales del precio no te bloqueen el acceso. Esto no es asesoramiento financiero.",
+      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
       "prize": "Fondo de premios",
       "reset": "Reinicio",
       "endsIn": "Termina en {time}",
@@ -409,7 +409,6 @@ export const es: EnTranslations = {
       "remainingHoursMinutes": "{hours}h {minutes}min",
       "remainingDaysHours": "{days} d {hours} h",
       "score": "Puntuación",
-      "usd": "{amount} USD",
       "unknown": "Desconocido",
       "spinTitle": "Giro diario",
       "spinDialogTitle": "Giro de recompensa diaria",
@@ -14364,6 +14363,11 @@ export const es: EnTranslations = {
         "sender": "Intendente heroico",
         "subject": "Tus Marcas heroicas",
         "body": "Tu grupo superó la prueba heroica mientras luchabas en la retaguardia o yacías derrotado. Tu bloqueo también quedó registrado, así que tu parte de las Marcas heroicas llegó aquí en vez de perderse. Úsalas bien.\n\n- Intendente heroico"
+      },
+      "daily_reward_prize": {
+        "sender": "The Vale Steward",
+        "subject": "Your share of the daily purse",
+        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "El gremio de artesanos",

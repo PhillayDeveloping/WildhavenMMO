@@ -2349,8 +2349,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.corpseHarvest.harvestTooltip':
     'İşaretlenmiş bileşenleri toplar. Her leş yalnızca bir kez toplanabilir, ilk gelen alır. Yağmayı almaz.',
   'hudChrome.corpseHarvest.title': 'Toplama',
-  'hudChrome.dailyRewards.disclaimer':
-    'WOC fiyatı hızla değişebilir. Olağan fiyat dalgalanmalarının seni dışarıda bırakmaması için 20 USD asgarisinden fazlasını tutmanı öneririz. Bu bir yatırım tavsiyesi değildir.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     "Bu, sandık kısayolunu HUD'undan kaldırır. Ödüller, uygunluk ve bu panel kullanılabilir kalır; kısayolu Seçenekler'den geri getirebilirsin.",
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'İptal',
@@ -8475,7 +8473,6 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.disabled':
     'Günlük Ödüller şu anda devre dışı. Bu özellikle ilgili güncellemeleri Discord kanalında duyuracağız.',
   'hudChrome.dailyRewards.unknown': 'Bilinmiyor',
-  'hudChrome.dailyRewards.usd': '{amount} USD',
   'hudChrome.nativeUpdate.body':
     "Wildhaven'ın yeni bir sürümü mevcut. En son düzeltmeler ve iyileştirmeler için şimdi güncelle.",
   'hudChrome.nativeUpdate.bodyWithVersion':

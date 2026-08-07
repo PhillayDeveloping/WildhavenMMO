@@ -495,8 +495,6 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
     'デイリー報酬は現在無効です。この機能に関する更新は Discord チャンネルでお知らせします。',
   'hudChrome.dailyRewards.intro':
     '認証済みウォレットに十分なWOCを保有すると、デイリー報酬が解放されます。1日1回のスピンとローテーションするタスクでポイントを獲得し、デイリーランキングを駆け上がって賞金プールの分け前を狙いましょう。',
-  'hudChrome.dailyRewards.disclaimer':
-    'WOC価格は大きく変動する場合があります。通常の価格変動で報酬がロックされないよう、$20 USDの最低額より多めに保有することをおすすめします。これは金融助言ではありません。',
   'hudChrome.dailyRewards.prize': '賞金プール',
   'hudChrome.dailyRewards.reset': 'リセット',
   'hudChrome.dailyRewards.score': 'スコア',
@@ -7975,7 +7973,6 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.remainingDaysHours': '{days}日{hours}時間',
   'hudChrome.dailyRewards.remainingLessThanMinute': '1分未満',
   'hudChrome.dailyRewards.remainingMinutes': '{minutes}分',
-  'hudChrome.dailyRewards.usd': '{amount} USD',
   'guide.professions.intro':
     '戦闘やクエストだけでなく、この世界は大地を耕し鍛冶場に立つあなたにも報いてくれます。原材料を採集し、十の製作職を通じてそれを装備や品物へと変え、それらの職が体現する十のアーキタイプのひとつとして自らのアイデンティティを築いていきます。',
   'guide.professions.harvestTitle': '狩りそのものを採取する',
@@ -10776,4 +10773,8 @@ export const ja_JP: Partial<Record<TranslationKey, string>> = {
   'hudChrome.auraOverlay.procs.aetherRush': 'エーテルラッシュ',
   'itemUi.vendor.buyStack': '{count}個購入',
   'itemUi.vendor.buyStackAria': '{item}を{count}個、{price}で購入',
+  'hudChrome.dailyRewards.disclaimer': 'タスクとリーダーボードは一日に一度リセットされます。上位十名が賞金を分け合い、あなたの取り分は次回ログイン時に大鴉が届けます。',
+  'entities.letters.daily_reward_prize.sender': '谷の執政官',
+  'entities.letters.daily_reward_prize.subject': '日々の賞金のあなたの取り分',
+  'entities.letters.daily_reward_prize.body': '谷は誰が最も励んだかを数えており、昨日あなたの名は上位十名に並びました。執政官たちはあなたの取り分を量り、大鴉に託して送りました。\n\n明日も来て、できるなら首位を取りなさい。\n\n- 谷の執政官',
 };

@@ -400,7 +400,7 @@ export const nl_NL: EnTranslations = {
       "error": "Kon de dagelijkse beloningen niet laden.",
       "disabled": "Dagelijkse beloningen zijn momenteel uitgeschakeld. We kondigen updates voor deze functie aan in het Discord-kanaal.",
       "intro": "Houd genoeg WOC in je geverifieerde portemonnee om dagelijkse beloningen te ontgrendelen. Verdien punten met één dagelijkse draai en wisselende taken, en klim daarna op in de dagelijkse ranglijst voor een deel van de prijzenpot.",
-      "disclaimer": "De WOC-prijs kan snel bewegen. We raden aan meer aan te houden dan het minimum van $20 USD, zodat normale koersschommelingen je niet buitensluiten. Dit is geen financieel advies.",
+      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
       "prize": "Prijzenpot",
       "reset": "Reset",
       "endsIn": "Eindigt over {time}",
@@ -409,7 +409,6 @@ export const nl_NL: EnTranslations = {
       "remainingHoursMinutes": "{hours} u {minutes} min",
       "remainingDaysHours": "{days} d {hours} u",
       "score": "Score",
-      "usd": "{amount} USD",
       "unknown": "Onbekend",
       "spinTitle": "Dagelijkse draai",
       "spinDialogTitle": "Dagelijkse beloningsdraai",
@@ -14364,6 +14363,11 @@ export const nl_NL: EnTranslations = {
         "sender": "Heroïsche kwartiermeester",
         "subject": "Je heroïsche marken",
         "body": "Je groep heeft de heroïsche beproeving doorstaan terwijl jij in de achterhoede vocht of verslagen op de grond lag. Ook jouw binding is vastgelegd, dus je aandeel heroïsche marken is hierheen gestuurd in plaats van verloren te gaan. Gebruik ze goed.\n\n- Heroïsche kwartiermeester"
+      },
+      "daily_reward_prize": {
+        "sender": "The Vale Steward",
+        "subject": "Your share of the daily purse",
+        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "Het Ambachtsgilde",

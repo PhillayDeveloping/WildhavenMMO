@@ -2312,8 +2312,6 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.calendar.result.removed': 'O evento foi retirado do calendário.',
   'hudChrome.calendar.title': 'Calendário de Eventos',
   'hudChrome.calendar.titlePlaceholder': 'Título do evento',
-  'hudChrome.dailyRewards.disclaimer':
-    'O preço do WOC pode variar rapidamente. Recomendamos manter mais do que o mínimo de $20 USD para que oscilações normais de preço não bloqueiem seu acesso. Isto não é aconselhamento financeiro.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     'Isto remove o atalho do baú do seu HUD. As recompensas, a elegibilidade e este painel continuam disponíveis; você pode trazer o atalho de volta nas Opções.',
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Cancelar',
@@ -7879,7 +7877,6 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.disabled':
     'As Recompensas Diárias estão desativadas no momento. Anunciaremos atualizações sobre este recurso no canal do Discord.',
   'hudChrome.dailyRewards.unknown': 'Desconhecido',
-  'hudChrome.dailyRewards.usd': '{amount} USD',
   'hudChrome.nativeUpdate.body':
     'Uma nova versão do Wildhaven está disponível. Atualize agora para receber as últimas correções e melhorias.',
   'hudChrome.nativeUpdate.bodyWithVersion':

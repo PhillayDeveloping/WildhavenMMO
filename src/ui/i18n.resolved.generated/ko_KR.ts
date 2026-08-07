@@ -400,7 +400,7 @@ export const ko_KR: EnTranslations = {
       "error": "일일 보상을 불러올 수 없습니다.",
       "disabled": "일일 보상은 현재 비활성화되어 있습니다. 이 기능에 대한 업데이트는 Discord 채널에서 안내하겠습니다.",
       "intro": "인증된 지갑에 충분한 WOC를 보유하여 일일 보상을 잠금 해제하세요. 하루 한 번의 스핀과 교체되는 과제로 포인트를 획득한 뒤, 일일 순위표를 올라 상금 풀의 일부를 차지하세요.",
-      "disclaimer": "WOC 가격은 빠르게 변동될 수 있습니다. 일반적인 가격 변동으로 보상이 잠기지 않도록 $20 USD 최소 기준보다 더 많이 보유하는 것을 권장합니다. 이는 금융 조언이 아닙니다.",
+      "disclaimer": "과제와 순위표는 하루에 한 번 초기화됩니다. 상위 열 명이 상금을 나누며, 당신의 몫은 다음 접속 때 큰까마귀가 전해 줍니다.",
       "prize": "상금 풀",
       "reset": "초기화",
       "endsIn": "{time} 후 종료",
@@ -409,7 +409,6 @@ export const ko_KR: EnTranslations = {
       "remainingHoursMinutes": "{hours}시간 {minutes}분",
       "remainingDaysHours": "{days}일 {hours}시간",
       "score": "점수",
-      "usd": "{amount} USD",
       "unknown": "알 수 없음",
       "spinTitle": "일일 스핀",
       "spinDialogTitle": "일일 보상 스핀",
@@ -14364,6 +14363,11 @@ export const ko_KR: EnTranslations = {
         "sender": "영웅 병참장교",
         "subject": "당신의 영웅의 징표",
         "body": "당신이 후방에서, 혹은 쓰러진 채로 싸우는 동안 당신의 부대가 영웅 시련을 돌파했습니다. 잠금은 똑같이 적용되었으니, 당신 몫의 영웅의 징표는 사라지지 않고 이곳으로 날아왔습니다. 잘 쓰십시오.\n\n- 영웅 병참장교"
+      },
+      "daily_reward_prize": {
+        "sender": "계곡의 집사",
+        "subject": "일일 상금 중 당신의 몫",
+        "body": "계곡은 그 안에서 누가 가장 힘써 일했는지 헤아리며, 어제 당신의 이름은 가장 높은 열 명 안에 들었습니다. 집사들이 당신의 몫을 달아 큰까마귀 편에 보냈습니다.\n\n내일 다시 와서, 할 수 있다면 첫 자리를 차지하십시오.\n\n- 계곡의 집사"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "제작 길드",

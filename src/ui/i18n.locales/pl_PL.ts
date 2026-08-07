@@ -2392,8 +2392,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.calendar.result.removed': 'Wydarzenie zostało zdjęte z kalendarza.',
   'hudChrome.calendar.title': 'Kalendarz wydarzeń',
   'hudChrome.calendar.titlePlaceholder': 'Tytuł wydarzenia',
-  'hudChrome.dailyRewards.disclaimer':
-    'Cena WOC może zmieniać się szybko. Zalecamy trzymanie więcej niż minimalne 20 USD, aby zwykłe wahania ceny nie odcięły ci dostępu. To nie jest porada finansowa.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     'To usuwa skrót skrzyni z twojego HUD-u. Nagrody, uprawnienia i ten panel pozostają dostępne; skrót możesz przywrócić w Opcjach.',
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Anuluj',
@@ -7984,7 +7982,6 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.disabled':
     'Codzienne nagrody są obecnie wyłączone. Aktualizacje dotyczące tej funkcji ogłosimy na kanale Discord.',
   'hudChrome.dailyRewards.unknown': 'Nieznane',
-  'hudChrome.dailyRewards.usd': '{amount} USD',
   'hudChrome.nativeUpdate.body':
     'Dostępna jest nowa wersja Wildhaven. Zaktualizuj teraz, aby uzyskać najnowsze poprawki i ulepszenia.',
   'hudChrome.nativeUpdate.bodyWithVersion':

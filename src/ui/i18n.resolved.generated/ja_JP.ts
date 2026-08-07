@@ -400,7 +400,7 @@ export const ja_JP: EnTranslations = {
       "error": "デイリー報酬を読み込めませんでした。",
       "disabled": "デイリー報酬は現在無効です。この機能に関する更新は Discord チャンネルでお知らせします。",
       "intro": "認証済みウォレットに十分なWOCを保有すると、デイリー報酬が解放されます。1日1回のスピンとローテーションするタスクでポイントを獲得し、デイリーランキングを駆け上がって賞金プールの分け前を狙いましょう。",
-      "disclaimer": "WOC価格は大きく変動する場合があります。通常の価格変動で報酬がロックされないよう、$20 USDの最低額より多めに保有することをおすすめします。これは金融助言ではありません。",
+      "disclaimer": "タスクとリーダーボードは一日に一度リセットされます。上位十名が賞金を分け合い、あなたの取り分は次回ログイン時に大鴉が届けます。",
       "prize": "賞金プール",
       "reset": "リセット",
       "endsIn": "終了まで{time}",
@@ -409,7 +409,6 @@ export const ja_JP: EnTranslations = {
       "remainingHoursMinutes": "{hours}時間{minutes}分",
       "remainingDaysHours": "{days}日{hours}時間",
       "score": "スコア",
-      "usd": "{amount} USD",
       "unknown": "不明",
       "spinTitle": "デイリースピン",
       "spinDialogTitle": "デイリー報酬スピン",
@@ -14364,6 +14363,11 @@ export const ja_JP: EnTranslations = {
         "sender": "英雄級補給官",
         "subject": "あなたの英雄の印",
         "body": "あなたが後方で、あるいは倒れて戦っている間に、あなたの部隊が英雄級の試練を突破しました。ロックアウトは同じように科されたので、あなたの分の英雄の印は失われることなく、ここへ飛んできました。大切に使ってください。\n\n- 英雄級補給官"
+      },
+      "daily_reward_prize": {
+        "sender": "谷の執政官",
+        "subject": "日々の賞金のあなたの取り分",
+        "body": "谷は誰が最も励んだかを数えており、昨日あなたの名は上位十名に並びました。執政官たちはあなたの取り分を量り、大鴉に託して送りました。\n\n明日も来て、できるなら首位を取りなさい。\n\n- 谷の執政官"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "製作ギルド",

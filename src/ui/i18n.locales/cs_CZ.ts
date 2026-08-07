@@ -4000,8 +4000,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'hudChrome.perf.units.memPair': '{used} / {limit} MB',
   'hudChrome.perf.units.ms': '{value} ms',
   'hudChrome.dailyRewards.close': 'Zavřít denní odměny',
-  'hudChrome.dailyRewards.disclaimer':
-    'Cena WOC se může rychle měnit. Doporučujeme držet víc než minimálních 20 USD, aby tě běžné cenové výkyvy neuzamkly ven. Toto není finanční rada.',
   'hudChrome.dailyRewards.endsIn': 'Končí za {time}',
   'hudChrome.dailyRewards.error': 'Denní odměny se nepodařilo načíst.',
   'hudChrome.dailyRewards.hideChestButton': 'Skrýt truhlu',
@@ -4042,7 +4040,6 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.totalPlayer': '{count} hráč dnes',
   'hudChrome.dailyRewards.totalPlayers': '{count} hráčů dnes',
   'hudChrome.dailyRewards.unknown': 'Neznámé',
-  'hudChrome.dailyRewards.usd': '{amount} USD',
   'hudChrome.mailbox.arrivedBanner': 'Havran přistál: pošta od {name}.',
   'hudChrome.mailbox.arrivedLog': 'Máš novou poštu od {name}.',
   'hudChrome.mailbox.attachmentsBadge': 'Balík přiložen',

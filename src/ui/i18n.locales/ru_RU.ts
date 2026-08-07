@@ -494,8 +494,6 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
     'Ежедневные награды сейчас отключены. Мы сообщим об обновлениях этой функции в канале Discord.',
   'hudChrome.dailyRewards.intro':
     'Держите достаточно WOC в подтвержденном кошельке, чтобы открыть ежедневные награды. Зарабатывайте очки за один ежедневный спин и сменяющиеся задания, затем поднимайтесь в ежедневной таблице лидеров ради доли призового фонда.',
-  'hudChrome.dailyRewards.disclaimer':
-    'Цена WOC может быстро меняться. Мы рекомендуем держать больше минимальных $20 USD, чтобы обычные колебания цены не заблокировали награды. Это не финансовый совет.',
   'hudChrome.dailyRewards.prize': 'Призовой фонд',
   'hudChrome.dailyRewards.reset': 'Сброс',
   'hudChrome.dailyRewards.score': 'Счёт',
@@ -8099,7 +8097,6 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.remainingDaysHours': '{days}д {hours}ч',
   'hudChrome.dailyRewards.remainingLessThanMinute': '<1м',
   'hudChrome.dailyRewards.remainingMinutes': '{minutes}м',
-  'hudChrome.dailyRewards.usd': '{amount} USD',
   'guide.professions.intro':
     'Помимо боя и заданий, мир вознаграждает тех, кто трудится на земле и у горна: собирайте сырьё, превращайте его в снаряжение и товары в десяти ремёслах и обретайте облик одного из десяти призваний, которые эти ремёсла олицетворяют.',
   'guide.professions.harvestTitle': 'Добыча с самой охоты',
@@ -10950,4 +10947,8 @@ export const ru_RU: Partial<Record<TranslationKey, string>> = {
   'hudChrome.auraOverlay.procs.aetherRush': 'Эфирный натиск',
   'itemUi.vendor.buyStack': 'Купить {count}',
   'itemUi.vendor.buyStackAria': 'Купить {count} {item} за {price}',
+  'hudChrome.dailyRewards.disclaimer': 'Задания и таблица лидеров сбрасываются раз в день. Первая десятка делит призовой фонд, и ваша доля прибудет с вороном при следующем входе в игру.',
+  'entities.letters.daily_reward_prize.sender': 'Управитель долины',
+  'entities.letters.daily_reward_prize.subject': 'Ваша доля дневной казны',
+  'entities.letters.daily_reward_prize.body': 'Долина ведёт счёт тем, кто трудится в ней усерднее всех, и вчера ваше имя стояло среди десяти первых. Управители отвесили вашу долю дневной казны и отправили её с вороном.\n\nВозвращайтесь завтра и займите первое место, если сумеете.\n\n- Управитель долины',
 };

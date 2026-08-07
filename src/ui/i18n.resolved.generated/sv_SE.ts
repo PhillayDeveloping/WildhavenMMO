@@ -400,7 +400,7 @@ export const sv_SE: EnTranslations = {
       "error": "Kunde inte ladda dagliga belöningar.",
       "disabled": "Dagliga belöningar är för närvarande inaktiverade. Vi meddelar uppdateringar om den här funktionen i Discord-kanalen.",
       "intro": "Håll tillräckligt med WOC i din verifierade plånbok för att låsa upp dagliga belöningar. Tjäna poäng med ett dagligt snurr och roterande uppgifter, och klättra sedan på den dagliga topplistan för en andel av prispotten.",
-      "disclaimer": "WOC-priset kan röra sig snabbt. Vi rekommenderar att du håller mer än miniminivån på 20 USD så att vanliga prissvängningar inte låser dig ute. Detta är inte finansiell rådgivning.",
+      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
       "prize": "Prispott",
       "reset": "Återställning",
       "endsIn": "Slutar om {time}",
@@ -409,7 +409,6 @@ export const sv_SE: EnTranslations = {
       "remainingHoursMinutes": "{hours} h {minutes} min",
       "remainingDaysHours": "{days} dagar {hours} timmar",
       "score": "Poäng",
-      "usd": "{amount} USD",
       "unknown": "Okänd",
       "spinTitle": "Dagligt snurr",
       "spinDialogTitle": "Dagligt belöningssnurr",
@@ -14364,6 +14363,11 @@ export const sv_SE: EnTranslations = {
         "sender": "Heroisk kvartermästare",
         "subject": "Dina heroiska märken",
         "body": "Din grupp klarade den heroiska prövningen medan du kämpade i eftertruppen eller låg fallen. Din låsning registrerades ändå, så din andel heroiska märken skickades hit i stället för att gå förlorad. Använd dem väl.\n\n- Heroisk kvartermästare"
+      },
+      "daily_reward_prize": {
+        "sender": "The Vale Steward",
+        "subject": "Your share of the daily purse",
+        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "Hantverksgillet",

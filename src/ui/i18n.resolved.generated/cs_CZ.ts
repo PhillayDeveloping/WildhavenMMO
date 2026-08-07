@@ -400,7 +400,7 @@ export const cs_CZ: EnTranslations = {
       "error": "Denní odměny se nepodařilo načíst.",
       "disabled": "Denní odměny jsou momentálně vypnuté. Novinky o této funkci oznámíme na kanálu Discord.",
       "intro": "Drž dost WOC v ověřené peněžence a odemkni denní odměny. Získávej body jedním denním zatočením a rotujícími úkoly, potom stoupej v denním žebříčku o podíl z prize poolu.",
-      "disclaimer": "Cena WOC se může rychle měnit. Doporučujeme držet víc než minimálních 20 USD, aby tě běžné cenové výkyvy neuzamkly ven. Toto není finanční rada.",
+      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
       "prize": "Prize pool",
       "reset": "Reset",
       "endsIn": "Končí za {time}",
@@ -409,7 +409,6 @@ export const cs_CZ: EnTranslations = {
       "remainingHoursMinutes": "{hours} h {minutes} min",
       "remainingDaysHours": "{days} d {hours} h",
       "score": "Skóre",
-      "usd": "{amount} USD",
       "unknown": "Neznámé",
       "spinTitle": "Denní zatočení",
       "spinDialogTitle": "Denní zatočení odměn",
@@ -14364,6 +14363,11 @@ export const cs_CZ: EnTranslations = {
         "sender": "Hrdinský zásobovač",
         "subject": "Vaše hrdinské marky",
         "body": "Vaše skupina zdolala hrdinskou zkoušku, zatímco jste bojovali v týlu nebo leželi poraženi. Také vaše uzamčení bylo zaznamenáno, takže váš podíl hrdinských marek dorazil sem, místo aby se ztratil. Využijte je dobře.\n\n- Hrdinský zásobovač"
+      },
+      "daily_reward_prize": {
+        "sender": "The Vale Steward",
+        "subject": "Your share of the daily purse",
+        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "Řemeslnický cech",

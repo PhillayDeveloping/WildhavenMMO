@@ -400,7 +400,7 @@ export const fr_FR: EnTranslations = {
       "error": "Impossible de charger les récompenses quotidiennes.",
       "disabled": "Les récompenses quotidiennes sont actuellement désactivées. Nous annoncerons les mises à jour de cette fonctionnalité sur le canal Discord.",
       "intro": "Détenez assez de WOC dans votre portefeuille vérifié pour débloquer les récompenses quotidiennes. Gagnez des points grâce à un tour quotidien et à des tâches en rotation, puis grimpez dans le classement quotidien pour remporter une part de la cagnotte.",
-      "disclaimer": "Le cours du WOC peut varier rapidement. Nous vous recommandons de détenir plus que le minimum de 20 USD afin que les variations normales du cours ne vous bloquent pas. Ceci n'est pas un conseil financier.",
+      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
       "prize": "Cagnotte",
       "reset": "Réinitialisation",
       "endsIn": "Se termine dans {time}",
@@ -409,7 +409,6 @@ export const fr_FR: EnTranslations = {
       "remainingHoursMinutes": "{hours}h {minutes}min",
       "remainingDaysHours": "{days} j {hours} h",
       "score": "Score",
-      "usd": "{amount} USD",
       "unknown": "Inconnu",
       "spinTitle": "Tour quotidien",
       "spinDialogTitle": "Tour de récompense quotidien",
@@ -14364,6 +14363,11 @@ export const fr_FR: EnTranslations = {
         "sender": "Intendant héroïque",
         "subject": "Vos Marques héroïques",
         "body": "Votre groupe a triomphé de l’épreuve héroïque pendant que vous combattiez à l’arrière ou gisiez à terre. Votre verrouillage a tout de même été enregistré, alors votre part de Marques héroïques vous est envoyée ici au lieu d’être perdue. Faites-en bon usage.\n\n- Intendant héroïque"
+      },
+      "daily_reward_prize": {
+        "sender": "The Vale Steward",
+        "subject": "Your share of the daily purse",
+        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "La guilde des artisans",

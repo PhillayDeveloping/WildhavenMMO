@@ -2742,8 +2742,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.calendar.result.removed': "L'événement a été retiré du calendrier.",
   'hudChrome.calendar.title': 'Calendrier des événements',
   'hudChrome.calendar.titlePlaceholder': "Titre de l'événement",
-  'hudChrome.dailyRewards.disclaimer':
-    "Le cours du WOC peut varier rapidement. Nous vous recommandons de détenir plus que le minimum de 20 USD afin que les variations normales du cours ne vous bloquent pas. Ceci n'est pas un conseil financier.",
   'hudChrome.dailyRewards.hideChestConfirmBody':
     "Ceci retire le raccourci du coffre de votre interface. Les récompenses, l'éligibilité et ce panneau restent disponibles ; vous pouvez rétablir le raccourci depuis les Options.",
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Annuler',
@@ -8465,7 +8463,6 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.disabled':
     'Les récompenses quotidiennes sont actuellement désactivées. Nous annoncerons les mises à jour de cette fonctionnalité sur le canal Discord.',
   'hudChrome.dailyRewards.unknown': 'Inconnu',
-  'hudChrome.dailyRewards.usd': '{amount} USD',
   'hudChrome.nativeUpdate.body':
     'Une nouvelle version de Wildhaven est disponible. Mettez à jour maintenant pour les derniers correctifs et améliorations.',
   'hudChrome.nativeUpdate.bodyWithVersion':

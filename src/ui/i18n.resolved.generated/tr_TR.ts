@@ -400,7 +400,7 @@ export const tr_TR: EnTranslations = {
       "error": "Günlük ödüller yüklenemedi.",
       "disabled": "Günlük Ödüller şu anda devre dışı. Bu özellikle ilgili güncellemeleri Discord kanalında duyuracağız.",
       "intro": "Günlük ödüllerin kilidini açmak için doğrulanmış cüzdanında yeterince WOC bulundur. Bir günlük çevirme ve dönüşümlü görevlerle puan kazan, ardından ödül havuzundan pay almak için günlük lider tablosunda yüksel.",
-      "disclaimer": "WOC fiyatı hızla değişebilir. Olağan fiyat dalgalanmalarının seni dışarıda bırakmaması için 20 USD asgarisinden fazlasını tutmanı öneririz. Bu bir yatırım tavsiyesi değildir.",
+      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
       "prize": "Ödül Havuzu",
       "reset": "Sıfırla",
       "endsIn": "Bitmesine {time}",
@@ -409,7 +409,6 @@ export const tr_TR: EnTranslations = {
       "remainingHoursMinutes": "{hours}sa {minutes}dk",
       "remainingDaysHours": "{days} gün {hours} saat",
       "score": "Skor",
-      "usd": "{amount} USD",
       "unknown": "Bilinmiyor",
       "spinTitle": "Günlük Çevirme",
       "spinDialogTitle": "Günlük Ödül Çevirmesi",
@@ -14364,6 +14363,11 @@ export const tr_TR: EnTranslations = {
         "sender": "Kahraman levazım subayı",
         "subject": "Kahramanlık Nişanların",
         "body": "Birliğin kahramanlık sınavını temizlerken sen arka saflarda savaşıyor ya da yerde yatıyordun. Kilidin yine de kaydedildi, bu yüzden Kahramanlık Nişanlarından payın kaybolmak yerine buraya gönderildi. Onları iyi kullan.\n\n- Kahraman levazım subayı"
+      },
+      "daily_reward_prize": {
+        "sender": "The Vale Steward",
+        "subject": "Your share of the daily purse",
+        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "Üretim Loncası",

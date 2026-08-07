@@ -400,7 +400,7 @@ export const vi_VN: EnTranslations = {
       "error": "Không thể tải phần thưởng hằng ngày.",
       "disabled": "Phần Thưởng Hằng Ngày hiện đang bị tắt. Chúng tôi sẽ thông báo các cập nhật về tính năng này trong kênh Discord.",
       "intro": "Giữ đủ WOC trong ví đã xác minh của bạn để mở khóa phần thưởng hằng ngày. Kiếm điểm bằng một lượt quay mỗi ngày và các nhiệm vụ luân phiên, rồi leo lên bảng xếp hạng hằng ngày để nhận phần chia từ quỹ giải thưởng.",
-      "disclaimer": "Giá WOC có thể biến động nhanh. Chúng tôi khuyên bạn nên giữ nhiều hơn mức tối thiểu 20 USD để những dao động giá thông thường không khóa bạn ở ngoài. Đây không phải lời khuyên tài chính.",
+      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
       "prize": "Quỹ Giải Thưởng",
       "reset": "Đặt Lại",
       "endsIn": "Kết thúc sau {time}",
@@ -409,7 +409,6 @@ export const vi_VN: EnTranslations = {
       "remainingHoursMinutes": "{hours}h {minutes}p",
       "remainingDaysHours": "{days} ngày {hours} giờ",
       "score": "Điểm",
-      "usd": "{amount} USD",
       "unknown": "Không rõ",
       "spinTitle": "Vòng Quay Hằng Ngày",
       "spinDialogTitle": "Vòng Quay Phần Thưởng Hằng Ngày",
@@ -14364,6 +14363,11 @@ export const vi_VN: EnTranslations = {
         "sender": "Quân nhu Anh Hùng",
         "subject": "Dấu Ấn Anh Hùng của bạn",
         "body": "Đội của bạn đã vượt qua thử thách Anh Hùng khi bạn chiến đấu ở hậu tuyến hoặc đã ngã xuống. Khóa lượt của bạn vẫn được ghi nhận, vì vậy phần Dấu Ấn Anh Hùng của bạn được gửi đến đây thay vì thất lạc. Hãy sử dụng chúng thật tốt.\n\n- Quân nhu Anh Hùng"
+      },
+      "daily_reward_prize": {
+        "sender": "The Vale Steward",
+        "subject": "Your share of the daily purse",
+        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "Hội chế tạo",

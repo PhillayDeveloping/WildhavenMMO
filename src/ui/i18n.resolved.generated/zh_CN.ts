@@ -400,7 +400,7 @@ export const zh_CN: EnTranslations = {
       "error": "无法加载每日奖励。",
       "disabled": "每日奖励目前已停用。我们将在 Discord 频道中公布此功能的更新。",
       "intro": "在已验证的钱包中持有足够的 WOC 即可解锁每日奖励。通过每日一次转盘和轮换任务赚取积分，然后攀登每日排行榜，赢取奖池分成。",
-      "disclaimer": "WOC 价格可能快速波动。我们建议持有高于 $20 USD 最低要求的数量，避免正常价格波动导致奖励被锁定。这不是财务建议。",
+      "disclaimer": "任务与排行榜每日重置一次。前十名瓜分奖金池，你的那一份将由渡鸦在你下次登录时送达。",
       "prize": "奖池",
       "reset": "重置",
       "endsIn": "{time}后结束",
@@ -409,7 +409,6 @@ export const zh_CN: EnTranslations = {
       "remainingHoursMinutes": "{hours}小时{minutes}分",
       "remainingDaysHours": "{days}天{hours}小时",
       "score": "得分",
-      "usd": "{amount} USD",
       "unknown": "未知",
       "spinTitle": "每日转盘",
       "spinDialogTitle": "每日奖励转盘",
@@ -14364,6 +14363,11 @@ export const zh_CN: EnTranslations = {
         "sender": "英勇军需官",
         "subject": "你的英勇印记",
         "body": "你的部队清剿了英勇试炼，而你在后排作战，或已倒在尘土之中。你的锁定同样已经生效，因此你那一份英勇印记飞到了这里，而非就此遗失。好好使用它们。\n\n- 英勇军需官"
+      },
+      "daily_reward_prize": {
+        "sender": "山谷总管",
+        "subject": "你的每日奖金份额",
+        "body": "山谷记得谁在其中最为勤勉，而昨日你的名字位列最高的十人之中。总管们已称量出你应得的那份每日奖金，并托渡鸦送来。\n\n明日再来，若你能够，便夺下头名。\n\n- 山谷总管"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "工匠公会",

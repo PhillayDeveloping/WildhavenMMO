@@ -400,7 +400,7 @@ export const de_DE: EnTranslations = {
       "error": "Tägliche Belohnungen konnten nicht geladen werden.",
       "disabled": "Tägliche Belohnungen sind derzeit deaktiviert. Neuigkeiten zu dieser Funktion geben wir im Discord-Kanal bekannt.",
       "intro": "Halte genügend WOC in deiner verifizierten Wallet, um tägliche Belohnungen freizuschalten. Verdiene Punkte mit einem täglichen Dreh und wechselnden Aufgaben und klettere dann in der täglichen Rangliste nach oben, um einen Anteil am Preispool zu erhalten.",
-      "disclaimer": "Der WOC-Kurs kann sich schnell bewegen. Wir empfehlen, mehr als das Minimum von 20 USD zu halten, damit gewöhnliche Kursschwankungen dich nicht aussperren. Dies ist keine Finanzberatung.",
+      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
       "prize": "Preispool",
       "reset": "Zurücksetzen",
       "endsIn": "Endet in {time}",
@@ -409,7 +409,6 @@ export const de_DE: EnTranslations = {
       "remainingHoursMinutes": "{hours}Std {minutes}Min",
       "remainingDaysHours": "{days} T {hours} Std",
       "score": "Punktzahl",
-      "usd": "{amount} USD",
       "unknown": "Unbekannt",
       "spinTitle": "Täglicher Dreh",
       "spinDialogTitle": "Täglicher Belohnungsdreh",
@@ -14364,6 +14363,11 @@ export const de_DE: EnTranslations = {
         "sender": "Heroischer Quartiermeister",
         "subject": "Deine heroischen Marken",
         "body": "Deine Gruppe hat die heroische Prüfung gemeistert, während du in der Nachhut gekämpft hast oder bereits am Boden lagst. Auch deine Instanzbindung wurde aktiviert, daher ist dein Anteil an heroischen Marken hier angekommen, statt verloren zu gehen. Setze sie klug ein.\n\n- Heroischer Quartiermeister"
+      },
+      "daily_reward_prize": {
+        "sender": "The Vale Steward",
+        "subject": "Your share of the daily purse",
+        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "Die Handwerksgilde",

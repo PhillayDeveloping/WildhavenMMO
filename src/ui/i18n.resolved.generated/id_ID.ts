@@ -400,7 +400,7 @@ export const id_ID: EnTranslations = {
       "error": "Tidak dapat memuat hadiah harian.",
       "disabled": "Hadiah Harian saat ini dinonaktifkan. Kami akan mengumumkan pembaruan fitur ini di kanal Discord.",
       "intro": "Simpan cukup WOC di dompet terverifikasimu untuk membuka hadiah harian. Kumpulkan poin lewat satu putaran harian dan tugas yang bergilir, lalu naiki papan peringkat harian untuk mendapat bagian dari kolam hadiah.",
-      "disclaimer": "Harga WOC dapat bergerak cepat. Kami menyarankan untuk menyimpan lebih dari batas minimum $20 USD agar gejolak harga yang wajar tidak mengunci aksesmu. Ini bukan nasihat keuangan.",
+      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
       "prize": "Kolam Hadiah",
       "reset": "Atur Ulang",
       "endsIn": "Berakhir dalam {time}",
@@ -409,7 +409,6 @@ export const id_ID: EnTranslations = {
       "remainingHoursMinutes": "{hours}j {minutes}m",
       "remainingDaysHours": "{days} hari {hours} jam",
       "score": "Skor",
-      "usd": "{amount} USD",
       "unknown": "Tidak diketahui",
       "spinTitle": "Putaran Harian",
       "spinDialogTitle": "Putaran Hadiah Harian",
@@ -14364,6 +14363,11 @@ export const id_ID: EnTranslations = {
         "sender": "Perbekal heroik",
         "subject": "Tanda Heroik milikmu",
         "body": "Kelompokmu menuntaskan ujian heroik saat kamu bertempur di barisan belakang atau telah tumbang. Penguncianmu juga tercatat, jadi bagian Tanda Heroik milikmu dikirim ke sini alih-alih hilang. Gunakan dengan baik.\n\n- Perbekal heroik"
+      },
+      "daily_reward_prize": {
+        "sender": "The Vale Steward",
+        "subject": "Your share of the daily purse",
+        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "Persatuan Perajin",

@@ -2284,8 +2284,6 @@ export const vi_VN: Partial<Record<TranslationKey, string>> = {
   'hudChrome.corpseHarvest.harvestTooltip':
     'Thu thập các bộ phận đã chọn. Mỗi xác chỉ có thể thu hoạch một lần, ai đến trước được trước. Không lấy chiến lợi phẩm.',
   'hudChrome.corpseHarvest.title': 'Thu Hoạch',
-  'hudChrome.dailyRewards.disclaimer':
-    'Giá WOC có thể biến động nhanh. Chúng tôi khuyên bạn nên giữ nhiều hơn mức tối thiểu 20 USD để những dao động giá thông thường không khóa bạn ở ngoài. Đây không phải lời khuyên tài chính.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     'Thao tác này gỡ lối tắt rương khỏi HUD của bạn. Phần thưởng, điều kiện nhận và bảng này vẫn khả dụng; bạn có thể bật lại lối tắt từ Tùy Chọn.',
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Hủy',
@@ -8458,7 +8456,6 @@ export const vi_VN: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.disabled':
     'Phần Thưởng Hằng Ngày hiện đang bị tắt. Chúng tôi sẽ thông báo các cập nhật về tính năng này trong kênh Discord.',
   'hudChrome.dailyRewards.unknown': 'Không rõ',
-  'hudChrome.dailyRewards.usd': '{amount} USD',
   'hudChrome.nativeUpdate.body':
     'Đã có phiên bản mới của Wildhaven. Cập nhật ngay để nhận các bản sửa lỗi và cải tiến mới nhất.',
   'hudChrome.nativeUpdate.bodyWithVersion':

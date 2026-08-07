@@ -497,8 +497,6 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
     '일일 보상은 현재 비활성화되어 있습니다. 이 기능에 대한 업데이트는 Discord 채널에서 안내하겠습니다.',
   'hudChrome.dailyRewards.intro':
     '인증된 지갑에 충분한 WOC를 보유하여 일일 보상을 잠금 해제하세요. 하루 한 번의 스핀과 교체되는 과제로 포인트를 획득한 뒤, 일일 순위표를 올라 상금 풀의 일부를 차지하세요.',
-  'hudChrome.dailyRewards.disclaimer':
-    'WOC 가격은 빠르게 변동될 수 있습니다. 일반적인 가격 변동으로 보상이 잠기지 않도록 $20 USD 최소 기준보다 더 많이 보유하는 것을 권장합니다. 이는 금융 조언이 아닙니다.',
   'hudChrome.dailyRewards.prize': '상금 풀',
   'hudChrome.dailyRewards.reset': '초기화',
   'hudChrome.dailyRewards.score': '점수',
@@ -7967,7 +7965,6 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.remainingDaysHours': '{days}일 {hours}시간',
   'hudChrome.dailyRewards.remainingLessThanMinute': '1분 미만',
   'hudChrome.dailyRewards.remainingMinutes': '{minutes}분',
-  'hudChrome.dailyRewards.usd': '{amount} USD',
   'guide.professions.intro':
     '전투와 퀘스트를 넘어, 이 세계는 땅을 일구고 대장간에서 일하는 여러분에게도 보상을 준다. 원재료를 채집하고, 열 가지 제작 전문직에 걸쳐 이를 장비와 물품으로 바꾸며, 그 전문직들이 상징하는 열 가지 원형 중 하나로서 정체성을 다지는 것이다.',
   'guide.professions.harvestTitle': '사냥감 그 자체를 채집하기',
@@ -10777,4 +10774,8 @@ export const ko_KR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.auraOverlay.procs.aetherRush': '에테르 쇄도',
   'itemUi.vendor.buyStack': '{count}개 구매',
   'itemUi.vendor.buyStackAria': '{price}에 {item} {count}개 구매',
+  'hudChrome.dailyRewards.disclaimer': '과제와 순위표는 하루에 한 번 초기화됩니다. 상위 열 명이 상금을 나누며, 당신의 몫은 다음 접속 때 큰까마귀가 전해 줍니다.',
+  'entities.letters.daily_reward_prize.sender': '계곡의 집사',
+  'entities.letters.daily_reward_prize.subject': '일일 상금 중 당신의 몫',
+  'entities.letters.daily_reward_prize.body': '계곡은 그 안에서 누가 가장 힘써 일했는지 헤아리며, 어제 당신의 이름은 가장 높은 열 명 안에 들었습니다. 집사들이 당신의 몫을 달아 큰까마귀 편에 보냈습니다.\n\n내일 다시 와서, 할 수 있다면 첫 자리를 차지하십시오.\n\n- 계곡의 집사',
 };

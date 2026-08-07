@@ -400,7 +400,7 @@ export const da_DK: EnTranslations = {
       "error": "Kunne ikke indlæse daglige belønninger.",
       "disabled": "Daglige belønninger er i øjeblikket deaktiveret. Vi annoncerer opdateringer til denne funktion i Discord-kanalen.",
       "intro": "Behold nok WOC i din verificerede wallet for at låse daglige belønninger op. Optjen point med én daglig drejning og skiftende opgaver, og klatr så op ad den daglige resultattavle for en andel af præmiepuljen.",
-      "disclaimer": "WOC-kursen kan bevæge sig hurtigt. Vi anbefaler at holde mere end minimummet på 20 USD, så normale kursudsving ikke lukker dig ude. Dette er ikke finansiel rådgivning.",
+      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
       "prize": "Præmiepulje",
       "reset": "Nulstil",
       "endsIn": "Slutter om {time}",
@@ -409,7 +409,6 @@ export const da_DK: EnTranslations = {
       "remainingHoursMinutes": "{hours}t {minutes}m",
       "remainingDaysHours": "{days} dage {hours} timer",
       "score": "Score",
-      "usd": "{amount} USD",
       "unknown": "Ukendt",
       "spinTitle": "Daglig drejning",
       "spinDialogTitle": "Daglig belønningsdrejning",
@@ -14364,6 +14363,11 @@ export const da_DK: EnTranslations = {
         "sender": "Heroisk kvartermester",
         "subject": "Dine heroiske mærker",
         "body": "Din gruppe klarede den heroiske prøve, mens du kæmpede i bagtroppen eller lå faldet. Din låsning blev også registreret, så din andel af de heroiske mærker blev sendt hertil i stedet for at gå tabt. Brug dem godt.\n\n- Heroisk kvartermester"
+      },
+      "daily_reward_prize": {
+        "sender": "The Vale Steward",
+        "subject": "Your share of the daily purse",
+        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "Håndværkerlauget",

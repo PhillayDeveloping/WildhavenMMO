@@ -2361,8 +2361,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'hudChrome.corpseHarvest.harvestTooltip':
     'Mengumpulkan komponen yang dicentang. Setiap bangkai hanya bisa dipanen sekali, siapa cepat dia dapat. Tidak mengambil jarahan.',
   'hudChrome.corpseHarvest.title': 'Panen',
-  'hudChrome.dailyRewards.disclaimer':
-    'Harga WOC dapat bergerak cepat. Kami menyarankan untuk menyimpan lebih dari batas minimum $20 USD agar gejolak harga yang wajar tidak mengunci aksesmu. Ini bukan nasihat keuangan.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     'Ini menghapus pintasan peti dari HUD-mu. Hadiah, kelayakan, dan panel ini tetap tersedia; kamu bisa mengembalikan pintasannya dari Opsi.',
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Batal',
@@ -8525,7 +8523,6 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.disabled':
     'Hadiah Harian saat ini dinonaktifkan. Kami akan mengumumkan pembaruan fitur ini di kanal Discord.',
   'hudChrome.dailyRewards.unknown': 'Tidak diketahui',
-  'hudChrome.dailyRewards.usd': '{amount} USD',
   'hudChrome.nativeUpdate.body':
     'Versi baru Wildhaven tersedia. Perbarui sekarang untuk perbaikan dan peningkatan terbaru.',
   'hudChrome.nativeUpdate.bodyWithVersion':

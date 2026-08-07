@@ -2233,8 +2233,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.calendar.result.removed': 'Evenemanget togs bort från kalendern.',
   'hudChrome.calendar.title': 'Evenemangskalender',
   'hudChrome.calendar.titlePlaceholder': 'Evenemangstitel',
-  'hudChrome.dailyRewards.disclaimer':
-    'WOC-priset kan röra sig snabbt. Vi rekommenderar att du håller mer än miniminivån på 20 USD så att vanliga prissvängningar inte låser dig ute. Detta är inte finansiell rådgivning.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     'Detta tar bort kistgenvägen från ditt HUD. Belöningar, behörighet och den här panelen finns kvar; du kan ta tillbaka genvägen från Alternativ.',
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Avbryt',
@@ -7742,7 +7740,6 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.disabled':
     'Dagliga belöningar är för närvarande inaktiverade. Vi meddelar uppdateringar om den här funktionen i Discord-kanalen.',
   'hudChrome.dailyRewards.unknown': 'Okänd',
-  'hudChrome.dailyRewards.usd': '{amount} USD',
   'hudChrome.nativeUpdate.body':
     'En ny version av Wildhaven är tillgänglig. Uppdatera nu för de senaste korrigeringarna och förbättringarna.',
   'hudChrome.nativeUpdate.bodyWithVersion':

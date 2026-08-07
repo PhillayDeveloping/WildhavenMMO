@@ -490,8 +490,6 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
     '每日奖励目前已停用。我们将在 Discord 频道中公布此功能的更新。',
   'hudChrome.dailyRewards.intro':
     '在已验证的钱包中持有足够的 WOC 即可解锁每日奖励。通过每日一次转盘和轮换任务赚取积分，然后攀登每日排行榜，赢取奖池分成。',
-  'hudChrome.dailyRewards.disclaimer':
-    'WOC 价格可能快速波动。我们建议持有高于 $20 USD 最低要求的数量，避免正常价格波动导致奖励被锁定。这不是财务建议。',
   'hudChrome.dailyRewards.prize': '奖池',
   'hudChrome.dailyRewards.reset': '重置',
   'hudChrome.dailyRewards.score': '得分',
@@ -7634,7 +7632,6 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'hudChrome.dailyRewards.remainingDaysHours': '{days}天{hours}小时',
   'hudChrome.dailyRewards.remainingLessThanMinute': '<1分',
   'hudChrome.dailyRewards.remainingMinutes': '{minutes}分',
-  'hudChrome.dailyRewards.usd': '{amount} USD',
   'guide.professions.intro':
     '除了战斗和任务之外，这个世界还会奖励你耕耘土地与执掌熔炉：采集原材料，通过十种制作行业将其打造成装备与货物，并在这些行业所代表的十种命途之一中确立自己的身份。',
   'guide.professions.harvestTitle': '收获狩猎本身',
@@ -10305,4 +10302,8 @@ export const zh_CN: Partial<Record<TranslationKey, string>> = {
   'hudChrome.auraOverlay.procs.aetherRush': '以太奔涌',
   'itemUi.vendor.buyStack': '购买 {count} 个',
   'itemUi.vendor.buyStackAria': '以 {price} 购买 {count} 个 {item}',
+  'hudChrome.dailyRewards.disclaimer': '任务与排行榜每日重置一次。前十名瓜分奖金池，你的那一份将由渡鸦在你下次登录时送达。',
+  'entities.letters.daily_reward_prize.sender': '山谷总管',
+  'entities.letters.daily_reward_prize.subject': '你的每日奖金份额',
+  'entities.letters.daily_reward_prize.body': '山谷记得谁在其中最为勤勉，而昨日你的名字位列最高的十人之中。总管们已称量出你应得的那份每日奖金，并托渡鸦送来。\n\n明日再来，若你能够，便夺下头名。\n\n- 山谷总管',
 };
