@@ -399,7 +399,7 @@ async function makeReferenceComparison(optimizedContact) {
       { input: reference, left: 0, top: 40 },
       { input: optimized, left: panelWidth, top: 40 },
       {
-        input: labelSvg('Original Wildhaven imagegen turnaround', panelWidth),
+        input: labelSvg('Original World of ClaudeCraft imagegen turnaround', panelWidth),
         left: 0,
         top: 0,
       },

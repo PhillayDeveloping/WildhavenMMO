@@ -19,6 +19,7 @@ import { eastbrookMailboxSourceFingerprint } from './eastbrook_mailbox/source_fi
 import { eastbrookNoticeboardSourceFingerprint } from './eastbrook_noticeboard/source_fingerprint.mjs';
 import { eastbrookTownSourceFingerprint } from './eastbrook_town/source_fingerprint.mjs';
 import { eastbrookSurfaceAtlasFingerprint } from './eastbrook_town/surface_atlas.mjs';
+import { fenbridgeTownSourceFingerprint } from './fenbridge_town/source_fingerprint.mjs';
 import { tankSourceFingerprint } from './terrorspark_groundshaker/source_fingerprint.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -37,6 +38,25 @@ const ASSETS = [
   { rel: 'public/models/props/eastbrook_noticeboard.glb', kind: 'notice' },
   { rel: 'public/models/props/mailbox_pillar.glb', kind: 'mailbox' },
   { rel: 'public/models/mounts/terrorspark_groundshaker.glb', kind: 'tank' },
+  // Fenbridge was missing from this list, so a lockfile change re-stamped every
+  // other town and left these 15 carrying a fingerprint their own module no
+  // longer computes. Added when the web3 dependency removal moved the lock.
+  { rel: 'public/models/props/fenbridge_boardwalk.glb', kind: 'fenbridge' },
+  { rel: 'public/models/props/fenbridge_crooked_reed_inn.glb', kind: 'fenbridge' },
+  { rel: 'public/models/props/fenbridge_gate_arch.glb', kind: 'fenbridge' },
+  { rel: 'public/models/props/fenbridge_gilded_strongbox.glb', kind: 'fenbridge' },
+  { rel: 'public/models/props/fenbridge_hesk_tannery.glb', kind: 'fenbridge' },
+  { rel: 'public/models/props/fenbridge_lantern_chapel.glb', kind: 'fenbridge' },
+  { rel: 'public/models/props/fenbridge_mirelight_cistern.glb', kind: 'fenbridge' },
+  { rel: 'public/models/props/fenbridge_moonwort_apothecary.glb', kind: 'fenbridge' },
+  { rel: 'public/models/props/fenbridge_muster_board.glb', kind: 'fenbridge' },
+  { rel: 'public/models/props/fenbridge_palisade_wing.glb', kind: 'fenbridge' },
+  { rel: 'public/models/props/fenbridge_provision_stall.glb', kind: 'fenbridge' },
+  { rel: 'public/models/props/fenbridge_scout_lodge.glb', kind: 'fenbridge' },
+  { rel: 'public/models/props/fenbridge_warden_gatehouse.glb', kind: 'fenbridge' },
+  { rel: 'public/models/quest/fenbridge_muster_order.glb', kind: 'fenbridge' },
+  // Deliberately NOT hexn_palisade.glb: it ships from the biome pack and carries
+  // no sourceFingerprint extras, so it is not part of this provenance family.
 ];
 
 function findSourceFingerprint(buf) {
@@ -70,6 +90,7 @@ const fps = {
   armoury: eastbrookGrandArmourySourceFingerprint(ROOT),
   tank: tankSourceFingerprint(ROOT),
   atlas: eastbrookSurfaceAtlasFingerprint(ROOT),
+  fenbridge: fenbridgeTownSourceFingerprint(ROOT),
 };
 
 console.log('live source fingerprints:');
