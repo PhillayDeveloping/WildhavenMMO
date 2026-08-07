@@ -86,7 +86,6 @@
     "db:up": "docker compose up -d postgres",
     "db:down": "docker compose down",
     "db:check": "node --env-file-if-exists=.env scripts/db_check.mjs",
-    "email:check": "node --env-file-if-exists=.env scripts/email_check.mjs",
     "db:cleanup-zone1-removed": "tsx scripts/cleanup_removed_zone1_content.ts",
     "db:migrate-old-cragmaw-pelt": "tsx scripts/migrate_old_cragmaw_pelt.ts",
     "build:server": "node scripts/build_server.mjs",

@@ -101,7 +101,7 @@ Optional but worth doing once strangers can reach the address:
   machine will serve. Set a number you actually want to admit.
 - **Outbound email.** Until it is configured, a player who forgets their
   password has no way back into their account: see the block in `.env.example`
-  and verify with `npm run email:check <address>`.
+  and verify with `node scripts/email_check.mjs <address>`.
 
 ## What stays your problem
 
