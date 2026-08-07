@@ -117,10 +117,14 @@ const SOURCE_DIRS = ['src', 'server', 'scripts', 'tests', 'bot', 'electron'];
 /**
  * Files whose JOB is to contain chain/wallet import text, so a match there is the
  * feature rather than a regression. The malware scanner's suite carries wallet-drain
- * signatures as string fixtures ("import ... from '@solana/web3.js'") precisely so
- * the scanner can be proven to catch that shape in a supply-chain attack: this fork
- * having no wallet is exactly why an unexpected one must still be detectable.
+ * import lines as string fixtures precisely so the scanner can be proven to catch
+ * that shape in a supply-chain attack: this fork having no wallet is exactly why an
+ * unexpected one must still be detectable.
+ *
  * Keep this list to files that store such text as DATA, never to a real importer.
+ * And do NOT spell a drain signature literally anywhere in this file: the malware
+ * scanner reads it too, and a quoted example here trips its web3-drain rule (which
+ * is the scanner working correctly, so the fix is to describe rather than quote).
  */
 const SIGNATURE_FIXTURE_FILES = new Set([
   'tests/malware_scan.test.ts',

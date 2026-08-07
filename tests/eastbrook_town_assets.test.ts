@@ -21,7 +21,7 @@ const REPO_ROOT = path.join(__dirname, '..');
 const PROPS_ROOT = path.join(REPO_ROOT, 'public/models/props');
 const EVIDENCE_ROOT = path.join(REPO_ROOT, 'docs/screenshots/eastbrook-vale-rebuild/assets');
 const MATERIALS_ROOT = path.join(REPO_ROOT, 'docs/screenshots/eastbrook-vale-rebuild/materials');
-const SOURCE_FINGERPRINT = '077fe0c3f65d0792f5b1196d589205130fbcac766c3576b8b02e6ca974faa218';
+const SOURCE_FINGERPRINT = '326600753a5e91aa28a88d3d99b3401233c2dc088c9570712dca2e433e4c48ab';
 const SURFACE_ATLAS_SOURCE_SHA256 =
   'abec3036f8887e9c94972dab52aea664f18a74696db6b6d24cc48a4cfbe22b7d';
 const SURFACE_ATLAS_SHIPPING_SHA256 =
@@ -29,7 +29,7 @@ const SURFACE_ATLAS_SHIPPING_SHA256 =
 const SURFACE_ATLAS_PREVIEW_SHA256 =
   'ea6ba64e200f305f079cc858a4daf5d28dc8c240acd83895729237c521d26576';
 const SURFACE_ATLAS_FINGERPRINT =
-  'e0020624db100c237cf4b5c733039ba3d7f74bef3754b0eb13748cd702fc4d3f';
+  'ff6f06e1249372984920c200a7d976bce56df81e38e510b0690322d88df7e59a';
 const TURNAROUND_VIEWS = [
   'front',
   'right',
@@ -74,7 +74,7 @@ const ASSETS: readonly AssetContract[] = [
     rootName: 'EastbrookBank',
     dimensions: [7, 7.8, 5.5],
     bytes: 52_508,
-    sha256: '9b86510e839e019dc245dfeaf8038463ba4edf2751ae1f79e0783d220eab9909',
+    sha256: 'd6b27197986d6776e890d46301a756d5c94eb70388c6c57785304d5e5607f999',
     triangles: 3104,
     primitiveTriangles: [2928, 176],
     triangleCeiling: 6000,
@@ -110,7 +110,7 @@ const ASSETS: readonly AssetContract[] = [
     rootName: 'EastbrookSmithy',
     dimensions: [7, 7.5, 5.5],
     bytes: 40_352,
-    sha256: '83e91af213d313c0702ddd676c5d0ed85ad1f4dc778772983ad4cd674c1458d0',
+    sha256: '6d19f610db141f1b49a0a2fe915e7bdbcdbb6d0f5b1e66cd6495ee8946c9ab54',
     triangles: 2410,
     primitiveTriangles: [2282, 128],
     triangleCeiling: 6000,

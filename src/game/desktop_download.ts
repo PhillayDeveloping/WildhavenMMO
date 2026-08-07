@@ -21,9 +21,9 @@ const DESKTOP_HOST = 'https://updates.wildhaven.example/desktop';
 // channel's precedent of running Windows-on-ARM visitors under x64 emulation
 // rather than shipping a second download button.
 const ARTIFACT: Partial<Record<DesktopPlatform, string>> = {
-  mac: `world-of-claudecraft-${DESKTOP_VERSION}-mac-universal.dmg`,
-  win: `world-of-claudecraft-${DESKTOP_VERSION}-win-x64.exe`,
-  linux: `world-of-claudecraft-${DESKTOP_VERSION}-linux-x86_64.AppImage`,
+  mac: `wildhaven-${DESKTOP_VERSION}-mac-universal.dmg`,
+  win: `wildhaven-${DESKTOP_VERSION}-win-x64.exe`,
+  linux: `wildhaven-${DESKTOP_VERSION}-linux-x86_64.AppImage`,
 };
 
 // Full download URL for a platform, or null when no artifact is published for it.

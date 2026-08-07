@@ -36,7 +36,7 @@ const REPO_ROOT = path.join(__dirname, '..');
 const EVIDENCE_ROOT = path.join(REPO_ROOT, 'docs/screenshots/fenbridge-rebuild/assets');
 const INTAKE_ROOT = path.join(REPO_ROOT, 'docs/design/fenbridge-rebuild/img2threejs');
 const EXPECTED_SOURCE_FINGERPRINT =
-  'c324e1b90cee686db677fb4715746a43abb2a4cc381f2467574d320379d855bb';
+  '07f1c7d729f46f7407d0de88352c92d47a46045055df06bc7f3e4d59e8c9d5e1';
 const EXPECTED_SUPPORT_FINGERPRINT =
   '700a314029c5577cde6ea4d368d00a132f0ebdc73ea7e45dbffc87e88a666618';
 const FOUNDATION_TRIANGLES = 84;
@@ -52,13 +52,13 @@ interface ExpectedArtifact {
 const EXPECTED_ARTIFACTS: Readonly<Record<string, ExpectedArtifact>> = {
   warden_gatehouse: {
     bytes: 142_328,
-    sha256: 'ead40071432de5f11635013c79b98baf7e7f382ce49e98f31fbdf01e4b938199',
+    sha256: '8e85bc52e677a41b025ec73eec7f7e088b489d7b5b7bb5dac8b4346caef978ee',
     triangles: 8_794,
     primitiveTriangles: [8_723, 71],
   },
   crooked_reed_inn: {
     bytes: 149_080,
-    sha256: 'a6a2a8653cfcf53b2ee482daa1874dce866bdcc0d8cca5beb7f9cd202f169f3e',
+    sha256: '1d84629334d2c329cadb274085b2dbb1833a573410af87ca742f047c190f17d4',
     triangles: 8_949,
     primitiveTriangles: [8_807, 142],
   },

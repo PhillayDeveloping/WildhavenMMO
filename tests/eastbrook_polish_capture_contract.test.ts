@@ -79,7 +79,7 @@ interface AttributionTargetFixture {
 // creator review pass), so the merged tree mints a value matching neither
 // parent. Captures adopted verbatim; no measured value moved on either side.
 const PINNED_POLISH_COMPOSITE_FINGERPRINT =
-  '532c7b4b907fc86b1847b415bb8d915428c2e3abac19ac1d1128d51e117b01a6';
+  '705a609cfe9e68164c1f60f2ab78cc47279613fb8eba7d7590a55a59fb7b3cb7';
 
 function validPolishAttributionTargets(): AttributionTargetFixture[] {
   return [
