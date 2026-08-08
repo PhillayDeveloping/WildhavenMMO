@@ -238,7 +238,6 @@ function winnerPayoutRow(row: Record<string, unknown>): DailyRewardWinnerPayoutR
   };
 }
 
-
 function dateString(value: unknown): string | null {
   if (value instanceof Date) return value.toISOString();
   return optionalString(value);
@@ -889,10 +888,13 @@ export class PgDailyRewardDb implements DailyRewardDb {
     const client = await pool.connect();
     try {
       await client.query('BEGIN');
+      // Exactly the columns db.ts creates. A widened select list is the shape an
+      // upstream merge lands with no conflict marker, and it fails outright
+      // against a fresh schema (tests/daily_rewards_payout_moderation_schema.test.ts).
       const current = await client.query(
         `SELECT p.day, p.realm, p.rank, p.account_id, p.username,
                 p.points,
-                p.prize_percent, p.prize_usd, p.status, p.tx_signature, p.paid_at,
+                p.prize_percent, p.prize_copper, p.status, p.paid_at,
                 p.void_reason, p.voided_by_id, p.voided_by_username, p.voided_at
            FROM daily_reward_payouts p
           WHERE p.day = $1 AND p.realm = $2 AND p.rank = $3
@@ -971,10 +973,13 @@ export class PgDailyRewardDb implements DailyRewardDb {
     const client = await pool.connect();
     try {
       await client.query('BEGIN');
+      // Exactly the columns db.ts creates. A widened select list is the shape an
+      // upstream merge lands with no conflict marker, and it fails outright
+      // against a fresh schema (tests/daily_rewards_payout_moderation_schema.test.ts).
       const current = await client.query(
         `SELECT p.day, p.realm, p.rank, p.account_id, p.username,
                 p.points,
-                p.prize_percent, p.prize_usd, p.status, p.tx_signature, p.paid_at,
+                p.prize_percent, p.prize_copper, p.status, p.paid_at,
                 p.void_reason, p.voided_by_id, p.voided_by_username, p.voided_at
            FROM daily_reward_payouts p
           WHERE p.day = $1 AND p.realm = $2 AND p.rank = $3
@@ -992,12 +997,14 @@ export class PgDailyRewardDb implements DailyRewardDb {
         return { outcome: 'invalid_status', status: previousStatus };
       }
       const reason = optionalString(row.void_reason) ?? 'Unknown void reason';
+      // Only the columns this fork's schema actually has: the prize is in-game
+      // copper delivered by Ravenpost letter, so there is no transaction or
+      // error column left over from the retired external payment runner to
+      // clear here. Naming one would fail the statement outright against a
+      // schema built by db.ts (tests/daily_rewards_payout_moderation_schema.test.ts).
       const updated = await client.query(
         `UPDATE daily_reward_payouts
             SET status = 'pending',
-                tx_signature = NULL,
-                signed_transaction = NULL,
-                error = NULL,
                 void_reason = NULL,
                 voided_by_id = NULL,
                 voided_by_username = NULL,
@@ -1036,8 +1043,6 @@ export class PgDailyRewardDb implements DailyRewardDb {
           ...payoutRow({
             ...row,
             status: 'pending',
-            tx_signature: null,
-            signed_transaction: null,
             void_reason: null,
             voided_by_id: null,
             voided_by_username: null,

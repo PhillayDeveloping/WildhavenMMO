@@ -93,22 +93,33 @@ const FORBIDDEN_CODE_TOKENS = [
 ];
 
 /**
- * Known, pre-existing debt: snake_case payout-runner columns this fork's schema
- * does NOT create (tests/schema_wiring.test.ts asserts their absence from the
- * applied DDL), yet which voidPayout/restorePayout still SELECT and a few test
- * fixtures still spell. Those reads only work against a database migrated from an
- * older web3-era build; against a fresh schema they raise "column does not exist".
+ * Known, pre-existing debt: snake_case payout-runner columns and tables this
+ * fork's schema does NOT create (tests/schema_wiring.test.ts asserts their
+ * absence from the applied DDL), yet which test fixtures and prose still spell.
+ * It predates the v0.35.0 upstream sync: the broken SELECTs were already in the
+ * tree at 679546e96^1, inherited from the PhillayDeveloping snapshot, so the
+ * merge widened an existing defect rather than introducing one.
  *
- * This predates the v0.35.0 upstream sync, so it is pinned at its measured count
- * rather than zero: the point is that an upstream sync cannot GROW it while the
- * cleanup is still pending. When that cleanup lands, lower these numbers in the
- * same change; a count coming in under the pin fails just as loudly as one over,
- * so the guard cannot rot into a rubber stamp.
+ * The EXECUTABLE half of that debt is gone: voidPayout and restorePayout no
+ * longer name a column a fresh schema lacks, so no statement this fork runs can
+ * raise 42703 on this table any more (tests/daily_rewards_payout_moderation_schema.test.ts
+ * is what proves it, by executing them against a column set folded out of
+ * ensureSchema's own DDL). What is left never reaches Postgres, and most of it
+ * is deletable: besides row fixtures and prose, roughly half the remaining
+ * sites are unreachable statement arms in the substring-matching fake at
+ * tests/daily_rewards_payout_moderation_db.test.ts, kept out of that change to
+ * hold its diff to the defect.
+ *
+ * Still pinned at the measured count rather than zero: prose about the removal
+ * cannot be spelled without naming the thing removed, and the point is that an
+ * upstream sync cannot GROW it. As more of the residue clears, lower these
+ * numbers in the same change; a count coming in under the pin fails just as
+ * loudly as one over, so the guard cannot rot into a rubber stamp.
  */
 const KNOWN_LEGACY_SITES: Record<string, number> = {
-  prize_usd: 3,
-  tx_signature: 15,
-  signed_transaction: 8,
+  prize_usd: 1,
+  tx_signature: 11,
+  signed_transaction: 7,
   daily_reward_payout_attempts: 3,
 };
 
@@ -153,9 +164,7 @@ describe('web3 removal survives an upstream sync', () => {
       ...Object.keys(pkg.devDependencies ?? {}),
       ...Object.keys(pkg.optionalDependencies ?? {}),
     ];
-    const offenders = declared.filter((name) =>
-      FORBIDDEN_DEPENDENCIES.some((re) => re.test(name)),
-    );
+    const offenders = declared.filter((name) => FORBIDDEN_DEPENDENCIES.some((re) => re.test(name)));
     expect(
       offenders,
       `package.json declares web3 dependencies again: ${offenders.join(', ')}.\n` +
@@ -175,10 +184,7 @@ describe('web3 removal survives an upstream sync', () => {
         }
       }
     }
-    expect(
-      offenders,
-      `Chain/wallet imports are back:\n${offenders.join('\n')}`,
-    ).toEqual([]);
+    expect(offenders, `Chain/wallet imports are back:\n${offenders.join('\n')}`).toEqual([]);
   });
 
   it('ships none of the removed web3 modules', () => {
@@ -216,7 +222,7 @@ describe('web3 removal survives an upstream sync', () => {
     ).toEqual([]);
   });
 
-  it('does not grow the known legacy payout-column debt', () => {
+  it('does not grow the known legacy payout-schema debt', () => {
     const counted: Record<string, number> = {};
     const sites: Record<string, string[]> = {};
     for (const token of Object.keys(KNOWN_LEGACY_SITES)) {
