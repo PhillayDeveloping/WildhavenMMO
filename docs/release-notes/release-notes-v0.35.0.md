@@ -126,6 +126,15 @@ Carried forward from v0.1.0, still open:
 
 New with this release:
 
+- **The Ravenpost prize letter is still English in fifteen locales.** Upstream's
+  own v0.35.0 content is fully localized across all 21; the gap is Wildhaven's
+  own copy, written when Daily Rewards was rewritten to pay in-game coin. Three
+  keys are affected (`entities.letters.daily_reward_prize.body`, `.sender`,
+  `.subject`), and the fill workflow classifies letter prose as human-written:
+  machine-translating narrative is how a letter ends up saying something the
+  author did not mean. The panel disclaimer beside it IS filled in every locale.
+  The release-tier i18n gate stays red until someone writes those three, which
+  is why that lane is documented as never-required.
 - `voidPayout` and `restorePayout` still read payout-runner columns this fork's
   schema does not create, so they work only against a database migrated from an
   older build. The web3 guard pins the count so an upstream sync cannot grow it
