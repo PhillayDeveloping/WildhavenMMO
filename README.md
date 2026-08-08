@@ -27,7 +27,7 @@
 
 Wildhaven is a complete classic-era MMO you run in your browser, host yourself with one command, and can even train AI agents to play. It is free and open source.
 
-It is a rebranded, web3-free fork of [world-of-claudecraft](https://github.com/levy-street/world-of-claudecraft) (MIT) taken at v0.34.0. The entire Solana integration that shipped upstream, wallet linking, holder tiers, the Seeker entitlements, and the on-chain purchase rails, has been removed rather than merely disabled.
+It is a rebranded, web3-free fork of [world-of-claudecraft](https://github.com/levy-street/world-of-claudecraft) (MIT), tracking upstream through v0.35.0. The entire Solana integration that shipped upstream, wallet linking, holder tiers, the Seeker entitlements, and the on-chain purchase rails, has been removed rather than merely disabled, and `tests/no_web3_regression.test.ts` fails the build if any of it returns through a later upstream sync (`docs/upstream-sync.md`).
 
 One shared world runs in three places, all from the same game core:
 
