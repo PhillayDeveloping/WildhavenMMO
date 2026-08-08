@@ -15,6 +15,13 @@ import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
 import { afterEach, describe, expect, it } from 'vitest';
 
+// sharp's file cache keeps a handle on every image it has opened, and Windows
+// refuses to delete a file that is still open, so the afterEach teardown died
+// with EPERM on the temp tree while the assertions themselves had passed.
+// Disabling the cache is the supported way to make sharp release them; it costs
+// only re-reads, which is irrelevant for a handful of fixture images.
+sharp.cache(false);
+
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const script = path.join(repoRoot, 'scripts/convert_skill_icons_webp.mjs');
 const Q82_PNG_1X1_SHA256 = '6fc7c24837963e73225c4923dfa94a0e25f3318f8eda90bc5c7d5420a8d0571e';

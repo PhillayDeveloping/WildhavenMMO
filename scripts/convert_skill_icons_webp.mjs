@@ -27,6 +27,13 @@ import {
 import path from 'node:path';
 import sharp from 'sharp';
 
+// sharp's file cache holds a handle on every image it opens, and Windows refuses
+// to unlink an open file. This script commits each destination through a temp
+// file and then removes it, so a retained handle turned the cleanup into a hard
+// "recovery temp cleanup failed" error AFTER the conversion had already
+// succeeded. Disabling the cache costs only re-reads.
+sharp.cache(false);
+
 const root = process.cwd();
 const skillsDir = path.join(root, 'public/ui/skills');
 const ICON_SIZE = 128;
