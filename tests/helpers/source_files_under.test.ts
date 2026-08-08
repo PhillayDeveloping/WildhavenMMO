@@ -3,6 +3,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { SOURCE_EXTENSIONS, sourceFilesUnder } from './source_files_under';
+import { canCreateSymlinks } from '../helpers/symlink_support';
 
 // The paired test for the shared source walk, and the producer fixture the
 // guards that consume it cannot supply themselves: every scan root in this repo
@@ -106,7 +107,7 @@ describe('sourceFilesUnder', () => {
     expect(sourceFilesUnder(root).map((f) => f.file)).toContain('node_modules/dep.ts');
   });
 
-  it('follows a symlinked source FILE (a Dirent reads false for one)', () => {
+  it.skipIf(!canCreateSymlinks())('follows a symlinked source FILE (a Dirent reads false for one)', () => {
     // The reason there is no `entry.isFile()` gate: Dirent is lstat-based, so
     // gating on it drops a symlinked module that a flat readdirSync().filter()
     // would have read. That is the silent narrowing this walk exists to stop.
@@ -123,7 +124,7 @@ describe('sourceFilesUnder', () => {
     expect(sourceFilesUnder(root).map((f) => f.file)).toEqual(['namespace.ts/child.ts']);
   });
 
-  it('descends a symlinked directory ONCE, rather than returning its files twice', () => {
+  it.skipIf(!canCreateSymlinks())('descends a symlinked directory ONCE, rather than returning its files twice', () => {
     // The other half of the symlink decision: `entry.isDirectory()` is
     // lstat-based, so taking it at face value drops an entire linked subtree.
     // Following it means two links to one subtree can double-count, which
@@ -139,7 +140,7 @@ describe('sourceFilesUnder', () => {
     expect(new Set(files).size).toBe(files.length);
   });
 
-  it('terminates on a symlink cycle instead of recursing until the process dies', () => {
+  it.skipIf(!canCreateSymlinks())('terminates on a symlink cycle instead of recursing until the process dies', () => {
     // A link pointing at its own ancestor. Without the visited-realpath set this
     // case does not fail, it HANGS, and it takes the collection of every other
     // suite in the run with it.
@@ -148,7 +149,7 @@ describe('sourceFilesUnder', () => {
     expect(sourceFilesUnder(root).map((f) => f.file)).toEqual(['one/two/kept.ts']);
   });
 
-  it('throws on a directory link that escapes the root, rather than silently deciding', () => {
+  it.skipIf(!canCreateSymlinks())('throws on a directory link that escapes the root, rather than silently deciding', () => {
     // Refuses rather than filtering (#2499). Skipping it narrows the scan with
     // no diff to notice; following it puts files from outside the tree into a
     // corpus pinned as a file set.

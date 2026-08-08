@@ -3,6 +3,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { cssTreeUnder } from './css_tree_under';
+import { canCreateSymlinks } from '../helpers/symlink_support';
 
 // The paired test for the shared stylesheet walk, and it carries the same weight
 // as helpers/ts_files_under.test.ts: `src/styles` is FLAT today, so every
@@ -113,7 +114,7 @@ describe('cssTreeUnder', () => {
     expect(readFileSync(found[0].full, 'utf8')).toBe('.kept { color: red; }\n');
   });
 
-  it('descends a symlinked DIRECTORY and reports it in dirs (a Dirent reads false for one)', () => {
+  it.skipIf(!canCreateSymlinks())('descends a symlinked DIRECTORY and reports it in dirs (a Dirent reads false for one)', () => {
     // The expensive half of the symlink decision: `entry.isDirectory()` is
     // lstat-based, so taking it at face value drops an entire linked subtree
     // silently AND leaves the flat consumers' premise check blind to the one
@@ -141,7 +142,7 @@ describe('cssTreeUnder', () => {
     expect(tree.dirs).toEqual(['theme.css']);
   });
 
-  it('follows a symlinked .css file (a Dirent reads false for one)', () => {
+  it.skipIf(!canCreateSymlinks())('follows a symlinked .css file (a Dirent reads false for one)', () => {
     // The arm no consumer fixture can reach, and the reason there is no
     // `entry.isFile()` gate: Dirent is lstat-based, so gating on it drops a
     // symlinked sheet that the flat `readdirSync().filter()` this replaces would
@@ -152,7 +153,7 @@ describe('cssTreeUnder', () => {
     expect(cssTreeUnder(root).files.map((f) => f.file)).toEqual(['linked.css', 'real/module.css']);
   });
 
-  it('returns a BROKEN symlink named .css instead of dropping it from the scan', () => {
+  it.skipIf(!canCreateSymlinks())('returns a BROKEN symlink named .css instead of dropping it from the scan', () => {
     // The arm behind `throwIfNoEntry: false`, and the reason it is written that
     // way: a dangling link resolves to neither a file nor a directory, so it
     // comes back as a file and the consumer's own readFileSync fails loudly.

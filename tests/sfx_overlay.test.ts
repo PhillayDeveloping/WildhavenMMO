@@ -3,6 +3,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 import { resolveSfxOverlayFile } from '../server/sfx_overlay';
+import { canCreateSymlinks } from './helpers/symlink_support';
 
 const roots: string[] = [];
 
@@ -36,7 +37,7 @@ describe('production SFX static overlay', () => {
     expect(resolveSfxOverlayFile(root, '/audio/sfx/../package.json')).toBeNull();
   });
 
-  it('rejects symlinks that escape the configured overlay', () => {
+  it.skipIf(!canCreateSymlinks())('rejects symlinks that escape the configured overlay', () => {
     const root = temporaryRoot();
     const outside = temporaryRoot();
     const hash = 'b'.repeat(64);

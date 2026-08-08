@@ -14,6 +14,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import sharp from 'sharp';
 import { afterEach, describe, expect, it } from 'vitest';
+import { canCreateSymlinks } from './helpers/symlink_support';
 import {
   auditIconAssets,
   groupManifestAssets,
@@ -770,7 +771,7 @@ describe('icon asset audit', () => {
     ).toBe(true);
   }, 30_000);
 
-  it('rejects deed source paths that escape the repository root', async () => {
+  it.skipIf(!canCreateSymlinks())('rejects deed source paths that escape the repository root', async () => {
     const root = fixtureRoot();
     const outputDir = path.join(root, 'audit');
     const manifestPath = path.join(root, 'accepted.json');

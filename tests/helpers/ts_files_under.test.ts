@@ -3,6 +3,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { tsFilesUnder } from './ts_files_under';
+import { canCreateSymlinks } from '../helpers/symlink_support';
 
 // The paired test for the shared source walk. It matters more than a helper
 // test usually would: every scan root in the repo is FLAT today, so a
@@ -83,7 +84,7 @@ describe('tsFilesUnder', () => {
     expect(readFileSync(found[0].full, 'utf8')).toBe('export const kept = true;\n');
   });
 
-  it('descends a symlinked DIRECTORY (a Dirent reads false for that too)', () => {
+  it.skipIf(!canCreateSymlinks())('descends a symlinked DIRECTORY (a Dirent reads false for that too)', () => {
     // The other half of the symlink decision, and the more expensive one to get
     // wrong: `entry.isDirectory()` is lstat-based, so taking it at face value
     // drops an entire linked subtree rather than a single file, silently.
@@ -107,7 +108,7 @@ describe('tsFilesUnder', () => {
     expect(tsFilesUnder(root).map((f) => f.file)).toEqual(['namespace.ts/child.ts']);
   });
 
-  it('follows a symlinked .ts file (a Dirent reads false for one)', () => {
+  it.skipIf(!canCreateSymlinks())('follows a symlinked .ts file (a Dirent reads false for one)', () => {
     // The arm no consumer fixture can reach, and the reason there is no
     // `entry.isFile()` gate: Dirent is lstat-based, so gating on it drops a
     // symlinked module that the flat `readdirSync().filter()` this replaces
