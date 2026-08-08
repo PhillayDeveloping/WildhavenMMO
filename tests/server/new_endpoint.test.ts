@@ -56,8 +56,17 @@ import {
 // tests/server/new_endpoint.test.ts -> the repo root is two directories up.
 const REPO = fileURLToPath(new URL('../../', import.meta.url));
 const SCRIPT = join(REPO, 'scripts', 'new_endpoint.mjs');
-const TSC = join(REPO, 'node_modules', '.bin', 'tsc');
-const VITEST = join(REPO, 'node_modules', '.bin', 'vitest');
+// Spawned as `node <entry>` rather than through node_modules/.bin: those shims are
+// extension-less shell scripts that Windows cannot execute (the runnable form is
+// tsc.cmd / vitest.cmd), and since CVE-2024-27980 Node refuses to spawn a .cmd
+// without a shell anyway. Going straight to the JS entry is the same binary on
+// every platform, and stays shell-less.
+const NODE = process.execPath;
+// @typescript/native is the TypeScript 7 the repo type-checks with (the plain
+// `typescript` specifier is aliased to the 6.x line), matching what the .bin/tsc
+// shim resolves to.
+const TSC_ENTRY = join(REPO, 'node_modules', '@typescript', 'native', 'bin', 'tsc');
+const VITEST_ENTRY = join(REPO, 'node_modules', 'vitest', 'vitest.mjs');
 
 // Every file the generator appends to, seeded as a copy into each temp root.
 const APPEND_TARGETS = [
@@ -111,11 +120,15 @@ function gitPorcelain(): string {
  */
 function runChildVitest(root: string, testPaths: string[]): { status: number; out: string } {
   const config = join(root, 'vitest.golden.config.mjs');
+  // `include` is a GLOB, and glob matchers read a backslash as an escape rather
+  // than a separator, so absolute Windows paths match nothing and the child exits
+  // "No test files found". Forward slashes are valid on both platforms here.
+  const includes = testPaths.map((testPath) => testPath.replace(/\\/g, '/'));
   writeFileSync(
     config,
-    `export default { test: { include: ${JSON.stringify(testPaths)}, exclude: [] } };\n`,
+    `export default { test: { include: ${JSON.stringify(includes)}, exclude: [] } };\n`,
   );
-  const result = spawnSync(VITEST, ['run', '--config', config], {
+  const result = spawnSync(NODE, [VITEST_ENTRY, 'run', '--config', config], {
     cwd: REPO,
     encoding: 'utf8',
     // CI runners color the piped child output (ANSI then sits between "Tests" and the
@@ -396,7 +409,7 @@ describe('toolchain pin: node_modules/.bin/tsc', () => {
     // back to the 6.x wrapper (the `typescript` alias, whose bin is tsc6)
     // keeps every other suite green while quietly forfeiting the native
     // toolchain's speed; this pin is the one place that flip goes red.
-    const probe = spawnSync(TSC, ['--version'], { cwd: REPO, encoding: 'utf8' });
+    const probe = spawnSync(NODE, [TSC_ENTRY, '--version'], { cwd: REPO, encoding: 'utf8' });
     expect(probe.status, `tsc --version failed:\n${probe.stdout}\n${probe.stderr}`).toBe(0);
     expect(probe.stdout.trim()).toMatch(/^Version 7\./);
   });
@@ -502,7 +515,10 @@ describe('golden: all three rungs emit, type-check, and pass (one temp root)', (
         files,
       }),
     );
-    const tsc = spawnSync(TSC, ['-p', tsconfig, '--noEmit'], { cwd: REPO, encoding: 'utf8' });
+    const tsc = spawnSync(NODE, [TSC_ENTRY, '-p', tsconfig, '--noEmit'], {
+      cwd: REPO,
+      encoding: 'utf8',
+    });
     expect(tsc.status, `tsc failed:\n${tsc.stdout}\n${tsc.stderr}`).toBe(0);
 
     // All three emitted tests PASS, plus the code-catalog snapshot stays green against the
