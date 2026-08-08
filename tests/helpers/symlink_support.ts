@@ -1,3 +1,4 @@
+import { spawnSync } from 'node:child_process';
 import { mkdtempSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
@@ -48,3 +49,21 @@ export function canCreateSymlinks(): boolean {
  */
 export const SYMLINK_SKIP_REASON =
   'requires symlink creation (Windows: enable Developer Mode); covered on POSIX and in CI';
+
+// Whether a POSIX shell is runnable here.
+//
+// Same probe-not-platform reasoning: a Windows box with Git for Windows on PATH
+// has a working `sh`, so a case that only needs one should run there rather than
+// be switched off by operating-system name. Cached per process; never throws.
+let shellCached: boolean | null = null;
+
+export function canRunPosixShell(): boolean {
+  if (shellCached !== null) return shellCached;
+  try {
+    const probe = spawnSync('sh', ['-c', 'exit 0'], { stdio: 'ignore' });
+    shellCached = probe.error === undefined && probe.status === 0;
+  } catch {
+    shellCached = false;
+  }
+  return shellCached;
+}
