@@ -16,14 +16,32 @@ This repo is a genuine fork, so `git merge` has a real three-way base. The same
 v0.35.0 integration produced 90 conflicts instead, and git resolved the rest.
 Keep it that way: never re-import a snapshot, always merge.
 
-## The routine
+## Tag namespaces: do this once per clone
 
-Upstream tags each release (`v0.35.0`, `v0.36.0`, ...). One sync, one branch.
+Upstream tags each release `vX.Y.Z`, and so does Wildhaven, at the SAME numbers.
+A plain `git fetch upstream --tags` therefore fights over `refs/tags/v0.36.0`:
+whichever tag lands first wins, silently, and `git merge v0.36.0` then merges
+whatever that name happens to point at. Give upstream its own namespace instead:
 
 ```bash
-git fetch upstream --tags
+git config remote.upstream.tagOpt --no-tags
+git config --replace-all remote.upstream.fetch '+refs/heads/*:refs/remotes/upstream/*'
+git config --add remote.upstream.fetch '+refs/tags/*:refs/tags/upstream/*'
+```
+
+After that, upstream's tags arrive as `upstream/v0.36.0` and the bare `v0.36.0`
+means Wildhaven's own release, tagged on `main` after the sync lands. (The
+v0.35.0 sync predates this: its upstream tag was moved aside to
+`upstream/v0.35.0` when the Wildhaven release took the bare name.)
+
+## The routine
+
+One sync, one branch.
+
+```bash
+git fetch upstream
 git checkout -b sync/upstream-v0.36.0 main
-git merge v0.36.0
+git merge upstream/v0.36.0
 ```
 
 Resolve, verify, then land it:
@@ -36,6 +54,14 @@ git push origin main
 
 `main` carries our code and is the default branch. Upstream is a remote, not a
 branch here, so there is no mirror branch to keep in step.
+
+Then cut the release from `main`, in that order: the desktop publish workflow
+refuses a tag that is not an ancestor of `main`, and its version guard requires
+the tag, `package.json` `version`, and `DESKTOP_VERSION` to agree
+(`npm run release:check -- --version X.Y.Z` checks every version surface at
+once). Desktop artifacts are built locally and attached to the GitHub release by
+hand; the workflow's tag trigger stays off until this project has an update host
+and the two signing identities (`docs/desktop-release.md`).
 
 > **Never press GitHub's "Sync fork" button.** It fast-forwards the default
 > branch to upstream, which would discard the Wildhaven tree wholesale. Sync only
