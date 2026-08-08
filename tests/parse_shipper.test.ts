@@ -309,33 +309,50 @@ describe('BatchSpool', () => {
     const oldest = await spool.peekOldest();
     expect(oldest?.data[0]).toBe(7);
 
-    const broken = new BatchSpool('/dev/null/not-a-dir', 10_000, createParseCounters());
+    // A path that cannot be a directory. '/dev/null' is a FILE on POSIX, so a
+    // child of it can never be created; on Windows there is no /dev/null at all
+    // and the path is merely relative, so the spool creates it happily and the
+    // assertion below is testing nothing. Use a real file's child there instead,
+    // which reproduces the same ENOTDIR-shaped failure the test is about.
+    const notADir =
+      process.platform === 'win32'
+        ? path.join(dir, 'README.txt', 'not-a-dir')
+        : '/dev/null/not-a-dir';
+    const broken = new BatchSpool(notADir, 10_000, createParseCounters());
     await expect(broken.append(Buffer.alloc(4))).resolves.toBeUndefined();
     expect(await broken.peekOldest()).toBeNull();
   });
 });
 
 describe('BatchSpool review pins', () => {
-  test('a failed unlink never moves byte accounting, so the cap keeps bounding disk', async () => {
-    const counters = createParseCounters();
-    const dir = tempSpoolDir();
-    const spool = new BatchSpool(dir, 10_000, counters);
-    await spool.append(Buffer.alloc(100, 1));
-    const before = counters.spoolBytes;
-    const oldest = await spool.peekOldest();
-    expect(oldest).not.toBeNull();
-    if (oldest === null) return;
+  // Skipped on Windows: the setup makes the unlink fail by chmod-ing the spool
+  // directory read-only, and Windows ignores POSIX mode bits on directories, so
+  // the removal SUCCEEDS and the test asserts the opposite of what it staged.
+  // The invariant it guards (a failed unlink must not move byte accounting) is
+  // platform-independent and stays covered on POSIX and in CI.
+  test.skipIf(process.platform === 'win32')(
+    'a failed unlink never moves byte accounting, so the cap keeps bounding disk',
+    async () => {
+      const counters = createParseCounters();
+      const dir = tempSpoolDir();
+      const spool = new BatchSpool(dir, 10_000, counters);
+      await spool.append(Buffer.alloc(100, 1));
+      const before = counters.spoolBytes;
+      const oldest = await spool.peekOldest();
+      expect(oldest).not.toBeNull();
+      if (oldest === null) return;
 
-    const { chmodSync } = await import('node:fs');
-    chmodSync(dir, 0o555);
-    try {
+      const { chmodSync } = await import('node:fs');
+      chmodSync(dir, 0o555);
+      try {
+        await spool.remove(oldest.name);
+        expect(counters.spoolBytes).toBe(before);
+      } finally {
+        chmodSync(dir, 0o755);
+      }
+      // Once the dir is writable again, the same remove succeeds and accounts.
       await spool.remove(oldest.name);
-      expect(counters.spoolBytes).toBe(before);
-    } finally {
-      chmodSync(dir, 0o755);
-    }
-    // Once the dir is writable again, the same remove succeeds and accounts.
-    await spool.remove(oldest.name);
-    expect(counters.spoolBytes).toBe(0);
-  });
+      expect(counters.spoolBytes).toBe(0);
+    },
+  );
 });

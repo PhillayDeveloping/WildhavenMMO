@@ -8,6 +8,11 @@ import { mkdir, readFile, realpath, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import sharp from 'sharp';
 
+// sharp's file cache holds a handle on every image it opens, and Windows will not
+// unlink an open file, so temp-file cleanup failed with EPERM after the work had
+// already succeeded. Disabling the cache releases them; it only costs re-reads.
+sharp.cache(false);
+
 const KIND_ORDER = Object.freeze(['ability', 'item', 'deed']);
 const KIND_SET = new Set(KIND_ORDER);
 const SHA256_RE = /^[0-9a-f]{64}$/;

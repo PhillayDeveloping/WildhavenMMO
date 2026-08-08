@@ -86,7 +86,13 @@ describe('production CPU monitor parsing', () => {
   });
 });
 
-describe('production CPU monitor configuration', () => {
+// Skipped on Windows: these cases assert absolute POSIX deployment paths
+// (/var/lib/woc-prod-cpu-monitor and friends) and owner-only file modes. The
+// monitor resolves them through node:path, which rewrites them to \var\lib\...
+// there, and Windows has no POSIX mode bits at all, so the assertions describe a
+// host this tool never runs on. It ships into a Linux container; the contract
+// stays pinned on POSIX and in CI.
+describe.skipIf(process.platform === 'win32')('production CPU monitor configuration', () => {
   it('defaults to a low-noise production trigger with sub-minute detection', () => {
     const options = parseMonitorOptions([], {});
     expect(options).toMatchObject({
@@ -573,7 +579,11 @@ describe('production CPU polling orchestration', () => {
   });
 });
 
-describe('container-local V8 profile client', () => {
+// Skipped on Windows for the same reason as the configuration block: it signals
+// the target with SIGUSR1 to open the inspector, and Windows has no such signal
+// (process.kill throws "Unknown signal"). This client only ever runs inside the
+// production Linux container.
+describe.skipIf(process.platform === 'win32')('container-local V8 profile client', () => {
   it('verifies the target PID, captures a profile, and closes the inspector', async () => {
     const target = spawn(process.execPath, ['-e', 'setInterval(() => {}, 1000)'], {
       stdio: 'ignore',

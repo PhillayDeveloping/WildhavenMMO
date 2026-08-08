@@ -136,8 +136,19 @@ describe('dependency-sync gate preflight', () => {
         JSON.stringify({ name: 'fixture', version: '1.0.0' }),
       );
       const fakeNpmDir = mkdtempSync(join(tmpdir(), 'woc-depsync-fakenpm-'));
-      const fakeNpm = join(fakeNpmDir, 'npm');
-      writeFileSync(fakeNpm, '#!/bin/sh\necho "not json at all"\nexit 1\n', { mode: 0o755 });
+      // The stand-in has to be something the host can actually execute from PATH.
+      // A `#!/bin/sh` file with no extension is unrunnable on Windows, so the real
+      // npm answered instead, the unparseable-output branch under test never ran,
+      // and the assertion failed against correct code.
+      if (process.platform === 'win32') {
+        writeFileSync(
+          join(fakeNpmDir, 'npm.cmd'),
+          '@echo off\r\necho not json at all\r\nexit /b 1\r\n',
+        );
+      } else {
+        const fakeNpm = join(fakeNpmDir, 'npm');
+        writeFileSync(fakeNpm, '#!/bin/sh\necho "not json at all"\nexit 1\n', { mode: 0o755 });
+      }
       try {
         const result = spawnSync(process.execPath, [GATE_SCRIPT], {
           cwd: dir,

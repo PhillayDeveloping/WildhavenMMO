@@ -22,6 +22,15 @@ import { weaponFamilyFor } from './families.mjs';
 import { inspectGlb } from './glb.mjs';
 import { renderHeldPreviews, renderSkinThumb, renderThumb } from './preview.mjs';
 
+// Repo-relative path with forward slashes on every platform.
+//
+// These values are not just display strings: they are split on '/' to pull out
+// category/model/file segments, used as asset ids, and looked up against the
+// registries, which all spell paths POSIX-style. On Windows node:path returns
+// backslashes, so an un-normalized value made `split('/')` yield one element and
+// the destructured segments came back undefined.
+const relPosix = (from, to) => relative(from, to).replace(/\\/g, '/');
+
 export const LIBRARY_DIR = join(REPO_ROOT, 'tmp/asset_pipeline/library');
 const THUMBS_DIR = join(LIBRARY_DIR, 'thumbs');
 const CACHE_FILE = join(LIBRARY_DIR, 'cache.json');
@@ -229,7 +238,7 @@ export function collectInventory() {
 
   // 1. Every GLB under public/models.
   for (const abs of walk(join(REPO_ROOT, 'public/models')).filter((f) => f.endsWith('.glb'))) {
-    const rel = relative(join(REPO_ROOT, 'public'), abs); // models/...
+    const rel = relPosix(join(REPO_ROOT, 'public'), abs); // models/...
     const parts = rel.split('/');
     const category = parts[1] === 'chars' ? `chars/${parts[2]}` : parts[1];
     const name = parts[parts.length - 1].replace(/\.glb$/, '');
@@ -269,7 +278,7 @@ export function collectInventory() {
   for (const abs of walk(join(REPO_ROOT, 'public/textures/skins')).filter((f) =>
     f.endsWith('.png'),
   )) {
-    const rel = relative(join(REPO_ROOT, 'public'), abs);
+    const rel = relPosix(join(REPO_ROOT, 'public'), abs);
     const [, , model, file] = rel.split('/');
     const slots = registries.skins.get(rel) ?? [];
     assets.push({
@@ -296,7 +305,7 @@ export function collectInventory() {
   const mechTexDir = join(REPO_ROOT, 'public/models/chars/players/Mech/textures');
   const mechGlb = 'models/chars/players/Mech/characters/CombatMech.glb';
   for (const abs of walk(mechTexDir).filter((f) => f.endsWith('.png') && !f.includes('_emis'))) {
-    const rel = relative(join(REPO_ROOT, 'public'), abs);
+    const rel = relPosix(join(REPO_ROOT, 'public'), abs);
     const file = rel
       .split('/')
       .pop()
@@ -550,7 +559,7 @@ export function emitViewer(assets) {
         repoGlb = `public/${a.modelGlb}`;
         repoAtlas = `public/${a.path}`;
       } else if (a.kind === 'job' && abs) {
-        repoGlb = relative(REPO_ROOT, abs);
+        repoGlb = relPosix(REPO_ROOT, abs);
       }
       return { ...a, repoGlb, repoAtlas };
     }),

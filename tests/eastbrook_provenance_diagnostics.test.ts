@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs';
+import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 const diagnostics = await import(
@@ -314,7 +315,10 @@ describe('buildPolishProvenanceMismatchReport', () => {
         return ' M src/render/renderer.ts\n';
       },
     });
-    expect(sealReads).toEqual([`/repo/${POLISH_SEAL_PATH}`]);
+    // Built with path.join so the expectation carries the platform's own separator.
+    // The module joins with path.join too, so hardcoding the POSIX form asserted a
+    // Windows-only failure against code that is correct on both platforms.
+    expect(sealReads).toEqual([path.join('/repo', POLISH_SEAL_PATH)]);
     expect(gitCalls).toHaveLength(1);
     expect(gitCalls[0].slice(-2)).toEqual(['pnpm-lock.yaml', 'src/render/renderer.ts']);
     // The composed report carries all four answers: the fingerprints, the
