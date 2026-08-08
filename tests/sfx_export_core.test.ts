@@ -380,7 +380,12 @@ describe('SFX production bundle', () => {
         rmSync(installFixture, { recursive: true, force: true });
       }
     },
-    90_000,
+    // Raised from 90s: this case decodes and conformance-checks every published
+    // SFX through ffmpeg, then runs both installers. It lands around 27s on an
+    // idle machine but ~160s while the rest of the suite competes for cores, so
+    // the old budget passed in isolation and failed on the whole-suite run, which
+    // reads as a flake rather than the load-sensitive step it actually is.
+    300_000,
   );
 
   it('exports numbered takes in exact round-robin order with runtime mix values', () => {
