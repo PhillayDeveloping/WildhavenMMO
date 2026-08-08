@@ -10,7 +10,7 @@
 // stay unclassified, so a future junk item must be classified here explicitly
 // instead of drifting in or out silently.
 import { readdirSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { ENCHANTS } from '../src/sim/content/enchants';
@@ -512,8 +512,11 @@ describe('no src/sim importer (the module-evaluation hard rule)', () => {
     // that lost recursion cannot clear 300), AND the sweep must have reached
     // the two biggest nested directories by name.
     expect(scanned.length).toBeGreaterThan(300);
-    expect(scanned.some((f) => f.includes(`${join(simRoot, 'professions')}/`))).toBe(true);
-    expect(scanned.some((f) => f.includes(`${join(simRoot, 'content')}/`))).toBe(true);
+    // Built with the platform separator: join() yields backslashes on Windows,
+    // so appending a literal '/' produced a prefix that could never match the
+    // scanned paths and this reach-check silently failed there.
+    expect(scanned.some((f) => f.startsWith(`${join(simRoot, 'professions')}${sep}`))).toBe(true);
+    expect(scanned.some((f) => f.startsWith(`${join(simRoot, 'content')}${sep}`))).toBe(true);
     expect(symlinked).toEqual([]);
     for (const guard of guards) {
       expect(scanned, guard.moduleSelf).toContain(guard.moduleSelf);

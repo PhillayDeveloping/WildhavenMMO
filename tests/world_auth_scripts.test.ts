@@ -1,5 +1,5 @@
 import { readdirSync, readFileSync } from 'node:fs';
-import { join, relative } from 'node:path';
+import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import {
@@ -126,7 +126,9 @@ function nodeWebSocketSources(dir = SCRIPTS_ROOT): Array<[string, string]> {
           source,
         )
       ) {
-        sources.push([relative(ROOT, path), source]);
+        // Forward slashes: these are compared against the POSIX-spelled paths in
+        // the expectation table, and node:path yields backslashes on Windows.
+        sources.push([relative(ROOT, path).split(sep).join('/'), source]);
       }
     }
   }
