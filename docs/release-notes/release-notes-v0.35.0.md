@@ -106,12 +106,13 @@ package, not just the dependency maps, because one survivor of the original clea
   ("Windows protected your PC"); More info, then Run anyway. Signing needs an
   Azure Trusted Signing or Key Vault certificate, and reputation accrues only
   after a signed build has been installed many times.
-- There is no auto-update feed behind this build. The app's updater points at
-  `updates.wildhaven.example`, a placeholder, so an installed build stays on this
-  version until a new installer is run.
-- The build is baked with a fixed server address and a packaged build deliberately
-  ignores runtime configuration, so a realm that changes address needs a new
-  installer.
+- **The realm address is baked in at build time**, and a packaged build
+  deliberately ignores runtime configuration, so the app cannot be pointed at
+  another server after the fact. A realm that moves needs a new installer.
+- There is no auto-update feed behind this build. The updater's host
+  (`updates.wildhaven.example`) is a placeholder, and a build baked with anything
+  other than that origin lands on the `dev` update channel by design, so an
+  installed build stays on this version until a newer installer is run.
 
 ## Known gaps
 
@@ -129,8 +130,10 @@ New with this release:
   schema does not create, so they work only against a database migrated from an
   older build. The web3 guard pins the count so an upstream sync cannot grow it
   while the cleanup is pending.
-- The full test suite needs `--maxWorkers=4` on a developer machine; at full
-  parallelism about 28 files fail on resource contention and pass in isolation.
+- The full test suite needs about four workers on a developer machine
+  (`npx vitest run --maxWorkers=4`, or `GATE_MAX_WORKERS=4` for the gate). The
+  gate sizes its pool from the core count, and the suites that bind a real port
+  time out waiting for it under that much parallelism; they pass in isolation.
 - `core.autocrlf=false` is not recorded in `.gitattributes`, so a fresh Windows
   clone inherits a line-ending trap that shows up as roughly fifty failures in
   the golden-master suites.

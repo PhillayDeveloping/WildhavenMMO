@@ -232,10 +232,7 @@ describe('web3 removal survives an upstream sync', () => {
         }
       }
     }
-    expect(
-      offenders,
-      `Chain/wallet imports are back:\n${offenders.join('\n')}`,
-    ).toEqual([]);
+    expect(offenders, `Chain/wallet imports are back:\n${offenders.join('\n')}`).toEqual([]);
   });
 
   it('ships none of the removed web3 modules', () => {
