@@ -93,8 +93,15 @@ describe('SFX runtime playback profile', () => {
 
     const gainFirst = readFileSync(join(root, SFX_GAIN_MAP_PATH), 'utf8');
     const speedFirst = readFileSync(join(root, SFX_SPEED_MAP_PATH), 'utf8');
-    expect(statSync(join(root, SFX_GAIN_MAP_PATH)).mode & 0o777).toBe(0o644);
-    expect(statSync(join(root, SFX_SPEED_MAP_PATH)).mode & 0o777).toBe(0o644);
+    // The 0o644 pin is a POSIX permission fact. Windows has no such bits: NTFS
+    // ACLs are reported through a fixed stand-in (0o666, or 0o444 when the
+    // read-only attribute is set), so asserting it there tests the emulation
+    // rather than the writer. The mode the writer actually requests is still
+    // pinned on POSIX and in CI.
+    if (process.platform !== 'win32') {
+      expect(statSync(join(root, SFX_GAIN_MAP_PATH)).mode & 0o777).toBe(0o644);
+      expect(statSync(join(root, SFX_SPEED_MAP_PATH)).mode & 0o777).toBe(0o644);
+    }
     writeSfxPlaybackProfile(root, rawProfile);
     expect(readFileSync(join(root, SFX_GAIN_MAP_PATH), 'utf8')).toBe(gainFirst);
     expect(readFileSync(join(root, SFX_SPEED_MAP_PATH), 'utf8')).toBe(speedFirst);
