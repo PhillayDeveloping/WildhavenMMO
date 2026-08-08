@@ -2710,6 +2710,8 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.calendar.result.removed': 'Evenemanget togs bort från kalendern.',
   'hudChrome.calendar.title': 'Evenemangskalender',
   'hudChrome.calendar.titlePlaceholder': 'Evenemangstitel',
+  'hudChrome.dailyRewards.disclaimer':
+    'Uppgifterna och topplistan återställs en gång per dag. De tio bästa delar på börsen, och en korp kommer med din andel nästa gång du loggar in.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     'Detta tar bort kistgenvägen från ditt HUD. Belöningar, behörighet och den här panelen finns kvar; du kan ta tillbaka genvägen från Alternativ.',
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Avbryt',
@@ -8207,6 +8209,10 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.nativeUpdate.notNow': 'Inte nu',
   'hudChrome.nativeUpdate.title': 'Uppdatering tillgänglig',
   'hudChrome.nativeUpdate.update': 'Uppdatera',
+  'entities.letters.daily_reward_prize.body':
+    'Dalen håller räkning på vem som sliter hårdast i den, och i går stod ditt namn bland de tio högsta. Fogdarna har vägt upp din andel av den dagliga börsen och skickat den med korp.\n\nKom tillbaka i morgon och ta förstaplatsen om du kan.\n\n- Dalens fogde',
+  'entities.letters.daily_reward_prize.sender': 'Dalens fogde',
+  'entities.letters.daily_reward_prize.subject': 'Din andel av den dagliga börsen',
   'entities.letters.ravenpost_welcome.sender': 'Korpposten',
   'entities.letters.ravenpost_welcome.subject': 'Korparna flyger nu för dig',
   'entities.letters.ravenpost_welcome.body':

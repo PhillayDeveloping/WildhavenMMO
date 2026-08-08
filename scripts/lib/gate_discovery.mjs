@@ -168,11 +168,10 @@ export function collectSuiteVisibility(io) {
 export function resolveSelectBase({ env = {}, run }) {
   const explicit = env.GATE_SELECT_BASE?.trim();
   if (explicit) {
-    const ok = run('git', ['rev-parse', '--verify', `${explicit}^{commit}`]);
-    if (ok.status !== 0) {
-      return { base: null, reason: `GATE_SELECT_BASE="${explicit}" does not resolve to a commit` };
+    if (resolvesToCommit(run, explicit)) {
+      return { base: explicit, reason: `GATE_SELECT_BASE=${explicit}` };
     }
-    return { base: explicit, reason: `GATE_SELECT_BASE=${explicit}` };
+    return { base: null, reason: `GATE_SELECT_BASE="${explicit}" does not resolve to a commit` };
   }
   // NOT @{upstream}. A feature branch tracks its own pushed copy, so
   // `@{upstream}...HEAD` is EMPTY the moment you push, and an empty changed set
@@ -193,10 +192,30 @@ export function resolveSelectBase({ env = {}, run }) {
           .filter(Boolean)[0]
       : undefined;
   for (const candidate of [newestRelease, 'origin/main', 'origin/HEAD'].filter(Boolean)) {
-    const probe = run('git', ['rev-parse', '--verify', `${candidate}^{commit}`]);
-    if (probe.status === 0) return { base: candidate, reason: `integration base ${candidate}` };
+    if (resolvesToCommit(run, candidate)) {
+      return { base: candidate, reason: `integration base ${candidate}` };
+    }
   }
   return { base: null, reason: 'no release branch or origin base could be resolved' };
+}
+
+/**
+ * Does `ref` name something that peels to a commit?
+ *
+ * Deliberately spelled WITHOUT git's `^{commit}` peel syntax. The gate's runner
+ * spawns with `shell: true` on win32 (it has to, for the `.cmd` shims), and
+ * cmd.exe treats `^` as its escape character: `origin/main^{commit}` arrives at
+ * git as `origin/main{commit}`, which resolves to nothing. Every base probe then
+ * failed and `gate_select.mjs` refused to run at all on Windows, explicit base or
+ * not. `rev-list -n 1` answers the same question (it peels a tag to its commit
+ * and rejects a non-commit-ish) using only characters no shell rewrites.
+ *
+ * @param {(cmd: string, args: string[]) => { status: number | null }} run
+ * @param {string} ref
+ * @returns {boolean}
+ */
+function resolvesToCommit(run, ref) {
+  return run('git', ['rev-list', '-n', '1', ref, '--']).status === 0;
 }
 
 /**

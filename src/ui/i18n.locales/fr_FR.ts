@@ -3236,6 +3236,8 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.calendar.result.removed': "L'événement a été retiré du calendrier.",
   'hudChrome.calendar.title': 'Calendrier des événements',
   'hudChrome.calendar.titlePlaceholder': "Titre de l'événement",
+  'hudChrome.dailyRewards.disclaimer':
+    'Les tâches et le classement sont réinitialisés une fois par jour. Les dix premiers se partagent la bourse et un corbeau vous apporte votre part à votre prochaine connexion.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     "Ceci retire le raccourci du coffre de votre interface. Les récompenses, l'éligibilité et ce panneau restent disponibles ; vous pouvez rétablir le raccourci depuis les Options.",
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Annuler',
@@ -8940,6 +8942,10 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.nativeUpdate.notNow': 'Pas maintenant',
   'hudChrome.nativeUpdate.title': 'Mise à jour disponible',
   'hudChrome.nativeUpdate.update': 'Mettre à jour',
+  'entities.letters.daily_reward_prize.body':
+    "La vallée tient le compte de qui y travaille le plus dur, et hier votre nom figurait parmi les dix premiers. Les intendants ont pesé votre part de la bourse quotidienne et l'ont envoyée par corbeau.\n\nRevenez demain et prenez la première place si vous le pouvez.\n\n- L'intendant de la vallée",
+  'entities.letters.daily_reward_prize.sender': "L'intendant de la vallée",
+  'entities.letters.daily_reward_prize.subject': 'Votre part de la bourse quotidienne',
   'entities.letters.ravenpost_welcome.sender': 'La Poste aux Corbeaux',
   'entities.letters.ravenpost_welcome.subject': 'Les corbeaux volent désormais pour vous',
   'entities.letters.ravenpost_welcome.body':

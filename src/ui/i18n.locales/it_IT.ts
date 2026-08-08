@@ -2830,6 +2830,8 @@ export const it_IT: Partial<Record<TranslationKey, string>> = {
   'hudChrome.calendar.result.removed': "L'evento è stato tolto dal calendario.",
   'hudChrome.calendar.title': 'Calendario degli Eventi',
   'hudChrome.calendar.titlePlaceholder': "Titolo dell'evento",
+  'hudChrome.dailyRewards.disclaimer':
+    'Gli incarichi e la classifica si azzerano una volta al giorno. I primi dieci si dividono la borsa e un corvo ti porta la tua parte al prossimo accesso.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     'Questo rimuove la scorciatoia del forziere dalla tua interfaccia. Ricompense, idoneità e questo pannello restano disponibili; puoi ripristinare la scorciatoia dalle Opzioni.',
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Annulla',
@@ -8476,6 +8478,10 @@ export const it_IT: Partial<Record<TranslationKey, string>> = {
   'hudChrome.nativeUpdate.notNow': 'Non ora',
   'hudChrome.nativeUpdate.title': 'Aggiornamento disponibile',
   'hudChrome.nativeUpdate.update': 'Aggiorna',
+  'entities.letters.daily_reward_prize.body':
+    "La valle tiene il conto di chi vi lavora più duramente, e ieri il tuo nome era tra i dieci più alti. Gli intendenti hanno pesato la tua parte della borsa giornaliera e l'hanno mandata per corvo.\n\nTorna domani e prendi il primo posto, se ci riesci.\n\n- L'intendente della valle",
+  'entities.letters.daily_reward_prize.sender': "L'intendente della valle",
+  'entities.letters.daily_reward_prize.subject': 'La tua parte della borsa giornaliera',
   'entities.letters.ravenpost_welcome.sender': 'La Posta dei Corvi',
   'entities.letters.ravenpost_welcome.subject': 'Ora i corvi volano per te',
   'entities.letters.ravenpost_welcome.body':

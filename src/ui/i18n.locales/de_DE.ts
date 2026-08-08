@@ -2862,6 +2862,8 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.calendar.result.removed': 'Das Ereignis wurde aus dem Kalender genommen.',
   'hudChrome.calendar.title': 'Ereigniskalender',
   'hudChrome.calendar.titlePlaceholder': 'Titel des Ereignisses',
+  'hudChrome.dailyRewards.disclaimer':
+    'Aufgaben und die Rangliste werden einmal täglich zurückgesetzt. Die besten zehn teilen sich den Beutel, und ein Rabe bringt dir deinen Anteil, wenn du dich das nächste Mal anmeldest.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     'Dies entfernt die Truhen-Verknüpfung aus deinem HUD. Belohnungen, Teilnahmeberechtigung und dieses Panel bleiben verfügbar; du kannst die Verknüpfung über die Optionen zurückholen.',
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Abbrechen',
@@ -8249,6 +8251,10 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.nativeUpdate.notNow': 'Jetzt nicht',
   'hudChrome.nativeUpdate.title': 'Update verfügbar',
   'hudChrome.nativeUpdate.update': 'Aktualisieren',
+  'entities.letters.daily_reward_prize.body':
+    'Das Tal führt Buch darüber, wer sich am meisten darin müht, und gestern stand Euer Name unter den zehn höchsten. Die Verwalter haben Euren Anteil am Tagesbeutel abgewogen und ihn mit dem Raben geschickt.\n\nKommt morgen wieder und nehmt den ersten Platz, wenn Ihr könnt.\n\n- Der Talverwalter',
+  'entities.letters.daily_reward_prize.sender': 'Der Talverwalter',
+  'entities.letters.daily_reward_prize.subject': 'Euer Anteil am Tagesbeutel',
   'entities.letters.ravenpost_welcome.sender': 'Die Rabenpost',
   'entities.letters.ravenpost_welcome.subject': 'Die Raben fliegen nun für Euch',
   'entities.letters.ravenpost_welcome.body':

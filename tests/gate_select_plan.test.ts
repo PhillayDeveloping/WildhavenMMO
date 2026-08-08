@@ -527,12 +527,36 @@ describe('branch diff resolution', () => {
       env: {},
       run: (_c, args) => {
         if (args[0] === 'for-each-ref') return { status: 0, stdout: '' };
-        return args.includes('origin/main^{commit}')
-          ? { status: 0, stdout: '' }
-          : { status: 1, stdout: '' };
+        return args.includes('origin/main') ? { status: 0, stdout: '' } : { status: 1, stdout: '' };
       },
     });
     expect(r.base).toBe('origin/main');
+  });
+
+  // The runner spawns with shell:true on win32 for the .cmd shims, and cmd.exe
+  // eats `^` as its escape character. A probe spelled `<ref>^{commit}` therefore
+  // reached git as `<ref>{commit}`, resolved to nothing, and every base probe
+  // failed: gate_select refused to run at all on Windows. The rule is about the
+  // character, not the one call site, so pin it over every argument the
+  // resolution passes on both the explicit and the fallback path.
+  it('passes no argument a shell would rewrite', () => {
+    const seen: string[][] = [];
+    const record = (_c: string, args: string[]) => {
+      seen.push(args);
+      return args[0] === 'for-each-ref'
+        ? { status: 0, stdout: 'origin/release/v0.35.0\n' }
+        : { status: 0, stdout: '' };
+    };
+    resolveSelectBase({ env: { GATE_SELECT_BASE: 'origin/main' }, run: record });
+    resolveSelectBase({ env: {}, run: record });
+    expect(seen.length).toBeGreaterThan(1);
+    for (const args of seen) {
+      for (const arg of args) {
+        expect(arg, `git argument "${arg}" carries a cmd.exe metacharacter`).not.toMatch(
+          /[\^&|<>]/,
+        );
+      }
+    }
   });
 
   it('reports no base when nothing resolves, so the caller can refuse to narrow', () => {

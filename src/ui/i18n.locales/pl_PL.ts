@@ -2876,6 +2876,8 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.calendar.result.removed': 'Wydarzenie zostało zdjęte z kalendarza.',
   'hudChrome.calendar.title': 'Kalendarz wydarzeń',
   'hudChrome.calendar.titlePlaceholder': 'Tytuł wydarzenia',
+  'hudChrome.dailyRewards.disclaimer':
+    'Zadania i tabela wyników resetują się raz dziennie. Pierwsza dziesiątka dzieli się sakiewką, a twój udział przynosi kruk przy następnym logowaniu.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     'To usuwa skrót skrzyni z twojego HUD-u. Nagrody, uprawnienia i ten panel pozostają dostępne; skrót możesz przywrócić w Opcjach.',
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Anuluj',
@@ -8451,6 +8453,10 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.nativeUpdate.notNow': 'Nie teraz',
   'hudChrome.nativeUpdate.title': 'Dostępna aktualizacja',
   'hudChrome.nativeUpdate.update': 'Aktualizuj',
+  'entities.letters.daily_reward_prize.body':
+    'Dolina liczy, kto pracuje w niej najciężej, a wczoraj twoje imię stanęło wśród dziesięciu najwyższych. Zarządcy odważyli twój udział w codziennej sakiewce i wysłali go krukiem.\n\nWróć jutro i zajmij pierwsze miejsce, jeśli zdołasz.\n\n- Zarządca doliny',
+  'entities.letters.daily_reward_prize.sender': 'Zarządca doliny',
+  'entities.letters.daily_reward_prize.subject': 'Twój udział w codziennej sakiewce',
   'entities.letters.ravenpost_welcome.sender': 'Krucza Poczta',
   'entities.letters.ravenpost_welcome.subject': 'Kruki latają teraz dla ciebie',
   'entities.letters.ravenpost_welcome.body':

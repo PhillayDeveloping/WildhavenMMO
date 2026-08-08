@@ -401,7 +401,7 @@ export const de_DE: EnTranslations = {
       "error": "Tägliche Belohnungen konnten nicht geladen werden.",
       "disabled": "Tägliche Belohnungen sind derzeit deaktiviert. Neuigkeiten zu dieser Funktion geben wir im Discord-Kanal bekannt.",
       "intro": "Halte genügend WOC in deiner verifizierten Wallet, um tägliche Belohnungen freizuschalten. Verdiene Punkte mit einem täglichen Dreh und wechselnden Aufgaben und klettere dann in der täglichen Rangliste nach oben, um einen Anteil am Preispool zu erhalten.",
-      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
+      "disclaimer": "Aufgaben und die Rangliste werden einmal täglich zurückgesetzt. Die besten zehn teilen sich den Beutel, und ein Rabe bringt dir deinen Anteil, wenn du dich das nächste Mal anmeldest.",
       "prize": "Preispool",
       "reset": "Zurücksetzen",
       "endsIn": "Endet in {time}",
@@ -14873,9 +14873,9 @@ export const de_DE: EnTranslations = {
         "body": "Deine Gruppe hat die heroische Prüfung gemeistert, während du in der Nachhut gekämpft hast oder bereits am Boden lagst. Auch deine Instanzbindung wurde aktiviert, daher ist dein Anteil an heroischen Marken hier angekommen, statt verloren zu gehen. Setze sie klug ein.\n\n- Heroischer Quartiermeister"
       },
       "daily_reward_prize": {
-        "sender": "The Vale Steward",
-        "subject": "Your share of the daily purse",
-        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
+        "sender": "Der Talverwalter",
+        "subject": "Euer Anteil am Tagesbeutel",
+        "body": "Das Tal führt Buch darüber, wer sich am meisten darin müht, und gestern stand Euer Name unter den zehn höchsten. Die Verwalter haben Euren Anteil am Tagesbeutel abgewogen und ihn mit dem Raben geschickt.\n\nKommt morgen wieder und nehmt den ersten Platz, wenn Ihr könnt.\n\n- Der Talverwalter"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "Die Handwerksgilde",
