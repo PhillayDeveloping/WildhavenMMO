@@ -79,7 +79,11 @@ function requestWithoutBody(
 // Windows. Without it the setup threw and every case in the suite reported as
 // failed rather than skipped. Gated on the capability probe, not the platform, so
 // it returns the moment the privilege exists and always runs in CI.
-describe.sequential.skipIf(!canCreateSymlinks())('SFX Studio server security', () => {
+// Selected up front because vitest has no `describe.sequential.skipIf`: the
+// sequential runner and the conditional skip are separate chains.
+const studioSecuritySuite = canCreateSymlinks() ? describe.sequential : describe.sequential.skip;
+
+studioSecuritySuite('SFX Studio server security', () => {
   const repoRoot = fileURLToPath(new URL('..', import.meta.url));
   const sourceId = `${'f'.repeat(64)}.wav`;
   const sourceDir = join(STUDIO_ROOT, 'sources', 'foot_grass');
