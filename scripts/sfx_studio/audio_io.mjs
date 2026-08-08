@@ -92,7 +92,8 @@ let mutationTail = Promise.resolve();
 function ensurePlainDirectory(path, parent) {
   const parentReal = realpathSync(parent);
   const lexical = resolve(parentReal, basename(path));
-  if (!lexical.startsWith(`${parentReal}${sep}`)) throw new Error('studio directory escapes its root');
+  if (!lexical.startsWith(`${parentReal}${sep}`))
+    throw new Error('studio directory escapes its root');
   if (existsSync(lexical)) {
     const stat = lstatSync(lexical);
     if (stat.isSymbolicLink() || !stat.isDirectory()) {

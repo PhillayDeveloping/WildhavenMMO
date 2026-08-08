@@ -14,7 +14,6 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import sharp from 'sharp';
 import { afterEach, describe, expect, it } from 'vitest';
-import { canCreateSymlinks } from './helpers/symlink_support';
 import {
   auditIconAssets,
   groupManifestAssets,
@@ -22,6 +21,7 @@ import {
   runIconAssetAudit,
   validateAcceptedArtManifest,
 } from '../scripts/lib/icon_asset_audit.mjs';
+import { canCreateSymlinks } from './helpers/symlink_support';
 
 const REPO_ROOT = path.join(__dirname, '..');
 const CLI = path.join(REPO_ROOT, 'scripts/icon_asset_audit.mjs');
@@ -771,31 +771,34 @@ describe('icon asset audit', () => {
     ).toBe(true);
   }, 30_000);
 
-  it.skipIf(!canCreateSymlinks())('rejects deed source paths that escape the repository root', async () => {
-    const root = fixtureRoot();
-    const outputDir = path.join(root, 'audit');
-    const manifestPath = path.join(root, 'accepted.json');
-    const value = await buildFixture(root, false);
-    value.assets = value.assets.filter((asset) => asset.kind === 'deed');
-    value.assets[0].source = { path: '../outside.png' };
-    writeFileSync(manifestPath, `${JSON.stringify(value, null, 2)}\n`);
+  it.skipIf(!canCreateSymlinks())(
+    'rejects deed source paths that escape the repository root',
+    async () => {
+      const root = fixtureRoot();
+      const outputDir = path.join(root, 'audit');
+      const manifestPath = path.join(root, 'accepted.json');
+      const value = await buildFixture(root, false);
+      value.assets = value.assets.filter((asset) => asset.kind === 'deed');
+      value.assets[0].source = { path: '../outside.png' };
+      writeFileSync(manifestPath, `${JSON.stringify(value, null, 2)}\n`);
 
-    await expect(runIconAssetAudit({ manifestPath, outputDir, repoRoot: root })).rejects.toThrow(
-      'source.path escapes repository root: ../outside.png',
-    );
+      await expect(runIconAssetAudit({ manifestPath, outputDir, repoRoot: root })).rejects.toThrow(
+        'source.path escapes repository root: ../outside.png',
+      );
 
-    const externalRoot = fixtureRoot();
-    const externalSource = path.join(externalRoot, 'outside.png');
-    const linkedSource = 'tmp/imagegen/accepted/deeds/linked.png';
-    await writeAcceptedDeedSource(externalSource, 96, [116, 73, 184]);
-    symlinkSync(externalSource, path.join(root, linkedSource), 'file');
-    value.assets[0].source = { path: linkedSource };
-    writeFileSync(manifestPath, `${JSON.stringify(value, null, 2)}\n`);
+      const externalRoot = fixtureRoot();
+      const externalSource = path.join(externalRoot, 'outside.png');
+      const linkedSource = 'tmp/imagegen/accepted/deeds/linked.png';
+      await writeAcceptedDeedSource(externalSource, 96, [116, 73, 184]);
+      symlinkSync(externalSource, path.join(root, linkedSource), 'file');
+      value.assets[0].source = { path: linkedSource };
+      writeFileSync(manifestPath, `${JSON.stringify(value, null, 2)}\n`);
 
-    await expect(runIconAssetAudit({ manifestPath, outputDir, repoRoot: root })).rejects.toThrow(
-      `source.path escapes repository root through a symbolic link: ${linkedSource}`,
-    );
-  });
+      await expect(runIconAssetAudit({ manifestPath, outputDir, repoRoot: root })).rejects.toThrow(
+        `source.path escapes repository root through a symbolic link: ${linkedSource}`,
+      );
+    },
+  );
 
   it('writes deterministically named labeled sheets for every requested review size', async () => {
     const root = fixtureRoot();

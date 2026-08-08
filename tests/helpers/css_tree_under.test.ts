@@ -2,8 +2,8 @@ import { mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSyn
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { cssTreeUnder } from './css_tree_under';
 import { canCreateSymlinks } from '../helpers/symlink_support';
+import { cssTreeUnder } from './css_tree_under';
 
 // The paired test for the shared stylesheet walk, and it carries the same weight
 // as helpers/ts_files_under.test.ts: `src/styles` is FLAT today, so every
@@ -114,23 +114,26 @@ describe('cssTreeUnder', () => {
     expect(readFileSync(found[0].full, 'utf8')).toBe('.kept { color: red; }\n');
   });
 
-  it.skipIf(!canCreateSymlinks())('descends a symlinked DIRECTORY and reports it in dirs (a Dirent reads false for one)', () => {
-    // The expensive half of the symlink decision: `entry.isDirectory()` is
-    // lstat-based, so taking it at face value drops an entire linked subtree
-    // silently AND leaves the flat consumers' premise check blind to the one
-    // subdirectory shape a hand-rolled `isDirectory()` test cannot see.
-    write('real/inside.css');
-    write('real/deeper/lower.css');
-    symlinkSync(path.join(root, 'real'), path.join(root, 'linked_dir'));
-    const tree = cssTreeUnder(root);
-    expect(tree.files.map((f) => f.file)).toEqual([
-      'linked_dir/deeper/lower.css',
-      'linked_dir/inside.css',
-      'real/deeper/lower.css',
-      'real/inside.css',
-    ]);
-    expect(tree.dirs).toEqual(['linked_dir', 'linked_dir/deeper', 'real', 'real/deeper']);
-  });
+  it.skipIf(!canCreateSymlinks())(
+    'descends a symlinked DIRECTORY and reports it in dirs (a Dirent reads false for one)',
+    () => {
+      // The expensive half of the symlink decision: `entry.isDirectory()` is
+      // lstat-based, so taking it at face value drops an entire linked subtree
+      // silently AND leaves the flat consumers' premise check blind to the one
+      // subdirectory shape a hand-rolled `isDirectory()` test cannot see.
+      write('real/inside.css');
+      write('real/deeper/lower.css');
+      symlinkSync(path.join(root, 'real'), path.join(root, 'linked_dir'));
+      const tree = cssTreeUnder(root);
+      expect(tree.files.map((f) => f.file)).toEqual([
+        'linked_dir/deeper/lower.css',
+        'linked_dir/inside.css',
+        'real/deeper/lower.css',
+        'real/inside.css',
+      ]);
+      expect(tree.dirs).toEqual(['linked_dir', 'linked_dir/deeper', 'real', 'real/deeper']);
+    },
+  );
 
   it('walks a DIRECTORY named like a stylesheet instead of returning it', () => {
     // The shape the hand-rolled walk exists for: readdirSync's `recursive: true`
@@ -142,31 +145,40 @@ describe('cssTreeUnder', () => {
     expect(tree.dirs).toEqual(['theme.css']);
   });
 
-  it.skipIf(!canCreateSymlinks())('follows a symlinked .css file (a Dirent reads false for one)', () => {
-    // The arm no consumer fixture can reach, and the reason there is no
-    // `entry.isFile()` gate: Dirent is lstat-based, so gating on it drops a
-    // symlinked sheet that the flat `readdirSync().filter()` this replaces would
-    // have read. That is the same silent narrowing arriving one door over, and
-    // only this case holds the line.
-    write('real/module.css');
-    symlinkSync(path.join(root, 'real', 'module.css'), path.join(root, 'linked.css'));
-    expect(cssTreeUnder(root).files.map((f) => f.file)).toEqual(['linked.css', 'real/module.css']);
-  });
+  it.skipIf(!canCreateSymlinks())(
+    'follows a symlinked .css file (a Dirent reads false for one)',
+    () => {
+      // The arm no consumer fixture can reach, and the reason there is no
+      // `entry.isFile()` gate: Dirent is lstat-based, so gating on it drops a
+      // symlinked sheet that the flat `readdirSync().filter()` this replaces would
+      // have read. That is the same silent narrowing arriving one door over, and
+      // only this case holds the line.
+      write('real/module.css');
+      symlinkSync(path.join(root, 'real', 'module.css'), path.join(root, 'linked.css'));
+      expect(cssTreeUnder(root).files.map((f) => f.file)).toEqual([
+        'linked.css',
+        'real/module.css',
+      ]);
+    },
+  );
 
-  it.skipIf(!canCreateSymlinks())('returns a BROKEN symlink named .css instead of dropping it from the scan', () => {
-    // The arm behind `throwIfNoEntry: false`, and the reason it is written that
-    // way: a dangling link resolves to neither a file nor a directory, so it
-    // comes back as a file and the consumer's own readFileSync fails loudly.
-    // Drop the option and statSync throws instead, which turns every guard's
-    // failure mode from "this one sheet is broken" into "the walk died", with
-    // nothing red to say the contract changed.
-    write('real/module.css');
-    symlinkSync(path.join(root, 'real', 'gone.css'), path.join(root, 'dangling.css'));
-    expect(cssTreeUnder(root).files.map((f) => f.file)).toEqual([
-      'dangling.css',
-      'real/module.css',
-    ]);
-  });
+  it.skipIf(!canCreateSymlinks())(
+    'returns a BROKEN symlink named .css instead of dropping it from the scan',
+    () => {
+      // The arm behind `throwIfNoEntry: false`, and the reason it is written that
+      // way: a dangling link resolves to neither a file nor a directory, so it
+      // comes back as a file and the consumer's own readFileSync fails loudly.
+      // Drop the option and statSync throws instead, which turns every guard's
+      // failure mode from "this one sheet is broken" into "the walk died", with
+      // nothing red to say the contract changed.
+      write('real/module.css');
+      symlinkSync(path.join(root, 'real', 'gone.css'), path.join(root, 'dangling.css'));
+      expect(cssTreeUnder(root).files.map((f) => f.file)).toEqual([
+        'dangling.css',
+        'real/module.css',
+      ]);
+    },
+  );
 
   it('is empty for an empty root rather than throwing', () => {
     expect(cssTreeUnder(root)).toEqual({ files: [], dirs: [] });

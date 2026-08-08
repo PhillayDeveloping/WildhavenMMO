@@ -2,7 +2,6 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it, vi } from 'vitest';
-import { sourceFilesUnder } from './helpers/source_files_under';
 import { isDispellableAura } from '../src/sim/aura_classify';
 import { BG_GRAVEYARDS, BG_POWER_RUNES, BG_SPEED_RUNES } from '../src/sim/battleground_layout';
 import { GREATER_INVISIBILITY_DR_AURA_ID } from '../src/sim/combat/greater_invisibility';
@@ -53,6 +52,7 @@ import {
 } from '../src/sim/social/battleground_outcomes';
 import { DT, type SimEvent } from '../src/sim/types';
 import { groundHeight } from '../src/sim/world';
+import { sourceFilesUnder } from './helpers/source_files_under';
 
 // The staged 5v5 arms (graveyard no-auto-release, the 720s cap, the fairness
 // clocks, the honor-DR rollover) legitimately run 10 to 19s each and flake
