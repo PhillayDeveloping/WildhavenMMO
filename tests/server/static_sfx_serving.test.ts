@@ -138,32 +138,40 @@ describe('versioned static SFX serving', () => {
     expect(tooLarge.body.toString('utf8')).toBe('SFX asset changed during integrity verification');
   });
 
-  it('fails closed if the pathname is replaced while its snapshot is being read', () => {
-    const asset = join(blobsRoot, 'replacement-race.mp3');
-    const pendingReplacement = join(blobsRoot, 'replacement-race.pending');
-    writeFileSync(asset, 'original bytes');
-    writeFileSync(pendingReplacement, 'replacement bytes');
+  // Skipped on Windows: the setup stages the race by renaming OVER the file while
+  // the reader still holds it open. POSIX allows that; Windows refuses with EPERM,
+  // so the rename fails instead of the swap happening and the test asserts against
+  // an error it never got the chance to provoke. The guard itself is
+  // platform-independent and stays covered on POSIX and in CI.
+  it.skipIf(process.platform === 'win32')(
+    'fails closed if the pathname is replaced while its snapshot is being read',
+    () => {
+      const asset = join(blobsRoot, 'replacement-race.mp3');
+      const pendingReplacement = join(blobsRoot, 'replacement-race.pending');
+      writeFileSync(asset, 'original bytes');
+      writeFileSync(pendingReplacement, 'replacement bytes');
 
-    const readSync = fs.readSync;
-    let replaced = false;
-    const spy = vi.spyOn(fs, 'readSync').mockImplementation(((...args) => {
-      const count = Reflect.apply(readSync, fs, args) as number;
-      if (count > 0 && !replaced) {
-        replaced = true;
-        renameSync(pendingReplacement, asset);
+      const readSync = fs.readSync;
+      let replaced = false;
+      const spy = vi.spyOn(fs, 'readSync').mockImplementation(((...args) => {
+        const count = Reflect.apply(readSync, fs, args) as number;
+        if (count > 0 && !replaced) {
+          replaced = true;
+          renameSync(pendingReplacement, asset);
+        }
+        return count;
+      }) as typeof fs.readSync);
+
+      try {
+        expect(() => readStaticSfxSnapshot(asset)).toThrow(
+          'versioned SFX asset changed during snapshot',
+        );
+        expect(replaced).toBe(true);
+      } finally {
+        spy.mockRestore();
       }
-      return count;
-    }) as typeof fs.readSync);
-
-    try {
-      expect(() => readStaticSfxSnapshot(asset)).toThrow(
-        'versioned SFX asset changed during snapshot',
-      );
-      expect(replaced).toBe(true);
-    } finally {
-      spy.mockRestore();
-    }
-  });
+    },
+  );
 
   it('turns a snapshot read error into a no-store 404', async () => {
     const bytes = Buffer.from('READ_ERROR_AUDIO');
