@@ -8453,6 +8453,10 @@ export const pl_PL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.nativeUpdate.notNow': 'Nie teraz',
   'hudChrome.nativeUpdate.title': 'Dostępna aktualizacja',
   'hudChrome.nativeUpdate.update': 'Aktualizuj',
+  'entities.letters.daily_reward_prize.body':
+    'Dolina liczy, kto pracuje w niej najciężej, a wczoraj twoje imię stanęło wśród dziesięciu najwyższych. Zarządcy odważyli twój udział w codziennej sakiewce i wysłali go krukiem.\n\nWróć jutro i zajmij pierwsze miejsce, jeśli zdołasz.\n\n- Zarządca doliny',
+  'entities.letters.daily_reward_prize.sender': 'Zarządca doliny',
+  'entities.letters.daily_reward_prize.subject': 'Twój udział w codziennej sakiewce',
   'entities.letters.ravenpost_welcome.sender': 'Krucza Poczta',
   'entities.letters.ravenpost_welcome.subject': 'Kruki latają teraz dla ciebie',
   'entities.letters.ravenpost_welcome.body':

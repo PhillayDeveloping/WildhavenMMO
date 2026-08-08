@@ -8942,6 +8942,10 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.nativeUpdate.notNow': 'Pas maintenant',
   'hudChrome.nativeUpdate.title': 'Mise à jour disponible',
   'hudChrome.nativeUpdate.update': 'Mettre à jour',
+  'entities.letters.daily_reward_prize.body':
+    "La vallée tient le compte de qui y travaille le plus dur, et hier votre nom figurait parmi les dix premiers. Les intendants ont pesé votre part de la bourse quotidienne et l'ont envoyée par corbeau.\n\nRevenez demain et prenez la première place si vous le pouvez.\n\n- L'intendant de la vallée",
+  'entities.letters.daily_reward_prize.sender': "L'intendant de la vallée",
+  'entities.letters.daily_reward_prize.subject': 'Votre part de la bourse quotidienne',
   'entities.letters.ravenpost_welcome.sender': 'La Poste aux Corbeaux',
   'entities.letters.ravenpost_welcome.subject': 'Les corbeaux volent désormais pour vous',
   'entities.letters.ravenpost_welcome.body':

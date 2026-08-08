@@ -14873,9 +14873,9 @@ export const cs_CZ: EnTranslations = {
         "body": "Vaše skupina zdolala hrdinskou zkoušku, zatímco jste bojovali v týlu nebo leželi poraženi. Také vaše uzamčení bylo zaznamenáno, takže váš podíl hrdinských marek dorazil sem, místo aby se ztratil. Využijte je dobře.\n\n- Hrdinský zásobovač"
       },
       "daily_reward_prize": {
-        "sender": "The Vale Steward",
-        "subject": "Your share of the daily purse",
-        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
+        "sender": "Správce údolí",
+        "subject": "Tvůj podíl z denního měšce",
+        "body": "Údolí vede počet o tom, kdo se v něm nadře nejvíc, a včera tvé jméno stálo mezi deseti nejvyššími. Správci odvážili tvůj podíl z denního měšce a poslali jej po havranovi.\n\nVrať se zítra a obsaď první místo, dokážeš-li to.\n\n- Správce údolí"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "Řemeslnický cech",

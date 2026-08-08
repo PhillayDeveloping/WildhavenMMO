@@ -14873,9 +14873,9 @@ export const sv_SE: EnTranslations = {
         "body": "Din grupp klarade den heroiska prövningen medan du kämpade i eftertruppen eller låg fallen. Din låsning registrerades ändå, så din andel heroiska märken skickades hit i stället för att gå förlorad. Använd dem väl.\n\n- Heroisk kvartermästare"
       },
       "daily_reward_prize": {
-        "sender": "The Vale Steward",
-        "subject": "Your share of the daily purse",
-        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
+        "sender": "Dalens fogde",
+        "subject": "Din andel av den dagliga börsen",
+        "body": "Dalen håller räkning på vem som sliter hårdast i den, och i går stod ditt namn bland de tio högsta. Fogdarna har vägt upp din andel av den dagliga börsen och skickat den med korp.\n\nKom tillbaka i morgon och ta förstaplatsen om du kan.\n\n- Dalens fogde"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "Hantverksgillet",

@@ -14873,9 +14873,9 @@ export const pl_PL: EnTranslations = {
         "body": "Twoja grupa pokonała heroiczną próbę, gdy walczyłeś na tyłach lub leżałeś pokonany. Twoja blokada również została zapisana, dlatego należna część heroicznych znaków trafiła tutaj, zamiast przepaść. Dobrze je wykorzystaj.\n\n- Heroiczny kwatermistrz"
       },
       "daily_reward_prize": {
-        "sender": "The Vale Steward",
-        "subject": "Your share of the daily purse",
-        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
+        "sender": "Zarządca doliny",
+        "subject": "Twój udział w codziennej sakiewce",
+        "body": "Dolina liczy, kto pracuje w niej najciężej, a wczoraj twoje imię stanęło wśród dziesięciu najwyższych. Zarządcy odważyli twój udział w codziennej sakiewce i wysłali go krukiem.\n\nWróć jutro i zajmij pierwsze miejsce, jeśli zdołasz.\n\n- Zarządca doliny"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "Gildia Rzemieślnicza",

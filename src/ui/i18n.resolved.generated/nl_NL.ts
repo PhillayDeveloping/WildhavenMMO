@@ -14873,9 +14873,9 @@ export const nl_NL: EnTranslations = {
         "body": "Je groep heeft de heroïsche beproeving doorstaan terwijl jij in de achterhoede vocht of verslagen op de grond lag. Ook jouw binding is vastgelegd, dus je aandeel heroïsche marken is hierheen gestuurd in plaats van verloren te gaan. Gebruik ze goed.\n\n- Heroïsche kwartiermeester"
       },
       "daily_reward_prize": {
-        "sender": "The Vale Steward",
-        "subject": "Your share of the daily purse",
-        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
+        "sender": "De rentmeester van de vallei",
+        "subject": "Jouw deel van de dagelijkse buidel",
+        "body": "De vallei houdt bij wie er het hardst in werkt, en gisteren stond jouw naam bij de tien hoogste. De rentmeesters hebben jouw deel van de dagelijkse buidel afgewogen en het met een raaf meegestuurd.\n\nKom morgen terug en pak de eerste plaats als je kunt.\n\n- De rentmeester van de vallei"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "Het Ambachtsgilde",

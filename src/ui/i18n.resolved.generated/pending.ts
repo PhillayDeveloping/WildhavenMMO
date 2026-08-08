@@ -9,85 +9,25 @@
 // Reproducibility is checked by tests/i18n_resolved_equivalence.test.ts.
 
 export const pending: Record<string, readonly string[]> = {
-  "es": [
-    "entities.letters.daily_reward_prize.body",
-    "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject"
-  ],
-  "es_ES": [
-    "entities.letters.daily_reward_prize.body",
-    "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject"
-  ],
-  "fr_FR": [
-    "entities.letters.daily_reward_prize.body",
-    "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject"
-  ],
-  "fr_CA": [
-    "entities.letters.daily_reward_prize.body",
-    "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject"
-  ],
+  "es": [],
+  "es_ES": [],
+  "fr_FR": [],
+  "fr_CA": [],
   "en_CA": [],
-  "it_IT": [
-    "entities.letters.daily_reward_prize.body",
-    "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject"
-  ],
-  "de_DE": [
-    "entities.letters.daily_reward_prize.body",
-    "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject"
-  ],
+  "it_IT": [],
+  "de_DE": [],
   "zh_CN": [],
   "zh_TW": [],
   "ko_KR": [],
   "ja_JP": [],
-  "pt_BR": [
-    "entities.letters.daily_reward_prize.body",
-    "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject"
-  ],
+  "pt_BR": [],
   "ru_RU": [],
-  "cs_CZ": [
-    "entities.letters.daily_reward_prize.body",
-    "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject"
-  ],
-  "nl_NL": [
-    "entities.letters.daily_reward_prize.body",
-    "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject"
-  ],
-  "pl_PL": [
-    "entities.letters.daily_reward_prize.body",
-    "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject"
-  ],
-  "id_ID": [
-    "entities.letters.daily_reward_prize.body",
-    "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject"
-  ],
-  "tr_TR": [
-    "entities.letters.daily_reward_prize.body",
-    "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject"
-  ],
-  "sv_SE": [
-    "entities.letters.daily_reward_prize.body",
-    "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject"
-  ],
-  "vi_VN": [
-    "entities.letters.daily_reward_prize.body",
-    "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject"
-  ],
-  "da_DK": [
-    "entities.letters.daily_reward_prize.body",
-    "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject"
-  ]
+  "cs_CZ": [],
+  "nl_NL": [],
+  "pl_PL": [],
+  "id_ID": [],
+  "tr_TR": [],
+  "sv_SE": [],
+  "vi_VN": [],
+  "da_DK": []
 };

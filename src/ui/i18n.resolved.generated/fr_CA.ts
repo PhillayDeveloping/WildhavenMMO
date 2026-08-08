@@ -14873,9 +14873,9 @@ export const fr_CA: EnTranslations = {
         "body": "Votre groupe a triomphé de l’épreuve héroïque pendant que vous combattiez à l’arrière ou gisiez à terre. Votre verrouillage a tout de même été enregistré, alors votre part de Marques héroïques vous est envoyée ici au lieu d’être perdue. Faites-en bon usage.\n\n- Intendant héroïque"
       },
       "daily_reward_prize": {
-        "sender": "The Vale Steward",
-        "subject": "Your share of the daily purse",
-        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
+        "sender": "L'intendant de la vallée",
+        "subject": "Votre part de la bourse quotidienne",
+        "body": "La vallée tient le compte de qui y travaille le plus dur, et hier votre nom figurait parmi les dix premiers. Les intendants ont pesé votre part de la bourse quotidienne et l'ont envoyée par corbeau.\n\nRevenez demain et prenez la première place si vous le pouvez.\n\n- L'intendant de la vallée"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "La guilde des artisans",

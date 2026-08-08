@@ -8478,6 +8478,10 @@ export const it_IT: Partial<Record<TranslationKey, string>> = {
   'hudChrome.nativeUpdate.notNow': 'Non ora',
   'hudChrome.nativeUpdate.title': 'Aggiornamento disponibile',
   'hudChrome.nativeUpdate.update': 'Aggiorna',
+  'entities.letters.daily_reward_prize.body':
+    "La valle tiene il conto di chi vi lavora più duramente, e ieri il tuo nome era tra i dieci più alti. Gli intendenti hanno pesato la tua parte della borsa giornaliera e l'hanno mandata per corvo.\n\nTorna domani e prendi il primo posto, se ci riesci.\n\n- L'intendente della valle",
+  'entities.letters.daily_reward_prize.sender': "L'intendente della valle",
+  'entities.letters.daily_reward_prize.subject': 'La tua parte della borsa giornaliera',
   'entities.letters.ravenpost_welcome.sender': 'La Posta dei Corvi',
   'entities.letters.ravenpost_welcome.subject': 'Ora i corvi volano per te',
   'entities.letters.ravenpost_welcome.body':

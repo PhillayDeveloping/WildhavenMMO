@@ -8998,6 +8998,10 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'hudChrome.nativeUpdate.notNow': 'Jangan sekarang',
   'hudChrome.nativeUpdate.title': 'Pembaruan Tersedia',
   'hudChrome.nativeUpdate.update': 'Perbarui',
+  'entities.letters.daily_reward_prize.body':
+    'Lembah mencatat siapa yang paling giat bekerja di dalamnya, dan kemarin namamu berdiri di antara sepuluh teratas. Para pengurus telah menimbang bagianmu dari pundi harian dan mengirimkannya lewat gagak.\n\nKembalilah besok dan rebut tempat teratas jika kau mampu.\n\n- Pengurus Lembah',
+  'entities.letters.daily_reward_prize.sender': 'Pengurus Lembah',
+  'entities.letters.daily_reward_prize.subject': 'Bagianmu dari pundi harian',
   'entities.letters.ravenpost_welcome.sender': 'Pos Gagak',
   'entities.letters.ravenpost_welcome.subject': 'Kini para gagak terbang untukmu',
   'entities.letters.ravenpost_welcome.body':

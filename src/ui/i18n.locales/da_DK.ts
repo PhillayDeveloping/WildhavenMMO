@@ -8206,6 +8206,10 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'hudChrome.nativeUpdate.update': 'Opdater',
   'errors.api.desktopCodeInvalid':
     'Desktop-loginkoden er ugyldig eller udløbet. Prøv venligst igen.',
+  'entities.letters.daily_reward_prize.body':
+    'Dalen holder regnskab med, hvem der arbejder hårdest i den, og i går stod dit navn blandt de ti øverste. Forvalterne har vejet din andel af den daglige pung af og sendt den af sted med ravn.\n\nKom igen i morgen og tag førstepladsen, hvis du kan.\n\n- Dalens forvalter',
+  'entities.letters.daily_reward_prize.sender': 'Dalens forvalter',
+  'entities.letters.daily_reward_prize.subject': 'Din andel af den daglige pung',
   'entities.letters.ravenpost_welcome.sender': 'Ravneposten',
   'entities.letters.ravenpost_welcome.subject': 'Ravnene flyver nu for dig',
   'entities.letters.ravenpost_welcome.body':

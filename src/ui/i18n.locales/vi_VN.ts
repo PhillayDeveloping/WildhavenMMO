@@ -8871,6 +8871,9 @@ export const vi_VN: Partial<Record<TranslationKey, string>> = {
   'hudChrome.nativeUpdate.update': 'Cập Nhật',
   'errors.api.desktopCodeInvalid':
     'Mã đăng nhập máy tính không hợp lệ hoặc đã hết hạn. Vui lòng thử lại.',
+  'entities.letters.daily_reward_prize.body': 'Thung lũng ghi nhớ ai là người lao nhọc nhất trong nó, và hôm qua tên bạn đã đứng trong mười người cao nhất. Các quản sự đã cân phần của bạn trong túi tiền hằng ngày và gửi đi theo cánh quạ.\n\nHãy trở lại vào ngày mai và giành lấy vị trí đầu bảng nếu bạn có thể.\n\n- Quản Sự Thung Lũng',
+  'entities.letters.daily_reward_prize.sender': 'Quản Sự Thung Lũng',
+  'entities.letters.daily_reward_prize.subject': 'Phần của bạn trong túi tiền hằng ngày',
   'entities.letters.ravenpost_welcome.sender': 'Bưu Quạ',
   'entities.letters.ravenpost_welcome.subject': 'Giờ đây bầy quạ bay vì bạn',
   'entities.letters.ravenpost_welcome.body':

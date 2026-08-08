@@ -8944,6 +8944,10 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.nativeUpdate.notNow': 'Şimdi Değil',
   'hudChrome.nativeUpdate.title': 'Güncelleme Mevcut',
   'hudChrome.nativeUpdate.update': 'Güncelle',
+  'entities.letters.daily_reward_prize.body':
+    'Vadi, içinde en çok kimin çalıştığının hesabını tutar ve dün adın en yüksek on kişinin arasındaydı. Kâhyalar günlük keseden payını tartıp kuzgunla yolladılar.\n\nYarın yine gel ve elinden gelirse ilk sırayı al.\n\n- Vadi Kâhyası',
+  'entities.letters.daily_reward_prize.sender': 'Vadi Kâhyası',
+  'entities.letters.daily_reward_prize.subject': 'Günlük keseden payın',
   'entities.letters.ravenpost_welcome.sender': 'Kuzgun Postası',
   'entities.letters.ravenpost_welcome.subject': 'Kuzgunlar artık senin için uçuyor',
   'entities.letters.ravenpost_welcome.body':

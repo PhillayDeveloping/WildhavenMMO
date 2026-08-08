@@ -14873,9 +14873,9 @@ export const pt_BR: EnTranslations = {
         "body": "Seu grupo venceu a provação heroica enquanto você lutava na retaguarda ou jazia caído. Seu vínculo também foi registrado, então sua parte das Marcas heroicas chegou aqui em vez de se perder. Use-as bem.\n\n- Intendente heroico"
       },
       "daily_reward_prize": {
-        "sender": "The Vale Steward",
-        "subject": "Your share of the daily purse",
-        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
+        "sender": "O administrador do vale",
+        "subject": "Sua parte da bolsa diária",
+        "body": "O vale leva a conta de quem trabalha mais duro nele, e ontem seu nome esteve entre os dez mais altos. Os administradores pesaram a sua parte da bolsa diária e a enviaram por corvo.\n\nVolte amanhã e tome o primeiro lugar, se conseguir.\n\n- O administrador do vale"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "A Guilda de Artesanato",

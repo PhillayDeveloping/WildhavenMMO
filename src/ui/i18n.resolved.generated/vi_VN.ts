@@ -14873,9 +14873,9 @@ export const vi_VN: EnTranslations = {
         "body": "Đội của bạn đã vượt qua thử thách Anh Hùng khi bạn chiến đấu ở hậu tuyến hoặc đã ngã xuống. Khóa lượt của bạn vẫn được ghi nhận, vì vậy phần Dấu Ấn Anh Hùng của bạn được gửi đến đây thay vì thất lạc. Hãy sử dụng chúng thật tốt.\n\n- Quân nhu Anh Hùng"
       },
       "daily_reward_prize": {
-        "sender": "The Vale Steward",
-        "subject": "Your share of the daily purse",
-        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
+        "sender": "Quản Sự Thung Lũng",
+        "subject": "Phần của bạn trong túi tiền hằng ngày",
+        "body": "Thung lũng ghi nhớ ai là người lao nhọc nhất trong nó, và hôm qua tên bạn đã đứng trong mười người cao nhất. Các quản sự đã cân phần của bạn trong túi tiền hằng ngày và gửi đi theo cánh quạ.\n\nHãy trở lại vào ngày mai và giành lấy vị trí đầu bảng nếu bạn có thể.\n\n- Quản Sự Thung Lũng"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "Hội chế tạo",

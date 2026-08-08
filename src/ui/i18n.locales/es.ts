@@ -8356,6 +8356,10 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'hudChrome.nativeUpdate.notNow': 'Ahora no',
   'hudChrome.nativeUpdate.title': 'Actualización disponible',
   'hudChrome.nativeUpdate.update': 'Actualizar',
+  'entities.letters.daily_reward_prize.body':
+    'El valle lleva la cuenta de quién trabaja más duro en él, y ayer tu nombre estuvo entre los diez más altos. Los mayordomos han pesado tu parte de la bolsa diaria y la han enviado con un cuervo.\n\nVuelve mañana y toma el primer puesto si puedes.\n\n- El mayordomo del valle',
+  'entities.letters.daily_reward_prize.sender': 'El mayordomo del valle',
+  'entities.letters.daily_reward_prize.subject': 'Tu parte de la bolsa diaria',
   'entities.letters.ravenpost_welcome.sender': 'El Correo del Cuervo',
   'entities.letters.ravenpost_welcome.subject': 'Los cuervos ya vuelan por ti',
   'entities.letters.ravenpost_welcome.body':
