@@ -401,7 +401,7 @@ export const it_IT: EnTranslations = {
       "error": "Impossibile caricare le ricompense giornaliere.",
       "disabled": "Le ricompense giornaliere sono attualmente disattivate. Annunceremo gli aggiornamenti di questa funzionalità nel canale Discord.",
       "intro": "Detieni abbastanza WOC nel tuo portafoglio verificato per sbloccare le ricompense giornaliere. Guadagna punti con un giro giornaliero e incarichi a rotazione, poi scala la classifica giornaliera per aggiudicarti una parte del montepremi.",
-      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
+      "disclaimer": "Gli incarichi e la classifica si azzerano una volta al giorno. I primi dieci si dividono la borsa e un corvo ti porta la tua parte al prossimo accesso.",
       "prize": "Montepremi",
       "reset": "Azzeramento",
       "endsIn": "Termina tra {time}",

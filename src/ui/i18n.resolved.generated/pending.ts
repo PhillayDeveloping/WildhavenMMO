@@ -12,39 +12,33 @@ export const pending: Record<string, readonly string[]> = {
   "es": [
     "entities.letters.daily_reward_prize.body",
     "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject",
-    "hudChrome.dailyRewards.disclaimer"
+    "entities.letters.daily_reward_prize.subject"
   ],
   "es_ES": [
     "entities.letters.daily_reward_prize.body",
     "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject",
-    "hudChrome.dailyRewards.disclaimer"
+    "entities.letters.daily_reward_prize.subject"
   ],
   "fr_FR": [
     "entities.letters.daily_reward_prize.body",
     "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject",
-    "hudChrome.dailyRewards.disclaimer"
+    "entities.letters.daily_reward_prize.subject"
   ],
   "fr_CA": [
     "entities.letters.daily_reward_prize.body",
     "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject",
-    "hudChrome.dailyRewards.disclaimer"
+    "entities.letters.daily_reward_prize.subject"
   ],
   "en_CA": [],
   "it_IT": [
     "entities.letters.daily_reward_prize.body",
     "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject",
-    "hudChrome.dailyRewards.disclaimer"
+    "entities.letters.daily_reward_prize.subject"
   ],
   "de_DE": [
     "entities.letters.daily_reward_prize.body",
     "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject",
-    "hudChrome.dailyRewards.disclaimer"
+    "entities.letters.daily_reward_prize.subject"
   ],
   "zh_CN": [],
   "zh_TW": [],
@@ -53,56 +47,47 @@ export const pending: Record<string, readonly string[]> = {
   "pt_BR": [
     "entities.letters.daily_reward_prize.body",
     "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject",
-    "hudChrome.dailyRewards.disclaimer"
+    "entities.letters.daily_reward_prize.subject"
   ],
   "ru_RU": [],
   "cs_CZ": [
     "entities.letters.daily_reward_prize.body",
     "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject",
-    "hudChrome.dailyRewards.disclaimer"
+    "entities.letters.daily_reward_prize.subject"
   ],
   "nl_NL": [
     "entities.letters.daily_reward_prize.body",
     "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject",
-    "hudChrome.dailyRewards.disclaimer"
+    "entities.letters.daily_reward_prize.subject"
   ],
   "pl_PL": [
     "entities.letters.daily_reward_prize.body",
     "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject",
-    "hudChrome.dailyRewards.disclaimer"
+    "entities.letters.daily_reward_prize.subject"
   ],
   "id_ID": [
     "entities.letters.daily_reward_prize.body",
     "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject",
-    "hudChrome.dailyRewards.disclaimer"
+    "entities.letters.daily_reward_prize.subject"
   ],
   "tr_TR": [
     "entities.letters.daily_reward_prize.body",
     "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject",
-    "hudChrome.dailyRewards.disclaimer"
+    "entities.letters.daily_reward_prize.subject"
   ],
   "sv_SE": [
     "entities.letters.daily_reward_prize.body",
     "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject",
-    "hudChrome.dailyRewards.disclaimer"
+    "entities.letters.daily_reward_prize.subject"
   ],
   "vi_VN": [
     "entities.letters.daily_reward_prize.body",
     "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject",
-    "hudChrome.dailyRewards.disclaimer"
+    "entities.letters.daily_reward_prize.subject"
   ],
   "da_DK": [
     "entities.letters.daily_reward_prize.body",
     "entities.letters.daily_reward_prize.sender",
-    "entities.letters.daily_reward_prize.subject",
-    "hudChrome.dailyRewards.disclaimer"
+    "entities.letters.daily_reward_prize.subject"
   ]
 };

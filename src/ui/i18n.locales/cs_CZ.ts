@@ -4477,6 +4477,8 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'hudChrome.perf.units.memPair': '{used} / {limit} MB',
   'hudChrome.perf.units.ms': '{value} ms',
   'hudChrome.dailyRewards.close': 'Zavřít denní odměny',
+  'hudChrome.dailyRewards.disclaimer':
+    'Úkoly a žebříček se resetují jednou denně. Prvních deset si rozdělí měšec a tvůj podíl přinese havran, až se příště přihlásíš.',
   'hudChrome.dailyRewards.endsIn': 'Končí za {time}',
   'hudChrome.dailyRewards.error': 'Denní odměny se nepodařilo načíst.',
   'hudChrome.dailyRewards.hideChestButton': 'Skrýt truhlu',

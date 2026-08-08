@@ -401,7 +401,7 @@ export const cs_CZ: EnTranslations = {
       "error": "Denní odměny se nepodařilo načíst.",
       "disabled": "Denní odměny jsou momentálně vypnuté. Novinky o této funkci oznámíme na kanálu Discord.",
       "intro": "Drž dost WOC v ověřené peněžence a odemkni denní odměny. Získávej body jedním denním zatočením a rotujícími úkoly, potom stoupej v denním žebříčku o podíl z prize poolu.",
-      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
+      "disclaimer": "Úkoly a žebříček se resetují jednou denně. Prvních deset si rozdělí měšec a tvůj podíl přinese havran, až se příště přihlásíš.",
       "prize": "Prize pool",
       "reset": "Reset",
       "endsIn": "Končí za {time}",

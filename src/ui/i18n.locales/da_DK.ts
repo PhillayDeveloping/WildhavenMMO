@@ -2712,6 +2712,8 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'hudChrome.calendar.result.removed': 'Begivenheden blev fjernet fra kalenderen.',
   'hudChrome.calendar.title': 'Begivenhedskalender',
   'hudChrome.calendar.titlePlaceholder': 'Begivenhedstitel',
+  'hudChrome.dailyRewards.disclaimer':
+    'Opgaver og resultattavlen nulstilles en gang om dagen. De ti bedste deler pungen, og en ravn bringer din andel, næste gang du logger ind.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     'Dette fjerner kiste-genvejen fra dit HUD. Belønninger, adgang og dette panel forbliver tilgængelige; du kan hente genvejen tilbage fra indstillingerne.',
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Annuller',

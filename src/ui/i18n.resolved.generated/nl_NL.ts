@@ -401,7 +401,7 @@ export const nl_NL: EnTranslations = {
       "error": "Kon de dagelijkse beloningen niet laden.",
       "disabled": "Dagelijkse beloningen zijn momenteel uitgeschakeld. We kondigen updates voor deze functie aan in het Discord-kanaal.",
       "intro": "Houd genoeg WOC in je geverifieerde portemonnee om dagelijkse beloningen te ontgrendelen. Verdien punten met één dagelijkse draai en wisselende taken, en klim daarna op in de dagelijkse ranglijst voor een deel van de prijzenpot.",
-      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
+      "disclaimer": "Taken en de ranglijst worden eenmaal per dag gereset. De top tien verdeelt de buidel en een raaf brengt jouw deel de volgende keer dat je inlogt.",
       "prize": "Prijzenpot",
       "reset": "Reset",
       "endsIn": "Eindigt over {time}",

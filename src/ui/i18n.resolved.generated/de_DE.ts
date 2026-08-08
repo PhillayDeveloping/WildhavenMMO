@@ -401,7 +401,7 @@ export const de_DE: EnTranslations = {
       "error": "Tägliche Belohnungen konnten nicht geladen werden.",
       "disabled": "Tägliche Belohnungen sind derzeit deaktiviert. Neuigkeiten zu dieser Funktion geben wir im Discord-Kanal bekannt.",
       "intro": "Halte genügend WOC in deiner verifizierten Wallet, um tägliche Belohnungen freizuschalten. Verdiene Punkte mit einem täglichen Dreh und wechselnden Aufgaben und klettere dann in der täglichen Rangliste nach oben, um einen Anteil am Preispool zu erhalten.",
-      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
+      "disclaimer": "Aufgaben und die Rangliste werden einmal täglich zurückgesetzt. Die besten zehn teilen sich den Beutel, und ein Rabe bringt dir deinen Anteil, wenn du dich das nächste Mal anmeldest.",
       "prize": "Preispool",
       "reset": "Zurücksetzen",
       "endsIn": "Endet in {time}",

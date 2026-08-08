@@ -401,7 +401,7 @@ export const id_ID: EnTranslations = {
       "error": "Tidak dapat memuat hadiah harian.",
       "disabled": "Hadiah Harian saat ini dinonaktifkan. Kami akan mengumumkan pembaruan fitur ini di kanal Discord.",
       "intro": "Simpan cukup WOC di dompet terverifikasimu untuk membuka hadiah harian. Kumpulkan poin lewat satu putaran harian dan tugas yang bergilir, lalu naiki papan peringkat harian untuk mendapat bagian dari kolam hadiah.",
-      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
+      "disclaimer": "Tugas dan papan peringkat disetel ulang sekali sehari. Sepuluh teratas membagi pundi-pundi, dan seekor gagak mengantarkan bagianmu saat kamu masuk berikutnya.",
       "prize": "Kolam Hadiah",
       "reset": "Atur Ulang",
       "endsIn": "Berakhir dalam {time}",

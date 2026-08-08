@@ -401,7 +401,7 @@ export const sv_SE: EnTranslations = {
       "error": "Kunde inte ladda dagliga belöningar.",
       "disabled": "Dagliga belöningar är för närvarande inaktiverade. Vi meddelar uppdateringar om den här funktionen i Discord-kanalen.",
       "intro": "Håll tillräckligt med WOC i din verifierade plånbok för att låsa upp dagliga belöningar. Tjäna poäng med ett dagligt snurr och roterande uppgifter, och klättra sedan på den dagliga topplistan för en andel av prispotten.",
-      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
+      "disclaimer": "Uppgifterna och topplistan återställs en gång per dag. De tio bästa delar på börsen, och en korp kommer med din andel nästa gång du loggar in.",
       "prize": "Prispott",
       "reset": "Återställning",
       "endsIn": "Slutar om {time}",

@@ -401,7 +401,7 @@ export const fr_CA: EnTranslations = {
       "error": "Impossible de charger les récompenses quotidiennes.",
       "disabled": "Les récompenses quotidiennes sont actuellement désactivées. Nous annoncerons les mises à jour de cette fonctionnalité sur le canal Discord.",
       "intro": "Détenez assez de WOC dans votre portefeuille vérifié pour débloquer les récompenses quotidiennes. Gagnez des points grâce à un tour quotidien et à des tâches en rotation, puis grimpez dans le classement quotidien pour remporter une part de la cagnotte.",
-      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
+      "disclaimer": "Les tâches et le classement sont réinitialisés une fois par jour. Les dix premiers se partagent la bourse et un corbeau vous apporte votre part à votre prochaine connexion.",
       "prize": "Cagnotte",
       "reset": "Réinitialisation",
       "endsIn": "Se termine dans {time}",

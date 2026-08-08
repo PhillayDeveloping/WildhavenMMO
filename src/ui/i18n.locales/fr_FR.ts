@@ -3236,6 +3236,8 @@ export const fr_FR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.calendar.result.removed': "L'événement a été retiré du calendrier.",
   'hudChrome.calendar.title': 'Calendrier des événements',
   'hudChrome.calendar.titlePlaceholder': "Titre de l'événement",
+  'hudChrome.dailyRewards.disclaimer':
+    'Les tâches et le classement sont réinitialisés une fois par jour. Les dix premiers se partagent la bourse et un corbeau vous apporte votre part à votre prochaine connexion.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     "Ceci retire le raccourci du coffre de votre interface. Les récompenses, l'éligibilité et ce panneau restent disponibles ; vous pouvez rétablir le raccourci depuis les Options.",
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Annuler',

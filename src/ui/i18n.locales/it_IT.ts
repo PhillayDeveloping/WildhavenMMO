@@ -2830,6 +2830,8 @@ export const it_IT: Partial<Record<TranslationKey, string>> = {
   'hudChrome.calendar.result.removed': "L'evento è stato tolto dal calendario.",
   'hudChrome.calendar.title': 'Calendario degli Eventi',
   'hudChrome.calendar.titlePlaceholder': "Titolo dell'evento",
+  'hudChrome.dailyRewards.disclaimer':
+    'Gli incarichi e la classifica si azzerano una volta al giorno. I primi dieci si dividono la borsa e un corvo ti porta la tua parte al prossimo accesso.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     'Questo rimuove la scorciatoia del forziere dalla tua interfaccia. Ricompense, idoneità e questo pannello restano disponibili; puoi ripristinare la scorciatoia dalle Opzioni.',
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Annulla',

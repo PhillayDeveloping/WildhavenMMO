@@ -401,7 +401,7 @@ export const tr_TR: EnTranslations = {
       "error": "Günlük ödüller yüklenemedi.",
       "disabled": "Günlük Ödüller şu anda devre dışı. Bu özellikle ilgili güncellemeleri Discord kanalında duyuracağız.",
       "intro": "Günlük ödüllerin kilidini açmak için doğrulanmış cüzdanında yeterince WOC bulundur. Bir günlük çevirme ve dönüşümlü görevlerle puan kazan, ardından ödül havuzundan pay almak için günlük lider tablosunda yüksel.",
-      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
+      "disclaimer": "Görevler ve lider tablosu günde bir kez sıfırlanır. İlk on oyuncu keseyi paylaşır ve bir sonraki girişinde payını bir kuzgun getirir.",
       "prize": "Ödül Havuzu",
       "reset": "Sıfırla",
       "endsIn": "Bitmesine {time}",

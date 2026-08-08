@@ -401,7 +401,7 @@ export const pt_BR: EnTranslations = {
       "error": "Não foi possível carregar as recompensas diárias.",
       "disabled": "As Recompensas Diárias estão desativadas no momento. Anunciaremos atualizações sobre este recurso no canal do Discord.",
       "intro": "Mantenha WOC suficiente na sua carteira verificada para desbloquear as recompensas diárias. Ganhe pontos com um giro diário e tarefas rotativas, depois suba na classificação diária para ganhar uma parte da premiação.",
-      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
+      "disclaimer": "As tarefas e a classificação são reiniciadas uma vez por dia. Os dez primeiros dividem a bolsa e um corvo traz a sua parte no próximo login.",
       "prize": "Premiação",
       "reset": "Reinício",
       "endsIn": "Termina em {time}",

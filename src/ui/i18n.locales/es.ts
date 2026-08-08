@@ -2710,6 +2710,8 @@ export const es: Partial<Record<TranslationKey, string>> = {
   'hudChrome.calendar.result.removed': 'El evento se retiró del calendario.',
   'hudChrome.calendar.title': 'Calendario de Eventos',
   'hudChrome.calendar.titlePlaceholder': 'Título del evento',
+  'hudChrome.dailyRewards.disclaimer':
+    'Las tareas y la clasificación se reinician una vez al día. Los diez primeros se reparten la bolsa y un cuervo te trae tu parte la próxima vez que inicies sesión.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     'Esto quita el acceso directo del cofre de tu interfaz. Las recompensas, los requisitos y este panel siguen disponibles; puedes recuperar el acceso directo desde Opciones.',
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Cancelar',

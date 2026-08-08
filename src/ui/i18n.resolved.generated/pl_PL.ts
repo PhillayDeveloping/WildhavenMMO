@@ -401,7 +401,7 @@ export const pl_PL: EnTranslations = {
       "error": "Nie udało się załadować codziennych nagród.",
       "disabled": "Codzienne nagrody są obecnie wyłączone. Aktualizacje dotyczące tej funkcji ogłosimy na kanale Discord.",
       "intro": "Trzymaj wystarczająco dużo WOC w zweryfikowanym portfelu, aby odblokować codzienne nagrody. Zdobywaj punkty dzięki jednemu codziennemu losowaniu i zmieniającym się zadaniom, a następnie wspinaj się w codziennej tabeli wyników, aby zdobyć udział w puli nagród.",
-      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
+      "disclaimer": "Zadania i tabela wyników resetują się raz dziennie. Pierwsza dziesiątka dzieli się sakiewką, a twój udział przynosi kruk przy następnym logowaniu.",
       "prize": "Pula nagród",
       "reset": "Reset",
       "endsIn": "Kończy się za {time}",

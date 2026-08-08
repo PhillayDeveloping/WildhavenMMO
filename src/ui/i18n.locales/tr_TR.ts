@@ -2828,6 +2828,8 @@ export const tr_TR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.corpseHarvest.harvestTooltip':
     'İşaretlenmiş bileşenleri toplar. Her leş yalnızca bir kez toplanabilir, ilk gelen alır. Yağmayı almaz.',
   'hudChrome.corpseHarvest.title': 'Toplama',
+  'hudChrome.dailyRewards.disclaimer':
+    'Görevler ve lider tablosu günde bir kez sıfırlanır. İlk on oyuncu keseyi paylaşır ve bir sonraki girişinde payını bir kuzgun getirir.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     "Bu, sandık kısayolunu HUD'undan kaldırır. Ödüller, uygunluk ve bu panel kullanılabilir kalır; kısayolu Seçenekler'den geri getirebilirsin.",
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'İptal',

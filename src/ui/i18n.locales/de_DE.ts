@@ -2862,6 +2862,8 @@ export const de_DE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.calendar.result.removed': 'Das Ereignis wurde aus dem Kalender genommen.',
   'hudChrome.calendar.title': 'Ereigniskalender',
   'hudChrome.calendar.titlePlaceholder': 'Titel des Ereignisses',
+  'hudChrome.dailyRewards.disclaimer':
+    'Aufgaben und die Rangliste werden einmal täglich zurückgesetzt. Die besten zehn teilen sich den Beutel, und ein Rabe bringt dir deinen Anteil, wenn du dich das nächste Mal anmeldest.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     'Dies entfernt die Truhen-Verknüpfung aus deinem HUD. Belohnungen, Teilnahmeberechtigung und dieses Panel bleiben verfügbar; du kannst die Verknüpfung über die Optionen zurückholen.',
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Abbrechen',

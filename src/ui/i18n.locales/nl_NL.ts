@@ -2956,6 +2956,8 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.calendar.result.removed': 'Het evenement is van de kalender gehaald.',
   'hudChrome.calendar.title': 'Evenementenkalender',
   'hudChrome.calendar.titlePlaceholder': 'Titel van het evenement',
+  'hudChrome.dailyRewards.disclaimer':
+    'Taken en de ranglijst worden eenmaal per dag gereset. De top tien verdeelt de buidel en een raaf brengt jouw deel de volgende keer dat je inlogt.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     'Dit verwijdert de kistsnelkoppeling uit je HUD. Beloningen, geschiktheid en dit paneel blijven beschikbaar; je kunt de snelkoppeling terughalen via Opties.',
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Annuleren',

@@ -401,7 +401,7 @@ export const da_DK: EnTranslations = {
       "error": "Kunne ikke indlæse daglige belønninger.",
       "disabled": "Daglige belønninger er i øjeblikket deaktiveret. Vi annoncerer opdateringer til denne funktion i Discord-kanalen.",
       "intro": "Behold nok WOC i din verificerede wallet for at låse daglige belønninger op. Optjen point med én daglig drejning og skiftende opgaver, og klatr så op ad den daglige resultattavle for en andel af præmiepuljen.",
-      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
+      "disclaimer": "Opgaver og resultattavlen nulstilles en gang om dagen. De ti bedste deler pungen, og en ravn bringer din andel, næste gang du logger ind.",
       "prize": "Præmiepulje",
       "reset": "Nulstil",
       "endsIn": "Slutter om {time}",

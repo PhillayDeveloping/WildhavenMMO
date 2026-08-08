@@ -401,7 +401,7 @@ export const vi_VN: EnTranslations = {
       "error": "Không thể tải phần thưởng hằng ngày.",
       "disabled": "Phần Thưởng Hằng Ngày hiện đang bị tắt. Chúng tôi sẽ thông báo các cập nhật về tính năng này trong kênh Discord.",
       "intro": "Giữ đủ WOC trong ví đã xác minh của bạn để mở khóa phần thưởng hằng ngày. Kiếm điểm bằng một lượt quay mỗi ngày và các nhiệm vụ luân phiên, rồi leo lên bảng xếp hạng hằng ngày để nhận phần chia từ quỹ giải thưởng.",
-      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
+      "disclaimer": "Nhiệm vụ và bảng xếp hạng được đặt lại mỗi ngày một lần. Mười người dẫn đầu chia nhau túi tiền, và một con quạ sẽ mang phần của bạn vào lần đăng nhập tiếp theo.",
       "prize": "Quỹ Giải Thưởng",
       "reset": "Đặt Lại",
       "endsIn": "Kết thúc sau {time}",

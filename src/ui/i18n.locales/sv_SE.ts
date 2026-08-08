@@ -2710,6 +2710,8 @@ export const sv_SE: Partial<Record<TranslationKey, string>> = {
   'hudChrome.calendar.result.removed': 'Evenemanget togs bort från kalendern.',
   'hudChrome.calendar.title': 'Evenemangskalender',
   'hudChrome.calendar.titlePlaceholder': 'Evenemangstitel',
+  'hudChrome.dailyRewards.disclaimer':
+    'Uppgifterna och topplistan återställs en gång per dag. De tio bästa delar på börsen, och en korp kommer med din andel nästa gång du loggar in.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     'Detta tar bort kistgenvägen från ditt HUD. Belöningar, behörighet och den här panelen finns kvar; du kan ta tillbaka genvägen från Alternativ.',
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Avbryt',

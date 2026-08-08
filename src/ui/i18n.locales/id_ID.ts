@@ -2845,6 +2845,8 @@ export const id_ID: Partial<Record<TranslationKey, string>> = {
   'hudChrome.corpseHarvest.harvestTooltip':
     'Mengumpulkan komponen yang dicentang. Setiap bangkai hanya bisa dipanen sekali, siapa cepat dia dapat. Tidak mengambil jarahan.',
   'hudChrome.corpseHarvest.title': 'Panen',
+  'hudChrome.dailyRewards.disclaimer':
+    'Tugas dan papan peringkat disetel ulang sekali sehari. Sepuluh teratas membagi pundi-pundi, dan seekor gagak mengantarkan bagianmu saat kamu masuk berikutnya.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     'Ini menghapus pintasan peti dari HUD-mu. Hadiah, kelayakan, dan panel ini tetap tersedia; kamu bisa mengembalikan pintasannya dari Opsi.',
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Batal',

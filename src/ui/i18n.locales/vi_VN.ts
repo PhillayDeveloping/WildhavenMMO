@@ -2711,6 +2711,7 @@ export const vi_VN: Partial<Record<TranslationKey, string>> = {
   'hudChrome.corpseHarvest.harvestTooltip':
     'Thu thập các bộ phận đã chọn. Mỗi xác chỉ có thể thu hoạch một lần, ai đến trước được trước. Không lấy chiến lợi phẩm.',
   'hudChrome.corpseHarvest.title': 'Thu Hoạch',
+  'hudChrome.dailyRewards.disclaimer': 'Nhiệm vụ và bảng xếp hạng được đặt lại mỗi ngày một lần. Mười người dẫn đầu chia nhau túi tiền, và một con quạ sẽ mang phần của bạn vào lần đăng nhập tiếp theo.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     'Thao tác này gỡ lối tắt rương khỏi HUD của bạn. Phần thưởng, điều kiện nhận và bảng này vẫn khả dụng; bạn có thể bật lại lối tắt từ Tùy Chọn.',
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Hủy',

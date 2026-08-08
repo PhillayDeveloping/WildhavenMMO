@@ -2797,6 +2797,8 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.calendar.result.removed': 'O evento foi retirado do calendário.',
   'hudChrome.calendar.title': 'Calendário de Eventos',
   'hudChrome.calendar.titlePlaceholder': 'Título do evento',
+  'hudChrome.dailyRewards.disclaimer':
+    'As tarefas e a classificação são reiniciadas uma vez por dia. Os dez primeiros dividem a bolsa e um corvo traz a sua parte no próximo login.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     'Isto remove o atalho do baú do seu HUD. As recompensas, a elegibilidade e este painel continuam disponíveis; você pode trazer o atalho de volta nas Opções.',
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Cancelar',
