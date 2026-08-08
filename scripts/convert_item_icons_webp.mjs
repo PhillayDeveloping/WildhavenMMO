@@ -33,6 +33,11 @@ import {
 import path from 'node:path';
 import sharp from 'sharp';
 
+// sharp's file cache holds a handle on every image it opens, and Windows will not
+// unlink an open file, so temp-file cleanup failed with EPERM after the work had
+// already succeeded. Disabling the cache releases them; it only costs re-reads.
+sharp.cache(false);
+
 const root = process.cwd();
 const itemsDir = path.join(root, 'public/ui/items');
 
@@ -60,6 +65,7 @@ if (!Number.isFinite(quality) || quality < 1 || quality > 100) {
 // shrinking the file further.
 const webpOptions = { alphaQuality: 100, smartSubsample: true, effort: 6 };
 
+const relRepo = (file) => path.relative(root, file).split(path.sep).join('/');
 const rel = (p) => path.relative(itemsDir, p).split(path.sep).join('/');
 
 const injectedFailures = new Set(
@@ -163,7 +169,11 @@ function removeCommittedTemp(file, recoveryDir, restorePath) {
     runFsPhase('recovery-mkdir', () => mkdirSync(recoveryDir, { recursive: true }));
     const recoveryFile = path.join(recoveryDir, path.basename(file));
     runFsPhase('recovery-move', () => renameSync(file, recoveryFile));
-    return `${messageOf(lastError)}; preserved at ${path.relative(root, recoveryFile)}`;
+    // Reported with forward slashes, like every other path this tool prints: on
+    // Windows path.relative yields backslashes, so the recovery location came out
+    // in a different shape from the rest of the output (and from what callers
+    // matching on it expect). Same normalization convert_deed_icons_webp does.
+    return `${messageOf(lastError)}; preserved at ${relRepo(recoveryFile)}`;
   } catch (error) {
     return `${messageOf(lastError)}; recovery move failed: ${messageOf(error)}`;
   }

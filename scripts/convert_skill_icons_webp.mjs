@@ -68,6 +68,7 @@ function walk(dir) {
   return out;
 }
 
+const relRepo = (file) => path.relative(root, file).split(path.sep).join('/');
 const rel = (p) => path.relative(skillsDir, p).split(path.sep).join('/');
 
 const injectedFailures = new Set(
@@ -171,7 +172,11 @@ function removeCommittedTemp(file, recoveryDir, restorePath) {
     runFsPhase('recovery-mkdir', () => mkdirSync(recoveryDir, { recursive: true }));
     const recoveryFile = path.join(recoveryDir, path.basename(file));
     runFsPhase('recovery-move', () => renameSync(file, recoveryFile));
-    return `${messageOf(lastError)}; preserved at ${path.relative(root, recoveryFile)}`;
+    // Reported with forward slashes, like every other path this tool prints: on
+    // Windows path.relative yields backslashes, so the recovery location came out
+    // in a different shape from the rest of the output (and from what callers
+    // matching on it expect). Same normalization convert_deed_icons_webp does.
+    return `${messageOf(lastError)}; preserved at ${relRepo(recoveryFile)}`;
   } catch (error) {
     return `${messageOf(lastError)}; recovery move failed: ${messageOf(error)}`;
   }
