@@ -151,6 +151,12 @@ vi.mock('../server/realm', () => ({
 
 import { PgDailyRewardDb } from '../server/daily_rewards_db';
 
+// Only columns db.ts creates. This fixture used to carry the retired payment
+// runner's wallet, fiat and transaction columns, which is how the SELECTs in
+// voidPayout and restorePayout went on naming them long after the schema
+// dropped them: this fake answers by statement substring and cannot see a
+// column that does not exist.
+// tests/daily_rewards_payout_moderation_schema.test.ts is the suite that can.
 function payout(status: string): Record<string, unknown> {
   return {
     day: '2026-07-14',
@@ -158,12 +164,10 @@ function payout(status: string): Record<string, unknown> {
     rank: 1,
     account_id: 42,
     username: 'alice',
-    wallet_pubkey: 'Wallet111',
     points: 500,
     prize_percent: '0.2',
-    prize_usd: '30',
+    prize_copper: '500000',
     status,
-    tx_signature: null,
     paid_at: null,
     void_reason: null,
     voided_by_id: null,
@@ -204,6 +208,10 @@ describe('daily reward payout moderation persistence', () => {
           voidedByUsername: 'moderator',
           voidedAt: '2026-07-15T01:02:03.000Z',
         });
+        // Makes the fixture's column NAMES load-bearing here too: a key the
+        // schema does not have yields Number(undefined) and fails. Without it
+        // the fixture above is inert and could spell anything.
+        expect(result.payout.prizeCopper).toBe(500000);
       }
       expect(h.state.audit).toHaveLength(1);
       expect(h.state.audit[0].params).toEqual([
@@ -261,6 +269,7 @@ describe('daily reward payout moderation persistence', () => {
         voidedByUsername: null,
         voidedAt: null,
       });
+      expect(result.payout.prizeCopper).toBe(500000);
     }
     expect(h.state.audit).toHaveLength(1);
     expect(h.state.audit[0].params).toEqual([

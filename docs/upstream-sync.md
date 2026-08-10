@@ -93,8 +93,9 @@ The v0.35.0 sync auto-merged, with no conflict marker:
 
 `tests/no_web3_regression.test.ts` exists to catch exactly this. It fails the
 build when a chain dependency, a wallet import, a removed module, or a
-payout-runner identifier comes back, and it holds a counted pin on the legacy
-columns still named in `voidPayout`/`restorePayout` so they cannot grow. It
+payout-runner identifier comes back, and it holds a counted pin on the payout
+columns and tables still spelled in the TypeScript sources it scans (its
+`SOURCE_DIRS`, minus the fixture files it lists) so they cannot grow. It
 reports; it never edits. Run it early in a sync:
 
 ```bash
@@ -103,6 +104,20 @@ npx vitest run tests/no_web3_regression.test.ts
 
 If it fails, read what it names and decide. If upstream added a genuinely new
 web3 surface, extend the lists there in the same change.
+
+Those columns are no longer named by any SQL this fork executes. `voidPayout`
+and `restorePayout` selected `prize_usd`/`tx_signature` and cleared
+`tx_signature`/`signed_transaction`/`error` until that was fixed, which crashed
+both of them on any database created by the current `server/db.ts`. Note the
+provenance, because it is easy to read this as the bullet above being cleaned
+up: those broken SELECTs were already in the tree at `679546e96^1`, inherited
+from the old snapshot repo, so the sync widened an existing defect rather than
+introducing one. `tests/daily_rewards_payout_moderation_schema.test.ts` now runs
+those two functions against a column set built by applying `ensureSchema`'s own
+DDL, so a statement that names a column boot does not create fails in that suite
+rather than in production. Reach for that suite's shape for any other `*_db.ts`
+a sync touches: a fake that answers by statement substring cannot see this class
+of defect.
 
 ## Verifying before you land
 
