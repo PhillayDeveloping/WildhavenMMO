@@ -11,22 +11,26 @@ version surfaces. No new gameplay content, no new systems, no balance changes.
 The sync itself is the quiet headline. v0.35.0 moved this project onto a real
 fork of world-of-claudecraft, and the payoff arrives now. Because the merge base
 is genuinely upstream v0.35.0, git had only the v0.35.0 to v0.35.1 delta to
-reason about: 20 commits over 182 files, 64 conflicts, and every one of those
-conflicts a version number or an asset seal. Nothing had to be reconstructed by
-hand.
+reason about: 20 commits over 182 files, and 64 conflicts, every one of them
+either a version surface carrying our branding or an asset seal. Nothing had to
+be reconstructed by hand, and no conflict touched behavior.
 
 ## Highlights
 
 - Ravenpost mail no longer scans the realm's whole mail book on every read. It is
   indexed by recipient, which upstream measured at roughly a fifth of total
   server CPU on a large book.
-- Three snapshot fields that were re-serialized 20 times a second for every
-  player (mail, the commission order board, and their supporting reads) now ship
-  on a 4 Hz cadence behind a change gate.
+- Two snapshot fields that were rebuilt and re-serialized 20 times a second for
+  every player, the mail projection and the commission order board, now ship on a
+  4 Hz cadence behind a change gate. The unread envelope count stays ungated on
+  purpose: it is an O(1) read and the badge should never lag.
 - Ability VFX stopped allocating on the order of a hundred throwaway vectors per
   frame to read three floats, and ground decals thin their drape with distance.
 - Weapon-skin VFX worn by other players fade with distance and under the frame
-  budget. This is the one player-visible change in the release.
+  budget. This is the one change in the release that is meant to be seen. Two
+  others are visible in principle and argued sub-perceptual: thinned ground-mark
+  drape accepts a small vertical error at distance, and another player's mailbox
+  or board action can now take up to 250 ms to reach you instead of 50 ms.
 - `nanoid` is pinned past GHSA-2v37-7h3g-55p8.
 - Every asset source seal is re-minted from this fork's own lockfile, not
   upstream's.
@@ -145,10 +149,16 @@ Carried forward, still open:
 New with this release:
 
 - 77 test files mock a `walletForAccount` database function this fork's server
-  does not export, inherited from the v0.35.0 snapshot import. It is inert, since
-  an unused key on a mock factory is ignored, but the mocks misrepresent the real
-  module surface and the web3 guard does not yet name the identifier. Left out of
-  the sync deliberately to keep its diff scoped.
+  does not export. 74 of them were inherited from the v0.35.0 snapshot import,
+  and three arrived in this sync: `tests/commission_wire_cadence.test.ts`,
+  `tests/mail_wire_cadence.test.ts`, and `tests/self_wire_phase_breakdown.test.ts`
+  are new upstream suites that carry the key in their `server/db` mock factory.
+  It is inert, since an unused key on a mock factory is ignored, but this is the
+  exact shape `docs/upstream-sync.md` warns about: the surface grew on lines no
+  conflict touched, and it passed because `tests/no_web3_regression.test.ts`
+  scans those files without naming that identifier. Adding the name to the guard
+  and stripping all 77 is left to its own change, so this sync's diff stays
+  scoped to the merge.
 - The tag-namespace guidance in `docs/upstream-sync.md` is still on an unmerged
   branch. Upstream and Wildhaven tag the same version numbers, so a plain
   `git fetch upstream --tags` writes upstream's commit into our own release tag
