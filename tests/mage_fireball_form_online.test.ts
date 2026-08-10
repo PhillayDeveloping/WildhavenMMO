@@ -9,7 +9,6 @@ vi.mock('../server/db', () => ({
   insertChatLogs: vi.fn(async () => {}),
   markAccountQuestComplete: vi.fn(async () => ({ completedQuestIds: [], mechChromaIds: [] })),
   grantAccountMechChroma: vi.fn(async () => ({ completedQuestIds: [], mechChromaIds: [] })),
-  walletForAccount: vi.fn(async () => null),
 }));
 
 import { GameServer, wireEntity } from '../server/game';

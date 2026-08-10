@@ -40,7 +40,6 @@ vi.mock('../../server/db', () => ({
     weaponSkinLoadout: {},
   })),
   touchCharacterLogin: vi.fn(async () => {}),
-  walletForAccount: vi.fn(async () => null),
 }));
 
 import { GameServer } from '../../server/game';

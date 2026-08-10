@@ -233,7 +233,6 @@ vi.mock('../server/db', () => ({
   saveRiftState: vi.fn(async () => {}),
   setAccountWeaponSkinLoadout: vi.fn(async () => {}),
   setCharacterHotbarLayout: vi.fn(async () => {}),
-  walletForAccount: vi.fn(async () => null),
 }));
 
 import { auditBank, type BankLedgerAuditRow } from '../scripts/bank_audit.mjs';

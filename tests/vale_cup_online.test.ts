@@ -22,7 +22,6 @@ vi.mock('../server/db', () => ({
   grantAccountMechChroma: vi.fn(async () => ({ completedQuestIds: [], mechChromaIds: [] })),
   revokeAccountMechChroma: vi.fn(async () => ({ completedQuestIds: [], mechChromaIds: [] })),
   insertBankLedgerRow: vi.fn(async () => {}),
-  walletForAccount: vi.fn(async () => null),
   // The character-lease surface game.leave/the autosave loop call (this mock was
   // authored on the release branch, before the character-lease system landed).
   acquireCharacterLease: vi.fn(async () => true),

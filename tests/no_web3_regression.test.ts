@@ -72,9 +72,20 @@ const FORBIDDEN_IMPORT_RE =
   /\bfrom\s+['"](@solana\/[^'"]*|@wallet-standard\/[^'"]*|@reown\/[^'"]*|@walletconnect\/[^'"]*|@web3modal\/[^'"]*|web3|ethers|wagmi|viem|bs58|tweetnacl|@noble\/curves)['"]/;
 
 /**
- * Identifiers that are load-bearing web3 CODE rather than prose. These are the
+ * Identifiers that are load-bearing web3 CODE rather than prose. Most are the
  * ones the v0.35.0 sync actually reintroduced, so they are pinned at zero in
  * source positions (see the baseline tier below for prose).
+ *
+ * The trailing group is upstream's db-layer wallet accessor family, every
+ * wallet function `server/db.ts` exports upstream and this fork exports none of.
+ * It is here because one of them, walletForAccount, HAD come back and sat
+ * unnoticed: the snapshot import carried it into 74 `vi.mock('../server/db')`
+ * factories under tests/. A mock factory replaces the module wholesale and an
+ * extra key is simply ignored, so it was inert at runtime and nothing ever went
+ * red over it, yet every one of those factories described a module surface that
+ * does not exist. That is the quiet shape this guard is for, so the whole family
+ * is pinned rather than the one member that happened to be spelled: they live in
+ * the same upstream module and would return through the same silent path.
  */
 const FORBIDDEN_CODE_TOKENS = [
   'prizeUsd',
@@ -90,6 +101,13 @@ const FORBIDDEN_CODE_TOKENS = [
   'setWalletUiEnabled',
   'buildWalletConnectionView',
   'resolveWocBalanceUpdate',
+  'createWalletChallenge',
+  'consumeWalletChallenge',
+  'pruneWalletChallenges',
+  'walletForAccount',
+  'accountForWallet',
+  'linkWalletToAccount',
+  'unlinkWallet',
 ];
 
 /**
