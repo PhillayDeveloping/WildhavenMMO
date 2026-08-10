@@ -82,7 +82,7 @@ interface AttributionTargetFixture {
 // follows the anchor seam, the weapon-skin fade and the census tag. No capture
 // was retaken; every measured value is adopted verbatim.
 const PINNED_POLISH_COMPOSITE_FINGERPRINT =
-  'de0f1454a0d7b6599d8a7f536042c577659fb6726d1131125503bf8dc0a27fd7';
+  'c611a7182df63e023480e19c84493ad64fd63371dba3b4fa393bea073a027b43';
 
 function validPolishAttributionTargets(): AttributionTargetFixture[] {
   return [
