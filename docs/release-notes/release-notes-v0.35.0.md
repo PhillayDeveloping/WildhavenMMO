@@ -129,10 +129,14 @@ Carried forward from v0.1.0, still open:
 
 New with this release:
 
-- `voidPayout` and `restorePayout` still read payout-runner columns this fork's
+- ~~`voidPayout` and `restorePayout` still read payout-runner columns this fork's
   schema does not create, so they work only against a database migrated from an
-  older build. The web3 guard pins the count so an upstream sync cannot grow it
-  while the cleanup is pending.
+  older build.~~ **Closed after this release.** Both now name only columns
+  `server/db.ts` creates, and
+  `tests/daily_rewards_payout_moderation_schema.test.ts` executes them against a
+  column set folded out of `ensureSchema`'s own DDL, so a widened select list
+  fails in CI rather than in production. The web3 guard still pins the counts of
+  the remaining prose and fixture spellings.
 - The full test suite needs about four workers on a developer machine
   (`npx vitest run --maxWorkers=4`, or `GATE_MAX_WORKERS=4` for the gate). The
   gate sizes its pool from the core count, and the suites that bind a real port
