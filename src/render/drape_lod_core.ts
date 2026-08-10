@@ -16,13 +16,20 @@
 // SCOPE, and it is deliberate: this is for the SMALL discs only (buff auras and
 // dissolve decals, one to a few yards across). The wide shockwave rings keep
 // their exact per-vertex drape. Measured over the walkable overworld, thinning
-// a 1.5 yard aura disc costs a p99 of about 11 cm of vertical drape error and a
-// p95 of 4 cm, invisible on a 0.18-opacity annulus 20+ yards away; the same
-// treatment on a 10 to 20 yard shockwave footprint costs YARDS, because at that
-// span the exact mesh is already the coarsest honest description of the ground.
-// The `maxSampleSpacing` cap below is what enforces that split by construction:
-// a mark whose vertices are already far apart in world space cannot be thinned
-// at all, whatever its distance.
+// the 1.55 yard aura band costs a p95 of about 4 cm of vertical drape error and
+// a p99 of about 11 cm at the FIRST step (stride 2, which is what a disc 20 to
+// 40 yards out gets), rising to about 10 cm and 23 cm at the widest stride,
+// which no aura reaches until 70 yards; invisible either way on a 0.18-opacity
+// annulus that far off. The same treatment on a 10 to 20 yard shockwave
+// footprint costs YARDS, because at that span the exact mesh is already the
+// coarsest honest description of the ground. The `maxSampleSpacing` cap below
+// is what enforces that split by construction: a mark whose vertices are
+// already far apart in world space cannot be thinned at all, whatever its
+// distance.
+//
+// Those four numbers are pins rather than prose: tests/drape_lod_core.test.ts
+// re-measures each one over the real terrain and brackets it from BOTH sides,
+// so this paragraph goes red rather than quietly stale.
 //
 // Two further properties are load-bearing and pinned by
 // tests/drape_lod_core.test.ts:

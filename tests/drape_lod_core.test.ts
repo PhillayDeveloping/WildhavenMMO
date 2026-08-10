@@ -55,6 +55,19 @@ function percentile(values: number[], p: number): number {
   return sorted[Math.min(sorted.length - 1, Math.floor((sorted.length - 1) * p))];
 }
 
+/** Bracket a measured error against the figure the module header quotes for it.
+ *  The band is wide enough to absorb ULP-level drift in the terrain sampler and
+ *  narrow enough that re-tuning the thinning cannot leave the header behind. */
+function expectAbout(actual: number, expected: number, label: string): void {
+  const tolerance = expected * 0.1;
+  expect(actual, `${label}: drape_lod_core.ts's header quotes ${expected}`).toBeGreaterThan(
+    expected - tolerance,
+  );
+  expect(actual, `${label}: drape_lod_core.ts's header quotes ${expected}`).toBeLessThan(
+    expected + tolerance,
+  );
+}
+
 /** Height spread of an 8-point ring around a spot: the cheap "is this a cliff
  *  or a hard step" filter, so the error sweep below measures the ground these
  *  marks actually land on rather than sheer rock nobody fights on. */
@@ -196,11 +209,16 @@ describe('drapeFanLocalY', () => {
   });
 
   it('stays within centimetres of the exact drape on the walkable overworld', () => {
-    // A buff aura band (1.3 to 1.8 yd) at the widest stride, swept over the
-    // open world minus cliffs and hard steps (localRelief filter): the ground
-    // these actually land on. The numbers are the reason the wide shockwave
-    // rings were left exact, so pin them as literals.
-    const errors: number[] = [];
+    // The middle buff-aura band (1.55 yd), swept over the open world minus
+    // cliffs and hard steps (localRelief filter): the ground these actually
+    // land on. These are the numbers the module header cites as the reason the
+    // wide shockwave rings were left exact, so they are bracketed from BOTH
+    // sides: a one-sided ceiling would stay green if the drape stopped thinning
+    // at all (every error would be zero), and the header's "about 4 cm" would
+    // stop meaning anything the day the thinning changed. Both strides that a
+    // real aura reaches are measured, since the header quotes both.
+    const stride2: number[] = [];
+    const widest: number[] = [];
     const sampler = (x: number, z: number) => groundHeight(x, z, SEED);
     const scale = 1.55;
     for (let x = 60; x <= 900; x += 13) {
@@ -208,14 +226,23 @@ describe('drapeFanLocalY', () => {
         if (localRelief(x, z, scale) > scale * 0.9) continue;
         const baseY = sampler(x, z);
         drapeRingLocalY(localXZ, x, z, baseY, scale, 0.08, sampler, exact);
+        drapeFanLocalY(localXZ, x, z, baseY, scale, 0.08, sampler, out, 2);
+        stride2.push(maxWorldDelta(out, exact, scale));
         drapeFanLocalY(localXZ, x, z, baseY, scale, 0.08, sampler, out, MAX_DRAPE_STRIDE);
-        errors.push(maxWorldDelta(out, exact, scale));
+        widest.push(maxWorldDelta(out, exact, scale));
       }
     }
-    expect(errors.length).toBeGreaterThan(1000);
-    expect(percentile(errors, 0.5)).toBeLessThan(0.02);
-    expect(percentile(errors, 0.95)).toBeLessThan(0.15);
-    expect(percentile(errors, 0.99)).toBeLessThan(0.3);
+    expect(widest.length).toBeGreaterThan(1000);
+
+    // Header: "a p95 of about 4 cm ... and a p99 of about 11 cm at the FIRST
+    // step (stride 2 ...), rising to about 10 cm and 23 cm at the widest".
+    // Measured 0.0454 / 0.1101 / 0.1003 / 0.2261; bracketed at +-10%.
+    expectAbout(percentile(stride2, 0.95), 0.045, 'stride 2 p95');
+    expectAbout(percentile(stride2, 0.99), 0.11, 'stride 2 p99');
+    expectAbout(percentile(widest, 0.95), 0.1, 'widest stride p95');
+    expectAbout(percentile(widest, 0.99), 0.226, 'widest stride p99');
+    // the typical mark is an order of magnitude inside all of that
+    expect(percentile(widest, 0.5)).toBeLessThan(0.013);
     // and the widest stride only ever runs 70+ yards out
     expect(drapeStrideFor(70 * 70, fanVertexSpacing(scale, AURA_SEGMENTS))).toBeLessThan(
       MAX_DRAPE_STRIDE,
