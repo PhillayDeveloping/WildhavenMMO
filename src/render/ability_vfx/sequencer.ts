@@ -32,10 +32,14 @@ const BARRIER_DUR = 1.35;
 const BARRIER_PLATE_LIFE = 1.1;
 
 // Per-frame anchor scratch for drawTransients (see src/render/vfx_anchor.ts).
-// Its four anchor reads live in mutually exclusive branches and each is spent
-// on plain-number overlay pushes inside its own branch, so one scratch covers
-// them; the one-shot beat paths below keep allocating (they run on an event,
-// not per frame).
+// Its four anchor reads sit in four SEQUENTIAL `if` blocks, not exclusive ones:
+// a release flash and an implosion pull routinely run in the same frame, so
+// exclusivity is not what makes one scratch enough. What does is that each
+// block SPENDS its reading before the next one resolves again, entirely on
+// plain-number overlay pushes inside its own block. A fifth read that holds its
+// point across another block, or hands it to something that retains it, needs
+// its own scratch; the one-shot beat paths below keep allocating instead (they
+// run on an event, not per frame).
 const transientAnchor = { x: 0, y: 0, z: 0 };
 
 /** A mutable world point. Kept structural so this module stays Three-free; a
