@@ -21,6 +21,7 @@ import {
 } from '../src/sim/mail/post_office';
 import { Sim } from '../src/sim/sim';
 import type { SimEvent, WorldContent } from '../src/sim/types';
+import { expectMailBookMatchesIndex } from './helpers/mail_book_invariant';
 
 // Mailboxes are system-owned and still spawn with this fixture. Ambient camps,
 // NPCs and quest objects are irrelevant to delivery/index invariants and would
@@ -959,28 +960,44 @@ describe('purgeMailOwner - deleting a character', () => {
     // name bucket keeps a phantom +1 that the freed name's NEXT holder reads
     // through mailUnreadFor forever (an unread badge with no letter). No
     // current send path books this shape (returns set `returned`, sends key
-    // by id); loadMail preserves it verbatim from a legacy blob, which is
-    // what the raw-book seed below stands in for.
+    // by id); loadMail preserves it verbatim from a legacy blob, so the seed
+    // below IS that load rather than a stand-in for it. Writing recipientKey
+    // onto an already-booked letter would additionally desync the book from
+    // the index (the letter stays filed under the ORIGINAL key), a state no
+    // production path produces and expectMailBookMatchesIndex now rejects.
     const sim = makeWorld();
     const alice = makeSender(sim);
-    sim.mailSendResolved(
-      { key: DOOMED_KEY, name: 'Doomed' },
-      'LegacyDelivered',
-      'Old address.',
-      250,
-      [],
-      alice,
-    );
-    const legacy = letterBy(sim, (m) => m.subject === 'LegacyDelivered', 'legacy parcel');
-    legacy.recipientKey = 'Doomed'; // the legacy name-keyed shape, pre-stable-id
-    // Deliver it: deliverDue books the unread count under the NAME bucket,
-    // exactly where a legacy blob's load would put it. Pin that precondition
-    // outright: if delivery ever starts normalizing legacy keys, this test's
-    // phantom-producing seed evaporates and the pin below turns vacuous.
-    tickFor(sim, MAIL_DELIVERY_SECONDS + 2);
+    const aliceMeta = sim.meta(alice);
+    if (!aliceMeta) throw new Error('no meta');
+    sim.loadMail({
+      mail: [
+        {
+          id: 9001,
+          recipientKey: 'Doomed', // the legacy name-keyed shape, pre-stable-id
+          recipientName: 'Doomed',
+          senderName: 'Alice',
+          senderKey: sim.postOffice.mailKeyFor(aliceMeta),
+          kind: 'player',
+          subject: 'LegacyDelivered',
+          body: 'Old address.',
+          copper: 250,
+          items: [],
+          deliverIn: 0, // already delivered when the realm booted
+          secondsLeft: MAIL_ATTACHMENT_EXPIRY_SECONDS,
+          read: false,
+        },
+      ],
+      nextMailId: 9002,
+    });
+    expectMailBookMatchesIndex(sim, 'legacy blob load');
+    // The load books the unread count under the NAME bucket, exactly where a
+    // legacy blob puts it. Pin that precondition outright: if the load ever
+    // starts normalizing legacy keys, this test's phantom-producing seed
+    // evaporates and the pin below turns vacuous.
     // biome-ignore lint/suspicious/noExplicitAny: read the raw index directly.
     expect((sim.postOffice as any).index.unread.get('Doomed')).toBe(1);
     expect(sim.purgeMailOwner(DOOMED_ID, 'Doomed')).toBe(true);
+    expectMailBookMatchesIndex(sim, 'after purging the legacy name-keyed parcel');
     // The parcel flew home to its live sender rather than being destroyed.
     const flown = letterBy(sim, (m) => m.subject === 'LegacyDelivered', 'returned parcel');
     expect(flown.returned).toBe(true);
@@ -1246,61 +1263,219 @@ describe('purgeMailOwner - deleting a character', () => {
     // Since #2507 an instanced copy rides the raven, and its signer is a
     // separate string the recipient rekey does not touch by itself. Upstream
     // scopes the sweep to the recipient arm; shipped untested, so pinned here.
+    // That scoping means the parcel has to be ADDRESSED to the character being
+    // renamed, under the legacy name key. Seeded through loadMail, the one path
+    // that actually produces that shape: writing recipientKey onto an
+    // already-booked letter would leave it filed in the original recipient's
+    // bucket, a book/index desync no send path can produce and
+    // expectMailBookMatchesIndex now rejects.
     const sim = makeWorld();
-    const alice = sim.addPlayer('warrior', 'Alice');
-    sim.addPlayer('mage', 'Bob');
-    const aliceMeta = sim.meta(alice);
-    if (!aliceMeta) throw new Error('no meta');
-    aliceMeta.copper = 10_000;
-    moveToMailbox(sim, alice);
-    sim.addItemInstance('roasted_boar', { signer: 'Alice' }, alice, 1);
-    sim.drainEvents();
-    sim.mailSend(
-      'Bob',
-      'Signed',
-      'mine',
-      0,
-      [{ itemId: 'roasted_boar', count: 1, instance: { signer: 'Alice' } }],
-      alice,
-    );
+    sim.loadMail({
+      mail: [
+        {
+          id: 9101,
+          recipientKey: 'Alice',
+          recipientName: 'Alice',
+          senderName: 'Alice',
+          kind: 'player',
+          subject: 'Signed',
+          body: 'mine',
+          copper: 0,
+          items: [{ itemId: 'roasted_boar', count: 1, instance: { signer: 'Alice' } }],
+          deliverIn: 0,
+          secondsLeft: MAIL_ATTACHMENT_EXPIRY_SECONDS,
+          read: false,
+        },
+      ],
+      nextMailId: 9102,
+    });
     const letter = sim.postOffice.mail.find((m) => m.subject === 'Signed');
     if (!letter) throw new Error('no letter');
     expect(letter.items[0]?.instance?.signer).toBe('Alice');
 
-    // The sweep is scoped to the recipient arm, so address the parcel to the
-    // character being renamed. (Alice signed it; the signer is what follows.)
-    letter.recipientKey = 'Alice';
+    // (Alice signed it; the signer is what follows the rename.)
     expect(sim.rekeyMailOwner(555, 'Alice', 'Alicia')).toBe(true);
     expect(letter.items[0]?.instance?.signer).toBe('Alicia');
+    expectMailBookMatchesIndex(sim, 'after the rename rekeyed a signed parcel');
   });
 
   it('the rename sweep leaves a parcel addressed to a STRANGER alone', () => {
     // The deliberate scope boundary (the accepted craftedBy limitation),
     // pinned so a later widening is a conscious choice rather than drift.
+    // Same loadMail seed as the arm above, addressed to a third party instead:
+    // a signed copy sitting in a STRANGER's parcel, which the sweep must not
+    // touch.
     const sim = makeWorld();
-    const alice = sim.addPlayer('warrior', 'Alice');
-    sim.addPlayer('mage', 'Bob');
-    const aliceMeta = sim.meta(alice);
-    if (!aliceMeta) throw new Error('no meta');
-    aliceMeta.copper = 10_000;
-    moveToMailbox(sim, alice);
-    sim.addItemInstance('roasted_boar', { signer: 'Alice' }, alice, 1);
-    sim.drainEvents();
-    sim.mailSend(
-      'Bob',
-      'Foreign',
-      'theirs',
-      0,
-      [{ itemId: 'roasted_boar', count: 1, instance: { signer: 'Alice' } }],
-      alice,
-    );
+    sim.loadMail({
+      mail: [
+        {
+          id: 9201,
+          recipientKey: 'somebody-else',
+          recipientName: 'Somebody Else',
+          senderName: 'Somebody Else',
+          senderKey: 'somebody-else',
+          kind: 'player',
+          subject: 'Foreign',
+          body: 'theirs',
+          copper: 0,
+          items: [{ itemId: 'roasted_boar', count: 1, instance: { signer: 'Alice' } }],
+          deliverIn: 0,
+          secondsLeft: MAIL_ATTACHMENT_EXPIRY_SECONDS,
+          read: false,
+        },
+      ],
+      nextMailId: 9202,
+    });
     const letter = sim.postOffice.mail.find((m) => m.subject === 'Foreign');
     if (!letter) throw new Error('no letter');
-    letter.recipientKey = 'somebody-else';
-    letter.senderKey = 'somebody-else';
-    letter.senderName = 'Somebody Else';
+    expect(letter.items[0]?.instance?.signer).toBe('Alice');
 
     sim.rekeyMailOwner(555, 'Alice', 'Alicia');
     expect(letter.items[0]?.instance?.signer).toBe('Alice');
+    expectMailBookMatchesIndex(sim, 'after a rename that spared a stranger parcel');
+  });
+});
+
+// Every read the post makes (deliveredFor, mailboxHoldsItem, storedCountFor)
+// goes through the MailIndex buckets, so a book-versus-index desync is
+// invisible to every other assertion in this file: a PostOffice that has
+// silently stopped being able to see one of its own letters is self-consistent
+// and green. unreadOracle above is the only pre-existing book-vs-derived check
+// and it covers the unread COUNT alone, which a mis-bucketed letter can leave
+// exactly right. This block compares the two directly after each mutation kind
+// the PostOffice performs. Oracle: tests/helpers/mail_book_invariant.ts.
+describe('the book and the MailIndex stay in lockstep', () => {
+  function stockedSender(sim: Sim, name: string): number {
+    const pid = sim.addPlayer('warrior', name);
+    const meta = sim.meta(pid);
+    if (!meta) throw new Error('no meta');
+    meta.copper = 100_000;
+    sim.addItem('roasted_boar', 10, pid);
+    moveToMailbox(sim, pid);
+    return pid;
+  }
+
+  function letterIn(sim: Sim, subject: string) {
+    const m = sim.postOffice.mail.find((x) => x.subject === subject);
+    if (!m) throw new Error(`missing letter: ${subject}`);
+    return m;
+  }
+
+  it('holds across send, delivery, mark-read, take and delete', () => {
+    const sim = makeWorld();
+    const alice = stockedSender(sim, 'Alice');
+    const bob = stockedSender(sim, 'Bob');
+    expectMailBookMatchesIndex(sim, 'two joined players, welcome letters in flight');
+
+    sim.mailSend('Bob', 'Parcel', 'Hold this.', 500, [{ itemId: 'roasted_boar', count: 2 }], alice);
+    expectMailBookMatchesIndex(sim, 'after send');
+
+    tickFor(sim, MAIL_DELIVERY_SECONDS + 2);
+    expectMailBookMatchesIndex(sim, 'after the raven lands');
+
+    const parcelId = letterIn(sim, 'Parcel').id;
+    sim.mailMarkRead(parcelId, bob);
+    expectMailBookMatchesIndex(sim, 'after mark read');
+
+    sim.mailTake(parcelId, bob);
+    expectMailBookMatchesIndex(sim, 'after take');
+    expect(letterIn(sim, 'Parcel').copper).toBe(0);
+
+    sim.mailDelete(parcelId, bob);
+    expectMailBookMatchesIndex(sim, 'after delete');
+    expect(sim.postOffice.mail.some((m) => m.id === parcelId)).toBe(false);
+  });
+
+  it('holds across the return flight and the expiry sweep', () => {
+    const sim = makeWorld();
+    const alice = stockedSender(sim, 'Alice');
+    stockedSender(sim, 'Bob');
+    sim.mailSend('Bob', 'Parcel', 'Hold this.', 500, [{ itemId: 'roasted_boar', count: 2 }], alice);
+    tickFor(sim, MAIL_DELIVERY_SECONDS + 2);
+    expectMailBookMatchesIndex(sim, 'delivered parcel');
+
+    // Trip the attachment deadline: the sweep flies the unclaimed parcel home
+    // rather than destroying it, a wholesale mutation (recipient, read flag,
+    // delivery re-arm) the post has to bracket with untrack/track.
+    letterIn(sim, 'Parcel').expiresAt = sim.time;
+    tickFor(sim, 2);
+    const returned = letterIn(sim, 'Parcel');
+    expect(returned.returned).toBe(true);
+    expectMailBookMatchesIndex(sim, 'after the return flight');
+
+    // Close the second window: the sweep's one sanctioned destruction.
+    returned.expiresAt = sim.time;
+    tickFor(sim, 2);
+    expect(sim.postOffice.mail.some((m) => m.subject === 'Parcel')).toBe(false);
+    expectMailBookMatchesIndex(sim, 'after the sweep deleted the returned parcel');
+  });
+
+  it('holds across a rename rekey, a serialize/load round trip, and a purge', () => {
+    const sim = makeWorld();
+    const alice = stockedSender(sim, 'Alice');
+    const bob = sim.addPlayer('mage', 'Bob', { characterId: 777 });
+    sim.mailSend('Bob', 'Parcel', 'Hold this.', 500, [{ itemId: 'roasted_boar', count: 2 }], alice);
+    sim.mailSend('Bob', 'Note', 'Just words.', 0, [], alice);
+    tickFor(sim, MAIL_DELIVERY_SECONDS + 2);
+    expectMailBookMatchesIndex(sim, 'two letters delivered to Bob');
+
+    expect(sim.rekeyMailOwner(777, 'Bob', 'Bobbi')).toBe(true);
+    expectMailBookMatchesIndex(sim, 'after the rename rekey');
+
+    // The round trip rebuilds the whole index from a freshly loaded book, the
+    // one path where every bucket is derived rather than maintained.
+    const save = sim.serializeMail();
+    const reloaded = makeWorld();
+    reloaded.loadMail(save);
+    expect(reloaded.postOffice.mail).toHaveLength(save.mail.length);
+    expectMailBookMatchesIndex(reloaded, 'after a serialize/load round trip');
+
+    // The purge splits the book three ways: escrowed parcels fly home to their
+    // live sender, everything else with nothing at stake is spliced out.
+    expect(sim.purgeMailOwner(777, 'Bobbi')).toBe(true);
+    expectMailBookMatchesIndex(sim, 'after the purge');
+    expect(sim.mailUnreadFor(bob)).toBe(0);
+    expect(sim.postOffice.mail.some((m) => m.subject === 'Note')).toBe(false);
+    expect(letterIn(sim, 'Parcel').returned).toBe(true);
+  });
+
+  // Two arms because the oracle's two structural checks fail on different
+  // defects, and either one alone would be vacuous over the other's shape.
+  it('fails on an untracked letter (the oracle is not vacuous)', () => {
+    const sim = makeWorld();
+    stockedSender(sim, 'Alice');
+    expectMailBookMatchesIndex(sim, 'baseline');
+
+    // Reach past the readonly `mail` getter the way only a defect could: a
+    // letter in the book that never reached the index. This is the failure
+    // narrowing `mail` to private now makes a type error rather than a
+    // runtime ghost, and the count check is what catches it.
+    const untracked = { ...sim.postOffice.mail[0], id: 424_242, recipientKey: 'ghost' };
+    (sim.postOffice as unknown as { letters: unknown[] }).letters.push(untracked);
+    expect(() => expectMailBookMatchesIndex(sim, 'untracked letter')).toThrow();
+  });
+
+  it('fails on a mis-filed letter, whose bucket TOTAL is still right', () => {
+    const sim = makeWorld();
+    const alice = stockedSender(sim, 'Alice');
+    stockedSender(sim, 'Bob');
+    sim.mailSend('Bob', 'Parcel', 'Hold this.', 500, [{ itemId: 'roasted_boar', count: 2 }], alice);
+    tickFor(sim, MAIL_DELIVERY_SECONDS + 2);
+    expectMailBookMatchesIndex(sim, 'baseline');
+
+    // A raw recipientKey write on an already-tracked letter: the shape the
+    // three legacy fixtures in this file used to seed, and the one MailIndex's
+    // bucketRemove desync fallback exists for. The letter stays filed in Bob's
+    // bucket while its own field names someone else, so the summed bucket
+    // total is UNCHANGED and only the per-letter filing check can see it.
+    const parcel = letterIn(sim, 'Parcel');
+    const bookLength = sim.postOffice.mail.length;
+    parcel.recipientKey = 'somebody-else';
+    let bucketed = 0;
+    const buckets = (sim.postOffice as unknown as { index: { buckets: Map<string, unknown[]> } })
+      .index.buckets;
+    for (const arr of buckets.values()) bucketed += arr.length;
+    expect(bucketed, 'the count check alone stays green here').toBe(bookLength);
+    expect(() => expectMailBookMatchesIndex(sim, 'mis-filed letter')).toThrow();
   });
 });
