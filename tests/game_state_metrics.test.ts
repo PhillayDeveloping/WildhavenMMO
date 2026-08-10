@@ -19,7 +19,6 @@ vi.mock('../server/db', () => ({
   touchCharacterLogin: vi.fn(async () => {}),
   closePlaySession: vi.fn(async () => {}),
   insertChatLogs: vi.fn(async () => {}),
-  walletForAccount: vi.fn(async () => null),
   markAccountQuestComplete: vi.fn(async () => ({ completedQuestIds: [], mechChromaIds: [] })),
   grantAccountMechChroma: vi.fn(async () => ({ completedQuestIds: [], mechChromaIds: [] })),
   // The rest of the db surface GameServer's module graph imports (the
