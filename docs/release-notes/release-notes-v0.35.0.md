@@ -140,7 +140,20 @@ New with this release:
 - The full test suite needs about four workers on a developer machine
   (`npx vitest run --maxWorkers=4`, or `GATE_MAX_WORKERS=4` for the gate). The
   gate sizes its pool from the core count, and the suites that bind a real port
-  time out waiting for it under that much parallelism; they pass in isolation.
+  time out waiting for it under that much parallelism; those port-bound suites
+  pass in isolation. Read that narrowly: it was never a claim about every
+  timing-sensitive suite. ~~`tests/charge_parallel_recharge.test.ts` and
+  `tests/dungeon_finder.test.ts` each timed out on one case in isolation too,
+  for an unrelated reason.~~ **Closed after this release.** Neither suite
+  exercises ambient world content, but a default `Sim` spawns the whole
+  11-zone world and runs every camp mob's idle AI on every tick, so a case
+  that ticks a 60s cooldown out (about 1300 ticks) spent most of its time in
+  idle-mob wander terrain sampling. Both now build the standard
+  subsystem-sized world fixture (`{ ...BUILTIN_WORLD, camps: [], npcs: {},
+  groundObjects: [] }`, as `tests/arena.test.ts` does), which trims spawns
+  without touching terrain. The live server never paid this cost: its `Sim`
+  opts into `idleMobTickRadius` (`server/game.ts`, pinned by
+  `tests/idle_mob_tick_radius.test.ts`).
 - `core.autocrlf=false` is not recorded in `.gitattributes`, so a fresh Windows
   clone inherits a line-ending trap that shows up as roughly fifty failures in
   the golden-master suites.
