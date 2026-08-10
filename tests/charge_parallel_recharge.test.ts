@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { MOBS } from '../src/sim/data';
+import { BUILTIN_WORLD, MOBS } from '../src/sim/data';
 import { createMob } from '../src/sim/entity';
 import { Sim } from '../src/sim/sim';
-import type { Entity } from '../src/sim/types';
+import type { Entity, WorldContent } from '../src/sim/types';
 
 // Maintainer report (Twin Gavels): both stuns spent, then the second charge
 // waited a WHOLE extra cooldown behind the first. Charge-limited abilities now
@@ -11,8 +11,32 @@ import type { Entity } from '../src/sim/types';
 // Also pinned here: player stuns are exempt from PvP diminishing returns
 // (fear/polymorph/root keep theirs).
 
+// A 60s cooldown pinned at both ends means about 1300 real ticks, and on the
+// default world every one of those ticks runs the idle AI of every ambient camp
+// mob in all 11 zones, none of which this suite looks at. Idle wander is
+// terrain-height sampling, and a profile put most of the tick under
+// world.ts groundHeight, which is what pushed this case past vitest's 20s
+// testTimeout. The authoritative server never pays that either: its Sim opts
+// into idleMobTickRadius (server/game.ts, #2703). So drop the unrelated spawn
+// collections and keep the real classes, items, mobs and terrain, the standard
+// subsystem-sized fixture (tests/arena.test.ts,
+// tests/fire_short_fight_tuning.test.ts). Terrain is untouched: the camp
+// flattening in world.ts terrainHeightUnpadded reads the CAMPS content table,
+// not the active WorldContent, so this trims spawns only.
+const CHARGE_TEST_WORLD: WorldContent = {
+  ...BUILTIN_WORLD,
+  camps: [],
+  npcs: {},
+  groundObjects: [],
+};
+
 function setup(): { sim: Sim; p: Entity; mob: Entity } {
-  const sim = new Sim({ seed: 7, playerClass: 'paladin', autoEquip: true });
+  const sim = new Sim({
+    seed: 7,
+    playerClass: 'paladin',
+    autoEquip: true,
+    world: CHARGE_TEST_WORLD,
+  });
   sim.setPlayerLevel(10);
   expect(sim.applyTalents({ spec: null, rows: { 8: 'pal_r8_fist_of_justice' } })).toBe(true);
   const p = sim.player;
@@ -63,7 +87,12 @@ describe('parallel per-charge recharge (Twin Gavels)', () => {
   });
 
   it('player stuns are exempt from PvP diminishing returns', () => {
-    const sim = new Sim({ seed: 7, playerClass: 'paladin', autoEquip: true });
+    const sim = new Sim({
+      seed: 7,
+      playerClass: 'paladin',
+      autoEquip: true,
+      world: CHARGE_TEST_WORLD,
+    });
     const anySim = sim as unknown as {
       diminishedCrowdControlDuration(
         source: Entity,
