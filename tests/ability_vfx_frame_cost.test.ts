@@ -403,14 +403,19 @@ function calleeNames(node: ts.Node): string[] {
   return names;
 }
 
-/** The resolver call's name, or null when it is not one. */
-function resolverName(call: ts.CallExpression): string | null {
+/** Whether the call is an anchor resolve, in the same three spellings
+ *  {@link calleeNames} follows. The `['anchorOf']()` arm is not decoration: the
+ *  reachability walk already resolves that spelling, so leaving it out here
+ *  would let a resolve stay reachable and stop being SEEN. */
+function isResolverCall(call: ts.CallExpression): boolean {
   const callee = call.expression;
-  if (ts.isIdentifier(callee)) return RESOLVER_NAMES.has(callee.text) ? callee.text : null;
-  if (ts.isPropertyAccessExpression(callee)) {
-    return RESOLVER_NAMES.has(callee.name.text) ? callee.name.text : null;
-  }
-  return null;
+  if (ts.isIdentifier(callee)) return RESOLVER_NAMES.has(callee.text);
+  if (ts.isPropertyAccessExpression(callee)) return RESOLVER_NAMES.has(callee.name.text);
+  return (
+    ts.isElementAccessExpression(callee) &&
+    ts.isStringLiteralLike(callee.argumentExpression) &&
+    RESOLVER_NAMES.has(callee.argumentExpression.text)
+  );
 }
 
 /**
@@ -477,15 +482,20 @@ function scanUpdateAnchorResolves(
     }
   }
 
-  const resolves: AnchorResolve[] = [];
+  // Keyed by source position, because a nested body indexed under its own name
+  // (`const paint = () => {...}` inside a reached method) is walked BOTH as part
+  // of its parent and, if anything calls it, on its own. Counting the same call
+  // twice would read as an extra undeclared resolve nobody wrote.
+  const resolves = new Map<string, AnchorResolve>();
   for (const holder of reached) {
     const visit = (n: ts.Node): void => {
-      if (ts.isCallExpression(n) && resolverName(n) !== null) {
-        resolves.push({
+      if (ts.isCallExpression(n) && isResolverCall(n)) {
+        const start = n.getStart(holder.sf);
+        resolves.set(`${holder.file}:${start}`, {
           file: holder.file,
           fn: holder.fn,
           text: n.getText(holder.sf).replace(/\s+/g, ' '),
-          line: holder.sf.getLineAndCharacterOfPosition(n.getStart(holder.sf)).line + 1,
+          line: holder.sf.getLineAndCharacterOfPosition(start).line + 1,
           withDestination: passesDestination(n),
         });
       }
@@ -496,7 +506,7 @@ function scanUpdateAnchorResolves(
   return {
     files: found.map((f) => f.file),
     reached: reached.map((b) => b.fn).sort(),
-    resolves,
+    resolves: [...resolves.values()],
   };
 }
 
