@@ -1423,12 +1423,18 @@ describe('the book and the MailIndex stay in lockstep', () => {
     expectMailBookMatchesIndex(sim, 'after the rename rekey');
 
     // The round trip rebuilds the whole index from a freshly loaded book, the
-    // one path where every bucket is derived rather than maintained.
+    // one path where every bucket is derived rather than maintained. Bobbi
+    // rejoins the reloaded realm so the oracle's deliveredFor arm has a live
+    // player to check: without one it would only reach the two structural
+    // checks, and the rebuilt buckets would go unread by the very query they
+    // exist to serve.
     const save = sim.serializeMail();
     const reloaded = makeWorld();
     reloaded.loadMail(save);
     expect(reloaded.postOffice.mail).toHaveLength(save.mail.length);
+    const rejoined = reloaded.addPlayer('mage', 'Bobbi', { characterId: 777 });
     expectMailBookMatchesIndex(reloaded, 'after a serialize/load round trip');
+    expect(reloaded.mailUnreadFor(rejoined)).toBeGreaterThan(0);
 
     // The purge splits the book three ways: escrowed parcels fly home to their
     // live sender, everything else with nothing at stake is spliced out.
