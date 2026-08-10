@@ -11,7 +11,7 @@
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![Gymnasium](https://img.shields.io/badge/Gymnasium-RL%20env-0C7BDC)](https://gymnasium.farama.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.35.0-blue)](package.json)
+[![Version](https://img.shields.io/badge/version-0.35.1-blue)](package.json)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.com/invite/wildhaven)
 
@@ -27,7 +27,7 @@
 
 Wildhaven is a complete classic-era MMO you run in your browser, host yourself with one command, and can even train AI agents to play. It is free and open source.
 
-It is a rebranded, web3-free fork of [world-of-claudecraft](https://github.com/levy-street/world-of-claudecraft) (MIT), tracking upstream through v0.35.0. The entire Solana integration that shipped upstream, wallet linking, holder tiers, the Seeker entitlements, and the on-chain purchase rails, has been removed rather than merely disabled, and `tests/no_web3_regression.test.ts` fails the build if any of it returns through a later upstream sync (`docs/upstream-sync.md`).
+It is a rebranded, web3-free fork of [world-of-claudecraft](https://github.com/levy-street/world-of-claudecraft) (MIT), tracking upstream through v0.35.1. The entire Solana integration that shipped upstream, wallet linking, holder tiers, the Seeker entitlements, and the on-chain purchase rails, has been removed rather than merely disabled, and `tests/no_web3_regression.test.ts` fails the build if any of it returns through a later upstream sync (`docs/upstream-sync.md`).
 
 One shared world runs in three places, all from the same game core:
 
