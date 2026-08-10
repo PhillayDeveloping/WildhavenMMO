@@ -142,16 +142,22 @@ Carried forward, still open:
   (`npx vitest run --maxWorkers=4`, or `GATE_MAX_WORKERS=4` for the gate). The
   suites that bind a real port time out under more parallelism; they pass in
   isolation.
-- Two cases do NOT pass in isolation and are slow rather than contended:
+- ~~Two cases do NOT pass in isolation and are slow rather than contended:
   `tests/charge_parallel_recharge.test.ts` ("each spent charge returns its own
   cooldown after ITS spend") and `tests/dungeon_finder.test.ts` ("a decline
   returns accepted units to the queue"). Both exceed the 20 second case timeout
   on a Windows developer machine with nothing else running, and both pass at
-  `--testTimeout=180000`. This predates the sync: a pre-merge checkout reproduces
-  both identically, and the charge suite measures 35.9 seconds of test time there
-  against 37.4 here, the same within noise. The charge case only ticks one player
-  and one mob about 1300 times, so roughly 28 ms per tick points at a real cost
-  in `Sim` construction or the tick, not at the tests.
+  `--testTimeout=180000`.~~ **Closed after this release.** The 28 ms per tick did
+  point at `Sim` rather than at the tests, as suspected. Neither suite exercises
+  ambient world content, but a default `Sim` spawns the whole 11-zone world and
+  ticks every camp mob's idle AI, so a case that ticks a 60 second cooldown out
+  spent most of its time in idle-mob wander terrain sampling. Both now build the
+  standard subsystem-sized world fixture, which trims spawns without touching
+  terrain. The live server never paid this: its `Sim` opts into
+  `idleMobTickRadius`. Note for the record that this was never a sync
+  regression, and CI never saw it: a pre-merge checkout reproduced both
+  identically, and all eight release-gate test shards were green on Linux
+  throughout.
 - `core.autocrlf=false` is not recorded in `.gitattributes`, so a fresh Windows
   clone inherits a line-ending trap that shows up as roughly fifty failures in
   the golden-master suites.
