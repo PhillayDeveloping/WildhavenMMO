@@ -4477,6 +4477,8 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'hudChrome.perf.units.memPair': '{used} / {limit} MB',
   'hudChrome.perf.units.ms': '{value} ms',
   'hudChrome.dailyRewards.close': 'Zavřít denní odměny',
+  'hudChrome.dailyRewards.disclaimer':
+    'Úkoly a žebříček se resetují jednou denně. Prvních deset si rozdělí měšec a tvůj podíl přinese havran, až se příště přihlásíš.',
   'hudChrome.dailyRewards.endsIn': 'Končí za {time}',
   'hudChrome.dailyRewards.error': 'Denní odměny se nepodařilo načíst.',
   'hudChrome.dailyRewards.hideChestButton': 'Skrýt truhlu',
@@ -6612,6 +6614,10 @@ export const cs_CZ: Partial<Record<TranslationKey, string>> = {
   'entities.delves.drowned_litany.enterText': 'Sestupuješ do utopené svatyně na okraji močálu.',
   'entities.delves.drowned_litany.leaveText': 'Šplháš zpět k bratru Halvenovi na okraji močálu.',
   'entities.delves.drowned_litany.name': 'Utopená litanie',
+  'entities.letters.daily_reward_prize.body':
+    'Údolí vede počet o tom, kdo se v něm nadře nejvíc, a včera tvé jméno stálo mezi deseti nejvyššími. Správci odvážili tvůj podíl z denního měšce a poslali jej po havranovi.\n\nVrať se zítra a obsaď první místo, dokážeš-li to.\n\n- Správce údolí',
+  'entities.letters.daily_reward_prize.sender': 'Správce údolí',
+  'entities.letters.daily_reward_prize.subject': 'Tvůj podíl z denního měšce',
   'entities.letters.letter_q_greyjaw.body':
     'Zprávy se v tak malém městě šíří rychle. Pastevci včera pili na tvé zdraví a Wilkes přísahá, že ten vlk byl velký jako vůz. Ať přehánějí: zasloužil sis to.\n\nPřijď se najíst na hlídku.\n- Maršál Redbrook',
   'entities.letters.letter_q_greyjaw.sender': 'Maršál Redbrook',

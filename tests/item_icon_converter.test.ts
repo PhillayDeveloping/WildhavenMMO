@@ -13,6 +13,12 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
+
+// sharp's file cache holds a handle on every image it opens, and Windows will not
+// unlink an open file, so temp-file cleanup failed with EPERM after the work had
+// already succeeded. Disabling the cache releases them; it only costs re-reads.
+sharp.cache(false);
+
 import { afterEach, describe, expect, it } from 'vitest';
 
 // scripts/convert_item_icons_webp.mjs is the pre-commit tool that turns hand-authored item art

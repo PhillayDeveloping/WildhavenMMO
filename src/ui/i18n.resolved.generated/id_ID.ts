@@ -401,7 +401,7 @@ export const id_ID: EnTranslations = {
       "error": "Tidak dapat memuat hadiah harian.",
       "disabled": "Hadiah Harian saat ini dinonaktifkan. Kami akan mengumumkan pembaruan fitur ini di kanal Discord.",
       "intro": "Simpan cukup WOC di dompet terverifikasimu untuk membuka hadiah harian. Kumpulkan poin lewat satu putaran harian dan tugas yang bergilir, lalu naiki papan peringkat harian untuk mendapat bagian dari kolam hadiah.",
-      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
+      "disclaimer": "Tugas dan papan peringkat disetel ulang sekali sehari. Sepuluh teratas membagi pundi-pundi, dan seekor gagak mengantarkan bagianmu saat kamu masuk berikutnya.",
       "prize": "Kolam Hadiah",
       "reset": "Atur Ulang",
       "endsIn": "Berakhir dalam {time}",
@@ -14873,9 +14873,9 @@ export const id_ID: EnTranslations = {
         "body": "Kelompokmu menuntaskan ujian heroik saat kamu bertempur di barisan belakang atau telah tumbang. Penguncianmu juga tercatat, jadi bagian Tanda Heroik milikmu dikirim ke sini alih-alih hilang. Gunakan dengan baik.\n\n- Perbekal heroik"
       },
       "daily_reward_prize": {
-        "sender": "The Vale Steward",
-        "subject": "Your share of the daily purse",
-        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
+        "sender": "Pengurus Lembah",
+        "subject": "Bagianmu dari pundi harian",
+        "body": "Lembah mencatat siapa yang paling giat bekerja di dalamnya, dan kemarin namamu berdiri di antara sepuluh teratas. Para pengurus telah menimbang bagianmu dari pundi harian dan mengirimkannya lewat gagak.\n\nKembalilah besok dan rebut tempat teratas jika kau mampu.\n\n- Pengurus Lembah"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "Persatuan Perajin",

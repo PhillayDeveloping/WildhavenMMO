@@ -2,6 +2,7 @@ import { mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSyn
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { canCreateSymlinks } from '../helpers/symlink_support';
 import { tsFilesUnder } from './ts_files_under';
 
 // The paired test for the shared source walk. It matters more than a helper
@@ -83,20 +84,23 @@ describe('tsFilesUnder', () => {
     expect(readFileSync(found[0].full, 'utf8')).toBe('export const kept = true;\n');
   });
 
-  it('descends a symlinked DIRECTORY (a Dirent reads false for that too)', () => {
-    // The other half of the symlink decision, and the more expensive one to get
-    // wrong: `entry.isDirectory()` is lstat-based, so taking it at face value
-    // drops an entire linked subtree rather than a single file, silently.
-    write('real/inside.ts');
-    write('real/deeper/lower.ts');
-    symlinkSync(path.join(root, 'real'), path.join(root, 'linked_dir'));
-    expect(tsFilesUnder(root).map((f) => f.file)).toEqual([
-      'linked_dir/deeper/lower.ts',
-      'linked_dir/inside.ts',
-      'real/deeper/lower.ts',
-      'real/inside.ts',
-    ]);
-  });
+  it.skipIf(!canCreateSymlinks())(
+    'descends a symlinked DIRECTORY (a Dirent reads false for that too)',
+    () => {
+      // The other half of the symlink decision, and the more expensive one to get
+      // wrong: `entry.isDirectory()` is lstat-based, so taking it at face value
+      // drops an entire linked subtree rather than a single file, silently.
+      write('real/inside.ts');
+      write('real/deeper/lower.ts');
+      symlinkSync(path.join(root, 'real'), path.join(root, 'linked_dir'));
+      expect(tsFilesUnder(root).map((f) => f.file)).toEqual([
+        'linked_dir/deeper/lower.ts',
+        'linked_dir/inside.ts',
+        'real/deeper/lower.ts',
+        'real/inside.ts',
+      ]);
+    },
+  );
 
   it('walks a DIRECTORY named like a source file instead of returning it', () => {
     // The shape the hand-rolled walk exists for, per this module's own note:
@@ -107,16 +111,19 @@ describe('tsFilesUnder', () => {
     expect(tsFilesUnder(root).map((f) => f.file)).toEqual(['namespace.ts/child.ts']);
   });
 
-  it('follows a symlinked .ts file (a Dirent reads false for one)', () => {
-    // The arm no consumer fixture can reach, and the reason there is no
-    // `entry.isFile()` gate: Dirent is lstat-based, so gating on it drops a
-    // symlinked module that the flat `readdirSync().filter()` this replaces
-    // would have read. That is the same silent narrowing the walk exists to
-    // fix, arriving one door over, and only this case holds the line.
-    write('real/module.ts');
-    symlinkSync(path.join(root, 'real', 'module.ts'), path.join(root, 'linked.ts'));
-    expect(tsFilesUnder(root).map((f) => f.file)).toEqual(['linked.ts', 'real/module.ts']);
-  });
+  it.skipIf(!canCreateSymlinks())(
+    'follows a symlinked .ts file (a Dirent reads false for one)',
+    () => {
+      // The arm no consumer fixture can reach, and the reason there is no
+      // `entry.isFile()` gate: Dirent is lstat-based, so gating on it drops a
+      // symlinked module that the flat `readdirSync().filter()` this replaces
+      // would have read. That is the same silent narrowing the walk exists to
+      // fix, arriving one door over, and only this case holds the line.
+      write('real/module.ts');
+      symlinkSync(path.join(root, 'real', 'module.ts'), path.join(root, 'linked.ts'));
+      expect(tsFilesUnder(root).map((f) => f.file)).toEqual(['linked.ts', 'real/module.ts']);
+    },
+  );
 
   it('is empty for an empty root rather than throwing', () => {
     expect(tsFilesUnder(root)).toEqual([]);

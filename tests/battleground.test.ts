@@ -1,4 +1,5 @@
-import { execFileSync } from 'node:child_process';
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it, vi } from 'vitest';
 import { isDispellableAura } from '../src/sim/aura_classify';
@@ -51,6 +52,7 @@ import {
 } from '../src/sim/social/battleground_outcomes';
 import { DT, type SimEvent } from '../src/sim/types';
 import { groundHeight } from '../src/sim/world';
+import { sourceFilesUnder } from './helpers/source_files_under';
 
 // The staged 5v5 arms (graveyard no-auto-release, the 720s cap, the fairness
 // clocks, the honor-DR rollover) legitimately run 10 to 19s each and flake
@@ -2879,13 +2881,18 @@ describe('the outcome log stays observability-only', () => {
     // at all, so its CONTENTS legitimately differ across the three hosts. That
     // is only safe while nothing gameplay-facing reads it, which no type can
     // express, so the reference set is pinned here.
-    const root = new URL('..', import.meta.url);
-    const hits = execFileSync('grep', ['-rl', 'bgOutcomes', 'src', 'server', 'headless'], {
-      cwd: fileURLToPath(root),
-      encoding: 'utf8',
-    })
-      .split('\n')
-      .filter(Boolean)
+    // Walked in Node rather than shelled out to `grep`, which does not exist on a
+    // stock Windows box and made this guard die with ENOENT instead of reporting
+    // on the reference set. sourceFilesUnder is the shared recursive walk this
+    // repo requires of directory-scanning guards, so the corpus cannot quietly
+    // narrow the way a hand-rolled single-level read would.
+    const root = fileURLToPath(new URL('..', import.meta.url));
+    const hits = ['src', 'server', 'headless']
+      .flatMap((dir) =>
+        sourceFilesUnder(path.join(root, dir))
+          .filter((file) => readFileSync(file.full, 'utf8').includes('bgOutcomes'))
+          .map((file) => `${dir}/${file.file}`),
+      )
       .sort();
     expect(hits).toEqual([
       'server/game.ts', // the one host that drains

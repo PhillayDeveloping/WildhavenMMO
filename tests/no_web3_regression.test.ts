@@ -156,21 +156,80 @@ function sourceFiles(): Array<{ path: string; full: string }> {
   return files;
 }
 
+/**
+ * Every package.json position that NAMES a package, not just the three dependency
+ * maps. The v0.35.0 sync proved why: dropping upstream's dependency block left
+ * `@reown/appkit` sitting in `pnpm.onlyBuiltDependencies`, where it survived the
+ * cleanup unremarked because nothing looked there. A build-script allowlist,
+ * an override, or an `allowScripts` entry is a standing instruction about a
+ * package this fork must not have at all, so each one is swept the same way.
+ *
+ * Keys carrying a version range (`allowScripts`, the `name@major` override form)
+ * are split at the LAST `@` so a scoped name keeps its leading one.
+ */
+function declaredPackageNames(pkg: Record<string, unknown>): string[] {
+  const record = (value: unknown): Record<string, unknown> =>
+    value && typeof value === 'object' ? (value as Record<string, unknown>) : {};
+  const stripRange = (key: string): string => {
+    const at = key.lastIndexOf('@');
+    return at > 0 ? key.slice(0, at) : key;
+  };
+  const pnpm = record(pkg.pnpm);
+  const onlyBuilt = Array.isArray(pnpm.onlyBuiltDependencies)
+    ? (pnpm.onlyBuiltDependencies as unknown[]).map(String)
+    : [];
+  return [
+    ...Object.keys(record(pkg.dependencies)),
+    ...Object.keys(record(pkg.devDependencies)),
+    ...Object.keys(record(pkg.optionalDependencies)),
+    ...Object.keys(record(pkg.peerDependencies)),
+    ...Object.keys(record(pkg.allowScripts)).map(stripRange),
+    ...Object.keys(record(pnpm.overrides)).map(stripRange),
+    ...onlyBuilt,
+  ];
+}
+
 describe('web3 removal survives an upstream sync', () => {
-  it('declares no chain or wallet dependency', () => {
+  it('names no chain or wallet package anywhere in package.json', () => {
     const pkg = JSON.parse(readFileSync(join(ROOT, 'package.json'), 'utf8'));
-    const declared = [
-      ...Object.keys(pkg.dependencies ?? {}),
-      ...Object.keys(pkg.devDependencies ?? {}),
-      ...Object.keys(pkg.optionalDependencies ?? {}),
-    ];
-    const offenders = declared.filter((name) => FORBIDDEN_DEPENDENCIES.some((re) => re.test(name)));
+    const offenders = declaredPackageNames(pkg).filter((name) =>
+      FORBIDDEN_DEPENDENCIES.some((re) => re.test(name)),
+    );
     expect(
       offenders,
-      `package.json declares web3 dependencies again: ${offenders.join(', ')}.\n` +
+      `package.json names web3 packages again: ${offenders.join(', ')}.\n` +
         'This is what happens when an upstream sync takes their package.json wholesale.\n' +
-        'Drop them and re-run the install so the lockfile follows.',
+        'Check the dependency maps AND pnpm.onlyBuiltDependencies / pnpm.overrides /\n' +
+        'allowScripts, then re-run the install so the lockfile follows.',
     ).toEqual([]);
+  });
+
+  it('sweeps every package.json position that can name a package', () => {
+    // The sweep above is only as good as its reach: a position added to
+    // package.json but not to declaredPackageNames would go unwatched exactly
+    // like onlyBuiltDependencies did. Pin the reach against a fixture rather
+    // than against the real file, which happens to be clean.
+    const fixture = {
+      dependencies: { 'dep-only': '1' },
+      devDependencies: { 'dev-only': '1' },
+      optionalDependencies: { 'optional-only': '1' },
+      peerDependencies: { 'peer-only': '1' },
+      allowScripts: { 'scripts-only@1.2.3': true, '@scoped/pkg@0.1.0': true },
+      pnpm: {
+        overrides: { 'override-only@2': '^2.0.0' },
+        onlyBuiltDependencies: ['built-only'],
+      },
+    };
+    expect(declaredPackageNames(fixture).sort()).toEqual([
+      '@scoped/pkg',
+      'built-only',
+      'dep-only',
+      'dev-only',
+      'optional-only',
+      'override-only',
+      'peer-only',
+      'scripts-only',
+    ]);
   });
 
   it('imports no chain or wallet module', () => {

@@ -401,7 +401,7 @@ export const tr_TR: EnTranslations = {
       "error": "Günlük ödüller yüklenemedi.",
       "disabled": "Günlük Ödüller şu anda devre dışı. Bu özellikle ilgili güncellemeleri Discord kanalında duyuracağız.",
       "intro": "Günlük ödüllerin kilidini açmak için doğrulanmış cüzdanında yeterince WOC bulundur. Bir günlük çevirme ve dönüşümlü görevlerle puan kazan, ardından ödül havuzundan pay almak için günlük lider tablosunda yüksel.",
-      "disclaimer": "Tasks and the leaderboard reset once per day. The top ten split the purse, and a raven brings your share the next time you log in.",
+      "disclaimer": "Görevler ve lider tablosu günde bir kez sıfırlanır. İlk on oyuncu keseyi paylaşır ve bir sonraki girişinde payını bir kuzgun getirir.",
       "prize": "Ödül Havuzu",
       "reset": "Sıfırla",
       "endsIn": "Bitmesine {time}",
@@ -14873,9 +14873,9 @@ export const tr_TR: EnTranslations = {
         "body": "Birliğin kahramanlık sınavını temizlerken sen arka saflarda savaşıyor ya da yerde yatıyordun. Kilidin yine de kaydedildi, bu yüzden Kahramanlık Nişanlarından payın kaybolmak yerine buraya gönderildi. Onları iyi kullan.\n\n- Kahraman levazım subayı"
       },
       "daily_reward_prize": {
-        "sender": "The Vale Steward",
-        "subject": "Your share of the daily purse",
-        "body": "The vale keeps count of who works hardest in it, and yesterday your name stood among the ten highest. The stewards have weighed out your share of the daily purse and sent it along by raven.\n\nCome back tomorrow and take the top place if you can.\n\n- The Vale Steward"
+        "sender": "Vadi Kâhyası",
+        "subject": "Günlük keseden payın",
+        "body": "Vadi, içinde en çok kimin çalıştığının hesabını tutar ve dün adın en yüksek on kişinin arasındaydı. Kâhyalar günlük keseden payını tartıp kuzgunla yolladılar.\n\nYarın yine gel ve elinden gelirse ilk sırayı al.\n\n- Vadi Kâhyası"
       },
       "guild_trend_engineering_alchemy": {
         "sender": "Üretim Loncası",

@@ -317,25 +317,32 @@ describe('Discord bot healthcheck probe, executed', () => {
     expect(isHeartbeatFresh(Date.now() - (win + 5000), Date.now(), win)).toBe(false);
   });
 
-  it('answers unhealthy when the heartbeat path cannot be statted (a denied parent directory)', () => {
-    // "Unreadable" needs precision: stat needs no read permission on the FILE, so
-    // a chmod-000 stamp still reads healthy while fresh, and correctly so (mtime
-    // is the only evidence the probe needs, and a stamp the bot cannot WRITE goes
-    // stale within one window anyway). The arm the catch actually guards beyond
-    // ENOENT is stat DENIAL, which takes a denied parent directory. Root stats
-    // through anything, so the fixture is skipped there rather than left vacuous.
-    if (process.getuid?.() === 0) return;
-    const deniedDir = join(dir, 'denied');
-    mkdirSync(deniedDir);
-    const target = join(deniedDir, 'hb');
-    writeFileSync(target, 'probe fixture');
-    chmodSync(deniedDir, 0o000);
-    try {
-      expect(probeExit(target, '')).toBe(1);
-    } finally {
-      chmodSync(deniedDir, 0o755);
-    }
-  });
+  // Skipped on Windows: the setup denies access by chmod-ing the parent directory,
+  // and Windows ignores POSIX mode bits on directories, so the stat SUCCEEDS and the
+  // unhealthy branch under test is never reached. The probe logic is
+  // platform-independent and stays covered on POSIX and in CI.
+  it.skipIf(process.platform === 'win32')(
+    'answers unhealthy when the heartbeat path cannot be statted (a denied parent directory)',
+    () => {
+      // "Unreadable" needs precision: stat needs no read permission on the FILE, so
+      // a chmod-000 stamp still reads healthy while fresh, and correctly so (mtime
+      // is the only evidence the probe needs, and a stamp the bot cannot WRITE goes
+      // stale within one window anyway). The arm the catch actually guards beyond
+      // ENOENT is stat DENIAL, which takes a denied parent directory. Root stats
+      // through anything, so the fixture is skipped there rather than left vacuous.
+      if (process.getuid?.() === 0) return;
+      const deniedDir = join(dir, 'denied');
+      mkdirSync(deniedDir);
+      const target = join(deniedDir, 'hb');
+      writeFileSync(target, 'probe fixture');
+      chmodSync(deniedDir, 0o000);
+      try {
+        expect(probeExit(target, '')).toBe(1);
+      } finally {
+        chmodSync(deniedDir, 0o755);
+      }
+    },
+  );
 
   it('answers unhealthy for a missing file', () => {
     expect(probeExit(join(dir, 'never-written'), '')).toBe(1);

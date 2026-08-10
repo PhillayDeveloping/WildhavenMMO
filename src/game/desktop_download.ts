@@ -7,7 +7,7 @@
 export type DesktopPlatform = 'mac' | 'win' | 'linux' | 'other';
 
 // The published desktop build on the update host. Bump in lockstep with the
-// artifacts uploaded to updates.worldofclaudecraft.com/desktop/ at release
+// artifacts uploaded to updates.wildhaven.example/desktop/ at release
 // (see docs/desktop-release.md). The static hrefs in index.html carry the same
 // version as a no-JS fallback.
 export const DESKTOP_VERSION = '0.35.0';

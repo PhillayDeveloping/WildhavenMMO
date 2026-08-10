@@ -2797,6 +2797,8 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.calendar.result.removed': 'O evento foi retirado do calendário.',
   'hudChrome.calendar.title': 'Calendário de Eventos',
   'hudChrome.calendar.titlePlaceholder': 'Título do evento',
+  'hudChrome.dailyRewards.disclaimer':
+    'As tarefas e a classificação são reiniciadas uma vez por dia. Os dez primeiros dividem a bolsa e um corvo traz a sua parte no próximo login.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     'Isto remove o atalho do baú do seu HUD. As recompensas, a elegibilidade e este painel continuam disponíveis; você pode trazer o atalho de volta nas Opções.',
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Cancelar',
@@ -8351,6 +8353,10 @@ export const pt_BR: Partial<Record<TranslationKey, string>> = {
   'hudChrome.nativeUpdate.notNow': 'Agora não',
   'hudChrome.nativeUpdate.title': 'Atualização disponível',
   'hudChrome.nativeUpdate.update': 'Atualizar',
+  'entities.letters.daily_reward_prize.body':
+    'O vale leva a conta de quem trabalha mais duro nele, e ontem seu nome esteve entre os dez mais altos. Os administradores pesaram a sua parte da bolsa diária e a enviaram por corvo.\n\nVolte amanhã e tome o primeiro lugar, se conseguir.\n\n- O administrador do vale',
+  'entities.letters.daily_reward_prize.sender': 'O administrador do vale',
+  'entities.letters.daily_reward_prize.subject': 'Sua parte da bolsa diária',
   'entities.letters.ravenpost_welcome.sender': 'O Correio dos Corvos',
   'entities.letters.ravenpost_welcome.subject': 'Os corvos agora voam por você',
   'entities.letters.ravenpost_welcome.body':

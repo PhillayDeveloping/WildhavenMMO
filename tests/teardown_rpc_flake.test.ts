@@ -4,6 +4,7 @@ import {
   TEARDOWN_RPC_MESSAGE,
   TEARDOWN_RPC_TAIL_BYTES,
 } from '../scripts/lib/teardown_rpc_flake.mjs';
+import { canCreateSymlinks } from './helpers/symlink_support';
 
 // The ONE sanctioned known-flake signature (CI/CD performance packet, Phase
 // 6): every test passed, exit 1 from the vitest worker-teardown RPC race.
@@ -188,58 +189,67 @@ describe('real vitest output (the one external assumption)', () => {
   // GITHUB_ACTIONS=true like a real shard, and feeds the captured output
   // through the classifier. A vitest bump that reformats the summary or the
   // banner turns this red instead of silently disabling the retry.
-  it('classifies a real flake-shaped run as retryable and a real failure as not', {
-    timeout: 60_000,
-  }, async () => {
-    const [{ spawnSync }, { mkdtemp, writeFile, symlink, rm }, { tmpdir }, path] =
-      await Promise.all([
-        import('node:child_process'),
-        import('node:fs/promises'),
-        import('node:os'),
-        import('node:path'),
-      ]);
-    const repoRoot = path.join(__dirname, '..');
-    const dir = await mkdtemp(path.join(tmpdir(), 'teardown-rpc-real-'));
-    try {
-      await symlink(path.join(repoRoot, 'node_modules'), path.join(dir, 'node_modules'));
-      const leak =
-        "import { it } from 'vitest';\n" +
-        "it('passes', () => {});\n" +
-        "it('leaks the teardown-rpc shape', () => {\n" +
-        '  const err = new Error(\n' +
-        `    '[vitest-worker]: ${TEARDOWN_RPC_MESSAGE.replace(/'/g, "\\'")}',\n` +
-        '  );\n' +
-        "  err.name = 'EnvironmentTeardownError';\n" +
-        "  err.stack = 'EnvironmentTeardownError: ' + err.message +\n" +
-        "    '\\n    at node_modules/vitest/dist/worker.js:105:11';\n" +
-        // The real flake is an unhandled REJECTION during the run; a
-        // deferred throw races the process exit and can vanish.
-        '  Promise.reject(err);\n' +
-        '});\n';
-      await writeFile(path.join(dir, 'leak.test.mjs'), leak);
-      const run = (file: string) =>
-        spawnSync('npx', ['--no-install', 'vitest', 'run', '--root', dir, file], {
-          cwd: repoRoot,
-          encoding: 'utf8',
-          env: { ...process.env, CI: 'true', GITHUB_ACTIONS: 'true' },
-          timeout: 50_000,
-        });
-      const flaky = run('leak.test.mjs');
-      const flakyTail = `${flaky.stdout}\n${flaky.stderr}`.slice(-TEARDOWN_RPC_TAIL_BYTES);
-      expect(flaky.status).toBe(1);
-      expect(isTeardownRpcFlake({ status: flaky.status, tail: flakyTail })).toBe(true);
-      // Control: a genuinely failing test with the same leak must never
-      // classify, proving the run above is not vacuous.
-      await writeFile(
-        path.join(dir, 'red.test.mjs'),
-        `${leak}\nit('fails', () => {\n  throw new Error('real failure');\n});\n`,
-      );
-      const red = run('red.test.mjs');
-      const redTail = `${red.stdout}\n${red.stderr}`.slice(-TEARDOWN_RPC_TAIL_BYTES);
-      expect(red.status).toBe(1);
-      expect(isTeardownRpcFlake({ status: red.status, tail: redTail })).toBe(false);
-    } finally {
-      await rm(dir, { recursive: true, force: true });
-    }
-  });
+  // Its setup symlinks node_modules into a temp repo, which needs
+  // SeCreateSymbolicLinkPrivilege on Windows (Developer Mode). Gated on the
+  // capability probe rather than the platform, so it comes back the moment the
+  // privilege exists and always runs in CI. The pure classifier cases above carry
+  // the logic; this one pins the real vitest output format.
+  it.skipIf(!canCreateSymlinks())(
+    'classifies a real flake-shaped run as retryable and a real failure as not',
+    {
+      timeout: 60_000,
+    },
+    async () => {
+      const [{ spawnSync }, { mkdtemp, writeFile, symlink, rm }, { tmpdir }, path] =
+        await Promise.all([
+          import('node:child_process'),
+          import('node:fs/promises'),
+          import('node:os'),
+          import('node:path'),
+        ]);
+      const repoRoot = path.join(__dirname, '..');
+      const dir = await mkdtemp(path.join(tmpdir(), 'teardown-rpc-real-'));
+      try {
+        await symlink(path.join(repoRoot, 'node_modules'), path.join(dir, 'node_modules'));
+        const leak =
+          "import { it } from 'vitest';\n" +
+          "it('passes', () => {});\n" +
+          "it('leaks the teardown-rpc shape', () => {\n" +
+          '  const err = new Error(\n' +
+          `    '[vitest-worker]: ${TEARDOWN_RPC_MESSAGE.replace(/'/g, "\\'")}',\n` +
+          '  );\n' +
+          "  err.name = 'EnvironmentTeardownError';\n" +
+          "  err.stack = 'EnvironmentTeardownError: ' + err.message +\n" +
+          "    '\\n    at node_modules/vitest/dist/worker.js:105:11';\n" +
+          // The real flake is an unhandled REJECTION during the run; a
+          // deferred throw races the process exit and can vanish.
+          '  Promise.reject(err);\n' +
+          '});\n';
+        await writeFile(path.join(dir, 'leak.test.mjs'), leak);
+        const run = (file: string) =>
+          spawnSync('npx', ['--no-install', 'vitest', 'run', '--root', dir, file], {
+            cwd: repoRoot,
+            encoding: 'utf8',
+            env: { ...process.env, CI: 'true', GITHUB_ACTIONS: 'true' },
+            timeout: 50_000,
+          });
+        const flaky = run('leak.test.mjs');
+        const flakyTail = `${flaky.stdout}\n${flaky.stderr}`.slice(-TEARDOWN_RPC_TAIL_BYTES);
+        expect(flaky.status).toBe(1);
+        expect(isTeardownRpcFlake({ status: flaky.status, tail: flakyTail })).toBe(true);
+        // Control: a genuinely failing test with the same leak must never
+        // classify, proving the run above is not vacuous.
+        await writeFile(
+          path.join(dir, 'red.test.mjs'),
+          `${leak}\nit('fails', () => {\n  throw new Error('real failure');\n});\n`,
+        );
+        const red = run('red.test.mjs');
+        const redTail = `${red.stdout}\n${red.stderr}`.slice(-TEARDOWN_RPC_TAIL_BYTES);
+        expect(red.status).toBe(1);
+        expect(isTeardownRpcFlake({ status: red.status, tail: redTail })).toBe(false);
+      } finally {
+        await rm(dir, { recursive: true, force: true });
+      }
+    },
+  );
 });

@@ -2956,6 +2956,8 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.calendar.result.removed': 'Het evenement is van de kalender gehaald.',
   'hudChrome.calendar.title': 'Evenementenkalender',
   'hudChrome.calendar.titlePlaceholder': 'Titel van het evenement',
+  'hudChrome.dailyRewards.disclaimer':
+    'Taken en de ranglijst worden eenmaal per dag gereset. De top tien verdeelt de buidel en een raaf brengt jouw deel de volgende keer dat je inlogt.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     'Dit verwijdert de kistsnelkoppeling uit je HUD. Beloningen, geschiktheid en dit paneel blijven beschikbaar; je kunt de snelkoppeling terughalen via Opties.',
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Annuleren',
@@ -8378,6 +8380,10 @@ export const nl_NL: Partial<Record<TranslationKey, string>> = {
   'hudChrome.nativeUpdate.notNow': 'Niet nu',
   'hudChrome.nativeUpdate.title': 'Update beschikbaar',
   'hudChrome.nativeUpdate.update': 'Bijwerken',
+  'entities.letters.daily_reward_prize.body':
+    'De vallei houdt bij wie er het hardst in werkt, en gisteren stond jouw naam bij de tien hoogste. De rentmeesters hebben jouw deel van de dagelijkse buidel afgewogen en het met een raaf meegestuurd.\n\nKom morgen terug en pak de eerste plaats als je kunt.\n\n- De rentmeester van de vallei',
+  'entities.letters.daily_reward_prize.sender': 'De rentmeester van de vallei',
+  'entities.letters.daily_reward_prize.subject': 'Jouw deel van de dagelijkse buidel',
   'entities.letters.ravenpost_welcome.sender': 'De Ravenpost',
   'entities.letters.ravenpost_welcome.subject': 'De raven vliegen nu voor jou',
   'entities.letters.ravenpost_welcome.body':

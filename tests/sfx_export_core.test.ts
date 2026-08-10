@@ -19,6 +19,7 @@ import * as exportBundleModule from '../scripts/sfx_studio/export_bundle.mjs';
 // @ts-expect-error untyped zero-dependency authoring tool (scripts/*.mjs convention)
 import { buildDeterministicZip } from '../scripts/sfx_studio/zip.mjs';
 import { SFX_CLIPS } from '../src/game/sfx_manifest.generated';
+import { canRunPosixShell } from './helpers/symlink_support';
 
 const { assertExportableSfxTrack, buildSfxProductionBundle } = exportBundleModule;
 
@@ -197,173 +198,195 @@ describe('SFX production bundle', () => {
     }
   });
 
-  it('is byte deterministic and includes the exact published runtime state', () => {
-    const first = buildSfxProductionBundle(ROOT);
-    const second = buildSfxProductionBundle(ROOT);
-    expect(first.sha256).toBe(second.sha256);
-    expect(first.zip.equals(second.zip)).toBe(true);
-    expect(first.metadata.keyCount).toBe(Object.keys(SFX_CLIPS).length);
-    expect(first.metadata.trackCount).toBe(
-      Object.values(SFX_CLIPS).reduce((sum, clip) => sum + clip.variants.length, 0),
-    );
+  // Part of this case syntax-checks and RUNS the artifact's POSIX install.sh, so it
+  // needs a real `sh`. Probed rather than keyed off the platform: a Windows box with
+  // Git for Windows on PATH has one and should run this.
+  it.skipIf(!canRunPosixShell())(
+    'is byte deterministic and includes the exact published runtime state',
+    () => {
+      const first = buildSfxProductionBundle(ROOT);
+      const second = buildSfxProductionBundle(ROOT);
+      expect(first.sha256).toBe(second.sha256);
+      expect(first.zip.equals(second.zip)).toBe(true);
+      expect(first.metadata.keyCount).toBe(Object.keys(SFX_CLIPS).length);
+      expect(first.metadata.trackCount).toBe(
+        Object.values(SFX_CLIPS).reduce((sum, clip) => sum + clip.variants.length, 0),
+      );
 
-    const files = storedZipEntries(first.zip);
-    const runtime = JSON.parse(
-      files.get('activate/audio/sfx/runtime-pack.json')?.toString('utf8') ?? '',
-    );
-    expect(runtime.bundleId).toBe(first.metadata.runtimeBundleId);
-    expect(runtime.bundleId).toBe(
-      hash(Buffer.from(JSON.stringify({ catalogHash: runtime.catalogHash, clips: runtime.clips }))),
-    );
-    expect(first.metadata.bundleId).not.toBe(first.metadata.runtimeBundleId);
-    expect(Object.keys(runtime.clips).sort()).toEqual(Object.keys(SFX_CLIPS).sort());
-    for (const clip of Object.values(runtime.clips) as {
-      variants: { url: string; sha256: string; bytes: number }[];
-    }[]) {
-      for (const variant of clip.variants) {
-        expect(variant.url).toBe(`/audio/sfx/blobs/${variant.sha256}.mp3`);
-        const blob = files.get(`payload/audio/sfx/blobs/${variant.sha256}.mp3`);
-        expect(blob).toBeDefined();
-        expect(blob?.length).toBe(variant.bytes);
-        expect(blob && hash(blob)).toBe(variant.sha256);
-      }
-    }
-    expect([...files.keys()].some((name) => /draft|preview|source|version/i.test(name))).toBe(
-      false,
-    );
-    expect(files.has('authoring/sfx_gain_map.json')).toBe(true);
-    expect(files.has('authoring/sfx_speed_map.json')).toBe(true);
-    expect(files.has('authoring/sfx_mix.json')).toBe(true);
-    expect(files.has('install.sh')).toBe(true);
-    expect(files.has('install.mjs')).toBe(true);
-    expect(files.has('install-blobs.txt')).toBe(true);
-    expect(files.has('SHA256SUMS')).toBe(true);
-
-    const installFixture = mkdtempSync(join(tmpdir(), 'woc-sfx-install-'));
-    try {
-      const artifactRoot = join(installFixture, 'artifact');
-      writeArtifact(artifactRoot, files);
-      execFileSync('sh', ['-n', join(artifactRoot, 'install.sh')]);
-      const installers = [
-        { name: 'POSIX', command: 'sh', script: join(artifactRoot, 'install.sh') },
-        { name: 'Node', command: process.execPath, script: join(artifactRoot, 'install.mjs') },
-      ];
-      for (const installer of installers) {
-        const staticRoot = join(installFixture, `static-${installer.name.toLowerCase()}`);
-        execFileSync(installer.command, [installer.script, staticRoot]);
-        expect(readFileSync(join(staticRoot, 'audio/sfx/runtime-pack.json'))).toEqual(
-          files.get('activate/audio/sfx/runtime-pack.json'),
-        );
-        for (const clip of Object.values(runtime.clips) as {
-          variants: { url: string; sha256: string }[];
-        }[]) {
-          for (const variant of clip.variants) {
-            expect(hash(readFileSync(join(staticRoot, variant.url)))).toBe(variant.sha256);
-          }
+      const files = storedZipEntries(first.zip);
+      const runtime = JSON.parse(
+        files.get('activate/audio/sfx/runtime-pack.json')?.toString('utf8') ?? '',
+      );
+      expect(runtime.bundleId).toBe(first.metadata.runtimeBundleId);
+      expect(runtime.bundleId).toBe(
+        hash(
+          Buffer.from(JSON.stringify({ catalogHash: runtime.catalogHash, clips: runtime.clips })),
+        ),
+      );
+      expect(first.metadata.bundleId).not.toBe(first.metadata.runtimeBundleId);
+      expect(Object.keys(runtime.clips).sort()).toEqual(Object.keys(SFX_CLIPS).sort());
+      for (const clip of Object.values(runtime.clips) as {
+        variants: { url: string; sha256: string; bytes: number }[];
+      }[]) {
+        for (const variant of clip.variants) {
+          expect(variant.url).toBe(`/audio/sfx/blobs/${variant.sha256}.mp3`);
+          const blob = files.get(`payload/audio/sfx/blobs/${variant.sha256}.mp3`);
+          expect(blob).toBeDefined();
+          expect(blob?.length).toBe(variant.bytes);
+          expect(blob && hash(blob)).toBe(variant.sha256);
         }
       }
-
-      const corruptArtifactRoot = join(installFixture, 'artifact-corrupt');
-      writeArtifact(corruptArtifactRoot, files);
-      const blobIdentities = (files.get('install-blobs.txt')?.toString('utf8') ?? '')
-        .trim()
-        .split('\n');
-      const corruptIdentity = blobIdentities.at(-1);
-      if (!corruptIdentity) throw new Error('export has no audio blobs to corrupt');
-      const corruptBlob = join(
-        corruptArtifactRoot,
-        `payload/audio/sfx/blobs/${corruptIdentity}.mp3`,
+      expect([...files.keys()].some((name) => /draft|preview|source|version/i.test(name))).toBe(
+        false,
       );
-      const corruptBytes = Buffer.from(readFileSync(corruptBlob));
-      corruptBytes[0] ^= 0xff;
-      writeFileSync(corruptBlob, corruptBytes);
+      expect(files.has('authoring/sfx_gain_map.json')).toBe(true);
+      expect(files.has('authoring/sfx_speed_map.json')).toBe(true);
+      expect(files.has('authoring/sfx_mix.json')).toBe(true);
+      expect(files.has('install.sh')).toBe(true);
+      expect(files.has('install.mjs')).toBe(true);
+      expect(files.has('install-blobs.txt')).toBe(true);
+      expect(files.has('SHA256SUMS')).toBe(true);
 
-      for (const installer of [
-        { name: 'POSIX', command: 'sh', script: join(corruptArtifactRoot, 'install.sh') },
-        {
-          name: 'Node',
-          command: process.execPath,
-          script: join(corruptArtifactRoot, 'install.mjs'),
-        },
-      ]) {
-        const staticRoot = join(installFixture, `sentinel-${installer.name.toLowerCase()}`);
-        mkdirSync(staticRoot);
-        writeFileSync(join(staticRoot, 'sentinel.txt'), 'production stays untouched\n');
-        const before = snapshotDirectory(staticRoot);
-        const result = spawnSync(installer.command, [installer.script, staticRoot], {
-          encoding: 'utf8',
-        });
-        expect(result.error, `${installer.name} installer failed to execute`).toBeUndefined();
-        expect(result.status, `${installer.name} installer accepted a corrupt blob`).not.toBe(0);
-        expect(result.stderr).toContain('artifact audio checksum failed');
-        expect(snapshotDirectory(staticRoot)).toEqual(before);
-      }
+      const installFixture = mkdtempSync(join(tmpdir(), 'woc-sfx-install-'));
+      try {
+        const artifactRoot = join(installFixture, 'artifact');
+        writeArtifact(artifactRoot, files);
+        execFileSync('sh', ['-n', join(artifactRoot, 'install.sh')]);
+        const installers = [
+          { name: 'POSIX', command: 'sh', script: join(artifactRoot, 'install.sh') },
+          { name: 'Node', command: process.execPath, script: join(artifactRoot, 'install.mjs') },
+        ];
+        for (const installer of installers) {
+          const staticRoot = join(installFixture, `static-${installer.name.toLowerCase()}`);
+          execFileSync(installer.command, [installer.script, staticRoot]);
+          expect(readFileSync(join(staticRoot, 'audio/sfx/runtime-pack.json'))).toEqual(
+            files.get('activate/audio/sfx/runtime-pack.json'),
+          );
+          for (const clip of Object.values(runtime.clips) as {
+            variants: { url: string; sha256: string }[];
+          }[]) {
+            for (const variant of clip.variants) {
+              expect(hash(readFileSync(join(staticRoot, variant.url)))).toBe(variant.sha256);
+            }
+          }
+        }
 
-      const lastRuntimeVariant = (
-        Object.values(runtime.clips) as { variants: { sha256: string }[] }[]
-      )
-        .flatMap((clip) => clip.variants)
-        .at(-1);
-      if (!lastRuntimeVariant) throw new Error('runtime pack has no audio blobs');
-      for (const installer of [
-        { ...installers[0], corruptIdentity },
-        { ...installers[1], corruptIdentity: lastRuntimeVariant.sha256 },
-      ]) {
-        const staticRoot = join(installFixture, `existing-corrupt-${installer.name.toLowerCase()}`);
-        const corruptTarget = join(staticRoot, `audio/sfx/blobs/${installer.corruptIdentity}.mp3`);
-        mkdirSync(dirname(corruptTarget), { recursive: true });
-        writeFileSync(corruptTarget, 'corrupt production blob');
-        writeFileSync(join(staticRoot, 'sentinel.txt'), 'production stays untouched\n');
-        const before = snapshotDirectory(staticRoot);
-        const result = spawnSync(installer.command, [installer.script, staticRoot], {
-          encoding: 'utf8',
-        });
-        expect(result.error, `${installer.name} installer failed to execute`).toBeUndefined();
-        expect(result.status, `${installer.name} installer accepted a corrupt target`).not.toBe(0);
-        expect(result.stderr).toContain('existing audio blob checksum failed');
-        expect(snapshotDirectory(staticRoot)).toEqual(before);
-      }
+        const corruptArtifactRoot = join(installFixture, 'artifact-corrupt');
+        writeArtifact(corruptArtifactRoot, files);
+        const blobIdentities = (files.get('install-blobs.txt')?.toString('utf8') ?? '')
+          .trim()
+          .split('\n');
+        const corruptIdentity = blobIdentities.at(-1);
+        if (!corruptIdentity) throw new Error('export has no audio blobs to corrupt');
+        const corruptBlob = join(
+          corruptArtifactRoot,
+          `payload/audio/sfx/blobs/${corruptIdentity}.mp3`,
+        );
+        const corruptBytes = Buffer.from(readFileSync(corruptBlob));
+        corruptBytes[0] ^= 0xff;
+        writeFileSync(corruptBlob, corruptBytes);
 
-      const originalList = files.get('install-blobs.txt');
-      if (!originalList) throw new Error('export has no install blob list');
-      expect(originalList.length).toBeGreaterThan(0);
-      expect(originalList.at(-1)).not.toBe(0x0a);
-      const lastLineStart = originalList.lastIndexOf(0x0a);
-      const listFailures = [
-        {
-          name: 'tampered',
-          bytes: Buffer.concat([
-            Buffer.from(originalList.subarray(0, originalList.length - 1)),
-            Buffer.from(originalList.at(-1) === 0x61 ? 'b' : 'a'),
-          ]),
-        },
-        {
-          name: 'truncated',
-          bytes: lastLineStart < 0 ? Buffer.alloc(0) : originalList.subarray(0, lastLineStart),
-        },
-        { name: 'empty', bytes: Buffer.alloc(0) },
-      ];
-      for (const failure of listFailures) {
-        const artifact = join(installFixture, `artifact-list-${failure.name}`);
-        writeArtifact(artifact, files);
-        writeFileSync(join(artifact, 'install-blobs.txt'), failure.bytes);
-        const staticRoot = join(installFixture, `list-${failure.name}-target`);
-        mkdirSync(join(staticRoot, 'audio/sfx'), { recursive: true });
-        writeFileSync(join(staticRoot, 'audio/sfx/runtime-pack.json'), 'old manifest\n');
-        writeFileSync(join(staticRoot, 'sentinel.txt'), 'production stays untouched\n');
-        const before = snapshotDirectory(staticRoot);
-        const result = spawnSync('sh', [join(artifact, 'install.sh'), staticRoot], {
-          encoding: 'utf8',
-        });
-        expect(result.error, `${failure.name} list test failed to execute`).toBeUndefined();
-        expect(result.status, `${failure.name} list was accepted`).not.toBe(0);
-        expect(result.stderr).toContain('artifact audio list checksum failed');
-        expect(snapshotDirectory(staticRoot)).toEqual(before);
+        for (const installer of [
+          { name: 'POSIX', command: 'sh', script: join(corruptArtifactRoot, 'install.sh') },
+          {
+            name: 'Node',
+            command: process.execPath,
+            script: join(corruptArtifactRoot, 'install.mjs'),
+          },
+        ]) {
+          const staticRoot = join(installFixture, `sentinel-${installer.name.toLowerCase()}`);
+          mkdirSync(staticRoot);
+          writeFileSync(join(staticRoot, 'sentinel.txt'), 'production stays untouched\n');
+          const before = snapshotDirectory(staticRoot);
+          const result = spawnSync(installer.command, [installer.script, staticRoot], {
+            encoding: 'utf8',
+          });
+          expect(result.error, `${installer.name} installer failed to execute`).toBeUndefined();
+          expect(result.status, `${installer.name} installer accepted a corrupt blob`).not.toBe(0);
+          expect(result.stderr).toContain('artifact audio checksum failed');
+          expect(snapshotDirectory(staticRoot)).toEqual(before);
+        }
+
+        const lastRuntimeVariant = (
+          Object.values(runtime.clips) as { variants: { sha256: string }[] }[]
+        )
+          .flatMap((clip) => clip.variants)
+          .at(-1);
+        if (!lastRuntimeVariant) throw new Error('runtime pack has no audio blobs');
+        for (const installer of [
+          { ...installers[0], corruptIdentity },
+          { ...installers[1], corruptIdentity: lastRuntimeVariant.sha256 },
+        ]) {
+          const staticRoot = join(
+            installFixture,
+            `existing-corrupt-${installer.name.toLowerCase()}`,
+          );
+          const corruptTarget = join(
+            staticRoot,
+            `audio/sfx/blobs/${installer.corruptIdentity}.mp3`,
+          );
+          mkdirSync(dirname(corruptTarget), { recursive: true });
+          writeFileSync(corruptTarget, 'corrupt production blob');
+          writeFileSync(join(staticRoot, 'sentinel.txt'), 'production stays untouched\n');
+          const before = snapshotDirectory(staticRoot);
+          const result = spawnSync(installer.command, [installer.script, staticRoot], {
+            encoding: 'utf8',
+          });
+          expect(result.error, `${installer.name} installer failed to execute`).toBeUndefined();
+          expect(result.status, `${installer.name} installer accepted a corrupt target`).not.toBe(
+            0,
+          );
+          expect(result.stderr).toContain('existing audio blob checksum failed');
+          expect(snapshotDirectory(staticRoot)).toEqual(before);
+        }
+
+        const originalList = files.get('install-blobs.txt');
+        if (!originalList) throw new Error('export has no install blob list');
+        expect(originalList.length).toBeGreaterThan(0);
+        expect(originalList.at(-1)).not.toBe(0x0a);
+        const lastLineStart = originalList.lastIndexOf(0x0a);
+        const listFailures = [
+          {
+            name: 'tampered',
+            bytes: Buffer.concat([
+              Buffer.from(originalList.subarray(0, originalList.length - 1)),
+              Buffer.from(originalList.at(-1) === 0x61 ? 'b' : 'a'),
+            ]),
+          },
+          {
+            name: 'truncated',
+            bytes: lastLineStart < 0 ? Buffer.alloc(0) : originalList.subarray(0, lastLineStart),
+          },
+          { name: 'empty', bytes: Buffer.alloc(0) },
+        ];
+        for (const failure of listFailures) {
+          const artifact = join(installFixture, `artifact-list-${failure.name}`);
+          writeArtifact(artifact, files);
+          writeFileSync(join(artifact, 'install-blobs.txt'), failure.bytes);
+          const staticRoot = join(installFixture, `list-${failure.name}-target`);
+          mkdirSync(join(staticRoot, 'audio/sfx'), { recursive: true });
+          writeFileSync(join(staticRoot, 'audio/sfx/runtime-pack.json'), 'old manifest\n');
+          writeFileSync(join(staticRoot, 'sentinel.txt'), 'production stays untouched\n');
+          const before = snapshotDirectory(staticRoot);
+          const result = spawnSync('sh', [join(artifact, 'install.sh'), staticRoot], {
+            encoding: 'utf8',
+          });
+          expect(result.error, `${failure.name} list test failed to execute`).toBeUndefined();
+          expect(result.status, `${failure.name} list was accepted`).not.toBe(0);
+          expect(result.stderr).toContain('artifact audio list checksum failed');
+          expect(snapshotDirectory(staticRoot)).toEqual(before);
+        }
+      } finally {
+        rmSync(installFixture, { recursive: true, force: true });
       }
-    } finally {
-      rmSync(installFixture, { recursive: true, force: true });
-    }
-  }, 90_000);
+    },
+    // Raised from 90s: this case decodes and conformance-checks every published
+    // SFX through ffmpeg, then runs both installers. It lands around 27s on an
+    // idle machine but ~160s while the rest of the suite competes for cores, so
+    // the old budget passed in isolation and failed on the whole-suite run, which
+    // reads as a flake rather than the load-sensitive step it actually is.
+    300_000,
+  );
 
   it('exports numbered takes in exact round-robin order with runtime mix values', () => {
     const fixture = mkdtempSync(join(tmpdir(), 'woc-sfx-export-round-robin-'));

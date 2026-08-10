@@ -2712,6 +2712,8 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'hudChrome.calendar.result.removed': 'Begivenheden blev fjernet fra kalenderen.',
   'hudChrome.calendar.title': 'Begivenhedskalender',
   'hudChrome.calendar.titlePlaceholder': 'Begivenhedstitel',
+  'hudChrome.dailyRewards.disclaimer':
+    'Opgaver og resultattavlen nulstilles en gang om dagen. De ti bedste deler pungen, og en ravn bringer din andel, næste gang du logger ind.',
   'hudChrome.dailyRewards.hideChestConfirmBody':
     'Dette fjerner kiste-genvejen fra dit HUD. Belønninger, adgang og dette panel forbliver tilgængelige; du kan hente genvejen tilbage fra indstillingerne.',
   'hudChrome.dailyRewards.hideChestConfirmCancel': 'Annuller',
@@ -8204,6 +8206,10 @@ export const da_DK: Partial<Record<TranslationKey, string>> = {
   'hudChrome.nativeUpdate.update': 'Opdater',
   'errors.api.desktopCodeInvalid':
     'Desktop-loginkoden er ugyldig eller udløbet. Prøv venligst igen.',
+  'entities.letters.daily_reward_prize.body':
+    'Dalen holder regnskab med, hvem der arbejder hårdest i den, og i går stod dit navn blandt de ti øverste. Forvalterne har vejet din andel af den daglige pung af og sendt den af sted med ravn.\n\nKom igen i morgen og tag førstepladsen, hvis du kan.\n\n- Dalens forvalter',
+  'entities.letters.daily_reward_prize.sender': 'Dalens forvalter',
+  'entities.letters.daily_reward_prize.subject': 'Din andel af den daglige pung',
   'entities.letters.ravenpost_welcome.sender': 'Ravneposten',
   'entities.letters.ravenpost_welcome.subject': 'Ravnene flyver nu for dig',
   'entities.letters.ravenpost_welcome.body':

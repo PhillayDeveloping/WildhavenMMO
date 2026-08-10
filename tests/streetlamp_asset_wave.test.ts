@@ -306,8 +306,10 @@ describe('accepted Tripo streetlamp and Frostveil ice asset wave', () => {
       expect(MEDIA_ASSETS[relativePath]).toBe(
         `/media/models/props/${accepted.name}.${accepted.sha256.slice(0, 12)}.glb`,
       );
+      // Owner column is this fork's name: CREDITS.md was rebranded wholesale, and
+      // the row still has to be present and attributed, just not to upstream.
       expect(CREDITS).toContain(
-        `| Generated prop model (${accepted.name}) | World of ClaudeCraft | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |`,
+        `| Generated prop model (${accepted.name}) | Wildhaven | Project-generated via scripts/asset_pipeline (Tripo AI 3D) | Project asset | With the project only |`,
       );
 
       const json = glbJson(bytes);

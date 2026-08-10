@@ -616,11 +616,16 @@ describe('ci_shard_test.mjs entry (subprocess, --plan-only)', () => {
     // both halves (duplicate work, never a gap) and the perf win would vanish
     // silently; this spawn makes that loud. `vitest list --filesOnly` prints
     // the collected set without running anything.
+    // Spawned as `node <vitest entry>` rather than through npx: on Windows the
+    // launcher is npx.cmd, a shell-less spawn does not apply PATHEXT (ENOENT),
+    // and since CVE-2024-27980 Node refuses to spawn a .cmd without a shell at
+    // all (EINVAL). Going straight to the JS entry keeps this shell-less, which
+    // matters because the argv carries a path, and runs the same binary npx
+    // would have resolved to.
     const child = spawn(
-      'npx',
+      process.execPath,
       [
-        '--no-install',
-        'vitest',
+        path.join(repoRoot, 'node_modules', 'vitest', 'vitest.mjs'),
         'list',
         '--filesOnly',
         `--exclude=${'tests/battleground.test.ts'}`,

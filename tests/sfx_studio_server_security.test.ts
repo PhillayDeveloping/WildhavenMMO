@@ -21,6 +21,7 @@ import * as audioIo from '../scripts/sfx_studio/audio_io.mjs';
 // @ts-expect-error untyped zero-dependency authoring tool (scripts/*.mjs convention)
 import { startSfxStudio } from '../scripts/sfx_studio/server.mjs';
 import { SFX_CLIPS } from '../src/game/sfx_manifest.generated';
+import { canCreateSymlinks } from './helpers/symlink_support';
 
 const {
   listVersions,
@@ -73,7 +74,16 @@ function requestWithoutBody(
   });
 }
 
-describe.sequential('SFX Studio server security', () => {
+// Its beforeAll stages the containment fixtures as symlinks (an escaping source
+// dir, a linked version audio file), which needs SeCreateSymbolicLinkPrivilege on
+// Windows. Without it the setup threw and every case in the suite reported as
+// failed rather than skipped. Gated on the capability probe, not the platform, so
+// it returns the moment the privilege exists and always runs in CI.
+// Selected up front because vitest has no `describe.sequential.skipIf`: the
+// sequential runner and the conditional skip are separate chains.
+const studioSecuritySuite = canCreateSymlinks() ? describe.sequential : describe.sequential.skip;
+
+studioSecuritySuite('SFX Studio server security', () => {
   const repoRoot = fileURLToPath(new URL('..', import.meta.url));
   const sourceId = `${'f'.repeat(64)}.wav`;
   const sourceDir = join(STUDIO_ROOT, 'sources', 'foot_grass');
