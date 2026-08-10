@@ -44,8 +44,12 @@ Steady-state cost rules (what a live fight is allowed to spend per frame):
   (`../vfx_anchor.ts`) takes an optional caller-owned destination; every
   PER-FRAME path here passes one and allocates nothing, while the one-shot
   spawn paths omit it and keep the retainable fresh vector. `tests/
-  ability_vfx_frame_cost.test.ts` drives the real engine and fails on any
-  destination-less resolve inside `update()`.
+  ability_vfx_frame_cost.test.ts` holds both halves of that: a live-engine
+  fixture that counts allocations while it ticks ONE held state, and a source
+  scan over every call site `AbilityVfxFx.update()` can reach, which fails on
+  any destination-less resolve its `ONE_SHOT_RESOLVES` table does not already
+  name, and on a table row that outlives its call site. The scan is the half
+  that covers a new per-frame path no fixture happens to walk.
 - **Immediate-mode buffers upload their prefix, not their capacity.**
   `ribbons.ts` and `overlay_sprites.ts` `clearUpdateRanges()` +
   `addUpdateRange(0, used)` before `needsUpdate`, the pooled cloud's idiom
