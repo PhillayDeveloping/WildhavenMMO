@@ -40,7 +40,9 @@ Subdirectories (plus one shared fixture):
   `if` chain guarding each, `test_block_calls.ts`, the `ts.createSourceFile` walk that reports
   every `describe`/`it`/`test`/`suite` call in a source tagged with the block enclosing it,
   `driver_callback_bodies.ts`, the `ts.createSourceFile` walk that resolves a repeating
-  driver's callback and every same-module body one of its ticks can reach, `alloc_probe.ts`).
+  driver's callback and every same-module body one of its ticks can reach, `alloc_probe.ts`,
+  `mail_book_invariant.ts`, the `expectMailBookMatchesIndex` oracle asserting the Ravenpost's
+  `MailIndex` buckets still exactly cover `PostOffice`'s canonical book).
 - `global_setup.ts`: runs on every vitest invocation (`vite.config.ts` `test.globalSetup`);
   mints the SFX Studio temp root (`WOC_SFX_STUDIO_TEST_ROOT`).
 

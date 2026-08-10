@@ -120,9 +120,28 @@ export interface MailSave {
 }
 
 export class PostOffice {
-  // One shared book of letters, keyed by stable recipient identity. Read through
-  // Sim's thin delegates; internal to this module otherwise.
-  mail: MailMessage[] = [];
+  // One shared book of letters, keyed by stable recipient identity. PRIVATE,
+  // surfaced read-only through the `mail` getter below.
+  //
+  // Narrowing this is load-bearing since every read moved onto the index: a
+  // letter that enters this array without a matching index.track is now
+  // INVISIBLE rather than merely miscounted. deliveredFor, mailboxHoldsItem and
+  // storedCountFor all read buckets, so an untracked letter cannot be taken,
+  // deleted, or seen, and mailboxHoldsItem returning false makes
+  // playerHoldsQuestItem false, which mints a DUPLICATE quest item on re-accept.
+  // The only writers are book() and loadMail(), each of which tracks; keeping
+  // the array private plus the getter readonly makes that a type rule instead
+  // of a convention. tests/mail.test.ts pins the resulting invariant
+  // (expectMailBookMatchesIndex).
+  private letters: MailMessage[] = [];
+
+  // The canonical book for foreign readers (Sim's delegates, server readouts,
+  // tests). Read-only on purpose: an outside push is the exact defect the
+  // private field above exists to prevent, so it must not type-check.
+  get mail(): readonly MailMessage[] {
+    return this.letters;
+  }
+
   private nextMailId = 1;
   // Entity ids of every mailbox object, assigned by the Sim ctor during world
   // placement (the spawn loop stays on Sim). Any raven pillar is a valid place
@@ -167,12 +186,14 @@ export class PostOffice {
   // both read through this so the two can never drift apart (a one-sided
   // condition added later, the dead-gate mailTake already applies being the
   // likely candidate, would ship a stale non-null inbox or a spurious null).
-  private mailboxViewer(pid: number): { meta: PlayerMeta; e: Entity } | null {
+  // Returns the meta alone: the entity is what the gate is ABOUT (proximity),
+  // not something a caller needs afterwards, and neither reader ever wanted it.
+  private mailboxViewer(pid: number): PlayerMeta | null {
     const meta = this.ctx.players.get(pid);
     const e = this.ctx.entities.get(pid);
     if (!meta || !e) return null;
     if (!this.nearMailbox(e)) return null;
-    return { meta, e };
+    return meta;
   }
 
   // Public tick entry: the Sim tick calls this in the end-of-tick system block
@@ -189,8 +210,8 @@ export class PostOffice {
     if (this.index.deliverDue(this.ctx.time) > 0) this.bumpRev();
     if (this.ctx.tickCount % 20 !== 0) return;
     const now = this.ctx.time;
-    for (let i = this.mail.length - 1; i >= 0; i--) {
-      const m = this.mail[i];
+    for (let i = this.letters.length - 1; i >= 0; i--) {
+      const m = this.letters[i];
       if (!m.announced && now >= m.deliverAt) {
         m.announced = true;
         const meta = this.metaByMailKey(m.recipientKey);
@@ -213,7 +234,7 @@ export class PostOffice {
         if (m.returned) {
           // The one sanctioned destruction: the return flight already happened.
           this.index.untrack(m, now);
-          this.mail.splice(i, 1);
+          this.letters.splice(i, 1);
           this.bumpRev();
         } else {
           this.returnToSender(m, now);
@@ -224,7 +245,7 @@ export class PostOffice {
         // An expired letter leaves the buckets and, if delivered-and-unread,
         // the unread count (untrack re-derives both from the letter's state).
         this.index.untrack(m, now);
-        this.mail.splice(i, 1);
+        this.letters.splice(i, 1);
         this.bumpRev();
       }
     }
@@ -656,12 +677,19 @@ export class PostOffice {
     // is unreachable today; the guard exists because splice(-1, 1) would
     // silently delete the LAST letter in the realm book, someone else's
     // attachments included, if the index and the book ever drifted.
-    const idx = this.mail.indexOf(m);
-    if (idx < 0) return;
+    const idx = this.letters.indexOf(m);
+    if (idx < 0) {
+      // Speak on this arm like every other refusal in the command lane: a bare
+      // return would turn a drifted index into a delete that removes nothing
+      // and reports nothing, leaving the player clicking a letter that never
+      // goes away with no error toast to explain it.
+      this.result(meta.entityId, 'letterGone');
+      return;
+    }
     // A delivered-and-unread letter deleted before it is read leaves the
     // unread count too (untrack re-derives every contribution).
     this.index.untrack(m, this.ctx.time);
-    this.mail.splice(idx, 1);
+    this.letters.splice(idx, 1);
     this.bumpRev();
   }
 
@@ -779,7 +807,7 @@ export class PostOffice {
       read: false,
       announced: false,
     };
-    this.mail.push(msg);
+    this.letters.push(msg);
     this.index.track(msg, this.ctx.time);
     this.bumpRev();
   }
@@ -788,9 +816,8 @@ export class PostOffice {
     // The post is a place you visit: only stream it while standing at a raven
     // pillar (the shared mailboxViewer gate, lockstep with mailRevFor), which
     // also bounds the per-snapshot wire cost.
-    const viewer = this.mailboxViewer(pid);
-    if (!viewer) return null;
-    const meta = viewer.meta;
+    const meta = this.mailboxViewer(pid);
+    if (!meta) return null;
     const mine = this.deliveredFor(meta).sort((a, b) => b.deliverAt - a.deliverAt || b.id - a.id);
     return {
       messages: mine.map((m) => ({
@@ -826,7 +853,7 @@ export class PostOffice {
     if (!Number.isFinite(characterId)) return false;
     const key = String(characterId);
     let changed = false;
-    for (const m of this.mail) {
+    for (const m of this.letters) {
       // A rename (or a deactivated-name reclaim, which is a rename in
       // effect) frees oldName for a stranger, so this character's own
       // pre-senderKey OUTGOING letters get the stable id and the new
@@ -904,8 +931,8 @@ export class PostOffice {
     const now = this.ctx.time;
     const owns = (k: string): boolean => k === key || (name !== '' && k === name);
     let changed = false;
-    for (let i = this.mail.length - 1; i >= 0; i--) {
-      const m = this.mail[i];
+    for (let i = this.letters.length - 1; i >= 0; i--) {
+      const m = this.letters[i];
       // The outgoing stamp (see the header): pre-senderKey PLAYER mail this
       // character sent gets the stable id while the book is being walked.
       // Player-kind only: system/npc mail has no senderKey by construction
@@ -948,7 +975,7 @@ export class PostOffice {
         continue;
       }
       this.index.untrack(m, now);
-      this.mail.splice(i, 1);
+      this.letters.splice(i, 1);
     }
     if (changed) this.bumpRev();
     return changed;
@@ -959,7 +986,7 @@ export class PostOffice {
   serializeMail(): MailSave {
     const now = this.ctx.time;
     return {
-      mail: this.mail.map((m) => ({
+      mail: this.letters.map((m) => ({
         id: m.id,
         recipientKey: m.recipientKey,
         recipientName: m.recipientName,
@@ -1075,7 +1102,7 @@ export class PostOffice {
               !Number.isFinite(persistedExpiresAt)
             ? this.ctx.time + MAIL_ATTACHMENT_EXPIRY_SECONDS
             : persistedExpiresAt;
-      this.mail.push({
+      this.letters.push({
         id: m.id,
         recipientKey: m.recipientKey,
         recipientName,
@@ -1096,14 +1123,14 @@ export class PostOffice {
       });
     }
     warnDroppedInstanceKeys('mail book', escrowDrops);
-    const maxId = this.mail.reduce((mx, m) => Math.max(mx, m.id + 1), 1);
+    const maxId = this.letters.reduce((mx, m) => Math.max(mx, m.id + 1), 1);
     this.nextMailId = Math.max(this.nextMailId, save.nextMailId ?? 1, maxId);
     for (const parcel of returnedParcels) this.book(parcel);
     // Buckets, unread counts, and the in-flight set are derived state, never
     // persisted: rebuild them from the freshly loaded book. The wire revision
     // advances too (book() above already bumped for any returned parcel, but a
     // plain load must invalidate viewers as well).
-    this.index.rebuild(this.mail, this.ctx.time);
+    this.index.rebuild(this.letters, this.ctx.time);
     this.bumpRev();
   }
 }

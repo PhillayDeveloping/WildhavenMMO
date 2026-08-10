@@ -1551,9 +1551,11 @@ export function createSimContext(host: SimContextHost): SimContext {
     mailHeroicMarks: host.mailHeroicMarks,
     mailAuthoredLetter: host.mailAuthoredLetter,
     mailboxHoldsItem: host.mailboxHoldsItem,
-    applySetProcs: host.applySetProcs,
     // Commission order board change signal (writer side of the corder gate).
+    // Bound in declaration order (SimContextCallbacks lists it ahead of
+    // applySetProcs), which is the parallelism the registry comment relies on.
     bumpCommissionOrderBoardRev: host.bumpCommissionOrderBoardRev,
+    applySetProcs: host.applySetProcs,
     // Book of Deeds seam (points at deeds.ts via the Sim-bound arrows).
     bumpDeedStat: host.bumpDeedStat,
     markItemDiscovered: host.markItemDiscovered,
