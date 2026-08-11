@@ -129,6 +129,30 @@ TypeError during asset churn. `three` is pinned exactly so the patch applies.
   the holder badge it draws there. This fork draws no badge, so
   `card_layout.ts` now names `FOOTER_BAND_TOP` at the same y, which keeps the
   card geometry byte-identical to the layout upstream tuned.
+- **Four guards upstream's own changes made untrue again.** None of them was in
+  a file the resolution touched, which is why only the full suite found them.
+  Upstream's new `compression` windup style resolves its VFX anchor without a
+  scratch on a path `update()` reaches, so `tests/ability_vfx_frame_cost.test.ts`
+  caught a real per-frame allocation and it is fixed at the source rather than
+  declared a one-shot it is not (that guard also named `drawStunStars`, which
+  upstream renamed to `drawCcBand`). Upstream's new `tests/ci_changed_base.test.ts`
+  fakes a `rev-parse --verify <ref>^{commit}` probe, but this fork's
+  `resolveSelectBase` deliberately uses `rev-list`, because the gate spawns
+  through cmd.exe on win32 where `^` is the escape character. And
+  `src/main.ts` is about 1,400 lines shorter here than upstream, so the
+  monolith ratchet's ceiling was handing it that much free growth.
+- **The portrait manifest needed a new kind of write, not a rerender.** The
+  browser render bundle's import graph reaches the world and content modules, so
+  this fork's bundle digest can never equal upstream's and
+  `docs/achievements/placeholder-art-completion-2026-08-09/mob-portrait-source-manifest.json`
+  is permanently stale against it. Re-accepting demanded a receipt from a
+  230-portrait rerender, and a rerender only reproduces the committed bytes on
+  the platform that produced them: running it here rewrote every portrait, which
+  is reshipping art nobody meant to change. `assertManifestWriteAuthorized` now
+  lets through exactly the drift its own diff explainer already classifies as
+  bookkeeping (no portrait row, no tracked render input and no shipped byte
+  moved, only the bundle digest), with a test for the branch and for both ways of
+  abusing it. The re-accepted manifest moves three lines.
 - All 21 locales are complete with no pending rows (12,411 keys).
 
 ## What did not come across
