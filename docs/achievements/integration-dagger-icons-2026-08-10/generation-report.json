@@ -1,8 +1,8 @@
 {
   "batchId": "integration-dagger-icons-2026-08-10",
   "source": "OpenAI built-in image generation (gpt-image-2)",
-  "owner": "World of ClaudeCraft",
-  "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+  "owner": "Wildhaven",
+  "license": "Wildhaven project-generated art, project asset, rights reserved",
   "styleContract": {
     "id": "woc-item-icon-v1",
     "document": "docs/design/item-icon-art-style.md"
@@ -35,13 +35,13 @@
         {
           "path": "public/ui/items/duskfang_dirk.webp",
           "role": "style reference",
-          "provenance": "World of ClaudeCraft project-generated art",
+          "provenance": "Wildhaven project-generated art",
           "license": "Project asset, rights reserved"
         },
         {
           "path": "public/ui/items/drownedmoon_kris.webp",
           "role": "composition reference",
-          "provenance": "World of ClaudeCraft project-generated art",
+          "provenance": "Wildhaven project-generated art",
           "license": "Project asset, rights reserved"
         }
       ],
@@ -77,13 +77,13 @@
         {
           "path": "public/ui/items/duskfang_dirk.webp",
           "role": "style reference",
-          "provenance": "World of ClaudeCraft project-generated art",
+          "provenance": "Wildhaven project-generated art",
           "license": "Project asset, rights reserved"
         },
         {
           "path": "public/ui/items/drownedmoon_kris.webp",
           "role": "composition reference",
-          "provenance": "World of ClaudeCraft project-generated art",
+          "provenance": "Wildhaven project-generated art",
           "license": "Project asset, rights reserved"
         }
       ],
@@ -119,13 +119,13 @@
         {
           "path": "public/ui/items/duskfang_dirk.webp",
           "role": "style reference",
-          "provenance": "World of ClaudeCraft project-generated art",
+          "provenance": "Wildhaven project-generated art",
           "license": "Project asset, rights reserved"
         },
         {
           "path": "public/ui/items/drownedmoon_kris.webp",
           "role": "composition reference",
-          "provenance": "World of ClaudeCraft project-generated art",
+          "provenance": "Wildhaven project-generated art",
           "license": "Project asset, rights reserved"
         }
       ],
@@ -161,13 +161,13 @@
         {
           "path": "public/ui/items/duskfang_dirk.webp",
           "role": "style reference",
-          "provenance": "World of ClaudeCraft project-generated art",
+          "provenance": "Wildhaven project-generated art",
           "license": "Project asset, rights reserved"
         },
         {
           "path": "public/ui/items/drownedmoon_kris.webp",
           "role": "composition reference",
-          "provenance": "World of ClaudeCraft project-generated art",
+          "provenance": "Wildhaven project-generated art",
           "license": "Project asset, rights reserved"
         }
       ],

@@ -3,7 +3,7 @@
   "batch": {
     "id": "release-v036-skill-normalization-2026-08-10",
     "acceptedDate": "2026-08-10",
-    "owner": "World of ClaudeCraft",
+    "owner": "Wildhaven",
     "artIdentityChanged": false,
     "provenanceRuling": "Each source painting keeps the authorship, source, and license recorded by its per-class mapping.json entry. This record owns only the shipping normalization and historical supersession link."
   },

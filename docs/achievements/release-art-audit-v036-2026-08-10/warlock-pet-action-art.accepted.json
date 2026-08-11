@@ -2,12 +2,12 @@
   "schemaVersion": 1,
   "batch": "warlock-pet-action-art-2026-08-10",
   "generator": "OpenAI built-in image generation",
-  "owner": "World of ClaudeCraft",
-  "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+  "owner": "Wildhaven",
+  "license": "Wildhaven project-generated art, project asset, rights reserved",
   "mapping": {
     "path": "public/ui/skills/warlock/mapping.json",
-    "bytes": 32579,
-    "sha256": "b0cbac8be01ab327b7439d2d0202b4db143422f5955dcdc67cef42fa5e674c66",
+    "bytes": 32227,
+    "sha256": "6f76ba8d2975507e7cdb368a692b834fb2c3fab8e78f0b6514f2cc17037d5198",
     "recordFields": [
       "abilityId",
       "generatedResultPath",

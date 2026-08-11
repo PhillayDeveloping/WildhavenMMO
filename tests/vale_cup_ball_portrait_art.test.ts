@@ -17,8 +17,8 @@ function sha256(bytes: Buffer): string {
 describe('Vale Cup ball target portrait art', () => {
   it('pins the accepted generation and processing record', () => {
     const bytes = readFileSync(EVIDENCE_PATH);
-    expect(bytes.byteLength).toBe(3316);
-    expect(sha256(bytes)).toBe('93dec13c450325c580641f69d73ad2a2a1228c157e88b173ecff53f13e4dfef5');
+    expect(bytes.byteLength).toBe(3294);
+    expect(sha256(bytes)).toBe('37728896b8c4f53b96c7e2896df93adb06def4c4df6b7df077f70a988e365bce');
     const evidence = JSON.parse(bytes.toString('utf8'));
     expect(evidence).toMatchObject({
       schemaVersion: 1,

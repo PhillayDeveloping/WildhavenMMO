@@ -402,7 +402,7 @@ export function registerClassSkin({ cls, model, texturePath, suffix }) {
 /** Append an attribution row (the "Project asset" style used for generated art).
  *  Idempotent on the asset cell text. */
 export function formatCreditsRow({ assets, source }) {
-  return `| ${assets} | World of ClaudeCraft | ${source} | Project asset | With the project only |\n`;
+  return `| ${assets} | Wildhaven | ${source} | Project asset | With the project only |\n`;
 }
 
 export function appendCreditsRow({ assets, source }) {

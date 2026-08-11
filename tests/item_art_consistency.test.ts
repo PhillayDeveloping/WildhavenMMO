@@ -328,8 +328,8 @@ describe('item-art consistency accepted-art provenance', () => {
     expect(value.sourceEvidence).toEqual([
       {
         path: `${evidenceDir}/supersession-audit.json`,
-        acceptedSha256: '1277db8f1d4257c412b40c3db1e9f096d0b6544e6019b2dfbe7b56f775faf094',
-        acceptedBytes: 294_428,
+        acceptedSha256: '3e00601d640e8695b4720ffebe539895da572e23931b368794a0a44b32bfd84d',
+        acceptedBytes: 294_252,
       },
       {
         path: `${evidenceDir}/final-item-art-audit-verdict.json`,
@@ -392,8 +392,8 @@ describe('item-art consistency accepted-art provenance', () => {
       {
         chunk: 'F-main',
         path: `${evidenceDir}/chunk-f-main-generation-report.json`,
-        acceptedSha256: '76b3fa86d05ba4a2dbf448e4639daa88eea646cef5bbf90bd4e11a59bca1d9e6',
-        acceptedBytes: 583_735,
+        acceptedSha256: '0710dde314f6cf09cdbe98092d03105a4eeea10563826ecbf6392fbdc3e9036e',
+        acceptedBytes: 583_702,
         itemCount: 34,
       },
       {

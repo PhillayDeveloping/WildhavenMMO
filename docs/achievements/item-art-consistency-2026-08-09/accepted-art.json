@@ -4,8 +4,8 @@
     "id": "item-art-consistency-2026-08-09",
     "acceptedDate": "2026-08-09",
     "rasterGenerator": "OpenAI built-in image generation",
-    "owner": "World of ClaudeCraft",
-    "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+    "owner": "Wildhaven",
+    "license": "Wildhaven project-generated art, project asset, rights reserved",
     "styleContractId": "woc-item-icon-v1"
   },
   "scope": {
@@ -47,8 +47,8 @@
         "batchId": "missing-painted-icons-zone-quest-items-and-curios-2026-08-01",
         "itemIndex": 38,
         "source": "OpenAI built-in image generation",
-        "owner": "World of ClaudeCraft",
-        "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+        "owner": "Wildhaven",
+        "license": "Wildhaven project-generated art, project asset, rights reserved",
         "provenanceRecord": null
       }
     },
@@ -66,8 +66,8 @@
         "batchId": "placeholder-art-completion-weapons-2026-08-09",
         "itemIndex": 57,
         "source": "OpenAI built-in image generation",
-        "owner": "World of ClaudeCraft",
-        "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+        "owner": "Wildhaven",
+        "license": "Wildhaven project-generated art, project asset, rights reserved",
         "provenanceRecord": "docs/achievements/placeholder-art-completion-2026-08-09/"
       }
     }
@@ -75,8 +75,8 @@
   "sourceEvidence": [
     {
       "path": "docs/achievements/item-art-consistency-2026-08-09/supersession-audit.json",
-      "acceptedSha256": "1277db8f1d4257c412b40c3db1e9f096d0b6544e6019b2dfbe7b56f775faf094",
-      "acceptedBytes": 294428
+      "acceptedSha256": "3e00601d640e8695b4720ffebe539895da572e23931b368794a0a44b32bfd84d",
+      "acceptedBytes": 294252
     },
     {
       "path": "docs/achievements/item-art-consistency-2026-08-09/final-item-art-audit-verdict.json",
@@ -351,8 +351,8 @@
     {
       "chunk": "F-main",
       "path": "docs/achievements/item-art-consistency-2026-08-09/chunk-f-main-generation-report.json",
-      "acceptedSha256": "76b3fa86d05ba4a2dbf448e4639daa88eea646cef5bbf90bd4e11a59bca1d9e6",
-      "acceptedBytes": 583735,
+      "acceptedSha256": "0710dde314f6cf09cdbe98092d03105a4eeea10563826ecbf6392fbdc3e9036e",
+      "acceptedBytes": 583702,
       "itemIds": [
         "storm_core",
         "stormcallers_crown",
@@ -4630,8 +4630,8 @@
           "batchId": "placeholder-art-completion-weapons-2026-08-09",
           "itemIndex": 13,
           "source": "OpenAI built-in image generation",
-          "owner": "World of ClaudeCraft",
-          "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+          "owner": "Wildhaven",
+          "license": "Wildhaven project-generated art, project asset, rights reserved",
           "provenanceRecord": "docs/achievements/placeholder-art-completion-2026-08-09/"
         }
       },
@@ -5334,8 +5334,8 @@
           "batchId": "placeholder-art-completion-weapons-2026-08-09",
           "itemIndex": 22,
           "source": "OpenAI built-in image generation",
-          "owner": "World of ClaudeCraft",
-          "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+          "owner": "Wildhaven",
+          "license": "Wildhaven project-generated art, project asset, rights reserved",
           "provenanceRecord": "docs/achievements/placeholder-art-completion-2026-08-09/"
         }
       },
@@ -5750,8 +5750,8 @@
           "batchId": "missing-painted-icons-armor-and-jewelry-2026-08-01",
           "itemIndex": 11,
           "source": "OpenAI built-in image generation",
-          "owner": "World of ClaudeCraft",
-          "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+          "owner": "Wildhaven",
+          "license": "Wildhaven project-generated art, project asset, rights reserved",
           "provenanceRecord": null
         }
       },
@@ -6966,8 +6966,8 @@
           "batchId": "placeholder-art-completion-weapons-2026-08-09",
           "itemIndex": 57,
           "source": "OpenAI built-in image generation",
-          "owner": "World of ClaudeCraft",
-          "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+          "owner": "Wildhaven",
+          "license": "Wildhaven project-generated art, project asset, rights reserved",
           "provenanceRecord": "docs/achievements/placeholder-art-completion-2026-08-09/"
         }
       },
@@ -8790,8 +8790,8 @@
           "batchId": "missing-painted-icons-armor-and-jewelry-2026-08-01",
           "itemIndex": 26,
           "source": "OpenAI built-in image generation",
-          "owner": "World of ClaudeCraft",
-          "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+          "owner": "Wildhaven",
+          "license": "Wildhaven project-generated art, project asset, rights reserved",
           "provenanceRecord": null
         }
       },
@@ -10742,8 +10742,8 @@
           "batchId": "missing-painted-icons-zone-quest-items-and-curios-2026-08-01",
           "itemIndex": 38,
           "source": "OpenAI built-in image generation",
-          "owner": "World of ClaudeCraft",
-          "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+          "owner": "Wildhaven",
+          "license": "Wildhaven project-generated art, project asset, rights reserved",
           "provenanceRecord": null
         }
       },
@@ -10966,8 +10966,8 @@
           "batchId": "missing-painted-icons-armor-and-jewelry-2026-08-01",
           "itemIndex": 34,
           "source": "OpenAI built-in image generation",
-          "owner": "World of ClaudeCraft",
-          "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+          "owner": "Wildhaven",
+          "license": "Wildhaven project-generated art, project asset, rights reserved",
           "provenanceRecord": null
         }
       },
@@ -11606,8 +11606,8 @@
           "batchId": "missing-painted-icons-armor-and-jewelry-2026-08-01",
           "itemIndex": 42,
           "source": "OpenAI built-in image generation",
-          "owner": "World of ClaudeCraft",
-          "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+          "owner": "Wildhaven",
+          "license": "Wildhaven project-generated art, project asset, rights reserved",
           "provenanceRecord": null
         }
       },
@@ -11638,8 +11638,8 @@
           "batchId": "missing-painted-icons-armor-and-jewelry-2026-08-01",
           "itemIndex": 43,
           "source": "OpenAI built-in image generation",
-          "owner": "World of ClaudeCraft",
-          "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+          "owner": "Wildhaven",
+          "license": "Wildhaven project-generated art, project asset, rights reserved",
           "provenanceRecord": null
         }
       },
@@ -11830,8 +11830,8 @@
           "batchId": "placeholder-art-completion-weapons-2026-08-09",
           "itemIndex": 111,
           "source": "OpenAI built-in image generation",
-          "owner": "World of ClaudeCraft",
-          "license": "World of ClaudeCraft project-generated art, project asset, rights reserved",
+          "owner": "Wildhaven",
+          "license": "Wildhaven project-generated art, project asset, rights reserved",
           "provenanceRecord": "docs/achievements/placeholder-art-completion-2026-08-09/"
         }
       },
