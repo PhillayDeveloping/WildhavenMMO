@@ -34,6 +34,12 @@ means Wildhaven's own release, tagged on `main` after the sync lands. (The
 v0.35.0 sync predates this: its upstream tag was moved aside to
 `upstream/v0.35.0` when the Wildhaven release took the bare name.)
 
+**An explicit `--tags` overrides that config.** `git fetch upstream --tags`
+adds `refs/tags/*:refs/tags/*` on top of the configured refspec, so it writes
+upstream's commit into the bare name anyway (it only declines the ones that
+already exist). The v0.36.0 sync did this and had to `git tag -d v0.36.0` by
+hand. That is why the routine below is a bare `git fetch upstream`.
+
 ## The routine
 
 One sync, one branch.
