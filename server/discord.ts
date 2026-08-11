@@ -161,7 +161,11 @@ export function autoJoinEnabled(cfg: DiscordConfig): boolean {
   return cfg.botToken !== '' && isDiscordSnowflake(cfg.guildId);
 }
 
-/** Whether the feature is configured. Read by the route table + client UI gate. */
+/** Whether the feature is configured. Read by the route table + the client UI gate:
+ *  the public status document advertises it so the AUTH screen, which has no bearer
+ *  token yet, can decide whether to render a Discord sign-in button at all. Upstream
+ *  dropped this export in v0.36.0 once its own last caller went away; this fork still
+ *  has one (server/leaderboard.ts `discordEnabled` runtime dep, fed from main.ts). */
 export function discordEnabled(): boolean {
   return discordConfig() !== null;
 }

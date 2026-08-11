@@ -1,8 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { BUILTIN_WORLD, MOBS } from '../src/sim/data';
+import { MOBS } from '../src/sim/data';
 import { createMob } from '../src/sim/entity';
 import { Sim } from '../src/sim/sim';
-import type { Entity, WorldContent } from '../src/sim/types';
+import type { Entity } from '../src/sim/types';
+import { EMPTY_TEST_WORLD } from './sim_shared';
 
 // Maintainer report (Twin Gavels): both stuns spent, then the second charge
 // waited a WHOLE extra cooldown behind the first. Charge-limited abilities now
@@ -17,28 +18,19 @@ import type { Entity, WorldContent } from '../src/sim/types';
 // terrain-height sampling, and a profile put most of the tick under
 // world.ts groundHeight, which is what pushed this case past vitest's 20s
 // testTimeout. The authoritative server never pays that either: its Sim opts
-// into idleMobTickRadius (server/game.ts, #2703). So drop the unrelated spawn
-// collections and keep the real classes, items, mobs and terrain, the standard
-// subsystem-sized fixture (tests/arena.test.ts,
-// tests/fire_short_fight_tuning.test.ts). Terrain is untouched: the camp
-// flattening in world.ts terrainHeightUnpadded reads the CAMPS content table,
-// not the active WorldContent, so this trims spawns only.
-const CHARGE_TEST_WORLD: WorldContent = {
-  ...BUILTIN_WORLD,
-  camps: [],
-  npcs: {},
-  groundObjects: [],
-};
+// into idleMobTickRadius (server/game.ts, #2703). So this suite runs on the
+// shared empty world fixture instead (tests/sim_shared.ts), which drops the
+// ambient spawn collections outright.
 
 function setup(): { sim: Sim; p: Entity; mob: Entity } {
   const sim = new Sim({
     seed: 7,
     playerClass: 'paladin',
     autoEquip: true,
-    world: CHARGE_TEST_WORLD,
+    world: EMPTY_TEST_WORLD,
   });
-  sim.setPlayerLevel(10);
-  expect(sim.applyTalents({ spec: null, rows: { 8: 'pal_r8_fist_of_justice' } })).toBe(true);
+  sim.setPlayerLevel(11);
+  expect(sim.applyTalents({ spec: null, rows: { 11: 'pal_r11_double_sentence' } })).toBe(true);
   const p = sim.player;
   const mob = createMob(20_000, MOBS.forest_wolf, 8, {
     x: p.pos.x + 3,
@@ -63,7 +55,7 @@ function tickSeconds(sim: Sim, p: Entity, seconds: number): void {
   }
 }
 
-describe('parallel per-charge recharge (Twin Gavels)', () => {
+describe('parallel per-charge recharge (Double Sentence)', () => {
   it('each spent charge returns its own cooldown after ITS spend', () => {
     const { sim, p } = setup();
     sim.castAbility('hammer_of_justice');
@@ -91,7 +83,7 @@ describe('parallel per-charge recharge (Twin Gavels)', () => {
       seed: 7,
       playerClass: 'paladin',
       autoEquip: true,
-      world: CHARGE_TEST_WORLD,
+      world: EMPTY_TEST_WORLD,
     });
     const anySim = sim as unknown as {
       diminishedCrowdControlDuration(

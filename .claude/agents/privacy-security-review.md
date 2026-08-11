@@ -43,14 +43,23 @@ any file:
    files (plus anything they directly touch). Do not read the whole codebase.
 
 Once in scope, review the staged or recent changes by running `git diff --cached` (or
-`git diff HEAD~1` if already committed). Then systematically check every rule below. Focus
-your reading on `server/` (`game.ts`, `db.ts`, `auth.ts`, `social_db.ts`, `admin.ts`,
-`admin_db.ts`, `moderation_db.ts`, `ratelimit.ts`, `turnstile.ts`, `ws_buffer.ts`,
-`http_util.ts`, `static_cache.ts`) plus the newer auth / secret / economy / privacy surfaces
-(`oauth.ts` / `oauth_db.ts`, `totp.ts`, `card_routes.ts`, `claudium.ts`,
-`account.ts`, the `email/` modules, `internal.ts`, `ip_block.ts` / `ip_block_db.ts`,
-`avatar.ts`, `native_attestation.ts`, `web_login_guard.ts`, the `bot_detector/` modules) and
-`src/admin/`, but check any file the diff touches.
+`git diff HEAD~1` if already committed). Then systematically check every rule below. Do NOT
+work from a memorized file inventory (it rots as `server/` grows): `ls server/` and read what
+the diff actually touches, plus anything those files directly call. The security-relevant
+surfaces cluster into: core authority and persistence (`game.ts`, `db.ts`, `auth.ts`); the
+HTTP/WS plumbing (`server/http/`, `ws_buffer.ts`, `http_util.ts`, `static_cache.ts`,
+`ratelimit.ts`, `turnstile.ts`); auth and identity (OAuth, TOTP, the Apple/GitHub/Discord
+links, `native_attestation.ts`, `web_login_guard.ts`, the `email/` and `bot_detector/`
+modules); platform auth (`server/steam/` and `server/epic/` ticket auth + web APIs,
+`desktop_login.ts` / `desktop_login_routes.ts`); real-money and in-game economy
+(`card_routes.ts`, `claudium.ts` / `claudium_proxy.ts`, and the client's
+`src/net/stripe_checkout.ts`); telemetry egress (`server/parse/`, especially `shipper.ts`);
+moderation and admin (`admin.ts`, `admin_db.ts`, `moderation_db.ts`, `ip_block*.ts`,
+`content_moderation_db.ts`); and the daily-rewards prize path (the `daily_rewards*.ts`
+modules plus the excluded-accounts moderation view). `src/admin/` is in scope too. This fork
+ships no wallet and no chain integration, so there is no wallet/Solana cluster to review:
+its reappearance is a finding, not a surface (`tests/no_web3_regression.test.ts`). Always
+check any file the diff touches, whether or not it appears above.
 
 **The REST pipeline seam.** New REST endpoints are `RouteDef` modules registered in
 `server/http/registry.ts`, never inline handlers in `server/main.ts` (the inline ladder is
@@ -133,6 +142,12 @@ production.
   paid stamp are ONE statement, so a racing second join cannot collect twice, and delivery
   re-checks the moderation predicates. Flag a read-then-write split, a dropped eligibility
   fence, or any client-supplied prize amount.
+- Platform ticket auth (`server/steam/` and `server/epic/`): session tickets are verified
+  server-side against the platform web API, never trusted from the client; platform web API
+  keys are env-sourced, never logged, never bundled. Desktop login
+  (`server/desktop_login.ts` / `desktop_login_routes.ts`) is a code-based browser handoff:
+  codes must be crypto-random, single-use, and short-lived, and the status poll must not
+  leak another user's result. Flag a guessable or reusable handoff code.
 
 ### 5. Parameterized SQL (CRITICAL)
 
@@ -179,6 +194,13 @@ production.
   `timingSafeEqual` (not `===`); flag a missing or non-constant-time check.
 - Account self-service (`server/account.ts`) is bearer-auth and account-scoped; flag any route
   that mutates by a client-supplied account id without re-resolving the bearer (IDOR).
+- Daily-rewards payouts (the `daily_rewards*.ts` modules) resolve server-side against the
+  schedule and the excluded-accounts moderation view; flag a client-influenced payout amount,
+  an exclusion bypass, or a grant path that skips the seed gate.
+- Real-money purchases ride the external Claudium service (`server/claudium_proxy.ts`,
+  `src/net/stripe_checkout.ts`); the repo holds no card data. Flag any change that credits a
+  purchase from client-supplied data instead of the service confirmation, or that persists
+  card/payment details in this repo.
 
 ### 8. Account-Data Privacy & Logging (WARNING)
 
@@ -194,6 +216,9 @@ production.
   IP to the console, not about storing it.)
 - Treat IP block records (`server/ip_block_db.ts`, the `blocked_ips` table) and email addresses
   / tokens (`server/email/`) as PII: never returned to another player, never logged in full.
+- Telemetry egress (`server/parse/`, shipped off-host by `shipper.ts`) carries aggregate
+  gameplay facts only: flag any PII (IP, email, token, or an account identifier where an
+  aggregate would do) added to a shipped payload, and any new egress destination.
 
 ### 9. Static Serving & HTTP Safety (WARNING)
 
