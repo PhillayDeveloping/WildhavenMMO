@@ -138,8 +138,6 @@ describe('exclude lists are pinned and real (anti-loosening guard)', () => {
       'equippedItems',
       'firebottleCdRemaining', // derived display copy of PlayerMeta.firebottleReadyAt
       'guild',
-      'holderBalance',
-      'holderTier',
       'mainhandItemId',
       'modularAppearance',
       'name',
@@ -199,8 +197,6 @@ describe('exclude lists are pinned and real (anti-loosening guard)', () => {
     const optionalEntity = new Set([
       'netUpdatedAt',
       'netInterval',
-      'holderTier',
-      'holderBalance',
       'damageHistory', // Rewind's ring; only present after a player takes damage
       'castConsumedEmpower', // set only while a cast that consumed an empower resolves
       'castRadiantResonance', // set only while Dawn's Embrace has reserved the proc

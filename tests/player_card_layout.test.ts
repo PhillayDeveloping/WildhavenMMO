@@ -6,10 +6,14 @@
 // original tight geometry.
 import { describe, expect, it } from 'vitest';
 import {
+  CARD_H,
   cardTitleLayout,
   DEV_BADGE_CY,
   DEV_BADGE_R,
   FOOTER_BAND_TOP,
+  FOOTER_BASELINE,
+  FOOTER_REFERRAL_BASELINE,
+  FOOTER_REFERRAL_FONT_PX,
   GEAR_Y,
   gearLastRowNameBaseline,
   gearPanelHeight,
@@ -61,6 +65,18 @@ describe('card_layout (the pure reflow gate for a fully populated card)', () => 
   it('the gear panel never runs into the footer band below it', () => {
     const gearBottom = GEAR_Y + gearPanelHeight(5);
     expect(gearBottom).toBeLessThan(FOOTER_BAND_TOP);
+  });
+
+  it('the footer band top really is the footer text, not a literal beside it', () => {
+    // The clearance case above is only worth anything while its right-hand
+    // side tracks what drawFooter actually paints. Upstream's band top came
+    // from the holder badge circle the painter drew there; this fork draws no
+    // badge, so the band is derived from the two footer lines instead, and
+    // player_card.ts reads the same constants. Pin the derivation so a bare
+    // literal cannot creep back in and leave the case green over nothing.
+    expect(FOOTER_BAND_TOP).toBe(FOOTER_REFERRAL_BASELINE - FOOTER_REFERRAL_FONT_PX);
+    expect(FOOTER_REFERRAL_BASELINE).toBeLessThan(FOOTER_BASELINE);
+    expect(FOOTER_BASELINE).toBeLessThan(CARD_H);
   });
 
   it('a fewer-slot gear panel (minimal card, no offhand) shrinks with the content', () => {

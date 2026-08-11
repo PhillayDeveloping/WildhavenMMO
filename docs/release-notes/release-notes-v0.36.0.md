@@ -161,6 +161,26 @@ Carried forward, still open:
 
 New with this release:
 
+- **The parse ingest transport rule got looser upstream, and the sync carries
+  that.** `server/parse/flags.ts` used to reject a cleartext ingest URL unless
+  it was loopback; v0.36.0 widened the exemption to any RFC1918 address, so the
+  parse shared secret can now ride plain HTTP across a private network segment.
+  It is off by default (the whole recorder is env-gated) and no secret is
+  logged, but any host on that segment can read the bearer. Whoever turns the
+  recorder on should terminate TLS at the parse service rather than lean on the
+  private-address exemption. Left as upstream shipped it so the sync's diff
+  stays a merge; changing it is its own change.
+- **`GET /api/referrals` carries no rate-limit policy.** It declares
+  `[activeGuard]` and then does two database reads per call. Inherited verbatim
+  from upstream, but it now lives in a fork-owned module
+  (`server/card_routes.ts`, this fork's rename of upstream's `wallet.ts`), so it
+  is this fork's to fix.
+- **The SFX export suite's skip is wider than its reason.** v0.35.1 wrapped the
+  whole byte-determinism case in `it.skipIf(!canRunPosixShell())` because part
+  of it runs the artifact's POSIX `install.sh`. On a host without `sh` that also
+  drops the bundle determinism, runtime-pack, per-blob checksum, and
+  draft-leak assertions, none of which need a shell. CI is Linux, so the
+  coverage is intact where it counts; splitting the case is the fix.
 - **Two guide FAQ answers still describe a token this fork does not have.**
   `guide.home.faq.a2` and `guide.faqPage.a2` answer "do I need a crypto wallet"
   with "no, the optional community token only adds cosmetic flair and a share of

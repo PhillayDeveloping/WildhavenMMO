@@ -90,15 +90,22 @@ export function gearLastRowNameBaseline(itemCount: number, panelY: number = GEAR
 }
 
 // The footer band at the bottom of the right column: unlike stats/gear it never
-// reflows vertically, since the footer's referral/CTA text shares its row and
-// that boundary is unaffected by how much gear/stat content is shown. It is the
-// hard floor the growing gear panel above must stay clear of.
+// reflows vertically, since the footer's referral and CTA lines share its row
+// and that boundary is unaffected by how much gear/stat content is shown. It is
+// the hard floor the growing gear panel above must stay clear of.
 //
-// Upstream anchors a $WOC holder badge here (centre y=575, r=30) and derives the
-// band top from it. This fork ships no wallet and draws no such badge, so the
-// boundary is stated directly at the same y, which keeps the card's geometry
-// byte-identical to the upstream layout it was tuned against.
-export const FOOTER_BAND_TOP = 545;
+// Upstream anchors a $WOC holder badge here and derives the band top from the
+// badge circle. This fork draws no such badge, so the band is derived from the
+// only thing left in it, the two footer text lines, and `drawFooter` reads these
+// same constants. That is the point: a band top written as a bare literal here
+// would stop tracking the painter the moment either baseline moved, and the
+// gear-clearance pin over it would go quietly dead.
+export const FOOTER_BASELINE = CARD_H - 26;
+export const FOOTER_REFERRAL_BASELINE = FOOTER_BASELINE - 22;
+// The referral line's type size; a baseline sits on the ink's bottom, so the
+// band starts roughly one em above it.
+export const FOOTER_REFERRAL_FONT_PX = 19;
+export const FOOTER_BAND_TOP = FOOTER_REFERRAL_BASELINE - FOOTER_REFERRAL_FONT_PX;
 
 /** Where the title line sits on the header, or null when nothing may draw.
  *  Pure (no canvas): the title now owns its own row below the realm line, so

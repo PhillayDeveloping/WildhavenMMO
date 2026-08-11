@@ -90,14 +90,15 @@ describe('inspect_window: thin painter, deps-only Hud access', () => {
 });
 
 describe('inspect_window: the Curator standing surfaces', () => {
-  it('renders the sigil badge AFTER the three older ones, in the same card', () => {
-    // Array/append ORDER is a contract here: the four badge rows are string
+  it('renders the sigil badge AFTER the two older ones, in the same card', () => {
+    // Array/append ORDER is a contract here: the three badge rows are string
     // concatenation inside .inspect-card, so the sigil landing before devHtml
     // would silently re-rank the column. Pin the sequence, not just presence.
+    // (Upstream has a fourth row above these, the $WOC holder badge; this fork
+    // ships no wallet, so the column starts at Discord.)
     const card = code.slice(code.indexOf('<div class="inspect-card">'));
     const order = [
       'this.curatorLineHtml(model.curator)',
-      'this.holderHtml(model.badges.holder)',
       'this.discordHtml(model.badges.discord)',
       'this.devHtml(model.badges.dev)',
       'this.curatorHtml(model.badges.curator)',
@@ -108,7 +109,14 @@ describe('inspect_window: the Curator standing surfaces', () => {
 
   it('reuses the shared .inspect-holder badge family for the sigil (no bespoke row)', () => {
     const curator = code.slice(code.indexOf('private curatorHtml('));
-    const body = curator.slice(0, curator.indexOf('private holderHtml('));
+    // End-anchored on the method that FOLLOWS curatorHtml in this fork.
+    // Upstream anchors on `private holderHtml(`, which no longer exists here,
+    // and an indexOf miss returns -1: `slice(0, -1)` would silently widen the
+    // body to the whole rest of the file and the assertions below would stop
+    // proving the sigil row is built inside curatorHtml at all.
+    const end = curator.indexOf('private discordHtml(');
+    expect(end, 'curatorHtml must be followed by discordHtml').toBeGreaterThan(0);
+    const body = curator.slice(0, end);
     expect(body).toContain('<div class="inspect-holder">');
     expect(body).toContain('inspect-holder-text');
     expect(body).toContain('inspect-holder-name');

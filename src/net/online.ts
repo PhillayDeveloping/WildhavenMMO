@@ -2836,7 +2836,8 @@ export class ClientWorld implements IWorld {
         e.devMergedPrs = typeof w.dvc === 'number' ? w.dvc : undefined; // merged-PR count
         e.githubLogin = typeof w.dgl === 'string' ? w.dgl : undefined; // GitHub login
         // Curator standing (cosmetic, server-computed): rank plus the
-        // character-scoped completion pair. Same split as ht/hb above: the rank
+        // character-scoped completion pair. The same split the sibling tier
+        // fields use: the rank
         // defaults to 0 (unranked) and the pair stays undefined, so an identity
         // record that omits them RESETS a previously ranked mirror. wireCount
         // bounds each read: the sibling decodes tolerate loose numbers, but the
@@ -4820,8 +4821,8 @@ export class ClientWorld implements IWorld {
   }
   // Reads the EXISTING public character sheet, the same one behind the
   // unauthenticated /c/:name page, so a chat-name lookup exposes nothing that
-  // was not already crawlable. The richer in-view inspect card (
-  // Discord/GitHub flair, gear) stays on the proximity-gated entity wire.
+  // was not already crawlable. The richer in-view inspect card (Discord/GitHub
+  // flair, Curator standing, gear) stays on the proximity-gated entity wire.
   async characterProfile(name: string): Promise<CharacterProfile | null> {
     const wanted = name.trim();
     if (!wanted) return null;

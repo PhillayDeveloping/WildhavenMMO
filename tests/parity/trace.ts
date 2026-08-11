@@ -177,8 +177,6 @@ export const ENTITY_EXCLUDE: ReadonlySet<string> = new Set([
   'weaponSkinId', // render-only resolved weapon-skin mirror
   'equippedItems', // render-only mirror for inspect; sim never reads it for gameplay
   'equippedInstances', // render-only mirror (Enchanting); the sim reads the SOURCE (meta.equipmentInstance), never this
-  'holderTier', // cosmetic wallet flair; sim never reads it
-  'holderBalance',
   'stealthed', // derived cache of auras.some(a => a.kind === 'stealth'); auras is sampled
   // Rewind's per-player damage-loss ring (combat/damage_history.ts): a runtime-only
   // accumulator, never serialized or wired, rebuilt deterministically from dealDamage

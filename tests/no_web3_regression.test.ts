@@ -1,3 +1,4 @@
+import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -30,11 +31,15 @@ const ROOT = join(fileURLToPath(new URL('.', import.meta.url)), '..');
 
 /** Package names that only exist to talk to a chain or a wallet. */
 const FORBIDDEN_DEPENDENCIES = [
-  /^@solana\//,
+  // `@solana(-|/)` on purpose: the mobile wallet adapter publishes under the
+  // HYPHENATED org `@solana-mobile/`, which a `@solana/`-only pattern misses.
+  /^@solana(-|\/)/,
   /^@wallet-standard\//,
   /^@reown\//,
   /^@walletconnect\//,
   /^@web3modal\//,
+  /^@coral-xyz\//,
+  /^@metaplex-foundation\//,
   /^web3$/,
   /^ethers$/,
   /^wagmi$/,
@@ -47,17 +52,48 @@ const FORBIDDEN_DEPENDENCIES = [
 /**
  * Paths whose very existence means a web3 surface came back. Checked as a
  * substring of the repo-relative POSIX path.
+ *
+ * Swept TWICE, and the second sweep is the load-bearing one. The `.ts`-only
+ * walk below reaches `SOURCE_DIRS` and nothing else, which left five of these
+ * needles unable to fire at all: the four Android ones target `.kt`/`.java`/
+ * `.xml` under `android/`, and `wallet_e2e` targets a `.mjs`. A sync could
+ * restore upstream's Solana-store Android flavor, `electron/wallet_handoff.cjs`,
+ * `scripts/wallet_e2e.mjs`, or `public/wallet-handoff.html` (which `public/`
+ * ships VERBATIM to the live site) and this file would stay green. The
+ * `git ls-files` sweep closes that: whole repo, every extension.
+ *
+ * Needles are precise module stems rather than bare words on purpose. A bare
+ * `wallet` needle would flag the Claudium currency icons this fork keeps
+ * (`public/claudium/icons/icon_wallet*.webp`), and a bare `woc_` would flag the
+ * kept `src/ui/woc_store_view.ts` and the `.codex/agents/woc_*.toml` configs,
+ * which is how a guard earns an allowlist and then stops being read.
  */
 const FORBIDDEN_PATHS = [
   'solanaStore',
   'SolanaStore',
   'native_solana',
   'wallet_balance',
-  'wallet_connection',
+  'wallet_capability',
+  // Matches upstream's `wallet_connection*` AND its `wallet_connect.ts`, which
+  // the longer needle alone missed.
+  'wallet_connect',
   'wallet_handoff',
+  'wallet-handoff',
+  'wallet_link',
+  'wallet_platform',
+  'wallet_resume',
   'wallet-return',
   'wallet_e2e',
+  'desktop_wallet',
+  'mobile_wallet',
+  // The bare module names, anchored on the separator so `icon_wallet.webp` and
+  // friends stay out: upstream ships both `server/wallet.ts` and `src/net/wallet.ts`.
+  '/wallet.ts',
+  'woc_balance',
   'seeker_entitlement',
+  'seeker_genesis',
+  'seeker_ownership',
+  'seeker_rpc',
   'holder_tier',
   'android_seeker',
   'MwaAuthorization',
@@ -88,6 +124,26 @@ const FORBIDDEN_IMPORT_RE =
  * the same upstream module and would return through the same silent path.
  */
 const FORBIDDEN_CODE_TOKENS = [
+  // The v0.36.0 sync's own additions. Every one of these carried a place where
+  // upstream EXTENDED the wallet feature into code this fork keeps, so each was
+  // resolved by hand at the merge and each is exactly what a later sync would
+  // hand back silently. `holderTier`/`holderBalance` are NOT here: dead prose
+  // and one screenshot target still spell them, so they ride the counted
+  // baseline below instead of a zero pin.
+  'holderInfoForPubkey',
+  // Not `holderTierForBalance`: it CONTAINS `holderTier`, which the counted
+  // baseline below already covers, and dev_tier.ts's comment naming upstream's
+  // sibling ladder is exactly the prose that baseline exists for.
+  'holderBadgeTextLayout',
+  'devTierPids',
+  'woctier',
+  'handleWocBalance',
+  'parseWocBalanceQuery',
+  'configureWalletRuntime',
+  'WALLET_LINK_POLICY',
+  'WOC_BALANCE_POLICY',
+  'seekerSpinVerifyRateLimited',
+  'SEEKER_SPIN_VERIFY_MAX_PER_MINUTE',
   'prizeUsd',
   'signedTransaction',
   'claimPayoutResend',
@@ -139,6 +195,17 @@ const KNOWN_LEGACY_SITES: Record<string, number> = {
   tx_signature: 11,
   signed_transaction: 7,
   daily_reward_payout_attempts: 3,
+  // The v0.36.0 sync's residue, counted rather than zero-pinned for the same
+  // reason as the columns above: what is left in the SCANNED corpus is one
+  // comment in dev_tier.ts naming the sibling ladder upstream still has.
+  //
+  // Read the zeroes honestly. This scan is `.ts` only (see sourceFiles below),
+  // and scripts/pr_shot_targets.mjs still stages a holder-tier screenshot
+  // target whose holder variants are dead while its dev-badge variants are
+  // live; retiring it is its own change and is invisible here. The pins are
+  // still worth having: a wallet field coming BACK would come back in a `.ts`.
+  holderTier: 1,
+  holderBalance: 0,
 };
 
 const SOURCE_DIRS = ['src', 'server', 'scripts', 'tests', 'bot', 'electron'];
@@ -273,6 +340,97 @@ describe('web3 removal survives an upstream sync', () => {
       `Removed web3 modules reappeared:\n${offenders.join('\n')}\n` +
         'An upstream sync restores these whenever we deleted a file they only edited.',
     ).toEqual([]);
+  });
+
+  it('ships none of them anywhere in the repository, at any extension', () => {
+    // The sweep above reaches SOURCE_DIRS and `.ts` only. That is not where the
+    // most dangerous restorations would land: upstream's Solana store is Kotlin,
+    // Java and XML under android/, its wallet handoff is a `.cjs` under
+    // electron/ plus an `.html` under public/ (which ships VERBATIM to the live
+    // site), and its wallet E2E driver is a `.mjs` under scripts/. Every one of
+    // those would come back through the exact silent path this whole file
+    // exists to catch, and every one of them is invisible to a `.ts` walk.
+    //
+    // git ls-files rather than a directory walk on purpose: the question is
+    // what this repository SHIPS, which is precisely its tracked set, and an
+    // untracked scratch file is not a regression.
+    const tracked = execFileSync('git', ['-C', ROOT, 'ls-files'], {
+      encoding: 'utf8',
+      maxBuffer: 64 * 1024 * 1024,
+    })
+      .split('\n')
+      .map((line) => line.trim())
+      .filter(Boolean);
+    // Vacuity floor: a broken `git ls-files` returning nothing would make this
+    // assertion pass over an empty corpus.
+    expect(tracked.length, 'git ls-files returned no tracked files').toBeGreaterThan(1000);
+    const offenders = tracked.filter((path) =>
+      FORBIDDEN_PATHS.some((needle) => path.includes(needle)),
+    );
+    expect(
+      offenders,
+      `Removed web3 files reappeared outside the .ts source scan:\n${offenders.join('\n')}\n` +
+        'Check android/, electron/, public/ and scripts/ before assuming this is prose.',
+    ).toEqual([]);
+
+    // The real tree is clean, so nothing above can tell a working matcher from
+    // a needle list that stopped matching. Drive the SAME predicate over the
+    // exact upstream paths this fork deleted, at the extensions the `.ts` walk
+    // cannot see, and require every one of them to be caught.
+    const upstreamRestorations = [
+      'android/app/src/solanaStore/java/com/worldofclaudecraft/MwaAuthorizationActivity.kt',
+      'android/app/src/solanaStore/res/values/strings.xml',
+      'electron/wallet_handoff.cjs',
+      'public/wallet-handoff.html',
+      'public/wallet-return.js',
+      'scripts/wallet_e2e.mjs',
+      'src/wallet_handoff.css',
+      'server/wallet.ts',
+      'server/wallet_link.ts',
+      'server/woc_balance.ts',
+      'server/seeker_rpc_transport.ts',
+      'src/net/wallet.ts',
+      'src/net/wallet_connect.ts',
+      'src/net/mobile_wallet_deeplink.ts',
+      'src/ui/mobile_wallet_launcher.ts',
+    ];
+    const missed = upstreamRestorations.filter(
+      (path) => !FORBIDDEN_PATHS.some((needle) => path.includes(needle)),
+    );
+    expect(missed, `these upstream paths would return unnoticed:\n${missed.join('\n')}`).toEqual(
+      [],
+    );
+
+    // And the matcher must not be so loose that it condemns what this fork
+    // deliberately KEEPS. Claudium is an ordinary in-game currency here.
+    const kept = [
+      'public/claudium/icons/icon_wallet.webp',
+      'src/ui/woc_store_view.ts',
+      'src/net/stripe_checkout.ts',
+      '.codex/agents/woc_security.toml',
+    ];
+    const falsePositives = kept.filter((path) =>
+      FORBIDDEN_PATHS.some((needle) => path.includes(needle)),
+    );
+    expect(
+      falsePositives,
+      `the needle list condemns files this fork keeps:\n${falsePositives.join('\n')}`,
+    ).toEqual([]);
+  });
+
+  it('ships no $WOC holder-tier field on the identity wire', () => {
+    // The wire keys are two letters, so no token scan can see them: `ht` and
+    // `hb` match everywhere. Assert on the ONE function that writes them
+    // instead. Upstream emits both from identityFields; a sync that hands them
+    // back would put the badge on every nearby player's nameplate again.
+    const game = readFileSync(join(ROOT, 'server/game.ts'), 'utf8');
+    const start = game.indexOf('function identityFields(');
+    expect(start, 'identityFields moved or was renamed in server/game.ts').toBeGreaterThan(0);
+    const body = game.slice(start, game.indexOf('\n}', start));
+    expect(body).toContain('out.dt'); // the sibling that proves this really is the emitter
+    for (const key of ['out.ht', 'out.hb']) {
+      expect(body.includes(key), `identityFields emits ${key} again`).toBe(false);
+    }
   });
 
   it('carries no payout-runner or wallet-UI identifiers', () => {

@@ -27,6 +27,9 @@ import {
   DEV_BADGE_CX,
   DEV_BADGE_CY,
   DEV_BADGE_R,
+  FOOTER_BASELINE,
+  FOOTER_REFERRAL_BASELINE,
+  FOOTER_REFERRAL_FONT_PX,
   GEAR_ROW_H,
   GEAR_W,
   GEAR_Y,
@@ -507,7 +510,7 @@ function drawFooter(
   data: PlayerCardData,
   logo: HTMLImageElement | null,
 ): void {
-  const y = CARD_H - 26;
+  const y = FOOTER_BASELINE;
   // Brand mark: the full logo lockup, else a plain text wordmark, top-right,
   // right-aligned against the card's right margin, above the stats panel.
   if (logo && logo.width > 0) {
@@ -526,7 +529,7 @@ function drawFooter(
   // block now occupying the bottom-left.
   ctx.textAlign = 'right';
   ctx.fillStyle = COL.cream;
-  ctx.font = `600 19px ${BODY_FONT}`;
+  ctx.font = `600 ${FOOTER_REFERRAL_FONT_PX}px ${BODY_FONT}`;
   const referralLine = data.referralCount
     ? t('playerCard.footerHandleWithRecruits', {
         handle: data.referralHandle,
@@ -537,7 +540,7 @@ function drawFooter(
     : t('playerCard.footerHandle', { handle: data.referralHandle });
   // Clamped so a long referral handle plus a large recruited count can never
   // run unbounded past the card's left frame.
-  fillTextClamped(ctx, referralLine, 1168, y - 22, 600);
+  fillTextClamped(ctx, referralLine, 1168, FOOTER_REFERRAL_BASELINE, 600);
   ctx.fillStyle = COL.goldDim;
   ctx.font = `400 16px ${BODY_FONT}`;
   fillTextClamped(ctx, t('playerCard.footerCta', { siteUrl: data.siteUrl }), 1168, y, 360);
