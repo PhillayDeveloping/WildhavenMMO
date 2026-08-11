@@ -2,7 +2,7 @@ import { spawnSync } from 'node:child_process';
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import {
   type DriftManifest,
@@ -192,6 +192,55 @@ describe('mob portrait source manifest', () => {
     ).toThrow(/missing changed row mob_001/);
   });
 
+  it('lets a bundle-only drift through unreceipted, and nothing else', () => {
+    // The one unreceipted write: every portrait row, every tracked render input
+    // and every shipped byte is identical and only the browser bundle's own
+    // digest moved, which its import graph drags along behind any gameplay edit.
+    // Without this the fingerprint conflation demands a 230-portrait rerender,
+    // and a rerender only reproduces the committed bytes on the platform that
+    // produced them, so re-accepting anywhere else silently reships fresh art.
+    const rows = Array.from({ length: 4 }, (_, index) => ({
+      id: `mob_${index}`,
+      sourceFingerprint: `source-${index}`,
+      output: { bytes: 100 + index, sha256: `output-${index}` },
+    }));
+    const base = {
+      schemaVersion: 2,
+      portraitCount: rows.length,
+      rendererFingerprint: 'renderer-a',
+      renderer: {
+        browserBundle: { bytes: 10, sha256: 'bundle-a' },
+        trackedFiles: [{ path: 'src/render/gfx.ts', bytes: 5, sha256: 'gfx-a' }],
+      },
+      portraits: structuredClone(rows),
+    };
+
+    const bundleOnly = structuredClone(base);
+    bundleOnly.rendererFingerprint = 'renderer-b';
+    bundleOnly.renderer.browserBundle = { bytes: 11, sha256: 'bundle-b' };
+    // Every row still reads as changed to the id-level check, which is exactly
+    // the conflation this branch exists to see past.
+    expect(changedPortraitIds(base, bundleOnly)).toHaveLength(rows.length);
+    expect(() =>
+      assertManifestWriteAuthorized({ previous: base, next: bundleOnly, receipt: null }),
+    ).not.toThrow();
+
+    // The exemption is not a hole. Move a tracked renderer source, or one
+    // shipped output byte, alongside the same bundle move, and the receipt is
+    // required again.
+    const alsoTracked = structuredClone(bundleOnly);
+    alsoTracked.renderer.trackedFiles[0] = { path: 'src/render/gfx.ts', bytes: 6, sha256: 'gfx-b' };
+    expect(() =>
+      assertManifestWriteAuthorized({ previous: base, next: alsoTracked, receipt: null }),
+    ).toThrow(/without a renderer receipt/);
+
+    const alsoOutput = structuredClone(bundleOnly);
+    alsoOutput.portraits[2].output = { bytes: 999, sha256: 'output-moved' };
+    expect(() =>
+      assertManifestWriteAuthorized({ previous: base, next: alsoOutput, receipt: null }),
+    ).toThrow(/without a renderer receipt/);
+  });
+
   it('accepts a renderer receipt only when every changed source and output matches', () => {
     const previous = {
       schemaVersion: 2,
@@ -233,9 +282,13 @@ describe('mob portrait source manifest', () => {
   // and reported a false staleness, and a --write from one minted a digest no other run
   // could reproduce.
   it('derives the renderer fingerprint independently of the launch directory', () => {
+    // A file:// URL, not a bare absolute path: Node's ESM loader rejects
+    // `E:\...` outright (ERR_UNSUPPORTED_ESM_URL_SCHEME, "Received protocol
+    // 'e:'"), so a POSIX-shaped import here makes this case unrunnable on
+    // Windows while looking like a real failure.
     const probe = `
       import { buildPortraitRendererContract, portraitRendererFingerprint } from ${JSON.stringify(
-        join(repoRoot, 'scripts/lib/mob_portrait_jobs.mjs'),
+        pathToFileURL(join(repoRoot, 'scripts/lib/mob_portrait_jobs.mjs')).href,
       )};
       const contract = await buildPortraitRendererContract(${JSON.stringify(repoRoot)});
       process.stdout.write(portraitRendererFingerprint(contract));

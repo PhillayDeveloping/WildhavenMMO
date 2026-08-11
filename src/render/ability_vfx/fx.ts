@@ -1802,7 +1802,10 @@ export class AbilityVfxFx implements SequencerHost {
       return;
     }
     if (style === 'compression') {
-      const at = this.anchor(entityId, 0.58);
+      // Scratch, like every other per-frame resolve in this method: drawWindup
+      // runs from update() for every winding caster, so a fresh vector here is
+      // a per-frame allocation (tests/ability_vfx_frame_cost.test.ts).
+      const at = this.anchor(entityId, 0.58, anchorScratchA);
       if (!at) return;
       const reach = 0.18 + 1.05 * (1 - p);
       const coreSize = (0.14 + 0.22 * p) * pulse * q;

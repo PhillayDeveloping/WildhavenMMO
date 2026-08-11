@@ -4,10 +4,18 @@ import { buildBiomeArgs } from '../scripts/lib/ci_changed_biome_args.mjs';
 
 type Run = (cmd: string, args: string[]) => { status: number | null; stdout?: string };
 
+// The fakes below answer `rev-list`, not upstream's `rev-parse --verify
+// <ref>^{commit}`. That is not a rewrite of the contract, it is the contract:
+// this fork's resolveSelectBase (scripts/lib/gate_discovery.mjs) probes with
+// `git rev-list -n 1 <ref> --` because the gate spawns through cmd.exe on
+// win32, where `^` is the shell escape character and `^{commit}` arrives at git
+// as `{commit}`. A fake that still answers `rev-parse` would pass while the real
+// probe the code makes went unexercised.
+
 describe('resolveChangedBaseRef', () => {
   it('honors an explicit GATE_SELECT_BASE override once it verifies', () => {
     const run: Run = (_cmd, args) => {
-      if (args[0] === 'rev-parse') return { status: 0 };
+      if (args[0] === 'rev-list') return { status: 0 };
       throw new Error(`unexpected git ${args.join(' ')}`);
     };
     const ref = resolveChangedBaseRef({ env: { GATE_SELECT_BASE: 'origin/release/v0.35.0' }, run });
@@ -16,7 +24,7 @@ describe('resolveChangedBaseRef', () => {
 
   it('throws when GATE_SELECT_BASE does not resolve to a commit', () => {
     const run: Run = (_cmd, args) => {
-      if (args[0] === 'rev-parse') return { status: 128 };
+      if (args[0] === 'rev-list') return { status: 128 };
       throw new Error(`unexpected git ${args.join(' ')}`);
     };
     expect(() => resolveChangedBaseRef({ env: { GATE_SELECT_BASE: 'nope' }, run })).toThrow(
@@ -38,7 +46,7 @@ describe('resolveChangedBaseRef', () => {
         if (args[0] === 'for-each-ref') {
           return { status: 0, stdout: 'origin/release/v0.36.0\norigin/release/v0.35.0\n' };
         }
-        if (args[0] === 'rev-parse' && args.includes('origin/release/v0.36.0^{commit}')) {
+        if (args[0] === 'rev-list' && args.includes('origin/release/v0.36.0')) {
           return { status: 0 };
         }
         throw new Error(`unexpected git ${args.join(' ')}`);
@@ -51,8 +59,8 @@ describe('resolveChangedBaseRef', () => {
   it('falls back to origin/main when no release branch resolves', () => {
     const run: Run = (_cmd, args) => {
       if (args[0] === 'for-each-ref') return { status: 0, stdout: '' };
-      if (args[0] === 'rev-parse' && args.includes('origin/main^{commit}')) return { status: 0 };
-      if (args[0] === 'rev-parse') return { status: 128 };
+      if (args[0] === 'rev-list' && args.includes('origin/main')) return { status: 0 };
+      if (args[0] === 'rev-list') return { status: 128 };
       throw new Error(`unexpected git ${args.join(' ')}`);
     };
     const ref = resolveChangedBaseRef({ env: {}, run });
@@ -62,8 +70,8 @@ describe('resolveChangedBaseRef', () => {
   it('falls back to origin/HEAD when neither a release branch nor origin/main resolves', () => {
     const run: Run = (_cmd, args) => {
       if (args[0] === 'for-each-ref') return { status: 0, stdout: '' };
-      if (args[0] === 'rev-parse' && args.includes('origin/HEAD^{commit}')) return { status: 0 };
-      if (args[0] === 'rev-parse') return { status: 128 };
+      if (args[0] === 'rev-list' && args.includes('origin/HEAD')) return { status: 0 };
+      if (args[0] === 'rev-list') return { status: 128 };
       throw new Error(`unexpected git ${args.join(' ')}`);
     };
     const ref = resolveChangedBaseRef({ env: {}, run });
@@ -73,7 +81,7 @@ describe('resolveChangedBaseRef', () => {
   it('throws a clear error when nothing resolves, rather than silently narrowing', () => {
     const run: Run = (_cmd, args) => {
       if (args[0] === 'for-each-ref') return { status: 0, stdout: '' };
-      if (args[0] === 'rev-parse') return { status: 128 };
+      if (args[0] === 'rev-list') return { status: 128 };
       throw new Error(`unexpected git ${args.join(' ')}`);
     };
     expect(() => resolveChangedBaseRef({ env: {}, run })).toThrow(

@@ -52,8 +52,14 @@ const MONOLITHS: MonolithRow[] = [
     seam: 'a sim system module behind SimContext (src/sim/CLAUDE.md)',
   },
   {
+    // Lowered from upstream's 11490 at the v0.36.0 sync, to the same current
+    // size + 200 the rest of this table uses: this fork's main.ts is about
+    // 1,400 lines shorter because the wallet bootstrap, the wallet option arms,
+    // and the WOC store wiring are not here. Keeping upstream's number would
+    // have handed the file that much free growth, which is the ratchet losing
+    // its tension rather than the file earning room.
     file: 'src/main.ts',
-    ceiling: 11490,
+    ceiling: 10270,
     seam: 'a src/game/ or src/ui/ sibling module; main.ts is a firewall, not a home',
   },
   {

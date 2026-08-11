@@ -640,7 +640,9 @@ describe('ability VFX anchor resolves reachable from update()', () => {
     for (const fn of [
       'AbilityVfxFx.drawWindup',
       'AbilityVfxFx.drawOrbit',
-      'AbilityVfxFx.drawStunStars',
+      // Upstream's v0.36.0 rename of drawStunStars: the same per-frame
+      // crowd-control overhead draw, now a band rather than only stars.
+      'AbilityVfxFx.drawCcBand',
       'ArchetypeSequencer.drawTransients',
       'AbilityVfxRibbons.update',
       'BuffShells.update',

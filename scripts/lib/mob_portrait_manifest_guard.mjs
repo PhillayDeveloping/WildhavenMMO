@@ -1,3 +1,5 @@
+import { describeManifestDrift } from './mob_portrait_manifest_diff.mjs';
+
 export function changedPortraitIds(previous, next) {
   if (!previous || previous.rendererFingerprint !== next.rendererFingerprint) {
     return next.portraits.map((portrait) => portrait.id);
@@ -25,6 +27,23 @@ export function assertManifestWriteAuthorized({ previous, next, receipt, allowBo
     }
     return;
   }
+
+  // The bookkeeping drift, and the only write this function lets through
+  // unreceipted. describeManifestDrift already isolates it and printDiffHint
+  // already NAMES it to the operator: every portrait row, every tracked render
+  // input, and every shipped image byte is identical, and the ONLY thing that
+  // moved is the browser bundle's own digest, which the bundle's import graph
+  // drags along behind any gameplay edit at all.
+  //
+  // changedPortraitIds cannot see that: it fails every row open the moment the
+  // renderer fingerprint moves, which is correct for a real renderer change and
+  // maximally wrong for this one. The cost of that conflation is a 230-portrait
+  // rerender, and a rerender is only reproducible on the platform that produced
+  // the committed art, so on any other host re-accepting means committing a
+  // fresh render of art nobody meant to change. Nothing about the ART can hide
+  // in this branch: the per-row check below is what proves it, on inputs and on
+  // output bytes both.
+  if (describeManifestDrift(previous, next).bookkeepingOnly) return;
 
   const changedIds = changedPortraitIds(previous, next);
   if (changedIds.length === 0) return;
