@@ -109,7 +109,7 @@ describe('ability VFX steady-state frame cost', () => {
         fx.orbit(id, 'runes', 0x00ff00);
         fx.holdShell(id, 0x0000ff);
         fx.holdGroundAura(id, 0, 0x00ffff, true);
-        fx.holdStunStars(id, 3);
+        fx.holdCcBand(id, 'stun', 3);
       }
     };
     holdHeldFamilies();
@@ -640,7 +640,9 @@ describe('ability VFX anchor resolves reachable from update()', () => {
     for (const fn of [
       'AbilityVfxFx.drawWindup',
       'AbilityVfxFx.drawOrbit',
-      'AbilityVfxFx.drawStunStars',
+      // Upstream's v0.36.0 rename of drawStunStars: the same per-frame
+      // crowd-control overhead draw, now a band rather than only stars.
+      'AbilityVfxFx.drawCcBand',
       'ArchetypeSequencer.drawTransients',
       'AbilityVfxRibbons.update',
       'BuffShells.update',

@@ -216,6 +216,16 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://wildhaven.example/wiki/rifts</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wildhaven.example/wiki/mounts</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://wildhaven.example/wiki/arena</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -236,7 +246,17 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://wildhaven.example/wiki/reliquary</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://wildhaven.example/wiki/reference/controls</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wildhaven.example/wiki/reference/interface</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -266,7 +286,17 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://wildhaven.example/wiki/reference/commands</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://wildhaven.example/wiki/reference/glossary</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wildhaven.example/wiki/reference/editor</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

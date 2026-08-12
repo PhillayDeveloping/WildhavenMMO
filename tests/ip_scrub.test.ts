@@ -217,7 +217,6 @@ const KEEP_EXEMPTIONS: { entry: string; value: string; fieldIncludes: string }[]
   // reintroduction of the phrase must still fail this gate.
   { entry: 'Second Wind', value: 'Second Wind', fieldIncludes: 'war_row_second_wind' },
   { entry: 'Toughness', value: 'Toughness', fieldIncludes: 'aug_toughness' },
-  { entry: 'Stormcaller', value: 'Stormcaller', fieldIncludes: 'holderTiers.stormcaller' },
   { entry: 'Berserker', value: 'Berserker', fieldIncludes: 'pow_berserker' },
   // Generic UI category/mechanic labels (damage-meter 'Heal' column; pet-command
   // 'Taunt'), operator-approved keeps, NOT the renamed priest/warrior abilities.

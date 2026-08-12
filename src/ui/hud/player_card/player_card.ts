@@ -18,6 +18,34 @@ import {
   percentileTierBadgeDataUrl,
   percentileTierForPercent,
 } from '../../percentile_tier';
+import {
+  CARD_H,
+  CARD_W,
+  CHIP_H,
+  CHIP_Y,
+  cardTitleLayout,
+  DEV_BADGE_CX,
+  DEV_BADGE_CY,
+  DEV_BADGE_R,
+  FOOTER_BASELINE,
+  FOOTER_REFERRAL_BASELINE,
+  FOOTER_REFERRAL_FONT_PX,
+  GEAR_ROW_H,
+  GEAR_W,
+  GEAR_Y,
+  gearPanelHeight,
+  HEADER_RIGHT_EDGE,
+  HEADER_X,
+  NAME_BASELINE,
+  REALM_BASELINE,
+  STATS_H,
+  STATS_W,
+  STATS_Y,
+  SUBTITLE_BASELINE,
+  statRowHeight,
+} from './card_layout';
+
+export { cardTitleLayout } from './card_layout';
 
 export interface PlayerCardStat {
   label: string;
@@ -66,8 +94,6 @@ export interface PlayerCardData {
   siteUrl: string;
 }
 
-export const CARD_W = 1200;
-export const CARD_H = 630;
 const SCALE = 1; // native Open Graph size; already denser than the 680px preview
 
 const COL = {
@@ -172,37 +198,11 @@ function fillTextClamped(
 const TITLE_FONT = 'Cinzel, Georgia, serif';
 const BODY_FONT = '"Alegreya Sans", "Segoe UI", system-ui, sans-serif';
 
-// The header text column: every header line (name, subtitle, realm, title)
-// starts here, clamped left of the right-edge column that keeps text clear of
-// the top-right brand mark. Shared by drawHeader and cardTitleLayout so the
-// title line can never drift from the header origin.
-const HEADER_X = 478;
-const HEADER_RIGHT_EDGE = 1018;
-
 // The full brand lockup (C-shield emblem + "WILDHAVEN" wordmark),
 // served from /public. Same-origin, so drawing it does not taint the canvas.
 // Loaded best-effort: if it's missing the footer falls back to a text wordmark
 // rather than failing the whole card.
 const LOGO_URL = '/wildhaven-logo-hero.webp';
-
-/** Where the title line sits on the header, or null when nothing may draw.
- *  Pure (no canvas): the caller passes the measured realm-line width so the
- *  title starts past it on the same y=158 baseline, clamped left of the
- *  RIGHT_EDGE (1018) column every header line respects. Null for an absent /
- *  empty / whitespace titleText, and for a residual box too narrow to read,
- *  which is what keeps an untitled card byte-identical (the one draw call is
- *  guarded on this returning non-null). */
-export function cardTitleLayout(
-  titleText: string | undefined,
-  realmLineWidth: number,
-): { text: string; x: number; y: number; maxW: number } | null {
-  const text = (titleText ?? '').trim();
-  if (!text) return null;
-  const x = HEADER_X + Math.ceil(realmLineWidth) + 16;
-  const maxW = HEADER_RIGHT_EDGE - x;
-  if (maxW < 40) return null; // an extreme realm line: skip rather than clip to noise
-  return { text, x, y: 158, maxW };
-}
 
 /** Format a realm percentile as a card chip label. */
 function formatTopPercent(pct: number): string {
@@ -316,7 +316,7 @@ function drawHeader(
   ctx.shadowBlur = 8;
   ctx.fillStyle = COL.gold;
   ctx.font = `700 58px ${TITLE_FONT}`;
-  fillTextClamped(ctx, data.name, x, 96, 540);
+  fillTextClamped(ctx, data.name, x, NAME_BASELINE, 540);
   ctx.restore();
 
   const sub = t('playerCard.levelClass', {
@@ -331,8 +331,8 @@ function drawHeader(
   // medal + chip off the right edge.
   const RIGHT_EDGE = HEADER_RIGHT_EDGE; // keep the flex left of the brand mark (matches the name's clamp)
   const padX = 12;
-  const chipY = 109;
-  const chipH = 26;
+  const chipY = CHIP_Y;
+  const chipH = CHIP_H;
   const hasFlex = data.topPercent !== null;
   const label = hasFlex ? formatTopPercent(data.topPercent as number) : '';
   ctx.font = `700 16px ${BODY_FONT}`;
@@ -343,7 +343,7 @@ function drawHeader(
   ctx.fillStyle = COL.cream;
   ctx.font = `600 24px ${BODY_FONT}`;
   const maxSubW = RIGHT_EDGE - x - reserved;
-  fillTextClamped(ctx, sub, x, 130, maxSubW);
+  fillTextClamped(ctx, sub, x, SUBTITLE_BASELINE, maxSubW);
   const subW = Math.min(ctx.measureText(sub).width, maxSubW);
 
   if (hasFlex) {
@@ -373,14 +373,12 @@ function drawHeader(
   const realmLine = data.realm
     ? t('playerCard.realmSubtitle', { realm: data.realm })
     : t('playerCard.defaultRealm');
-  ctx.fillText(realmLine, x, 158);
+  ctx.fillText(realmLine, x, REALM_BASELINE);
 
-  // The selected Book of Deeds title, a small gold read beside the realm line.
-  // The header stack under the name is fully allocated (subtitle + flex chip
-  // y109-135, realm y158, dev badge band y168-190, stats panel y196), so the
-  // title shares the realm baseline instead of claiming a new line: an
-  // untitled card draws NOTHING here and stays byte-identical.
-  const titleLine = cardTitleLayout(data.titleText, ctx.measureText(realmLine).width);
+  // The selected Book of Deeds title now gets its own row below the realm
+  // line (see card_layout.ts), so a long title never fights the realm text
+  // for the same baseline: an untitled card draws NOTHING here still.
+  const titleLine = cardTitleLayout(data.titleText);
   if (titleLine) {
     ctx.fillStyle = COL.goldDim;
     ctx.font = `600 19px ${BODY_FONT}`;
@@ -388,21 +386,23 @@ function drawHeader(
   }
 }
 
-// The developer badge sits in the free band between the realm subtitle (whose
-// glyphs end around y=162) and the stats panel (y=196), in the right column: a
-// compact badge with the rung name and the merged-PR count, reading as an
+// The developer badge sits in the free band below the title row and above
+// the stats panel (see DEV_BADGE_CY / STATS_Y in card_layout.ts), in the
+// right column: a compact badge with the rung name and the merged-PR count,
+// reading as an
 // earned honor like the percentile medal above it. Sized + centred (r=11,
-// cy=179) to keep clearance on both sides even for a tall non-Latin glyph (the
-// rung name is short by design: see hudChrome.devBadge.tiers.*).
+// see DEV_BADGE_CY in card_layout.ts) to keep clearance on both sides even
+// for a tall non-Latin glyph (the rung name is short by design: see
+// hudChrome.devBadge.tiers.*).
 function drawDevBadge(
   ctx: CanvasRenderingContext2D,
   tier: DevTier,
   badge: HTMLImageElement,
   mergedPrs: number | null,
 ): void {
-  const r = 11;
-  const cx = 478 + r;
-  const cy = 179;
+  const r = DEV_BADGE_R;
+  const cx = DEV_BADGE_CX;
+  const cy = DEV_BADGE_CY;
   ctx.save();
   ctx.shadowColor = hexWithAlpha(tier.glow, 0.9);
   ctx.shadowBlur = 6;
@@ -432,10 +432,10 @@ function drawDevBadge(
 }
 
 function drawStats(ctx: CanvasRenderingContext2D, data: PlayerCardData): void {
-  const x = 478;
-  const y = 196;
-  const w = 690;
-  const h = 196;
+  const x = HEADER_X;
+  const y = STATS_Y;
+  const w = STATS_W;
+  const h = STATS_H;
   ctx.fillStyle = COL.panel;
   roundRect(ctx, x, y, w, h, 12);
   ctx.fill();
@@ -444,11 +444,14 @@ function drawStats(ctx: CanvasRenderingContext2D, data: PlayerCardData): void {
   roundRect(ctx, x, y, w, h, 12);
   ctx.stroke();
 
-  // Two stat blocks side by side: attributes (left) and combat (right).
+  // Two stat blocks side by side: attributes (left) and combat (right). Row
+  // height comes from the actual row count (arena rating / prestige can add
+  // up to two extra combat rows), so a fully populated column still fits the
+  // fixed-height panel instead of running past it.
   const padX = 26;
   const colW = (w - padX * 2) / 2;
-  drawStatColumn(ctx, data.primaryStats, x + padX, y + 22, colW - 20);
-  drawStatColumn(ctx, data.combatStats, x + padX + colW + 8, y + 22, colW - 20);
+  drawStatColumn(ctx, data.primaryStats, x + padX, y + 22, colW - 20, h);
+  drawStatColumn(ctx, data.combatStats, x + padX + colW + 8, y + 22, colW - 20, h);
 }
 
 function drawStatColumn(
@@ -457,8 +460,9 @@ function drawStatColumn(
   x: number,
   y: number,
   w: number,
+  panelH: number,
 ): void {
-  const rowH = 27;
+  const rowH = statRowHeight(stats.length, panelH);
   ctx.font = `600 20px ${BODY_FONT}`;
   for (let i = 0; i < stats.length; i++) {
     const ry = y + i * rowH + 18;
@@ -473,10 +477,10 @@ function drawStatColumn(
 }
 
 function drawGear(ctx: CanvasRenderingContext2D, data: PlayerCardData): void {
-  const x = 478;
-  const y = 412;
-  const w = 690;
-  const h = 118;
+  const x = HEADER_X;
+  const y = GEAR_Y;
+  const w = GEAR_W;
+  const h = gearPanelHeight(data.gear.length);
   ctx.fillStyle = COL.panel;
   roundRect(ctx, x, y, w, h, 12);
   ctx.fill();
@@ -491,7 +495,7 @@ function drawGear(ctx: CanvasRenderingContext2D, data: PlayerCardData): void {
     const col = i % 2;
     const rowIdx = Math.floor(i / 2);
     const gx = x + padX + col * colW;
-    const gy = y + 20 + rowIdx * 44;
+    const gy = y + 20 + rowIdx * GEAR_ROW_H;
     ctx.fillStyle = COL.muted;
     ctx.font = `600 15px ${BODY_FONT}`;
     ctx.fillText(data.gear[i].slot.toUpperCase(), gx, gy);
@@ -506,7 +510,7 @@ function drawFooter(
   data: PlayerCardData,
   logo: HTMLImageElement | null,
 ): void {
-  const y = CARD_H - 26;
+  const y = FOOTER_BASELINE;
   // Brand mark: the full logo lockup, else a plain text wordmark, top-right,
   // right-aligned against the card's right margin, above the stats panel.
   if (logo && logo.width > 0) {
@@ -525,7 +529,7 @@ function drawFooter(
   // block now occupying the bottom-left.
   ctx.textAlign = 'right';
   ctx.fillStyle = COL.cream;
-  ctx.font = `600 19px ${BODY_FONT}`;
+  ctx.font = `600 ${FOOTER_REFERRAL_FONT_PX}px ${BODY_FONT}`;
   const referralLine = data.referralCount
     ? t('playerCard.footerHandleWithRecruits', {
         handle: data.referralHandle,
@@ -534,7 +538,9 @@ function drawFooter(
         }),
       })
     : t('playerCard.footerHandle', { handle: data.referralHandle });
-  ctx.fillText(referralLine, 1168, y - 22);
+  // Clamped so a long referral handle plus a large recruited count can never
+  // run unbounded past the card's left frame.
+  fillTextClamped(ctx, referralLine, 1168, FOOTER_REFERRAL_BASELINE, 600);
   ctx.fillStyle = COL.goldDim;
   ctx.font = `400 16px ${BODY_FONT}`;
   fillTextClamped(ctx, t('playerCard.footerCta', { siteUrl: data.siteUrl }), 1168, y, 360);

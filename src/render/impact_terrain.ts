@@ -1,4 +1,5 @@
 import { MIREFEN_IMPACT_CRATER } from '../sim/world';
+import { clamp01 } from './num_clamp';
 
 export interface ImpactCraterTerrainBlend {
   ash: number;
@@ -6,8 +7,6 @@ export interface ImpactCraterTerrainBlend {
   dirt: number;
   rock: number;
 }
-
-const clamp01 = (v: number): number => Math.max(0, Math.min(1, v));
 
 function smoothstep(edge0: number, edge1: number, x: number): number {
   const t = clamp01((x - edge0) / (edge1 - edge0));

@@ -131,15 +131,15 @@ describe('exclude lists are pinned and real (anti-loosening guard)', () => {
   it('ENTITY_EXCLUDE membership is exactly the pinned set', () => {
     expect([...ENTITY_EXCLUDE].sort()).toEqual([
       'castConsumedEmpower', // one-cast empower guard flag; effect pinned via procState + events
+      'castRadiantResonance', // one-cast Dawn reservation; effect pinned via aura + cast outcome
       'color',
       'damageHistory',
       'equippedInstances',
       'equippedItems',
       'firebottleCdRemaining', // derived display copy of PlayerMeta.firebottleReadyAt
       'guild',
-      'holderBalance',
-      'holderTier',
       'mainhandItemId',
+      'modularAppearance',
       'name',
       'netInterval',
       'netUpdatedAt',
@@ -197,10 +197,9 @@ describe('exclude lists are pinned and real (anti-loosening guard)', () => {
     const optionalEntity = new Set([
       'netUpdatedAt',
       'netInterval',
-      'holderTier',
-      'holderBalance',
       'damageHistory', // Rewind's ring; only present after a player takes damage
       'castConsumedEmpower', // set only while a cast that consumed an empower resolves
+      'castRadiantResonance', // set only while Dawn's Embrace has reserved the proc
     ]);
     const optionalMeta = new Set(['characterId', 'lastWhisperFrom']);
     for (const k of ENTITY_EXCLUDE) {

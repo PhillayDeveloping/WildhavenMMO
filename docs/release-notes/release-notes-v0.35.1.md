@@ -164,7 +164,7 @@ Carried forward, still open:
 
 New with this release:
 
-- 77 test files mock a `walletForAccount` database function this fork's server
+- ~~77 test files mock a `walletForAccount` database function this fork's server
   does not export. 74 of them were inherited from the v0.35.0 snapshot import,
   and three arrived in this sync: `tests/commission_wire_cadence.test.ts`,
   `tests/mail_wire_cadence.test.ts`, and `tests/self_wire_phase_breakdown.test.ts`
@@ -174,8 +174,17 @@ New with this release:
   conflict touched, and it passed because `tests/no_web3_regression.test.ts`
   scans those files without naming that identifier. Adding the name to the guard
   and stripping all 77 is left to its own change, so this sync's diff stays
-  scoped to the merge.
-- The tag-namespace guidance in `docs/upstream-sync.md` is still on an unmerged
+  scoped to the merge.~~ **Closed after this release.** PR #8 stripped all 77
+  and pinned the whole db-layer wallet accessor family in the guard, not just
+  the one identifier that happened to be spelled. The v0.36.0 sync proved the
+  pin: two fresh upstream suites brought the key back and the guard named both
+  by file and line.
+- ~~The tag-namespace guidance in `docs/upstream-sync.md` is still on an unmerged
   branch. Upstream and Wildhaven tag the same version numbers, so a plain
   `git fetch upstream --tags` writes upstream's commit into our own release tag
-  name. This sync hit exactly that and had to delete the stray tag by hand.
+  name. This sync hit exactly that and had to delete the stray tag by hand.~~
+  **Closed after this release.** The guidance is on `main`, and `remote.upstream`
+  now fetches into `refs/tags/upstream/*`. The trap is still live for anyone who
+  passes `--tags` explicitly, which overrides the configured refspec: the v0.36.0
+  sync did exactly that once and had to delete the stray bare tag again, so the
+  routine in that doc says `git fetch upstream` with no flag on purpose.

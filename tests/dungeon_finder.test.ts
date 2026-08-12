@@ -10,7 +10,6 @@ import {
   finderActivity,
 } from '../src/sim/content/dungeon_finder';
 import { FIRST_TALENT_LEVEL, type Role, TALENTS } from '../src/sim/content/talents';
-import { BUILTIN_WORLD } from '../src/sim/data';
 import { Sim } from '../src/sim/sim';
 import {
   assignFinderRoles,
@@ -20,33 +19,19 @@ import {
   matchFinderRoles,
   normalizeFinderSelection,
 } from '../src/sim/social/dungeon_finder';
-import type { PlayerClass, SimEvent, WorldContent } from '../src/sim/types';
+import type { PlayerClass, SimEvent } from '../src/sim/types';
+import { EMPTY_TEST_WORLD } from './sim_shared';
 
 const FIVE = { tank: 1, healer: 1, dps: 3 };
 const TEN = { tank: 2, healer: 2, dps: 6 };
 
-// The finder is queue and party logic: it never touches an ambient camp mob, an
-// overworld NPC, or a ground object, but a default Sim spawns every one of them
-// across all 11 zones and then runs the mobs' idle AI on every tick. That cost
-// lands twice here. Construction: about a second per `new Sim`, and this file
-// builds one per test. Ticks: the decline case waits out a 60s cooldown (about
-// 1300 ticks) whose per-tick idle-mob wander is terrain-height sampling, which
-// is what pushed that case past vitest's 20s testTimeout. The authoritative
-// server never pays the tick half either: its Sim opts into idleMobTickRadius
-// (server/game.ts, #2703). So drop the unrelated spawn collections, the
-// standard subsystem-sized fixture (tests/arena.test.ts,
-// tests/fire_short_fight_tuning.test.ts). Terrain is untouched: the camp
-// flattening in world.ts terrainHeightUnpadded reads the CAMPS content table,
-// not the active WorldContent, so this trims spawns only.
-const FINDER_TEST_WORLD: WorldContent = {
-  ...BUILTIN_WORLD,
-  camps: [],
-  npcs: {},
-  groundObjects: [],
-};
-
+// This suite drives player/party/queue state (Dungeon Finder queueing,
+// role assignment, the premade board) through a real multi-player Sim; it
+// never spawns, fights, loots, or otherwise reaches for a camp, npc, or
+// ground object, so the ambient built-in world is unnecessary overhead
+// (subsystem-world pattern, docs/local-gate-perf/baselines.md Phase 9).
 const makeSim = (seed = 42) =>
-  new Sim({ seed, playerClass: 'warrior', noPlayer: true, world: FINDER_TEST_WORLD });
+  new Sim({ seed, playerClass: 'warrior', noPlayer: true, world: EMPTY_TEST_WORLD });
 
 function specIdFor(cls: PlayerClass, role: Role): string {
   const specs = TALENTS[cls]?.specs ?? [];
@@ -233,6 +218,7 @@ describe('compatibleFinderRoles', () => {
     expect(compatibleFinderRoles('warrior', 5, 'tank')).toEqual(['tank']);
     expect(compatibleFinderRoles('warrior', 10, 'tank')).toEqual(['tank']);
     expect(compatibleFinderRoles('druid', 20, 'healer')).toEqual(['healer']);
+    expect(compatibleFinderRoles('druid', 20, 'tank')).toEqual(['tank', 'dps']);
     expect(compatibleFinderRoles('mage', 20, 'dps')).toEqual(['dps']);
   });
 
@@ -930,7 +916,7 @@ describe('premade board', () => {
 
 describe('/dev lfg seeding', () => {
   const makeDevSim = () =>
-    new Sim({ seed: 42, playerClass: 'warrior', devCommands: true, world: FINDER_TEST_WORLD });
+    new Sim({ seed: 42, playerClass: 'warrior', devCommands: true, world: EMPTY_TEST_WORLD });
 
   it('queue mode spawns the complementary bots so my join pops a proposal', () => {
     const sim = makeDevSim();
@@ -987,7 +973,7 @@ describe('/dev lfg seeding', () => {
     sim.chat('/dev lfg');
     tickAll(sim, 1);
     expect([...sim.players.values()].filter((m) => m.isDevBot)).toHaveLength(0);
-    const prod = new Sim({ seed: 42, playerClass: 'warrior', world: FINDER_TEST_WORLD });
+    const prod = new Sim({ seed: 42, playerClass: 'warrior', world: EMPTY_TEST_WORLD });
     prod.setPlayerLevel(8);
     prod.setSpec(specIdFor('warrior', 'tank'));
     prod.dungeonFinderSetRoles(['tank']);
